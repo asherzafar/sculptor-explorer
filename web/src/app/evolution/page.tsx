@@ -107,7 +107,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Geography</h2>
           <GeographyChart
-            data={geographyData as any}
+            data={geographyData}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />
@@ -120,7 +120,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Movements</h2>
           <MovementsChart
-            data={movementsData as any}
+            data={movementsData}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
             showEvents={true}
@@ -134,7 +134,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Materials</h2>
           <MaterialsChart
-            data={materialsData as any}
+            data={materialsData}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />

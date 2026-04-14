@@ -1,19 +1,9 @@
 "use client";
 
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  ReferenceLine,
-} from "recharts";
-import type { MovementByDecade } from "@/lib/types";
+import type { DecadeAggregation } from "@/lib/types";
 
 interface MovementsChartProps {
-  data: MovementByDecade[];
+  data: DecadeAggregation[];
   activeDecade?: number | null;
   onDecadeClick?: (decade: number) => void;
   showEvents?: boolean;
@@ -27,93 +17,50 @@ const HISTORICAL_EVENTS = [
   { year: 1945, label: "WWII ends" },
 ];
 
+/**
+ * Stub: MovementsChart — Phase 2 D3 implementation pending
+ * 
+ * Will show stacked area chart of art movements by decade,
+ * with historical event markers.
+ */
 export function MovementsChart({
   data,
   activeDecade,
   onDecadeClick,
-  showEvents = true,
 }: MovementsChartProps) {
-  if (!data || data.length === 0) {
-    return (
-      <div className="rounded-lg border bg-card p-8 text-center">
-        <p className="text-muted-foreground">No movement data available.</p>
-      </div>
-    );
-  }
-
-  // Get top movements (excluding 'decade' and 'total')
-  const allKeys = Object.keys(data[0]).filter(
-    (k) => k !== "decade" && k !== "total"
-  );
-  const topMovements = allKeys.slice(0, 5);
-
-  // Assign colors
-  const colors = ["#8b5cf6", "#ec4899", "#f59e0b", "#10b981", "#3b82f6"];
-
-  // Handle chart click
-  const handleClick = (state: any) => {
-    if (state && state.activeLabel && onDecadeClick) {
-      onDecadeClick(state.activeLabel);
-    }
-  };
+  const decades = [...new Set(data.map((d) => d.decade))].sort((a, b) => a - b);
 
   return (
-    <div className="h-72">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          data={data}
-          onClick={handleClick}
-          className="cursor-pointer"
-        >
-          <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-          <XAxis
-            dataKey="decade"
-            tickFormatter={(v) => `${v}s`}
-            className="text-xs fill-muted-foreground"
-          />
-          <YAxis className="text-xs fill-muted-foreground" />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "hsl(var(--card))",
-              border: "1px solid hsl(var(--border))",
-              borderRadius: "6px",
-            }}
-          />
-          {showEvents &&
-            HISTORICAL_EVENTS.map((event) => (
-              <ReferenceLine
-                key={event.year}
-                x={Math.floor(event.year / 10) * 10}
-                stroke="hsl(var(--muted-foreground))"
-                strokeDasharray="3 3"
-                label={{
-                  value: event.label,
-                  position: "top",
-                  fill: "hsl(var(--muted-foreground))",
-                  fontSize: 10,
-                }}
-              />
-            ))}
-          {activeDecade && (
-            <ReferenceLine
-              x={activeDecade}
-              stroke="hsl(var(--primary))"
-              strokeWidth={2}
-            />
-          )}
-          {topMovements.map((movement, i) => (
-            <Area
-              key={movement}
-              type="monotone"
-              dataKey={movement}
-              stackId="1"
-              stroke={colors[i % colors.length]}
-              fill={colors[i % colors.length]}
-              fillOpacity={activeDecade ? 0.3 : 0.6}
-            />
+    <div className="h-72 rounded-lg border bg-card flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center p-6">
+        <div className="text-4xl mb-3">🎨</div>
+        <p className="text-muted-foreground text-sm text-center mb-2">
+          Movements visualization coming in Phase 2
+        </p>
+        <p className="text-xs text-muted-foreground/70 text-center">
+          {data.length > 0
+            ? `${decades.length} decades, ${HISTORICAL_EVENTS.length} historical events`
+            : "No data available"}
+        </p>
+      </div>
+
+      {decades.length > 0 && onDecadeClick && (
+        <div className="border-t px-4 py-3 flex gap-2 overflow-x-auto">
+          {decades.map((decade) => (
+            <button
+              key={decade}
+              onClick={() => onDecadeClick(decade)}
+              className={`px-2 py-1 text-xs rounded-md transition-colors ${
+                activeDecade === decade
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-accent hover:bg-accent/80"
+              }`}
+            >
+              {decade}s
+            </button>
           ))}
-        </AreaChart>
-      </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 }

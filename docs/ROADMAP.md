@@ -24,16 +24,16 @@ The goal is to get something live and shareable as fast as possible, then iterat
 - [x] Canonical focus sculptor CSV (`overrides/focus_sculptors.csv`)
 - [x] `.gitignore`, `README.md`, `CLAUDE.md`, `.windsurfrules`
 
-### Phase 1: D3 migration + pipeline ✎ IN PROGRESS
+### Phase 1: D3 migration + pipeline ✅ COMPLETE
 
 - [x] Rewrite LifespanTimeline chart in D3 (currently hand-rolled SVG)
 - [x] Install D3, establish D3+React pattern
-- [ ] Remove Recharts dependency (pending: stub or replace 3 chart components)
+- [x] Remove Recharts dependency (stubs for Evolution page)
 - [x] Pipeline runs end-to-end: Wikidata → process → tidy JSON export
 - [x] Pipeline exports tidy `DecadeAggregation` format (`{decade, category, count}`)
 - [x] Regenerate `timeline_sculptors.json` from pipeline (enriched with QIDs)
 - [x] Replace hardcoded colors in LifespanTimeline with design tokens
-- [ ] Explore page: sortable columns, diacritic-insensitive search
+- [x] Explore page: sortable columns, diacritic-insensitive search
 
 ### Phase 2: Evolution page + deploy
 

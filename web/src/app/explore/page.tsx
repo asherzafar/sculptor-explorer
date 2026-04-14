@@ -1,14 +1,105 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  flexRender,
+  type ColumnDef,
+  type SortingState,
+  type ColumnFiltersState,
+} from "@tanstack/react-table";
+import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
 import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
+
+// Diacritic-insensitive text normalization for search
+function normalizeText(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); // Remove diacritics
+}
+
+const columns: ColumnDef<LegacySculptor>[] = [
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => (
+      <Link
+        href={`/explore/${row.original.qid}`}
+        className="font-medium hover:underline"
+      >
+        {row.getValue("name")}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "birthYear",
+    header: "Born",
+    cell: ({ row }) => row.getValue("birthYear") ?? "—",
+  },
+  {
+    accessorKey: "deathYear",
+    header: "Died",
+    cell: ({ row }) => row.getValue("deathYear") ?? "—",
+  },
+  {
+    accessorKey: "movement",
+    header: "Movement",
+    cell: ({ row }) => {
+      const movement = row.getValue("movement") as string;
+      return movement || "—";
+    },
+  },
+  {
+    accessorKey: "citizenship",
+    header: "Citizenship",
+    cell: ({ row }) => {
+      const citizenship = row.getValue("citizenship") as string;
+      return citizenship || "—";
+    },
+  },
+  {
+    accessorKey: "birthDecade",
+    header: "Decade",
+    cell: ({ row }) => {
+      const decade = row.getValue("birthDecade") as number | null;
+      return decade ? `${decade}s` : "—";
+    },
+  },
+];
+
+function SortHeader({
+  column,
+  children,
+}: {
+  column: { getIsSorted: () => false | "asc" | "desc"; toggleSorting: () => void };
+  children: React.ReactNode;
+}) {
+  const sort = column.getIsSorted();
+  return (
+    <button
+      onClick={() => column.toggleSorting()}
+      className="flex items-center gap-1 font-semibold text-xs uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+    >
+      {children}
+      {sort === "asc" && <ArrowUp className="h-3 w-3" />}
+      {sort === "desc" && <ArrowDown className="h-3 w-3" />}
+      {sort === false && <ArrowUpDown className="h-3 w-3 opacity-50" />}
+    </button>
+  );
+}
 
 export default function ExplorePage() {
   const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   useEffect(() => {
     async function loadData() {
@@ -24,9 +115,28 @@ export default function ExplorePage() {
     loadData();
   }, []);
 
-  const filtered = sculptors.filter((s) =>
-    s.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // Diacritic-insensitive global filter
+  const filteredData = useMemo(() => {
+    if (!globalFilter) return sculptors;
+    const normalizedQuery = normalizeText(globalFilter);
+    return sculptors.filter((s) =>
+      normalizeText(s.name).includes(normalizedQuery)
+    );
+  }, [sculptors, globalFilter]);
+
+  const table = useReactTable({
+    data: filteredData,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    state: {
+      sorting,
+      columnFilters,
+    },
+  });
 
   if (loading) {
     return (
@@ -38,38 +148,69 @@ export default function ExplorePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">Explore Sculptors</h1>
+      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
+        Explore Sculptors
+      </h1>
       <p className="text-muted-foreground mb-6">
-        Search and filter notable sculptors from the collection.
+        Search and filter {sculptors.length.toLocaleString()} sculptors from the collection.
       </p>
 
-      <input
-        type="text"
-        placeholder="Search sculptors..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full max-w-md mb-6 px-3 py-2 rounded-md border bg-background"
-      />
+      {/* Global search */}
+      <div className="relative mb-4 max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <input
+          type="text"
+          placeholder="Search by name (diacritics optional)..."
+          value={globalFilter}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+          className="w-full pl-9 pr-3 py-2 rounded-md border bg-background text-sm"
+        />
+      </div>
 
       <p className="text-sm text-muted-foreground mb-4">
-        Showing {filtered.length} of {sculptors.length} sculptors
+        Showing {filteredData.length.toLocaleString()} of{" "}
+        {sculptors.length.toLocaleString()} sculptors
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.slice(0, 50).map((sculptor) => (
-          <Link
-            key={sculptor.qid}
-            href={`/explore/${sculptor.qid}`}
-            className="rounded-md border p-4 hover:bg-accent/50 transition-colors"
-          >
-            <h3 className="font-medium">{sculptor.name}</h3>
-            <p className="text-sm text-muted-foreground">
-              {sculptor.birthYear}
-              {sculptor.deathYear ? ` – ${sculptor.deathYear}` : " – present"}
-            </p>
-            <p className="text-sm text-muted-foreground">{sculptor.movement}</p>
-          </Link>
-        ))}
+      {/* Data table */}
+      <div className="rounded-md border overflow-hidden">
+        <table className="w-full text-sm">
+          <thead className="bg-muted/50">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className="px-4 py-3 text-left font-medium"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <SortHeader column={header.column}>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </SortHeader>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr
+                key={row.id}
+                className="border-t hover:bg-accent/30 transition-colors"
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="px-4 py-3">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
