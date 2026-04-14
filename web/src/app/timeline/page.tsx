@@ -33,11 +33,11 @@ export default function TimelinePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
+      <div className="mb-8">
         <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
           Notable Sculptors — Lifespans
         </h1>
-        <p className="text-muted-foreground max-w-2xl">
+        <p className="text-muted-foreground">
           A visual timeline of {sculptors.length} sculptors curated with the
           National Sculpture Society, showing when they lived. Bars are
           color-coded by birth decade. This list emphasizes the American

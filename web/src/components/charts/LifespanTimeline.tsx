@@ -18,8 +18,8 @@ const PERIOD_EVENTS = [
 ];
 
 /** Layout constants */
-const LEFT_MARGIN = 200; // Name labels
-const RIGHT_MARGIN = 24;
+const LEFT_MARGIN = 140; // Name labels (reduced from 200)
+const RIGHT_MARGIN = 40; // Balanced with left
 const TOP_MARGIN = 64;
 const BOTTOM_MARGIN = 60;
 const BAR_HEIGHT = 16;
@@ -446,7 +446,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
       )}
 
       {/* Continuous gradient legend using design tokens */}
-      <div className="mt-4 flex items-center justify-center gap-2">
+      <div className="mt-4 flex items-center justify-start gap-2">
         <span className="text-xs text-muted-foreground">{decades[0] ?? 1800}s</span>
         <div
           className="h-3 rounded-sm"
