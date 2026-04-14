@@ -15,18 +15,18 @@ for d in [RAW_CACHE_DIR, PROCESSED_DIR, WEB_DATA_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # SPARQL endpoint
-SPARQL_ENDPOINT = "https://qlever.cs.uni-freiburg.de/api/wikidata"
+SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
 
 # Pipeline settings
 MIN_BIRTH_YEAR = 1800
 VALUES_BATCH_SIZE = 300
-REFRESH_FROM_WIKIDATA = True
+REFRESH_FROM_WIKIDATA = False
 REFRESH_PROCESSING = True
 
 # HTTP settings
 TIMEOUT_SECONDS = 300
-USER_AGENT = "SculptorExplorer/1.0 (Python/requests)"
-BATCH_DELAY_SECONDS = 0.5
+USER_AGENT = "SculptorExplorer/1.0 (https://github.com/asherzafar/sculptor-explorer) Python/requests"
+BATCH_DELAY_SECONDS = 2.0
 
 # Museum API settings
 MET_API_BASE = "https://collectionapi.metmuseum.org/public/collection/v1"

@@ -4,7 +4,7 @@ description: Run the Python data pipeline to fetch fresh Wikidata
 
 # Run the Sculptor Data Pipeline
 
-This workflow fetches fresh sculptor data from Wikidata via the QLever SPARQL endpoint.
+This workflow fetches fresh sculptor data from Wikidata via the SPARQL endpoint (`query.wikidata.org`).
 
 ## Prerequisites
 

@@ -1,56 +1,637 @@
 [
   {
+    "decade": 1800,
+    "category": "Other",
+    "count": 11
+  },
+  {
+    "decade": 1800,
+    "category": "realism",
+    "count": 1
+  },
+  {
+    "decade": 1810,
+    "category": "Other",
+    "count": 7
+  },
+  {
+    "decade": 1810,
+    "category": "French Realism",
+    "count": 1
+  },
+  {
+    "decade": 1810,
+    "category": "Symbolism",
+    "count": 1
+  },
+  {
+    "decade": 1820,
+    "category": "Other",
+    "count": 5
+  },
+  {
+    "decade": 1820,
+    "category": "Symbolism",
+    "count": 2
+  },
+  {
+    "decade": 1820,
+    "category": "French Realism",
+    "count": 1
+  },
+  {
+    "decade": 1830,
+    "category": "Other",
+    "count": 7
+  },
+  {
+    "decade": 1830,
+    "category": "French Realism",
+    "count": 3
+  },
+  {
+    "decade": 1830,
+    "category": "Impressionism",
+    "count": 2
+  },
+  {
+    "decade": 1830,
+    "category": "Symbolism",
+    "count": 2
+  },
+  {
+    "decade": 1830,
+    "category": "realism",
+    "count": 2
+  },
+  {
+    "decade": 1830,
+    "category": "Art Nouveau",
+    "count": 1
+  },
+  {
     "decade": 1840,
-    "total": 2,
-    "modernism": 1,
-    "Beaux-Arts architecture": 1
+    "category": "Other",
+    "count": 9
+  },
+  {
+    "decade": 1840,
+    "category": "realism",
+    "count": 5
+  },
+  {
+    "decade": 1840,
+    "category": "Symbolism",
+    "count": 4
+  },
+  {
+    "decade": 1840,
+    "category": "Art Nouveau",
+    "count": 1
+  },
+  {
+    "decade": 1840,
+    "category": "Expressionism",
+    "count": 1
+  },
+  {
+    "decade": 1840,
+    "category": "French Realism",
+    "count": 1
+  },
+  {
+    "decade": 1840,
+    "category": "Impressionism",
+    "count": 1
   },
   {
     "decade": 1850,
-    "total": 1
+    "category": "Other",
+    "count": 12
+  },
+  {
+    "decade": 1850,
+    "category": "Art Nouveau",
+    "count": 5
+  },
+  {
+    "decade": 1850,
+    "category": "Symbolism",
+    "count": 4
+  },
+  {
+    "decade": 1850,
+    "category": "Impressionism",
+    "count": 2
+  },
+  {
+    "decade": 1850,
+    "category": "realism",
+    "count": 2
+  },
+  {
+    "decade": 1850,
+    "category": "French Realism",
+    "count": 1
   },
   {
     "decade": 1860,
-    "total": 4,
-    "impressionism": 1,
-    "Art Deco": 1
+    "category": "Other",
+    "count": 22
+  },
+  {
+    "decade": 1860,
+    "category": "Symbolism",
+    "count": 8
+  },
+  {
+    "decade": 1860,
+    "category": "Art Nouveau",
+    "count": 6
+  },
+  {
+    "decade": 1860,
+    "category": "Expressionism",
+    "count": 4
+  },
+  {
+    "decade": 1860,
+    "category": "Impressionism",
+    "count": 4
+  },
+  {
+    "decade": 1860,
+    "category": "realism",
+    "count": 4
+  },
+  {
+    "decade": 1860,
+    "category": "French Realism",
+    "count": 2
   },
   {
     "decade": 1870,
-    "total": 2,
-    "realism": 1
+    "category": "Other",
+    "count": 14
+  },
+  {
+    "decade": 1870,
+    "category": "Symbolism",
+    "count": 6
+  },
+  {
+    "decade": 1870,
+    "category": "Art Nouveau",
+    "count": 4
+  },
+  {
+    "decade": 1870,
+    "category": "Expressionism",
+    "count": 3
+  },
+  {
+    "decade": 1870,
+    "category": "abstract art",
+    "count": 3
+  },
+  {
+    "decade": 1870,
+    "category": "cubism",
+    "count": 2
+  },
+  {
+    "decade": 1870,
+    "category": "realism",
+    "count": 2
   },
   {
     "decade": 1880,
-    "total": 1,
-    "cubism": 1
+    "category": "Other",
+    "count": 22
+  },
+  {
+    "decade": 1880,
+    "category": "Expressionism",
+    "count": 19
+  },
+  {
+    "decade": 1880,
+    "category": "cubism",
+    "count": 12
+  },
+  {
+    "decade": 1880,
+    "category": "abstract art",
+    "count": 5
+  },
+  {
+    "decade": 1880,
+    "category": "Art Nouveau",
+    "count": 3
+  },
+  {
+    "decade": 1880,
+    "category": "Symbolism",
+    "count": 3
+  },
+  {
+    "decade": 1880,
+    "category": "surrealism",
+    "count": 2
+  },
+  {
+    "decade": 1880,
+    "category": "abstract expressionism",
+    "count": 1
+  },
+  {
+    "decade": 1880,
+    "category": "conceptual art",
+    "count": 1
+  },
+  {
+    "decade": 1880,
+    "category": "feminist art",
+    "count": 1
+  },
+  {
+    "decade": 1880,
+    "category": "realism",
+    "count": 1
   },
   {
     "decade": 1890,
-    "total": 1,
-    "contemporary art": 1
+    "category": "Other",
+    "count": 27
+  },
+  {
+    "decade": 1890,
+    "category": "Expressionism",
+    "count": 14
+  },
+  {
+    "decade": 1890,
+    "category": "surrealism",
+    "count": 7
+  },
+  {
+    "decade": 1890,
+    "category": "abstract art",
+    "count": 5
+  },
+  {
+    "decade": 1890,
+    "category": "cubism",
+    "count": 2
+  },
+  {
+    "decade": 1890,
+    "category": "Impressionism",
+    "count": 1
+  },
+  {
+    "decade": 1890,
+    "category": "abstract expressionism",
+    "count": 1
+  },
+  {
+    "decade": 1890,
+    "category": "contemporary art",
+    "count": 1
   },
   {
     "decade": 1900,
-    "total": 4,
-    "surrealism": 1,
-    "contemporary art": 2,
-    "abstract expressionism": 1
+    "category": "abstract art",
+    "count": 17
+  },
+  {
+    "decade": 1900,
+    "category": "Other",
+    "count": 16
+  },
+  {
+    "decade": 1900,
+    "category": "abstract expressionism",
+    "count": 12
+  },
+  {
+    "decade": 1900,
+    "category": "surrealism",
+    "count": 6
+  },
+  {
+    "decade": 1900,
+    "category": "Expressionism",
+    "count": 2
+  },
+  {
+    "decade": 1900,
+    "category": "French Realism",
+    "count": 2
+  },
+  {
+    "decade": 1900,
+    "category": "contemporary art",
+    "count": 1
+  },
+  {
+    "decade": 1900,
+    "category": "pop art",
+    "count": 1
+  },
+  {
+    "decade": 1900,
+    "category": "realism",
+    "count": 1
   },
   {
     "decade": 1910,
-    "total": 1,
-    "feminist art": 1
+    "category": "abstract art",
+    "count": 28
+  },
+  {
+    "decade": 1910,
+    "category": "Other",
+    "count": 15
+  },
+  {
+    "decade": 1910,
+    "category": "abstract expressionism",
+    "count": 8
+  },
+  {
+    "decade": 1910,
+    "category": "surrealism",
+    "count": 5
+  },
+  {
+    "decade": 1910,
+    "category": "Expressionism",
+    "count": 4
+  },
+  {
+    "decade": 1910,
+    "category": "French Realism",
+    "count": 2
+  },
+  {
+    "decade": 1910,
+    "category": "realism",
+    "count": 2
+  },
+  {
+    "decade": 1910,
+    "category": "feminist art",
+    "count": 1
+  },
+  {
+    "decade": 1920,
+    "category": "abstract art",
+    "count": 55
+  },
+  {
+    "decade": 1920,
+    "category": "Other",
+    "count": 45
+  },
+  {
+    "decade": 1920,
+    "category": "abstract expressionism",
+    "count": 9
+  },
+  {
+    "decade": 1920,
+    "category": "pop art",
+    "count": 9
+  },
+  {
+    "decade": 1920,
+    "category": "contemporary art",
+    "count": 5
+  },
+  {
+    "decade": 1920,
+    "category": "Expressionism",
+    "count": 4
+  },
+  {
+    "decade": 1920,
+    "category": "surrealism",
+    "count": 3
+  },
+  {
+    "decade": 1920,
+    "category": "Minimalism",
+    "count": 2
+  },
+  {
+    "decade": 1920,
+    "category": "conceptual art",
+    "count": 2
+  },
+  {
+    "decade": 1920,
+    "category": "cubism",
+    "count": 2
+  },
+  {
+    "decade": 1920,
+    "category": "feminist art",
+    "count": 2
+  },
+  {
+    "decade": 1920,
+    "category": "French Realism",
+    "count": 1
+  },
+  {
+    "decade": 1920,
+    "category": "realism",
+    "count": 1
   },
   {
     "decade": 1930,
-    "total": 1,
-    "contemporary art": 1
+    "category": "abstract art",
+    "count": 51
+  },
+  {
+    "decade": 1930,
+    "category": "Other",
+    "count": 34
+  },
+  {
+    "decade": 1930,
+    "category": "contemporary art",
+    "count": 9
+  },
+  {
+    "decade": 1930,
+    "category": "pop art",
+    "count": 9
+  },
+  {
+    "decade": 1930,
+    "category": "Minimalism",
+    "count": 7
+  },
+  {
+    "decade": 1930,
+    "category": "abstract expressionism",
+    "count": 3
+  },
+  {
+    "decade": 1930,
+    "category": "conceptual art",
+    "count": 3
+  },
+  {
+    "decade": 1930,
+    "category": "French Realism",
+    "count": 1
+  },
+  {
+    "decade": 1930,
+    "category": "feminist art",
+    "count": 1
+  },
+  {
+    "decade": 1940,
+    "category": "abstract art",
+    "count": 53
+  },
+  {
+    "decade": 1940,
+    "category": "Other",
+    "count": 22
+  },
+  {
+    "decade": 1940,
+    "category": "contemporary art",
+    "count": 19
+  },
+  {
+    "decade": 1940,
+    "category": "conceptual art",
+    "count": 12
+  },
+  {
+    "decade": 1940,
+    "category": "feminist art",
+    "count": 4
+  },
+  {
+    "decade": 1940,
+    "category": "Minimalism",
+    "count": 3
+  },
+  {
+    "decade": 1940,
+    "category": "pop art",
+    "count": 3
+  },
+  {
+    "decade": 1940,
+    "category": "Symbolism",
+    "count": 2
+  },
+  {
+    "decade": 1940,
+    "category": "abstract expressionism",
+    "count": 1
+  },
+  {
+    "decade": 1940,
+    "category": "surrealism",
+    "count": 1
   },
   {
     "decade": 1950,
-    "total": 2,
-    "contemporary art": 1,
-    "environmental art": 1
+    "category": "abstract art",
+    "count": 41
+  },
+  {
+    "decade": 1950,
+    "category": "contemporary art",
+    "count": 25
+  },
+  {
+    "decade": 1950,
+    "category": "Other",
+    "count": 13
+  },
+  {
+    "decade": 1950,
+    "category": "conceptual art",
+    "count": 7
+  },
+  {
+    "decade": 1950,
+    "category": "pop art",
+    "count": 4
+  },
+  {
+    "decade": 1950,
+    "category": "abstract expressionism",
+    "count": 2
+  },
+  {
+    "decade": 1950,
+    "category": "Expressionism",
+    "count": 1
+  },
+  {
+    "decade": 1950,
+    "category": "realism",
+    "count": 1
+  },
+  {
+    "decade": 1950,
+    "category": "surrealism",
+    "count": 1
+  },
+  {
+    "decade": 1960,
+    "category": "contemporary art",
+    "count": 22
+  },
+  {
+    "decade": 1960,
+    "category": "abstract art",
+    "count": 13
+  },
+  {
+    "decade": 1960,
+    "category": "Other",
+    "count": 7
+  },
+  {
+    "decade": 1960,
+    "category": "pop art",
+    "count": 4
+  },
+  {
+    "decade": 1960,
+    "category": "conceptual art",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "contemporary art",
+    "count": 5
+  },
+  {
+    "decade": 1970,
+    "category": "abstract art",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "Other",
+    "count": 2
+  },
+  {
+    "decade": 1970,
+    "category": "Expressionism",
+    "count": 1
   }
 ]

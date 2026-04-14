@@ -106,5 +106,7 @@ export interface TimelineSculptor {
   birthYear: number;
   deathYear: number | null;
   birthDecade: number;
-  source: "fabio" | "wikidata";
+  movement?: string;
+  citizenship?: string;
+  source: "fabio" | "wikidata" | "pipeline";
 }

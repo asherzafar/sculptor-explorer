@@ -1,68 +1,1387 @@
 [
   {
+    "decade": 1800,
+    "category": "France",
+    "count": 30
+  },
+  {
+    "decade": 1800,
+    "category": "Other",
+    "count": 22
+  },
+  {
+    "decade": 1800,
+    "category": "Germany",
+    "count": 19
+  },
+  {
+    "decade": 1800,
+    "category": "Unknown",
+    "count": 10
+  },
+  {
+    "decade": 1800,
+    "category": "Kingdom of Italy",
+    "count": 7
+  },
+  {
+    "decade": 1800,
+    "category": "Belgium",
+    "count": 3
+  },
+  {
+    "decade": 1800,
+    "category": "Kingdom of the Netherlands",
+    "count": 2
+  },
+  {
+    "decade": 1800,
+    "category": "German Reich",
+    "count": 1
+  },
+  {
+    "decade": 1800,
+    "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 1800,
+    "category": "Russian Empire",
+    "count": 1
+  },
+  {
+    "decade": 1800,
+    "category": "Switzerland",
+    "count": 1
+  },
+  {
+    "decade": 1800,
+    "category": "United Kingdom",
+    "count": 1
+  },
+  {
+    "decade": 1800,
+    "category": "United States",
+    "count": 1
+  },
+  {
+    "decade": 1810,
+    "category": "Other",
+    "count": 34
+  },
+  {
+    "decade": 1810,
+    "category": "France",
+    "count": 26
+  },
+  {
+    "decade": 1810,
+    "category": "Germany",
+    "count": 21
+  },
+  {
+    "decade": 1810,
+    "category": "Unknown",
+    "count": 7
+  },
+  {
+    "decade": 1810,
+    "category": "Kingdom of Italy",
+    "count": 6
+  },
+  {
+    "decade": 1810,
+    "category": "Kingdom of the Netherlands",
+    "count": 5
+  },
+  {
+    "decade": 1810,
+    "category": "United States",
+    "count": 5
+  },
+  {
+    "decade": 1810,
+    "category": "Belgium",
+    "count": 4
+  },
+  {
+    "decade": 1810,
+    "category": "Hungary",
+    "count": 3
+  },
+  {
+    "decade": 1810,
+    "category": "Spain",
+    "count": 3
+  },
+  {
+    "decade": 1810,
+    "category": "Russian Empire",
+    "count": 2
+  },
+  {
+    "decade": 1810,
+    "category": "Switzerland",
+    "count": 2
+  },
+  {
+    "decade": 1820,
+    "category": "France",
+    "count": 43
+  },
+  {
+    "decade": 1820,
+    "category": "Other",
+    "count": 21
+  },
+  {
+    "decade": 1820,
+    "category": "Germany",
+    "count": 18
+  },
+  {
+    "decade": 1820,
+    "category": "Unknown",
+    "count": 9
+  },
+  {
+    "decade": 1820,
+    "category": "United States",
+    "count": 7
+  },
+  {
+    "decade": 1820,
+    "category": "Kingdom of Italy",
+    "count": 5
+  },
+  {
+    "decade": 1820,
+    "category": "Kingdom of the Netherlands",
+    "count": 4
+  },
+  {
+    "decade": 1820,
+    "category": "Belgium",
+    "count": 3
+  },
+  {
+    "decade": 1820,
+    "category": "Russian Empire",
+    "count": 3
+  },
+  {
+    "decade": 1820,
+    "category": "German Reich",
+    "count": 2
+  },
+  {
+    "decade": 1820,
+    "category": "Switzerland",
+    "count": 2
+  },
+  {
+    "decade": 1820,
+    "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 1820,
+    "category": "Spain",
+    "count": 1
+  },
+  {
+    "decade": 1830,
+    "category": "Other",
+    "count": 39
+  },
+  {
+    "decade": 1830,
+    "category": "France",
+    "count": 34
+  },
+  {
+    "decade": 1830,
+    "category": "Germany",
+    "count": 19
+  },
+  {
+    "decade": 1830,
+    "category": "Kingdom of Italy",
+    "count": 10
+  },
+  {
+    "decade": 1830,
+    "category": "United States",
+    "count": 7
+  },
+  {
+    "decade": 1830,
+    "category": "Belgium",
+    "count": 5
+  },
+  {
+    "decade": 1830,
+    "category": "German Reich",
+    "count": 5
+  },
+  {
+    "decade": 1830,
+    "category": "Kingdom of the Netherlands",
+    "count": 5
+  },
+  {
+    "decade": 1830,
+    "category": "Russian Empire",
+    "count": 5
+  },
+  {
+    "decade": 1830,
+    "category": "Unknown",
+    "count": 4
+  },
+  {
+    "decade": 1830,
+    "category": "Austria",
+    "count": 3
+  },
+  {
+    "decade": 1830,
+    "category": "Switzerland",
+    "count": 2
+  },
+  {
+    "decade": 1830,
+    "category": "Canada",
+    "count": 1
+  },
+  {
+    "decade": 1830,
+    "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 1830,
+    "category": "Spain",
+    "count": 1
+  },
+  {
+    "decade": 1830,
+    "category": "United Kingdom",
+    "count": 1
+  },
+  {
     "decade": 1840,
-    "total": 2,
-    "unknown": 0,
-    "France": 1,
-    "United States": 1
+    "category": "Germany",
+    "count": 51
+  },
+  {
+    "decade": 1840,
+    "category": "France",
+    "count": 45
+  },
+  {
+    "decade": 1840,
+    "category": "Other",
+    "count": 32
+  },
+  {
+    "decade": 1840,
+    "category": "Kingdom of Italy",
+    "count": 16
+  },
+  {
+    "decade": 1840,
+    "category": "Unknown",
+    "count": 10
+  },
+  {
+    "decade": 1840,
+    "category": "United States",
+    "count": 8
+  },
+  {
+    "decade": 1840,
+    "category": "Belgium",
+    "count": 6
+  },
+  {
+    "decade": 1840,
+    "category": "German Reich",
+    "count": 5
+  },
+  {
+    "decade": 1840,
+    "category": "Austria",
+    "count": 4
+  },
+  {
+    "decade": 1840,
+    "category": "Kingdom of the Netherlands",
+    "count": 4
+  },
+  {
+    "decade": 1840,
+    "category": "Switzerland",
+    "count": 4
+  },
+  {
+    "decade": 1840,
+    "category": "Hungary",
+    "count": 3
+  },
+  {
+    "decade": 1840,
+    "category": "Russian Empire",
+    "count": 3
+  },
+  {
+    "decade": 1840,
+    "category": "Spain",
+    "count": 3
+  },
+  {
+    "decade": 1840,
+    "category": "United Kingdom",
+    "count": 2
   },
   {
     "decade": 1850,
-    "total": 1,
-    "unknown": 0,
-    "United States": 1
+    "category": "France",
+    "count": 47
+  },
+  {
+    "decade": 1850,
+    "category": "Germany",
+    "count": 44
+  },
+  {
+    "decade": 1850,
+    "category": "Other",
+    "count": 36
+  },
+  {
+    "decade": 1850,
+    "category": "Kingdom of Italy",
+    "count": 19
+  },
+  {
+    "decade": 1850,
+    "category": "German Reich",
+    "count": 15
+  },
+  {
+    "decade": 1850,
+    "category": "Austria",
+    "count": 13
+  },
+  {
+    "decade": 1850,
+    "category": "Hungary",
+    "count": 10
+  },
+  {
+    "decade": 1850,
+    "category": "Kingdom of the Netherlands",
+    "count": 9
+  },
+  {
+    "decade": 1850,
+    "category": "Belgium",
+    "count": 7
+  },
+  {
+    "decade": 1850,
+    "category": "Spain",
+    "count": 7
+  },
+  {
+    "decade": 1850,
+    "category": "Switzerland",
+    "count": 7
+  },
+  {
+    "decade": 1850,
+    "category": "Russian Empire",
+    "count": 6
+  },
+  {
+    "decade": 1850,
+    "category": "United States",
+    "count": 5
+  },
+  {
+    "decade": 1850,
+    "category": "United Kingdom",
+    "count": 2
+  },
+  {
+    "decade": 1850,
+    "category": "Italy",
+    "count": 1
+  },
+  {
+    "decade": 1850,
+    "category": "Unknown",
+    "count": 1
   },
   {
     "decade": 1860,
-    "total": 4,
-    "unknown": 0,
-    "France": 3,
-    "United States": 1
+    "category": "Germany",
+    "count": 90
+  },
+  {
+    "decade": 1860,
+    "category": "France",
+    "count": 47
+  },
+  {
+    "decade": 1860,
+    "category": "Other",
+    "count": 32
+  },
+  {
+    "decade": 1860,
+    "category": "Austria",
+    "count": 22
+  },
+  {
+    "decade": 1860,
+    "category": "German Reich",
+    "count": 21
+  },
+  {
+    "decade": 1860,
+    "category": "Kingdom of the Netherlands",
+    "count": 15
+  },
+  {
+    "decade": 1860,
+    "category": "Kingdom of Italy",
+    "count": 13
+  },
+  {
+    "decade": 1860,
+    "category": "United States",
+    "count": 11
+  },
+  {
+    "decade": 1860,
+    "category": "Belgium",
+    "count": 10
+  },
+  {
+    "decade": 1860,
+    "category": "Hungary",
+    "count": 9
+  },
+  {
+    "decade": 1860,
+    "category": "United Kingdom",
+    "count": 7
+  },
+  {
+    "decade": 1860,
+    "category": "Spain",
+    "count": 6
+  },
+  {
+    "decade": 1860,
+    "category": "Switzerland",
+    "count": 6
+  },
+  {
+    "decade": 1860,
+    "category": "Unknown",
+    "count": 5
+  },
+  {
+    "decade": 1860,
+    "category": "Russian Empire",
+    "count": 4
+  },
+  {
+    "decade": 1860,
+    "category": "Canada",
+    "count": 2
   },
   {
     "decade": 1870,
-    "total": 2,
-    "unknown": 0,
-    "Romania": 1,
-    "United States": 1
+    "category": "Germany",
+    "count": 120
+  },
+  {
+    "decade": 1870,
+    "category": "France",
+    "count": 50
+  },
+  {
+    "decade": 1870,
+    "category": "Other",
+    "count": 44
+  },
+  {
+    "decade": 1870,
+    "category": "Austria",
+    "count": 31
+  },
+  {
+    "decade": 1870,
+    "category": "German Reich",
+    "count": 30
+  },
+  {
+    "decade": 1870,
+    "category": "United States",
+    "count": 19
+  },
+  {
+    "decade": 1870,
+    "category": "Hungary",
+    "count": 18
+  },
+  {
+    "decade": 1870,
+    "category": "Kingdom of the Netherlands",
+    "count": 14
+  },
+  {
+    "decade": 1870,
+    "category": "Kingdom of Italy",
+    "count": 12
+  },
+  {
+    "decade": 1870,
+    "category": "Spain",
+    "count": 10
+  },
+  {
+    "decade": 1870,
+    "category": "Belgium",
+    "count": 9
+  },
+  {
+    "decade": 1870,
+    "category": "Russian Empire",
+    "count": 9
+  },
+  {
+    "decade": 1870,
+    "category": "Switzerland",
+    "count": 5
+  },
+  {
+    "decade": 1870,
+    "category": "Canada",
+    "count": 3
+  },
+  {
+    "decade": 1870,
+    "category": "United Kingdom",
+    "count": 2
   },
   {
     "decade": 1880,
-    "total": 1,
-    "unknown": 0,
-    "Ukraine": 1
+    "category": "Germany",
+    "count": 134
+  },
+  {
+    "decade": 1880,
+    "category": "Other",
+    "count": 55
+  },
+  {
+    "decade": 1880,
+    "category": "France",
+    "count": 49
+  },
+  {
+    "decade": 1880,
+    "category": "Austria",
+    "count": 29
+  },
+  {
+    "decade": 1880,
+    "category": "Kingdom of the Netherlands",
+    "count": 25
+  },
+  {
+    "decade": 1880,
+    "category": "Kingdom of Italy",
+    "count": 24
+  },
+  {
+    "decade": 1880,
+    "category": "Hungary",
+    "count": 20
+  },
+  {
+    "decade": 1880,
+    "category": "Belgium",
+    "count": 19
+  },
+  {
+    "decade": 1880,
+    "category": "United States",
+    "count": 15
+  },
+  {
+    "decade": 1880,
+    "category": "German Reich",
+    "count": 13
+  },
+  {
+    "decade": 1880,
+    "category": "Russian Empire",
+    "count": 13
+  },
+  {
+    "decade": 1880,
+    "category": "Switzerland",
+    "count": 9
+  },
+  {
+    "decade": 1880,
+    "category": "Spain",
+    "count": 6
+  },
+  {
+    "decade": 1880,
+    "category": "United Kingdom",
+    "count": 6
+  },
+  {
+    "decade": 1880,
+    "category": "Unknown",
+    "count": 2
+  },
+  {
+    "decade": 1880,
+    "category": "Italy",
+    "count": 1
   },
   {
     "decade": 1890,
-    "total": 1,
-    "unknown": 0,
-    "United Kingdom": 1
+    "category": "Germany",
+    "count": 111
+  },
+  {
+    "decade": 1890,
+    "category": "Other",
+    "count": 54
+  },
+  {
+    "decade": 1890,
+    "category": "France",
+    "count": 41
+  },
+  {
+    "decade": 1890,
+    "category": "Kingdom of the Netherlands",
+    "count": 36
+  },
+  {
+    "decade": 1890,
+    "category": "Kingdom of Italy",
+    "count": 22
+  },
+  {
+    "decade": 1890,
+    "category": "Austria",
+    "count": 18
+  },
+  {
+    "decade": 1890,
+    "category": "Hungary",
+    "count": 17
+  },
+  {
+    "decade": 1890,
+    "category": "United States",
+    "count": 15
+  },
+  {
+    "decade": 1890,
+    "category": "Russian Empire",
+    "count": 12
+  },
+  {
+    "decade": 1890,
+    "category": "Switzerland",
+    "count": 10
+  },
+  {
+    "decade": 1890,
+    "category": "Belgium",
+    "count": 7
+  },
+  {
+    "decade": 1890,
+    "category": "Spain",
+    "count": 7
+  },
+  {
+    "decade": 1890,
+    "category": "United Kingdom",
+    "count": 6
+  },
+  {
+    "decade": 1890,
+    "category": "Unknown",
+    "count": 5
+  },
+  {
+    "decade": 1890,
+    "category": "German Reich",
+    "count": 3
+  },
+  {
+    "decade": 1890,
+    "category": "Canada",
+    "count": 1
   },
   {
     "decade": 1900,
-    "total": 4,
-    "unknown": 0,
-    "Switzerland": 1,
-    "United States": 2,
-    "United Kingdom": 1
+    "category": "Germany",
+    "count": 159
+  },
+  {
+    "decade": 1900,
+    "category": "Other",
+    "count": 65
+  },
+  {
+    "decade": 1900,
+    "category": "France",
+    "count": 43
+  },
+  {
+    "decade": 1900,
+    "category": "Hungary",
+    "count": 38
+  },
+  {
+    "decade": 1900,
+    "category": "Kingdom of the Netherlands",
+    "count": 34
+  },
+  {
+    "decade": 1900,
+    "category": "United States",
+    "count": 33
+  },
+  {
+    "decade": 1900,
+    "category": "Austria",
+    "count": 32
+  },
+  {
+    "decade": 1900,
+    "category": "Switzerland",
+    "count": 21
+  },
+  {
+    "decade": 1900,
+    "category": "Kingdom of Italy",
+    "count": 19
+  },
+  {
+    "decade": 1900,
+    "category": "Belgium",
+    "count": 14
+  },
+  {
+    "decade": 1900,
+    "category": "Spain",
+    "count": 10
+  },
+  {
+    "decade": 1900,
+    "category": "Russian Empire",
+    "count": 7
+  },
+  {
+    "decade": 1900,
+    "category": "United Kingdom",
+    "count": 5
+  },
+  {
+    "decade": 1900,
+    "category": "Canada",
+    "count": 3
+  },
+  {
+    "decade": 1900,
+    "category": "German Reich",
+    "count": 2
+  },
+  {
+    "decade": 1900,
+    "category": "Unknown",
+    "count": 2
   },
   {
     "decade": 1910,
-    "total": 1,
-    "unknown": 0,
-    "France": 1
+    "category": "Germany",
+    "count": 108
+  },
+  {
+    "decade": 1910,
+    "category": "Other",
+    "count": 76
+  },
+  {
+    "decade": 1910,
+    "category": "Kingdom of the Netherlands",
+    "count": 64
+  },
+  {
+    "decade": 1910,
+    "category": "France",
+    "count": 35
+  },
+  {
+    "decade": 1910,
+    "category": "Kingdom of Italy",
+    "count": 33
+  },
+  {
+    "decade": 1910,
+    "category": "United States",
+    "count": 29
+  },
+  {
+    "decade": 1910,
+    "category": "Austria",
+    "count": 19
+  },
+  {
+    "decade": 1910,
+    "category": "Hungary",
+    "count": 18
+  },
+  {
+    "decade": 1910,
+    "category": "Belgium",
+    "count": 14
+  },
+  {
+    "decade": 1910,
+    "category": "United Kingdom",
+    "count": 10
+  },
+  {
+    "decade": 1910,
+    "category": "Switzerland",
+    "count": 9
+  },
+  {
+    "decade": 1910,
+    "category": "Spain",
+    "count": 6
+  },
+  {
+    "decade": 1910,
+    "category": "Unknown",
+    "count": 5
+  },
+  {
+    "decade": 1910,
+    "category": "Russian Empire",
+    "count": 2
+  },
+  {
+    "decade": 1910,
+    "category": "Canada",
+    "count": 1
+  },
+  {
+    "decade": 1910,
+    "category": "Italy",
+    "count": 1
+  },
+  {
+    "decade": 1920,
+    "category": "Germany",
+    "count": 259
+  },
+  {
+    "decade": 1920,
+    "category": "Other",
+    "count": 131
+  },
+  {
+    "decade": 1920,
+    "category": "Kingdom of the Netherlands",
+    "count": 91
+  },
+  {
+    "decade": 1920,
+    "category": "France",
+    "count": 71
+  },
+  {
+    "decade": 1920,
+    "category": "United States",
+    "count": 48
+  },
+  {
+    "decade": 1920,
+    "category": "Austria",
+    "count": 38
+  },
+  {
+    "decade": 1920,
+    "category": "Kingdom of Italy",
+    "count": 31
+  },
+  {
+    "decade": 1920,
+    "category": "Hungary",
+    "count": 23
+  },
+  {
+    "decade": 1920,
+    "category": "Switzerland",
+    "count": 21
+  },
+  {
+    "decade": 1920,
+    "category": "Belgium",
+    "count": 18
+  },
+  {
+    "decade": 1920,
+    "category": "Spain",
+    "count": 14
+  },
+  {
+    "decade": 1920,
+    "category": "Italy",
+    "count": 12
+  },
+  {
+    "decade": 1920,
+    "category": "Canada",
+    "count": 11
+  },
+  {
+    "decade": 1920,
+    "category": "United Kingdom",
+    "count": 9
+  },
+  {
+    "decade": 1920,
+    "category": "Unknown",
+    "count": 4
   },
   {
     "decade": 1930,
-    "total": 1,
-    "unknown": 0,
-    "United States": 1
+    "category": "Germany",
+    "count": 219
+  },
+  {
+    "decade": 1930,
+    "category": "Other",
+    "count": 97
+  },
+  {
+    "decade": 1930,
+    "category": "Kingdom of the Netherlands",
+    "count": 81
+  },
+  {
+    "decade": 1930,
+    "category": "United States",
+    "count": 59
+  },
+  {
+    "decade": 1930,
+    "category": "Hungary",
+    "count": 40
+  },
+  {
+    "decade": 1930,
+    "category": "France",
+    "count": 38
+  },
+  {
+    "decade": 1930,
+    "category": "Austria",
+    "count": 27
+  },
+  {
+    "decade": 1930,
+    "category": "Switzerland",
+    "count": 25
+  },
+  {
+    "decade": 1930,
+    "category": "United Kingdom",
+    "count": 21
+  },
+  {
+    "decade": 1930,
+    "category": "Kingdom of Italy",
+    "count": 20
+  },
+  {
+    "decade": 1930,
+    "category": "Italy",
+    "count": 19
+  },
+  {
+    "decade": 1930,
+    "category": "Canada",
+    "count": 12
+  },
+  {
+    "decade": 1930,
+    "category": "Spain",
+    "count": 10
+  },
+  {
+    "decade": 1930,
+    "category": "Belgium",
+    "count": 7
+  },
+  {
+    "decade": 1930,
+    "category": "Unknown",
+    "count": 6
+  },
+  {
+    "decade": 1940,
+    "category": "Germany",
+    "count": 224
+  },
+  {
+    "decade": 1940,
+    "category": "Other",
+    "count": 118
+  },
+  {
+    "decade": 1940,
+    "category": "Kingdom of the Netherlands",
+    "count": 114
+  },
+  {
+    "decade": 1940,
+    "category": "United States",
+    "count": 71
+  },
+  {
+    "decade": 1940,
+    "category": "France",
+    "count": 58
+  },
+  {
+    "decade": 1940,
+    "category": "Hungary",
+    "count": 50
+  },
+  {
+    "decade": 1940,
+    "category": "Austria",
+    "count": 36
+  },
+  {
+    "decade": 1940,
+    "category": "United Kingdom",
+    "count": 24
+  },
+  {
+    "decade": 1940,
+    "category": "Switzerland",
+    "count": 22
+  },
+  {
+    "decade": 1940,
+    "category": "Italy",
+    "count": 17
+  },
+  {
+    "decade": 1940,
+    "category": "Belgium",
+    "count": 16
+  },
+  {
+    "decade": 1940,
+    "category": "Canada",
+    "count": 12
+  },
+  {
+    "decade": 1940,
+    "category": "Spain",
+    "count": 11
+  },
+  {
+    "decade": 1940,
+    "category": "Unknown",
+    "count": 5
+  },
+  {
+    "decade": 1940,
+    "category": "Kingdom of Italy",
+    "count": 4
   },
   {
     "decade": 1950,
-    "total": 2,
-    "unknown": 0,
-    "United Kingdom": 1,
-    "United States": 1
+    "category": "Germany",
+    "count": 215
+  },
+  {
+    "decade": 1950,
+    "category": "Kingdom of the Netherlands",
+    "count": 95
+  },
+  {
+    "decade": 1950,
+    "category": "Other",
+    "count": 95
+  },
+  {
+    "decade": 1950,
+    "category": "Hungary",
+    "count": 38
+  },
+  {
+    "decade": 1950,
+    "category": "United States",
+    "count": 36
+  },
+  {
+    "decade": 1950,
+    "category": "France",
+    "count": 35
+  },
+  {
+    "decade": 1950,
+    "category": "Austria",
+    "count": 32
+  },
+  {
+    "decade": 1950,
+    "category": "United Kingdom",
+    "count": 22
+  },
+  {
+    "decade": 1950,
+    "category": "Switzerland",
+    "count": 18
+  },
+  {
+    "decade": 1950,
+    "category": "Belgium",
+    "count": 12
+  },
+  {
+    "decade": 1950,
+    "category": "Canada",
+    "count": 10
+  },
+  {
+    "decade": 1950,
+    "category": "Spain",
+    "count": 9
+  },
+  {
+    "decade": 1950,
+    "category": "Italy",
+    "count": 7
+  },
+  {
+    "decade": 1950,
+    "category": "Unknown",
+    "count": 4
+  },
+  {
+    "decade": 1960,
+    "category": "Germany",
+    "count": 122
+  },
+  {
+    "decade": 1960,
+    "category": "Other",
+    "count": 80
+  },
+  {
+    "decade": 1960,
+    "category": "Kingdom of the Netherlands",
+    "count": 38
+  },
+  {
+    "decade": 1960,
+    "category": "United States",
+    "count": 27
+  },
+  {
+    "decade": 1960,
+    "category": "United Kingdom",
+    "count": 26
+  },
+  {
+    "decade": 1960,
+    "category": "France",
+    "count": 25
+  },
+  {
+    "decade": 1960,
+    "category": "Austria",
+    "count": 15
+  },
+  {
+    "decade": 1960,
+    "category": "Belgium",
+    "count": 15
+  },
+  {
+    "decade": 1960,
+    "category": "Switzerland",
+    "count": 15
+  },
+  {
+    "decade": 1960,
+    "category": "Italy",
+    "count": 13
+  },
+  {
+    "decade": 1960,
+    "category": "Hungary",
+    "count": 10
+  },
+  {
+    "decade": 1960,
+    "category": "Spain",
+    "count": 8
+  },
+  {
+    "decade": 1960,
+    "category": "Canada",
+    "count": 5
+  },
+  {
+    "decade": 1960,
+    "category": "Unknown",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "Other",
+    "count": 36
+  },
+  {
+    "decade": 1970,
+    "category": "Germany",
+    "count": 30
+  },
+  {
+    "decade": 1970,
+    "category": "Kingdom of the Netherlands",
+    "count": 10
+  },
+  {
+    "decade": 1970,
+    "category": "France",
+    "count": 8
+  },
+  {
+    "decade": 1970,
+    "category": "United States",
+    "count": 8
+  },
+  {
+    "decade": 1970,
+    "category": "United Kingdom",
+    "count": 7
+  },
+  {
+    "decade": 1970,
+    "category": "Austria",
+    "count": 4
+  },
+  {
+    "decade": 1970,
+    "category": "Canada",
+    "count": 4
+  },
+  {
+    "decade": 1970,
+    "category": "Hungary",
+    "count": 4
+  },
+  {
+    "decade": 1970,
+    "category": "Belgium",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "Spain",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "Switzerland",
+    "count": 3
+  },
+  {
+    "decade": 1970,
+    "category": "Italy",
+    "count": 2
+  },
+  {
+    "decade": 1970,
+    "category": "Unknown",
+    "count": 1
+  },
+  {
+    "decade": 1980,
+    "category": "Other",
+    "count": 6
+  },
+  {
+    "decade": 1980,
+    "category": "United States",
+    "count": 4
+  },
+  {
+    "decade": 1980,
+    "category": "France",
+    "count": 2
+  },
+  {
+    "decade": 1980,
+    "category": "Germany",
+    "count": 2
+  },
+  {
+    "decade": 1980,
+    "category": "Kingdom of the Netherlands",
+    "count": 2
+  },
+  {
+    "decade": 1980,
+    "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 2000,
+    "category": "United States",
+    "count": 2
+  },
+  {
+    "decade": 2000,
+    "category": "Germany",
+    "count": 1
+  },
+  {
+    "decade": 2000,
+    "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 2000,
+    "category": "Other",
+    "count": 1
   }
 ]

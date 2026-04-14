@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type {
-  GeographyByDecade,
-  MaterialByDecade,
-  MovementByDecade,
+  DecadeAggregation,
   LegacySculptor,
 } from "@/lib/types";
 import {
@@ -23,9 +21,9 @@ import { X } from "lucide-react";
 const MIN_BIRTH_YEAR = 1800;
 
 export default function EvolutionPage() {
-  const [geographyData, setGeographyData] = useState<GeographyByDecade[]>([]);
-  const [movementsData, setMovementsData] = useState<MovementByDecade[]>([]);
-  const [materialsData, setMaterialsData] = useState<MaterialByDecade[]>([]);
+  const [geographyData, setGeographyData] = useState<DecadeAggregation[]>([]);
+  const [movementsData, setMovementsData] = useState<DecadeAggregation[]>([]);
+  const [materialsData, setMaterialsData] = useState<DecadeAggregation[]>([]);
   const [focusSculptors, setFocusSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -109,7 +107,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Geography</h2>
           <GeographyChart
-            data={geographyData}
+            data={geographyData as any}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />
@@ -122,7 +120,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Movements</h2>
           <MovementsChart
-            data={movementsData}
+            data={movementsData as any}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
             showEvents={true}
@@ -136,7 +134,7 @@ export default function EvolutionPage() {
         <section className="rounded-lg border bg-card p-4">
           <h2 className="text-lg font-semibold mb-3">Materials</h2>
           <MaterialsChart
-            data={materialsData}
+            data={materialsData as any}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />

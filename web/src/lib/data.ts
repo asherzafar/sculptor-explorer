@@ -1,6 +1,6 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, LegacyEdge, MovementByDecade, GeographyByDecade, MaterialByDecade, TimelineSculptor } from "./types";
+import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor } from "./types";
 
 /** Load sculptors.json (legacy camelCase format) */
 export async function loadSculptors(): Promise<LegacySculptor[]> {
@@ -16,15 +16,15 @@ export async function loadEdges(): Promise<LegacyEdge[]> {
   return res.json();
 }
 
-/** Load movements_by_decade.json */
-export async function loadMovementsByDecade(): Promise<MovementByDecade[]> {
+/** Load movements_by_decade.json (tidy format: {decade, category, count}) */
+export async function loadMovementsByDecade(): Promise<DecadeAggregation[]> {
   const res = await fetch("/data/movements_by_decade.json");
   if (!res.ok) throw new Error("Failed to load movements_by_decade.json");
   return res.json();
 }
 
-/** Load geography_by_decade.json */
-export async function loadGeographyByDecade(): Promise<GeographyByDecade[]> {
+/** Load geography_by_decade.json (tidy format: {decade, category, count}) */
+export async function loadGeographyByDecade(): Promise<DecadeAggregation[]> {
   const res = await fetch("/data/geography_by_decade.json");
   if (!res.ok) throw new Error("Failed to load geography_by_decade.json");
   return res.json();
@@ -37,8 +37,8 @@ export async function loadFocusSculptors(): Promise<LegacySculptor[]> {
   return res.json();
 }
 
-/** Load materials_by_decade.json */
-export async function loadMaterialsByDecade(): Promise<MaterialByDecade[]> {
+/** Load materials_by_decade.json (tidy format: {decade, category, count}) */
+export async function loadMaterialsByDecade(): Promise<DecadeAggregation[]> {
   const res = await fetch("/data/materials_by_decade.json");
   if (!res.ok) throw new Error("Failed to load materials_by_decade.json");
   return res.json();

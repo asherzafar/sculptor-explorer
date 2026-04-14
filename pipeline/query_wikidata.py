@@ -1,4 +1,4 @@
-"""Query Wikidata for sculptor data via QLever SPARQL endpoint."""
+"""Query Wikidata for sculptor data via SPARQL endpoint."""
 import pandas as pd
 from config import (
     MIN_BIRTH_YEAR,
@@ -123,8 +123,6 @@ WHERE {
     BIND('student_of' AS ?relation_type)
   }
   ?source wdt:P31 wd:Q5 .
-  ?source wdt:P106 ?sourceOcc .
-  ?sourceOcc wdt:P279* wd:Q1281618 .
   ?qid rdfs:label ?sculptorLabel . FILTER(LANG(?sculptorLabel) = 'en')
   ?source rdfs:label ?sourceLabel . FILTER(LANG(?sourceLabel) = 'en')
 }
@@ -175,13 +173,18 @@ def run_citizenships(qids: list[str]) -> pd.DataFrame:
 
 
 def run_relations(qids: list[str]) -> pd.DataFrame:
-    """Pull relationship edges for a list of QIDs."""
+    """Pull relationship edges for a list of QIDs.
+    
+    Uses smaller batch size (50) because the UNION query is heavier.
+    Always refreshes if cache is missing (unlike simpler queries).
+    """
+    needs_refresh = REFRESH_FROM_WIKIDATA or not RELATIONS_CACHE_PATH.exists()
     return query_sparql_batched(
         query_template=RELATIONS_TEMPLATE,
         qids=qids,
         cache_path=RELATIONS_CACHE_PATH,
-        refresh=REFRESH_FROM_WIKIDATA,
-        batch_size=VALUES_BATCH_SIZE,
+        refresh=needs_refresh,
+        batch_size=50,
     )
 
 

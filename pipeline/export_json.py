@@ -78,24 +78,17 @@ def create_edges_json(relations: pd.DataFrame) -> list[dict]:
 
 
 def create_movements_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
-    """Create movements_by_decade.json with pre-aggregated data."""
+    """Create movements_by_decade.json in tidy format: {decade, category, count}."""
     nodes_with_movement = nodes[nodes["movement_display"] != "No movement listed"].copy()
     
-    # Group by decade and movement
+    # Group by decade and movement — already tidy
     grouped = (
         nodes_with_movement.groupby(["birth_decade", "movement_display"])
         .size()
         .reset_index(name="count")
     )
     
-    # Pivot to get decades as rows, movements as columns
-    pivot = grouped.pivot(
-        index="birth_decade",
-        columns="movement_display",
-        values="count"
-    ).fillna(0).astype(int)
-    
-    # Get top movements overall
+    # Keep only the top 15 movements; bucket the rest as "Other"
     top_movements = (
         nodes_with_movement["movement_display"]
         .value_counts()
@@ -104,52 +97,69 @@ def create_movements_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
     )
     
     records = []
-    for decade in sorted(pivot.index):
-        record = {"decade": int(decade)}
-        for movement in top_movements:
-            record[movement] = int(pivot.loc[decade, movement]) if movement in pivot.columns else 0
-        record["total"] = int(pivot.loc[decade].sum())
-        records.append(record)
+    for _, row in grouped.iterrows():
+        category = row["movement_display"] if row["movement_display"] in top_movements else "Other"
+        records.append({
+            "decade": int(row["birth_decade"]),
+            "category": category,
+            "count": int(row["count"]),
+        })
     
-    return records
+    # Re-aggregate after bucketing "Other"
+    agg = pd.DataFrame(records).groupby(["decade", "category"])["count"].sum().reset_index()
+    return agg.sort_values(["decade", "count"], ascending=[True, False]).to_dict(orient="records")
 
 
 def create_geography_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
-    """Create geography_by_decade.json with pre-aggregated data."""
-    nodes_with_citizenship = nodes[nodes["citizenship_display"] != "Unknown"].copy()
-    
-    # Group by decade and citizenship
+    """Create geography_by_decade.json in tidy format: {decade, category, count}."""
+    # Include Unknown as a category rather than dropping it
     grouped = (
-        nodes_with_citizenship.groupby(["birth_decade", "citizenship_display"])
+        nodes.groupby(["birth_decade", "citizenship_display"])
         .size()
         .reset_index(name="count")
     )
     
-    # Get top citizenships overall
+    # Keep top 15 citizenships; bucket rest as "Other"
     top_citizenships = (
-        nodes_with_citizenship["citizenship_display"]
+        nodes[nodes["citizenship_display"] != "Unknown"]["citizenship_display"]
         .value_counts()
         .head(15)
         .index.tolist()
     )
+    keep = set(top_citizenships) | {"Unknown"}
     
-    # Create decade records
     records = []
-    decades = sorted(nodes["birth_decade"].unique())
+    for _, row in grouped.iterrows():
+        category = row["citizenship_display"] if row["citizenship_display"] in keep else "Other"
+        records.append({
+            "decade": int(row["birth_decade"]),
+            "category": category,
+            "count": int(row["count"]),
+        })
     
-    for decade in decades:
-        decade_nodes = nodes[nodes["birth_decade"] == decade]
-        record = {"decade": int(decade)}
-        
-        for citizenship in top_citizenships:
-            count = len(
-                decade_nodes[decade_nodes["citizenship_display"] == citizenship]
-            )
-            record[citizenship] = count
-        
-        record["unknown"] = len(decade_nodes[decade_nodes["citizenship_display"] == "Unknown"])
-        record["total"] = len(decade_nodes)
-        records.append(record)
+    # Re-aggregate after bucketing
+    agg = pd.DataFrame(records).groupby(["decade", "category"])["count"].sum().reset_index()
+    return agg.sort_values(["decade", "count"], ascending=[True, False]).to_dict(orient="records")
+
+
+def create_timeline_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
+    """Create timeline_sculptors.json from focus sculptor data (replaces hand-maintained file)."""
+    focus_norm = set(normalize_name(n) for n in FOCUS_SCULPTOR_NAMES)
+    focus_df = nodes[nodes["name_norm"].isin(focus_norm)].copy()
+    focus_df = focus_df.sort_values("birth_year")
+    
+    records = []
+    for _, row in focus_df.iterrows():
+        records.append({
+            "id": row["qid"],
+            "name": row["name"],
+            "birthYear": int(row["birth_year"]) if pd.notna(row["birth_year"]) else None,
+            "deathYear": int(row["death_year"]) if pd.notna(row["death_year"]) else None,
+            "birthDecade": int(row["birth_decade"]) if pd.notna(row["birth_decade"]) else None,
+            "movement": row["movement_display"],
+            "citizenship": row["citizenship_display"],
+            "source": "pipeline",
+        })
     
     return records
 
@@ -183,23 +193,31 @@ def create_focus_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
 
 
 def create_materials_by_decade_json(materials: pd.DataFrame) -> list[dict]:
-    """Create materials_by_decade.json with pre-aggregated material data."""
+    """Create materials_by_decade.json in tidy format: {decade, category, count}."""
     if len(materials) == 0:
         return []
     
-    # Convert DataFrame to list of dicts
+    # Melt wide format to tidy if needed
+    skip_cols = {"decade", "total"}
+    value_cols = [c for c in materials.columns if c not in skip_cols]
+    
+    if "category" in materials.columns and "count" in materials.columns:
+        # Already tidy
+        return materials[["decade", "category", "count"]].to_dict(orient="records")
+    
+    # Wide → tidy
     records = []
     for _, row in materials.iterrows():
-        record = {"decade": int(row["decade"]), "total": int(row["total"])}
-        
-        # Add all material categories (excluding decade and total)
-        for col in materials.columns:
-            if col not in ["decade", "total"]:
-                record[col] = int(row[col]) if pd.notna(row[col]) else 0
-        
-        records.append(record)
+        for col in value_cols:
+            count = int(row[col]) if pd.notna(row[col]) else 0
+            if count > 0:
+                records.append({
+                    "decade": int(row["decade"]),
+                    "category": col,
+                    "count": count,
+                })
     
-    return records
+    return sorted(records, key=lambda r: (r["decade"], -r["count"]))
 
 
 def export_all():
@@ -245,6 +263,13 @@ def export_all():
         json.dump(focus, f, indent=2)
     print(f"✓ Exported {len(focus)} focus sculptors to {focus_path.name}")
     
+    # Export timeline_sculptors.json (replaces hand-maintained file)
+    timeline = create_timeline_sculptors_json(nodes)
+    timeline_path = WEB_DATA_DIR / "timeline_sculptors.json"
+    with open(timeline_path, "w") as f:
+        json.dump(timeline, f, indent=2)
+    print(f"✓ Exported {len(timeline)} timeline sculptors to {timeline_path.name}")
+    
     # Export materials_by_decade.json
     materials_export = create_materials_by_decade_json(materials)
     materials_path = WEB_DATA_DIR / "materials_by_decade.json"
@@ -259,6 +284,7 @@ def export_all():
         "movements_by_decade": movements,
         "geography_by_decade": geography,
         "focus_sculptors": focus,
+        "timeline_sculptors": timeline,
         "materials_by_decade": materials_export,
     }
 

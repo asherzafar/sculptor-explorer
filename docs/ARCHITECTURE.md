@@ -8,7 +8,7 @@
 ```
 Pipeline (Python, run locally)          Web App (Next.js, deployed on Vercel)
 ──────────────────────────              ────────────────────────────────────
-Wikidata QLever ──┐                     
+Wikidata SPARQL ──┐                     
 Met API ──────────┤                     
 AIC API ──────────┼── process ──► JSON files ──► static import ──► client-side
 Getty ULAN ───────┤                     │                          filter/render
@@ -44,12 +44,10 @@ sculpture-in-data/
 ├── pipeline/                        # Python data pipeline (run locally, rarely)
 │   ├── config.py                    #   Endpoints, knobs, focus list, cache paths
 │   ├── helpers.py                   #   SPARQL query, batching, caching, normalization
-│   ├── 01_query_wikidata.py         #   All 5 SPARQL queries
-│   ├── 02_query_museums.py          #   Met + AIC API pulls (Phase 3)
-│   ├── 03_query_ulan.py             #   Getty ULAN enrichment (Phase 5)
-│   ├── 04_process.py                #   Clean, enrich, join, graph metrics
-│   ├── 05_quality.py                #   Movement overrides, notability filter
-│   ├── 06_export_json.py            #   Write web/public/data/*.json
+│   ├── query_wikidata.py            #   All 5 SPARQL queries
+│   ├── query_museums.py             #   Met + AIC API pulls (Phase 3)
+│   ├── process.py                   #   Clean, enrich, join, graph metrics
+│   ├── export_json.py               #   Write web/public/data/*.json
 │   ├── requirements.txt
 │   └── run_all.py                   #   Master orchestrator
 │
@@ -125,16 +123,16 @@ The pipeline writes these to `web/public/data/`. The web app loads them client-s
 
 | Source | Endpoint | Auth | Rate limit | Phase |
 |--------|----------|------|------------|-------|
-| Wikidata (QLever) | `https://qlever.cs.uni-freiburg.de/api/wikidata` | None | 0.5s between batches | 0 |
+| Wikidata | `https://query.wikidata.org/sparql` | None | 2s between batches | 0 |
 | Met Museum | `https://collectionapi.metmuseum.org/public/collection/v1/` | None | ~80 req/sec | 3 |
 | Art Institute Chicago | `https://api.artic.edu/api/v1/artworks` | None | 1 req/sec | 3 |
 | Getty ULAN | `https://data.getty.edu/vocab/sparql` | None | Conservative | 5 |
 
 All data sources are free. Met/AIC/Wikidata are CC0. Getty ULAN is ODC-By (attribution required on about page).
 
-## SPARQL queries (Wikidata via QLever)
+## SPARQL queries (Wikidata)
 
-**Endpoint:** `https://qlever.cs.uni-freiburg.de/api/wikidata`
+**Endpoint:** `https://query.wikidata.org/sparql`
 **Format:** POST, `Accept: text/csv` (NOT TSV)
 **No Blazegraph hints.** No `SERVICE wikibase:label`. Use `rdfs:label` + `FILTER(LANG(...)='en')`.
 
@@ -423,7 +421,7 @@ Q151679,Henry Moore,contemporary art,British Modernism,"Unit One; biomorphic abs
 Q159409,Louise Bourgeois,abstract expressionism,Feminist art / Surrealism,"Not AbEx; confessional/surrealist practice (MoMA, Guggenheim)"
 ```
 
-The pipeline reads this file in `05_quality.py` and replaces the Wikidata movement with the corrected value for these QIDs.
+The pipeline reads this file in `process.py` and replaces the Wikidata movement with the corrected value for these QIDs.
 
 ## Future data sources (researched, not yet integrated)
 
