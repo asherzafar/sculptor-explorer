@@ -38,9 +38,11 @@ export default function TimelinePage() {
           Notable Sculptors — Lifespans
         </h1>
         <p className="text-muted-foreground max-w-2xl">
-          A visual timeline of {sculptors.length} notable sculptors, showing when
-          they lived. Bars are color-coded by birth decade. Dashed lines mark
-          key historical events.
+          A visual timeline of {sculptors.length} sculptors curated with the
+          National Sculpture Society, showing when they lived. Bars are
+          color-coded by birth decade. This list emphasizes the American
+          figurative tradition and is not a comprehensive survey of global
+          sculpture.
         </p>
       </div>
 

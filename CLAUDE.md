@@ -1,22 +1,18 @@
-# Sculpture in Data — Project Conventions
+# Sculpture in Data — AI Agent Entry Point
 
-> An interactive web app exploring how sculpture evolved over time.
+> All current values (colors, fonts, routes, rules) live in **`.windsurfrules`**. Read it first.
 
-## For AI agents
-**Windsurf/Cascade:** `.windsurfrules` is loaded automatically — it has rules, hex values, fonts, and gotchas. Reference `docs/` for deeper detail.
+## For Windsurf/Cascade
+`.windsurfrules` is loaded automatically. It is the single source of truth for all decisions.
 
-## Quick reference
-- **App name:** Sculpture in Data
-- **Stack:** Python pipeline → JSON → Next.js 15 + D3 + Tailwind → Vercel (static export)
-- **Fonts:** Fraunces (display) + DM Sans (body)
-- **Palette:** Verdigris & Marble (accent #3D7A68, bg #FAFAF9, sidebar #F0F1EE)
-- **Charts:** D3 in React wrappers. NOT Recharts.
-- **Current phase:** Applying design system to existing codebase
+## For other AI agents (Claude Code, Copilot, etc.)
+Read `.windsurfrules` in the repo root. It contains the full palette, font stack, routing, coding rules, and current phase.
 
-## Project docs
-| Doc | Covers |
-|-----|--------|
-| `.windsurfrules` | Critical rules, colors, fonts, Next.js gotchas |
-| `docs/DESIGN_SYSTEM.md` | Full visual spec |
-| `docs/ROADMAP.md` | Phased plan, MVP scope |
-| `docs/ARCHITECTURE.md` | Stack, queries, TypeScript interfaces |
+## Deep-dive docs
+| Doc | What it covers (rationale & patterns, not values) |
+|-----|---------------------------------------------------|
+| `docs/DESIGN_SYSTEM.md` | Design philosophy, accessibility rules, component behavior |
+| `docs/ARCHITECTURE.md` | Data flow, SPARQL queries, JSON schemas, TypeScript interfaces |
+| `docs/ROADMAP.md` | Phased plan, task status, what to build vs. defer |
+
+Values in these docs **reference** `.windsurfrules`. If anything conflicts, `.windsurfrules` wins.

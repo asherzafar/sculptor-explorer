@@ -1,5 +1,8 @@
 # Sculpture in Data — Design Brief
 
+> **Values source:** All colors, fonts, routes, and current decisions live in `.windsurfrules`.
+> This document describes **rationale and patterns**. Do not duplicate values here.
+
 ## Design DNA
 
 **One sentence:** The Harvard Atlas of Economic Complexity, but for sculpture history — with the warmth, materiality, and quiet confidence of a beautifully designed gallery exhibition catalog.
@@ -92,46 +95,16 @@ The palette draws from sculpture materials — oxidized bronze, marble, weathere
 
 ### Core palette
 
-```css
-/* Background / Surface */
---bg-primary:       #FAFAF9;    /* warm off-white with cool undertone */
---bg-secondary:     #F0F1EE;    /* slightly darker, greenish grey */
---bg-sidebar:       #1A1D1C;    /* near-black with cool warmth */
---bg-card:          #FFFFFF;    /* pure white for data containers */
+> Exact hex values: see `.windsurfrules` § Color palette.
+> Implementation: see `web/src/app/globals.css` for CSS custom properties.
 
-/* Text */
---text-primary:     #1A1D1C;    /* near-black */
---text-secondary:   #5C6560;    /* cool grey-green for secondary info */
---text-tertiary:    #6B706D;    /* cool grey — WCAG AA 4.5:1 on --bg-primary */
---text-inverse:     #FAFAF9;    /* for dark backgrounds */
-
-/* Accent */
---accent-primary:   #3D7A68;    /* verdigris — oxidized bronze patina */
---accent-hover:     #2E6354;    /* darker verdigris for hover */
---accent-muted:     #3D7A681A;  /* verdigris at 10% for backgrounds */
-
-/* Data visualization palette — ordered, not rainbow */
-/* CVD-safe: data-1 is warm-dark (separates from green data-2 under deuteranopia) */
---data-1:           #3D2E25;    /* dark umber (dominant category) */
---data-2:           #3D7A68;    /* verdigris */
---data-3:           #6B8F84;    /* sage */
---data-4:           #D4A574;    /* sandstone / warm tan */
---data-5:           #8B7B6B;    /* warm grey-brown */
---data-6:           #A8B5A3;    /* pale green */
---data-7:           #DFE8DF;    /* marble */
---data-8:           #2A2D3A;    /* dark navy (rare categories — separates from umber) */
-
-/* Borders & Lines */
---border-subtle:    #E4E6E2;    /* barely there */
---border-grid:      #EDEFE9;    /* chart gridlines — extremely subtle */
---border-axis:      #CDD0CA;    /* axis lines — slightly more present */
-```
+The palette is organized into: backgrounds (3 tiers), text (3 tiers + inverse), accent (primary + hover + muted), data visualization (8 ordered, CVD-safe), and borders (3 tiers). Data palette uses warm-dark umber as data-1 to separate from cool verdigris under deuteranopia.
 
 ### Color rules
 - **Charts use at most 5-6 colors.** If more categories exist, group the tail into "Other" using --data-5.
 - **One accent color** (verdigris) used for: active states, selected items, the single most important data point. Never more than 10% of any screen.
 - **No pure black** (#000) and **no pure white** (#FFF) except for data container backgrounds. Everything else uses the cool-warm variants.
-- **Dark sidebar** uses --bg-sidebar (#1A1D1C) with --sidebar-text (#FAFAF9). No right border — the dark/light contrast defines the edge. Muted nav text uses --sidebar-text-muted (#9CA3A0). Active nav item gets --sidebar-text + 3px left border in --accent-primary + --accent-muted-dark background.
+- **Dark sidebar** — see `.windsurfrules` § Sidebar for current tokens. No right border — the dark/light contrast defines the edge.
 - **Hover states** are subtle: slightly darker background or a thin underline. No color explosions.
 - **The sandstone (#D4A574) provides warmth** in the otherwise cool palette — use it for the 3rd or 4th data category to prevent the charts from feeling clinical.
 
@@ -229,11 +202,13 @@ p-16 (64px) — page-level vertical rhythm
 - No border. Slight background (--bg-secondary) or shadow only on hover.
 
 ### Navigation (sidebar)
-- Fixed left sidebar, 224px (w-56), --bg-sidebar (#1A1D1C) background — dark sidebar + light content area for spatial hierarchy
-- App title at top: "Sculpture in Data" in serif, --sidebar-text (#FAFAF9), --text-lg
-- Nav items: sans, --text-sm, --sidebar-text-muted (#9CA3A0). Active item: --sidebar-text + 3px left border in --accent-primary + --accent-muted-dark bg
-- Routes: Timeline · Explore · Lineage · About (Evolution deferred from nav until D3 charts built)
-- No right border — dark/light contrast defines the edge
+
+> Current values (colors, routes, active states): see `.windsurfrules` § Sidebar.
+
+- Dark sidebar + light content area creates spatial hierarchy (Harvard Atlas reference)
+- Active nav item uses left-border accent for scannability without breaking the dark surface
+- No right border — the contrast boundary IS the edge
+- Implementation: `<Nav>` component in `web/src/components/Nav.tsx`
 
 ### Decade Selector
 - A horizontal strip below the main chart on the evolution page
@@ -300,20 +275,8 @@ const dmSans = DM_Sans({
 })
 ```
 
-### Tailwind config extensions
-```javascript
-theme: {
-  extend: {
-    fontFamily: {
-      display: ['var(--font-display)', 'Georgia', 'serif'],
-      body: ['var(--font-body)', 'system-ui', 'sans-serif'],
-    },
-    colors: {
-      // Map all CSS variables from the palette above
-    },
-  },
-}
-```
+### Tailwind v4 (CSS-first)
+No `tailwind.config.ts`. All design tokens defined directly in `web/src/app/globals.css` using `@theme inline`. Font families, colors, and spacing are CSS custom properties consumed by Tailwind utility classes.
 
 ### Chart library choice by chart type
 | Chart | Library | Why |
@@ -365,65 +328,12 @@ const transition = {
 }
 ```
 
-## MVP vs. Later — Build Phases
+## Build Phases
 
-The goal is to get something live and shareable as fast as possible, then iterate based on Fabio's feedback. Every phase should produce a deployable state. Never build something that only works "when the next phase is done."
+> Phasing, task lists, and current status: see `docs/ROADMAP.md`.
+> Architecture rules (URL state, D3, stable JSON, design tokens from day 1): see `.windsurfrules` § 8 Non-negotiable rules.
 
-### MVP (Phases 0-2): Get live, get feedback
-
-Ship this to Vercel. Share with Fabio. Everything below this line works.
-
-| Feature | MVP scope | What's deferred |
-|---------|-----------|-----------------|
-| **Evolution page** | One chart (geography OR movements by decade), working filter sentence, decade selector | Streamgraph toggle, materials chart (needs museum API data), synchronized multi-track view |
-| **Explore page** | Searchable/sortable table of sculptors with basic metadata | Sculptor comparison view, sculptor profile cards with images |
-| **Lineage page** | Placeholder with text: "Coming soon — influence network" | Full network graph (needs ULAN data to be useful) |
-| **About page** | Full content: methodology, sources, caveats, attribution | Feedback form |
-| **Navigation** | Dark sidebar, 4 routes (Timeline hero, Explore, Lineage, About), active state | Collapsible on tablet, Evolution added when D3 charts ready |
-| **Design system** | Fraunces + DM Sans, Verdigris palette, spacing scale, chart styling | Animation/transitions, streamgraph, scroll-triggered effects |
-| **URL state** | Filters in query params, deep-link sculptor pages | — (build this from day 1, no rework) |
-| **Data pipeline** | Wikidata pull (sculptors, movements, citizenship, relations) | Museum APIs, ULAN, material taxonomy |
-| **Export** | Not in MVP | PNG export button (Phase 3) |
-| **Empty states** | Basic "no results" message | Styled empty states with suggestions |
-| **Data degradation** | Silent graceful degradation | Inline counts of missing data |
-| **Social sharing** | Basic OG tags (title + description, no image) | Auto-generated preview image (Phase 4) |
-| **Mobile** | Simple "visit on desktop" message | — (this IS the v1 mobile strategy) |
-| **Performance** | Just don't be slow | Formal budget enforcement |
-
-**MVP exit criteria:** Fabio can open a URL, see a real chart with real data, search for a sculptor by name, filter by country or era, and share a link that reproduces his view. The design looks intentional (not a prototype). He can give feedback.
-
-### Phase 3: Depth + museum data
-
-- Museum APIs (Met + AIC) → materials data → materials evolution chart
-- Synchronized evolution view (materials + geography + movements, linked decade selector)
-- Sculptor comparison view on explore page
-- Export PNG per chart
-- Styled empty states and data degradation messaging
-- Network graph (with whatever edges Wikidata provides — don't wait for ULAN)
-
-### Phase 4: Deploy + polish
-
-- Vercel deployment with proper OG image
-- Performance audit
-- Animation polish (chart transitions, page cross-fades)
-- Streamgraph toggle for materials/movements charts
-
-### Phase 5: Enrichment
-
-- Getty ULAN edges → richer lineage network
-- Sculpture images from Met/AIC IIIF
-- Curated tours ("The Rodin Lineage", "From Marble to Mixed Media")
-- Sculptor profile pages with images and key works
-- Custom domain if desired
-
-### Architecture rule: no rework
-
-These decisions are made NOW to prevent rework later:
-- **URL state from day 1.** Filters use `useSearchParams()`, not `useState()`. This means shareable URLs work immediately and never need to be retrofitted.
-- **D3 for charts from day 1.** Don't start with Recharts and switch later. D3 gives the control needed for the polished phase.
-- **JSON data shape is stable.** The pipeline exports the same JSON schema from MVP through Phase 5. New data (museum works, ULAN edges) adds new JSON files — doesn't change existing ones.
-- **Component structure matches final app.** The sidebar, chart containers, filter sentence, and sculptor cards exist from MVP. They get styled better, not restructured.
-- **Design tokens (CSS variables) from day 1.** All colors, fonts, and spacing use variables. Changing the palette later means editing one file, not grep-replacing hex codes.
+**MVP exit criteria:** Fabio can open a URL, see a real chart with real data, search for a sculptor by name, and share a link that reproduces his view. The design looks intentional (not a prototype). He can give feedback.
 
 ## Aspiration
 
@@ -433,7 +343,7 @@ The tool should feel like it was made by someone who cares about sculpture AND c
 
 ## First-visit experience
 
-The evolution page (the landing destination) should open with a brief orientation — not a scrollytelling essay, just enough context to frame the data:
+The timeline page (the landing destination) should open with a brief orientation — not a scrollytelling essay, just enough context to frame the data:
 
 **Headline (serif, --text-2xl):** "How Sculpture Evolved"
 **Subtitle (sans, --text-base, --text-secondary):** "48,000 sculptors. 200 years of materials, movements, and geography — from Wikidata, the Met, and the Art Institute of Chicago."
@@ -444,9 +354,11 @@ No tutorial overlay. No "click here to start" button. No animation on first load
 
 ## App Identity
 
-**Name:** Sculpture in Data
-**Tagline / subtitle:** "How sculpture evolved — materials, movements, geography, and lineages since 1800"
+> Name and tagline: see `.windsurfrules` § Identity.
+
 **Tone:** Factual, humble, data-forward. This is not an authoritative art-historical argument — it's a lens on structured public data. Caveats are features, not bugs. When the data is incomplete, say so.
+
+**Curation disclosure:** The curated sculptor list emphasizes the National Sculpture Society tradition. It is not a comprehensive survey of global sculpture. Provenance tracked in `overrides/focus_sculptors.csv`.
 
 ## Standards
 

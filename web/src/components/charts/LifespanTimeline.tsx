@@ -3,40 +3,34 @@
 import { useState, useMemo, useCallback, useRef } from "react";
 import type { TimelineSculptor } from "@/lib/types";
 
-/** Historical events shown as vertical markers on the timeline. */
+/** Historical events shown as vertical markers on the timeline.
+ *  Colors from Verdigris & Marble data palette (see globals.css). */
 const HISTORICAL_EVENTS = [
-  { year: 1893, label: "NSS Founded", color: "#f59e0b" },
-  { year: 1913, label: "Armory Show", color: "#8b5cf6" },
-  { year: 1914, label: "WWI Start", color: "#ef4444" },
-  { year: 1918, label: "WWI End", color: "#ef4444" },
-  { year: 1939, label: "WWII Start", color: "#ef4444" },
-  { year: 1945, label: "WWII End", color: "#ef4444" },
+  { year: 1893, label: "NSS Founded", color: "var(--color-accent-primary)" },
+  { year: 1913, label: "Armory Show", color: "var(--color-data-4)" },
+  { year: 1914, label: "WWI Start", color: "var(--color-data-1)" },
+  { year: 1918, label: "WWI End", color: "var(--color-data-1)" },
+  { year: 1939, label: "WWII Start", color: "var(--color-data-1)" },
+  { year: 1945, label: "WWII End", color: "var(--color-data-1)" },
 ];
 
-/** Color palette for birth decades. */
-const DECADE_COLORS: Record<number, string> = {
-  1800: "#94a3b8", // slate
-  1810: "#78716c", // stone
-  1820: "#a1887f", // warm gray
-  1830: "#7c6f64", // brown-gray
-  1840: "#3b82f6", // blue
-  1850: "#2563eb", // blue-dark
-  1860: "#059669", // emerald
-  1870: "#10b981", // green
-  1880: "#f59e0b", // amber
-  1890: "#f97316", // orange
-  1900: "#ef4444", // red
-  1910: "#dc2626", // red-dark
-  1920: "#8b5cf6", // violet
-  1930: "#7c3aed", // violet-dark
-  1940: "#ec4899", // pink
-  1950: "#db2777", // pink-dark
-  1960: "#06b6d4", // cyan
-  1970: "#0891b2", // cyan-dark
-};
+/** Color palette for birth decades.
+ *  Cycles through the 8-color Verdigris & Marble data palette (see globals.css).
+ *  Uses CSS custom properties so colors respond to theme changes. */
+const DATA_PALETTE = [
+  "var(--color-data-1)",  // umber
+  "var(--color-data-2)",  // verdigris
+  "var(--color-data-3)",  // sage
+  "var(--color-data-4)",  // sandstone
+  "var(--color-data-5)",  // warm grey
+  "var(--color-data-6)",  // pale green
+  "var(--color-data-8)",  // navy (skip data-7 marble — too light for bars)
+  "var(--color-accent-primary)",  // verdigris accent for overflow
+];
 
 function getDecadeColor(decade: number): string {
-  return DECADE_COLORS[decade] || "#6b7280";
+  const index = Math.floor((decade - 1800) / 10) % DATA_PALETTE.length;
+  return DATA_PALETTE[index] || "var(--color-data-5)";
 }
 
 /** Layout constants */
@@ -142,7 +136,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
       <svg
         viewBox={`0 0 ${chartWidth} ${chartHeight}`}
         className="w-full min-w-[700px]"
-        style={{ height: `${Math.max(chartHeight, 400)}px` }}
+        style={{ height: `${Math.max(chartHeight, 400)}px`, fontFamily: "var(--font-body), system-ui, sans-serif" }}
       >
         {/* X-axis grid lines + labels */}
         {ticks.map((year) => (
@@ -329,7 +323,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="absolute z-50 pointer-events-none rounded-lg border bg-popover px-3 py-2 shadow-md"
+          className="absolute z-50 pointer-events-none rounded-lg px-3 py-2 shadow-md bg-bg-primary"
           style={{
             left: `${Math.min(tooltip.x, chartWidth - 200)}px`,
             top: `${tooltip.y - 60}px`,

@@ -1,5 +1,8 @@
 # Architecture
 
+> **Values source:** All colors, fonts, routes, and current decisions live in `.windsurfrules`.
+> This document describes **data flow, schemas, and technical patterns**. Do not duplicate values here.
+
 ## Data flow
 
 ```
@@ -17,17 +20,13 @@ All interactivity is client-side. No server. No API. JSON files load on first vi
 
 ## Tech stack
 
-| Layer | Tool | Version | Why |
-|-------|------|---------|-----|
-| Data pipeline | Python | 3.11+ | requests, pandas, networkx |
-| Web framework | Next.js | 16 (App Router) | Static export, Vercel hosting |
-| Styling | Tailwind CSS | 4 | CSS-first design tokens (no tailwind.config.ts) |
-| UI components | shadcn/ui | latest | Accessible primitives |
-| Charts | D3.js | 7.x | Full control over styling |
-| Network graph | react-force-graph-2d | latest | Interactive force layout |
-| Data tables | @tanstack/react-table | latest | Sort, filter, virtualize |
-| Fonts | Google Fonts via next/font | — | Fraunces + DM Sans |
-| Hosting | Vercel | free tier | Deploys from git push |
+> Current stack versions and rules: see `.windsurfrules` (tech choices are in § 8 Non-negotiable rules).
+
+Key architectural choices:
+- **Static export** (`output: 'export'` in `next.config.ts`). No server, no API. JSON files committed to git.
+- **CSS-first tokens** (Tailwind v4). No `tailwind.config.ts` — all tokens in `globals.css`.
+- **D3 for charts, React for containers.** D3 operates on refs inside `useEffect`.
+- **Pre-aggregated data.** Pipeline does the heavy lifting; web app just renders.
 
 ## Directory structure
 
@@ -362,22 +361,9 @@ export function EvolutionContent() {
 
 Every page that reads URL params needs this split: a thin Server Component page.tsx that wraps the real content in Suspense.
 
-### Landing redirect (client-side)
+### Landing redirect
 
-Static export doesn't support `redirect()` in server components. Use client-side redirect:
-
-```typescript
-// app/page.tsx
-'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-export default function Home() {
-  const router = useRouter();
-  useEffect(() => { router.replace('/timeline'); }, [router]);
-  return null;
-}
-```
+Static export doesn't support `redirect()` in server components. Use client-side redirect in `app/page.tsx` (see `.windsurfrules` § Landing redirect for the pattern and current target route).
 
 ## D3-React integration pattern
 
@@ -438,4 +424,41 @@ Q159409,Louise Bourgeois,abstract expressionism,Feminist art / Surrealism,"Not A
 ```
 
 The pipeline reads this file in `05_quality.py` and replaces the Wikidata movement with the corrected value for these QIDs.
+
+## Future data sources (researched, not yet integrated)
+
+| Source | What it gives us | Access | Priority |
+|--------|-----------------|--------|----------|
+| **Getty ULAN** | 293K+ artists with teacher/student/influence relationships. SPARQL at `vocab.getty.edu/sparql` | Free (ODC-By) | High — transforms lineage graph |
+| **Wikidata P18** | Wikimedia Commons image URL for ~40% of sculptors | Free (CC0) | Low — images deferred |
+| **Europeana API** | 50M+ cultural heritage items from European museums | Free API key | Medium |
+| **IIIF** | Standardized image serving from Met, AIC, and 100+ museums | Free | Low — when images needed |
+| **Wikidata P186** | Material used for specific works (marble, bronze, etc.) | Free (CC0) | Medium |
+
+## Exemplary projects (reference, not implementation targets)
+
+- **Harvard Atlas of Economic Complexity** (`atlas.cid.harvard.edu`) — Primary design reference. Linked views, filter sentence, dark sidebar + light content.
+- **Google "Museum of the World"** (`britishmuseum.withgoogle.com`) — Timeline of objects across continents/cultures. WebGL.
+- **Yale PixPlot** (`dhlab.yale.edu/projects/pixplot`) — UMAP embedding visualization of large image collections. Reference for future embedding scatter feature.
+- **The Pudding** (`pudding.cool`) — Visual essay methodology. "Making Internet Things" series on data → narrative → visual.
+- **Sigma.js** (`sigmajs.org`) — WebGL network graph library. Candidate to replace `react-force-graph-2d` when lineage graph scales.
+
+## Embedding visualization concept (Phase 3-4)
+
+A "Sculpture Space" where every sculptor is a 2D point, clustered by similarity:
+
+```
+Sculptor metadata (movement, era, geography, degree centrality, gender)
+  → Feature encoding (one-hot categoricals + normalized numerics)
+  → Gower distance or cosine distance on encoded features
+  → UMAP projection to 2D
+  → JSON [{qid, x, y, name, movement, ...}]
+  → D3 or deck.gl scatter plot
+```
+
+Open questions:
+- ~60% of sculptors lack movement labels. How to handle NaN in feature space?
+- Distance metric: Gower (handles mixed types natively) vs. one-hot + cosine?
+- Evaluation: how to assess if clusters are meaningful vs. reflecting documentation density?
+- Later: CLIP image embeddings (multimodal) once sculpture images are available.
 

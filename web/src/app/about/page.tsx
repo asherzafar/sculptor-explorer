@@ -6,9 +6,25 @@ export default function AboutPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">What is this?</h2>
         <p className="text-muted-foreground leading-relaxed">
-          Sculpture in Data is an interactive web app exploring how sculpture
-          evolved over time — materials, geography, movements, and lineages — built from
-          Wikidata, Met Museum API, and Art Institute of Chicago API data.
+          Sculpture in Data is an interactive data explorer for sculpture
+          history — materials, geography, movements, and lineages since 1800.
+          It draws on structured public data from Wikidata, with museum APIs
+          and Getty ULAN planned for future phases.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-3">Curation &amp; Scope</h2>
+        <p className="text-muted-foreground leading-relaxed mb-3">
+          The curated sculptor list was developed with the National Sculpture
+          Society and emphasizes the American figurative tradition. It is not a
+          comprehensive survey of global sculpture. Both the curated list and
+          the broader Wikidata dataset have gaps in movement labels,
+          relationship edges, and non-Western representation.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          This is not an art-historical argument — it&apos;s a lens on
+          structured public data. Where the data is incomplete, we say so.
         </p>
       </section>
 
