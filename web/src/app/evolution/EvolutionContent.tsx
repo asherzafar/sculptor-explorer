@@ -14,6 +14,8 @@ import { MaterialsChart } from "@/components/charts/MaterialsChart";
 import { MovementsChart } from "@/components/charts/MovementsChart";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import Link from "next/link";
+import { formatDisplayValue, formatGender } from "@/lib/utils";
 
 const MIN_BIRTH_YEAR = 1800;
 
@@ -176,7 +178,7 @@ export function EvolutionContent() {
       </div>
 
       {/* Focus sculptors — filtered by active decade */}
-      <section className="rounded-lg border bg-card p-6">
+      <section className="p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">
             {activeDecade ? `${activeDecade}s Focus Sculptors` : "Focus Sculptors"}
@@ -193,22 +195,29 @@ export function EvolutionContent() {
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredSculptors.map((sculptor) => (
-              <div
+              <Link
                 key={sculptor.qid}
-                className="rounded-md border p-4 hover:bg-accent/50 transition-colors"
+                href={`/explore/${sculptor.qid}`}
+                className="block rounded-md bg-bg-secondary p-4 hover:bg-accent/30 transition-colors cursor-pointer group"
               >
-                <h3 className="font-medium text-sm">{sculptor.name}</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <h3 className="font-medium text-sm text-text-primary group-hover:text-accent-primary transition-colors">
+                  {sculptor.name}
+                </h3>
+                <p className="text-xs text-text-secondary mt-0.5">
                   {sculptor.birthYear}
                   {sculptor.deathYear ? ` – ${sculptor.deathYear}` : " – present"}
                 </p>
                 {sculptor.movement && (
-                  <p className="text-xs text-muted-foreground">{sculptor.movement}</p>
+                  <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-sm bg-accent-muted text-accent-primary">
+                    {formatDisplayValue(sculptor.movement, { isMovement: true })}
+                  </span>
                 )}
                 {sculptor.citizenship && (
-                  <p className="text-xs text-muted-foreground">{sculptor.citizenship}</p>
+                  <p className="text-xs text-text-tertiary mt-1">
+                    {formatDisplayValue(sculptor.citizenship, { isName: true })}
+                  </p>
                 )}
-              </div>
+              </Link>
             ))}
           </div>
         )}

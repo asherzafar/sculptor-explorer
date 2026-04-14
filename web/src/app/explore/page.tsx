@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
 import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
+import { formatDisplayValue, formatGender } from "@/lib/utils";
 
 // Diacritic-insensitive text normalization for search
 function normalizeText(text: string): string {
@@ -31,7 +32,7 @@ const columns: ColumnDef<LegacySculptor>[] = [
     cell: ({ row }) => (
       <Link
         href={`/explore/${row.original.qid}`}
-        className="font-medium hover:underline"
+        className="text-accent-primary hover:underline cursor-pointer"
       >
         {row.getValue("name")}
       </Link>
@@ -52,7 +53,15 @@ const columns: ColumnDef<LegacySculptor>[] = [
     header: "Movement",
     cell: ({ row }) => {
       const movement = row.getValue("movement") as string;
-      return movement || "—";
+      return formatDisplayValue(movement, { isMovement: true });
+    },
+  },
+  {
+    accessorKey: "gender",
+    header: "Gender",
+    cell: ({ row }) => {
+      const gender = row.getValue("gender") as string;
+      return formatGender(gender);
     },
   },
   {
@@ -97,7 +106,9 @@ function SortHeader({
 export default function ExplorePage() {
   const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: "birthYear", desc: false }, // Default: chronological (oldest first)
+  ]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
 
@@ -172,8 +183,8 @@ export default function ExplorePage() {
         {sculptors.length.toLocaleString()} sculptors
       </p>
 
-      {/* Data table */}
-      <div className="rounded-md border overflow-hidden">
+      {/* Data table — zebra striping per design system */}
+      <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-muted/50">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -197,10 +208,12 @@ export default function ExplorePage() {
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
+            {table.getRowModel().rows.map((row, index) => (
               <tr
                 key={row.id}
-                className="border-t hover:bg-accent/30 transition-colors"
+                className={`cursor-pointer hover:bg-accent/30 transition-colors ${
+                  index % 2 === 0 ? "bg-bg-primary" : "bg-bg-secondary"
+                }`}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-4 py-3">

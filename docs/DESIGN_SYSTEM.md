@@ -371,9 +371,14 @@ No tutorial overlay. No "click here to start" button. No animation on first load
 Wikidata movement labels are inconsistently cased: `abstract art`, `Expressionism`, `COBRA`. Gender labels are lowercase (`female`, `male`). **Never display raw Wikidata strings directly.**
 
 - **Rule:** Apply `toTitleCase()` to movement and gender labels at render time only. Do NOT mutate the raw JSON — normalization is a display concern, not a data concern.
-- **`toTitleCase()` logic:** capitalize the first letter of each word, except lowercase articles/prepositions in the middle of a phrase (`and`, `of`, `the`, `in`, `for`, `a`, `an`). Handle known all-caps acronyms (`COBRA`, `ULAN`) as exceptions.
-- **Implementation:** `lib/utils.ts` — export a `toTitleCase(str: string): string` function. Apply it in: name column cells, movement pill on SculptorCard, movement column in Explore table, movement labels in chart legends, movement display in SculptorDetail.
-- **Gender display:** use `toTitleCase()` but also apply a display map: `{ 'male': 'Male', 'female': 'Female', 'non-binary': 'Non-binary', 'genderfluid': 'Genderfluid', 'trans man': 'Trans Man' }`. Gender is a sensitive field — display it respectfully, not as a raw database string.
+- **`toTitleCase()` logic:** capitalize the first letter of each word, except lowercase articles/prepositions in the middle of a phrase (`and`, `of`, `the`, `in`, `for`, `a`, `an`, `on`, `to`, `with`, `by`). Handle known all-caps acronyms (`COBRA`, `ULAN`, `AIC`, `IIIF`, `API`, `NSS`, `WWI`, `WWII`) as exceptions.
+- **Implementation:** `lib/utils.ts` — exports:
+  - `toTitleCase(str: string | null | undefined): string` — main formatter
+  - `formatDisplayValue(value, { isName?, isMovement?, isGender? })` — handles null/"No X listed" → em dash
+  - `formatGender(gender)` — respectful gender display with known value mapping
+- **Apply in:** name column cells, movement pill on SculptorCard, movement column in Explore table, movement labels in chart legends, movement/citizenship/gender display in SculptorDetail.
+- **Gender display:** use `formatGender()` which maps: `male` → `Male`, `female` → `Female`, `non-binary` → `Non-binary`, `genderfluid` → `Genderfluid`, `trans man` → `Trans Man`, `trans woman` → `Trans Woman`. Gender is a sensitive field — display it respectfully, not as a raw database string.
+- **Null/placeholder handling:** any value matching `/^no\s+\w+\s+listed$/i`, `/^unknown$/i`, `/^none$/i`, or empty/null → display as `—` (em dash). Never show "No movement listed" in the UI.
 
 ### Explore table standards
 

@@ -46,9 +46,7 @@ export default function TimelinePage() {
         </p>
       </div>
 
-      <section className="rounded-lg border bg-card p-6">
-        <LifespanTimeline data={sculptors} showEvents={true} />
-      </section>
+      <LifespanTimeline data={sculptors} showEvents={true} />
     </div>
   );
 }

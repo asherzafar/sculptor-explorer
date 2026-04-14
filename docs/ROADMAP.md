@@ -52,31 +52,34 @@ The goal is to get something live and shareable as fast as possible, then iterat
 Feedback from first live deploy. These are UX/polish fixes, not new features.
 
 ### Timeline page
-- [ ] **Remove border/card wrapper from chart.** The `rounded-lg border bg-card` container around `<LifespanTimeline>` violates the design rule "no borders on charts." Chart should float in the content area's whitespace.
-- [ ] **Full-width chart.** Remove inner padding that constrains chart width — it should span the full content column.
+- [x] **Remove border/card wrapper from chart.** ~~The `rounded-lg border bg-card` container around `<LifespanTimeline>` violates the design rule "no borders on charts."~~ Chart now floats in whitespace.
+- [x] **Full-width chart.** ~~Remove inner padding that constrains chart width~~ — chart now spans full content column.
 - [ ] **Heading → chart spacing.** Increase gap between the subtitle paragraph and the chart area (currently feels too tight).
 
 ### Explore page
-- [ ] **Name link affordance.** Name cells must visually signal clickability: `text-accent-primary` color + `hover:underline`. Currently looks like plain text.
-- [ ] **Default sort: birth year ascending.** Randomized load order is confusing. Default should be chronological (oldest first) so the table tells a coherent story.
-- [ ] **Movement/gender capitalization normalization.** Wikidata supplies inconsistent casing (47 of 131 movements start lowercase, e.g. `abstract art` vs `Expressionism`). Fix: add `toTitleCase()` display utility in `lib/utils.ts` and apply it to movement and gender display everywhere. Do NOT mutate the raw data — normalize at render time only.
-- [ ] **Zebra striping.** Already in DESIGN_SYSTEM spec (alternating `--bg-primary` / `--bg-card`). Not yet implemented.
-- [ ] **Row hover cursor.** Should be `cursor-pointer` — currently `cursor-default`.
+- [x] **Name link affordance.** ~~Name cells must visually signal clickability~~ — now `text-accent-primary` + `hover:underline` + `cursor-pointer`.
+- [x] **Default sort: birth year ascending.** ~~Randomized load order~~ — now defaults to chronological (oldest first).
+- [x] **Movement/gender capitalization normalization.** ~~Wikidata supplies inconsistent casing~~ — now handled via `toTitleCase()` and `formatGender()` in `lib/utils.ts`.
+- [x] **Zebra striping.** ~~Not yet implemented~~ — now alternating `--bg-primary` / `--bg-secondary`.
+- [x] **Row hover cursor.** ~~Should be `cursor-pointer`~~ — now implemented.
+- [ ] **Table outer border removal.** Still has `rounded-md border` wrapper on search input — evaluate if needed.
 
 ### Sculptor detail page (`/explore/[qid]`)
+- [x] **Apply formatting utilities.** Now uses `formatDisplayValue()` and `formatGender()` for consistent display.
 - [ ] **Implement the SculptorCard spec from DESIGN_SYSTEM.** Currently a bare 2-column data grid. Replace with: display name (Fraunces serif, large), lifespan line below name, movement as a pill badge, citizenship + gender inline, connections with in/out breakdown, data-completeness dots (4 dots: has_movement, has_citizenship, has_edges — filled = present, hollow = missing with tooltip).
 - [ ] **External link to Wikidata.** Each sculptor has a QID — link out to `https://www.wikidata.org/wiki/{qid}` (small external link icon, `text-text-tertiary`, opens in new tab).
 - [ ] **"Back to explore" preserves search state.** Currently hard-links to `/explore` losing any active search or sort. Should use `router.back()` or pass the previous URL.
 
 ### Evolution page
-- [ ] **Chart hover affordance.** The stacked areas need `cursor-pointer` on hover over the click-target rects. Also: a subtle hover state (lighten the hovered decade band) so users discover the interaction.
+- [x] **Chart hover affordance.** ~~The stacked areas need cursor-pointer~~ — now implemented with subtle hover band (0.08 opacity) on decade hover.
 - [ ] **Interaction hint.** The subtitle "click to filter" is easily missed. Add a small pulsing indicator or a persistent tooltip-style hint on first load (dismissible, localStorage-backed).
-- [ ] **Focus sculptor cards → link to detail page.** Cards in the filtered list should be clickable and navigate to `/explore/{qid}`. Add hover state + cursor pointer.
-- [ ] **Focus sculptor card polish.** Match the SculptorCard spec (movement pill, lifespan line, data dots). Currently plain text on a white card.
+- [x] **Focus sculptor cards → link to detail page.** ~~Cards not clickable~~ — now wrapped in `<Link>` with hover state.
+- [x] **Focus sculptor card polish.** ~~Plain text on white card~~ — now uses `bg-bg-secondary`, hover state, movement pill badge, formatted values.
+- [ ] **Remove section border wrapper.** Focus sculptors section still has implied card background — evaluate removing per "no borders" rule.
 
 ### About page
-- [ ] **Add builder credit.** Credits section currently says "Inspired by Fabio J. Fernández" but omits the builder. Add: "Built by [Asher Zafar](https://linkedin.com/in/asherzafar)" as the first line of the Credits section. LinkedIn URL to be confirmed.
-- [ ] **Fix stale data source references.** "Met Museum API — Phase 1" and "AIC API — Phase 1" are incorrect (these are Phase 3). Update to reflect actual current state.
+- [x] **Add builder credit.** ~~Credits section omits builder~~ — now "Built by Asher Zafar" with LinkedIn link.
+- [x] **Fix stale data source references.** ~~"Met Museum API — Phase 1"~~ — now split into "Current" (Wikidata) and "Planned" sections with no phase numbers.
 
 ---
 

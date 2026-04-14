@@ -192,9 +192,26 @@ export function DecadeStackedArea({
         .attr("pointer-events", "none");
     }
 
-    // Click target overlay — invisible rects per decade for click handling
+    // Hover highlight bands — visible on hover for affordance
     if (onDecadeClick) {
       const bandW = innerW / Math.max(decades.length - 1, 1);
+
+      // Hover bands (subtle, appear on hover)
+      const hoverBands = g.append("g").attr("class", "hover-bands");
+      hoverBands
+        .selectAll("rect")
+        .data(decades)
+        .join("rect")
+        .attr("x", (d) => xScale(d) - bandW / 2)
+        .attr("y", 0)
+        .attr("width", bandW)
+        .attr("height", innerH)
+        .attr("fill", "var(--color-accent-primary)")
+        .attr("opacity", 0)
+        .attr("pointer-events", "none")
+        .attr("class", "hover-band");
+
+      // Click target overlay — invisible rects per decade for click handling + hover
       g.append("g")
         .attr("class", "click-targets")
         .selectAll("rect")
@@ -206,6 +223,16 @@ export function DecadeStackedArea({
         .attr("height", innerH)
         .attr("fill", "transparent")
         .attr("cursor", "pointer")
+        .on("mouseenter", function (_, d) {
+          // Show hover band
+          hoverBands
+            .selectAll<SVGRectElement, number>(".hover-band")
+            .attr("opacity", (bandDecade) => (bandDecade === d ? 0.08 : 0));
+        })
+        .on("mouseleave", function () {
+          // Hide all hover bands
+          hoverBands.selectAll(".hover-band").attr("opacity", 0);
+        })
         .on("click", (_, d) => onDecadeClick(d));
     }
 

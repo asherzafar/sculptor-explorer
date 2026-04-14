@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
+import { formatDisplayValue, formatGender } from "@/lib/utils";
 
 export function SculptorDetail({ qid }: { qid: string }) {
   const [sculptor, setSculptor] = useState<LegacySculptor | null>(null);
@@ -66,17 +67,17 @@ export function SculptorDetail({ qid }: { qid: string }) {
 
         <div className="rounded-md border border-border-subtle p-4">
           <h2 className="text-sm font-medium text-text-secondary mb-1">Movement</h2>
-          <p className="text-lg">{sculptor.movement}</p>
+          <p className="text-lg">{formatDisplayValue(sculptor.movement, { isMovement: true })}</p>
         </div>
 
         <div className="rounded-md border border-border-subtle p-4">
           <h2 className="text-sm font-medium text-text-secondary mb-1">Citizenship</h2>
-          <p className="text-lg">{sculptor.citizenship}</p>
+          <p className="text-lg">{formatDisplayValue(sculptor.citizenship, { isName: true })}</p>
         </div>
 
         <div className="rounded-md border border-border-subtle p-4">
           <h2 className="text-sm font-medium text-text-secondary mb-1">Gender</h2>
-          <p className="text-lg">{sculptor.gender}</p>
+          <p className="text-lg">{formatGender(sculptor.gender)}</p>
         </div>
 
         <div className="rounded-md border border-border-subtle p-4">

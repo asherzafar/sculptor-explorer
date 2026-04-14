@@ -114,10 +114,12 @@ Key architecture notes:
 - Evolution page splits into Server Component (page.tsx) + Client Component (EvolutionContent.tsx) — required for static export + useSearchParams
 
 Data display rules (non-negotiable from Phase 2.5):
-- NEVER display raw Wikidata strings. Apply toTitleCase() to movements and gender at render time.
+- NEVER display raw Wikidata strings. Use `formatDisplayValue()` and `formatGender()` from `lib/utils.ts`.
 - NEVER show "No movement listed" or similar pipeline null-fill strings in the UI. Show — (em dash) instead.
-- Name cells in tables must use text-accent-primary + hover:underline to signal clickability.
-- Chart click targets must set cursor: pointer. Never hide interactive affordances.
+- Name cells in tables must use `text-accent-primary` + `hover:underline` + `cursor-pointer` to signal clickability.
+- Chart click targets must set `cursor: pointer` and show hover state (e.g., decade band highlight). Never hide interactive affordances.
+- Zebra striping on tables: alternate `bg-bg-primary` / `bg-bg-secondary`. No row borders.
+- Default table sort: birth year ascending (chronological).
 
 DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
 
