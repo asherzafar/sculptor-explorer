@@ -84,9 +84,9 @@ The goal is to get something live and shareable as fast as possible, then iterat
 | If you're about to build... | MVP? | Notes |
 |-----------------------------|------|-------|
 | A D3 chart with correct axes and styling | ✅ Yes | Use design tokens from day 1 |
-| Rewrite Recharts → D3 | ✅ Phase 1 | Non-negotiable, in progress |
+| Rewrite Recharts → D3 | ✅ Phase 1 | Done: LifespanTimeline in D3, Recharts removed |
 | Filter sentence + URL params | ✅ Phase 2 | When evolution page gets real charts |
-| Searchable data table | ✅ Done | Core explore experience |
+| Searchable data table | ✅ Done | TanStack Table, sortable columns, diacritic-insensitive search |
 | About page | ✅ Done | Full content |
 | Sidebar nav | ✅ Done | Dark variant, 4 routes (Timeline hero) |
 | Materials chart | ❌ Phase 3 | Needs museum API data |

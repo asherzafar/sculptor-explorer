@@ -77,28 +77,6 @@ export interface LegacyEdge {
   relationType: "influenced_by" | "student_of";
 }
 
-/** @deprecated Use DecadeAggregation once pipeline is updated. */
-export interface MovementByDecade {
-  decade: number;
-  total: number;
-  [movement: string]: number;
-}
-
-/** @deprecated Use DecadeAggregation once pipeline is updated. */
-export interface GeographyByDecade {
-  decade: number;
-  total: number;
-  unknown: number;
-  [country: string]: number;
-}
-
-/** @deprecated Use DecadeAggregation once pipeline is updated. */
-export interface MaterialByDecade {
-  decade: number;
-  total: number;
-  [material: string]: number;
-}
-
 /** A sculptor for the lifespan timeline (from Fabio's curated list). */
 export interface TimelineSculptor {
   id: string;

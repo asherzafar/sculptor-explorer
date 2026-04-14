@@ -93,20 +93,24 @@ Direct labels on data > legends whenever possible.
 Tooltips: minimal, no border, subtle shadow, bg-primary background.
 Transitions: 400ms ease-out.
 
-## Current phase: MVP
-See docs/ROADMAP.md for full phasing. Key MVP scope:
-- Timeline page (hero) with lifespan D3 chart of Fabio's curated sculptors
-- Explore page with searchable data table
-- Lineage page as placeholder
-- About page with full methodology content
-- Evolution page exists but deferred from nav until D3 charts are built
+## Current phase: Phase 2 (Evolution page + deploy)
+See docs/ROADMAP.md for full phasing.
 
-Nav routes (4): Timeline · Explore · Lineage · About
+Completed:
+- Phase 0 (MVP): Timeline hero, Explore table, Lineage placeholder, About page
+- Phase 1: Pipeline tidy JSON, LifespanTimeline D3, Recharts removed, Explore table upgraded (TanStack, sortable, diacritic-insensitive search)
+
+Now building:
+- Evolution page D3 charts (Geography, Movements by decade)
+- Filter sentence component + URL params
+- Evolution added to nav as 5th route
+
+Nav routes (4, expanding to 5): Timeline · Explore · Lineage · About · (Evolution pending)
 Landing (/) redirects client-side to /timeline.
 
 Canonical focus sculptor list: overrides/focus_sculptors.csv (single source of truth).
 
-DO NOT build: materials chart, network graph, streamgraph, PNG export, animations, sculpture images.
+DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
 
 ## Detailed docs (reference when working in specific areas)
 - docs/DESIGN_SYSTEM.md — full typography, color, spacing, chart styling, components, accessibility
