@@ -42,7 +42,7 @@ The goal is to get something live and shareable as fast as possible, then iterat
 - [x] Add Evolution to nav as 5th route (now that it has real charts)
 - [x] Filters write to URL params via `useSearchParams()` (decade → `?decade=1920`)
 - [x] Decade selector: clicking chart area filters focus sculptors + updates URL
-- [ ] Deploy to Vercel
+- [x] Deploy to Netlify — https://sculpture-in-data.netlify.app
 - [ ] Share with Fabio, collect feedback
 
 ---
