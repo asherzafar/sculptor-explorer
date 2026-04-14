@@ -3,40 +3,40 @@
 import { useState, useMemo, useCallback, useRef } from "react";
 import type { TimelineSculptor } from "@/lib/types";
 
-/** Historical events shown as vertical markers on the timeline.
- *  Colors from Verdigris & Marble data palette (see globals.css). */
-const HISTORICAL_EVENTS = [
-  { year: 1893, label: "NSS Founded", color: "var(--color-accent-primary)" },
-  { year: 1913, label: "Armory Show", color: "var(--color-data-4)" },
-  { year: 1914, label: "WWI Start", color: "var(--color-data-1)" },
-  { year: 1918, label: "WWI End", color: "var(--color-data-1)" },
-  { year: 1939, label: "WWII Start", color: "var(--color-data-1)" },
-  { year: 1945, label: "WWII End", color: "var(--color-data-1)" },
+/** Point events — single vertical dashed lines. */
+const POINT_EVENTS = [
+  { year: 1893, label: "NSS Founded", color: "#3D7A68" },
+  { year: 1913, label: "Armory Show", color: "#D4A574" },
 ];
 
-/** Color palette for birth decades.
- *  Cycles through the 8-color Verdigris & Marble data palette (see globals.css).
- *  Uses CSS custom properties so colors respond to theme changes. */
-const DATA_PALETTE = [
-  "var(--color-data-1)",  // umber
-  "var(--color-data-2)",  // verdigris
-  "var(--color-data-3)",  // sage
-  "var(--color-data-4)",  // sandstone
-  "var(--color-data-5)",  // warm grey
-  "var(--color-data-6)",  // pale green
-  "var(--color-data-8)",  // navy (skip data-7 marble — too light for bars)
-  "var(--color-accent-primary)",  // verdigris accent for overflow
+/** Period events — shaded spans between start/end years. */
+const PERIOD_EVENTS = [
+  { start: 1914, end: 1918, label: "WWI", color: "#3D2E25" },
+  { start: 1939, end: 1945, label: "WWII", color: "#3D2E25" },
 ];
 
-function getDecadeColor(decade: number): string {
-  const index = Math.floor((decade - 1800) / 10) % DATA_PALETTE.length;
-  return DATA_PALETTE[index] || "var(--color-data-5)";
+/** Continuous color gradient for birth year.
+ *  Interpolates from warm sandstone (early) → cool verdigris (late)
+ *  using the Verdigris & Marble palette endpoints. */
+const COLOR_WARM = { r: 0x3D, g: 0x2E, b: 0x25 }; // data-1: umber
+const COLOR_COOL = { r: 0x3D, g: 0x7A, b: 0x68 }; // data-2: verdigris
+const YEAR_RANGE_START = 1800;
+const YEAR_RANGE_END = 1970;
+
+function getBirthYearColor(birthYear: number): string {
+  const t = Math.max(0, Math.min(1,
+    (birthYear - YEAR_RANGE_START) / (YEAR_RANGE_END - YEAR_RANGE_START)
+  ));
+  const r = Math.round(COLOR_WARM.r + t * (COLOR_COOL.r - COLOR_WARM.r));
+  const g = Math.round(COLOR_WARM.g + t * (COLOR_COOL.g - COLOR_WARM.g));
+  const b = Math.round(COLOR_WARM.b + t * (COLOR_COOL.b - COLOR_WARM.b));
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 /** Layout constants */
 const LEFT_MARGIN = 200; // Name labels
 const RIGHT_MARGIN = 24;
-const TOP_MARGIN = 40;
+const TOP_MARGIN = 64;
 const BOTTOM_MARGIN = 60;
 const BAR_HEIGHT = 16;
 const BAR_GAP = 6;
@@ -92,12 +92,61 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
   );
 
   // Generate tick years (every 20 years, rounded)
+  // Suppress ticks within 15 years of CURRENT_YEAR to avoid "Present" overlap
   const ticks = useMemo(() => {
     const start = Math.ceil(minYear / 20) * 20;
     const result: number[] = [];
-    for (let y = start; y <= maxYear; y += 20) result.push(y);
+    for (let y = start; y <= maxYear; y += 20) {
+      if (Math.abs(y - CURRENT_YEAR) >= 15) result.push(y);
+    }
     return result;
   }, [minYear, maxYear]);
+
+  // Greedy stagger for event labels — avoid overlapping text
+  // Collects all labels (point events + period events), sorts by x,
+  // assigns vertical tiers so no two labels overlap horizontally.
+  const eventLabelLayout = useMemo(() => {
+    const LABEL_MIN_WIDTH = 70; // estimated px width of a label
+    const TIER_HEIGHT = 14;     // vertical offset per tier
+    const BASE_Y = TOP_MARGIN - 18;
+
+    type LabelEntry = { key: string; x: number; label: string; color: string; tier: number };
+
+    const entries: LabelEntry[] = [
+      ...POINT_EVENTS.map((e) => ({
+        key: `pt-${e.year}`,
+        x: xScale(e.year),
+        label: e.label,
+        color: e.color,
+        tier: 0,
+      })),
+      ...PERIOD_EVENTS.map((e) => ({
+        key: `pd-${e.start}`,
+        x: (xScale(e.start) + xScale(e.end)) / 2,
+        label: e.label,
+        color: e.color,
+        tier: 0,
+      })),
+    ].sort((a, b) => a.x - b.x);
+
+    // Greedy: for each label, check all previously placed labels.
+    // If any overlap horizontally, bump to the next tier.
+    for (let i = 0; i < entries.length; i++) {
+      let tier = 0;
+      for (let j = 0; j < i; j++) {
+        if (
+          entries[j].tier === tier &&
+          Math.abs(entries[i].x - entries[j].x) < LABEL_MIN_WIDTH
+        ) {
+          tier++;
+          j = -1; // re-check from start at new tier
+        }
+      }
+      entries[i].tier = tier;
+    }
+
+    return entries.map((e) => ({ ...e, y: BASE_Y - e.tier * TIER_HEIGHT }));
+  }, [xScale]);
 
   // Decade legend entries (only decades present in data)
   const decades = useMemo(() => {
@@ -162,32 +211,65 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
           </g>
         ))}
 
-        {/* Historical event markers */}
+        {/* Period event spans (wars) — shaded rectangles */}
         {showEvents &&
-          HISTORICAL_EVENTS.map((evt) => (
-            <g key={`event-${evt.year}`}>
-              <line
-                x1={xScale(evt.year)}
-                y1={TOP_MARGIN - 10}
-                x2={xScale(evt.year)}
-                y2={chartHeight - BOTTOM_MARGIN}
-                stroke={evt.color}
-                strokeWidth={1.5}
-                strokeDasharray="6 3"
-                opacity={0.7}
-              />
-              <text
-                x={xScale(evt.year)}
-                y={TOP_MARGIN - 16}
-                textAnchor="middle"
-                fontSize={9}
-                fontWeight={600}
-                fill={evt.color}
-              >
-                {evt.label}
-              </text>
-            </g>
-          ))}
+          PERIOD_EVENTS.map((evt) => {
+            const layoutEntry = eventLabelLayout.find((e) => e.key === `pd-${evt.start}`);
+            return (
+              <g key={`period-${evt.start}`}>
+                <rect
+                  x={xScale(evt.start)}
+                  y={TOP_MARGIN - 10}
+                  width={xScale(evt.end) - xScale(evt.start)}
+                  height={chartHeight - BOTTOM_MARGIN - TOP_MARGIN + 10}
+                  fill={evt.color}
+                  opacity={0.08}
+                />
+                <text
+                  x={(xScale(evt.start) + xScale(evt.end)) / 2}
+                  y={layoutEntry?.y ?? TOP_MARGIN - 18}
+                  textAnchor="middle"
+                  fontSize={9}
+                  fontWeight={600}
+                  fill={evt.color}
+                  opacity={0.7}
+                >
+                  {evt.label}
+                </text>
+              </g>
+            );
+          })}
+
+        {/* Point event markers — single dashed lines */}
+        {showEvents &&
+          POINT_EVENTS.map((evt) => {
+            const layoutEntry = eventLabelLayout.find((e) => e.key === `pt-${evt.year}`);
+            return (
+              <g key={`event-${evt.year}`}>
+                <line
+                  x1={xScale(evt.year)}
+                  y1={TOP_MARGIN - 10}
+                  x2={xScale(evt.year)}
+                  y2={chartHeight - BOTTOM_MARGIN}
+                  stroke={evt.color}
+                  strokeWidth={1.5}
+                  strokeDasharray="6 3"
+                  opacity={0.5}
+                />
+                <text
+                  x={xScale(evt.year)}
+                  y={layoutEntry?.y ?? TOP_MARGIN - 18}
+                  textAnchor="middle"
+                  fontSize={9}
+                  fontWeight={600}
+                  fill={evt.color}
+                  opacity={0.7}
+                >
+                  {evt.label}
+                </text>
+              </g>
+            );
+          })}
 
         {/* Sculptor bars */}
         {sorted.map((sculptor, i) => {
@@ -197,7 +279,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
           const barWidth = Math.max(barEnd - barStart, 2);
           const isHovered = hoveredId === sculptor.id;
           const isAlive = sculptor.deathYear === null;
-          const color = getDecadeColor(sculptor.birthDecade);
+          const color = getBirthYearColor(sculptor.birthYear);
 
           return (
             <g
@@ -342,17 +424,17 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
         </div>
       )}
 
-      {/* Decade Color Legend */}
-      <div className="mt-4 flex flex-wrap gap-3 justify-center">
-        {decades.map((decade) => (
-          <div key={decade} className="flex items-center gap-1.5">
-            <div
-              className="h-3 w-3 rounded-sm"
-              style={{ backgroundColor: getDecadeColor(decade) }}
-            />
-            <span className="text-xs text-muted-foreground">{decade}s</span>
-          </div>
-        ))}
+      {/* Continuous gradient legend */}
+      <div className="mt-4 flex items-center justify-center gap-2">
+        <span className="text-xs text-muted-foreground">{decades[0] ?? 1800}s</span>
+        <div
+          className="h-3 rounded-sm"
+          style={{
+            width: 200,
+            background: `linear-gradient(to right, rgb(${COLOR_WARM.r}, ${COLOR_WARM.g}, ${COLOR_WARM.b}), rgb(${COLOR_COOL.r}, ${COLOR_COOL.g}, ${COLOR_COOL.b}))`,
+          }}
+        />
+        <span className="text-xs text-muted-foreground">{decades[decades.length - 1] ?? 1970}s</span>
       </div>
     </div>
   );
