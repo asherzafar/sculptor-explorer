@@ -37,12 +37,11 @@ The goal is to get something live and shareable as fast as possible, then iterat
 
 ### Phase 2: Evolution page + deploy
 
-- [ ] Geography-by-decade D3 chart on evolution page
-- [ ] Movements-by-decade D3 chart on evolution page
-- [ ] Add Evolution to nav as 5th route (now that it has real charts)
-- [ ] Filter sentence component ("Showing [all countries ▾] from [1800 ▾] to [2020 ▾]")
-- [ ] Filters write to URL params via `useSearchParams()`
-- [ ] Decade selector: linked views, selecting filters all charts
+- [x] Geography-by-decade D3 chart on evolution page
+- [x] Movements-by-decade D3 chart on evolution page
+- [x] Add Evolution to nav as 5th route (now that it has real charts)
+- [x] Filters write to URL params via `useSearchParams()` (decade → `?decade=1920`)
+- [x] Decade selector: clicking chart area filters focus sculptors + updates URL
 - [ ] Deploy to Vercel
 - [ ] Share with Fabio, collect feedback
 
