@@ -211,28 +211,18 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
         className="w-full min-w-[700px]"
         style={{ height: `${Math.max(chartHeight, 400)}px`, fontFamily: "var(--font-body), system-ui, sans-serif" }}
       >
-        {/* X-axis grid lines + labels */}
+        {/* X-axis grid lines — D3 handles the axis labels in useEffect */}
         {ticks.map((year) => (
-          <g key={`tick-${year}`}>
-            <line
-              x1={xScale(year)}
-              y1={TOP_MARGIN - 10}
-              x2={xScale(year)}
-              y2={chartHeight - BOTTOM_MARGIN}
-              stroke="currentColor"
-              strokeOpacity={0.1}
-              strokeWidth={1}
-            />
-            <text
-              x={xScale(year)}
-              y={chartHeight - BOTTOM_MARGIN + 20}
-              textAnchor="middle"
-              className="fill-muted-foreground"
-              fontSize={11}
-            >
-              {year}
-            </text>
-          </g>
+          <line
+            key={`grid-${year}`}
+            x1={xScale(year)}
+            y1={TOP_MARGIN - 10}
+            x2={xScale(year)}
+            y2={chartHeight - BOTTOM_MARGIN}
+            stroke="currentColor"
+            strokeOpacity={0.1}
+            strokeWidth={1}
+          />
         ))}
 
         {/* Period event spans (wars) — shaded rectangles */}
