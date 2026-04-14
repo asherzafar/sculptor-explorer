@@ -194,12 +194,16 @@ p-16 (64px) — page-level vertical rhythm
 ## Components
 
 ### Sculptor Card
-- Used in explore view and as tooltip/overlay in other views
-- Layout: horizontal on desktop (image left, info right), vertical on mobile
-- Image: square crop, 120×120px on desktop, from Wikidata P18 or Met/AIC
-- Info: Name (serif, --text-lg), dates + nationality (sans, --text-sm, --text-secondary), movement tag (small pill, --accent-muted background, --accent-primary text), degree count if relevant
-- **Data completeness indicator:** 4 small dots below the metadata (has_movement, has_citizenship, has_edges, has_museum_works). Filled dot = present, hollow = missing. Tooltip on hover explains what's populated. Subtle — --text-tertiary color, 6px dots. This signals data quality without cluttering the card.
-- No border. Slight background (--bg-secondary) or shadow only on hover.
+- Used in explore view, sculptor detail page, and evolution focus sculptor list
+- Layout: vertical stack. No border on the card itself. Hover: subtle `--bg-secondary` background.
+- **Name:** Fraunces (display), `--text-lg`, `--text-primary`. Clicking anywhere on the card navigates to `/explore/{qid}`.
+- **Lifespan line:** `1911 – 2010` or `1946 – present` if `alive`. Sans, `--text-sm`, `--text-secondary`.
+- **Movement pill:** small pill badge with `--accent-muted` background and `--accent-primary` text. `text-capitalize` applied to movement label (see Capitalization Standards below). If no movement: omit entirely (do not show "No movement listed" — this is noise).
+- **Citizenship + gender:** inline, `--text-sm`, `--text-secondary`, separated by · (centered dot)
+- **Connections count:** only show if > 0. Format: `{n} connections`. If 0: omit. Zero connections is a data gap, not a fact worth displaying.
+- **Data completeness indicator:** 4 small dots below the metadata (has_movement, has_citizenship, has_edges, has_museum_works). Filled dot = data present, hollow = missing. `--text-tertiary`, 6px. Tooltip on hover explains each dot. This signals data quality without cluttering.
+- **Wikidata link:** small external link icon (Lucide `ExternalLink`, 12px, `--text-tertiary`) at top-right corner. Links to `https://www.wikidata.org/wiki/{qid}`, `target="_blank"`. Only visible on card hover.
+- **Image placeholder** (Phase 5): when no image, show initials in Fraunces on `--bg-secondary` square.
 
 ### Navigation (sidebar)
 
@@ -361,6 +365,40 @@ No tutorial overlay. No "click here to start" button. No animation on first load
 **Curation disclosure:** The curated sculptor list emphasizes the National Sculpture Society tradition. It is not a comprehensive survey of global sculpture. Provenance tracked in `overrides/focus_sculptors.csv`.
 
 ## Standards
+
+### Capitalization normalization (Wikidata data quality)
+
+Wikidata movement labels are inconsistently cased: `abstract art`, `Expressionism`, `COBRA`. Gender labels are lowercase (`female`, `male`). **Never display raw Wikidata strings directly.**
+
+- **Rule:** Apply `toTitleCase()` to movement and gender labels at render time only. Do NOT mutate the raw JSON — normalization is a display concern, not a data concern.
+- **`toTitleCase()` logic:** capitalize the first letter of each word, except lowercase articles/prepositions in the middle of a phrase (`and`, `of`, `the`, `in`, `for`, `a`, `an`). Handle known all-caps acronyms (`COBRA`, `ULAN`) as exceptions.
+- **Implementation:** `lib/utils.ts` — export a `toTitleCase(str: string): string` function. Apply it in: name column cells, movement pill on SculptorCard, movement column in Explore table, movement labels in chart legends, movement display in SculptorDetail.
+- **Gender display:** use `toTitleCase()` but also apply a display map: `{ 'male': 'Male', 'female': 'Female', 'non-binary': 'Non-binary', 'genderfluid': 'Genderfluid', 'trans man': 'Trans Man' }`. Gender is a sensitive field — display it respectfully, not as a raw database string.
+
+### Explore table standards
+
+- **Default sort:** birth year ascending (chronological). Defines the table's narrative arc.
+- **Name column:** `text-accent-primary` + `hover:underline` + `cursor-pointer`. The only cell that links out — make it obvious.
+- **Zebra striping:** alternate row backgrounds `--bg-primary` / `--bg-card`. Subtle — 2-3% luminance difference. No row borders.
+- **"No movement listed"** strings from the pipeline must not appear. Show `—` (em dash) for any empty/null/"No X listed" values. Pipe this through a display utility, not ad-hoc in components.
+- **Decade column format:** `1920s` not `1920`. Already correct but confirm consistently.
+
+### Chart interaction affordances
+
+Interactive charts must always signal their interactivity. Never require the user to discover interactions by accident.
+
+- **Cursor:** any clickable chart region must set `cursor: pointer` on the SVG element or its hit-target rect. This is the minimum affordance.
+- **Hover state:** interactive decade bands in stacked area charts should visually respond on hover: lighten the band opacity slightly (e.g. band opacity 0.08 → 0.2) before click.
+- **Interaction hint text:** keep the subtitle "click to filter" but ensure it is visually distinct — use an underline or small icon to signal it is an instruction, not just a description.
+- **Selected state:** active/selected elements must have a clearly distinct visual state from hover and default. Active decade band: `--color-accent-primary` at 0.15 opacity is correct. Add a 2px top+bottom border on the band in `--color-accent-primary` to make it unmistakable.
+- **Linked filter banner:** the "Filtered: 1930s" banner (already implemented on Evolution page) is the right pattern. Keep it. It provides persistent confirmation that a filter is active.
+
+### About page standards
+
+- **Builder credit** must be in the Credits section, first line: `"Built by Asher Zafar"` with link to LinkedIn.
+- **Inspired by credit:** `"Inspired by Fabio J. Fernández, National Sculpture Society"`
+- **Data source phase references:** do not list data sources with phase numbers in the UI. Phases are internal planning concepts. Instead: mark sources as "Current" or "Planned" and only list current ones under Data Sources. Move planned sources to a separate "Planned" subsection.
+- **GitHub link:** optionally link to the repo for transparency about methodology. This is the right kind of project to show the work publicly.
 
 ### URL state & shareability
 - All major filter state is encoded in URL query parameters: `/evolution?country=France&movement=Expressionism&from=1900&to=1950`

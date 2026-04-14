@@ -93,7 +93,7 @@ Direct labels on data > legends whenever possible.
 Tooltips: minimal, no border, subtle shadow, bg-primary background.
 Transitions: 400ms ease-out.
 
-## Current phase: Phase 2 (Evolution page + deploy)
+## Current phase: Phase 2.5 (Polish)
 See docs/ROADMAP.md for full phasing.
 
 Completed:
@@ -102,7 +102,7 @@ Completed:
 - Phase 2 (charts): DecadeStackedArea D3 component, GeographyChart + MovementsChart wired, Evolution in nav, decade state in URL (?decade=1920)
 
 Now building:
-- Deploy to Vercel
+- Phase 2.5 polish (see ROADMAP.md § Phase 2.5)
 
 Nav routes (5): Timeline · Explore · Evolution · Lineage · About
 Landing (/) redirects client-side to /timeline.
@@ -112,6 +112,12 @@ Canonical focus sculptor list: overrides/focus_sculptors.csv (single source of t
 Key architecture notes:
 - Decade filter lives in URL params (useSearchParams), NOT in React state or chart-state.ts (deleted)
 - Evolution page splits into Server Component (page.tsx) + Client Component (EvolutionContent.tsx) — required for static export + useSearchParams
+
+Data display rules (non-negotiable from Phase 2.5):
+- NEVER display raw Wikidata strings. Apply toTitleCase() to movements and gender at render time.
+- NEVER show "No movement listed" or similar pipeline null-fill strings in the UI. Show — (em dash) instead.
+- Name cells in tables must use text-accent-primary + hover:underline to signal clickability.
+- Chart click targets must set cursor: pointer. Never hide interactive affordances.
 
 DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
 
