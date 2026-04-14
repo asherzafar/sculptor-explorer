@@ -1,0 +1,306 @@
+[
+  {
+    "id": "powers-hiram",
+    "name": "Hiram Powers",
+    "birthYear": 1805,
+    "deathYear": 1873,
+    "birthDecade": 1800,
+    "source": "fabio"
+  },
+  {
+    "id": "ward-john-quincy-adams",
+    "name": "John Quincy Adams Ward",
+    "birthYear": 1830,
+    "deathYear": 1910,
+    "birthDecade": 1830,
+    "source": "fabio"
+  },
+  {
+    "id": "rodin-auguste",
+    "name": "Auguste Rodin",
+    "birthYear": 1840,
+    "deathYear": 1917,
+    "birthDecade": 1840,
+    "source": "fabio"
+  },
+  {
+    "id": "saint-gaudens-augustus",
+    "name": "Augustus Saint-Gaudens",
+    "birthYear": 1848,
+    "deathYear": 1907,
+    "birthDecade": 1840,
+    "source": "fabio"
+  },
+  {
+    "id": "french-daniel-chester",
+    "name": "Daniel Chester French",
+    "birthYear": 1850,
+    "deathYear": 1931,
+    "birthDecade": 1850,
+    "source": "fabio"
+  },
+  {
+    "id": "piccirilli-attilio",
+    "name": "Attilio Piccirilli",
+    "birthYear": 1866,
+    "deathYear": 1945,
+    "birthDecade": 1860,
+    "source": "fabio"
+  },
+  {
+    "id": "bitter-karl",
+    "name": "Karl Bitter",
+    "birthYear": 1867,
+    "deathYear": 1915,
+    "birthDecade": 1860,
+    "source": "fabio"
+  },
+  {
+    "id": "borglum-gutzon",
+    "name": "Gutzon Borglum",
+    "birthYear": 1867,
+    "deathYear": 1941,
+    "birthDecade": 1860,
+    "source": "fabio"
+  },
+  {
+    "id": "milles-carl",
+    "name": "Carl Milles",
+    "birthYear": 1875,
+    "deathYear": 1955,
+    "birthDecade": 1870,
+    "source": "fabio"
+  },
+  {
+    "id": "whitney-gertrude-vanderbilt",
+    "name": "Gertrude Vanderbilt Whitney",
+    "birthYear": 1875,
+    "deathYear": 1942,
+    "birthDecade": 1870,
+    "source": "fabio"
+  },
+  {
+    "id": "huntington-anna-hyatt",
+    "name": "Anna Hyatt Huntington",
+    "birthYear": 1876,
+    "deathYear": 1973,
+    "birthDecade": 1870,
+    "source": "fabio"
+  },
+  {
+    "id": "brancusi-constantin",
+    "name": "Constantin Brancusi",
+    "birthYear": 1876,
+    "deathYear": 1957,
+    "birthDecade": 1870,
+    "source": "fabio"
+  },
+  {
+    "id": "picasso-pablo",
+    "name": "Pablo Picasso",
+    "birthYear": 1881,
+    "deathYear": 1973,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "lachaise-gaston",
+    "name": "Gaston Lachaise",
+    "birthYear": 1882,
+    "deathYear": 1935,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "nadelman-elie",
+    "name": "Elie Nadelman",
+    "birthYear": 1882,
+    "deathYear": 1946,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "hoffman-malvina",
+    "name": "Malvina Hoffman",
+    "birthYear": 1885,
+    "deathYear": 1966,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "manship-paul",
+    "name": "Paul Manship",
+    "birthYear": 1885,
+    "deathYear": 1966,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "duchamp-marcel",
+    "name": "Marcel Duchamp",
+    "birthYear": 1887,
+    "deathYear": 1968,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "zorach-william",
+    "name": "William Zorach",
+    "birthYear": 1887,
+    "deathYear": 1966,
+    "birthDecade": 1880,
+    "source": "fabio"
+  },
+  {
+    "id": "savage-augusta",
+    "name": "Augusta Savage",
+    "birthYear": 1892,
+    "deathYear": 1962,
+    "birthDecade": 1890,
+    "source": "fabio"
+  },
+  {
+    "id": "calder-alexander",
+    "name": "Alexander Calder",
+    "birthYear": 1898,
+    "deathYear": 1976,
+    "birthDecade": 1890,
+    "source": "fabio"
+  },
+  {
+    "id": "nevelson-louise",
+    "name": "Louise Nevelson",
+    "birthYear": 1899,
+    "deathYear": 1988,
+    "birthDecade": 1890,
+    "source": "fabio"
+  },
+  {
+    "id": "giacometti-alberto",
+    "name": "Alberto Giacometti",
+    "birthYear": 1901,
+    "deathYear": 1966,
+    "birthDecade": 1900,
+    "source": "fabio"
+  },
+  {
+    "id": "hancock-walker",
+    "name": "Walker Hancock",
+    "birthYear": 1901,
+    "deathYear": 1998,
+    "birthDecade": 1900,
+    "source": "fabio"
+  },
+  {
+    "id": "noguchi-isamu",
+    "name": "Isamu Noguchi",
+    "birthYear": 1904,
+    "deathYear": 1988,
+    "birthDecade": 1900,
+    "source": "fabio"
+  },
+  {
+    "id": "dunwiddie-charlotte",
+    "name": "Charlotte Dunwiddie",
+    "birthYear": 1907,
+    "deathYear": 1995,
+    "birthDecade": 1900,
+    "source": "fabio"
+  },
+  {
+    "id": "bourgeois-louise",
+    "name": "Louise Bourgeois",
+    "birthYear": 1911,
+    "deathYear": 2010,
+    "birthDecade": 1910,
+    "source": "fabio"
+  },
+  {
+    "id": "smith-tony",
+    "name": "Tony Smith",
+    "birthYear": 1912,
+    "deathYear": 1980,
+    "birthDecade": 1910,
+    "source": "fabio"
+  },
+  {
+    "id": "jovine-marcel",
+    "name": "Marcel Jovine",
+    "birthYear": 1921,
+    "deathYear": 2003,
+    "birthDecade": 1920,
+    "source": "fabio"
+  },
+  {
+    "id": "miller-richard-mcdermott",
+    "name": "Richard McDermott Miller",
+    "birthYear": 1922,
+    "deathYear": 2004,
+    "birthDecade": 1920,
+    "source": "fabio"
+  },
+  {
+    "id": "bleifeld-stanley",
+    "name": "Stanley Bleifeld",
+    "birthYear": 1924,
+    "deathYear": 2011,
+    "birthDecade": 1920,
+    "source": "fabio"
+  },
+  {
+    "id": "estern-neil",
+    "name": "Neil Estern",
+    "birthYear": 1926,
+    "deathYear": 2019,
+    "birthDecade": 1920,
+    "source": "fabio"
+  },
+  {
+    "id": "judd-donald",
+    "name": "Donald Judd",
+    "birthYear": 1928,
+    "deathYear": 1994,
+    "birthDecade": 1920,
+    "source": "fabio"
+  },
+  {
+    "id": "andre-carl",
+    "name": "Carl Andre",
+    "birthYear": 1935,
+    "deathYear": 2024,
+    "birthDecade": 1930,
+    "source": "fabio"
+  },
+  {
+    "id": "serra-richard",
+    "name": "Richard Serra",
+    "birthYear": 1938,
+    "deathYear": 2024,
+    "birthDecade": 1930,
+    "source": "fabio"
+  },
+  {
+    "id": "koons-jeff",
+    "name": "Jeff Koons",
+    "birthYear": 1955,
+    "deathYear": null,
+    "birthDecade": 1950,
+    "source": "fabio"
+  },
+  {
+    "id": "ostermiller-dan",
+    "name": "Dan Ostermiller",
+    "birthYear": 1956,
+    "deathYear": null,
+    "birthDecade": 1950,
+    "source": "fabio"
+  },
+  {
+    "id": "leigh-simone",
+    "name": "Simone Leigh",
+    "birthYear": 1967,
+    "deathYear": null,
+    "birthDecade": 1960,
+    "source": "fabio"
+  }
+]

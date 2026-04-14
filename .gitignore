@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Pipeline cache (too large for git)
+data/raw/
+data/processed/
+
+# Node
+web/node_modules/
+web/.next/
+web/out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Note: web/public/data/*.json IS committed (small, needed at build time)
+# Note: overrides/*.csv IS committed (auditable quality corrections)
+
+# Dependencies
+node_modules/
+.next/
+out/
+
+# Python pipeline cache
+data/raw/
+data/processed/
+__pycache__/
+*.pyc
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

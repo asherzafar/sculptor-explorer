@@ -1,0 +1,56 @@
+[
+  {
+    "decade": 1840,
+    "total": 2,
+    "modernism": 1,
+    "Beaux-Arts architecture": 1
+  },
+  {
+    "decade": 1850,
+    "total": 1
+  },
+  {
+    "decade": 1860,
+    "total": 4,
+    "impressionism": 1,
+    "Art Deco": 1
+  },
+  {
+    "decade": 1870,
+    "total": 2,
+    "realism": 1
+  },
+  {
+    "decade": 1880,
+    "total": 1,
+    "cubism": 1
+  },
+  {
+    "decade": 1890,
+    "total": 1,
+    "contemporary art": 1
+  },
+  {
+    "decade": 1900,
+    "total": 4,
+    "surrealism": 1,
+    "contemporary art": 2,
+    "abstract expressionism": 1
+  },
+  {
+    "decade": 1910,
+    "total": 1,
+    "feminist art": 1
+  },
+  {
+    "decade": 1930,
+    "total": 1,
+    "contemporary art": 1
+  },
+  {
+    "decade": 1950,
+    "total": 2,
+    "contemporary art": 1,
+    "environmental art": 1
+  }
+]

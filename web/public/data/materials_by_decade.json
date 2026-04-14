@@ -1,0 +1,182 @@
+[
+  {
+    "decade": 1840,
+    "total": 5,
+    "Marble": 3,
+    "Bronze": 2
+  },
+  {
+    "decade": 1850,
+    "total": 8,
+    "Marble": 4,
+    "Bronze": 3,
+    "Wood": 1
+  },
+  {
+    "decade": 1860,
+    "total": 12,
+    "Marble": 6,
+    "Bronze": 4,
+    "Stone": 2
+  },
+  {
+    "decade": 1870,
+    "total": 15,
+    "Marble": 7,
+    "Bronze": 5,
+    "Stone": 2,
+    "Wood": 1
+  },
+  {
+    "decade": 1880,
+    "total": 18,
+    "Marble": 8,
+    "Bronze": 6,
+    "Stone": 3,
+    "Wood": 1
+  },
+  {
+    "decade": 1890,
+    "total": 22,
+    "Marble": 9,
+    "Bronze": 8,
+    "Stone": 3,
+    "Wood": 2
+  },
+  {
+    "decade": 1900,
+    "total": 28,
+    "Marble": 10,
+    "Bronze": 9,
+    "Stone": 4,
+    "Wood": 3,
+    "Steel": 2
+  },
+  {
+    "decade": 1910,
+    "total": 32,
+    "Marble": 11,
+    "Bronze": 10,
+    "Stone": 5,
+    "Wood": 4,
+    "Steel": 2
+  },
+  {
+    "decade": 1920,
+    "total": 38,
+    "Marble": 12,
+    "Bronze": 11,
+    "Stone": 6,
+    "Wood": 5,
+    "Steel": 3,
+    "Aluminum": 1
+  },
+  {
+    "decade": 1930,
+    "total": 42,
+    "Marble": 12,
+    "Bronze": 12,
+    "Stone": 6,
+    "Wood": 6,
+    "Steel": 4,
+    "Aluminum": 2
+  },
+  {
+    "decade": 1940,
+    "total": 45,
+    "Marble": 11,
+    "Bronze": 13,
+    "Stone": 6,
+    "Wood": 7,
+    "Steel": 5,
+    "Aluminum": 3
+  },
+  {
+    "decade": 1950,
+    "total": 48,
+    "Marble": 10,
+    "Bronze": 14,
+    "Stone": 5,
+    "Wood": 8,
+    "Steel": 6,
+    "Aluminum": 4,
+    "Mixed": 1
+  },
+  {
+    "decade": 1960,
+    "total": 52,
+    "Marble": 9,
+    "Bronze": 15,
+    "Stone": 5,
+    "Wood": 9,
+    "Steel": 7,
+    "Aluminum": 4,
+    "Mixed": 3
+  },
+  {
+    "decade": 1970,
+    "total": 55,
+    "Marble": 8,
+    "Bronze": 16,
+    "Stone": 4,
+    "Wood": 10,
+    "Steel": 8,
+    "Aluminum": 5,
+    "Mixed": 4
+  },
+  {
+    "decade": 1980,
+    "total": 58,
+    "Marble": 7,
+    "Bronze": 17,
+    "Stone": 4,
+    "Wood": 11,
+    "Steel": 9,
+    "Aluminum": 6,
+    "Mixed": 4
+  },
+  {
+    "decade": 1990,
+    "total": 60,
+    "Marble": 6,
+    "Bronze": 18,
+    "Stone": 3,
+    "Wood": 12,
+    "Steel": 10,
+    "Aluminum": 7,
+    "Mixed": 4
+  },
+  {
+    "decade": 2000,
+    "total": 62,
+    "Marble": 5,
+    "Bronze": 19,
+    "Stone": 3,
+    "Wood": 13,
+    "Steel": 11,
+    "Aluminum": 8,
+    "Mixed": 3
+  },
+  {
+    "decade": 2010,
+    "total": 65,
+    "Marble": 4,
+    "Bronze": 20,
+    "Stone": 2,
+    "Wood": 14,
+    "Steel": 12,
+    "Aluminum": 9,
+    "Mixed": 4
+  },
+  {
+    "decade": 2020,
+    "total": 68,
+    "Marble": 3,
+    "Bronze": 21,
+    "Stone": 2,
+    "Wood": 15,
+    "Steel": 13,
+    "Aluminum": 10,
+    "Mixed": 4
+  }
+]

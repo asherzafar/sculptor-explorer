@@ -1,0 +1,68 @@
+[
+  {
+    "decade": 1840,
+    "total": 2,
+    "unknown": 0,
+    "France": 1,
+    "United States": 1
+  },
+  {
+    "decade": 1850,
+    "total": 1,
+    "unknown": 0,
+    "United States": 1
+  },
+  {
+    "decade": 1860,
+    "total": 4,
+    "unknown": 0,
+    "France": 3,
+    "United States": 1
+  },
+  {
+    "decade": 1870,
+    "total": 2,
+    "unknown": 0,
+    "Romania": 1,
+    "United States": 1
+  },
+  {
+    "decade": 1880,
+    "total": 1,
+    "unknown": 0,
+    "Ukraine": 1
+  },
+  {
+    "decade": 1890,
+    "total": 1,
+    "unknown": 0,
+    "United Kingdom": 1
+  },
+  {
+    "decade": 1900,
+    "total": 4,
+    "unknown": 0,
+    "Switzerland": 1,
+    "United States": 2,
+    "United Kingdom": 1
+  },
+  {
+    "decade": 1910,
+    "total": 1,
+    "unknown": 0,
+    "France": 1
+  },
+  {
+    "decade": 1930,
+    "total": 1,
+    "unknown": 0,
+    "United States": 1
+  },
+  {
+    "decade": 1950,
+    "total": 2,
+    "unknown": 0,
+    "United Kingdom": 1,
+    "United States": 1
+  }
+]
