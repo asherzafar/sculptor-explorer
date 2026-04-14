@@ -76,7 +76,9 @@ sculpture-in-data/
 │       │   ├── layout.tsx           #   Root layout, fonts, nav, meta tags
 │       │   ├── page.tsx             #   Client-side redirect to /timeline
 │       │   ├── timeline/page.tsx    #   Hero: lifespan timeline of curated sculptors
-│       │   ├── evolution/page.tsx   #   Aggregate trends (deferred from nav until D3 charts built)
+│       │   ├── evolution/
+│       │   │   ├── page.tsx             #   Server Component wrapper with <Suspense>
+│       │   │   └── EvolutionContent.tsx #   Client Component: D3 charts, URL decade param
 │       │   ├── explore/
 │       │   │   ├── page.tsx         #   Search, filter, compare
 │       │   │   └── [qid]/page.tsx   #   Individual sculptor (deep-link)
@@ -85,16 +87,16 @@ sculpture-in-data/
 │       ├── components/
 │       │   ├── ui/                  #   shadcn/ui primitives
 │       │   ├── charts/              #   D3 chart components
-│       │   ├── Nav.tsx              #   Sidebar navigation
-│       │   ├── FilterSentence.tsx   #   "Showing [X] in [Y] from [Z]"
-│       │   ├── SculptorCard.tsx
-│       │   ├── SculptorSearch.tsx
-│       │   ├── MobileGate.tsx       #   "Visit on desktop" for <768px
-│       │   └── ExportButton.tsx     #   PNG export (Phase 3)
+│       │   │   ├── DecadeStackedArea.tsx  #   Shared stacked area (Geography + Movements)
+│       │   │   ├── GeographyChart.tsx     #   Country of birth by decade
+│       │   │   ├── MovementsChart.tsx     #   Art movements by decade
+│       │   │   ├── MaterialsChart.tsx     #   Materials (Phase 3)
+│       │   │   └── LifespanTimeline.tsx   #   Horizontal lifespan bars
+│       │   ├── Nav.tsx              #   Sidebar navigation (5 routes)
+│       │   └── MobileGate.tsx       #   "Visit on desktop" for <768px
 │       ├── lib/
 │       │   ├── data.ts              #   Load/parse JSON, React hooks
 │       │   ├── types.ts             #   TypeScript interfaces
-│       │   ├── chart-state.ts       #   Shared chart state hook
 │       │   └── utils.ts             #   Formatting, color scales, diacritics
 │       └── app/
 │           └── globals.css          #   Tailwind v4 base + CSS design tokens

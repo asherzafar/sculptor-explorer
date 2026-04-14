@@ -41,7 +41,6 @@ export function DecadeStackedArea({
   yLabel,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // ── 1. Pivot tidy → wide, determine top categories ─────────────────────
   const { wide, categories } = useMemo(() => {
@@ -177,9 +176,7 @@ export function DecadeStackedArea({
       .data(series)
       .join("path")
       .attr("fill", (s) => resolvedColorMap[s.key] ?? "var(--color-data-5)")
-      .attr("opacity", (s) =>
-        activeDecade != null ? 0.35 : 0.75
-      )
+      .attr("opacity", activeDecade != null ? 0.35 : 0.75)
       .attr("d", area);
 
     // Active decade highlight band
@@ -271,7 +268,7 @@ export function DecadeStackedArea({
   }
 
   return (
-    <div ref={containerRef} className="w-full">
+    <div className="w-full">
       <svg ref={svgRef} className="w-full overflow-visible" />
       {/* Colour legend — direct labels preferred per .windsurfrules */}
       <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">

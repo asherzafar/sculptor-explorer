@@ -99,16 +99,19 @@ See docs/ROADMAP.md for full phasing.
 Completed:
 - Phase 0 (MVP): Timeline hero, Explore table, Lineage placeholder, About page
 - Phase 1: Pipeline tidy JSON, LifespanTimeline D3, Recharts removed, Explore table upgraded (TanStack, sortable, diacritic-insensitive search)
+- Phase 2 (charts): DecadeStackedArea D3 component, GeographyChart + MovementsChart wired, Evolution in nav, decade state in URL (?decade=1920)
 
 Now building:
-- Evolution page D3 charts (Geography, Movements by decade)
-- Filter sentence component + URL params
-- Evolution added to nav as 5th route
+- Deploy to Vercel
 
-Nav routes (4, expanding to 5): Timeline · Explore · Lineage · About · (Evolution pending)
+Nav routes (5): Timeline · Explore · Evolution · Lineage · About
 Landing (/) redirects client-side to /timeline.
 
 Canonical focus sculptor list: overrides/focus_sculptors.csv (single source of truth).
+
+Key architecture notes:
+- Decade filter lives in URL params (useSearchParams), NOT in React state or chart-state.ts (deleted)
+- Evolution page splits into Server Component (page.tsx) + Client Component (EvolutionContent.tsx) — required for static export + useSearchParams
 
 DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
 
