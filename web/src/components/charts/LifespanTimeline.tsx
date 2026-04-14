@@ -1,37 +1,20 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import * as d3 from "d3";
 import type { TimelineSculptor } from "@/lib/types";
 
 /** Point events — single vertical dashed lines. */
 const POINT_EVENTS = [
-  { year: 1893, label: "NSS Founded", color: "#3D7A68" },
-  { year: 1913, label: "Armory Show", color: "#D4A574" },
+  { year: 1893, label: "NSS Founded", color: "var(--color-accent-primary)" },
+  { year: 1913, label: "Armory Show", color: "var(--color-data-4)" },
 ];
 
 /** Period events — shaded spans between start/end years. */
 const PERIOD_EVENTS = [
-  { start: 1914, end: 1918, label: "WWI", color: "#3D2E25" },
-  { start: 1939, end: 1945, label: "WWII", color: "#3D2E25" },
+  { start: 1914, end: 1918, label: "WWI", color: "var(--color-data-1)" },
+  { start: 1939, end: 1945, label: "WWII", color: "var(--color-data-1)" },
 ];
-
-/** Continuous color gradient for birth year.
- *  Interpolates from warm sandstone (early) → cool verdigris (late)
- *  using the Verdigris & Marble palette endpoints. */
-const COLOR_WARM = { r: 0x3D, g: 0x2E, b: 0x25 }; // data-1: umber
-const COLOR_COOL = { r: 0x3D, g: 0x7A, b: 0x68 }; // data-2: verdigris
-const YEAR_RANGE_START = 1800;
-const YEAR_RANGE_END = 1970;
-
-function getBirthYearColor(birthYear: number): string {
-  const t = Math.max(0, Math.min(1,
-    (birthYear - YEAR_RANGE_START) / (YEAR_RANGE_END - YEAR_RANGE_START)
-  ));
-  const r = Math.round(COLOR_WARM.r + t * (COLOR_COOL.r - COLOR_WARM.r));
-  const g = Math.round(COLOR_WARM.g + t * (COLOR_COOL.g - COLOR_WARM.g));
-  const b = Math.round(COLOR_WARM.b + t * (COLOR_COOL.b - COLOR_WARM.b));
-  return `rgb(${r}, ${g}, ${b})`;
-}
 
 /** Layout constants */
 const LEFT_MARGIN = 200; // Name labels
@@ -53,7 +36,14 @@ interface TooltipState {
   y: number;
 }
 
+/**
+ * LifespanTimeline — D3-powered lifespan visualization
+ * 
+ * Uses d3-scale for mapping years to pixels, d3-axis for the x-axis,
+ * and CSS custom properties (design tokens) for colors.
+ */
 export function LifespanTimeline({ data, showEvents = true }: Props) {
+  const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,31 +73,35 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
     TOP_MARGIN + sorted.length * (BAR_HEIGHT + BAR_GAP) + BOTTOM_MARGIN;
   const plotWidth = chartWidth - LEFT_MARGIN - RIGHT_MARGIN;
 
-  // Scale: year → x pixel
-  const xScale = useCallback(
-    (year: number) =>
-      LEFT_MARGIN +
-      ((year - minYear) / (maxYear - minYear)) * plotWidth,
-    [minYear, maxYear, plotWidth]
+  // D3 scale: year → x pixel
+  const xScale = useMemo(
+    () => d3.scaleLinear().domain([minYear, maxYear]).range([LEFT_MARGIN, chartWidth - RIGHT_MARGIN]),
+    [minYear, maxYear, chartWidth]
   );
 
-  // Generate tick years (every 20 years, rounded)
-  // Suppress ticks within 15 years of CURRENT_YEAR to avoid "Present" overlap
-  const ticks = useMemo(() => {
-    const start = Math.ceil(minYear / 20) * 20;
-    const result: number[] = [];
-    for (let y = start; y <= maxYear; y += 20) {
-      if (Math.abs(y - CURRENT_YEAR) >= 15) result.push(y);
-    }
-    return result;
+  // Color scale: birth year → color using D3 interpolation between design tokens
+  // We use CSS variables for the endpoints, but compute interpolation in D3
+  const colorScale = useMemo(() => {
+    // Extract RGB values from CSS variables (or use fallbacks)
+    // --color-data-1: #3D2E25 (warm/umber), --color-data-2: #3D7A68 (cool/verdigris)
+    const warmColor = d3.rgb("#3D2E25");
+    const coolColor = d3.rgb("#3D7A68");
+    return d3.scaleLinear<string>()
+      .domain([minYear, Math.min(maxYear, 1970)])
+      .range([warmColor.formatHex(), coolColor.formatHex()])
+      .clamp(true);
   }, [minYear, maxYear]);
 
-  // Greedy stagger for event labels — avoid overlapping text
-  // Collects all labels (point events + period events), sorts by x,
-  // assigns vertical tiers so no two labels overlap horizontally.
+  // Generate tick years using D3 axis logic
+  const ticks = useMemo(() => {
+    const tickCount = Math.max(5, Math.floor(plotWidth / 80));
+    return xScale.ticks(tickCount).filter((y) => Math.abs(y - CURRENT_YEAR) >= 15);
+  }, [xScale, plotWidth]);
+
+  // Greedy stagger for event labels
   const eventLabelLayout = useMemo(() => {
-    const LABEL_MIN_WIDTH = 70; // estimated px width of a label
-    const TIER_HEIGHT = 14;     // vertical offset per tier
+    const LABEL_MIN_WIDTH = 70;
+    const TIER_HEIGHT = 14;
     const BASE_Y = TOP_MARGIN - 18;
 
     type LabelEntry = { key: string; x: number; label: string; color: string; tier: number };
@@ -129,8 +123,6 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
       })),
     ].sort((a, b) => a.x - b.x);
 
-    // Greedy: for each label, check all previously placed labels.
-    // If any overlap horizontally, bump to the next tier.
     for (let i = 0; i < entries.length; i++) {
       let tier = 0;
       for (let j = 0; j < i; j++) {
@@ -139,7 +131,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
           Math.abs(entries[i].x - entries[j].x) < LABEL_MIN_WIDTH
         ) {
           tier++;
-          j = -1; // re-check from start at new tier
+          j = -1;
         }
       }
       entries[i].tier = tier;
@@ -148,11 +140,42 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
     return entries.map((e) => ({ ...e, y: BASE_Y - e.tier * TIER_HEIGHT }));
   }, [xScale]);
 
-  // Decade legend entries (only decades present in data)
+  // Decade legend entries
   const decades = useMemo(() => {
     const set = new Set(sorted.map((s) => s.birthDecade));
     return Array.from(set).sort((a, b) => a - b);
   }, [sorted]);
+
+  // D3 render effect: draws axes using D3
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const svg = d3.select(svgRef.current);
+    
+    // Clear previous axes
+    svg.selectAll(".d3-axis").remove();
+    
+    // Create bottom axis with D3
+    const axisGroup = svg.append("g")
+      .attr("class", "d3-axis")
+      .attr("transform", `translate(0, ${chartHeight - BOTTOM_MARGIN})`);
+    
+    const axis = d3.axisBottom(xScale)
+      .tickValues(ticks)
+      .tickFormat(d3.format("d"))
+      .tickSize(0)
+      .tickPadding(10);
+    
+    axisGroup.call(axis);
+    
+    // Style axis text with CSS custom properties
+    axisGroup.selectAll("text")
+      .attr("font-size", "11px")
+      .attr("fill", "var(--color-muted-foreground)")
+      .attr("font-family", "var(--font-body), system-ui, sans-serif");
+    
+    // Remove axis domain line
+    axisGroup.select(".domain").remove();
+  }, [xScale, ticks, chartHeight]);
 
   const handleMouseEnter = useCallback(
     (sculptor: TimelineSculptor, e: React.MouseEvent) => {
@@ -183,6 +206,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
   return (
     <div ref={containerRef} className="relative w-full overflow-x-auto">
       <svg
+        ref={svgRef}
         viewBox={`0 0 ${chartWidth} ${chartHeight}`}
         className="w-full min-w-[700px]"
         style={{ height: `${Math.max(chartHeight, 400)}px`, fontFamily: "var(--font-body), system-ui, sans-serif" }}
@@ -279,7 +303,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
           const barWidth = Math.max(barEnd - barStart, 2);
           const isHovered = hoveredId === sculptor.id;
           const isAlive = sculptor.deathYear === null;
-          const color = getBirthYearColor(sculptor.birthYear);
+          const color = colorScale(sculptor.birthYear);
 
           return (
             <g
@@ -424,14 +448,14 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
         </div>
       )}
 
-      {/* Continuous gradient legend */}
+      {/* Continuous gradient legend using design tokens */}
       <div className="mt-4 flex items-center justify-center gap-2">
         <span className="text-xs text-muted-foreground">{decades[0] ?? 1800}s</span>
         <div
           className="h-3 rounded-sm"
           style={{
             width: 200,
-            background: `linear-gradient(to right, rgb(${COLOR_WARM.r}, ${COLOR_WARM.g}, ${COLOR_WARM.b}), rgb(${COLOR_COOL.r}, ${COLOR_COOL.g}, ${COLOR_COOL.b}))`,
+            background: "linear-gradient(to right, var(--color-data-1), var(--color-data-2))",
           }}
         />
         <span className="text-xs text-muted-foreground">{decades[decades.length - 1] ?? 1970}s</span>

@@ -29,9 +29,9 @@ The goal is to get something live and shareable as fast as possible, then iterat
 - [ ] Rewrite LifespanTimeline chart in D3 (currently hand-rolled SVG)
 - [ ] Install D3, remove Recharts dependency
 - [ ] Rewrite or remove Recharts-based charts (Geography, Movements, Materials)
-- [ ] Pipeline runs end-to-end: Wikidata → process → tidy JSON export
-- [ ] Pipeline exports tidy `DecadeAggregation` format (`{decade, category, count}`)
-- [ ] Regenerate `timeline_sculptors.json` from pipeline (enriched with QIDs)
+- [x] Pipeline runs end-to-end: Wikidata → process → tidy JSON export
+- [x] Pipeline exports tidy `DecadeAggregation` format (`{decade, category, count}`)
+- [x] Regenerate `timeline_sculptors.json` from pipeline (enriched with QIDs)
 - [ ] Explore page: sortable columns, diacritic-insensitive search
 - [ ] Replace hardcoded colors in LifespanTimeline with design tokens
 
