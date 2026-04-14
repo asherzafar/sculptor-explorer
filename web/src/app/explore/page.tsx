@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { Sculptor } from "@/lib/types";
+import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
 
 export default function ExplorePage() {
-  const [sculptors, setSculptors] = useState<Sculptor[]>([]);
+  const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
@@ -38,7 +38,7 @@ export default function ExplorePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">Explore Sculptors</h1>
+      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">Explore Sculptors</h1>
       <p className="text-muted-foreground mb-6">
         Search and filter notable sculptors from the collection.
       </p>

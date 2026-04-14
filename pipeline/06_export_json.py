@@ -9,7 +9,7 @@ from config import (
     MATERIALS_BY_DECADE_PATH,
     WEB_DATA_DIR,
     MIN_BIRTH_YEAR,
-    FOCUS_SCULPTORS,
+    FOCUS_SCULPTOR_NAMES,
 )
 from helpers import normalize_name
 
@@ -31,7 +31,7 @@ def load_data():
 def create_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     """Create sculptors.json with all notable sculptors."""
     # Filter to notable sculptors: has movement OR has edges OR in focus list
-    focus_norm = set(normalize_name(n) for n in FOCUS_SCULPTORS)
+    focus_norm = set(normalize_name(n) for n in FOCUS_SCULPTOR_NAMES)
     is_notable = (
         (nodes["movement_display"] != "No movement listed") |
         (nodes["total_degree"] > 0) |
@@ -156,7 +156,7 @@ def create_geography_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
 
 def create_focus_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     """Create focus_sculptors.json with enriched focus list."""
-    focus_norm = [normalize_name(n) for n in FOCUS_SCULPTORS]
+    focus_norm = [normalize_name(n) for n in FOCUS_SCULPTOR_NAMES]
     focus_df = nodes[nodes["name_norm"].isin(focus_norm)].copy()
     
     # Sort by birth year

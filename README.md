@@ -1,4 +1,4 @@
-# Sculptor Evolution Explorer
+# Sculpture in Data
 
 An interactive web app exploring how sculpture evolved over time — materials, geography, movements, and lineages — built from Wikidata, Met Museum API, and Art Institute of Chicago API data.
 
@@ -16,20 +16,24 @@ cd web && npm run dev
 ```
 sculptor-explorer/
 ├── pipeline/          # Python data pipeline (run locally, rarely)
-│   ├── config.py    #   endpoints, knobs, min_birth_year, focus list
-│   ├── helpers.py   #   SPARQL query, batching, caching, name normalization
+│   ├── config.py      #   endpoints, knobs, min_birth_year, focus list
+│   ├── helpers.py     #   SPARQL query, batching, caching, name normalization
 │   ├── 01_query_wikidata.py
 │   ├── 04_process.py
 │   ├── 06_export_json.py
-│   └── run_all.py   #   master: run everything in order
-├── web/               # Next.js app
+│   └── run_all.py     #   master: run everything in order
+├── web/               # Next.js 15 app (App Router, static export)
 │   ├── src/app/       #   Routes (/evolution, /explore, /lineage, /about)
-│   ├── src/components/#   React components
+│   ├── src/components/#   React + D3 chart components
 │   ├── src/lib/       #   Types, data loading, utils
 │   └── public/data/   #   JSON files (committed, needed at build time)
+├── docs/              # Project documentation
+│   ├── ARCHITECTURE.md#   Stack, queries, data sources, JSON schemas
+│   ├── DESIGN_SYSTEM.md#  Visual spec: colors, fonts, spacing, charts
+│   └── ROADMAP.md     #   Phased plan, MVP scope
 ├── data/              # Pipeline cache (gitignored)
 ├── overrides/         # Manual quality corrections (committed)
-└── CLAUDE.md          # Project conventions for AI agents
+└── CLAUDE.md          # Quick reference for AI agents
 ```
 
 ## Data Pipeline
@@ -52,25 +56,18 @@ python run_all.py
 | Layer | Tool |
 |-------|------|
 | Data pipeline | Python (requests, pandas, networkx) |
-| Web framework | Next.js 15 (App Router) |
+| Web framework | Next.js 15 (App Router, static export) |
 | Styling | Tailwind CSS + shadcn/ui |
-| Charts | Recharts |
-| Data tables | @tanstack/react-table |
+| Charts | D3.js (in React wrappers) |
+| Fonts | Fraunces (display) + DM Sans (body) |
+| Hosting | Vercel (static export) |
 
 ## Documentation
 
-- `CLAUDE.md` — Project conventions for AI agents
-- `ROADMAP.md` — Phase-by-phase development plan
-- `.windsurf/workflows/` — Workflow files for common tasks
-
-## Phases
-
-| Phase | Status | Description |
-|-------|--------|-------------|
-| Phase 0 | ✅ | Project scaffold, Python pipeline, Next.js app with seed data |
-| Phase 1 | ✅ | Museum APIs (Met + AIC) → materials data → MaterialsChart |
-| Phase 2 | ✅ | Evolution page polish (3 synchronized tracks, decade zoom) |
-| Phase 3 | ⏳ | Lifespan Timeline hero (Fabio's curated list, horizontal bars) |
-| Phase 4 | ⏳ | Explore + Lineage views (network graph, search) |
-| Phase 5 | ⏳ | Polish + Deploy (Vercel, social sharing export) |
-| Phase 6 | ⏳ | ULAN enrichment, images, guided tours |
+| Doc | Covers |
+|-----|--------|
+| `.windsurfrules` | Critical rules, colors, fonts, Next.js gotchas |
+| `docs/DESIGN_SYSTEM.md` | Full visual spec |
+| `docs/ROADMAP.md` | Phased plan, MVP scope |
+| `docs/ARCHITECTURE.md` | Stack, queries, TypeScript interfaces |
+| `CLAUDE.md` | Quick reference for AI agents |

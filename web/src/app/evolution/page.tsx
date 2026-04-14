@@ -5,6 +5,7 @@ import type {
   GeographyByDecade,
   MaterialByDecade,
   MovementByDecade,
+  LegacySculptor,
 } from "@/lib/types";
 import {
   loadGeographyByDecade,
@@ -12,7 +13,6 @@ import {
   loadMaterialsByDecade,
   loadMovementsByDecade,
 } from "@/lib/data";
-import type { Sculptor } from "@/lib/types";
 import { GeographyChart } from "@/components/charts/GeographyChart";
 import { MaterialsChart } from "@/components/charts/MaterialsChart";
 import { MovementsChart } from "@/components/charts/MovementsChart";
@@ -26,7 +26,7 @@ export default function EvolutionPage() {
   const [geographyData, setGeographyData] = useState<GeographyByDecade[]>([]);
   const [movementsData, setMovementsData] = useState<MovementByDecade[]>([]);
   const [materialsData, setMaterialsData] = useState<MaterialByDecade[]>([]);
-  const [focusSculptors, setFocusSculptors] = useState<Sculptor[]>([]);
+  const [focusSculptors, setFocusSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
 
   const { activeDecade, setActiveDecade, clearSelection } = useChartState();
@@ -75,7 +75,7 @@ export default function EvolutionPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Evolution of Sculpture</h1>
+        <h1 className="font-display text-3xl font-bold text-text-primary mb-2">Evolution of Sculpture</h1>
         <p className="text-muted-foreground">
           How sculpture evolved over time — geography, movements, and materials
           from {MIN_BIRTH_YEAR} to present.

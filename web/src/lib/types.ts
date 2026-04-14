@@ -1,7 +1,59 @@
-/** TypeScript interfaces for all data structures. */
+/**
+ * TypeScript interfaces for all data structures.
+ *
+ * Canonical types (from docs/ARCHITECTURE.md) use snake_case to match
+ * the target JSON schema. Legacy types (camelCase) remain for backward
+ * compatibility with the current seed JSON files and will be removed
+ * once the pipeline re-exports in snake_case.
+ */
 
-/** Core sculptor data structure. */
+// ---------------------------------------------------------------------------
+// Canonical types (target schema from ARCHITECTURE.md)
+// ---------------------------------------------------------------------------
+
 export interface Sculptor {
+  qid: string;
+  name: string;
+  birth_year: number | null;
+  death_year: number | null;
+  gender: string | null;
+  movement: string | null;
+  citizenship: string | null;
+  birth_decade: number;
+  in_degree: number;
+  out_degree: number;
+  total_degree: number;
+  is_focus: boolean;
+}
+
+export interface Edge {
+  from_qid: string;
+  from_name: string;
+  to_qid: string;
+  to_name: string;
+  relation_type: string;
+}
+
+export interface DecadeAggregation {
+  decade: number;
+  category: string;
+  count: number;
+}
+
+export type SculptorsJSON = Sculptor[];
+export type EdgesJSON = Edge[];
+export type MovementsByDecadeJSON = DecadeAggregation[];
+export type GeographyByDecadeJSON = DecadeAggregation[];
+export type MaterialsByDecadeJSON = DecadeAggregation[];
+export type FocusSculptorsJSON = Sculptor[];
+
+// ---------------------------------------------------------------------------
+// Legacy types (camelCase — matches current seed JSON files)
+// Remove these once the pipeline re-exports with snake_case keys.
+// ---------------------------------------------------------------------------
+
+/** @deprecated Use Sculptor (snake_case) once pipeline is updated. */
+export interface LegacySculptor {
   qid: string;
   name: string;
   birthYear: number | null;
@@ -16,8 +68,8 @@ export interface Sculptor {
   totalDegree: number;
 }
 
-/** Relationship edge between sculptors. */
-export interface Edge {
+/** @deprecated Use Edge (snake_case) once pipeline is updated. */
+export interface LegacyEdge {
   fromQid: string;
   toQid: string;
   fromName: string;
@@ -25,14 +77,14 @@ export interface Edge {
   relationType: "influenced_by" | "student_of";
 }
 
-/** Decade-aggregated movement data. */
+/** @deprecated Use DecadeAggregation once pipeline is updated. */
 export interface MovementByDecade {
   decade: number;
   total: number;
   [movement: string]: number;
 }
 
-/** Decade-aggregated geography data. */
+/** @deprecated Use DecadeAggregation once pipeline is updated. */
 export interface GeographyByDecade {
   decade: number;
   total: number;
@@ -40,7 +92,7 @@ export interface GeographyByDecade {
   [country: string]: number;
 }
 
-/** Decade-aggregated materials data. */
+/** @deprecated Use DecadeAggregation once pipeline is updated. */
 export interface MaterialByDecade {
   decade: number;
   total: number;

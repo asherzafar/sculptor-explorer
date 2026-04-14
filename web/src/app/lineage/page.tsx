@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Edge, Sculptor } from "@/lib/types";
+import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptors } from "@/lib/data";
 
 export default function LineagePage() {
-  const [edges, setEdges] = useState<Edge[]>([]);
-  const [sculptors, setSculptors] = useState<Sculptor[]>([]);
+  const [edges, setEdges] = useState<LegacyEdge[]>([]);
+  const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function LineagePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">Lineage</h1>
+      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">Lineage</h1>
       <p className="text-muted-foreground mb-6">
         Influence and student-teacher relationships between sculptors.
       </p>

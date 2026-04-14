@@ -1,4 +1,5 @@
 """Configuration for the sculptor data pipeline."""
+import csv
 from pathlib import Path
 
 # Paths
@@ -37,60 +38,20 @@ AIC_RATE_LIMIT = 1.0     # 1 req/sec recommended
 REFRESH_FROM_MET = True
 REFRESH_FROM_AIC = True
 
-# Fabio's curated timeline CSV (primary sculptor list from NSS)
-TIMELINE_CSV_PATH = OVERRIDES_DIR / "sculptors_timeline.csv"
+# Canonical focus sculptor list — single source of truth
+# Edit overrides/focus_sculptors.csv to add/remove sculptors.
+FOCUS_SCULPTORS_CSV = OVERRIDES_DIR / "focus_sculptors.csv"
 
-# Focus sculptors: Fabio's curated NSS list + original picks for broader coverage
-FOCUS_SCULPTORS = [
-    # --- From Fabio's curated NSS list (38 sculptors) ---
-    "Hiram Powers",
-    "John Quincy Adams Ward",
-    "Auguste Rodin",
-    "Augustus Saint-Gaudens",
-    "Daniel Chester French",
-    "Attilio Piccirilli",
-    "Karl Bitter",
-    "Gutzon Borglum",
-    "Carl Milles",
-    "Gertrude Vanderbilt Whitney",
-    "Anna Hyatt Huntington",
-    "Constantin Brâncuși",
-    "Pablo Picasso",
-    "Gaston Lachaise",
-    "Elie Nadelman",
-    "Malvina Hoffman",
-    "Paul Manship",
-    "Marcel Duchamp",
-    "William Zorach",
-    "Augusta Savage",
-    "Alexander Calder",
-    "Louise Nevelson",
-    "Alberto Giacometti",
-    "Walker Hancock",
-    "Isamu Noguchi",
-    "Charlotte Dunwiddie",
-    "Louise Bourgeois",
-    "Tony Smith",
-    "Marcel Jovine",
-    "Richard McDermott Miller",
-    "Stanley Bleifeld",
-    "Neil Estern",
-    "Donald Judd",
-    "Carl Andre",
-    "Richard Serra",
-    "Jeff Koons",
-    "Dan Ostermiller",
-    "Simone Leigh",
-    # --- Additional from original list (broader art history coverage) ---
-    "Camille Claudel",
-    "Aristide Maillol",
-    "Antoine Bourdelle",
-    "Alexander Archipenko",
-    "Henry Moore",
-    "Barbara Hepworth",
-    "David Smith",
-    "Anish Kapoor",
-    "Maya Lin",
+
+def load_focus_sculptors() -> list[dict]:
+    """Load the canonical focus sculptor list from CSV."""
+    with open(FOCUS_SCULPTORS_CSV, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+# Convenience: flat list of names for pipeline matching
+FOCUS_SCULPTOR_NAMES: list[str] = [
+    row["name"] for row in load_focus_sculptors()
 ]
 
 # Cache file paths (as parquet)

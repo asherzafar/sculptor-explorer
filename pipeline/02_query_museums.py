@@ -241,5 +241,5 @@ def run_museum_queries(sculptor_names: list[str]) -> dict:
 
 if __name__ == "__main__":
     # For testing, use focus sculptors
-    from config import FOCUS_SCULPTORS
-    run_museum_queries(FOCUS_SCULPTORS)
+    from config import FOCUS_SCULPTOR_NAMES
+    run_museum_queries(FOCUS_SCULPTOR_NAMES)

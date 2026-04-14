@@ -1,0 +1,114 @@
+# Sculpture in Data — Windsurf Rules
+
+## Identity
+App name: Sculpture in Data
+Tagline: How sculpture evolved — materials, movements, geography, and lineages since 1800
+
+## Fonts (non-negotiable)
+Display/headlines: Fraunces (Google Fonts, variable, serif)
+Body/UI/axes: DM Sans (Google Fonts, sans-serif)
+Load via next/font/google in layout.tsx. Never use Inter, Roboto, Arial, or system fonts.
+
+## Color palette: Verdigris & Marble (non-negotiable)
+All values MUST come from CSS variables or Tailwind config. Never hardcode hex in components.
+
+bg-primary: #FAFAF9 (warm off-white)
+bg-secondary: #F0F1EE (cards)
+bg-sidebar: #1A1D1C (sidebar background, also network graph dark contexts)
+text-primary: #1A1D1C
+text-secondary: #5C6560
+text-tertiary: #6B706D (WCAG AA safe — 4.5:1 on bg-primary)
+accent-primary: #3D7A68 (verdigris)
+accent-hover: #2E6354
+accent-muted: #3D7A681A (10% verdigris)
+
+Data palette (ordered): #3D2E25 (umber), #3D7A68 (verdigris), #6B8F84 (sage), #D4A574 (sandstone), #8B7B6B (warm grey), #A8B5A3 (pale green), #DFE8DF (marble), #2A2D3A (navy)
+
+Borders: subtle #E4E6E2, grid #EDEFE9, axis #CDD0CA
+
+## 8 Non-negotiable rules
+1. Design tokens only. Never hardcode colors, fonts, or spacing in components.
+2. URL state for filters. useSearchParams(), not useState(). Every filter combination must be shareable.
+3. D3 for charts. Not Recharts. Full control over axes, grids, transitions.
+4. Never rely on color alone. Every color distinction needs a second channel (label, texture, shape, line style).
+5. Desktop-first. Viewport <768px shows "visit on desktop" gate. No responsive charts in MVP.
+6. Pre-aggregate in pipeline. Web app loads summary JSON. No raw data processing client-side.
+7. Stable JSON schema. New data sources add new files, never change existing schemas.
+8. Disclose data gaps. Missing/incomplete data shown inline near charts. Never silently drop data.
+
+## Critical Next.js gotchas
+
+### useSearchParams requires Suspense
+Any component using useSearchParams() MUST be a Client Component ('use client') wrapped in a <Suspense> boundary. Without this, `next build` with `output: 'export'` WILL FAIL. Pattern:
+```
+// page.tsx (Server Component)
+import { Suspense } from 'react';
+import { EvolutionContent } from './EvolutionContent';
+export default function Page() {
+  return <Suspense fallback={null}><EvolutionContent /></Suspense>;
+}
+
+// EvolutionContent.tsx (Client Component)
+'use client';
+import { useSearchParams } from 'next/navigation';
+// ... all filter logic here
+```
+
+### Landing redirect
+Static export doesn't support server-side redirects. Use client-side redirect in app/page.tsx:
+```
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+export default function Home() {
+  const router = useRouter();
+  useEffect(() => { router.replace('/timeline'); }, [router]);
+  return null;
+}
+```
+
+## D3-React integration pattern
+Use "D3 for math, React for container" pattern:
+- React component owns the SVG element via useRef
+- D3 does all rendering inside useEffect, operating on the ref
+- React handles data loading, state, and component lifecycle
+- D3 handles scales, axes, shapes, transitions
+- This is the simplest pattern for someone coming from ggplot: one function configures the whole chart
+
+## Source of truth hierarchy
+If documents conflict: .windsurfrules wins > CLAUDE.md > docs/*.md
+
+## Sidebar
+Dark variant: bg-sidebar (#1A1D1C) background.
+Text: sidebar-text (#FAFAF9), muted: sidebar-text-muted (#9CA3A0).
+Active nav item: sidebar-text + 3px left border in accent-primary + accent-muted-dark bg.
+No right border — dark/light contrast defines the edge.
+
+## Charts
+No borders or boxes. Charts float in whitespace.
+Gridlines: horizontal only, border-grid color, ~0.3 opacity.
+Axes: left + bottom only, border-axis color.
+Labels: text-tertiary, 0.75rem.
+Direct labels on data > legends whenever possible.
+Tooltips: minimal, no border, subtle shadow, bg-primary background.
+Transitions: 400ms ease-out.
+
+## Current phase: MVP
+See docs/ROADMAP.md for full phasing. Key MVP scope:
+- Timeline page (hero) with lifespan D3 chart of Fabio's curated sculptors
+- Explore page with searchable data table
+- Lineage page as placeholder
+- About page with full methodology content
+- Evolution page exists but deferred from nav until D3 charts are built
+
+Nav routes (4): Timeline · Explore · Lineage · About
+Landing (/) redirects client-side to /timeline.
+
+Canonical focus sculptor list: overrides/focus_sculptors.csv (single source of truth).
+
+DO NOT build: materials chart, network graph, streamgraph, PNG export, animations, sculpture images.
+
+## Detailed docs (reference when working in specific areas)
+- docs/DESIGN_SYSTEM.md — full typography, color, spacing, chart styling, components, accessibility
+- docs/ROADMAP.md — phased plan, MVP scope, what to build vs. defer
+- docs/ARCHITECTURE.md — tech stack, directory structure, SPARQL queries, data sources, JSON schemas

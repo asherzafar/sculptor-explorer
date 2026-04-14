@@ -22,8 +22,8 @@ def main():
         print("=" * 60)
         try:
             from query_museums import run_museum_queries
-            from config import FOCUS_SCULPTORS
-            museum_results = run_museum_queries(FOCUS_SCULPTORS)
+            from config import FOCUS_SCULPTOR_NAMES
+            museum_results = run_museum_queries(FOCUS_SCULPTOR_NAMES)
             print(f"✓ Queried {len(museum_results['combined'])} museum objects")
         except Exception as e:
             print(f"⚠ Museum query skipped or failed: {e}")

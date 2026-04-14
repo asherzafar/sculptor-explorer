@@ -20,7 +20,7 @@ from config import (
     OVERRIDES_DIR,
     REFRESH_PROCESSING,
     MIN_BIRTH_YEAR,
-    FOCUS_SCULPTORS,
+    FOCUS_SCULPTOR_NAMES,
 )
 from helpers import normalize_name
 
@@ -399,13 +399,13 @@ def run_processing():
     print(f"Birth year range: {nodes_with_metrics['birth_year'].min()} – {nodes_with_metrics['birth_year'].max()}")
     
     # Focus subset audit
-    focus_norm = [normalize_name(n) for n in FOCUS_SCULPTORS]
+    focus_norm = [normalize_name(n) for n in FOCUS_SCULPTOR_NAMES]
     focus_df = nodes_with_metrics[nodes_with_metrics["name_norm"].isin(focus_norm)].copy()
     missing = set(focus_norm) - set(focus_df["name_norm"])
     if missing:
-        print(f"\n⚠ Missing from data: {[n for n in FOCUS_SCULPTORS if normalize_name(n) in missing]}")
+        print(f"\n⚠ Missing from data: {[n for n in FOCUS_SCULPTOR_NAMES if normalize_name(n) in missing]}")
     else:
-        print(f"\n✓ All {len(FOCUS_SCULPTORS)} focus sculptors found")
+        print(f"\n✓ All {len(FOCUS_SCULPTOR_NAMES)} focus sculptors found")
     
     return {
         "nodes": nodes_with_metrics,

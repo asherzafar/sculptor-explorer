@@ -1,12 +1,12 @@
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <h1 className="text-3xl font-bold mb-6">About</h1>
+      <h1 className="font-display text-3xl font-bold text-text-primary mb-6">About</h1>
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">What is this?</h2>
         <p className="text-muted-foreground leading-relaxed">
-          Sculptor Evolution Explorer is an interactive web app exploring how sculpture
+          Sculpture in Data is an interactive web app exploring how sculpture
           evolved over time — materials, geography, movements, and lineages — built from
           Wikidata, Met Museum API, and Art Institute of Chicago API data.
         </p>
@@ -51,7 +51,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-semibold mb-3">Credits</h2>
         <p className="text-muted-foreground leading-relaxed">
           Built for the National Sculpture Society. Inspired by Fabio J. Fernández.
-          Data pipeline in Python, web app in Next.js with Recharts.
+          Data pipeline in Python, web app in Next.js with D3.js.
         </p>
       </section>
     </div>
