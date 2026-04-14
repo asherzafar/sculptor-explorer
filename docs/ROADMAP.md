@@ -54,6 +54,7 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 ### Timeline page
 - [x] **Remove border/card wrapper from chart.** ~~The `rounded-lg border bg-card` container around `<LifespanTimeline>` violates the design rule "no borders on charts."~~ Chart now floats in whitespace.
 - [x] **Full-width chart.** ~~Remove inner padding that constrains chart width~~ — chart now spans full content column.
+- [x] **Bars clickable.** ~~Bars only show tooltip~~ — now clicking a bar navigates to sculptor detail.
 - [ ] **Heading → chart spacing.** Increase gap between the subtitle paragraph and the chart area (currently feels too tight).
 
 ### Explore page
@@ -62,17 +63,19 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 - [x] **Movement/gender capitalization normalization.** ~~Wikidata supplies inconsistent casing~~ — now handled via `toTitleCase()` and `formatGender()` in `lib/utils.ts`.
 - [x] **Zebra striping.** ~~Not yet implemented~~ — now alternating `--bg-primary` / `--bg-secondary`.
 - [x] **Row hover cursor.** ~~Should be `cursor-pointer`~~ — now implemented.
-- [ ] **Table outer border removal.** Still has `rounded-md border` wrapper on search input — evaluate if needed.
+- [x] **Table rows clickable.** ~~Only name links~~ — now entire row navigates to sculptor detail.
+- [x] **Table outer border removal.** ~~Still has border~~ — search input keeps border (functional), table has no outer border.
 
 ### Sculptor detail page (`/explore/[qid]`)
 - [x] **Apply formatting utilities.** Now uses `formatDisplayValue()` and `formatGender()` for consistent display.
+- [x] **Remove borders from data cards.** ~~Had `border-border-subtle`~~ — now uses `bg-bg-secondary` without borders.
 - [ ] **Implement the SculptorCard spec from DESIGN_SYSTEM.** Currently a bare 2-column data grid. Replace with: display name (Fraunces serif, large), lifespan line below name, movement as a pill badge, citizenship + gender inline, connections with in/out breakdown, data-completeness dots (4 dots: has_movement, has_citizenship, has_edges — filled = present, hollow = missing with tooltip).
 - [ ] **External link to Wikidata.** Each sculptor has a QID — link out to `https://www.wikidata.org/wiki/{qid}` (small external link icon, `text-text-tertiary`, opens in new tab).
 - [ ] **"Back to explore" preserves search state.** Currently hard-links to `/explore` losing any active search or sort. Should use `router.back()` or pass the previous URL.
 
 ### Evolution page
 - [x] **Chart hover affordance.** ~~The stacked areas need cursor-pointer~~ — now implemented with subtle hover band (0.08 opacity) on decade hover.
-- [ ] **Interaction hint.** The subtitle "click to filter" is easily missed. Add a small pulsing indicator or a persistent tooltip-style hint on first load (dismissible, localStorage-backed).
+- [x] **Interaction hint.** ~~Subtitle only~~ — now shows dismissible hint with icon: "Click any decade area to filter sculptors".
 - [x] **Focus sculptor cards → link to detail page.** ~~Cards not clickable~~ — now wrapped in `<Link>` with hover state.
 - [x] **Focus sculptor card polish.** ~~Plain text on white card~~ — now uses `bg-bg-secondary`, hover state, movement pill badge, formatted values.
 - [ ] **Remove section border wrapper.** Focus sculptors section still has implied card background — evaluate removing per "no borders" rule.

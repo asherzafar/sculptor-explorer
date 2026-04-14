@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   useReactTable,
   getCoreRowModel,
@@ -104,6 +105,7 @@ function SortHeader({
 }
 
 export default function ExplorePage() {
+  const router = useRouter();
   const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
   const [sorting, setSorting] = useState<SortingState>([
@@ -208,20 +210,24 @@ export default function ExplorePage() {
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row, index) => (
-              <tr
-                key={row.id}
-                className={`cursor-pointer hover:bg-accent/30 transition-colors ${
-                  index % 2 === 0 ? "bg-bg-primary" : "bg-bg-secondary"
-                }`}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-4 py-3">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {table.getRowModel().rows.map((row, index) => {
+              const sculptor = row.original;
+              return (
+                <tr
+                  key={row.id}
+                  onClick={() => router.push(`/explore/${sculptor.qid}`)}
+                  className={`cursor-pointer hover:bg-accent/30 transition-colors ${
+                    index % 2 === 0 ? "bg-bg-primary" : "bg-bg-secondary"
+                  }`}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="px-4 py-3">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

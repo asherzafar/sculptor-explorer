@@ -45,7 +45,7 @@ export default function LineagePage() {
       </p>
 
       {edges.length === 0 ? (
-        <div className="rounded-lg border bg-card p-8 text-center">
+        <div className="rounded-lg bg-bg-secondary p-8 text-center">
           <p className="text-muted-foreground">
             Network visualization coming in Phase 3.
           </p>
@@ -58,11 +58,11 @@ export default function LineagePage() {
           <p className="text-sm text-muted-foreground">
             {edges.length} relationships found across {sculptors.length} sculptors.
           </p>
-          <div className="rounded-lg border bg-card">
-            <div className="p-4 border-b">
+          <div className="rounded-lg bg-bg-secondary">
+            <div className="p-4 border-b border-border-subtle">
               <h2 className="font-semibold">Recent Relationships</h2>
             </div>
-            <div className="divide-y">
+            <div className="divide-y divide-border-subtle">
               {edges.slice(0, 20).map((edge, i) => (
                 <div key={i} className="p-4 flex items-center gap-4">
                   <span className="font-medium">

@@ -121,6 +121,12 @@ Data display rules (non-negotiable from Phase 2.5):
 - Zebra striping on tables: alternate `bg-bg-primary` / `bg-bg-secondary`. No row borders.
 - Default table sort: birth year ascending (chronological).
 
+Interaction rules (non-negotiable):
+- Table rows are clickable — clicking anywhere on a row navigates to the sculptor detail page.
+- Timeline bars are clickable — clicking a bar navigates to `/explore/{qid}`.
+- Search inputs keep borders (functional affordance). Content cards do NOT have borders.
+- Chart hints should be dismissible (not persistent UI clutter).
+
 DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
 
 ## Detailed docs (reference when working in specific areas)

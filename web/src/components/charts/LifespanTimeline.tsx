@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import * as d3 from "d3";
 import type { TimelineSculptor } from "@/lib/types";
 
@@ -47,6 +48,7 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // Sort by birth year, then by name
   const sorted = useMemo(
@@ -295,11 +297,16 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
           const isAlive = sculptor.deathYear === null;
           const color = colorScale(sculptor.birthYear);
 
+          const handleClick = () => {
+            router.push(`/explore/${sculptor.id}`);
+          };
+
           return (
             <g
               key={sculptor.id}
               onMouseEnter={(e) => handleMouseEnter(sculptor, e)}
               onMouseLeave={handleMouseLeave}
+              onClick={handleClick}
               className="cursor-pointer"
             >
               {/* Name label */}

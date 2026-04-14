@@ -140,6 +140,23 @@ p-16 (64px) — page-level vertical rhythm
 - **Sidebar nav is persistent** on desktop. It anchors the spatial experience.
 - **No horizontal scrolling ever.**
 
+### Border usage standards
+The "no borders" rule is nuanced. Borders provide functional affordance for interactive elements but clutter content displays.
+
+**NO borders on:**
+- Chart containers (data floats in whitespace)
+- Content cards (use `bg-bg-secondary` background instead)
+- Data displays (sculptor detail grids, relationship lists)
+- Timeline/event annotations
+
+**YES borders on:**
+- Search inputs (users need to know where to type)
+- Buttons (affordance for clickability)
+- Active filter banners (visual distinction for state change)
+- Dropdowns/selects (form element affordance)
+
+**Rule of thumb:** If removing the border would make a user hesitate about where to click or what the element is, keep the border. If the border is purely decorative, remove it.
+
 ## Charts & Data Visualization
 
 ### General chart style

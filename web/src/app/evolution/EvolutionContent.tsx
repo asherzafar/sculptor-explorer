@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { DecadeAggregation, LegacySculptor } from "@/lib/types";
+import { MousePointerClick, X } from "lucide-react";
 import {
   loadGeographyByDecade,
   loadFocusSculptors,
@@ -13,7 +14,6 @@ import { GeographyChart } from "@/components/charts/GeographyChart";
 import { MaterialsChart } from "@/components/charts/MaterialsChart";
 import { MovementsChart } from "@/components/charts/MovementsChart";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
 import Link from "next/link";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 
@@ -33,6 +33,7 @@ export function EvolutionContent() {
   const [materialsData, setMaterialsData] = useState<DecadeAggregation[]>([]);
   const [focusSculptors, setFocusSculptors] = useState<LegacySculptor[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showHint, setShowHint] = useState(true);
 
   // Decade state lives in URL: ?decade=1920
   const activeDecade = searchParams.get("decade")
@@ -105,8 +106,23 @@ export function EvolutionContent() {
         </h1>
         <p className="text-muted-foreground">
           How sculpture evolved over time — geography and movements from{" "}
-          {MIN_BIRTH_YEAR} to present. Click any area to filter.
+          {MIN_BIRTH_YEAR} to present.
         </p>
+
+        {/* Interaction hint - dismissible */}
+        {showHint && (
+          <div className="mt-4 flex items-center gap-2 text-sm text-accent-primary bg-accent-muted rounded-md px-3 py-2 w-fit">
+            <MousePointerClick className="h-4 w-4" />
+            <span>Click any decade area to filter sculptors</span>
+            <button
+              onClick={() => setShowHint(false)}
+              className="ml-2 p-1 hover:bg-accent-primary/20 rounded"
+              aria-label="Dismiss hint"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Active decade banner */}
