@@ -26,9 +26,12 @@ const BAR_HEIGHT = 16;
 const BAR_GAP = 6;
 const CURRENT_YEAR = new Date().getFullYear();
 
+export type SortMode = "chrono" | "alpha" | "lifespan" | "movement";
+
 interface Props {
   data: TimelineSculptor[];
   showEvents?: boolean;
+  sortMode?: SortMode;
 }
 
 interface TooltipState {
@@ -43,19 +46,35 @@ interface TooltipState {
  * Uses d3-scale for mapping years to pixels, d3-axis for the x-axis,
  * and CSS custom properties (design tokens) for colors.
  */
-export function LifespanTimeline({ data, showEvents = true }: Props) {
+export function LifespanTimeline({ data, showEvents = true, sortMode = "chrono" }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Sort by birth year, then by name
-  const sorted = useMemo(
-    () =>
-      [...data].sort((a, b) => a.birthYear - b.birthYear || a.name.localeCompare(b.name)),
-    [data]
-  );
+  // Sort based on sortMode prop
+  const sorted = useMemo(() => {
+    const arr = [...data];
+    switch (sortMode) {
+      case "alpha":
+        return arr.sort((a, b) => a.name.localeCompare(b.name));
+      case "lifespan": {
+        const lifespan = (s: TimelineSculptor) =>
+          (s.deathYear ?? CURRENT_YEAR) - s.birthYear;
+        return arr.sort((a, b) => lifespan(b) - lifespan(a) || a.name.localeCompare(b.name));
+      }
+      case "movement":
+        return arr.sort(
+          (a, b) =>
+            (a.movement ?? "zzz").localeCompare(b.movement ?? "zzz") ||
+            a.birthYear - b.birthYear
+        );
+      case "chrono":
+      default:
+        return arr.sort((a, b) => a.birthYear - b.birthYear || a.name.localeCompare(b.name));
+    }
+  }, [data, sortMode]);
 
   // Compute time range
   const minYear = useMemo(
@@ -284,6 +303,33 @@ export function LifespanTimeline({ data, showEvents = true }: Props) {
                   {evt.label}
                 </text>
               </g>
+            );
+          })}
+
+        {/* Movement group headers — only shown in movement sort */}
+        {sortMode === "movement" &&
+          sorted.map((sculptor, i) => {
+            const prev = sorted[i - 1];
+            const prevMovement = prev?.movement ?? "zzz";
+            const curMovement = sculptor.movement ?? "zzz";
+            if (i > 0 && prevMovement === curMovement) return null;
+            const y = TOP_MARGIN + i * (BAR_HEIGHT + BAR_GAP);
+            const label = sculptor.movement ?? "Unknown movement";
+            return (
+              <text
+                key={`grp-${label}`}
+                x={LEFT_MARGIN - 8}
+                y={y - 3}
+                textAnchor="end"
+                fontSize={8.5}
+                fontWeight={600}
+                letterSpacing={0.5}
+                fill="var(--color-accent-primary)"
+                opacity={0.6}
+                style={{ textTransform: "uppercase" }}
+              >
+                {label}
+              </text>
             );
           })}
 
