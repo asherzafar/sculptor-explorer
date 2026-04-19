@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptors } from "@/lib/data";
+import { LineageGraph } from "@/components/charts/LineageGraph";
 
 export default function LineagePage() {
   const [edges, setEdges] = useState<LegacyEdge[]>([]);
@@ -30,54 +31,39 @@ export default function LineagePage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Loading...</p>
+        <p className="text-text-secondary">Loading lineage network...</p>
       </div>
     );
   }
 
-  const sculptorMap = new Map(sculptors.map((s) => [s.qid, s]));
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">Lineage</h1>
-      <p className="text-muted-foreground mb-6">
-        Influence and student-teacher relationships between sculptors.
-      </p>
+      <div className="mb-8">
+        <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
+          Lineage
+        </h1>
+        <p className="text-text-secondary">
+          Influence and student-teacher relationships between sculptors, sourced
+          from Wikidata. Click a sculptor to see their details.
+        </p>
+      </div>
 
-      {edges.length === 0 ? (
-        <div className="rounded-lg bg-bg-secondary p-8 text-center">
-          <p className="text-muted-foreground">
-            Network visualization coming in Phase 3.
-          </p>
-          <p className="text-sm text-muted-foreground mt-2">
-            {sculptors.length} sculptors loaded, waiting for relationship data.
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-4">
-          <p className="text-sm text-muted-foreground">
-            {edges.length} relationships found across {sculptors.length} sculptors.
-          </p>
-          <div className="rounded-lg bg-bg-secondary">
-            <div className="p-4 border-b border-border-subtle">
-              <h2 className="font-semibold">Recent Relationships</h2>
-            </div>
-            <div className="divide-y divide-border-subtle">
-              {edges.slice(0, 20).map((edge, i) => (
-                <div key={i} className="p-4 flex items-center gap-4">
-                  <span className="font-medium">
-                    {edge.fromName}
-                  </span>
-                  <span className="text-sm text-muted-foreground capitalize">
-                    {edge.relationType.replace(/_/g, " ")} →
-                  </span>
-                  <span className="font-medium">{edge.toName}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      <LineageGraph sculptors={sculptors} edges={edges} height={680} />
+
+      <div className="mt-6 max-w-2xl text-sm text-text-secondary space-y-2">
+        <p>
+          <strong className="text-text-primary">What you&apos;re seeing:</strong>{" "}
+          each node is a sculptor; each line is an influence or student-teacher
+          connection. Node size reflects how many connections the sculptor has.
+          Dashed outlines mark sculptors without a recorded art movement.
+        </p>
+        <p className="text-text-tertiary">
+          Connections come from Wikidata&apos;s <code>influencedBy</code> and{" "}
+          <code>studentOf</code> properties — the graph is sparse, especially
+          among modernists, reflecting gaps in Wikidata rather than art-historical
+          reality.
+        </p>
+      </div>
     </div>
   );
 }

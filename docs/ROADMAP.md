@@ -95,7 +95,7 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 - [ ] Synchronized evolution view: materials + geography + movements with linked decade selector
 - [ ] Streamgraph option (toggle between streamgraph and small multiples)
 - [ ] Sculptor comparison view on explore page
-- [ ] Network graph on lineage page (with Wikidata edges — don't wait for ULAN)
+- [~] Network graph on lineage page — **component built** (`LineageGraph.tsx`), waiting on data. Wikidata's `influencedBy` / `studentOf` query consistently times out on the public SPARQL endpoint for notable-sculptor batches, and the data Fabio shared suggests the graph would be sparse anyway. Strategy: wait until museum API integration provides supplementary lineage signals (atelier records, teacher attribution in provenance), then combine both sources. Deferred to Phase 5 or after museum work. **Do not re-attempt pure Wikidata ingest** — tried `fetch_relations.py` with batches of 10 and minimal query; still 504s.
 - [ ] Export PNG button per chart
 - [ ] Styled empty states with filter suggestions
 - [ ] Inline data degradation messaging ("Movement data unavailable for 12 sculptors")
