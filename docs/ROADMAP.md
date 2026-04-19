@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Phase 2.5 complete — ready for Fabio feedback
+## Current status: Phase 2.5 shipped + reviewed by Fabio. Pivoting to data enrichment.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -87,34 +87,73 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 
 ---
 
-## Phase 3: Depth + museum data
+## Phase 3: Data enrichment — the migration/geography story
 
-- [ ] Museum API integration: Met (`collectionapi.metmuseum.org`) + AIC (`api.artic.edu`)
-- [ ] Material taxonomy: parse medium strings → clean categories via `overrides/medium_taxonomy.csv`
-- [ ] Materials-over-time chart (the most novel visualization)
-- [ ] Synchronized evolution view: materials + geography + movements with linked decade selector
-- [ ] Streamgraph option (toggle between streamgraph and small multiples)
-- [ ] Sculptor comparison view on explore page
-- [~] Network graph on lineage page — **component built** (`LineageGraph.tsx`), waiting on data. Wikidata's `influencedBy` / `studentOf` query consistently times out on the public SPARQL endpoint for notable-sculptor batches, and the data Fabio shared suggests the graph would be sparse anyway. Strategy: wait until museum API integration provides supplementary lineage signals (atelier records, teacher attribution in provenance), then combine both sources. Deferred to Phase 5 or after museum work. **Do not re-attempt pure Wikidata ingest** — tried `fetch_relations.py` with batches of 10 and minimal query; still 504s.
-- [ ] Export PNG button per chart
-- [ ] Styled empty states with filter suggestions
-- [ ] Inline data degradation messaging ("Movement data unavailable for 12 sculptors")
+**Why this, why now.** Looking honestly at the data: the current site shows `citizenship = "United States"` for Brâncuși, Archipenko, Nadelman, Lachaise, Noguchi, Bourgeois — a single flat field that erases the actual migration history of 20th-century sculpture. The canon this site tries to document **is** a migration canon, and we're flattening it. We also silently exclude non-Western sculptors because our "notable" filter requires a Western-art-historical movement label. Before more visual polish, fix the data.
 
-## Phase 4: Polish + production
+**Themes the data should support after this phase:**
+- Where sculptors actually came from vs. where they're attributed
+- The non-Western gap — owned honestly, not hidden
+- Multi-country lives (residences, activity places over time)
+- Native-script names alongside romanizations
 
-- [ ] OG preview image (screenshot of evolution page, 1200×630px)
+**Approach:** interleave data work with visible UI changes so every session produces a deployable increment. Do not disappear into a multi-week pure-data-work tunnel. Learn from each ingest and adjust.
+
+### 3a. Wikidata enrichment — low risk, high yield
+- [ ] Add SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **P551 (residence)** — single-property queries, should not hit the UNION-query 504s
+- [ ] Pull **native-language labels** (sculptor's name in native script) via Wikidata's `rdfs:label` per-language
+- [ ] Pull **P172 (ethnic group)** where populated
+- [ ] **Audit and fix the "notable sculptor" filter.** Currently `movement != "No movement listed" OR has_edges OR in_focus_list` — all Western-biased criteria. Add: `has non-English Wikipedia sitelink OR has P172 heritage OR has P19 place of birth`. Measure the delta.
+- [ ] Schema evolution: sculptor JSON gains `birth_place`, `death_place`, `residences[]`, `native_name`, `heritage[]`
+- [ ] **After ingest, look at the data together and decide what UI surfaces first.** Don't commit to a UI design up front.
+
+### 3b. Getty ULAN crosswalk — authoritative nationality & activity data
+- [ ] Use Wikidata's **P245 (ULAN ID)** to get the crosswalk for free (no fuzzy-match required)
+- [ ] Query Getty's SPARQL endpoint (http://vocab.getty.edu/sparql) in small batches for: nationalities-over-time, verified birth/death places, places of activity
+- [ ] Schema: sculptor gains `nationalities[]` array (with source provenance per entry) and `activity_places[]`
+- [ ] License: ODC-By 1.0, attribute Getty on About page
+
+### 3c. SAAM (Smithsonian American Art Museum) — biographical narratives
+- [ ] Download SAAM LOD dataset (CC0, GitHub)
+- [ ] Join via ULAN ID (SAAM also uses ULAN — clean join key) and/or name + birth year
+- [ ] Extract biographical narrative text (Great Migration stories, émigré context, etc.)
+- [ ] Schema: sculptor gains optional `bio_narrative` field with source attribution
+- [ ] Note: this is the better museum-API choice than Met/AIC for our specific story. AIC/Met give us works + materials; SAAM gives us the migration narratives.
+
+### 3d. Data-story UI — surfaces what the new data reveals
+Built in increments alongside 3a-c, not saved for the end.
+- [ ] **Geography chart: add source toggle** (citizenship / birth country / country of activity). Reveals the migration delta.
+- [ ] **Migration view** — per-sculptor birth → residences → death trajectory. Format TBD after seeing data (dot plot, Sankey, arc map — decide based on what looks legible).
+- [ ] **"Hidden from view" page** — owns the non-Western gap: what enriched filter surfaced, what's still missing. Meta-chart about the dataset itself.
+- [ ] **Detail page enrichment** — native name alongside romanization, heritage pills, residence timeline, SAAM narrative snippet when available
+- [ ] **About page update** — new data sources (ULAN, SAAM), explanation of citizenship vs. birth-country distinction
+
+### 3e. Explicitly deferred to later phases
+- Sculpture images from Met/AIC IIIF
+- Materials-over-time chart (needs Met/AIC re-ingest — lower priority than migration story)
+- Network graph on lineage (component built, still waiting for non-Wikidata edge sources)
+- Streamgraph toggle
+- Export PNG per chart
+- Sculptor comparison view
+
+## Phase 4: Visual polish + production
+
+- [ ] **OG preview image** (screenshot of evolution page, 1200×630px) — moved up from previous plan; shareability matters now
+- [ ] **Custom domain** (if desired) — credibility infrastructure
+- [ ] **Mobile support** — revisit the `MobileGate` decision. If strangers share on phones, gating cuts most traffic. Options: adapt key pages, or keep gate with improved copy.
+- [ ] Sculpture images on detail pages (Met/AIC IIIF, public domain only) — the biggest single *emotional* upgrade
 - [ ] Performance audit against budget (<3s paint, <5s interactive, <3MB payload)
 - [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
-- [ ] Diacritic-insensitive search (`normalize('NFD')` stripping)
-- [ ] Custom domain (if desired)
+- [ ] Empty-state polish + filter suggestions
+- [ ] Inline data degradation messaging ("Movement data unavailable for 12 sculptors")
 
-## Phase 5: Enrichment
+## Phase 5: Optional — if energy remains
 
-- [ ] Getty ULAN edge enrichment → richer lineage network
-- [ ] Sculpture images from Met/AIC IIIF (public domain only)
-- [ ] Curated tours: pre-set filter combinations ("The Rodin Lineage", "From Marble to Mixed Media")
-- [ ] Sculptor profile pages (`/explore/[qid]`) with images and key works
-- [ ] Movement quality: cross-reference Wikidata P135 against Getty AAT terms
+- [ ] Map-based geography view (choropleth by decade) — may displace or complement the current stacked area chart
+- [ ] Decade pages (`/decade/1920s`) — editorial narrative with key sculptors, movements, works
+- [ ] Movement pages (`/movement/minimalism`) — elevate movements from pills to destinations
+- [ ] Curated tours — pre-set lenses ("Women the canon forgot," "From marble to steel")
+- [ ] Wikidata-independent lineage via museum provenance records (finally makes the network graph real)
 
 ---
 
