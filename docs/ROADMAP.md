@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: MVP (Phases 0-2)
+## Current status: Phase 2.5 complete — ready for Fabio feedback
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -55,7 +55,8 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 - [x] **Remove border/card wrapper from chart.** ~~The `rounded-lg border bg-card` container around `<LifespanTimeline>` violates the design rule "no borders on charts."~~ Chart now floats in whitespace.
 - [x] **Full-width chart.** ~~Remove inner padding that constrains chart width~~ — chart now spans full content column.
 - [x] **Bars clickable.** ~~Bars only show tooltip~~ — now clicking a bar navigates to sculptor detail.
-- [ ] **Heading → chart spacing.** Increase gap between the subtitle paragraph and the chart area (currently feels too tight).
+- [x] **Heading → chart spacing.** ~~Gap too tight~~ — now `mb-8` (32px) between subtitle and chart.
+- [x] **Sort controls.** Added URL-backed sort modes: Chronological (default), Alphabetical, Lifespan.
 
 ### Explore page
 - [x] **Name link affordance.** ~~Name cells must visually signal clickability~~ — now `text-accent-primary` + `hover:underline` + `cursor-pointer`.
@@ -69,16 +70,16 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 ### Sculptor detail page (`/explore/[qid]`)
 - [x] **Apply formatting utilities.** Now uses `formatDisplayValue()` and `formatGender()` for consistent display.
 - [x] **Remove borders from data cards.** ~~Had `border-border-subtle`~~ — now uses `bg-bg-secondary` without borders.
-- [ ] **Implement the SculptorCard spec from DESIGN_SYSTEM.** Currently a bare 2-column data grid. Replace with: display name (Fraunces serif, large), lifespan line below name, movement as a pill badge, citizenship + gender inline, connections with in/out breakdown, data-completeness dots (4 dots: has_movement, has_citizenship, has_edges — filled = present, hollow = missing with tooltip).
-- [ ] **External link to Wikidata.** Each sculptor has a QID — link out to `https://www.wikidata.org/wiki/{qid}` (small external link icon, `text-text-tertiary`, opens in new tab).
-- [ ] **"Back to explore" preserves search state.** Currently hard-links to `/explore` losing any active search or sort. Should use `router.back()` or pass the previous URL.
+- [x] **Implement the SculptorCard spec from DESIGN_SYSTEM.** ~~Bare 2-column data grid~~ — now uses the full spec: Fraunces 4xl name, lifespan line, movement pill, `citizenship · gender` inline, connections with in/out breakdown, 3 data-completeness dots.
+- [x] **External link to Wikidata.** ~~No link out~~ — small `ExternalLink` icon appears top-right on hover, opens `https://www.wikidata.org/wiki/{qid}` in new tab.
+- [x] **"Back to explore" preserves search state.** ~~Hard link to /explore~~ — now uses `router.back()` when history exists, falls back to `/explore` for deep links.
 
 ### Evolution page
 - [x] **Chart hover affordance.** ~~The stacked areas need cursor-pointer~~ — now implemented with subtle hover band (0.08 opacity) on decade hover.
 - [x] **Interaction hint.** ~~Subtitle only~~ — now shows dismissible hint with icon: "Click any decade area to filter sculptors".
 - [x] **Focus sculptor cards → link to detail page.** ~~Cards not clickable~~ — now wrapped in `<Link>` with hover state.
 - [x] **Focus sculptor card polish.** ~~Plain text on white card~~ — now uses `bg-bg-secondary`, hover state, movement pill badge, formatted values.
-- [ ] **Remove section border wrapper.** Focus sculptors section still has implied card background — evaluate removing per "no borders" rule.
+- [x] **Remove section border wrapper.** ~~Evaluation~~ — section has no border; cards use `bg-bg-secondary` consistent with design system.
 
 ### About page
 - [x] **Add builder credit.** ~~Credits section omits builder~~ — now "Built by Asher Zafar" with LinkedIn link.

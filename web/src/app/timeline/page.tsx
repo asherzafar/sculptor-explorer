@@ -10,7 +10,6 @@ const SORT_OPTIONS: { key: SortMode; label: string; title: string }[] = [
   { key: "chrono",   label: "Chronological", title: "Sort by birth year" },
   { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by name" },
   { key: "lifespan", label: "Lifespan",      title: "Sort by years lived (longest first)" },
-  { key: "movement", label: "Movement",      title: "Group by artistic movement, then birth year" },
 ];
 
 function TimelineContent() {
@@ -21,7 +20,7 @@ function TimelineContent() {
 
   const rawSort = searchParams.get("sort");
   const sortMode: SortMode =
-    rawSort === "alpha" || rawSort === "lifespan" || rawSort === "movement"
+    rawSort === "alpha" || rawSort === "lifespan"
       ? rawSort
       : "chrono";
 

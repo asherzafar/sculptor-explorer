@@ -26,7 +26,7 @@ const BAR_HEIGHT = 16;
 const BAR_GAP = 6;
 const CURRENT_YEAR = new Date().getFullYear();
 
-export type SortMode = "chrono" | "alpha" | "lifespan" | "movement";
+export type SortMode = "chrono" | "alpha" | "lifespan";
 
 interface Props {
   data: TimelineSculptor[];
@@ -64,12 +64,6 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "chrono" 
           (s.deathYear ?? CURRENT_YEAR) - s.birthYear;
         return arr.sort((a, b) => lifespan(b) - lifespan(a) || a.name.localeCompare(b.name));
       }
-      case "movement":
-        return arr.sort(
-          (a, b) =>
-            (a.movement ?? "zzz").localeCompare(b.movement ?? "zzz") ||
-            a.birthYear - b.birthYear
-        );
       case "chrono":
       default:
         return arr.sort((a, b) => a.birthYear - b.birthYear || a.name.localeCompare(b.name));
@@ -303,33 +297,6 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "chrono" 
                   {evt.label}
                 </text>
               </g>
-            );
-          })}
-
-        {/* Movement group headers — only shown in movement sort */}
-        {sortMode === "movement" &&
-          sorted.map((sculptor, i) => {
-            const prev = sorted[i - 1];
-            const prevMovement = prev?.movement ?? "zzz";
-            const curMovement = sculptor.movement ?? "zzz";
-            if (i > 0 && prevMovement === curMovement) return null;
-            const y = TOP_MARGIN + i * (BAR_HEIGHT + BAR_GAP);
-            const label = sculptor.movement ?? "Unknown movement";
-            return (
-              <text
-                key={`grp-${label}`}
-                x={LEFT_MARGIN - 8}
-                y={y - 3}
-                textAnchor="end"
-                fontSize={8.5}
-                fontWeight={600}
-                letterSpacing={0.5}
-                fill="var(--color-accent-primary)"
-                opacity={0.6}
-                style={{ textTransform: "uppercase" }}
-              >
-                {label}
-              </text>
             );
           })}
 
