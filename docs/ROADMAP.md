@@ -100,12 +100,22 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 **Approach:** interleave data work with visible UI changes so every session produces a deployable increment. Do not disappear into a multi-week pure-data-work tunnel. Learn from each ingest and adjust.
 
 ### 3a. Wikidata enrichment — low risk, high yield
-- [ ] Add SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **P551 (residence)** — single-property queries, should not hit the UNION-query 504s
-- [ ] Pull **native-language labels** (sculptor's name in native script) via Wikidata's `rdfs:label` per-language
-- [ ] Pull **P172 (ethnic group)** where populated
-- [ ] **Audit and fix the "notable sculptor" filter.** Currently `movement != "No movement listed" OR has_edges OR in_focus_list` — all Western-biased criteria. Add: `has non-English Wikipedia sitelink OR has P172 heritage OR has P19 place of birth`. Measure the delta.
-- [ ] Schema evolution: sculptor JSON gains `birth_place`, `death_place`, `residences[]`, `native_name`, `heritage[]`
+- [x] **Inclusion criteria research + decision** — see `docs/INCLUSION_CRITERIA.md`. Seven-expert stress test produced **Option A.3** (5 signals, drop authority as gate, sitelinks ≥3 non-EN). Data analysis documented.
+- [x] Add SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **sitelinks** (language list minus bot wikis), **authority IDs** (ULAN+VIAF+LCNAF+BnF+DNB+NDL+BNE), **P1559 (native name)**. All single-property or simple UNION, no 504s.
+- [ ] **Apply A.3 inclusion filter** in `process.py` (movement OR edge OR focus OR multi-citz OR sitelinks ≥3 non-EN). Projected set: 3,447 sculptors (3.5× current).
+- [ ] Schema evolution: sculptor JSON gains `birth_place`, `death_place`, `native_name`, `authority_ids[]`, `inclusion_signals[]`, `sitelink_count`, `citizenships[]` (plural)
+- [ ] **Re-export lineage edges** (548 already cached, never made it to web — populates Lineage page)
+- [ ] **Update aggregations to use full 6,700** (not filtered set) — honest base rate for geography/movement charts
 - [ ] **After ingest, look at the data together and decide what UI surfaces first.** Don't commit to a UI design up front.
+
+### Parking lot — deeper data-ethics analysis (revisit in Phase 4+)
+Questions surfaced by Phase 3a analysis but not resolved in this pass:
+- Historical-vs-modern country name normalization (Kingdom of Prussia → Germany, etc.) — affects migration story accuracy
+- Russian Empire / Soviet Union → Russia vs. Ukraine vs. other successor states
+- Could a weighted signal score (instead of binary OR) outperform? Authority↔sitelinks correlation is 0.67
+- Softer non-EN sitelinks ranking (top quartile of decade? logarithmic count?) rather than hard ≥3 threshold
+- Periodic review of bot-dominated Wikipedias list (currently ceb, war)
+- Gender representation: Phase 3a only moved 13% → 14.4% female. What would it take to do better? Is that even a filter question, or a data-source question?
 
 ### 3b. Getty ULAN crosswalk — authoritative nationality & activity data
 - [ ] Use Wikidata's **P245 (ULAN ID)** to get the crosswalk for free (no fuzzy-match required)

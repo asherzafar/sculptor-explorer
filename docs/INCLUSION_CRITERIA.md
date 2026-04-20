@@ -260,7 +260,53 @@ The experts converge on five meaningful critiques of Option A. Four require chan
 | **Museum collection signals should dominate once present** | Curator | Document that Phase 3b/3c will reweight the stack. Note in criteria. |
 | **Demographic audit as a standing commitment** | Ethics | Add a standing audit page, not a one-time footnote. |
 
-## Refined recommendation — Option A.2
+## FINAL DECISION — Option A.3 (post-data-analysis refinement)
+
+After running the Phase 3a enrichment queries (sitelinks, authority IDs, birth/death places, native names) and analyzing results across 6,700 cached sculptors, **Option A.3** was adopted in place of A.2.
+
+### What the data showed
+
+Running the A.2 criteria on actual data surfaced two unexpected findings:
+
+1. **Authority signals are heavily Western-biased.** The ULAN+VIAF+national-library "any authority ID" signal fires for 5,871 sculptors (88% of cache), but the 1,575 caught *only* by authority are **97% Western**. The decolonial critique was empirically validated: deferring to institutional authority mostly adds minor Western documentation, not non-Western inclusion.
+
+2. **Western ratio is a U-shape across sitelinks thresholds.** Both permissive (≥1 non-EN) and strict (≥20 non-EN) thresholds bias Western. Fairness peaks at ≥3–5 non-English sitelinks — that range captures regionally-famous non-Western sculptors (documented in their own language Wikipedias) while filtering out marginal Western and marginal non-Western entries.
+
+### Final A.3 inclusion rule (5 signals)
+
+A sculptor is included in the published editorial set if ANY of:
+
+1. **Wikidata movement label (P135)**
+2. **Influence/student edge** (P737 influenced_by OR P1066 student_of) to another sculptor in the set
+3. **On the curated focus list**
+4. **Multi-citizenship record** (≥2 distinct P27 values)
+5. **Wikipedia sitelinks**: ≥3 language editions that are not English, excluding bot-dominated Wikipedias (ceb, war)
+
+**Authority IDs (ULAN, VIAF, LCNAF, BnF, DNB, NDL, BNE) are queried and stored as metadata** but are NOT an inclusion gate. They're valuable for Phase 3b ULAN deduplication and link-outs from detail pages, but the analysis showed they do not meaningfully expand non-Western representation.
+
+### Projected outcome
+
+- **Inclusion set size:** 3,447 (51.4% of cache)
+- **Previous filter:** 972 (14.5% of cache) — 3.5× expansion
+- **Regional ratio:** 88.2% Western / 11.8% Non-Western (vs. 91.5% Western in old filter — 3.3pp improvement)
+- **Female ratio:** 14.4% (vs. 13% in old filter — ~10% relative improvement)
+- **Non-Western sculptors preserved:** 227 (vs. 66 in old filter — 3.4× expansion)
+
+### What got parked for later analysis
+
+Deep questions the data surfaces but doesn't resolve in Phase 3a:
+
+- Historical-vs-modern country name normalization ("Kingdom of Prussia" vs. "Germany")
+- Should Russian Empire / Soviet Union sculptors be counted as Russian, Ukrainian, etc.?
+- Signal correlation is high (authority ↔ sitelinks Jaccard = 0.67) — could a weighted score outperform binary OR?
+- Non-English threshold choice (≥3) creates a sharp cutoff; soft ranking might be fairer
+- Bot-dominated Wikipedias list needs periodic review (ceb, war today; others may emerge)
+
+These live in the roadmap parking lot for a future Phase 4+ dedicated "data ethics refinement" pass.
+
+---
+
+## Legacy — Option A.2 (superseded by A.3)
 
 **Inclusion rule (simpler, more honest):**
 
