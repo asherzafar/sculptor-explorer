@@ -22,7 +22,26 @@ from config import (
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
 )
+from query_enrichment import (
+    SITELINKS_CACHE_PATH,
+    AUTHORITY_IDS_CACHE_PATH,
+    BIRTH_PLACES_CACHE_PATH,
+    DEATH_PLACES_CACHE_PATH,
+    NATIVE_NAMES_CACHE_PATH,
+)
 from helpers import normalize_name
+
+
+# =============================================================================
+# Phase 3a: Option A.3 inclusion criteria
+# =============================================================================
+# Wikipedias dominated by bot-generated stubs — excluded from sitelink counts
+# per Expert 4 (Wikidata community veteran) recommendation.
+BOT_DOMINATED_WIKIS = {"ceb", "war"}
+
+# Sitelinks threshold: require >=3 non-English Wikipedia articles (bots excluded).
+# Chosen after U-shape threshold analysis — see docs/INCLUSION_CRITERIA.md.
+SITELINKS_MIN_NON_ENGLISH = 3
 
 
 def parse_wikidata_date(date_str: str) -> Optional[date]:
@@ -129,7 +148,7 @@ def process_nodes() -> pd.DataFrame:
     # Only keep citizenships for sculptors in our node set
     citizenships_long = citizenships_long[citizenships_long["qid"].isin(nodes["qid"])].copy()
     
-    # Pick most common citizenship label for each sculptor
+    # Pick most common citizenship label for display (primary)
     citizenship_freq = citizenships_long["citizenship_label"].value_counts().reset_index()
     citizenship_freq.columns = ["citizenship_label", "count"]
     citizenships_with_freq = citizenships_long.merge(citizenship_freq, on="citizenship_label")
@@ -142,20 +161,144 @@ def process_nodes() -> pd.DataFrame:
         .agg(citizenship_display=("citizenship_label", "first"))
         .reset_index()
     )
-    
-    # Join enrichments
+
+    # ALSO build citizenships list (all distinct per sculptor) — for the
+    # multi-citizenship story and migration views.
+    citizenships_all = (
+        citizenships_long.drop_duplicates(["qid", "citizenship_label"])
+        .groupby("qid")["citizenship_label"]
+        .apply(list)
+        .reset_index(name="citizenships")
+    )
+    citizenships_all["citizenship_count"] = citizenships_all["citizenships"].apply(len)
+
+    # =========================================================================
+    # Phase 3a enrichment: sitelinks, authority IDs, places, native names
+    # =========================================================================
+    sitelinks_enrich  = _build_sitelinks_enrichment(nodes["qid"])
+    authority_enrich  = _build_authority_enrichment(nodes["qid"])
+    birth_enrich      = _build_place_enrichment(BIRTH_PLACES_CACHE_PATH, "birth")
+    death_enrich      = _build_place_enrichment(DEATH_PLACES_CACHE_PATH, "death")
+    native_enrich     = _build_native_name_enrichment()
+
+    # Join everything
     nodes_enriched = nodes.merge(
         movement_display, on="qid", how="left"
     ).merge(
         citizenship_display, on="qid", how="left"
+    ).merge(
+        citizenships_all, on="qid", how="left"
+    ).merge(
+        sitelinks_enrich, on="qid", how="left"
+    ).merge(
+        authority_enrich, on="qid", how="left"
+    ).merge(
+        birth_enrich, on="qid", how="left"
+    ).merge(
+        death_enrich, on="qid", how="left"
+    ).merge(
+        native_enrich, on="qid", how="left"
     )
-    
+
     # Fill missing values
     nodes_enriched["movement_display"] = nodes_enriched["movement_display"].fillna("No movement listed")
     nodes_enriched["movement_count"] = nodes_enriched["movement_count"].fillna(0).astype(int)
     nodes_enriched["citizenship_display"] = nodes_enriched["citizenship_display"].fillna("Unknown")
-    
+    nodes_enriched["citizenship_count"] = nodes_enriched["citizenship_count"].fillna(0).astype(int)
+    nodes_enriched["citizenships"] = nodes_enriched["citizenships"].apply(
+        lambda v: v if isinstance(v, list) else []
+    )
+    nodes_enriched["sitelink_langs"] = nodes_enriched["sitelink_langs"].apply(
+        lambda v: v if isinstance(v, list) else []
+    )
+    nodes_enriched["sitelink_count"] = nodes_enriched["sitelink_count"].fillna(0).astype(int)
+    nodes_enriched["non_en_sitelink_count"] = nodes_enriched["non_en_sitelink_count"].fillna(0).astype(int)
+    nodes_enriched["authority_types"] = nodes_enriched["authority_types"].apply(
+        lambda v: v if isinstance(v, list) else []
+    )
+
     return nodes_enriched
+
+
+# =============================================================================
+# Enrichment builders (Phase 3a)
+# =============================================================================
+def _build_sitelinks_enrichment(node_qids: pd.Series) -> pd.DataFrame:
+    """Return per-QID: sitelink_langs (list), sitelink_count, non_en_sitelink_count.
+
+    Bot-dominated wikis (ceb, war) already excluded at query time, but we
+    defensively re-filter here in case the cache pre-dated that filter.
+    """
+    if not SITELINKS_CACHE_PATH.exists():
+        return pd.DataFrame({
+            "qid": pd.Series([], dtype=str),
+            "sitelink_langs": pd.Series([], dtype=object),
+            "sitelink_count": pd.Series([], dtype=int),
+            "non_en_sitelink_count": pd.Series([], dtype=int),
+        })
+    df = pd.read_parquet(SITELINKS_CACHE_PATH)
+    df = df.dropna(subset=["lang"]).copy()
+    df["lang"] = df["lang"].astype(str)
+    df = df[~df["lang"].isin(BOT_DOMINATED_WIKIS)]
+    df = df[df["qid_clean"].isin(set(node_qids))]
+    grouped = df.groupby("qid_clean")["lang"].apply(lambda s: sorted(set(s)))
+    out = grouped.reset_index().rename(columns={"qid_clean": "qid", "lang": "sitelink_langs"})
+    out["sitelink_count"] = out["sitelink_langs"].apply(len)
+    out["non_en_sitelink_count"] = out["sitelink_langs"].apply(
+        lambda langs: sum(1 for l in langs if l != "en")
+    )
+    return out
+
+
+def _build_authority_enrichment(node_qids: pd.Series) -> pd.DataFrame:
+    """Return per-QID: authority_types (sorted list of auth type strings)."""
+    if not AUTHORITY_IDS_CACHE_PATH.exists():
+        return pd.DataFrame({
+            "qid": pd.Series([], dtype=str),
+            "authority_types": pd.Series([], dtype=object),
+        })
+    df = pd.read_parquet(AUTHORITY_IDS_CACHE_PATH)
+    df = df.dropna(subset=["authority"]).copy()
+    df["authority"] = df["authority"].astype(str)
+    df = df[df["qid_clean"].isin(set(node_qids))]
+    grouped = df.groupby("qid_clean")["authority"].apply(lambda s: sorted(set(s)))
+    return grouped.reset_index().rename(columns={"qid_clean": "qid", "authority": "authority_types"})
+
+
+def _build_place_enrichment(cache_path: Path, prefix: str) -> pd.DataFrame:
+    """Read birth_places or death_places parquet and return one row per QID.
+
+    If a sculptor has multiple places, pick the first (most common pattern
+    in Wikidata is single-value). prefix is 'birth' or 'death'.
+    """
+    if not cache_path.exists():
+        return pd.DataFrame({
+            "qid": pd.Series([], dtype=str),
+            f"{prefix}_place": pd.Series([], dtype=str),
+            f"{prefix}_place_qid": pd.Series([], dtype=str),
+            f"{prefix}_country": pd.Series([], dtype=str),
+        })
+    df = pd.read_parquet(cache_path)
+    df = df.drop_duplicates("qid_clean", keep="first")
+    return df.rename(columns={
+        "qid_clean": "qid",
+        "place_qid": f"{prefix}_place_qid",
+        "place_label": f"{prefix}_place",
+        "country_label": f"{prefix}_country",
+    })
+
+
+def _build_native_name_enrichment() -> pd.DataFrame:
+    """Return per-QID: native_name, native_lang."""
+    if not NATIVE_NAMES_CACHE_PATH.exists():
+        return pd.DataFrame({
+            "qid": pd.Series([], dtype=str),
+            "native_name": pd.Series([], dtype=str),
+            "native_lang": pd.Series([], dtype=str),
+        })
+    df = pd.read_parquet(NATIVE_NAMES_CACHE_PATH)
+    df = df.drop_duplicates("qid_clean", keep="first")
+    return df.rename(columns={"qid_clean": "qid"})
 
 
 def process_relations(nodes_enriched: pd.DataFrame) -> pd.DataFrame:
@@ -220,8 +363,49 @@ def compute_graph_metrics(nodes_enriched: pd.DataFrame, relations: pd.DataFrame)
     nodes_with_metrics["in_degree"] = nodes_with_metrics["in_degree"].fillna(0).astype(int)
     nodes_with_metrics["out_degree"] = nodes_with_metrics["out_degree"].fillna(0).astype(int)
     nodes_with_metrics["total_degree"] = nodes_with_metrics["total_degree"].fillna(0).astype(int)
-    
+
     return nodes_with_metrics
+
+
+def compute_inclusion_signals(nodes: pd.DataFrame) -> pd.DataFrame:
+    """Attach Option A.3 inclusion signals to each sculptor row.
+
+    Adds two columns:
+      - inclusion_signals : list[str] of fired signal names
+      - is_included       : bool — True if at least one A.3 signal fires
+
+    A.3 signals (all five are sufficient; ANY fires = included):
+      1. 'movement'    — Wikidata P135 label present
+      2. 'edge'        — appears as source OR target in relations
+      3. 'focus'       — on Fabio's curated focus list
+      4. 'multi_citz'  — >=2 distinct citizenships
+      5. 'sitelinks'   — >= SITELINKS_MIN_NON_ENGLISH non-EN Wikipedia articles,
+                         excluding bot-dominated wikis (already filtered upstream)
+
+    Authority IDs are STORED (nodes["authority_types"]) but are NOT an
+    inclusion gate — analysis showed they're heavily Western-biased and
+    don't add meaningful non-Western representation. See INCLUSION_CRITERIA.md.
+    """
+    focus_norm = set(normalize_name(n) for n in FOCUS_SCULPTOR_NAMES)
+
+    def signals_for(row) -> list[str]:
+        sigs: list[str] = []
+        if row["movement_display"] and row["movement_display"] != "No movement listed":
+            sigs.append("movement")
+        if row["total_degree"] > 0:
+            sigs.append("edge")
+        if row["name_norm"] in focus_norm:
+            sigs.append("focus")
+        if row["citizenship_count"] >= 2:
+            sigs.append("multi_citz")
+        if row["non_en_sitelink_count"] >= SITELINKS_MIN_NON_ENGLISH:
+            sigs.append("sitelinks")
+        return sigs
+
+    nodes = nodes.copy()
+    nodes["inclusion_signals"] = nodes.apply(signals_for, axis=1)
+    nodes["is_included"] = nodes["inclusion_signals"].apply(lambda s: len(s) > 0)
+    return nodes
 
 
 def load_medium_taxonomy() -> dict[str, str]:
@@ -371,6 +555,10 @@ def run_processing():
     
     # Compute graph metrics
     nodes_with_metrics = compute_graph_metrics(nodes_enriched, relations)
+
+    # Compute A.3 inclusion signals (after edges are counted)
+    nodes_with_metrics = compute_inclusion_signals(nodes_with_metrics)
+
     nodes_with_metrics.to_parquet(NODES_METRICS_PATH, index=False)
     print(f"✓ Nodes with metrics: {len(nodes_with_metrics)} rows")
     
@@ -389,14 +577,30 @@ def run_processing():
     print("\n" + "=" * 60)
     print("Data Audit")
     print("=" * 60)
-    print(f"Total sculptors: {len(nodes_with_metrics)}")
-    print(f"With movement label: {sum(nodes_with_metrics['movement_display'] != 'No movement listed')}")
-    print(f"Pct with movement: {100 * (nodes_with_metrics['movement_display'] != 'No movement listed').mean():.1f}%")
-    print(f"With citizenship: {sum(nodes_with_metrics['citizenship_display'] != 'Unknown')}")
-    print(f"Living sculptors: {sum(nodes_with_metrics['alive'])}")
-    print(f"Relation edges: {len(relations)}")
-    print(f"Sculptors with edges: {sum(nodes_with_metrics['total_degree'] > 0)}")
-    print(f"Birth year range: {nodes_with_metrics['birth_year'].min()} – {nodes_with_metrics['birth_year'].max()}")
+    total = len(nodes_with_metrics)
+    included = int(nodes_with_metrics["is_included"].sum())
+    print(f"Total sculptors in cache: {total}")
+    print(f"A.3 inclusion set:        {included}  ({100*included/total:.1f}% of cache)")
+    print(f"  Excluded:               {total - included}")
+    print()
+    print("Signal coverage (any sculptor can fire multiple):")
+    from collections import Counter
+    sig_counter: Counter = Counter()
+    for sigs in nodes_with_metrics["inclusion_signals"]:
+        for s in sigs:
+            sig_counter[s] += 1
+    for sig in ["movement", "edge", "focus", "multi_citz", "sitelinks"]:
+        count = sig_counter.get(sig, 0)
+        print(f"  {sig:<14} {count:>5}  ({100*count/total:.1f}% of cache)")
+    print()
+    print(f"With citizenship:  {sum(nodes_with_metrics['citizenship_display'] != 'Unknown')}")
+    print(f"With birth place:  {sum(nodes_with_metrics['birth_place'].notna())}")
+    print(f"With death place:  {sum(nodes_with_metrics['death_place'].notna())}")
+    print(f"With native name:  {sum(nodes_with_metrics['native_name'].notna())}")
+    print(f"With authority ID: {sum(nodes_with_metrics['authority_types'].apply(len) > 0)}")
+    print(f"Living sculptors:  {sum(nodes_with_metrics['alive'])}")
+    print(f"Relation edges:    {len(relations)}")
+    print(f"Birth year range:  {nodes_with_metrics['birth_year'].min()} \u2013 {nodes_with_metrics['birth_year'].max()}")
     
     # Focus subset audit
     focus_norm = [normalize_name(n) for n in FOCUS_SCULPTOR_NAMES]

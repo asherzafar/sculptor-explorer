@@ -1,6 +1,6 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor } from "./types";
+import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit } from "./types";
 
 /** Load sculptors.json (legacy camelCase format) */
 export async function loadSculptors(): Promise<LegacySculptor[]> {
@@ -48,5 +48,12 @@ export async function loadMaterialsByDecade(): Promise<DecadeAggregation[]> {
 export async function loadTimelineSculptors(): Promise<TimelineSculptor[]> {
   const res = await fetch("/data/timeline_sculptors.json");
   if (!res.ok) throw new Error("Failed to load timeline_sculptors.json");
+  return res.json();
+}
+
+/** Load transparency.json (Option A.3 demographic audit). */
+export async function loadTransparency(): Promise<TransparencyAudit> {
+  const res = await fetch("/data/transparency.json");
+  if (!res.ok) throw new Error("Failed to load transparency.json");
   return res.json();
 }

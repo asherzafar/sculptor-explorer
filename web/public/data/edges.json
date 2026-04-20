@@ -1,1 +1,1031 @@
-[]
+[
+  {
+    "fromQid": "Q44252",
+    "toQid": "Q142472",
+    "fromName": "Max Klinger",
+    "toName": "K\u00e4the Kollwitz",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5577",
+    "toQid": "Q233590",
+    "fromName": "Salvador Dal\u00ed",
+    "toName": "Anna Chrom\u00fd",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q555505",
+    "toQid": "Q159409",
+    "fromName": "Paul Colin",
+    "toName": "Louise Bourgeois",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q690790",
+    "toQid": "Q235281",
+    "fromName": "Rufino Tamayo",
+    "toName": "Helen Frankenthaler",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q463065",
+    "toQid": "Q236161",
+    "fromName": "Andr\u00e9 Lhote",
+    "toName": "Dora Maar",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q61064",
+    "toQid": "Q123454",
+    "fromName": "Wassily Kandinsky",
+    "toName": "Max Bill",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q151152",
+    "fromName": "Henri Matisse",
+    "toName": "Juan Gris",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q151152",
+    "fromName": "Pablo Picasso",
+    "toName": "Juan Gris",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q153048",
+    "fromName": "Auguste Rodin",
+    "toName": "Constantin Br\u00e2ncu\u0219i",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2274629",
+    "toQid": "Q153048",
+    "fromName": "Antonin Merci\u00e9",
+    "toName": "Constantin Br\u00e2ncu\u0219i",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2149648",
+    "toQid": "Q153104",
+    "fromName": "Richard Guhr",
+    "toName": "Otto Dix",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q212499",
+    "toQid": "Q153920",
+    "fromName": "Jean-L\u00e9on G\u00e9r\u00f4me",
+    "toName": "Aristide Maillol",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q700094",
+    "toQid": "Q153965",
+    "fromName": "Ewald Matar\u00e9",
+    "toName": "Joseph Beuys",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q212499",
+    "toQid": "Q154349",
+    "fromName": "Jean-L\u00e9on G\u00e9r\u00f4me",
+    "toName": "Odilon Redon",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q882012",
+    "toQid": "Q156890",
+    "fromName": "Robert Diez",
+    "toName": "Ernst Barlach",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q153793",
+    "fromName": "Pablo Picasso",
+    "toName": "Georges Braque",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q153920",
+    "fromName": "Paul Gauguin",
+    "toName": "Aristide Maillol",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q156272",
+    "fromName": "Paul Gauguin",
+    "toName": "Andr\u00e9 Derain",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q203828",
+    "toQid": "Q5589",
+    "fromName": "Gustave Moreau",
+    "toName": "Henri Matisse",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q132305",
+    "toQid": "Q164358",
+    "fromName": "Willem de Kooning",
+    "toName": "Robert Rauschenberg",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q170071",
+    "toQid": "Q164358",
+    "fromName": "Josef Albers",
+    "toName": "Robert Rauschenberg",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q5577",
+    "fromName": "Pablo Picasso",
+    "toName": "Salvador Dal\u00ed",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q159907",
+    "fromName": "Pablo Picasso",
+    "toName": "David Hockney",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q544899",
+    "fromName": "Henri Matisse",
+    "toName": "Ellsworth Kelly",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q48548",
+    "fromName": "Auguste Rodin",
+    "toName": "Carl Milles",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q61064",
+    "fromName": "Pablo Picasso",
+    "toName": "Wassily Kandinsky",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q170071",
+    "toQid": "Q24503",
+    "fromName": "Josef Albers",
+    "toName": "Michael Craig-Martin",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2143726",
+    "toQid": "Q30755",
+    "fromName": "Albert-Ernest Carrier-Belleuse",
+    "toName": "Auguste Rodin",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q170071",
+    "toQid": "Q61064",
+    "fromName": "Josef Albers",
+    "toName": "Wassily Kandinsky",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q200644",
+    "toQid": "Q216424",
+    "fromName": "Moissey Kogan",
+    "toName": "Will Lammert",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2150112",
+    "toQid": "Q216424",
+    "fromName": "Richard Luksch",
+    "toName": "Will Lammert",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q34618",
+    "toQid": "Q6682",
+    "fromName": "Gustave Courbet",
+    "toName": "Gustave Dor\u00e9",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q154842",
+    "toQid": "Q7836",
+    "fromName": "Max Ernst",
+    "toName": "Ren\u00e9 Magritte",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q156622",
+    "toQid": "Q7836",
+    "fromName": "Giorgio de Chirico",
+    "toName": "Ren\u00e9 Magritte",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q26408",
+    "fromName": "Paul Gauguin",
+    "toName": "Pierre Bonnard",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q182791",
+    "toQid": "Q30755",
+    "fromName": "Jean-Baptiste Carpeaux",
+    "toName": "Auguste Rodin",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q46373",
+    "toQid": "Q37693",
+    "fromName": "Edgar Degas",
+    "toName": "Paul Gauguin",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q61064",
+    "fromName": "Henri Matisse",
+    "toName": "Wassily Kandinsky",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q78484",
+    "toQid": "Q61064",
+    "fromName": "Rudolf Steiner",
+    "toName": "Wassily Kandinsky",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q366380",
+    "toQid": "Q117012",
+    "fromName": "Allan Kaprow",
+    "toName": "Yoko Ono",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q120582",
+    "fromName": "Auguste Rodin",
+    "toName": "Camille Claudel",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q559281",
+    "toQid": "Q551282",
+    "fromName": "George Minne",
+    "toName": "Wilhelm Lehmbruck",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q212499",
+    "toQid": "Q214905",
+    "fromName": "Jean-L\u00e9on G\u00e9r\u00f4me",
+    "toName": "Thomas Eakins",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q120993",
+    "fromName": "Pablo Picasso",
+    "toName": "Amedeo Modigliani",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q153048",
+    "toQid": "Q120993",
+    "fromName": "Constantin Br\u00e2ncu\u0219i",
+    "toName": "Amedeo Modigliani",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q165397",
+    "fromName": "Pablo Picasso",
+    "toName": "Eduardo Paolozzi",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q4724",
+    "toQid": "Q168482",
+    "fromName": "Le Corbusier",
+    "toName": "Santiago Calatrava",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q449595",
+    "toQid": "Q172911",
+    "fromName": "Mark Antokolski",
+    "toName": "Ilya Repin",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q153965",
+    "toQid": "Q75858",
+    "fromName": "Joseph Beuys",
+    "toName": "J\u00f6rg Immendorff",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q153048",
+    "toQid": "Q120993",
+    "fromName": "Constantin Br\u00e2ncu\u0219i",
+    "toName": "Amedeo Modigliani",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q153965",
+    "toQid": "Q170344",
+    "fromName": "Joseph Beuys",
+    "toName": "Anselm Kiefer",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q446519",
+    "toQid": "Q170344",
+    "fromName": "Horst Antes",
+    "toName": "Anselm Kiefer",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q93284",
+    "fromName": "Henri Matisse",
+    "toName": "Marc Chagall",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q93284",
+    "fromName": "Pablo Picasso",
+    "toName": "Marc Chagall",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q93284",
+    "fromName": "Paul Gauguin",
+    "toName": "Marc Chagall",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q559281",
+    "fromName": "Auguste Rodin",
+    "toName": "George Minne",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q157183",
+    "toQid": "Q83578",
+    "fromName": "Fernand L\u00e9ger",
+    "toName": "Asger Jorn",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1427499",
+    "toQid": "Q87268",
+    "fromName": "Walter Arnold",
+    "toName": "Wolfgang Mattheuer",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q964683",
+    "toQid": "Q555505",
+    "fromName": "Victor Prouv\u00e9",
+    "toName": "Paul Colin",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q313828",
+    "toQid": "Q893695",
+    "fromName": "Ivan Me\u0161trovi\u0107",
+    "toName": "Boris Kalin",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q171128",
+    "toQid": "Q272877",
+    "fromName": "Diego Rivera",
+    "toName": "Fernando Botero",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5603",
+    "toQid": "Q297525",
+    "fromName": "Andy Warhol",
+    "toName": "Jeff Koons",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5912",
+    "toQid": "Q297525",
+    "fromName": "Marcel Duchamp",
+    "toName": "Jeff Koons",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q24503",
+    "toQid": "Q294326",
+    "fromName": "Michael Craig-Martin",
+    "toName": "Damien Hirst",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1374591",
+    "toQid": "Q1289500",
+    "fromName": "Fran\u00e7ois Jouffroy",
+    "toName": "Louis-Ernest Barrias",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q163290",
+    "toQid": "Q312392",
+    "fromName": "Adolfo Wildt",
+    "toName": "Lucio Fontana",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q860272",
+    "toQid": "Q939197",
+    "fromName": "Charles van der Stappen",
+    "toName": "Rik Wouters",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q708028",
+    "toQid": "Q312392",
+    "fromName": "Bruno Munari",
+    "toName": "Lucio Fontana",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q34618",
+    "toQid": "Q315544",
+    "fromName": "Gustave Courbet",
+    "toName": "Paul Rebeyrolle",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q316531",
+    "fromName": "Pablo Picasso",
+    "toName": "Julio Gonz\u00e1lez",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5912",
+    "toQid": "Q319569",
+    "fromName": "Marcel Duchamp",
+    "toName": "Sherrie Levine",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q34618",
+    "toQid": "Q326167",
+    "fromName": "Gustave Courbet",
+    "toName": "Alfred Philippe Roll",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q170076",
+    "toQid": "Q328248",
+    "fromName": "Jean Dubuffet",
+    "toName": "Pierre Alechinsky",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q2061447",
+    "toQid": "Q327293",
+    "fromName": "Paul Neagu",
+    "toName": "Anish Kapoor",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q666391",
+    "toQid": "Q331158",
+    "fromName": "Leonidas Drosis",
+    "toName": "Yannoulis Chalepas",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q598120",
+    "toQid": "Q980735",
+    "fromName": "Hubert Ponscarme",
+    "toName": "Alexandre Charpentier",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q153965",
+    "toQid": "Q565472",
+    "fromName": "Joseph Beuys",
+    "toName": "Blinky Palermo",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q368977",
+    "toQid": "Q958634",
+    "fromName": "Frederic Storck",
+    "toName": "J\u00f3zsef Fekete",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2344168",
+    "toQid": "Q958634",
+    "fromName": "Ion Jalea",
+    "toName": "J\u00f3zsef Fekete",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q875794",
+    "toQid": "Q1078238",
+    "fromName": "Toni Stadler",
+    "toName": "Christa von Schnitzler",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q170071",
+    "toQid": "Q1042835",
+    "fromName": "Josef Albers",
+    "toName": "Carlos Cruz-Diez",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q560787",
+    "toQid": "Q1065418",
+    "fromName": "Frederic Remington",
+    "toName": "Charles Marion Russell",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q286318",
+    "toQid": "Q1337281",
+    "fromName": "Albert Wolff",
+    "toName": "Stephan Sinding",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q360286",
+    "toQid": "Q680374",
+    "fromName": "Paul-\u00c9mile Borduas",
+    "toName": "Marcel Barbeau",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q151580",
+    "toQid": "Q632656",
+    "fromName": "Alexander Calder",
+    "toName": "George Rickey",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q652723",
+    "fromName": "Paul Gauguin",
+    "toName": "Georges Lacombe",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q212499",
+    "toQid": "Q658862",
+    "fromName": "Jean-L\u00e9on G\u00e9r\u00f4me",
+    "toName": "Jean-Fran\u00e7ois Raffa\u00eblli",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q761843",
+    "toQid": "Q1122412",
+    "fromName": "Enrico Butti",
+    "toName": "Giannino Castiglioni",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q152384",
+    "toQid": "Q360286",
+    "fromName": "Joan Mir\u00f3",
+    "toName": "Paul-\u00c9mile Borduas",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q155158",
+    "toQid": "Q367973",
+    "fromName": "Kurt Schwitters",
+    "toName": "Arman",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q368977",
+    "fromName": "Auguste Rodin",
+    "toName": "Frederic Storck",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q153920",
+    "toQid": "Q368977",
+    "fromName": "Aristide Maillol",
+    "toName": "Frederic Storck",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q364808",
+    "toQid": "Q368977",
+    "fromName": "Adolf von Hildebrand",
+    "toName": "Frederic Storck",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q130777",
+    "toQid": "Q1221494",
+    "fromName": "Kazimir Malevich",
+    "toName": "Diet Sayler",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q529591",
+    "toQid": "Q368645",
+    "fromName": "Anthony Caro",
+    "toName": "Richard Long",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2576027",
+    "toQid": "Q368977",
+    "fromName": "Wilhelm von R\u00fcmann",
+    "toName": "Frederic Storck",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1283938",
+    "toQid": "Q1185426",
+    "fromName": "Raffaello Romanelli",
+    "toName": "Demetre Chiparus",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2274629",
+    "toQid": "Q1185426",
+    "fromName": "Antonin Merci\u00e9",
+    "toName": "Demetre Chiparus",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1731434",
+    "toQid": "Q1393442",
+    "fromName": "Karl Hartung",
+    "toName": "Gerson Fehrenbach",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2418633",
+    "toQid": "Q1393442",
+    "fromName": "Walter Schelenz",
+    "toName": "Gerson Fehrenbach",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1790437",
+    "toQid": "Q1679686",
+    "fromName": "Stanislav Sucharda",
+    "toName": "Jakub Obrovsk\u00fd",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q132305",
+    "toQid": "Q449536",
+    "fromName": "Willem de Kooning",
+    "toName": "Elaine de Kooning",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q203828",
+    "toQid": "Q450730",
+    "fromName": "Gustave Moreau",
+    "toName": "Georgette Agutte",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q572686",
+    "toQid": "Q452079",
+    "fromName": "Giulio Monteverde",
+    "toName": "Lola Mora",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q223576",
+    "toQid": "Q1170283",
+    "fromName": "Edmund von Hellmer",
+    "toName": "Karl Korschann",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q462767",
+    "fromName": "Henri Matisse",
+    "toName": "Marie Vassilieff",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q368977",
+    "toQid": "Q2344168",
+    "fromName": "Frederic Storck",
+    "toName": "Ion Jalea",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q153048",
+    "toQid": "Q442628",
+    "fromName": "Constantin Br\u00e2ncu\u0219i",
+    "toName": "Isamu Noguchi",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q336432",
+    "toQid": "Q442628",
+    "fromName": "Gutzon Borglum",
+    "toName": "Isamu Noguchi",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q691706",
+    "fromName": "Henri Matisse",
+    "toName": "Sadik Kaceli",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5589",
+    "toQid": "Q690155",
+    "fromName": "Henri Matisse",
+    "toName": "Marcel Gromaire",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q212499",
+    "toQid": "Q707904",
+    "fromName": "Jean-L\u00e9on G\u00e9r\u00f4me",
+    "toName": "Jean-Jules-Antoine Lecomte du Nou\u00ff",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q5912",
+    "toQid": "Q709449",
+    "fromName": "Marcel Duchamp",
+    "toName": "Arthur Ganson",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q163938",
+    "toQid": "Q709449",
+    "fromName": "Jean Tinguely",
+    "toName": "Arthur Ganson",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q360286",
+    "toQid": "Q708544",
+    "fromName": "Paul-\u00c9mile Borduas",
+    "toName": "Jean Paul Riopelle",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1374591",
+    "toQid": "Q770625",
+    "fromName": "Fran\u00e7ois Jouffroy",
+    "toName": "Augustus Saint-Gaudens",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2143726",
+    "toQid": "Q775430",
+    "fromName": "Albert-Ernest Carrier-Belleuse",
+    "toName": "Joseph Gustave Ch\u00e9ret",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q730687",
+    "toQid": "Q776564",
+    "fromName": "Albert F\u00e9raud",
+    "toName": "Jean-Pierre Rives",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2140000",
+    "toQid": "Q2389481",
+    "fromName": "Alexandre Falgui\u00e8re",
+    "toName": "Maurice Bouval",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q279088",
+    "toQid": "Q2015324",
+    "fromName": "A. R. Penck",
+    "toName": "Yoshitomo Nara",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1374591",
+    "toQid": "Q2140000",
+    "fromName": "Fran\u00e7ois Jouffroy",
+    "toName": "Alexandre Falgui\u00e8re",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q2143726",
+    "toQid": "Q2140000",
+    "fromName": "Albert-Ernest Carrier-Belleuse",
+    "toName": "Alexandre Falgui\u00e8re",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q708568",
+    "toQid": "Q2833546",
+    "fromName": "Jean-Paul Laurens",
+    "toName": "Aleksandr Shevchenko",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q302580",
+    "toQid": "Q2834020",
+    "fromName": "Henry de Triqueti",
+    "toName": "Pierre Alexandre Schoenewerk",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q250293",
+    "toQid": "Q1452504",
+    "fromName": "Donald Judd",
+    "toName": "Fred Sandback",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q1606961",
+    "toQid": "Q2069921",
+    "fromName": "Henry Kirke Brown",
+    "toName": "John Quincy Adams Ward",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q37693",
+    "toQid": "Q2834602",
+    "fromName": "Paul Gauguin",
+    "toName": "Alexis M\u00e9rodack-Jeaneau",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q524154",
+    "toQid": "Q2059586",
+    "fromName": "Eug\u00e8ne Grasset",
+    "toName": "Paul Follot",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q213597",
+    "toQid": "Q2076300",
+    "fromName": "Hans Richter",
+    "toName": "Peter Klasen",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q203828",
+    "toQid": "Q2834602",
+    "fromName": "Gustave Moreau",
+    "toName": "Alexis M\u00e9rodack-Jeaneau",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1289500",
+    "toQid": "Q2835118",
+    "fromName": "Louis-Ernest Barrias",
+    "toName": "Alfred Finot",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q3056870",
+    "toQid": "Q2835118",
+    "fromName": "Ernest Bussi\u00e8re",
+    "toName": "Alfred Finot",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q159566",
+    "toQid": "Q1239698",
+    "fromName": "Cy Twombly",
+    "toName": "Donald Baechler",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q151097",
+    "toQid": "Q529591",
+    "fromName": "Henry Moore",
+    "toName": "Anthony Caro",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q5593",
+    "toQid": "Q726169",
+    "fromName": "Pablo Picasso",
+    "toName": "David Smith",
+    "relationType": "influenced_by"
+  },
+  {
+    "fromQid": "Q368977",
+    "toQid": "Q513465",
+    "fromName": "Frederic Storck",
+    "toName": "Oscar Han",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q527599",
+    "toQid": "Q720910",
+    "fromName": "William Morris Hunt",
+    "toName": "Daniel Chester French",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q721881",
+    "toQid": "Q720910",
+    "fromName": "Thomas Ball",
+    "toName": "Daniel Chester French",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q813581",
+    "toQid": "Q1745018",
+    "fromName": "Bernhard Heiliger",
+    "toName": "Klaus Duschat",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1971720",
+    "toQid": "Q2850590",
+    "fromName": "Laurent Marqueste",
+    "toName": "Anna Quinquaud",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q708568",
+    "toQid": "Q2934846",
+    "fromName": "Jean-Paul Laurens",
+    "toName": "Camille Alaphilippe",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q1289500",
+    "toQid": "Q2934846",
+    "fromName": "Louis-Ernest Barrias",
+    "toName": "Camille Alaphilippe",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q157183",
+    "toQid": "Q1791520",
+    "fromName": "Fernand L\u00e9ger",
+    "toName": "Lygia Clark",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q3154740",
+    "toQid": "Q1791520",
+    "fromName": "Isaac Dobrinsky",
+    "toName": "Lygia Clark",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q738892",
+    "toQid": "Q3159549",
+    "fromName": "Henri Laurens",
+    "toName": "Jacques Mennessons",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q3844044",
+    "fromName": "Auguste Rodin",
+    "toName": "Malvina Hoffman",
+    "relationType": "student_of"
+  },
+  {
+    "fromQid": "Q336432",
+    "toQid": "Q3844044",
+    "fromName": "Gutzon Borglum",
+    "toName": "Malvina Hoffman",
+    "relationType": "student_of"
+  }
+]

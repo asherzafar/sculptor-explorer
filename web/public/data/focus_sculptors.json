@@ -8,10 +8,32 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1830,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "Urbana",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 10,
+    "nonEnSitelinkCount": 9,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q30755",
@@ -22,10 +44,36 @@
     "gender": "male",
     "movement": "Symbolism",
     "citizenship": "France",
+    "citizenships": [
+      "France"
+    ],
     "birthDecade": 1840,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "inDegree": 2,
+    "outDegree": 6,
+    "totalDegree": 8,
+    "birthPlace": "Paris",
+    "birthCountry": "France",
+    "deathPlace": "Meudon",
+    "deathCountry": "France",
+    "nativeName": "Auguste Rodin",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 94,
+    "nonEnSitelinkCount": 93,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q770625",
@@ -36,10 +84,33 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1840,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "Dublin",
+    "birthCountry": "Ireland",
+    "deathPlace": "Cornish",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 20,
+    "nonEnSitelinkCount": 19,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q720910",
@@ -50,10 +121,34 @@
     "gender": "male",
     "movement": "American Renaissance",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1850,
-    "inDegree": 0,
+    "inDegree": 2,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 2,
+    "birthPlace": null,
+    "birthCountry": null,
+    "deathPlace": "Stockbridge",
+    "deathCountry": "United States",
+    "nativeName": "Daniel Chester French",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 26,
+    "nonEnSitelinkCount": 25,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q153920",
@@ -64,10 +159,36 @@
     "gender": "male",
     "movement": "Symbolism",
     "citizenship": "France",
+    "citizenships": [
+      "France"
+    ],
     "birthDecade": 1860,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "inDegree": 2,
+    "outDegree": 1,
+    "totalDegree": 3,
+    "birthPlace": "Banyuls-sur-Mer",
+    "birthCountry": "France",
+    "deathPlace": "Banyuls-sur-Mer",
+    "deathCountry": "France",
+    "nativeName": "Aristide Maillol",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 40,
+    "nonEnSitelinkCount": 39,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q120582",
@@ -78,10 +199,35 @@
     "gender": "female",
     "movement": "Expressionism",
     "citizenship": "France",
+    "citizenships": [
+      "France"
+    ],
     "birthDecade": 1860,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "F\u00e8re-en-Tardenois",
+    "birthCountry": "France",
+    "deathPlace": "Montfavet",
+    "deathCountry": "France",
+    "nativeName": "Camille Claudel",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 48,
+    "nonEnSitelinkCount": 47,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q114552",
@@ -92,10 +238,31 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1860,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Vienna",
+    "birthCountry": "Austria",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "Karl Bitter",
+    "nativeLang": "de",
+    "authorityTypes": [
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 8,
+    "nonEnSitelinkCount": 7,
+    "inclusionSignals": [
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q336432",
@@ -106,10 +273,34 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1860,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 2,
+    "totalDegree": 2,
+    "birthPlace": "St. Charles",
+    "birthCountry": "United States",
+    "deathPlace": "Chicago",
+    "deathCountry": "United States",
+    "nativeName": "Gutzon Borglum",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 34,
+    "nonEnSitelinkCount": 33,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q271910",
@@ -120,10 +311,32 @@
     "gender": "female",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1870,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Manhattan",
+    "birthCountry": "United States",
+    "deathPlace": "Manhattan",
+    "deathCountry": "United States",
+    "nativeName": "Gertrude Vanderbilt Whitney",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 20,
+    "nonEnSitelinkCount": 19,
+    "inclusionSignals": [
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q48548",
@@ -134,10 +347,33 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "Sweden",
+    "citizenships": [
+      "Sweden"
+    ],
     "birthDecade": 1870,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "Lagga",
+    "birthCountry": "Sweden",
+    "deathPlace": "Liding\u00f6 Parish",
+    "deathCountry": "Sweden",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 27,
+    "nonEnSitelinkCount": 26,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q153048",
@@ -148,10 +384,38 @@
     "gender": "male",
     "movement": "modernism",
     "citizenship": "France",
+    "citizenships": [
+      "France",
+      "Romania"
+    ],
     "birthDecade": 1870,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "inDegree": 2,
+    "outDegree": 2,
+    "totalDegree": 4,
+    "birthPlace": "Hobi\u021ba",
+    "birthCountry": "Romania",
+    "deathPlace": "Paris",
+    "deathCountry": "France",
+    "nativeName": "Constantin Br\u00e2ncu\u0219i",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 56,
+    "nonEnSitelinkCount": 55,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q445026",
@@ -162,10 +426,33 @@
     "gender": "female",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1870,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Cambridge",
+    "birthCountry": "United States",
+    "deathPlace": "Redding",
+    "deathCountry": "United States",
+    "nativeName": "Anna Hyatt Huntington",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 18,
+    "nonEnSitelinkCount": 17,
+    "inclusionSignals": [
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q5593",
@@ -176,10 +463,36 @@
     "gender": "male",
     "movement": "surrealism",
     "citizenship": "Spain",
+    "citizenships": [
+      "Spain"
+    ],
     "birthDecade": 1880,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 10,
+    "totalDegree": 10,
+    "birthPlace": "M\u00e1laga",
+    "birthCountry": "Spain",
+    "deathPlace": "Mas Notre-Dame-de-Vie de Mougins",
+    "deathCountry": "France",
+    "nativeName": "Pablo Picasso",
+    "nativeLang": "es",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 207,
+    "nonEnSitelinkCount": 206,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q1288595",
@@ -190,10 +503,34 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States",
+      "Poland"
+    ],
     "birthDecade": 1880,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Warsaw",
+    "birthCountry": "Poland",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 11,
+    "nonEnSitelinkCount": 10,
+    "inclusionSignals": [
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q3844044",
@@ -204,10 +541,33 @@
     "gender": "female",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1880,
-    "inDegree": 0,
+    "inDegree": 2,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 2,
+    "birthPlace": "New York City",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 8,
+    "nonEnSitelinkCount": 7,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q157578",
@@ -218,10 +578,37 @@
     "gender": "male",
     "movement": "cubism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States",
+      "Russian Empire"
+    ],
     "birthDecade": 1880,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Kyiv",
+    "birthCountry": "Ukraine",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u041f\u043e\u0440\u0444\u0438\u0440\u043e\u0432\u0438\u0447 \u0410\u0440\u0445\u0438\u043f\u0435\u043d\u043a\u043e",
+    "nativeLang": "uk",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 48,
+    "nonEnSitelinkCount": 47,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q5912",
@@ -232,10 +619,38 @@
     "gender": "male",
     "movement": "conceptual art",
     "citizenship": "France",
+    "citizenships": [
+      "United States",
+      "France"
+    ],
     "birthDecade": 1880,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 3,
+    "totalDegree": 3,
+    "birthPlace": "Blainville-Crevon",
+    "birthCountry": "France",
+    "deathPlace": "Neuilly-sur-Seine",
+    "deathCountry": "France",
+    "nativeName": "Marcel Duchamp",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 75,
+    "nonEnSitelinkCount": 74,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q273087",
@@ -246,10 +661,33 @@
     "gender": "female",
     "movement": "Harlem Renaissance",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1890,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Green Cove Springs",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "Augusta Savage",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 21,
+    "nonEnSitelinkCount": 20,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q151580",
@@ -260,10 +698,36 @@
     "gender": "male",
     "movement": "kinetic art",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1890,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 1,
+    "totalDegree": 1,
+    "birthPlace": "Lawnton",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "Alexander Calder",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 48,
+    "nonEnSitelinkCount": 47,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q151097",
@@ -274,10 +738,38 @@
     "gender": "male",
     "movement": "contemporary art",
     "citizenship": "United Kingdom",
+    "citizenships": [
+      "United Kingdom",
+      "United Kingdom of Great Britain and Ireland"
+    ],
     "birthDecade": 1890,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 1,
+    "totalDegree": 1,
+    "birthPlace": "Castleford",
+    "birthCountry": "United Kingdom",
+    "deathPlace": "Much Hadham",
+    "deathCountry": "United Kingdom",
+    "nativeName": "Henry Moore",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 64,
+    "nonEnSitelinkCount": 63,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q7531",
@@ -288,10 +780,37 @@
     "gender": "female",
     "movement": "abstract expressionism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States",
+      "Russian Empire"
+    ],
     "birthDecade": 1890,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Pereiaslav",
+    "birthCountry": "Ukraine",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 25,
+    "nonEnSitelinkCount": 24,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q1543157",
@@ -302,10 +821,30 @@
     "gender": "male",
     "movement": "No movement listed",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1900,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "St. Louis",
+    "birthCountry": "United States",
+    "deathPlace": "Gloucester",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 4,
+    "nonEnSitelinkCount": 3,
+    "inclusionSignals": [
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q157194",
@@ -316,10 +855,37 @@
     "gender": "male",
     "movement": "surrealism",
     "citizenship": "France",
+    "citizenships": [
+      "Switzerland",
+      "France"
+    ],
     "birthDecade": 1900,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Borgonovo",
+    "birthCountry": "Switzerland",
+    "deathPlace": "Chur",
+    "deathCountry": "Switzerland",
+    "nativeName": "Alberto Giacometti",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 55,
+    "nonEnSitelinkCount": 54,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q234109",
@@ -330,10 +896,34 @@
     "gender": "female",
     "movement": "Catalan modernism",
     "citizenship": "United Kingdom",
+    "citizenships": [
+      "United Kingdom"
+    ],
     "birthDecade": 1900,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Wakefield",
+    "birthCountry": "United Kingdom",
+    "deathPlace": "St Ives",
+    "deathCountry": "United Kingdom",
+    "nativeName": "Barbara Hepworth",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 36,
+    "nonEnSitelinkCount": 35,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q442628",
@@ -344,10 +934,38 @@
     "gender": "male",
     "movement": "abstract expressionism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States",
+      "Japan"
+    ],
     "birthDecade": 1900,
-    "inDegree": 0,
+    "inDegree": 2,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 2,
+    "birthPlace": "Los Angeles",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "Isamu Noguchi",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 30,
+    "nonEnSitelinkCount": 29,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q726169",
@@ -358,10 +976,36 @@
     "gender": "male",
     "movement": "abstract expressionism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1900,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "Decatur",
+    "birthCountry": "United States",
+    "deathPlace": "Bennington",
+    "deathCountry": "United States",
+    "nativeName": "David Smith",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 16,
+    "nonEnSitelinkCount": 15,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q159409",
@@ -372,10 +1016,38 @@
     "gender": "female",
     "movement": "abstract expressionism",
     "citizenship": "France",
+    "citizenships": [
+      "United States",
+      "France"
+    ],
     "birthDecade": 1910,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "6th arrondissement of Paris",
+    "birthCountry": "France",
+    "deathPlace": "Beth Israel Medical Center",
+    "deathCountry": "United States",
+    "nativeName": "Louise Bourgeois",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 47,
+    "nonEnSitelinkCount": 46,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q551899",
@@ -386,10 +1058,34 @@
     "gender": "male",
     "movement": "abstract art",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1910,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "South Orange",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 12,
+    "nonEnSitelinkCount": 11,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q250293",
@@ -400,10 +1096,36 @@
     "gender": "male",
     "movement": "Minimalism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1920,
     "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0
+    "outDegree": 1,
+    "totalDegree": 1,
+    "birthPlace": "Excelsior Springs",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 30,
+    "nonEnSitelinkCount": 29,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q315348",
@@ -414,10 +1136,34 @@
     "gender": "male",
     "movement": "Minimalism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1930,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Quincy",
+    "birthCountry": "United States",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "Carl Andre",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 34,
+    "nonEnSitelinkCount": 33,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q321245",
@@ -428,10 +1174,35 @@
     "gender": "male",
     "movement": "Minimalism",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1930,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "San Francisco",
+    "birthCountry": "United States",
+    "deathPlace": "Orient",
+    "deathCountry": "United States",
+    "nativeName": "Richard Serra",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 38,
+    "nonEnSitelinkCount": 37,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q327293",
@@ -442,10 +1213,38 @@
     "gender": "male",
     "movement": "contemporary art",
     "citizenship": "United Kingdom",
+    "citizenships": [
+      "United Kingdom",
+      "India"
+    ],
     "birthDecade": 1950,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 1,
+    "birthPlace": "Mumbai",
+    "birthCountry": "India",
+    "deathPlace": null,
+    "deathCountry": null,
+    "nativeName": "Anish Kapoor",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 35,
+    "nonEnSitelinkCount": 34,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q297525",
@@ -456,10 +1255,35 @@
     "gender": "male",
     "movement": "pop art",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1950,
-    "inDegree": 0,
+    "inDegree": 2,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 2,
+    "birthPlace": "York",
+    "birthCountry": "United States",
+    "deathPlace": null,
+    "deathCountry": null,
+    "nativeName": "Jeff Koons",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 37,
+    "nonEnSitelinkCount": 36,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
   },
   {
     "qid": "Q235063",
@@ -470,9 +1294,33 @@
     "gender": "female",
     "movement": "contemporary art",
     "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
     "birthDecade": 1950,
     "inDegree": 0,
     "outDegree": 0,
-    "totalDegree": 0
+    "totalDegree": 0,
+    "birthPlace": "Athens",
+    "birthCountry": "United States",
+    "deathPlace": null,
+    "deathCountry": null,
+    "nativeName": null,
+    "nativeLang": null,
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 28,
+    "nonEnSitelinkCount": 27,
+    "inclusionSignals": [
+      "movement",
+      "focus",
+      "sitelinks"
+    ]
   }
 ]
