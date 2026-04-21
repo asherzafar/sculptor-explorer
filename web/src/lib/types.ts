@@ -53,6 +53,16 @@ export type FocusSculptorsJSON = Sculptor[];
 // ---------------------------------------------------------------------------
 
 /**
+ * One external authority-file entry: type + ID + resolved outbound URL.
+ * url may be null for types without a templated formatter URL.
+ */
+export interface AuthorityLink {
+  type: "ulan" | "viaf" | "lcnaf" | "bnf" | "dnb" | "ndl" | "bne";
+  id: string | null;
+  url: string | null;
+}
+
+/**
  * The on-disk sculptor JSON shape (Option A.3 schema, Phase 3a+).
  *
  * Named "Legacy" for historical reasons — the rename to canonical
@@ -91,6 +101,8 @@ export interface LegacySculptor {
   nativeLang?: string | null;
   /** External authority file types present (ulan, viaf, lcnaf, bnf, dnb, ndl, bne). */
   authorityTypes?: string[];
+  /** Per-authority entries with ID + outbound URL. */
+  authorityLinks?: AuthorityLink[];
   /** Total Wikipedia sitelinks (bot-dominated wikis excluded). */
   sitelinkCount?: number;
   /** Non-English Wikipedia sitelinks (bot-dominated wikis excluded). */

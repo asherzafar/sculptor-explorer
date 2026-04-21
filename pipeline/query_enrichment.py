@@ -79,22 +79,23 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 SELECT
   (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?qid_clean)
   ?authority
+  ?value
 WHERE {
   {{VALUES_BLOCK}}
   {
-    ?qid wdt:P245 ?x . BIND('ulan'  AS ?authority)
+    ?qid wdt:P245 ?value . BIND('ulan'  AS ?authority)
   } UNION {
-    ?qid wdt:P214 ?x . BIND('viaf'  AS ?authority)
+    ?qid wdt:P214 ?value . BIND('viaf'  AS ?authority)
   } UNION {
-    ?qid wdt:P244 ?x . BIND('lcnaf' AS ?authority)
+    ?qid wdt:P244 ?value . BIND('lcnaf' AS ?authority)
   } UNION {
-    ?qid wdt:P268 ?x . BIND('bnf'   AS ?authority)
+    ?qid wdt:P268 ?value . BIND('bnf'   AS ?authority)
   } UNION {
-    ?qid wdt:P227 ?x . BIND('dnb'   AS ?authority)
+    ?qid wdt:P227 ?value . BIND('dnb'   AS ?authority)
   } UNION {
-    ?qid wdt:P349 ?x . BIND('ndl'   AS ?authority)
+    ?qid wdt:P349 ?value . BIND('ndl'   AS ?authority)
   } UNION {
-    ?qid wdt:P950 ?x . BIND('bne'   AS ?authority)
+    ?qid wdt:P950 ?value . BIND('bne'   AS ?authority)
   }
 }
 """

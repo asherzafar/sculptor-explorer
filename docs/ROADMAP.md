@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Phase 2.5 shipped + reviewed by Fabio. Pivoting to data enrichment.
+## Current status: Phase 3a shipped. External-mentor lineage + transparency surface live.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -99,14 +99,15 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 
 **Approach:** interleave data work with visible UI changes so every session produces a deployable increment. Do not disappear into a multi-week pure-data-work tunnel. Learn from each ingest and adjust.
 
-### 3a. Wikidata enrichment — low risk, high yield
-- [x] **Inclusion criteria research + decision** — see `docs/INCLUSION_CRITERIA.md`. Seven-expert stress test produced **Option A.3** (5 signals, drop authority as gate, sitelinks ≥3 non-EN). Data analysis documented.
-- [x] Add SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **sitelinks** (language list minus bot wikis), **authority IDs** (ULAN+VIAF+LCNAF+BnF+DNB+NDL+BNE), **P1559 (native name)**. All single-property or simple UNION, no 504s.
-- [ ] **Apply A.3 inclusion filter** in `process.py` (movement OR edge OR focus OR multi-citz OR sitelinks ≥3 non-EN). Projected set: 3,447 sculptors (3.5× current).
-- [ ] Schema evolution: sculptor JSON gains `birth_place`, `death_place`, `native_name`, `authority_ids[]`, `inclusion_signals[]`, `sitelink_count`, `citizenships[]` (plural)
-- [ ] **Re-export lineage edges** (548 already cached, never made it to web — populates Lineage page)
-- [ ] **Update aggregations to use full 6,700** (not filtered set) — honest base rate for geography/movement charts
-- [ ] **After ingest, look at the data together and decide what UI surfaces first.** Don't commit to a UI design up front.
+### 3a. Wikidata enrichment — low risk, high yield ✅ COMPLETE
+- [x] **Inclusion criteria research + decision** — see `docs/INCLUSION_CRITERIA.md`. Seven-expert stress test produced **Option A.3** (5 signals, drop authority as gate, sitelinks ≥3 non-EN).
+- [x] SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **sitelinks**, **authority IDs** (ULAN+VIAF+LCNAF+BnF+DNB+NDL+BNE), **P1559 (native name)**.
+- [x] **Apply A.3 inclusion filter** in `process.py` — **3,630 sculptors** published (54.2% of 6,700 cache).
+- [x] **Schema evolution** — `LegacySculptor` gains `birthPlace`, `birthCountry`, `deathPlace`, `deathCountry`, `nativeName`, `nativeLang`, `authorityTypes[]`, `inclusionSignals[]`, `sitelinkCount`, `nonEnSitelinkCount`, `citizenships[]`. All surfaced on the detail page.
+- [x] **Re-export lineage edges** — rewrote relations SPARQL (split P737/P1066, removed EN-only label filter). Result: **147 → 1,418 edges (9.6×)**.
+- [x] **External mentors as first-class** — 682 non-sculptor teachers (painters, composers, architects who trained sculptors) now render as diamond nodes on the Lineage graph so cross-media academic training isn't dropped.
+- [x] **Aggregations use full 6,700** for honest base rates (`create_movements_by_decade_json` and `create_geography_by_decade_json` receive unfiltered nodes).
+- [x] **Transparency page** at `/transparency` — top-line counts, inclusion rule, signal coverage bars, side-by-side Included vs Excluded demographic breakdowns. This is the "Hidden from view" page promised in 3d, built early because the data was already in hand.
 
 ### Parking lot — deeper data-ethics analysis (revisit in Phase 4+)
 Questions surfaced by Phase 3a analysis but not resolved in this pass:
@@ -132,16 +133,19 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 
 ### 3d. Data-story UI — surfaces what the new data reveals
 Built in increments alongside 3a-c, not saved for the end.
-- [ ] **Geography chart: add source toggle** (citizenship / birth country / country of activity). Reveals the migration delta.
+- [ ] **Geography chart: add source toggle** (citizenship / birth country / country of activity). Reveals the migration delta. Birth-country data is ingested; just needs wiring through the Evolution chart.
 - [ ] **Migration view** — per-sculptor birth → residences → death trajectory. Format TBD after seeing data (dot plot, Sankey, arc map — decide based on what looks legible).
-- [ ] **"Hidden from view" page** — owns the non-Western gap: what enriched filter surfaced, what's still missing. Meta-chart about the dataset itself.
-- [ ] **Detail page enrichment** — native name alongside romanization, heritage pills, residence timeline, SAAM narrative snippet when available
-- [ ] **About page update** — new data sources (ULAN, SAAM), explanation of citizenship vs. birth-country distinction
+- [x] **"Hidden from view" page** — shipped as `/transparency`. Owns the included-vs-excluded distribution, signal coverage, and demographic gaps. Regenerates automatically on every pipeline run (standing commitment).
+- [x] **Detail page enrichment (phase 1)** — native name with `lang` attribute, birth/death place with country, authority-file chips (ULAN/VIAF/LCNAF/BnF/DNB/NDL/BNE), inclusion-signal chips ("Included because of…").
+- [ ] **Detail page enrichment (phase 2)** — multi-citizenship pills (`citizenships[]` array), residence timeline, SAAM narrative snippet when available.
+- [ ] **Authority-file chips → outbound links** — currently non-linking badges. Need `authorityUrls` in export so chips link to VIAF/ULAN records.
+- [ ] **Native names on Explore table** — second line under romanization; we have data for 1,709 sculptors.
+- [x] **About page update** — three-tier scope (3,600+ published / 680+ mentors / 48 focus), two Transparency links, data sources list now covers places/lineage/native names/authority IDs.
 
 ### 3e. Explicitly deferred to later phases
 - Sculpture images from Met/AIC IIIF
 - Materials-over-time chart (needs Met/AIC re-ingest — lower priority than migration story)
-- Network graph on lineage (component built, still waiting for non-Wikidata edge sources)
+- Network graph on lineage: **live** (bipartite — sculptor circles + mentor diamonds, 1,418 edges). Deferred: richer non-Wikidata edge sources (Getty, SAAM)
 - Streamgraph toggle
 - Export PNG per chart
 - Sculptor comparison view

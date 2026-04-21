@@ -27,6 +27,28 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "124938213",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/124938213"
+      },
+      {
+        "id": "n84016951",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n84016951"
+      },
+      {
+        "id": "500023733",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500023733"
+      },
+      {
+        "id": "3418693",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/3418693"
+      }
+    ],
     "sitelinkCount": 10,
     "nonEnSitelinkCount": 9,
     "inclusionSignals": [
@@ -66,6 +88,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX985973",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX985973"
+      },
+      {
+        "id": "11922352t",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11922352t"
+      },
+      {
+        "id": "118601717",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118601717"
+      },
+      {
+        "id": "n79090126",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79090126"
+      },
+      {
+        "id": "00454472",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00454472"
+      },
+      {
+        "id": "500016619",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500016619"
+      },
+      {
+        "id": "36923874",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/36923874"
+      }
+    ],
     "sitelinkCount": 94,
     "nonEnSitelinkCount": 93,
     "inclusionSignals": [
@@ -104,6 +163,33 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "12003128t",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12003128t"
+      },
+      {
+        "id": "118794124",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118794124"
+      },
+      {
+        "id": "n50030106",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n50030106"
+      },
+      {
+        "id": "500124332",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500124332"
+      },
+      {
+        "id": "54944558",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/54944558"
+      }
+    ],
     "sitelinkCount": 20,
     "nonEnSitelinkCount": 19,
     "inclusionSignals": [
@@ -140,6 +226,33 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "171659603",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb171659603"
+      },
+      {
+        "id": "122948106",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/122948106"
+      },
+      {
+        "id": "n50025420",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n50025420"
+      },
+      {
+        "id": "500009434",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500009434"
+      },
+      {
+        "id": "62442940",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/62442940"
+      }
     ],
     "sitelinkCount": 26,
     "nonEnSitelinkCount": 25,
@@ -181,6 +294,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX1072768",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1072768"
+      },
+      {
+        "id": "11913991d",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11913991d"
+      },
+      {
+        "id": "118730274",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118730274"
+      },
+      {
+        "id": "n80015568",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80015568"
+      },
+      {
+        "id": "00448547",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00448547"
+      },
+      {
+        "id": "500001596",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500001596"
+      },
+      {
+        "id": "14228",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/14228"
+      }
+    ],
     "sitelinkCount": 40,
     "nonEnSitelinkCount": 39,
     "inclusionSignals": [
@@ -219,6 +369,38 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "12597326c",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12597326c"
+      },
+      {
+        "id": "118814516",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118814516"
+      },
+      {
+        "id": "n82158800",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n82158800"
+      },
+      {
+        "id": "00620499",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00620499"
+      },
+      {
+        "id": "500102192",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500102192"
+      },
+      {
+        "id": "66585142",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/66585142"
+      }
     ],
     "sitelinkCount": 48,
     "nonEnSitelinkCount": 47,
@@ -259,6 +441,38 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "161633886",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb161633886"
+      },
+      {
+        "id": "121346412",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/121346412"
+      },
+      {
+        "id": "n83163667",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n83163667"
+      },
+      {
+        "id": "00649516",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00649516"
+      },
+      {
+        "id": "500019058",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500019058"
+      },
+      {
+        "id": "867200",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/867200"
+      }
+    ],
     "sitelinkCount": 34,
     "nonEnSitelinkCount": 33,
     "inclusionSignals": [
@@ -294,6 +508,28 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "138653666",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/138653666"
+      },
+      {
+        "id": "n85031594",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n85031594"
+      },
+      {
+        "id": "500012278",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500012278"
+      },
+      {
+        "id": "21103086",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/21103086"
+      }
     ],
     "sitelinkCount": 8,
     "nonEnSitelinkCount": 7,
@@ -331,6 +567,33 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "12658894t",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12658894t"
+      },
+      {
+        "id": "12276465X",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/12276465X"
+      },
+      {
+        "id": "nr93050931",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/nr93050931"
+      },
+      {
+        "id": "500014661",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500014661"
+      },
+      {
+        "id": "72283828",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/72283828"
+      }
+    ],
     "sitelinkCount": 20,
     "nonEnSitelinkCount": 19,
     "inclusionSignals": [
@@ -366,6 +629,33 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "11953598j",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11953598j"
+      },
+      {
+        "id": "11878403X",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/11878403X"
+      },
+      {
+        "id": "n80156408",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80156408"
+      },
+      {
+        "id": "500021157",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500021157"
+      },
+      {
+        "id": "15565792",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/15565792"
+      }
     ],
     "sitelinkCount": 27,
     "nonEnSitelinkCount": 26,
@@ -404,6 +694,38 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1280101",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1280101"
+      },
+      {
+        "id": "14965914w",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb14965914w"
+      },
+      {
+        "id": "118933094",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118933094"
+      },
+      {
+        "id": "n85119898",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n85119898"
+      },
+      {
+        "id": "500028984",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500028984"
+      },
+      {
+        "id": "5201722",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/5201722"
+      }
     ],
     "sitelinkCount": 18,
     "nonEnSitelinkCount": 17,
@@ -444,6 +766,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX900275",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX900275"
+      },
+      {
+        "id": "11893776f",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11893776f"
+      },
+      {
+        "id": "118673076",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118673076"
+      },
+      {
+        "id": "n79127902",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79127902"
+      },
+      {
+        "id": "00434169",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00434169"
+      },
+      {
+        "id": "500016157",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500016157"
+      },
+      {
+        "id": "71387926",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/71387926"
+      }
+    ],
     "sitelinkCount": 56,
     "nonEnSitelinkCount": 55,
     "inclusionSignals": [
@@ -482,9 +841,32 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "1216821615",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/1216821615"
+      },
+      {
+        "id": "n87113773",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n87113773"
+      },
+      {
+        "id": "500022620",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500022620"
+      },
+      {
+        "id": "121685316",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/121685316"
+      }
+    ],
     "sitelinkCount": 11,
     "nonEnSitelinkCount": 10,
     "inclusionSignals": [
+      "focus",
       "sitelinks"
     ]
   },
@@ -518,6 +900,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1637941",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1637941"
+      },
+      {
+        "id": "11919660r",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11919660r"
+      },
+      {
+        "id": "118594206",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118594206"
+      },
+      {
+        "id": "n78086005",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n78086005"
+      },
+      {
+        "id": "00452768",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00452768"
+      },
+      {
+        "id": "500009666",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500009666"
+      },
+      {
+        "id": "15873",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/15873"
+      }
     ],
     "sitelinkCount": 207,
     "nonEnSitelinkCount": 206,
@@ -558,6 +977,33 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "13541054f",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb13541054f"
+      },
+      {
+        "id": "122844742",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/122844742"
+      },
+      {
+        "id": "n80010194",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80010194"
+      },
+      {
+        "id": "500032388",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500032388"
+      },
+      {
+        "id": "47654143",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/47654143"
+      }
+    ],
     "sitelinkCount": 11,
     "nonEnSitelinkCount": 10,
     "inclusionSignals": [
@@ -594,6 +1040,33 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "15511449m",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb15511449m"
+      },
+      {
+        "id": "129543667",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/129543667"
+      },
+      {
+        "id": "nr92031188",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/nr92031188"
+      },
+      {
+        "id": "500024236",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500024236"
+      },
+      {
+        "id": "76622007",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/76622007"
+      }
     ],
     "sitelinkCount": 8,
     "nonEnSitelinkCount": 7,
@@ -634,6 +1107,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX924619",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX924619"
+      },
+      {
+        "id": "11900872x",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11900872x"
+      },
+      {
+        "id": "11852772X",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/11852772X"
+      },
+      {
+        "id": "n80057220",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80057220"
+      },
+      {
+        "id": "00438307",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00438307"
+      },
+      {
+        "id": "500115393",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500115393"
+      },
+      {
+        "id": "36917441",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/36917441"
+      }
     ],
     "sitelinkCount": 75,
     "nonEnSitelinkCount": 74,
@@ -677,6 +1187,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX1191415",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1191415"
+      },
+      {
+        "id": "13487980k",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb13487980k"
+      },
+      {
+        "id": "118649949",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118649949"
+      },
+      {
+        "id": "n80014586",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80014586"
+      },
+      {
+        "id": "00431657",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00431657"
+      },
+      {
+        "id": "500022523",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500022523"
+      },
+      {
+        "id": "71544609",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/71544609"
+      }
+    ],
     "sitelinkCount": 48,
     "nonEnSitelinkCount": 47,
     "inclusionSignals": [
@@ -714,6 +1261,33 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "17819468m",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb17819468m"
+      },
+      {
+        "id": "130155055",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/130155055"
+      },
+      {
+        "id": "n90652040",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n90652040"
+      },
+      {
+        "id": "500026666",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500026666"
+      },
+      {
+        "id": "72491796",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/72491796"
+      }
     ],
     "sitelinkCount": 21,
     "nonEnSitelinkCount": 20,
@@ -754,6 +1328,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX847322",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX847322"
+      },
+      {
+        "id": "11916701s",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11916701s"
+      },
+      {
+        "id": "118583875",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118583875"
+      },
+      {
+        "id": "n79018152",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79018152"
+      },
+      {
+        "id": "00450428",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00450428"
+      },
+      {
+        "id": "500032596",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500032596"
+      },
+      {
+        "id": "32000652",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/32000652"
+      }
     ],
     "sitelinkCount": 64,
     "nonEnSitelinkCount": 63,
@@ -796,6 +1407,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX1102262",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1102262"
+      },
+      {
+        "id": "12402694f",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12402694f"
+      },
+      {
+        "id": "118666592",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118666592"
+      },
+      {
+        "id": "n79112975",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79112975"
+      },
+      {
+        "id": "00435079",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00435079"
+      },
+      {
+        "id": "500007824",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500007824"
+      },
+      {
+        "id": "96096",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/96096"
+      }
+    ],
     "sitelinkCount": 48,
     "nonEnSitelinkCount": 47,
     "inclusionSignals": [
@@ -836,6 +1484,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1285576",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1285576"
+      },
+      {
+        "id": "11917588c",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11917588c"
+      },
+      {
+        "id": "118734695",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118734695"
+      },
+      {
+        "id": "n79107791",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79107791"
+      },
+      {
+        "id": "001149718",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/001149718"
+      },
+      {
+        "id": "500001621",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500001621"
+      },
+      {
+        "id": "27069498",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/27069498"
+      }
     ],
     "sitelinkCount": 25,
     "nonEnSitelinkCount": 24,
@@ -878,6 +1563,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX997526",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX997526"
+      },
+      {
+        "id": "11904811p",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb11904811p"
+      },
+      {
+        "id": "118539094",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118539094"
+      },
+      {
+        "id": "n80032247",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80032247"
+      },
+      {
+        "id": "00440829",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00440829"
+      },
+      {
+        "id": "500118871",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500118871"
+      },
+      {
+        "id": "49226067",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/49226067"
+      }
+    ],
     "sitelinkCount": 55,
     "nonEnSitelinkCount": 54,
     "inclusionSignals": [
@@ -915,6 +1637,23 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "n96121928",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n96121928"
+      },
+      {
+        "id": "500037126",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500037126"
+      },
+      {
+        "id": "93745716",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/93745716"
+      }
+    ],
     "sitelinkCount": 4,
     "nonEnSitelinkCount": 3,
     "inclusionSignals": [
@@ -951,6 +1690,38 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1300601",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1300601"
+      },
+      {
+        "id": "119547959",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb119547959"
+      },
+      {
+        "id": "118549405",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118549405"
+      },
+      {
+        "id": "n50035565",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n50035565"
+      },
+      {
+        "id": "500010387",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500010387"
+      },
+      {
+        "id": "74644603",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/74644603"
+      }
     ],
     "sitelinkCount": 36,
     "nonEnSitelinkCount": 35,
@@ -991,6 +1762,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1049233",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1049233"
+      },
+      {
+        "id": "122113153",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb122113153"
+      },
+      {
+        "id": "118835416",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118835416"
+      },
+      {
+        "id": "n80005836",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n80005836"
+      },
+      {
+        "id": "00451408",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00451408"
+      },
+      {
+        "id": "500008602",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500008602"
+      },
+      {
+        "id": "56659032",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/56659032"
+      }
     ],
     "sitelinkCount": 30,
     "nonEnSitelinkCount": 29,
@@ -1033,6 +1841,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX1747370",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1747370"
+      },
+      {
+        "id": "12263579d",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12263579d"
+      },
+      {
+        "id": "118797662",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118797662"
+      },
+      {
+        "id": "n79063904",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n79063904"
+      },
+      {
+        "id": "00475246",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00475246"
+      },
+      {
+        "id": "500015402",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500015402"
+      },
+      {
+        "id": "4989320",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/4989320"
+      }
+    ],
     "sitelinkCount": 16,
     "nonEnSitelinkCount": 15,
     "inclusionSignals": [
@@ -1074,6 +1919,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX863996",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX863996"
+      },
+      {
+        "id": "12492791j",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12492791j"
+      },
+      {
+        "id": "118943375",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118943375"
+      },
+      {
+        "id": "n82272058",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n82272058"
+      },
+      {
+        "id": "00710243",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00710243"
+      },
+      {
+        "id": "500057350",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500057350"
+      },
+      {
+        "id": "19782417",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/19782417"
+      }
+    ],
     "sitelinkCount": 47,
     "nonEnSitelinkCount": 46,
     "inclusionSignals": [
@@ -1114,6 +1996,38 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX833475",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX833475"
+      },
+      {
+        "id": "13555857v",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb13555857v"
+      },
+      {
+        "id": "118748564",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118748564"
+      },
+      {
+        "id": "n83185245",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n83185245"
+      },
+      {
+        "id": "500028102",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500028102"
+      },
+      {
+        "id": "116006374",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/116006374"
+      }
+    ],
     "sitelinkCount": 12,
     "nonEnSitelinkCount": 11,
     "inclusionSignals": [
@@ -1153,6 +2067,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX5128602",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX5128602"
+      },
+      {
+        "id": "120647237",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb120647237"
+      },
+      {
+        "id": "11888560X",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/11888560X"
+      },
+      {
+        "id": "n89668022",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n89668022"
+      },
+      {
+        "id": "00855869",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00855869"
+      },
+      {
+        "id": "500010358",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500010358"
+      },
+      {
+        "id": "34478944",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/34478944"
+      }
+    ],
     "sitelinkCount": 30,
     "nonEnSitelinkCount": 29,
     "inclusionSignals": [
@@ -1191,6 +2142,38 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX939346",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX939346"
+      },
+      {
+        "id": "12064953q",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12064953q"
+      },
+      {
+        "id": "118830686",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118830686"
+      },
+      {
+        "id": "nr90000138",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/nr90000138"
+      },
+      {
+        "id": "500011651",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500011651"
+      },
+      {
+        "id": "100954627",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/100954627"
+      }
     ],
     "sitelinkCount": 34,
     "nonEnSitelinkCount": 33,
@@ -1232,6 +2215,43 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX1142950",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1142950"
+      },
+      {
+        "id": "12162281q",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12162281q"
+      },
+      {
+        "id": "118796267",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/118796267"
+      },
+      {
+        "id": "n78026204",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n78026204"
+      },
+      {
+        "id": "00474859",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00474859"
+      },
+      {
+        "id": "500029327",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500029327"
+      },
+      {
+        "id": "84633265",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/84633265"
+      }
+    ],
     "sitelinkCount": 38,
     "nonEnSitelinkCount": 37,
     "inclusionSignals": [
@@ -1271,6 +2291,43 @@
       "ndl",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX1516209",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX1516209"
+      },
+      {
+        "id": "122019204",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb122019204"
+      },
+      {
+        "id": "119071185",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/119071185"
+      },
+      {
+        "id": "n85262543",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n85262543"
+      },
+      {
+        "id": "00469261",
+        "type": "ndl",
+        "url": "https://id.ndl.go.jp/auth/ndlna/00469261"
+      },
+      {
+        "id": "500005997",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500005997"
+      },
+      {
+        "id": "66514335",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/66514335"
+      }
     ],
     "sitelinkCount": 35,
     "nonEnSitelinkCount": 34,
@@ -1312,6 +2369,38 @@
       "ulan",
       "viaf"
     ],
+    "authorityLinks": [
+      {
+        "id": "XX5536530",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX5536530"
+      },
+      {
+        "id": "12498387n",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb12498387n"
+      },
+      {
+        "id": "119082292",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/119082292"
+      },
+      {
+        "id": "n88205092",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n88205092"
+      },
+      {
+        "id": "500118778",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500118778"
+      },
+      {
+        "id": "5035739",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/5035739"
+      }
+    ],
     "sitelinkCount": 37,
     "nonEnSitelinkCount": 36,
     "inclusionSignals": [
@@ -1350,6 +2439,38 @@
       "lcnaf",
       "ulan",
       "viaf"
+    ],
+    "authorityLinks": [
+      {
+        "id": "XX5433282",
+        "type": "bne",
+        "url": "https://datos.bne.es/persona/XX5433282"
+      },
+      {
+        "id": "145359257",
+        "type": "bnf",
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb145359257"
+      },
+      {
+        "id": "121186539",
+        "type": "dnb",
+        "url": "https://d-nb.info/gnd/121186539"
+      },
+      {
+        "id": "n88247071",
+        "type": "lcnaf",
+        "url": "https://id.loc.gov/authorities/names/n88247071"
+      },
+      {
+        "id": "500001306",
+        "type": "ulan",
+        "url": "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=500001306"
+      },
+      {
+        "id": "49460689",
+        "type": "viaf",
+        "url": "https://viaf.org/en/viaf/49460689"
+      }
     ],
     "sitelinkCount": 28,
     "nonEnSitelinkCount": 27,

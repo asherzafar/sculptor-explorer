@@ -104,7 +104,8 @@ export function SculptorDetail({ qid }: { qid: string }) {
   const hasDeathPlace = !!deathPlaceLine;
   const hasNativeName = !!sculptor.nativeName;
   const authorityTypes = sculptor.authorityTypes ?? [];
-  const hasAuthorities = authorityTypes.length > 0;
+  const authorityLinks = sculptor.authorityLinks ?? [];
+  const hasAuthorities = authorityTypes.length > 0 || authorityLinks.length > 0;
   const signals = sculptor.inclusionSignals ?? [];
 
   // Human labels for inclusion signals (Option A.3). Shown as chips so a
@@ -216,20 +217,47 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </p>
         )}
 
-        {/* Authority-file chips — only if at least one is present */}
+        {/* Authority-file chips — link out to VIAF/ULAN/etc. when we have
+            a resolved URL, fall back to a static badge otherwise. */}
         {hasAuthorities && (
           <div className="mb-4">
             <p className="text-xs text-text-tertiary mb-1.5">Authority files</p>
             <div className="flex flex-wrap gap-1.5">
-              {authorityTypes.map((t) => (
-                <span
-                  key={t}
-                  title={`${AUTHORITY_LABELS[t] ?? t.toUpperCase()} identifier present`}
-                  className="inline-block rounded-sm border border-text-tertiary/30 bg-bg-secondary text-text-secondary text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5"
-                >
-                  {AUTHORITY_LABELS[t] ?? t.toUpperCase()}
-                </span>
-              ))}
+              {(authorityLinks.length > 0
+                ? authorityLinks
+                : authorityTypes.map((t) => ({ type: t, id: null, url: null }))
+              ).map((link) => {
+                const label =
+                  AUTHORITY_LABELS[link.type] ?? link.type.toUpperCase();
+                const title = link.id
+                  ? `${label} · ${link.id}`
+                  : `${label} identifier present`;
+                const baseCls =
+                  "inline-block rounded-sm border text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5";
+                if (link.url) {
+                  return (
+                    <a
+                      key={link.type}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={title}
+                      className={`${baseCls} border-accent-primary/30 bg-bg-secondary text-accent-primary hover:bg-accent-muted/40 transition-colors`}
+                    >
+                      {label}
+                    </a>
+                  );
+                }
+                return (
+                  <span
+                    key={link.type}
+                    title={title}
+                    className={`${baseCls} border-text-tertiary/30 bg-bg-secondary text-text-secondary`}
+                  >
+                    {label}
+                  </span>
+                );
+              })}
             </div>
           </div>
         )}

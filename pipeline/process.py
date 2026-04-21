@@ -219,6 +219,9 @@ def process_nodes() -> pd.DataFrame:
     nodes_enriched["authority_types"] = nodes_enriched["authority_types"].apply(
         lambda v: v if isinstance(v, list) else []
     )
+    nodes_enriched["authority_links"] = nodes_enriched["authority_links"].apply(
+        lambda v: v if isinstance(v, list) else []
+    )
 
     return nodes_enriched
 
@@ -253,19 +256,66 @@ def _build_sitelinks_enrichment(node_qids: pd.Series) -> pd.DataFrame:
     return out
 
 
+# URL templates per authority file. Matches the formatter URLs declared in
+# Wikidata for the corresponding property. Keep this list in sync with the
+# UNION arms of AUTHORITY_IDS_TEMPLATE in query_enrichment.py.
+AUTHORITY_URL_TEMPLATES = {
+    "ulan":  "https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid={id}",
+    "viaf":  "https://viaf.org/en/viaf/{id}",
+    "lcnaf": "https://id.loc.gov/authorities/names/{id}",
+    "bnf":   "https://catalogue.bnf.fr/ark:/12148/cb{id}",
+    "dnb":   "https://d-nb.info/gnd/{id}",
+    "ndl":   "https://id.ndl.go.jp/auth/ndlna/{id}",
+    "bne":   "https://datos.bne.es/persona/{id}",
+}
+
+
 def _build_authority_enrichment(node_qids: pd.Series) -> pd.DataFrame:
-    """Return per-QID: authority_types (sorted list of auth type strings)."""
+    """Return per-QID: authority_types (list of type strings) and
+    authority_links (list of {type, id, url} dicts).
+
+    Both fields are emitted so Option A.3's boolean-presence semantics are
+    preserved for the signal layer while the JSON consumer gets actionable
+    outbound URLs. If a sculptor has multiple IDs for the same authority
+    (rare but legal in Wikidata), we keep the first encountered.
+    """
+    empty_cols = {
+        "qid": pd.Series([], dtype=str),
+        "authority_types": pd.Series([], dtype=object),
+        "authority_links": pd.Series([], dtype=object),
+    }
     if not AUTHORITY_IDS_CACHE_PATH.exists():
-        return pd.DataFrame({
-            "qid": pd.Series([], dtype=str),
-            "authority_types": pd.Series([], dtype=object),
-        })
+        return pd.DataFrame(empty_cols)
+
     df = pd.read_parquet(AUTHORITY_IDS_CACHE_PATH)
     df = df.dropna(subset=["authority"]).copy()
     df["authority"] = df["authority"].astype(str)
+    # `value` may be missing for older cached parquets (pre-2026-04-21);
+    # guard against it so a stale cache doesn't break the pipeline.
+    has_value = "value" in df.columns
+    if has_value:
+        df["value"] = df["value"].astype(str)
     df = df[df["qid_clean"].isin(set(node_qids))]
-    grouped = df.groupby("qid_clean")["authority"].apply(lambda s: sorted(set(s)))
-    return grouped.reset_index().rename(columns={"qid_clean": "qid", "authority": "authority_types"})
+
+    def _build_links(group: pd.DataFrame) -> list[dict]:
+        seen: dict[str, dict] = {}
+        for _, r in group.iterrows():
+            t = r["authority"]
+            if t in seen:
+                continue  # keep first ID per type
+            val = r["value"] if has_value else None
+            tmpl = AUTHORITY_URL_TEMPLATES.get(t)
+            url = tmpl.format(id=val) if (tmpl and val) else None
+            seen[t] = {"type": t, "id": val, "url": url}
+        return sorted(seen.values(), key=lambda d: d["type"])
+
+    grouped = df.groupby("qid_clean", group_keys=False).apply(
+        lambda g: pd.Series({
+            "authority_types": sorted(set(g["authority"])),
+            "authority_links": _build_links(g),
+        })
+    )
+    return grouped.reset_index().rename(columns={"qid_clean": "qid"})
 
 
 def _build_place_enrichment(cache_path: Path, prefix: str) -> pd.DataFrame:

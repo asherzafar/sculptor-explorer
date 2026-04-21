@@ -86,6 +86,7 @@ def _sculptor_record(row) -> dict:
         "nativeName": _opt_str(row.get("native_name")),
         "nativeLang": _opt_str(row.get("native_lang")),
         "authorityTypes": _list(row.get("authority_types")),
+        "authorityLinks": _list(row.get("authority_links")),
         "sitelinkCount": int(row.get("sitelink_count") or 0),
         "nonEnSitelinkCount": int(row.get("non_en_sitelink_count") or 0),
         "inclusionSignals": _list(row.get("inclusion_signals")),
@@ -185,36 +186,57 @@ def create_movements_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
     return agg.sort_values(["decade", "count"], ascending=[True, False]).to_dict(orient="records")
 
 
-def create_geography_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
-    """Create geography_by_decade.json in tidy format: {decade, category, count}."""
-    # Include Unknown as a category rather than dropping it
+def _geography_by_decade(
+    nodes: pd.DataFrame, source_col: str, top_n: int = 15
+) -> list[dict]:
+    """Aggregate nodes by (birth_decade, source_col) with a tidy output.
+
+    `source_col` is either "citizenship_display" (legal/attributed nationality)
+    or "birth_country" (place-of-birth country). Null/missing values are
+    bucketed under "Unknown" so the chart keeps its total intact. The top
+    `top_n` categories survive; everything else collapses to "Other".
+    """
+    # Normalize missing values to a single "Unknown" label
+    src = nodes[source_col].fillna("Unknown").replace("", "Unknown")
+    working = nodes.assign(_category=src)
+
+    top_categories = (
+        working[working["_category"] != "Unknown"]["_category"]
+        .value_counts()
+        .head(top_n)
+        .index.tolist()
+    )
+    keep = set(top_categories) | {"Unknown"}
+
     grouped = (
-        nodes.groupby(["birth_decade", "citizenship_display"])
+        working.groupby(["birth_decade", "_category"])
         .size()
         .reset_index(name="count")
     )
-    
-    # Keep top 15 citizenships; bucket rest as "Other"
-    top_citizenships = (
-        nodes[nodes["citizenship_display"] != "Unknown"]["citizenship_display"]
-        .value_counts()
-        .head(15)
-        .index.tolist()
+    grouped["category"] = grouped["_category"].where(
+        grouped["_category"].isin(keep), other="Other"
     )
-    keep = set(top_citizenships) | {"Unknown"}
-    
-    records = []
-    for _, row in grouped.iterrows():
-        category = row["citizenship_display"] if row["citizenship_display"] in keep else "Other"
-        records.append({
-            "decade": int(row["birth_decade"]),
-            "category": category,
-            "count": int(row["count"]),
-        })
-    
-    # Re-aggregate after bucketing
-    agg = pd.DataFrame(records).groupby(["decade", "category"])["count"].sum().reset_index()
-    return agg.sort_values(["decade", "count"], ascending=[True, False]).to_dict(orient="records")
+
+    agg = grouped.groupby(["birth_decade", "category"])["count"].sum().reset_index()
+    agg = agg.rename(columns={"birth_decade": "decade"})
+    return (
+        agg.sort_values(["decade", "count"], ascending=[True, False])
+        .astype({"decade": int, "count": int})
+        .to_dict(orient="records")
+    )
+
+
+def create_geography_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
+    """Citizenship-based aggregation (Wikidata P27, primary value)."""
+    return _geography_by_decade(nodes, "citizenship_display")
+
+
+def create_geography_by_birth_country_json(nodes: pd.DataFrame) -> list[dict]:
+    """Birth-country aggregation (Wikidata P19 → P17). This is the honest
+    view of where sculptors were *born* vs. where they were later
+    naturalized/attributed — Brâncuși born in Romania, not United States.
+    """
+    return _geography_by_decade(nodes, "birth_country")
 
 
 def create_timeline_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
@@ -407,12 +429,19 @@ def export_all():
         json.dump(movements, f, indent=2)
     print(f"✓ Exported movements by decade to {movements_path.name}")
     
-    # Export geography_by_decade.json
+    # Export geography_by_decade.json (citizenship — legal/attributed)
     geography = create_geography_by_decade_json(nodes)
     geography_path = WEB_DATA_DIR / "geography_by_decade.json"
     with open(geography_path, "w") as f:
         json.dump(geography, f, indent=2)
     print(f"✓ Exported geography by decade to {geography_path.name}")
+
+    # Export geography_by_birth_country.json (place of birth — honest origin)
+    geography_birth = create_geography_by_birth_country_json(nodes)
+    geography_birth_path = WEB_DATA_DIR / "geography_by_birth_country.json"
+    with open(geography_birth_path, "w") as f:
+        json.dump(geography_birth, f, indent=2)
+    print(f"✓ Exported geography by birth country to {geography_birth_path.name}")
     
     # Export focus_sculptors.json
     focus = create_focus_sculptors_json(nodes)

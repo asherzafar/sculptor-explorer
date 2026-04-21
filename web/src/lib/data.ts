@@ -58,6 +58,13 @@ export async function loadTransparency(): Promise<TransparencyAudit> {
   return res.json();
 }
 
+/** Load geography_by_birth_country.json — place-of-birth aggregation. */
+export async function loadGeographyByBirthCountry(): Promise<DecadeAggregation[]> {
+  const res = await fetch("/data/geography_by_birth_country.json");
+  if (!res.ok) throw new Error("Failed to load geography_by_birth_country.json");
+  return res.json();
+}
+
 /** Load external_mentors.json (non-sculptor endpoints of lineage edges). */
 export async function loadExternalMentors(): Promise<ExternalMentor[]> {
   const res = await fetch("/data/external_mentors.json");

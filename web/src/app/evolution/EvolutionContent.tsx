@@ -6,6 +6,7 @@ import type { DecadeAggregation, LegacySculptor } from "@/lib/types";
 import { MousePointerClick, X } from "lucide-react";
 import {
   loadGeographyByDecade,
+  loadGeographyByBirthCountry,
   loadFocusSculptors,
   loadMaterialsByDecade,
   loadMovementsByDecade,
@@ -20,6 +21,26 @@ import { formatDisplayValue, formatGender } from "@/lib/utils";
 const MIN_BIRTH_YEAR = 1800;
 
 /**
+ * Geography source — either legal/attributed citizenship (Wikidata P27,
+ * primary value) or place of birth → country (P19 → P17). Birth country
+ * exposes the migration delta that citizenship flattens (e.g. Brâncuși
+ * reads as "United States" by citizenship, "Romania" by birth country).
+ */
+type GeoSource = "citz" | "birth";
+
+const GEO_SOURCE_LABEL: Record<GeoSource, string> = {
+  citz: "Citizenship",
+  birth: "Country of birth",
+};
+
+const GEO_SOURCE_SUBTITLE: Record<GeoSource, string> = {
+  citz:
+    "Legal / attributed nationality (Wikidata P27). Emigrés appear under their adopted country.",
+  birth:
+    "Where sculptors were born (Wikidata P19 → P17). Shows the migration canon before naturalization.",
+};
+
+/**
  * EvolutionContent — client component for the Evolution page.
  * Uses useSearchParams() so decade selections are URL-shareable.
  * Must be wrapped in <Suspense> in the parent page (Next.js static export requirement).
@@ -28,7 +49,8 @@ export function EvolutionContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [geographyData, setGeographyData] = useState<DecadeAggregation[]>([]);
+  const [geoByCitz, setGeoByCitz] = useState<DecadeAggregation[]>([]);
+  const [geoByBirth, setGeoByBirth] = useState<DecadeAggregation[]>([]);
   const [movementsData, setMovementsData] = useState<DecadeAggregation[]>([]);
   const [materialsData, setMaterialsData] = useState<DecadeAggregation[]>([]);
   const [focusSculptors, setFocusSculptors] = useState<LegacySculptor[]>([]);
@@ -39,6 +61,25 @@ export function EvolutionContent() {
   const activeDecade = searchParams.get("decade")
     ? Number(searchParams.get("decade"))
     : null;
+
+  // Geography source lives in URL: ?geo=birth (default: citz). Using URL
+  // state keeps the toggle shareable — e.g. a link to the birth-country
+  // view of the 1920s reproduces the exact reader experience.
+  const geoSource: GeoSource = searchParams.get("geo") === "birth" ? "birth" : "citz";
+
+  const setGeoSource = useCallback(
+    (source: GeoSource) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (source === "citz") {
+        params.delete("geo"); // default state — keep URL clean
+      } else {
+        params.set("geo", source);
+      }
+      const qs = params.toString();
+      router.replace(`/evolution${qs ? `?${qs}` : ""}`, { scroll: false });
+    },
+    [searchParams, router]
+  );
 
   const setActiveDecade = useCallback(
     (decade: number) => {
@@ -62,13 +103,16 @@ export function EvolutionContent() {
   useEffect(() => {
     async function loadData() {
       try {
-        const [geoData, mvData, matData, focusData] = await Promise.all([
-          loadGeographyByDecade(),
-          loadMovementsByDecade(),
-          loadMaterialsByDecade().catch(() => []),
-          loadFocusSculptors(),
-        ]);
-        setGeographyData(geoData);
+        const [geoCitzData, geoBirthData, mvData, matData, focusData] =
+          await Promise.all([
+            loadGeographyByDecade(),
+            loadGeographyByBirthCountry(),
+            loadMovementsByDecade(),
+            loadMaterialsByDecade().catch(() => []),
+            loadFocusSculptors(),
+          ]);
+        setGeoByCitz(geoCitzData);
+        setGeoByBirth(geoBirthData);
         setMovementsData(mvData);
         setMaterialsData(matData);
         setFocusSculptors(focusData);
@@ -148,14 +192,41 @@ export function EvolutionContent() {
       {/* Charts grid */}
       <div className="grid gap-8 lg:grid-cols-2 mb-10">
         <section>
-          <h2 className="text-base font-semibold mb-1 text-text-primary">
-            Country of Birth
-          </h2>
+          <div className="flex items-start justify-between gap-3 mb-1">
+            <h2 className="text-base font-semibold text-text-primary">
+              {GEO_SOURCE_LABEL[geoSource]}
+            </h2>
+            {/* Source toggle — pill group, URL-backed via ?geo= */}
+            <div
+              role="tablist"
+              aria-label="Geography source"
+              className="inline-flex rounded-full bg-bg-secondary p-0.5 text-[11px] font-medium"
+            >
+              {(["citz", "birth"] as const).map((opt) => {
+                const active = geoSource === opt;
+                return (
+                  <button
+                    key={opt}
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setGeoSource(opt)}
+                    className={
+                      active
+                        ? "px-2.5 py-1 rounded-full bg-accent-primary text-white"
+                        : "px-2.5 py-1 rounded-full text-text-secondary hover:text-text-primary transition-colors"
+                    }
+                  >
+                    {opt === "citz" ? "Citizenship" : "Birth"}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           <p className="text-xs text-muted-foreground mb-3">
-            Top countries per decade — click to filter
+            {GEO_SOURCE_SUBTITLE[geoSource]}
           </p>
           <GeographyChart
-            data={geographyData}
+            data={geoSource === "birth" ? geoByBirth : geoByCitz}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />
