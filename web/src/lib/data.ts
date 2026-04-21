@@ -1,6 +1,6 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit } from "./types";
+import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor } from "./types";
 
 /** Load sculptors.json (legacy camelCase format) */
 export async function loadSculptors(): Promise<LegacySculptor[]> {
@@ -55,5 +55,12 @@ export async function loadTimelineSculptors(): Promise<TimelineSculptor[]> {
 export async function loadTransparency(): Promise<TransparencyAudit> {
   const res = await fetch("/data/transparency.json");
   if (!res.ok) throw new Error("Failed to load transparency.json");
+  return res.json();
+}
+
+/** Load external_mentors.json (non-sculptor endpoints of lineage edges). */
+export async function loadExternalMentors(): Promise<ExternalMentor[]> {
+  const res = await fetch("/data/external_mentors.json");
+  if (!res.ok) throw new Error("Failed to load external_mentors.json");
   return res.json();
 }

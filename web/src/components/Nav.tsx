@@ -10,6 +10,7 @@ const navItems = [
   { href: "/evolution", label: "Evolution" },
   { href: "/lineage", label: "Lineage" },
   { href: "/about", label: "About" },
+  { href: "/transparency", label: "Transparency" },
 ];
 
 export function Nav() {

@@ -116,6 +116,24 @@ export interface LegacyEdge {
   relationType: "influenced_by" | "student_of";
 }
 
+/**
+ * An external mentor — a non-sculptor endpoint of a lineage edge.
+ *
+ * These are painters, composers, architects, and other teachers who
+ * trained or influenced sculptors but aren't classified as sculptors
+ * themselves in Wikidata. They're rendered as first-class nodes on the
+ * lineage graph with distinct styling so lineage arcs don't terminate
+ * in empty space.
+ */
+export interface ExternalMentor {
+  qid: string;
+  name: string;
+  birthYear: number | null;
+  deathYear: number | null;
+  gender: string | null;
+  occupation: string | null;
+}
+
 /** A sculptor for the lifespan timeline (from Fabio's curated list). */
 export interface TimelineSculptor {
   id: string;

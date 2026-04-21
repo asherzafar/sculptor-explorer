@@ -93,6 +93,43 @@ export function SculptorDetail({ qid }: { qid: string }) {
   const genderLabel = hasGender ? formatGender(sculptor.gender) : null;
   const metaParts = [citizenshipLabel, genderLabel].filter(Boolean);
 
+  // Place lines (Phase 3a enrichment — gracefully absent when Wikidata lacks data)
+  const birthPlaceLine = [sculptor.birthPlace, sculptor.birthCountry]
+    .filter(Boolean)
+    .join(", ");
+  const deathPlaceLine = [sculptor.deathPlace, sculptor.deathCountry]
+    .filter(Boolean)
+    .join(", ");
+  const hasBirthPlace = !!birthPlaceLine;
+  const hasDeathPlace = !!deathPlaceLine;
+  const hasNativeName = !!sculptor.nativeName;
+  const authorityTypes = sculptor.authorityTypes ?? [];
+  const hasAuthorities = authorityTypes.length > 0;
+  const signals = sculptor.inclusionSignals ?? [];
+
+  // Human labels for inclusion signals (Option A.3). Shown as chips so a
+  // curious reader can see *why* this sculptor made the cut.
+  const SIGNAL_LABELS: Record<string, string> = {
+    movement: "Art movement",
+    edge: "Lineage edge",
+    focus: "Curated focus",
+    multi_citz: "Multi-citizenship",
+    sitelinks: "Wikipedia reach",
+  };
+
+  // Authority-file link builders. We only render chips for types that have
+  // a known URL template; types like "dnb" without an ID column stay as
+  // non-linking labels.
+  const AUTHORITY_LABELS: Record<string, string> = {
+    ulan: "ULAN",
+    viaf: "VIAF",
+    lcnaf: "LCNAF",
+    bnf: "BnF",
+    dnb: "DNB",
+    ndl: "NDL",
+    bne: "BNE",
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <button
@@ -117,9 +154,21 @@ export function SculptorDetail({ qid }: { qid: string }) {
         </a>
 
         {/* Name (Fraunces display) */}
-        <h1 className="font-display text-4xl font-bold text-text-primary mb-2">
+        <h1 className="font-display text-4xl font-bold text-text-primary mb-1">
           {sculptor.name}
         </h1>
+
+        {/* Native name line — if sculptor has a non-English canonical form */}
+        {hasNativeName && (
+          <p className="text-base text-text-tertiary mb-2" lang={sculptor.nativeLang ?? undefined}>
+            {sculptor.nativeName}
+            {sculptor.nativeLang && (
+              <span className="ml-2 text-xs uppercase tracking-wide text-text-tertiary/70">
+                {sculptor.nativeLang}
+              </span>
+            )}
+          </p>
+        )}
 
         {/* Lifespan line */}
         <p className="text-sm text-text-secondary mb-4">{lifespanLine}</p>
@@ -138,6 +187,24 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </p>
         )}
 
+        {/* Place-of-birth / place-of-death */}
+        {(hasBirthPlace || hasDeathPlace) && (
+          <div className="text-sm text-text-secondary mb-3 space-y-0.5">
+            {hasBirthPlace && (
+              <p>
+                <span className="text-text-tertiary">Born in</span>{" "}
+                {birthPlaceLine}
+              </p>
+            )}
+            {hasDeathPlace && (
+              <p>
+                <span className="text-text-tertiary">Died in</span>{" "}
+                {deathPlaceLine}
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Connections — only if > 0 */}
         {hasEdges && (
           <p className="text-sm text-text-secondary mb-4">
@@ -149,11 +216,51 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </p>
         )}
 
+        {/* Authority-file chips — only if at least one is present */}
+        {hasAuthorities && (
+          <div className="mb-4">
+            <p className="text-xs text-text-tertiary mb-1.5">Authority files</p>
+            <div className="flex flex-wrap gap-1.5">
+              {authorityTypes.map((t) => (
+                <span
+                  key={t}
+                  title={`${AUTHORITY_LABELS[t] ?? t.toUpperCase()} identifier present`}
+                  className="inline-block rounded-sm border border-text-tertiary/30 bg-bg-secondary text-text-secondary text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5"
+                >
+                  {AUTHORITY_LABELS[t] ?? t.toUpperCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Inclusion signals — why this sculptor is in the A.3 set */}
+        {signals.length > 0 && (
+          <div className="mb-4">
+            <p className="text-xs text-text-tertiary mb-1.5">
+              Included because of
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {signals.map((s) => (
+                <span
+                  key={s}
+                  className="inline-block rounded-full bg-accent-muted/50 text-accent-primary text-[10px] font-medium px-2 py-0.5"
+                >
+                  {SIGNAL_LABELS[s] ?? s}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Data completeness dots */}
         <div className="flex items-center gap-1.5 mt-6" aria-label="Data completeness">
           <CompletenessDot present={hasMovement} label="Movement" />
           <CompletenessDot present={hasCitizenship} label="Citizenship" />
+          <CompletenessDot present={hasBirthPlace} label="Birth place" />
+          <CompletenessDot present={hasNativeName} label="Native name" />
           <CompletenessDot present={hasEdges} label="Connections" />
+          <CompletenessDot present={hasAuthorities} label="Authority files" />
           <span className="ml-2 text-xs text-text-tertiary">Data completeness</span>
         </div>
       </div>

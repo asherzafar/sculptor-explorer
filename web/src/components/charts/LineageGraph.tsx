@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as d3 from "d3";
-import type { LegacyEdge, LegacySculptor } from "@/lib/types";
+import type { LegacyEdge, LegacySculptor, ExternalMentor } from "@/lib/types";
 import { formatDisplayValue } from "@/lib/utils";
 
 /**
@@ -22,12 +22,17 @@ import { formatDisplayValue } from "@/lib/utils";
 interface Props {
   sculptors: LegacySculptor[];
   edges: LegacyEdge[];
+  externalMentors?: ExternalMentor[];
   height?: number;
 }
 
+type NodeKind = "sculptor" | "mentor";
+
 interface GraphNode extends d3.SimulationNodeDatum {
   id: string; // qid
+  kind: NodeKind;
   name: string;
+  /** For sculptors: movement slug/label; for mentors: occupation */
   movement: string;
   movementLabel: string;
   degree: number;
@@ -50,7 +55,7 @@ const MOVEMENT_PALETTE = [
 ];
 const NO_MOVEMENT_COLOR = "#5C6560"; // text-secondary — dim grey
 
-export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
+export function LineageGraph({ sculptors, edges, externalMentors = [], height = 640 }: Props) {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -68,30 +73,31 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  /** Build nodes + links, filtering to sculptors with at least one edge. */
+  /** Build a bipartite graph: sculptor nodes + external mentor nodes. */
   const { nodes, links, movementColor, neighborMap } = useMemo(() => {
     const sculptorMap = new Map(sculptors.map((s) => [s.qid, s]));
+    const mentorMap = new Map(externalMentors.map((m) => [m.qid, m]));
 
-    // Only include edges where BOTH endpoints are known sculptors
-    const validEdges = edges.filter(
-      (e) => sculptorMap.has(e.fromQid) && sculptorMap.has(e.toQid)
-    );
+    // An edge is valid if the target is a known sculptor AND the source
+    // is either a known sculptor or a known external mentor. This keeps
+    // cross-media mentor arcs (composers → sculptors, painters → sculptors).
+    const validEdges = edges.filter((e) => {
+      const targetOk = sculptorMap.has(e.toQid);
+      const sourceOk = sculptorMap.has(e.fromQid) || mentorMap.has(e.fromQid);
+      return targetOk && sourceOk;
+    });
 
-    // Collect QIDs that appear in at least one valid edge
+    // Collect connected QIDs and compute degrees
     const connectedQids = new Set<string>();
+    const degreeMap = new Map<string, number>();
     validEdges.forEach((e) => {
       connectedQids.add(e.fromQid);
       connectedQids.add(e.toQid);
-    });
-
-    // Degree map
-    const degreeMap = new Map<string, number>();
-    validEdges.forEach((e) => {
       degreeMap.set(e.fromQid, (degreeMap.get(e.fromQid) ?? 0) + 1);
       degreeMap.set(e.toQid, (degreeMap.get(e.toQid) ?? 0) + 1);
     });
 
-    // Movement color scale (stable by movement name ordering)
+    // Movement color scale (sculptors only — mentors use occupation-based grey)
     const movements = Array.from(
       new Set(
         Array.from(connectedQids)
@@ -106,17 +112,35 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
     };
 
     const nodes: GraphNode[] = Array.from(connectedQids).map((qid) => {
-      const s = sculptorMap.get(qid)!;
-      const hasMovement = !!s.movement && s.movement !== "No movement listed";
+      const sculptor = sculptorMap.get(qid);
+      if (sculptor) {
+        const hasMovement =
+          !!sculptor.movement && sculptor.movement !== "No movement listed";
+        return {
+          id: qid,
+          kind: "sculptor",
+          name: sculptor.name,
+          movement: sculptor.movement,
+          movementLabel: hasMovement
+            ? formatDisplayValue(sculptor.movement, { isMovement: true })
+            : "No movement",
+          degree: degreeMap.get(qid) ?? 0,
+          hasMovement,
+        };
+      }
+      // External mentor — sits outside the sculptor table
+      const mentor = mentorMap.get(qid);
+      const occ = mentor?.occupation ?? null;
       return {
         id: qid,
-        name: s.name,
-        movement: s.movement,
-        movementLabel: hasMovement
-          ? formatDisplayValue(s.movement, { isMovement: true })
-          : "No movement",
+        kind: "mentor",
+        name: mentor?.name ?? qid,
+        movement: occ ?? "",
+        movementLabel: occ
+          ? `${occ.charAt(0).toUpperCase()}${occ.slice(1)}`
+          : "Mentor",
         degree: degreeMap.get(qid) ?? 0,
-        hasMovement,
+        hasMovement: false,
       };
     });
 
@@ -136,7 +160,7 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
     });
 
     return { nodes, links, movementColor, neighborMap };
-  }, [sculptors, edges]);
+  }, [sculptors, edges, externalMentors]);
 
   /** D3 force simulation — runs once per data change. */
   useEffect(() => {
@@ -166,21 +190,35 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
       .data(links)
       .join("line");
 
-    // Node group
+    // Node group — click routing differs by kind: sculptors go to detail
+    // page; mentors open Wikidata in a new tab since we have no internal
+    // page for them (they aren't classified as sculptors in our dataset).
     const node = g
       .append("g")
       .selectAll<SVGGElement, GraphNode>("g")
       .data(nodes)
       .join("g")
       .attr("cursor", "pointer")
-      .on("click", (_event, d) => router.push(`/explore/${d.id}`))
+      .on("click", (_event, d) => {
+        if (d.kind === "sculptor") {
+          router.push(`/explore/${d.id}`);
+        } else if (typeof window !== "undefined") {
+          window.open(`https://www.wikidata.org/wiki/${d.id}`, "_blank");
+        }
+      })
       .on("mouseenter", (_event, d) => setHoveredId(d.id))
       .on("mouseleave", () => setHoveredId(null));
 
-    // Node circles — radius by degree, with gentle scaling
-    const radius = (d: GraphNode) => 3 + Math.sqrt(d.degree) * 2.2;
+    // Radius by degree — mentors render smaller by default since they
+    // typically have low degree and shouldn't dominate visually.
+    const radius = (d: GraphNode) =>
+      d.kind === "mentor"
+        ? 2.5 + Math.sqrt(d.degree) * 1.6
+        : 3 + Math.sqrt(d.degree) * 2.2;
 
+    // Sculptors: circles colored by movement
     node
+      .filter((d) => d.kind === "sculptor")
       .append("circle")
       .attr("r", radius)
       .attr("fill", (d) => movementColor(d.movement, d.hasMovement))
@@ -189,7 +227,24 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
       .attr("stroke-width", 0.5)
       .attr("stroke-dasharray", (d) => (d.hasMovement ? "none" : "2 2"));
 
-    // Labels — only visible for higher-degree nodes by default
+    // Mentors: diamonds (rotated squares) in muted amber — clearly
+    // non-sculptor silhouettes against the sculptor circles.
+    node
+      .filter((d) => d.kind === "mentor")
+      .append("rect")
+      .attr("x", (d) => -radius(d))
+      .attr("y", (d) => -radius(d))
+      .attr("width", (d) => radius(d) * 2)
+      .attr("height", (d) => radius(d) * 2)
+      .attr("transform", "rotate(45)")
+      .attr("fill", "#B8A88A") // bronze
+      .attr("fill-opacity", 0.6)
+      .attr("stroke", "#D4A574")
+      .attr("stroke-width", 0.8)
+      .attr("stroke-opacity", 0.9);
+
+    // Labels — higher-degree sculptors, plus ALL mentors with degree >= 2
+    // (mentors are the more interesting find since they're the new data).
     node
       .append("text")
       .text((d) => d.name)
@@ -197,12 +252,20 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
       .attr("y", 3)
       .attr("font-size", 10)
       .attr("font-family", "system-ui, sans-serif")
-      .attr("fill", "#FAFAF9")
-      .attr("opacity", (d) => (d.degree >= 3 ? 0.85 : 0))
+      .attr("fill", (d) => (d.kind === "mentor" ? "#D4A574" : "#FAFAF9"))
+      .attr("font-style", (d) => (d.kind === "mentor" ? "italic" : "normal"))
+      .attr("opacity", (d) => {
+        if (d.kind === "mentor") return d.degree >= 2 ? 0.9 : 0;
+        return d.degree >= 3 ? 0.85 : 0;
+      })
       .attr("pointer-events", "none");
 
     // Title (native tooltip fallback)
-    node.append("title").text((d) => `${d.name} — ${d.movementLabel}`);
+    node.append("title").text((d) =>
+      d.kind === "mentor"
+        ? `${d.name} — ${d.movementLabel} (external mentor)`
+        : `${d.name} — ${d.movementLabel}`
+    );
 
     // Drag behavior
     const drag = d3
@@ -319,8 +382,34 @@ export function LineageGraph({ sculptors, edges, height = 640 }: Props) {
 
       {/* Stats overlay */}
       <div className="absolute top-3 left-3 text-xs text-white/60">
-        <div>{nodes.length} sculptors · {links.length} connections</div>
+        <div>
+          {nodes.filter((n) => n.kind === "sculptor").length} sculptors ·{" "}
+          {nodes.filter((n) => n.kind === "mentor").length} mentors ·{" "}
+          {links.length} connections
+        </div>
         <div className="mt-0.5 text-white/40">Drag to rearrange · scroll to zoom</div>
+      </div>
+
+      {/* Legend — shape key */}
+      <div className="absolute bottom-3 left-3 text-xs text-white/70 flex items-center gap-4">
+        <span className="inline-flex items-center gap-1.5">
+          <span
+            className="inline-block w-2.5 h-2.5 rounded-full"
+            style={{ backgroundColor: "#6B8F84" }}
+          />
+          Sculptor
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span
+            className="inline-block w-2.5 h-2.5"
+            style={{
+              backgroundColor: "#B8A88A",
+              transform: "rotate(45deg)",
+              border: "1px solid #D4A574",
+            }}
+          />
+          External mentor
+        </span>
       </div>
     </div>
   );
