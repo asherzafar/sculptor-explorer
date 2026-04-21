@@ -19,14 +19,19 @@ def load_data():
     """Load processed data."""
     nodes = pd.read_parquet(NODES_METRICS_PATH)
     relations = pd.read_parquet(RELATIONS_CLEAN_PATH)
-    
+
     # Load materials if available
     if MATERIALS_BY_DECADE_PATH.exists():
         materials = pd.read_parquet(MATERIALS_BY_DECADE_PATH)
     else:
         materials = pd.DataFrame()
-    
-    return nodes, relations, materials
+
+    # Load external mentors if available
+    from config import PROCESSED_DIR
+    ext_path = PROCESSED_DIR / f"external_mentors_{MIN_BIRTH_YEAR}plus.parquet"
+    external_mentors = pd.read_parquet(ext_path) if ext_path.exists() else pd.DataFrame()
+
+    return nodes, relations, materials, external_mentors
 
 
 def _sculptor_record(row) -> dict:
@@ -372,7 +377,7 @@ def export_all():
     print("Exporting JSON files...")
     print("=" * 60)
     
-    nodes, relations, materials = load_data()
+    nodes, relations, materials, external_mentors = load_data()
     
     # Export sculptors.json
     sculptors = create_sculptors_json(nodes)
@@ -387,6 +392,13 @@ def export_all():
     with open(edges_path, "w") as f:
         json.dump(edges, f, indent=2)
     print(f"✓ Exported {len(edges)} edges to {edges_path.name}")
+
+    # Export external_mentors.json
+    ext_mentors = create_external_mentors_json(external_mentors)
+    ext_path = WEB_DATA_DIR / "external_mentors.json"
+    with open(ext_path, "w") as f:
+        json.dump(ext_mentors, f, indent=2)
+    print(f"✓ Exported {len(ext_mentors)} external mentors to {ext_path.name}")
     
     # Export movements_by_decade.json
     movements = create_movements_by_decade_json(nodes)
@@ -441,6 +453,7 @@ def export_all():
         "timeline_sculptors": timeline,
         "materials_by_decade": materials_export,
         "transparency": transparency,
+        "external_mentors": ext_mentors,
     }
 
 
