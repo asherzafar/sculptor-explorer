@@ -46,7 +46,7 @@ interface TooltipState {
  * Uses d3-scale for mapping years to pixels, d3-axis for the x-axis,
  * and CSS custom properties (design tokens) for colors.
  */
-export function LifespanTimeline({ data, showEvents = true, sortMode = "chrono" }: Props) {
+export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
@@ -56,9 +56,20 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "chrono" 
   // Sort based on sortMode prop
   const sorted = useMemo(() => {
     const arr = [...data];
+    // Last name = final whitespace-separated token. Works for compound
+    // names like "Anna Hyatt Huntington" (-> Huntington), "Daniel Chester
+    // French" (-> French), and "Constantin Brâncuși" (-> Brâncuși).
+    const lastName = (s: TimelineSculptor) => {
+      const parts = s.name.trim().split(/\s+/);
+      return parts[parts.length - 1];
+    };
     switch (sortMode) {
       case "alpha":
-        return arr.sort((a, b) => a.name.localeCompare(b.name));
+        return arr.sort(
+          (a, b) =>
+            lastName(a).localeCompare(lastName(b)) ||
+            a.name.localeCompare(b.name),
+        );
       case "lifespan": {
         const lifespan = (s: TimelineSculptor) =>
           (s.deathYear ?? CURRENT_YEAR) - s.birthYear;

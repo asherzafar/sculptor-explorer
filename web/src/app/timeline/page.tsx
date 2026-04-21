@@ -7,8 +7,8 @@ import { loadTimelineSculptors } from "@/lib/data";
 import { LifespanTimeline, type SortMode } from "@/components/charts/LifespanTimeline";
 
 const SORT_OPTIONS: { key: SortMode; label: string; title: string }[] = [
+  { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by last name" },
   { key: "chrono",   label: "Chronological", title: "Sort by birth year" },
-  { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by name" },
   { key: "lifespan", label: "Lifespan",      title: "Sort by years lived (longest first)" },
 ];
 
@@ -20,13 +20,13 @@ function TimelineContent() {
 
   const rawSort = searchParams.get("sort");
   const sortMode: SortMode =
-    rawSort === "alpha" || rawSort === "lifespan"
+    rawSort === "chrono" || rawSort === "lifespan"
       ? rawSort
-      : "chrono";
+      : "alpha";
 
   function setSortMode(mode: SortMode) {
     const params = new URLSearchParams(searchParams.toString());
-    if (mode === "chrono") {
+    if (mode === "alpha") {
       params.delete("sort");
     } else {
       params.set("sort", mode);

@@ -48,9 +48,9 @@
       "France"
     ],
     "birthDecade": 1840,
-    "inDegree": 2,
-    "outDegree": 6,
-    "totalDegree": 8,
+    "inDegree": 4,
+    "outDegree": 16,
+    "totalDegree": 20,
     "birthPlace": "Paris",
     "birthCountry": "France",
     "deathPlace": "Meudon",
@@ -125,9 +125,9 @@
       "United States"
     ],
     "birthDecade": 1850,
-    "inDegree": 2,
-    "outDegree": 0,
-    "totalDegree": 2,
+    "inDegree": 4,
+    "outDegree": 1,
+    "totalDegree": 5,
     "birthPlace": null,
     "birthCountry": null,
     "deathPlace": "Stockbridge",
@@ -163,9 +163,9 @@
       "France"
     ],
     "birthDecade": 1860,
-    "inDegree": 2,
-    "outDegree": 1,
-    "totalDegree": 3,
+    "inDegree": 4,
+    "outDegree": 6,
+    "totalDegree": 10,
     "birthPlace": "Banyuls-sur-Mer",
     "birthCountry": "France",
     "deathPlace": "Banyuls-sur-Mer",
@@ -230,6 +230,44 @@
     ]
   },
   {
+    "qid": "Q336432",
+    "name": "Gutzon Borglum",
+    "birthYear": 1867,
+    "deathYear": 1941,
+    "alive": false,
+    "gender": "male",
+    "movement": "No movement listed",
+    "citizenship": "United States",
+    "citizenships": [
+      "United States"
+    ],
+    "birthDecade": 1860,
+    "inDegree": 0,
+    "outDegree": 4,
+    "totalDegree": 4,
+    "birthPlace": "St. Charles",
+    "birthCountry": "United States",
+    "deathPlace": "Chicago",
+    "deathCountry": "United States",
+    "nativeName": "Gutzon Borglum",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 34,
+    "nonEnSitelinkCount": 33,
+    "inclusionSignals": [
+      "edge",
+      "focus",
+      "sitelinks"
+    ]
+  },
+  {
     "qid": "Q114552",
     "name": "Karl Bitter",
     "birthYear": 1867,
@@ -260,44 +298,6 @@
     "sitelinkCount": 8,
     "nonEnSitelinkCount": 7,
     "inclusionSignals": [
-      "focus",
-      "sitelinks"
-    ]
-  },
-  {
-    "qid": "Q336432",
-    "name": "Gutzon Borglum",
-    "birthYear": 1867,
-    "deathYear": 1941,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1860,
-    "inDegree": 0,
-    "outDegree": 2,
-    "totalDegree": 2,
-    "birthPlace": "St. Charles",
-    "birthCountry": "United States",
-    "deathPlace": "Chicago",
-    "deathCountry": "United States",
-    "nativeName": "Gutzon Borglum",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 34,
-    "nonEnSitelinkCount": 33,
-    "inclusionSignals": [
-      "edge",
       "focus",
       "sitelinks"
     ]
@@ -376,48 +376,6 @@
     ]
   },
   {
-    "qid": "Q153048",
-    "name": "Constantin Br\u00e2ncu\u0219i",
-    "birthYear": 1876,
-    "deathYear": 1957,
-    "alive": false,
-    "gender": "male",
-    "movement": "modernism",
-    "citizenship": "France",
-    "citizenships": [
-      "France",
-      "Romania"
-    ],
-    "birthDecade": 1870,
-    "inDegree": 2,
-    "outDegree": 2,
-    "totalDegree": 4,
-    "birthPlace": "Hobi\u021ba",
-    "birthCountry": "Romania",
-    "deathPlace": "Paris",
-    "deathCountry": "France",
-    "nativeName": "Constantin Br\u00e2ncu\u0219i",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 56,
-    "nonEnSitelinkCount": 55,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ]
-  },
-  {
     "qid": "Q445026",
     "name": "Anna Hyatt Huntington",
     "birthYear": 1876,
@@ -455,6 +413,82 @@
     ]
   },
   {
+    "qid": "Q153048",
+    "name": "Constantin Br\u00e2ncu\u0219i",
+    "birthYear": 1876,
+    "deathYear": 1957,
+    "alive": false,
+    "gender": "male",
+    "movement": "modernism",
+    "citizenship": "France",
+    "citizenships": [
+      "France",
+      "Romania"
+    ],
+    "birthDecade": 1870,
+    "inDegree": 5,
+    "outDegree": 2,
+    "totalDegree": 7,
+    "birthPlace": "Hobi\u021ba",
+    "birthCountry": "Romania",
+    "deathPlace": "Paris",
+    "deathCountry": "France",
+    "nativeName": "Constantin Br\u00e2ncu\u0219i",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 56,
+    "nonEnSitelinkCount": 55,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
+  },
+  {
+    "qid": "Q71409",
+    "name": "Lee Lawrie",
+    "birthYear": 1877,
+    "deathYear": 1963,
+    "alive": false,
+    "gender": "male",
+    "movement": "No movement listed",
+    "citizenship": "Germany",
+    "citizenships": [
+      "Germany"
+    ],
+    "birthDecade": 1870,
+    "inDegree": 0,
+    "outDegree": 0,
+    "totalDegree": 0,
+    "birthPlace": "Neuk\u00f6lln",
+    "birthCountry": "Germany",
+    "deathPlace": "Easton",
+    "deathCountry": "United States",
+    "nativeName": "Lee Lawrie",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "dnb",
+      "lcnaf",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 11,
+    "nonEnSitelinkCount": 10,
+    "inclusionSignals": [
+      "sitelinks"
+    ]
+  },
+  {
     "qid": "Q5593",
     "name": "Pablo Picasso",
     "birthYear": 1881,
@@ -467,9 +501,9 @@
       "Spain"
     ],
     "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 10,
-    "totalDegree": 10,
+    "inDegree": 6,
+    "outDegree": 14,
+    "totalDegree": 20,
     "birthPlace": "M\u00e1laga",
     "birthCountry": "Spain",
     "deathPlace": "Mas Notre-Dame-de-Vie de Mougins",
@@ -570,47 +604,6 @@
     ]
   },
   {
-    "qid": "Q157578",
-    "name": "Alexander Archipenko",
-    "birthYear": 1887,
-    "deathYear": 1964,
-    "alive": false,
-    "gender": "male",
-    "movement": "cubism",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States",
-      "Russian Empire"
-    ],
-    "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Kyiv",
-    "birthCountry": "Ukraine",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u041f\u043e\u0440\u0444\u0438\u0440\u043e\u0432\u0438\u0447 \u0410\u0440\u0445\u0438\u043f\u0435\u043d\u043a\u043e",
-    "nativeLang": "uk",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 48,
-    "nonEnSitelinkCount": 47,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ]
-  },
-  {
     "qid": "Q5912",
     "name": "Marcel Duchamp",
     "birthYear": 1887,
@@ -647,6 +640,47 @@
     "inclusionSignals": [
       "movement",
       "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
+  },
+  {
+    "qid": "Q157578",
+    "name": "Alexander Archipenko",
+    "birthYear": 1887,
+    "deathYear": 1964,
+    "alive": false,
+    "gender": "male",
+    "movement": "cubism",
+    "citizenship": "United States",
+    "citizenships": [
+      "United States",
+      "Russian Empire"
+    ],
+    "birthDecade": 1880,
+    "inDegree": 0,
+    "outDegree": 0,
+    "totalDegree": 0,
+    "birthPlace": "Kyiv",
+    "birthCountry": "Ukraine",
+    "deathPlace": "New York City",
+    "deathCountry": "United States",
+    "nativeName": "\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u041f\u043e\u0440\u0444\u0438\u0440\u043e\u0432\u0438\u0447 \u0410\u0440\u0445\u0438\u043f\u0435\u043d\u043a\u043e",
+    "nativeLang": "uk",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 48,
+    "nonEnSitelinkCount": 47,
+    "inclusionSignals": [
+      "movement",
       "focus",
       "multi_citz",
       "sitelinks"
@@ -690,6 +724,48 @@
     ]
   },
   {
+    "qid": "Q151097",
+    "name": "Henry Moore",
+    "birthYear": 1898,
+    "deathYear": 1986,
+    "alive": false,
+    "gender": "male",
+    "movement": "contemporary art",
+    "citizenship": "United Kingdom",
+    "citizenships": [
+      "United Kingdom",
+      "United Kingdom of Great Britain and Ireland"
+    ],
+    "birthDecade": 1890,
+    "inDegree": 0,
+    "outDegree": 2,
+    "totalDegree": 2,
+    "birthPlace": "Castleford",
+    "birthCountry": "United Kingdom",
+    "deathPlace": "Much Hadham",
+    "deathCountry": "United Kingdom",
+    "nativeName": "Henry Moore",
+    "nativeLang": "en",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 64,
+    "nonEnSitelinkCount": 63,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
+  },
+  {
     "qid": "Q151580",
     "name": "Alexander Calder",
     "birthYear": 1898,
@@ -726,48 +802,6 @@
       "movement",
       "edge",
       "focus",
-      "sitelinks"
-    ]
-  },
-  {
-    "qid": "Q151097",
-    "name": "Henry Moore",
-    "birthYear": 1898,
-    "deathYear": 1986,
-    "alive": false,
-    "gender": "male",
-    "movement": "contemporary art",
-    "citizenship": "United Kingdom",
-    "citizenships": [
-      "United Kingdom",
-      "United Kingdom of Great Britain and Ireland"
-    ],
-    "birthDecade": 1890,
-    "inDegree": 0,
-    "outDegree": 1,
-    "totalDegree": 1,
-    "birthPlace": "Castleford",
-    "birthCountry": "United Kingdom",
-    "deathPlace": "Much Hadham",
-    "deathCountry": "United Kingdom",
-    "nativeName": "Henry Moore",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 64,
-    "nonEnSitelinkCount": 63,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
       "sitelinks"
     ]
   },
@@ -813,6 +847,48 @@
     ]
   },
   {
+    "qid": "Q157194",
+    "name": "Alberto Giacometti",
+    "birthYear": 1901,
+    "deathYear": 1966,
+    "alive": false,
+    "gender": "male",
+    "movement": "surrealism",
+    "citizenship": "France",
+    "citizenships": [
+      "Switzerland",
+      "France"
+    ],
+    "birthDecade": 1900,
+    "inDegree": 1,
+    "outDegree": 0,
+    "totalDegree": 1,
+    "birthPlace": "Borgonovo",
+    "birthCountry": "Switzerland",
+    "deathPlace": "Chur",
+    "deathCountry": "Switzerland",
+    "nativeName": "Alberto Giacometti",
+    "nativeLang": "fr",
+    "authorityTypes": [
+      "bne",
+      "bnf",
+      "dnb",
+      "lcnaf",
+      "ndl",
+      "ulan",
+      "viaf"
+    ],
+    "sitelinkCount": 55,
+    "nonEnSitelinkCount": 54,
+    "inclusionSignals": [
+      "movement",
+      "edge",
+      "focus",
+      "multi_citz",
+      "sitelinks"
+    ]
+  },
+  {
     "qid": "Q1543157",
     "name": "Walker Hancock",
     "birthYear": 1901,
@@ -843,47 +919,6 @@
     "nonEnSitelinkCount": 3,
     "inclusionSignals": [
       "focus",
-      "sitelinks"
-    ]
-  },
-  {
-    "qid": "Q157194",
-    "name": "Alberto Giacometti",
-    "birthYear": 1901,
-    "deathYear": 1966,
-    "alive": false,
-    "gender": "male",
-    "movement": "surrealism",
-    "citizenship": "France",
-    "citizenships": [
-      "Switzerland",
-      "France"
-    ],
-    "birthDecade": 1900,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Borgonovo",
-    "birthCountry": "Switzerland",
-    "deathPlace": "Chur",
-    "deathCountry": "Switzerland",
-    "nativeName": "Alberto Giacometti",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 55,
-    "nonEnSitelinkCount": 54,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "multi_citz",
       "sitelinks"
     ]
   },
@@ -1140,9 +1175,9 @@
       "United States"
     ],
     "birthDecade": 1930,
-    "inDegree": 0,
+    "inDegree": 1,
     "outDegree": 0,
-    "totalDegree": 0,
+    "totalDegree": 1,
     "birthPlace": "Quincy",
     "birthCountry": "United States",
     "deathPlace": "New York City",
@@ -1161,6 +1196,7 @@
     "nonEnSitelinkCount": 33,
     "inclusionSignals": [
       "movement",
+      "edge",
       "focus",
       "sitelinks"
     ]
@@ -1259,9 +1295,9 @@
       "United States"
     ],
     "birthDecade": 1950,
-    "inDegree": 2,
+    "inDegree": 3,
     "outDegree": 0,
-    "totalDegree": 2,
+    "totalDegree": 3,
     "birthPlace": "York",
     "birthCountry": "United States",
     "deathPlace": null,

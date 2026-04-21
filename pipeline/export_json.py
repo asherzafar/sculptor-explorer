@@ -10,6 +10,7 @@ from config import (
     WEB_DATA_DIR,
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
+    load_focus_sculptors,
 )
 from helpers import normalize_name
 
@@ -98,20 +99,51 @@ def create_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
 
 
 def create_edges_json(relations: pd.DataFrame) -> list[dict]:
-    """Create edges.json with relationship edges."""
+    """Create edges.json with relationship edges.
+
+    Preserves ALL edges, including those to external mentors. Each edge
+    records whether the `from` endpoint is an external mentor so the web
+    client can style it differently.
+    """
     if len(relations) == 0:
         return []
-    
+
     records = []
     for _, row in relations.iterrows():
         records.append({
             "fromQid": row["from_qid"],
             "toQid": row["to_qid"],
-            "fromName": row["source_label"],
-            "toName": row["sculptor_label"],
+            "fromName": row["from_name"],
+            "toName": row["to_name"],
             "relationType": row["relation_type"],
         })
-    
+
+    return records
+
+
+def create_external_mentors_json(external_mentors: pd.DataFrame) -> list[dict]:
+    """Create external_mentors.json: non-sculptor endpoints of lineage edges.
+
+    These are painters, composers, architects, and other teachers who
+    appear in Wikidata as `student of` / `influenced by` targets but are
+    not classified as sculptors themselves. Rendered as first-class nodes
+    on the lineage graph with a distinct visual style.
+    """
+    if len(external_mentors) == 0:
+        return []
+
+    records = []
+    for _, row in external_mentors.iterrows():
+        birth = row["birth_year"]
+        death = row["death_year"]
+        records.append({
+            "qid": row["qid"],
+            "name": row["name"],
+            "birthYear": int(birth) if pd.notna(birth) else None,
+            "deathYear": int(death) if pd.notna(death) else None,
+            "gender": row["gender"] if pd.notna(row["gender"]) else None,
+            "occupation": row["occupation"] if pd.notna(row["occupation"]) else None,
+        })
     return records
 
 
@@ -181,17 +213,67 @@ def create_geography_by_decade_json(nodes: pd.DataFrame) -> list[dict]:
 
 
 def create_timeline_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
-    """Create timeline_sculptors.json from focus sculptor data (replaces hand-maintained file)."""
-    focus_norm = set(normalize_name(n) for n in FOCUS_SCULPTOR_NAMES)
-    focus_df = nodes[nodes["name_norm"].isin(focus_norm)].copy()
-    focus_df = focus_df.sort_values("birth_year")
+    """Create timeline_sculptors.json driven by the curated focus CSV.
+
+    CSV is source of truth for the roster and dates — this guarantees every
+    curated sculptor appears even if Wikidata lacks them. Where a sculptor
+    IS in Wikidata we overlay QID, movement, and citizenship for richer
+    tooltips and click-through to detail pages. A synthetic slug-based id
+    is used when no QID is available.
+    """
+    focus_rows = load_focus_sculptors()
+
+    # Index Wikidata nodes by normalized name for overlay lookups
+    nodes_by_name = {}
+    for _, row in nodes.iterrows():
+        nodes_by_name[row["name_norm"]] = row
+
+    def _slugify(name: str) -> str:
+        norm = normalize_name(name)
+        return "curated-" + norm.replace(" ", "-")
 
     records = []
-    for _, row in focus_df.iterrows():
-        rec = _sculptor_record(row)
-        rec["id"] = rec.pop("qid")  # timeline uses 'id' not 'qid' for backward-compat
-        rec["source"] = "pipeline"
-        records.append(rec)
+    for focus in focus_rows:
+        name = focus["name"]
+        try:
+            birth = int(focus["birth_year"])
+        except (ValueError, TypeError):
+            # Skip entries without a birth year — we can't place them on a timeline
+            continue
+        death = None
+        if focus.get("death_year"):
+            try:
+                death = int(focus["death_year"])
+            except (ValueError, TypeError):
+                death = None
+
+        wd_row = nodes_by_name.get(normalize_name(name))
+        if wd_row is not None:
+            qid = wd_row["qid"]
+            movement = wd_row.get("movement_display")
+            citizenship = wd_row.get("citizenship_display")
+            # Prefer Wikidata dates only if they exist; otherwise keep CSV values
+            wd_birth = wd_row.get("birth_year")
+            wd_death = wd_row.get("death_year")
+            if pd.notna(wd_birth):
+                birth = int(wd_birth)
+            if pd.notna(wd_death):
+                death = int(wd_death)
+        else:
+            qid = _slugify(name)
+            movement = None
+            citizenship = None
+
+        records.append({
+            "id": qid,
+            "name": name,
+            "birthYear": birth,
+            "deathYear": death,
+            "birthDecade": (birth // 10) * 10,
+            "movement": movement if movement and movement != "No movement listed" else None,
+            "citizenship": citizenship if citizenship and citizenship != "Unknown" else None,
+            "source": focus.get("source", "fabio"),
+        })
     return records
 
 

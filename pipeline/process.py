@@ -11,6 +11,8 @@ from config import (
     MOVEMENTS_CACHE_PATH,
     CITIZENSHIPS_CACHE_PATH,
     RELATIONS_CACHE_PATH,
+    ENDPOINT_LABELS_CACHE_PATH,
+    MENTOR_META_CACHE_PATH,
     MET_OBJECTS_CACHE_PATH,
     AIC_OBJECTS_CACHE_PATH,
     NODES_ENRICHED_PATH,
@@ -21,6 +23,7 @@ from config import (
     REFRESH_PROCESSING,
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
+    PROCESSED_DIR,
 )
 from query_enrichment import (
     SITELINKS_CACHE_PATH,
@@ -302,37 +305,102 @@ def _build_native_name_enrichment() -> pd.DataFrame:
 
 
 def process_relations(nodes_enriched: pd.DataFrame) -> pd.DataFrame:
-    """Clean relations and keep only edges where both endpoints are in node set."""
+    """Clean relations and attach labels from the endpoint labels cache.
+
+    Does NOT filter edges by whether both endpoints are sculptors: cross-media
+    mentors (painters, composers, architects who taught sculptors) are common
+    in academic training and are preserved as external nodes. They are later
+    enriched with birth/death/occupation via build_external_mentors().
+
+    Output columns: from_qid, to_qid, relation_type, from_name, to_name.
+    """
     relations_raw = pd.read_parquet(RELATIONS_CACHE_PATH)
-    
+
     if len(relations_raw) == 0:
         return pd.DataFrame({
             "from_qid": pd.Series([], dtype=str),
-            "source_label": pd.Series([], dtype=str),
             "to_qid": pd.Series([], dtype=str),
-            "sculptor_label": pd.Series([], dtype=str),
             "relation_type": pd.Series([], dtype=str),
+            "from_name": pd.Series([], dtype=str),
+            "to_name": pd.Series([], dtype=str),
         })
-    
+
     relations = pd.DataFrame({
         "from_qid": relations_raw["from_qid"].astype(str),
-        "source_label": relations_raw["sourceLabel"].astype(str),
         "to_qid": relations_raw["to_qid"].astype(str),
-        "sculptor_label": relations_raw["sculptorLabel"].astype(str),
         "relation_type": relations_raw["relation_type"].astype(str),
-    })
-    
-    # Keep only edges where both endpoints are in our node table
+    }).drop_duplicates()
+
+    # Keep edges where target (to_qid, the sculptor) is in our node table.
+    # The sculptor_qids query was used to fetch these, so ~all should pass,
+    # but this guards against drift between cache vintages.
     qid_set = set(nodes_enriched["qid"])
-    relations = relations[
-        relations["from_qid"].isin(qid_set) & 
-        relations["to_qid"].isin(qid_set)
-    ].copy()
-    
-    # Remove duplicates
-    relations = relations.drop_duplicates().copy()
-    
+    relations = relations[relations["to_qid"].isin(qid_set)].copy()
+
+    # Attach labels (prefer multi-language fallback from endpoint_labels cache,
+    # fall back to nodes_enriched 'name' for sculptors already in our set).
+    label_map = {}
+    if ENDPOINT_LABELS_CACHE_PATH.exists():
+        labels_df = pd.read_parquet(ENDPOINT_LABELS_CACHE_PATH)
+        label_map = dict(zip(labels_df["qid_clean"], labels_df["label"]))
+    # Sculptor names take precedence — they're canonical English labels
+    for _, row in nodes_enriched.iterrows():
+        label_map[row["qid"]] = row["name"]
+
+    relations["from_name"] = relations["from_qid"].map(label_map).fillna(relations["from_qid"])
+    relations["to_name"] = relations["to_qid"].map(label_map).fillna(relations["to_qid"])
+
     return relations
+
+
+def build_external_mentors(
+    relations: pd.DataFrame,
+    nodes_enriched: pd.DataFrame,
+) -> pd.DataFrame:
+    """Build a dataframe of non-sculptor mentors referenced by edges.
+
+    Pulls labels from the endpoint_labels cache and birth/death/gender/
+    occupation from the mentor_meta cache. Rows may be missing any of
+    those optional fields — all defaults to None.
+
+    Output columns: qid, name, birth_year, death_year, gender, occupation.
+    """
+    sculptor_qids = set(nodes_enriched["qid"])
+    mentor_qids = sorted(set(relations["from_qid"]) - sculptor_qids)
+
+    if not mentor_qids:
+        return pd.DataFrame(columns=["qid", "name", "birth_year", "death_year", "gender", "occupation"])
+
+    # Labels
+    labels = (
+        pd.read_parquet(ENDPOINT_LABELS_CACHE_PATH)
+        if ENDPOINT_LABELS_CACHE_PATH.exists()
+        else pd.DataFrame(columns=["qid_clean", "label"])
+    )
+    label_map = dict(zip(labels["qid_clean"], labels["label"]))
+
+    # Meta
+    meta = (
+        pd.read_parquet(MENTOR_META_CACHE_PATH)
+        if MENTOR_META_CACHE_PATH.exists()
+        else pd.DataFrame(columns=["qid_clean", "birth", "death", "gender", "occupation"])
+    )
+    meta = meta.drop_duplicates("qid_clean", keep="first").set_index("qid_clean")
+
+    records = []
+    for qid in mentor_qids:
+        m = meta.loc[qid] if qid in meta.index else None
+        birth_y = extract_year(parse_wikidata_date(m["birth"])) if m is not None else None
+        death_y = extract_year(parse_wikidata_date(m["death"])) if m is not None else None
+        records.append({
+            "qid": qid,
+            "name": label_map.get(qid, qid),
+            "birth_year": birth_y,
+            "death_year": death_y,
+            "gender": (m["gender"] if m is not None and pd.notna(m["gender"]) else None),
+            "occupation": (m["occupation"] if m is not None and pd.notna(m["occupation"]) else None),
+        })
+    return pd.DataFrame(records)
 
 
 def compute_graph_metrics(nodes_enriched: pd.DataFrame, relations: pd.DataFrame) -> pd.DataFrame:
@@ -548,12 +616,18 @@ def run_processing():
         nodes_enriched.to_parquet(NODES_ENRICHED_PATH, index=False)
         print(f"✓ Enriched nodes: {len(nodes_enriched)} rows")
     
-    # Process relations
+    # Process relations (keep ALL edges including cross-media mentors)
     relations = process_relations(nodes_enriched)
     relations.to_parquet(RELATIONS_CLEAN_PATH, index=False)
-    print(f"✓ Relations after node-table filter: {len(relations)} edges")
-    
-    # Compute graph metrics
+    print(f"✓ Relations after target-sculptor filter: {len(relations)} edges")
+
+    # Build external mentor table (non-sculptor endpoints, enriched with meta)
+    external_mentors = build_external_mentors(relations, nodes_enriched)
+    external_mentors_path = PROCESSED_DIR / f"external_mentors_{MIN_BIRTH_YEAR}plus.parquet"
+    external_mentors.to_parquet(external_mentors_path, index=False)
+    print(f"✓ External mentors: {len(external_mentors)} rows")
+
+    # Compute graph metrics (uses all edges, including those to external mentors)
     nodes_with_metrics = compute_graph_metrics(nodes_enriched, relations)
 
     # Compute A.3 inclusion signals (after edges are counted)

@@ -1,1360 +1,482 @@
 [
   {
+    "id": "curated-hiram-powers",
+    "name": "Hiram Powers",
+    "birthYear": 1805,
+    "deathYear": 1873,
+    "birthDecade": 1800,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "Q2069921",
     "name": "John Quincy Adams Ward",
     "birthYear": 1830,
     "deathYear": 1910,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1830,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "Urbana",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 10,
-    "nonEnSitelinkCount": 9,
-    "inclusionSignals": [
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q2069921",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q30755",
     "name": "Auguste Rodin",
     "birthYear": 1840,
     "deathYear": 1917,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1840,
     "movement": "Symbolism",
     "citizenship": "France",
-    "citizenships": [
-      "France"
-    ],
-    "birthDecade": 1840,
-    "inDegree": 2,
-    "outDegree": 6,
-    "totalDegree": 8,
-    "birthPlace": "Paris",
-    "birthCountry": "France",
-    "deathPlace": "Meudon",
-    "deathCountry": "France",
-    "nativeName": "Auguste Rodin",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 94,
-    "nonEnSitelinkCount": 93,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q30755",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q770625",
     "name": "Augustus Saint-Gaudens",
     "birthYear": 1848,
     "deathYear": 1907,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1840,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "Dublin",
-    "birthCountry": "Ireland",
-    "deathPlace": "Cornish",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 20,
-    "nonEnSitelinkCount": 19,
-    "inclusionSignals": [
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q770625",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q720910",
     "name": "Daniel Chester French",
     "birthYear": 1850,
     "deathYear": 1931,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1850,
     "movement": "American Renaissance",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1850,
-    "inDegree": 2,
-    "outDegree": 0,
-    "totalDegree": 2,
-    "birthPlace": null,
-    "birthCountry": null,
-    "deathPlace": "Stockbridge",
-    "deathCountry": "United States",
-    "nativeName": "Daniel Chester French",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 26,
-    "nonEnSitelinkCount": 25,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q720910",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Aristide Maillol",
-    "birthYear": 1861,
-    "deathYear": 1944,
-    "alive": false,
-    "gender": "male",
-    "movement": "Symbolism",
-    "citizenship": "France",
-    "citizenships": [
-      "France"
-    ],
+    "id": "curated-attilio-piccirilli",
+    "name": "Attilio Piccirilli",
+    "birthYear": 1866,
+    "deathYear": 1945,
     "birthDecade": 1860,
-    "inDegree": 2,
-    "outDegree": 1,
-    "totalDegree": 3,
-    "birthPlace": "Banyuls-sur-Mer",
-    "birthCountry": "France",
-    "deathPlace": "Banyuls-sur-Mer",
-    "deathCountry": "France",
-    "nativeName": "Aristide Maillol",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 40,
-    "nonEnSitelinkCount": 39,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q153920",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
   },
   {
-    "name": "Camille Claudel",
-    "birthYear": 1864,
-    "deathYear": 1943,
-    "alive": false,
-    "gender": "female",
-    "movement": "Expressionism",
-    "citizenship": "France",
-    "citizenships": [
-      "France"
-    ],
-    "birthDecade": 1860,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "F\u00e8re-en-Tardenois",
-    "birthCountry": "France",
-    "deathPlace": "Montfavet",
-    "deathCountry": "France",
-    "nativeName": "Camille Claudel",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 48,
-    "nonEnSitelinkCount": 47,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q120582",
-    "source": "pipeline"
-  },
-  {
+    "id": "Q114552",
     "name": "Karl Bitter",
     "birthYear": 1867,
     "deathYear": 1920,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1860,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Vienna",
-    "birthCountry": "Austria",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "Karl Bitter",
-    "nativeLang": "de",
-    "authorityTypes": [
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 8,
-    "nonEnSitelinkCount": 7,
-    "inclusionSignals": [
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q114552",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q336432",
     "name": "Gutzon Borglum",
     "birthYear": 1867,
     "deathYear": 1941,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1860,
-    "inDegree": 0,
-    "outDegree": 2,
-    "totalDegree": 2,
-    "birthPlace": "St. Charles",
-    "birthCountry": "United States",
-    "deathPlace": "Chicago",
-    "deathCountry": "United States",
-    "nativeName": "Gutzon Borglum",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 34,
-    "nonEnSitelinkCount": 33,
-    "inclusionSignals": [
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q336432",
-    "source": "pipeline"
-  },
-  {
-    "name": "Gertrude Vanderbilt Whitney",
-    "birthYear": 1875,
-    "deathYear": 1942,
-    "alive": false,
-    "gender": "female",
-    "movement": "No movement listed",
+    "movement": null,
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1870,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Manhattan",
-    "birthCountry": "United States",
-    "deathPlace": "Manhattan",
-    "deathCountry": "United States",
-    "nativeName": "Gertrude Vanderbilt Whitney",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 20,
-    "nonEnSitelinkCount": 19,
-    "inclusionSignals": [
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q271910",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q48548",
     "name": "Carl Milles",
     "birthYear": 1875,
     "deathYear": 1955,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
+    "birthDecade": 1870,
+    "movement": null,
     "citizenship": "Sweden",
-    "citizenships": [
-      "Sweden"
-    ],
-    "birthDecade": 1870,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "Lagga",
-    "birthCountry": "Sweden",
-    "deathPlace": "Liding\u00f6 Parish",
-    "deathCountry": "Sweden",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 27,
-    "nonEnSitelinkCount": 26,
-    "inclusionSignals": [
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q48548",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Constantin Br\u00e2ncu\u0219i",
-    "birthYear": 1876,
-    "deathYear": 1957,
-    "alive": false,
-    "gender": "male",
-    "movement": "modernism",
-    "citizenship": "France",
-    "citizenships": [
-      "France",
-      "Romania"
-    ],
+    "id": "Q271910",
+    "name": "Gertrude Vanderbilt Whitney",
+    "birthYear": 1875,
+    "deathYear": 1942,
     "birthDecade": 1870,
-    "inDegree": 2,
-    "outDegree": 2,
-    "totalDegree": 4,
-    "birthPlace": "Hobi\u021ba",
-    "birthCountry": "Romania",
-    "deathPlace": "Paris",
-    "deathCountry": "France",
-    "nativeName": "Constantin Br\u00e2ncu\u0219i",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 56,
-    "nonEnSitelinkCount": 55,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q153048",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q445026",
     "name": "Anna Hyatt Huntington",
     "birthYear": 1876,
     "deathYear": 1973,
-    "alive": false,
-    "gender": "female",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1870,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Cambridge",
-    "birthCountry": "United States",
-    "deathPlace": "Redding",
-    "deathCountry": "United States",
-    "nativeName": "Anna Hyatt Huntington",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 18,
-    "nonEnSitelinkCount": 17,
-    "inclusionSignals": [
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q445026",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q153048",
+    "name": "Constantin Br\u00e2ncu\u0219i",
+    "birthYear": 1876,
+    "deathYear": 1957,
+    "birthDecade": 1870,
+    "movement": "modernism",
+    "citizenship": "France",
+    "source": "fabio"
+  },
+  {
+    "id": "Q71409",
+    "name": "Lee Lawrie",
+    "birthYear": 1877,
+    "deathYear": 1963,
+    "birthDecade": 1870,
+    "movement": null,
+    "citizenship": "Germany",
+    "source": "fabio"
+  },
+  {
+    "id": "Q5593",
     "name": "Pablo Picasso",
     "birthYear": 1881,
     "deathYear": 1973,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1880,
     "movement": "surrealism",
     "citizenship": "Spain",
-    "citizenships": [
-      "Spain"
-    ],
-    "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 10,
-    "totalDegree": 10,
-    "birthPlace": "M\u00e1laga",
-    "birthCountry": "Spain",
-    "deathPlace": "Mas Notre-Dame-de-Vie de Mougins",
-    "deathCountry": "France",
-    "nativeName": "Pablo Picasso",
-    "nativeLang": "es",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 207,
-    "nonEnSitelinkCount": 206,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q5593",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "curated-gaston-lachaise",
+    "name": "Gaston Lachaise",
+    "birthYear": 1882,
+    "deathYear": 1935,
+    "birthDecade": 1880,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "Q1288595",
     "name": "Elie Nadelman",
     "birthYear": 1882,
     "deathYear": 1946,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States",
-      "Poland"
-    ],
     "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Warsaw",
-    "birthCountry": "Poland",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 11,
-    "nonEnSitelinkCount": 10,
-    "inclusionSignals": [
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q1288595",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q3844044",
     "name": "Malvina Hoffman",
     "birthYear": 1885,
     "deathYear": 1966,
-    "alive": false,
-    "gender": "female",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
     "birthDecade": 1880,
-    "inDegree": 2,
-    "outDegree": 0,
-    "totalDegree": 2,
-    "birthPlace": "New York City",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 8,
-    "nonEnSitelinkCount": 7,
-    "inclusionSignals": [
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q3844044",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
-    "name": "Alexander Archipenko",
-    "birthYear": 1887,
-    "deathYear": 1964,
-    "alive": false,
-    "gender": "male",
-    "movement": "cubism",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States",
-      "Russian Empire"
-    ],
+    "id": "curated-paul-manship",
+    "name": "Paul Manship",
+    "birthYear": 1885,
+    "deathYear": 1966,
     "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Kyiv",
-    "birthCountry": "Ukraine",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u041f\u043e\u0440\u0444\u0438\u0440\u043e\u0432\u0438\u0447 \u0410\u0440\u0445\u0438\u043f\u0435\u043d\u043a\u043e",
-    "nativeLang": "uk",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 48,
-    "nonEnSitelinkCount": 47,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q157578",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
   },
   {
+    "id": "Q5912",
     "name": "Marcel Duchamp",
     "birthYear": 1887,
     "deathYear": 1968,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1880,
     "movement": "conceptual art",
     "citizenship": "France",
-    "citizenships": [
-      "United States",
-      "France"
-    ],
-    "birthDecade": 1880,
-    "inDegree": 0,
-    "outDegree": 3,
-    "totalDegree": 3,
-    "birthPlace": "Blainville-Crevon",
-    "birthCountry": "France",
-    "deathPlace": "Neuilly-sur-Seine",
-    "deathCountry": "France",
-    "nativeName": "Marcel Duchamp",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 75,
-    "nonEnSitelinkCount": 74,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q5912",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "curated-william-zorach",
+    "name": "William Zorach",
+    "birthYear": 1887,
+    "deathYear": 1966,
+    "birthDecade": 1880,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "Q273087",
     "name": "Augusta Savage",
     "birthYear": 1892,
     "deathYear": 1962,
-    "alive": false,
-    "gender": "female",
+    "birthDecade": 1890,
     "movement": "Harlem Renaissance",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1890,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Green Cove Springs",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "Augusta Savage",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 21,
-    "nonEnSitelinkCount": 20,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q273087",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q151580",
     "name": "Alexander Calder",
     "birthYear": 1898,
     "deathYear": 1976,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1890,
     "movement": "kinetic art",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1890,
-    "inDegree": 0,
-    "outDegree": 1,
-    "totalDegree": 1,
-    "birthPlace": "Lawnton",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "Alexander Calder",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 48,
-    "nonEnSitelinkCount": 47,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q151580",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Henry Moore",
-    "birthYear": 1898,
-    "deathYear": 1986,
-    "alive": false,
-    "gender": "male",
-    "movement": "contemporary art",
-    "citizenship": "United Kingdom",
-    "citizenships": [
-      "United Kingdom",
-      "United Kingdom of Great Britain and Ireland"
-    ],
-    "birthDecade": 1890,
-    "inDegree": 0,
-    "outDegree": 1,
-    "totalDegree": 1,
-    "birthPlace": "Castleford",
-    "birthCountry": "United Kingdom",
-    "deathPlace": "Much Hadham",
-    "deathCountry": "United Kingdom",
-    "nativeName": "Henry Moore",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 64,
-    "nonEnSitelinkCount": 63,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q151097",
-    "source": "pipeline"
-  },
-  {
+    "id": "Q7531",
     "name": "Louise Nevelson",
     "birthYear": 1899,
     "deathYear": 1988,
-    "alive": false,
-    "gender": "female",
+    "birthDecade": 1890,
     "movement": "abstract expressionism",
     "citizenship": "United States",
-    "citizenships": [
-      "United States",
-      "Russian Empire"
-    ],
-    "birthDecade": 1890,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Pereiaslav",
-    "birthCountry": "Ukraine",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 25,
-    "nonEnSitelinkCount": 24,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q7531",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Walker Hancock",
-    "birthYear": 1901,
-    "deathYear": 1998,
-    "alive": false,
-    "gender": "male",
-    "movement": "No movement listed",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1900,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "St. Louis",
-    "birthCountry": "United States",
-    "deathPlace": "Gloucester",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 4,
-    "nonEnSitelinkCount": 3,
-    "inclusionSignals": [
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q1543157",
-    "source": "pipeline"
-  },
-  {
+    "id": "Q157194",
     "name": "Alberto Giacometti",
     "birthYear": 1901,
     "deathYear": 1966,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1900,
     "movement": "surrealism",
     "citizenship": "France",
-    "citizenships": [
-      "Switzerland",
-      "France"
-    ],
-    "birthDecade": 1900,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Borgonovo",
-    "birthCountry": "Switzerland",
-    "deathPlace": "Chur",
-    "deathCountry": "Switzerland",
-    "nativeName": "Alberto Giacometti",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 55,
-    "nonEnSitelinkCount": 54,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q157194",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Barbara Hepworth",
-    "birthYear": 1903,
-    "deathYear": 1975,
-    "alive": false,
-    "gender": "female",
-    "movement": "Catalan modernism",
-    "citizenship": "United Kingdom",
-    "citizenships": [
-      "United Kingdom"
-    ],
+    "id": "Q1543157",
+    "name": "Walker Hancock",
+    "birthYear": 1901,
+    "deathYear": 1998,
     "birthDecade": 1900,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Wakefield",
-    "birthCountry": "United Kingdom",
-    "deathPlace": "St Ives",
-    "deathCountry": "United Kingdom",
-    "nativeName": "Barbara Hepworth",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 36,
-    "nonEnSitelinkCount": 35,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q234109",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": "United States",
+    "source": "fabio"
   },
   {
+    "id": "Q442628",
     "name": "Isamu Noguchi",
     "birthYear": 1904,
     "deathYear": 1988,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1900,
     "movement": "abstract expressionism",
     "citizenship": "United States",
-    "citizenships": [
-      "United States",
-      "Japan"
-    ],
-    "birthDecade": 1900,
-    "inDegree": 2,
-    "outDegree": 0,
-    "totalDegree": 2,
-    "birthPlace": "Los Angeles",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "Isamu Noguchi",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 30,
-    "nonEnSitelinkCount": 29,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q442628",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "David Smith",
-    "birthYear": 1906,
-    "deathYear": 1965,
-    "alive": false,
-    "gender": "male",
-    "movement": "abstract expressionism",
-    "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
+    "id": "curated-charlotte-dunwiddie",
+    "name": "Charlotte Dunwiddie",
+    "birthYear": 1907,
+    "deathYear": 1995,
     "birthDecade": 1900,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "Decatur",
-    "birthCountry": "United States",
-    "deathPlace": "Bennington",
-    "deathCountry": "United States",
-    "nativeName": "David Smith",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 16,
-    "nonEnSitelinkCount": 15,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q726169",
-    "source": "pipeline"
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
   },
   {
+    "id": "Q159409",
     "name": "Louise Bourgeois",
     "birthYear": 1911,
     "deathYear": 2010,
-    "alive": false,
-    "gender": "female",
+    "birthDecade": 1910,
     "movement": "abstract expressionism",
     "citizenship": "France",
-    "citizenships": [
-      "United States",
-      "France"
-    ],
-    "birthDecade": 1910,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "6th arrondissement of Paris",
-    "birthCountry": "France",
-    "deathPlace": "Beth Israel Medical Center",
-    "deathCountry": "United States",
-    "nativeName": "Louise Bourgeois",
-    "nativeLang": "fr",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 47,
-    "nonEnSitelinkCount": 46,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q159409",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q551899",
     "name": "Tony Smith",
     "birthYear": 1912,
     "deathYear": 1980,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1910,
     "movement": "abstract art",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1910,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "South Orange",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 12,
-    "nonEnSitelinkCount": 11,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q551899",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "curated-marcel-jovine",
+    "name": "Marcel Jovine",
+    "birthYear": 1921,
+    "deathYear": 2003,
+    "birthDecade": 1920,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "curated-richard-mcdermott-miller",
+    "name": "Richard McDermott Miller",
+    "birthYear": 1922,
+    "deathYear": 2004,
+    "birthDecade": 1920,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "curated-stanley-bleifeld",
+    "name": "Stanley Bleifeld",
+    "birthYear": 1924,
+    "deathYear": 2011,
+    "birthDecade": 1920,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "curated-neil-estern",
+    "name": "Neil Estern",
+    "birthYear": 1926,
+    "deathYear": 2019,
+    "birthDecade": 1920,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "Q250293",
     "name": "Donald Judd",
     "birthYear": 1928,
     "deathYear": 1994,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1920,
     "movement": "Minimalism",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1920,
-    "inDegree": 0,
-    "outDegree": 1,
-    "totalDegree": 1,
-    "birthPlace": "Excelsior Springs",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 30,
-    "nonEnSitelinkCount": 29,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q250293",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q315348",
     "name": "Carl Andre",
     "birthYear": 1935,
     "deathYear": 2024,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1930,
     "movement": "Minimalism",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1930,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Quincy",
-    "birthCountry": "United States",
-    "deathPlace": "New York City",
-    "deathCountry": "United States",
-    "nativeName": "Carl Andre",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 34,
-    "nonEnSitelinkCount": 33,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q315348",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "Q321245",
     "name": "Richard Serra",
     "birthYear": 1938,
     "deathYear": 2024,
-    "alive": false,
-    "gender": "male",
+    "birthDecade": 1930,
     "movement": "Minimalism",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1930,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "San Francisco",
-    "birthCountry": "United States",
-    "deathPlace": "Orient",
-    "deathCountry": "United States",
-    "nativeName": "Richard Serra",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 38,
-    "nonEnSitelinkCount": 37,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q321245",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
-    "name": "Anish Kapoor",
-    "birthYear": 1954,
-    "deathYear": null,
-    "alive": true,
-    "gender": "male",
-    "movement": "contemporary art",
-    "citizenship": "United Kingdom",
-    "citizenships": [
-      "United Kingdom",
-      "India"
-    ],
-    "birthDecade": 1950,
-    "inDegree": 1,
-    "outDegree": 0,
-    "totalDegree": 1,
-    "birthPlace": "Mumbai",
-    "birthCountry": "India",
-    "deathPlace": null,
-    "deathCountry": null,
-    "nativeName": "Anish Kapoor",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ndl",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 35,
-    "nonEnSitelinkCount": 34,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "multi_citz",
-      "sitelinks"
-    ],
-    "id": "Q327293",
-    "source": "pipeline"
-  },
-  {
+    "id": "Q297525",
     "name": "Jeff Koons",
     "birthYear": 1955,
     "deathYear": null,
-    "alive": true,
-    "gender": "male",
+    "birthDecade": 1950,
     "movement": "pop art",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1950,
-    "inDegree": 2,
-    "outDegree": 0,
-    "totalDegree": 2,
-    "birthPlace": "York",
-    "birthCountry": "United States",
-    "deathPlace": null,
-    "deathCountry": null,
-    "nativeName": "Jeff Koons",
-    "nativeLang": "en",
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 37,
-    "nonEnSitelinkCount": 36,
-    "inclusionSignals": [
-      "movement",
-      "edge",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q297525",
-    "source": "pipeline"
+    "source": "fabio"
   },
   {
+    "id": "curated-dan-ostermiller",
+    "name": "Dan Ostermiller",
+    "birthYear": 1956,
+    "deathYear": null,
+    "birthDecade": 1950,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "curated-simone-leigh",
+    "name": "Simone Leigh",
+    "birthYear": 1967,
+    "deathYear": null,
+    "birthDecade": 1960,
+    "movement": null,
+    "citizenship": null,
+    "source": "fabio"
+  },
+  {
+    "id": "Q120582",
+    "name": "Camille Claudel",
+    "birthYear": 1864,
+    "deathYear": 1943,
+    "birthDecade": 1860,
+    "movement": "Expressionism",
+    "citizenship": "France",
+    "source": "original"
+  },
+  {
+    "id": "Q153920",
+    "name": "Aristide Maillol",
+    "birthYear": 1861,
+    "deathYear": 1944,
+    "birthDecade": 1860,
+    "movement": "Symbolism",
+    "citizenship": "France",
+    "source": "original"
+  },
+  {
+    "id": "curated-antoine-bourdelle",
+    "name": "Antoine Bourdelle",
+    "birthYear": 1861,
+    "deathYear": 1929,
+    "birthDecade": 1860,
+    "movement": null,
+    "citizenship": null,
+    "source": "original"
+  },
+  {
+    "id": "Q157578",
+    "name": "Alexander Archipenko",
+    "birthYear": 1887,
+    "deathYear": 1964,
+    "birthDecade": 1880,
+    "movement": "cubism",
+    "citizenship": "United States",
+    "source": "original"
+  },
+  {
+    "id": "Q151097",
+    "name": "Henry Moore",
+    "birthYear": 1898,
+    "deathYear": 1986,
+    "birthDecade": 1890,
+    "movement": "contemporary art",
+    "citizenship": "United Kingdom",
+    "source": "original"
+  },
+  {
+    "id": "Q234109",
+    "name": "Barbara Hepworth",
+    "birthYear": 1903,
+    "deathYear": 1975,
+    "birthDecade": 1900,
+    "movement": "Catalan modernism",
+    "citizenship": "United Kingdom",
+    "source": "original"
+  },
+  {
+    "id": "Q726169",
+    "name": "David Smith",
+    "birthYear": 1906,
+    "deathYear": 1965,
+    "birthDecade": 1900,
+    "movement": "abstract expressionism",
+    "citizenship": "United States",
+    "source": "original"
+  },
+  {
+    "id": "Q327293",
+    "name": "Anish Kapoor",
+    "birthYear": 1954,
+    "deathYear": null,
+    "birthDecade": 1950,
+    "movement": "contemporary art",
+    "citizenship": "United Kingdom",
+    "source": "original"
+  },
+  {
+    "id": "Q235063",
     "name": "Maya Lin",
     "birthYear": 1959,
     "deathYear": null,
-    "alive": true,
-    "gender": "female",
+    "birthDecade": 1950,
     "movement": "contemporary art",
     "citizenship": "United States",
-    "citizenships": [
-      "United States"
-    ],
-    "birthDecade": 1950,
-    "inDegree": 0,
-    "outDegree": 0,
-    "totalDegree": 0,
-    "birthPlace": "Athens",
-    "birthCountry": "United States",
-    "deathPlace": null,
-    "deathCountry": null,
-    "nativeName": null,
-    "nativeLang": null,
-    "authorityTypes": [
-      "bne",
-      "bnf",
-      "dnb",
-      "lcnaf",
-      "ulan",
-      "viaf"
-    ],
-    "sitelinkCount": 28,
-    "nonEnSitelinkCount": 27,
-    "inclusionSignals": [
-      "movement",
-      "focus",
-      "sitelinks"
-    ],
-    "id": "Q235063",
-    "source": "pipeline"
+    "source": "original"
   }
 ]
