@@ -20,7 +20,7 @@ compatibility_date = "2026-04-24"
 [assets]
 # Next.js static export drops everything here when `next build` runs
 # with `output: "export"` in next.config.ts.
-directory = "./out"
+directory = "./web/out"
 
 # Serve Next's emitted 404.html for unmatched routes rather than the
 # default empty 204. We're a true multi-page static site (3,640 routes),
