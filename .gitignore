@@ -36,3 +36,5 @@ Thumbs.db
 
 # Note: web/public/data/*.json IS committed (small, needed at build time)
 # Note: overrides/*.csv IS committed (auditable quality corrections)
+.vercel
+.env*.local
