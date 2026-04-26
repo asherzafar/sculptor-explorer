@@ -47,14 +47,18 @@ Steps: Wikidata SPARQL → enrich & process → export JSON to `web/public/data/
 
 ## Deployment
 
-Hosted on **Cloudflare Pages** (unlimited bandwidth, 500 builds/mo, auto-deploys on push to `main`).
+Hosted on **Vercel** (free tier, native Next.js, auto-deploys on push to `main`).
 
 | Setting | Value |
 |---|---|
-| Framework preset | Next.js (Static HTML Export) |
+| Framework preset | Next.js (auto-detected) |
 | Root directory | `web` |
-| Build command | `npm run build` |
-| Build output directory | `out` |
+| Build command | `npm run build` (default) |
+| Output directory | `out` (from `output: "export"` in `next.config.ts`) |
 | Node version | 20 (pinned via `web/.nvmrc` and `engines` in `package.json`) |
 
-Legacy Netlify config (`web/netlify.toml`) is retained as a fallback target but not the active host.
+### Hosting history
+
+- **Netlify** (initial): stopped auto-publishing around 2026-04-19, likely free-tier build-minute exhaustion. `web/netlify.toml` retained as a fallback target.
+- **Cloudflare Workers + Static Assets** (briefly attempted, 2026-04-26): build succeeded but the deploy hit Cloudflare's free-tier 20,000-file manifest limit (we ship ~32k files, mostly per-sculptor static HTML). Workable only on the $5/mo Workers Paid plan.
+- **Vercel** (current): no file-count limit, native Next.js support, free tier covers our traffic.
