@@ -44,3 +44,17 @@ cd pipeline && pip install -r requirements.txt && python run_all.py
 ```
 
 Steps: Wikidata SPARQL → enrich & process → export JSON to `web/public/data/`
+
+## Deployment
+
+Hosted on **Cloudflare Pages** (unlimited bandwidth, 500 builds/mo, auto-deploys on push to `main`).
+
+| Setting | Value |
+|---|---|
+| Framework preset | Next.js (Static HTML Export) |
+| Root directory | `web` |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| Node version | 20 (pinned via `web/.nvmrc` and `engines` in `package.json`) |
+
+Legacy Netlify config (`web/netlify.toml`) is retained as a fallback target but not the active host.

@@ -1,0 +1,32 @@
+#:schema node_modules/wrangler/config-schema.json
+
+# Cloudflare Workers config for the Sculpture in Data static site.
+#
+# This is a "static-assets-only" Worker — no `main` script, just the
+# Next.js export output uploaded as static files. Cloudflare serves them
+# from its global edge CDN with unlimited bandwidth on the free tier
+# (100k requests/day, plenty for a portfolio site).
+#
+# Pages-vs-Workers note: as of late 2025 Cloudflare merged the two
+# products and routes new accounts through this Workers flow. The legacy
+# Cloudflare Pages dashboard flow (with framework presets, build output
+# directory fields, etc.) is no longer surfaced for new accounts even
+# though the official docs still reference it. This config is the
+# replacement.
+
+name = "sculpture-in-data"
+compatibility_date = "2026-04-24"
+
+[assets]
+# Next.js static export drops everything here when `next build` runs
+# with `output: "export"` in next.config.ts.
+directory = "./out"
+
+# Serve Next's emitted 404.html for unmatched routes rather than the
+# default empty 204. We're a true multi-page static site (3,640 routes),
+# not an SPA, so "single-page-application" mode would be wrong.
+not_found_handling = "404-page"
+
+# Default URL handling: requests to /foo serve /foo.html, /foo/ serves
+# /foo/index.html, etc. Matches Next.js export conventions out of the
+# box, no extra config needed.
