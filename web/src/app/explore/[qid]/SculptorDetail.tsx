@@ -7,6 +7,8 @@ import { ExternalLink, ArrowLeft } from "lucide-react";
 import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptors } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
+import { LoadingState } from "@/components/LoadingState";
+import { EmptyState } from "@/components/EmptyState";
 
 /**
  * Portrait — Phase 4 visual polish.
@@ -118,7 +120,7 @@ export function SculptorDetail({ qid }: { qid: string }) {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-text-secondary">Loading...</p>
+        <LoadingState />
       </div>
     );
   }
@@ -126,10 +128,18 @@ export function SculptorDetail({ qid }: { qid: string }) {
   if (!sculptor) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="font-display text-2xl font-bold text-text-primary mb-4">Sculptor not found</h1>
-        <Link href="/explore" className="text-accent-primary hover:underline">
-          ← Back to explore
-        </Link>
+        <EmptyState
+          title="Sculptor not found"
+          description={`No record matches the QID "${qid}". The link may be stale or the sculptor may have been excluded by the inclusion criteria — see /transparency for what's filtered.`}
+          action={
+            <Link
+              href="/explore"
+              className="text-sm text-accent-primary hover:underline"
+            >
+              ← Back to explore
+            </Link>
+          }
+        />
       </div>
     );
   }
@@ -333,11 +343,21 @@ export function SculptorDetail({ qid }: { qid: string }) {
         )}
         {!crossRefState && <div className="mb-3" />}
 
-        {/* Movement pill — only if present */}
-        {hasMovement && (
+        {/* Movement pill — only if present.
+            Note (Phase 4): movement absence is rendered explicitly rather
+            than silently hidden. ~73% of included sculptors have no
+            recorded movement on Wikidata, so silently dropping the line
+            implied data we do not have. The muted "—" framing is
+            deliberately small so it doesn't compete with the lifespan and
+            citizenship lines, but it does tell the reader we checked. */}
+        {hasMovement ? (
           <span className="inline-block rounded-full bg-accent-muted text-accent-primary text-xs font-medium px-3 py-1 mb-4">
             {movementLabel}
           </span>
+        ) : (
+          <p className="text-xs text-text-tertiary mb-4">
+            No art movement listed on Wikidata for this sculptor.
+          </p>
         )}
 
         {/* Citizenship — pills when multi-, inline otherwise. Gender stays
@@ -369,41 +389,55 @@ export function SculptorDetail({ qid }: { qid: string }) {
         {/* Place-of-birth / place-of-death. When Wikidata lacks the
             place but Getty has it (Phase 3b), surface Getty's value
             with a small attribution so the user can tell which source
-            said what. */}
-        {(hasBirthPlace || hasDeathPlace || gettyFillsBirth || gettyFillsDeath) && (
-          <div className="text-sm text-text-secondary mb-3 space-y-0.5">
-            {hasBirthPlace && (
-              <p>
-                <span className="text-text-tertiary">Born in</span>{" "}
-                {birthPlaceLine}
+            said what. Phase 4: when neither source has a place we still
+            render a muted "not recorded" line — silently hiding the
+            block lied about whether we checked. We collapse to a single
+            line if only one of birth/death is missing so the absence
+            doesn't dominate the layout. */}
+        <div className="text-sm text-text-secondary mb-3 space-y-0.5">
+          {hasBirthPlace ? (
+            <p>
+              <span className="text-text-tertiary">Born in</span>{" "}
+              {birthPlaceLine}
+            </p>
+          ) : gettyFillsBirth && getty?.birthPlace ? (
+            <p>
+              <span className="text-text-tertiary">Born in</span>{" "}
+              {getty.birthPlace}
+              <span className="ml-1.5 text-xs italic text-text-tertiary">
+                (via Getty)
+              </span>
+            </p>
+          ) : (
+            <p className="text-xs text-text-tertiary">
+              Birthplace not recorded on Wikidata
+              {getty ? " or Getty" : ""}.
+            </p>
+          )}
+          {hasDeathPlace ? (
+            <p>
+              <span className="text-text-tertiary">Died in</span>{" "}
+              {deathPlaceLine}
+            </p>
+          ) : gettyFillsDeath && getty?.deathPlace ? (
+            <p>
+              <span className="text-text-tertiary">Died in</span>{" "}
+              {getty.deathPlace}
+              <span className="ml-1.5 text-xs italic text-text-tertiary">
+                (via Getty)
+              </span>
+            </p>
+          ) : (
+            // Death-place absence is only worth showing for non-living
+            // sculptors. Suppressing it for the alive case avoids a
+            // confusing "Death place not recorded" on a living person.
+            sculptor.deathYear || !sculptor.alive ? (
+              <p className="text-xs text-text-tertiary">
+                Place of death not recorded.
               </p>
-            )}
-            {!hasBirthPlace && gettyFillsBirth && getty?.birthPlace && (
-              <p>
-                <span className="text-text-tertiary">Born in</span>{" "}
-                {getty.birthPlace}
-                <span className="ml-1.5 text-xs italic text-text-tertiary">
-                  (via Getty)
-                </span>
-              </p>
-            )}
-            {hasDeathPlace && (
-              <p>
-                <span className="text-text-tertiary">Died in</span>{" "}
-                {deathPlaceLine}
-              </p>
-            )}
-            {!hasDeathPlace && gettyFillsDeath && getty?.deathPlace && (
-              <p>
-                <span className="text-text-tertiary">Died in</span>{" "}
-                {getty.deathPlace}
-                <span className="ml-1.5 text-xs italic text-text-tertiary">
-                  (via Getty)
-                </span>
-              </p>
-            )}
-          </div>
-        )}
+            ) : null
+          )}
+        </div>
 
         {/* Connections — only if > 0. Phase 4 appends a cross-border
             count when any of the connections cross national lines, so

@@ -174,6 +174,10 @@ Built in increments alongside 3a-c, not saved for the end.
 - [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
 - [ ] Empty-state polish + filter suggestions
 - [ ] Inline data degradation messaging ("Movement data unavailable for 12 sculptors")
+- [ ] **Design audit — page-level polish** (flagged by user). Specific asks:
+  - Page-header spacing/layout consistency across all top-of-page sections (Explore, Lineage, Timeline, Evolution, Transparency, About). Currently each page rolls its own header pattern; titles, subtitles, controls, and counts don't share a system.
+  - Network map on `/lineage` could be levelled up — denser visual hierarchy, better legend, possibly a focused-on-hover interaction that dims the rest. The current bipartite layout is functional but not yet beautiful.
+  - General: tighten vertical rhythm, audit hover states, make the typographic system more visible (Fraunces for display, DM Sans for UI is correct — but consistency of weight/size across pages is uneven).
 
 ## Phase 5: Optional — if energy remains
 

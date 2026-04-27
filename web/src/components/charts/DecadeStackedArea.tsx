@@ -3,6 +3,7 @@
 import { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 import type { DecadeAggregation } from "@/lib/types";
+import { EmptyState } from "@/components/EmptyState";
 
 /**
  * Layout constants — follow .windsurfrules chart rules:
@@ -287,10 +288,17 @@ export function DecadeStackedArea({
   }, [wide, categories, resolvedColorMap, activeDecade, onDecadeClick, yLabel]);
 
   if (data.length === 0) {
+    // No-data state for the stacked area. We deliberately do *not* explain
+    // *why* the data is empty here — that's the caller's job (a chart
+    // can be empty because of upstream pipeline issues, an active filter,
+    // or simply a sparse decade). Keeping the message neutral lets each
+    // page provide its own framing if it wants to.
     return (
-      <p className="text-muted-foreground text-sm py-8 text-center">
-        No data available.
-      </p>
+      <EmptyState
+        variant="block"
+        title="No data for this view"
+        description="This chart has nothing to plot for the current selection."
+      />
     );
   }
 

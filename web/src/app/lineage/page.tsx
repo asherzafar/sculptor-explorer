@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { LineageContent } from "./LineageContent";
+import { LoadingState } from "@/components/LoadingState";
 
 /**
  * Server Component wrapper. The Suspense boundary is required because
@@ -11,7 +12,7 @@ export default function LineagePage() {
     <Suspense
       fallback={
         <div className="container mx-auto px-4 py-8">
-          <p className="text-text-secondary">Loading lineage network...</p>
+          <LoadingState label="Loading lineage network" />
         </div>
       }
     >

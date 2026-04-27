@@ -15,6 +15,8 @@ import { GeographyChart } from "@/components/charts/GeographyChart";
 import { MaterialsChart } from "@/components/charts/MaterialsChart";
 import { MovementsChart } from "@/components/charts/MovementsChart";
 import { Button } from "@/components/ui/button";
+import { LoadingState } from "@/components/LoadingState";
+import { EmptyState } from "@/components/EmptyState";
 import Link from "next/link";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 
@@ -137,7 +139,7 @@ export function EvolutionContent() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Loading…</p>
+        <LoadingState label="Loading evolution charts" />
       </div>
     );
   }
@@ -276,9 +278,15 @@ export function EvolutionContent() {
         </div>
 
         {filteredSculptors.length === 0 ? (
-          <p className="text-muted-foreground text-sm">
-            No focus sculptors born in the {activeDecade}s.
-          </p>
+          <EmptyState
+            title={`No focus sculptors born in the ${activeDecade}s`}
+            description="The curated focus list is selective by design — gaps in some decades are real, not bugs. Clear the decade filter to see the full focus set, or open the lineage / explore pages for the unfiltered cache."
+            action={
+              <Button variant="ghost" size="sm" onClick={clearDecade}>
+                Clear decade filter
+              </Button>
+            }
+          />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredSculptors.map((sculptor) => (

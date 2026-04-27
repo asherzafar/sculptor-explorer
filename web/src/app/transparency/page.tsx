@@ -13,6 +13,8 @@ import type {
   GettyAudit,
   TransparencyAudit,
 } from "@/lib/types";
+import { LoadingState } from "@/components/LoadingState";
+import { EmptyState } from "@/components/EmptyState";
 
 /**
  * Transparency page — Option A.3 standing commitment.
@@ -756,7 +758,7 @@ export default function TransparencyPage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-text-secondary">Loading transparency audit…</p>
+        <LoadingState label="Loading transparency audit" />
       </div>
     );
   }
@@ -764,9 +766,13 @@ export default function TransparencyPage() {
   if (error || !audit) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-text-secondary">
-          Could not load transparency audit: {error}
-        </p>
+        <EmptyState
+          title="Could not load transparency audit"
+          description={
+            error ??
+            "The transparency.json file is missing from the deployed bundle. This usually means the data pipeline hasn't been re-run since a structural change."
+          }
+        />
       </div>
     );
   }

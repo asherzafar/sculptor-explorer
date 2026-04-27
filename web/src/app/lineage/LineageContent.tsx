@@ -14,6 +14,7 @@ import {
 } from "@/lib/data";
 import { LineageGraph } from "@/components/charts/LineageGraph";
 import { formatDisplayValue } from "@/lib/utils";
+import { LoadingState } from "@/components/LoadingState";
 
 /**
  * LineageContent — filter UI + URL-backed state for the lineage graph.
@@ -255,7 +256,7 @@ export function LineageContent() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-text-secondary">Loading lineage network...</p>
+        <LoadingState label="Loading lineage network" />
       </div>
     );
   }

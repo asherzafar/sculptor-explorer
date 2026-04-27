@@ -17,6 +17,8 @@ import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
 import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
+import { LoadingState } from "@/components/LoadingState";
+import { EmptyState } from "@/components/EmptyState";
 
 // Diacritic-insensitive text normalization for search
 function normalizeText(text: string): string {
@@ -184,7 +186,7 @@ export default function ExplorePage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Loading...</p>
+        <LoadingState label="Loading sculptors" />
       </div>
     );
   }
@@ -260,6 +262,30 @@ export default function ExplorePage() {
             })}
           </tbody>
         </table>
+        {/* Empty result state — only fires after data has loaded but the
+            current search filter excludes everyone. We render *outside*
+            the <table> rather than as an empty row so the message has
+            room to breathe and so a screen reader doesn't have to walk
+            the table structure to reach it. */}
+        {filteredData.length === 0 && (
+          <EmptyState
+            className="mt-2"
+            title="No sculptors match your search"
+            description={
+              globalFilter
+                ? `Nothing matches “${globalFilter}”. The search covers names and native-language names — try a partial match, drop diacritics, or clear the search.`
+                : "All filters combined excluded every sculptor. Try clearing them."
+            }
+            action={
+              <button
+                onClick={() => setGlobalFilter("")}
+                className="text-sm text-accent-primary hover:underline"
+              >
+                Clear search
+              </button>
+            }
+          />
+        )}
       </div>
     </div>
   );

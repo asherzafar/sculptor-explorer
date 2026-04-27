@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import type { TimelineSculptor } from "@/lib/types";
 import { loadTimelineSculptors } from "@/lib/data";
 import { LifespanTimeline, type SortMode } from "@/components/charts/LifespanTimeline";
+import { LoadingState } from "@/components/LoadingState";
 
 const SORT_OPTIONS: { key: SortMode; label: string; title: string }[] = [
   { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by last name" },
@@ -51,7 +52,7 @@ function TimelineContent() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Loading timeline...</p>
+        <LoadingState label="Loading timeline" />
       </div>
     );
   }
@@ -99,7 +100,7 @@ export default function TimelinePage() {
   return (
     <Suspense fallback={
       <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Loading timeline...</p>
+        <LoadingState label="Loading timeline" />
       </div>
     }>
       <TimelineContent />
