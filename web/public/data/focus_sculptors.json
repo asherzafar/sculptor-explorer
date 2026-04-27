@@ -21,6 +21,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/John%20Quincy%20Adams%20Ward%2C%20circa%201900.jpg",
     "authorityTypes": [
       "dnb",
       "lcnaf",
@@ -79,6 +80,7 @@
     "deathCountry": "France",
     "nativeName": "Auguste Rodin",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin%20fotografato%20da%20Nadar%20nel%201891.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -156,6 +158,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Augustus%20Saint-Gaudens.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -220,6 +223,7 @@
     "deathCountry": "United States",
     "nativeName": "Daniel Chester French",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Daniel%20Chester%20French%201902.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -285,6 +289,7 @@
     "deathCountry": "France",
     "nativeName": "Aristide Maillol",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Maillol1925.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -362,6 +367,7 @@
     "deathCountry": "France",
     "nativeName": "Camille Claudel",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Camille%20nette.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -433,6 +439,7 @@
     "deathCountry": "United States",
     "nativeName": "Gutzon Borglum",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Gutzon%20Borglum%201919.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -503,6 +510,7 @@
     "deathCountry": "United States",
     "nativeName": "Karl Bitter",
     "nativeLang": "de",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Karl%20Bitter%20portrait%2C%20published%20in%201917.jpg",
     "authorityTypes": [
       "dnb",
       "lcnaf",
@@ -560,6 +568,7 @@
     "deathCountry": "United States",
     "nativeName": "Gertrude Vanderbilt Whitney",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Gertrude%20Vanderbilt%20Whitney%20%28c%201909%29.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -623,6 +632,7 @@
     "deathCountry": "Sweden",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Milles%201955.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -687,6 +697,7 @@
     "deathCountry": "United States",
     "nativeName": "Anna Hyatt Huntington",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Vaughn%20Hyatt%20in%201921%20%28cropped%29.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -757,6 +768,7 @@
     "deathCountry": "France",
     "nativeName": "Constantin Br\u00e2ncu\u0219i",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Steichen%20-%20Brancusi.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -835,6 +847,7 @@
     "deathCountry": "United States",
     "nativeName": "Lee Lawrie",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Bust%20of%20Lee%20Lawrie%20created%20by%20his%20former%20assistant%20Joseph%20Kiselewski.jpg",
     "authorityTypes": [
       "dnb",
       "lcnaf",
@@ -892,6 +905,7 @@
     "deathCountry": "France",
     "nativeName": "Pablo Picasso",
     "nativeLang": "es",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Modigliani%2C%20Picasso%20and%20Andr%C3%A9%20Salmon.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -970,6 +984,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Elie%20Nadelman%2001.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -1034,6 +1049,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/MalvinaHoffman5222.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -1099,6 +1115,7 @@
     "deathCountry": "France",
     "nativeName": "Marcel Duchamp",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Marcel%20Duchamp%2001.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1178,6 +1195,7 @@
     "deathCountry": "United States",
     "nativeName": "\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u041f\u043e\u0440\u0444\u0438\u0440\u043e\u0432\u0438\u0447 \u0410\u0440\u0445\u0438\u043f\u0435\u043d\u043a\u043e",
     "nativeLang": "uk",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Alexander%20Archipenko.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1255,6 +1273,7 @@
     "deathCountry": "United States",
     "nativeName": "Augusta Savage",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Archives%20of%20American%20Art%20-%20Augusta%20Savage%20-%202371%20CROPPED.jpg",
     "authorityTypes": [
       "bnf",
       "dnb",
@@ -1320,6 +1339,7 @@
     "deathCountry": "United Kingdom",
     "nativeName": "Henry Moore",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Moore%205%20Allan%20Warren.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1398,6 +1418,7 @@
     "deathCountry": "United States",
     "nativeName": "Alexander Calder",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Alexander%20Calder%201968.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1476,6 +1497,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Louise%20and%20Neith%20Nevelson.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1554,6 +1576,7 @@
     "deathCountry": "Switzerland",
     "nativeName": "Alberto Giacometti",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Emmy%20Andriesse%20-%20Alberto%20Giacometti%20%28Ende%201940er%20PK-F-A.06801%29%20cut.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1632,6 +1655,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/WalkerHancock%20SI%20113777.jpg",
     "authorityTypes": [
       "lcnaf",
       "ulan",
@@ -1683,6 +1707,7 @@
     "deathCountry": "United Kingdom",
     "nativeName": "Barbara Hepworth",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Barbara%20Hepworth%20%281966%29%20by%20Erling%20Mandelmann.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1754,6 +1779,7 @@
     "deathCountry": "United States",
     "nativeName": "Isamu Noguchi",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Isamu%20Noguchi.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1832,6 +1858,7 @@
     "deathCountry": "United States",
     "nativeName": "David Smith",
     "nativeLang": "en",
+    "image": null,
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1910,6 +1937,7 @@
     "deathCountry": "United States",
     "nativeName": "Louise Bourgeois",
     "nativeLang": "fr",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Oliver%20Mark%20-%20Louise%20Bourgeois%2C%20New%20York%201996.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -1988,6 +2016,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": null,
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2058,6 +2087,7 @@
     "deathCountry": "United States",
     "nativeName": null,
     "nativeLang": null,
+    "image": null,
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2135,6 +2165,7 @@
     "deathCountry": "United States",
     "nativeName": "Carl Andre",
     "nativeLang": "en",
+    "image": null,
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2206,6 +2237,7 @@
     "deathCountry": "United States",
     "nativeName": "Richard Serra",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Oliver%20Mark%20-%20Richard%20Serra%2C%20Siegen%202005.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2283,6 +2315,7 @@
     "deathCountry": null,
     "nativeName": "Anish Kapoor",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Anish%20Kapoor%2001.jpg",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2361,6 +2394,7 @@
     "deathCountry": null,
     "nativeName": "Jeff Koons",
     "nativeLang": "en",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Jeff%20Koons%2001.JPG",
     "authorityTypes": [
       "bne",
       "bnf",
@@ -2432,6 +2466,7 @@
     "deathCountry": null,
     "nativeName": null,
     "nativeLang": null,
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Maya%20Lin%2C%202014%20%28cropped%29.jpg",
     "authorityTypes": [
       "bne",
       "bnf",

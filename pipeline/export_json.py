@@ -85,6 +85,9 @@ def _sculptor_record(row) -> dict:
         "deathCountry": _opt_str(row.get("death_country")),
         "nativeName": _opt_str(row.get("native_name")),
         "nativeLang": _opt_str(row.get("native_lang")),
+        # Phase 4: Wikimedia Commons portrait URL (raw FilePath form;
+        # client appends ?width=N for thumbnail). Null if no P18.
+        "image": _opt_str(row.get("image")),
         "authorityTypes": _list(row.get("authority_types")),
         "authorityLinks": _list(row.get("authority_links")),
         "sitelinkCount": int(row.get("sitelink_count") or 0),
@@ -487,7 +490,42 @@ def create_transparency_json(nodes: pd.DataFrame) -> dict:
         },
         "includedBreakdown": breakdown(nodes[included_mask]),
         "excludedBreakdown": breakdown(nodes[~included_mask]),
+        # Per-field coverage on the included set. Lets the transparency
+        # page report "we have a portrait for X of Y included sculptors"
+        # without the reader having to derive it. Fields are reported
+        # individually rather than aggregated so a reader can see which
+        # data is sparse and which is well-covered.
+        "fieldCoverage": _field_coverage(nodes[included_mask]),
     }
+
+
+def _field_coverage(subset: pd.DataFrame) -> dict:
+    """Per-field non-null counts on the given subset.
+
+    Used by the transparency page. Fields chosen for display value (what
+    a reader can see on detail / explore pages) rather than internal
+    bookkeeping. `image` was added in Phase 4 alongside the portrait
+    feature; the others have been here since 3a/3b.
+    """
+    n = len(subset)
+    fields = [
+        "birth_place", "death_place", "native_name", "image",
+        "authority_links", "movement_display", "citizenship_display",
+    ]
+    out: dict[str, dict] = {"total": int(n)}
+    for f in fields:
+        if f not in subset.columns:
+            continue
+        col = subset[f]
+        if col.dtype == object and len(col) and isinstance(col.iloc[0], list):
+            present = col.apply(lambda v: bool(v) if isinstance(v, list) else False).sum()
+        else:
+            present = col.notna().sum()
+            # treat empty strings and "Unknown" as missing for display fields
+            if f in ("citizenship_display", "movement_display"):
+                present = (col.notna() & (col != "Unknown") & (col != "No movement listed")).sum()
+        out[f] = {"present": int(present), "pct": round(100 * present / n, 1) if n else 0.0}
+    return out
 
 
 def create_materials_by_decade_json(materials: pd.DataFrame) -> list[dict]:

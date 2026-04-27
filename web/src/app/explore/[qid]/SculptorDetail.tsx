@@ -8,6 +8,59 @@ import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptors } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 
+/**
+ * Portrait — Phase 4 visual polish.
+ *
+ * Renders the Wikimedia Commons portrait for a sculptor when Wikidata
+ * has a P18 image. Notes:
+ *
+ * - The Commons FilePath URL serves the original file at any size, but
+ *   we always request a thumbnail (`?width=400`) so a sculptor with a
+ *   30MB TIFF doesn't blow out the page.
+ * - Some Wikidata P18 URLs come back as `http://` (not https). Commons
+ *   redirects, but we upgrade up-front to avoid mixed-content warnings.
+ * - We use a plain <img> rather than next/image because the static
+ *   export build can't run the image optimizer, and Commons already
+ *   serves appropriate thumbnails.
+ * - Attribution is required by Commons reuse policy. We give a short
+ *   link back to the file page so the reader can see licence + author
+ *   in one click.
+ */
+function Portrait({ src, alt }: { src: string; alt: string }) {
+  const httpsSrc = src.replace(/^http:\/\//, "https://");
+  const thumbSrc = `${httpsSrc}?width=400`;
+  // Derive the Commons file page URL from the FilePath URL so the
+  // attribution link points at metadata (author + licence), not the raw
+  // bitstream. Special:FilePath/<file> ↔ wiki/File:<file>.
+  const fileMatch = httpsSrc.match(/Special:FilePath\/(.+?)$/);
+  const filePageUrl = fileMatch
+    ? `https://commons.wikimedia.org/wiki/File:${fileMatch[1]}`
+    : httpsSrc;
+
+  return (
+    <figure className="float-right ml-6 mb-4 w-32 sm:w-40">
+      <a
+        href={filePageUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+        title="View on Wikimedia Commons"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={thumbSrc}
+          alt={alt}
+          loading="lazy"
+          className="w-full h-auto rounded-sm border border-border-subtle"
+        />
+      </a>
+      <figcaption className="mt-1 text-[10px] uppercase tracking-wide text-text-tertiary">
+        Wikimedia Commons
+      </figcaption>
+    </figure>
+  );
+}
+
 /** Single data-completeness dot with tooltip. */
 function CompletenessDot({ present, label }: { present: boolean; label: string }) {
   return (
@@ -219,6 +272,14 @@ export function SculptorDetail({ qid }: { qid: string }) {
           Wikidata
           <ExternalLink className="h-3 w-3" />
         </a>
+
+        {/* Portrait — floats right of the header block so the lifespan,
+            native name, and Getty cross-ref text wrap alongside it.
+            Renders only when Wikidata has a P18 image (~33% coverage at
+            time of writing); absence is silent rather than a placeholder. */}
+        {sculptor.image && (
+          <Portrait src={sculptor.image} alt={`Portrait of ${sculptor.name}`} />
+        )}
 
         {/* Name (Fraunces display) */}
         <h1 className="font-display text-4xl font-bold text-text-primary mb-1">

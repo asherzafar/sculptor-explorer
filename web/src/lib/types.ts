@@ -99,6 +99,13 @@ export interface LegacySculptor {
   nativeName?: string | null;
   /** Language code for nativeName (e.g. "ja", "ar", "de"). */
   nativeLang?: string | null;
+  /**
+   * Wikimedia Commons portrait URL (Wikidata P18). Raw FilePath form,
+   * e.g. "http://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin.jpg".
+   * The client appends `?width=N` to render at a thumbnail size. Null
+   * when the sculptor has no P18 image on Wikidata.
+   */
+  image?: string | null;
   /** External authority file types present (ulan, viaf, lcnaf, bnf, dnb, ndl, bne). */
   authorityTypes?: string[];
   /** Per-authority entries with ID + outbound URL. */
@@ -308,4 +315,13 @@ export interface TransparencyAudit {
   };
   includedBreakdown: TransparencyBreakdown;
   excludedBreakdown: TransparencyBreakdown;
+  /**
+   * Per-field non-null coverage on the *included* set. Populated by
+   * pipeline/export_json.py :: _field_coverage. Optional on the type
+   * because older transparency.json snapshots predate this field.
+   */
+  fieldCoverage?: {
+    total: number;
+    [field: string]: number | { present: number; pct: number };
+  };
 }

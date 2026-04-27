@@ -31,6 +31,7 @@ from query_enrichment import (
     BIRTH_PLACES_CACHE_PATH,
     DEATH_PLACES_CACHE_PATH,
     NATIVE_NAMES_CACHE_PATH,
+    PORTRAITS_CACHE_PATH,
 )
 from helpers import normalize_name
 
@@ -183,6 +184,7 @@ def process_nodes() -> pd.DataFrame:
     birth_enrich      = _build_place_enrichment(BIRTH_PLACES_CACHE_PATH, "birth")
     death_enrich      = _build_place_enrichment(DEATH_PLACES_CACHE_PATH, "death")
     native_enrich     = _build_native_name_enrichment()
+    portrait_enrich   = _build_portrait_enrichment()
 
     # Join everything
     nodes_enriched = nodes.merge(
@@ -201,6 +203,8 @@ def process_nodes() -> pd.DataFrame:
         death_enrich, on="qid", how="left"
     ).merge(
         native_enrich, on="qid", how="left"
+    ).merge(
+        portrait_enrich, on="qid", how="left"
     )
 
     # Fill missing values
@@ -352,6 +356,24 @@ def _build_native_name_enrichment() -> pd.DataFrame:
     df = pd.read_parquet(NATIVE_NAMES_CACHE_PATH)
     df = df.drop_duplicates("qid_clean", keep="first")
     return df.rename(columns={"qid_clean": "qid"})
+
+
+def _build_portrait_enrichment() -> pd.DataFrame:
+    """Return per-QID: image (Wikimedia Commons URL).
+
+    Phase 4 visual polish. P18 occasionally returns multiple values per
+    sculptor; we keep the first to avoid arbitrating between them in
+    the pipeline. The URL is the raw Commons FilePath URL — the
+    frontend appends `?width=N` for thumbnail rendering.
+    """
+    if not PORTRAITS_CACHE_PATH.exists():
+        return pd.DataFrame({
+            "qid": pd.Series([], dtype=str),
+            "image": pd.Series([], dtype=str),
+        })
+    df = pd.read_parquet(PORTRAITS_CACHE_PATH)
+    df = df.drop_duplicates("qid_clean", keep="first")
+    return df.rename(columns={"qid_clean": "qid"})[["qid", "image"]]
 
 
 def process_relations(nodes_enriched: pd.DataFrame) -> pd.DataFrame:

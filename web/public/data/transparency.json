@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-27T02:51:36.940262+00:00",
+  "generatedAt": "2026-04-27T03:27:14.537134+00:00",
   "totalCached": 6700,
   "included": 3630,
   "excluded": 3070,
@@ -125,6 +125,37 @@
       "1970": 61,
       "1980": 8,
       "2000": 3
+    }
+  },
+  "fieldCoverage": {
+    "total": 3630,
+    "birth_place": {
+      "present": 3582,
+      "pct": 98.7
+    },
+    "death_place": {
+      "present": 2651,
+      "pct": 73.0
+    },
+    "native_name": {
+      "present": 1339,
+      "pct": 36.9
+    },
+    "image": {
+      "present": 2303,
+      "pct": 63.4
+    },
+    "authority_links": {
+      "present": 3630,
+      "pct": 100.0
+    },
+    "movement_display": {
+      "present": 962,
+      "pct": 26.5
+    },
+    "citizenship_display": {
+      "present": 3613,
+      "pct": 99.5
     }
   }
 }

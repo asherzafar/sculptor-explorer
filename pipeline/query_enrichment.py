@@ -35,6 +35,7 @@ AUTHORITY_IDS_CACHE_PATH = RAW_CACHE_DIR / f"sculptor_authority_ids_{MIN_BIRTH_Y
 BIRTH_PLACES_CACHE_PATH = RAW_CACHE_DIR / f"sculptor_birth_places_{MIN_BIRTH_YEAR}plus.parquet"
 DEATH_PLACES_CACHE_PATH = RAW_CACHE_DIR / f"sculptor_death_places_{MIN_BIRTH_YEAR}plus.parquet"
 NATIVE_NAMES_CACHE_PATH = RAW_CACHE_DIR / f"sculptor_native_names_{MIN_BIRTH_YEAR}plus.parquet"
+PORTRAITS_CACHE_PATH = RAW_CACHE_DIR / f"sculptor_portraits_{MIN_BIRTH_YEAR}plus.parquet"
 
 
 # =============================================================================
@@ -178,6 +179,35 @@ WHERE {
 
 
 # =============================================================================
+# Query 6: Portrait image (P18) — Phase 4 visual polish.
+#
+# P18 is Wikidata's primary "image" property. For people, the convention
+# is a portrait photograph or painting in Wikimedia Commons. The value
+# returned is a Commons FilePath URL (e.g.
+# http://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin.jpg).
+# That URL already serves the original file; the frontend appends
+# `?width=N` to get a Commons-thumbnailed render at the desired size.
+#
+# A sculptor may have multiple P18 values (rare); we drop duplicates and
+# keep the first per QID downstream. We do NOT filter by mime/license
+# here — Commons content is licensed permissively by policy, and we
+# attribute "Image: Wikimedia Commons" at render time.
+# =============================================================================
+PORTRAITS_TEMPLATE = """
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT
+  (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?qid_clean)
+  ?image
+WHERE {
+  {{VALUES_BLOCK}}
+  ?qid wdt:P18 ?image .
+}
+"""
+
+
+# =============================================================================
 # Runners
 # =============================================================================
 def run_sitelinks(qids: list[str], refresh: bool = False) -> pd.DataFrame:
@@ -230,6 +260,16 @@ def run_native_names(qids: list[str], refresh: bool = False) -> pd.DataFrame:
     )
 
 
+def run_portraits(qids: list[str], refresh: bool = False) -> pd.DataFrame:
+    return query_sparql_batched(
+        query_template=PORTRAITS_TEMPLATE,
+        qids=qids,
+        cache_path=PORTRAITS_CACHE_PATH,
+        refresh=refresh,
+        batch_size=VALUES_BATCH_SIZE,
+    )
+
+
 def run_all_enrichment(refresh: bool = False) -> dict[str, pd.DataFrame]:
     qids = pd.read_parquet(QID_CACHE_PATH)["qid"].tolist()
     print(f"Enriching {len(qids)} sculptors...\n")
@@ -240,6 +280,7 @@ def run_all_enrichment(refresh: bool = False) -> dict[str, pd.DataFrame]:
         ("Birth places",   run_birth_places),
         ("Death places",   run_death_places),
         ("Native names",   run_native_names),
+        ("Portraits",      run_portraits),
     ]
     out: dict[str, pd.DataFrame] = {}
     for label, fn in steps:
