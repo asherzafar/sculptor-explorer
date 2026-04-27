@@ -484,8 +484,10 @@ def merge_into_sculptors_json(
         }
         enriched += 1
 
+    # Match the pretty-printed shape that export_json.py writes so the
+    # git diff stays small on subsequent runs.
     Path(sculptors_json_path).write_text(
-        json.dumps(sculptors, ensure_ascii=False), encoding="utf-8"
+        json.dumps(sculptors, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     print(f"✓ Enriched {enriched}/{len(sculptors)} sculptors with gettyVerified block")
 
