@@ -163,10 +163,13 @@ Built in increments alongside 3a-c, not saved for the end.
 
 ## Phase 4: Visual polish + production
 
+- [x] **Cross-cultural collaboration story** — tri-state `crossesBorders` flag on edges, lineage filter pills + headline stat banner, per-sculptor cross-border count on detail page, transparency section with by-decade breakdown.
+- [x] **Portrait images on detail pages** (Wikidata P18 → Wikimedia Commons). 2,303 of 3,630 included sculptors (63%) have a portrait. Floats right of the header block; Commons file-page link for licence/author attribution. Met/AIC IIIF integration for actual sculptures deferred — see below.
+- [x] **Per-field coverage on transparency** — birth_place, death_place, native_name, image, authority_links, movement, citizenship.
 - [ ] **OG preview image** (screenshot of evolution page, 1200×630px) — moved up from previous plan; shareability matters now
 - [ ] **Custom domain** (if desired) — credibility infrastructure
 - [ ] **Mobile support** — revisit the `MobileGate` decision. If strangers share on phones, gating cuts most traffic. Options: adapt key pages, or keep gate with improved copy.
-- [ ] Sculpture images on detail pages (Met/AIC IIIF, public domain only) — the biggest single *emotional* upgrade
+- [ ] Sculpture (not portrait) images on detail pages via Met/AIC IIIF, public domain only — separate from the portrait win above; this would surface actual works.
 - [ ] Performance audit against budget (<3s paint, <5s interactive, <3MB payload)
 - [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
 - [ ] Empty-state polish + filter suggestions
