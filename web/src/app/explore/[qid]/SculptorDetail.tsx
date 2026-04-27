@@ -87,11 +87,17 @@ export function SculptorDetail({ qid }: { qid: string }) {
   const hasEdges = sculptor.totalDegree > 0;
   const hasGender = !!sculptor.gender;
 
+  // Multi-citizenship: when Wikidata records more than one country we render
+  // pills instead of a single inline string. This is the canonical "migration
+  // canon" surface for the detail page — flat citizenship erases émigré
+  // histories (Brâncuși, Nadelman, Bourgeois, Noguchi all read as just "USA"
+  // without this).
+  const allCitizenships = (sculptor.citizenships ?? []).filter(Boolean);
+  const hasMultiCitizenship = allCitizenships.length > 1;
   const citizenshipLabel = hasCitizenship
     ? formatDisplayValue(sculptor.citizenship, { isName: true })
     : null;
   const genderLabel = hasGender ? formatGender(sculptor.gender) : null;
-  const metaParts = [citizenshipLabel, genderLabel].filter(Boolean);
 
   // Place lines (Phase 3a enrichment — gracefully absent when Wikidata lacks data)
   const birthPlaceLine = [sculptor.birthPlace, sculptor.birthCountry]
@@ -102,7 +108,15 @@ export function SculptorDetail({ qid }: { qid: string }) {
     .join(", ");
   const hasBirthPlace = !!birthPlaceLine;
   const hasDeathPlace = !!deathPlaceLine;
-  const hasNativeName = !!sculptor.nativeName;
+  // Only render the native-name subhead when the canonical form is actually
+  // different from the romanized display name. Wikidata returns en-language
+  // P1559 entries that just echo the name; rendering those would be visual
+  // noise. ~1,185 of 3,630 sculptors have a meaningful non-English form.
+  const hasNativeName =
+    !!sculptor.nativeName &&
+    !!sculptor.nativeLang &&
+    sculptor.nativeLang !== "en" &&
+    sculptor.nativeName !== sculptor.name;
   const authorityTypes = sculptor.authorityTypes ?? [];
   const authorityLinks = sculptor.authorityLinks ?? [];
   const hasAuthorities = authorityTypes.length > 0 || authorityLinks.length > 0;
@@ -181,11 +195,30 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </span>
         )}
 
-        {/* Citizenship · gender inline */}
-        {metaParts.length > 0 && (
-          <p className="text-sm text-text-secondary mb-3">
-            {metaParts.join(" · ")}
-          </p>
+        {/* Citizenship — pills when multi-, inline otherwise. Gender stays
+            on its own line so it doesn't get visually conflated with country
+            in the multi-citizenship case (those are different categories of
+            information and shouldn't share punctuation). */}
+        {hasMultiCitizenship && (
+          <div className="mb-3">
+            <p className="text-xs text-text-tertiary mb-1.5">Citizenships</p>
+            <div className="flex flex-wrap gap-1.5">
+              {allCitizenships.map((c, i) => (
+                <span
+                  key={`${c}-${i}`}
+                  className="inline-block rounded-full bg-bg-secondary text-text-secondary text-xs px-2.5 py-0.5"
+                >
+                  {formatDisplayValue(c, { isName: true })}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {!hasMultiCitizenship && citizenshipLabel && (
+          <p className="text-sm text-text-secondary mb-3">{citizenshipLabel}</p>
+        )}
+        {genderLabel && (
+          <p className="text-sm text-text-secondary mb-3">{genderLabel}</p>
         )}
 
         {/* Place-of-birth / place-of-death */}
@@ -284,7 +317,10 @@ export function SculptorDetail({ qid }: { qid: string }) {
         {/* Data completeness dots */}
         <div className="flex items-center gap-1.5 mt-6" aria-label="Data completeness">
           <CompletenessDot present={hasMovement} label="Movement" />
-          <CompletenessDot present={hasCitizenship} label="Citizenship" />
+          <CompletenessDot
+            present={hasCitizenship}
+            label={hasMultiCitizenship ? "Citizenships (multi)" : "Citizenship"}
+          />
           <CompletenessDot present={hasBirthPlace} label="Birth place" />
           <CompletenessDot present={hasNativeName} label="Native name" />
           <CompletenessDot present={hasEdges} label="Connections" />

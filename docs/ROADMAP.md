@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Phase 3a shipped. External-mentor lineage + transparency surface live.
+## Current status: Phase 3a shipped + 3d follow-throughs in flight. Lineage graph now has filters; detail page surfaces multi-citizenship and native names; Explore table shows native scripts.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -133,13 +133,14 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 
 ### 3d. Data-story UI — surfaces what the new data reveals
 Built in increments alongside 3a-c, not saved for the end.
-- [ ] **Geography chart: add source toggle** (citizenship / birth country / country of activity). Reveals the migration delta. Birth-country data is ingested; just needs wiring through the Evolution chart.
-- [ ] **Migration view** — per-sculptor birth → residences → death trajectory. Format TBD after seeing data (dot plot, Sankey, arc map — decide based on what looks legible).
+- [x] **Geography chart: source toggle** (citizenship / birth country) live on `/evolution`. Country-of-activity deferred to 3b (Getty ULAN).
+- [ ] **Migration view** — per-sculptor birth → residences → death trajectory as a dedicated visualization (Sankey / arc map). The lighter-touch version (born-in / died-in lines + multi-citizenship pills) ships under "Detail page enrichment (phase 2)" below; this slot stays for the richer chart once 3b lands activity-place data.
 - [x] **"Hidden from view" page** — shipped as `/transparency`. Owns the included-vs-excluded distribution, signal coverage, and demographic gaps. Regenerates automatically on every pipeline run (standing commitment).
 - [x] **Detail page enrichment (phase 1)** — native name with `lang` attribute, birth/death place with country, authority-file chips (ULAN/VIAF/LCNAF/BnF/DNB/NDL/BNE), inclusion-signal chips ("Included because of…").
-- [ ] **Detail page enrichment (phase 2)** — multi-citizenship pills (`citizenships[]` array), residence timeline, SAAM narrative snippet when available.
-- [ ] **Authority-file chips → outbound links** — currently non-linking badges. Need `authorityUrls` in export so chips link to VIAF/ULAN records.
-- [ ] **Native names on Explore table** — second line under romanization; we have data for 1,709 sculptors.
+- [x] **Detail page enrichment (phase 2)** — multi-citizenship pills surface the `citizenships[]` array (831 sculptors with >1 country) so émigré histories don't read as a single flat nationality. Native-name visibility tightened to non-English entries only (echoes of the romanized name suppressed). SAAM narrative snippet remains pending behind 3c.
+- [x] **Authority-file chips → outbound links** — chips render as `<a>` to VIAF / ULAN / LCNAF / BnF / DNB / NDL / BNE when the pipeline has a resolved URL; static badges fall through for IDs without a templated URL formatter.
+- [x] **Native names on Explore table** — second line under romanization with `lang` attribute; global search now matches native-script forms too (paste "ブランクーシ" → finds Brâncuși).
+- [x] **Lineage graph filters** — search-to-focus ego network (1/2/3-hop BFS), connection-type radio, mentor toggle, movement multi-select pills (top 12 by edge count), backbone slider, all URL-backed via `?focus=…&hops=…&mentors=…&edge=…&minDeg=…&mov=…`. Cleared two `.windsurfrules` violations on the page (design tokens, URL state).
 - [x] **About page update** — three-tier scope (3,600+ published / 680+ mentors / 48 focus), two Transparency links, data sources list now covers places/lineage/native names/authority IDs.
 
 ### 3e. Explicitly deferred to later phases

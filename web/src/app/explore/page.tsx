@@ -30,14 +30,36 @@ const columns: ColumnDef<LegacySculptor>[] = [
   {
     accessorKey: "name",
     header: "Name",
-    cell: ({ row }) => (
-      <Link
-        href={`/explore/${row.original.qid}`}
-        className="text-accent-primary hover:underline cursor-pointer"
-      >
-        {row.getValue("name")}
-      </Link>
-    ),
+    cell: ({ row }) => {
+      const s = row.original;
+      // Show the native form as a second line only when it's meaningfully
+      // distinct from the romanization (different script or different
+      // spelling). Wikidata's en-language P1559 entries that just echo the
+      // display name would be noise.
+      const showNative =
+        !!s.nativeName &&
+        !!s.nativeLang &&
+        s.nativeLang !== "en" &&
+        s.nativeName !== s.name;
+      return (
+        <Link
+          href={`/explore/${s.qid}`}
+          className="block group cursor-pointer"
+        >
+          <span className="text-accent-primary group-hover:underline">
+            {s.name}
+          </span>
+          {showNative && (
+            <span
+              lang={s.nativeLang ?? undefined}
+              className="block text-xs text-text-tertiary mt-0.5"
+            >
+              {s.nativeName}
+            </span>
+          )}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "birthYear",
@@ -128,13 +150,21 @@ export default function ExplorePage() {
     loadData();
   }, []);
 
-  // Diacritic-insensitive global filter
+  // Diacritic-insensitive global filter, also matching native names so a
+  // reader can paste "ブランクーシ" or "Бранкузи" and find the right row.
+  // Note: normalizeText() only strips combining marks; for non-Latin
+  // scripts it's effectively a no-op, which is what we want — exact-form
+  // substring match is the right behaviour for those queries.
   const filteredData = useMemo(() => {
     if (!globalFilter) return sculptors;
     const normalizedQuery = normalizeText(globalFilter);
-    return sculptors.filter((s) =>
-      normalizeText(s.name).includes(normalizedQuery)
-    );
+    return sculptors.filter((s) => {
+      if (normalizeText(s.name).includes(normalizedQuery)) return true;
+      if (s.nativeName && normalizeText(s.nativeName).includes(normalizedQuery)) {
+        return true;
+      }
+      return false;
+    });
   }, [sculptors, globalFilter]);
 
   const table = useReactTable({
