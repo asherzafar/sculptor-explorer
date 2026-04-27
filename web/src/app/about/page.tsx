@@ -1,9 +1,13 @@
 import Link from "next/link";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <h1 className="font-display text-3xl font-bold text-text-primary mb-6">About</h1>
+      <PageHeader
+        title="About"
+        subtitle="What this site is, what it isn't, and how to read it honestly."
+      />
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">What is this?</h2>

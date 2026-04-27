@@ -17,6 +17,7 @@ import { MovementsChart } from "@/components/charts/MovementsChart";
 import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
+import { PageHeader } from "@/components/PageHeader";
 import Link from "next/link";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 
@@ -146,14 +147,11 @@ export function EvolutionContent() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PageHeader
+        title="Evolution of Sculpture"
+        subtitle={`How sculpture evolved over time — geography and movements from ${MIN_BIRTH_YEAR} to present.`}
+      />
       <div className="mb-8">
-        <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
-          Evolution of Sculpture
-        </h1>
-        <p className="text-muted-foreground">
-          How sculpture evolved over time — geography and movements from{" "}
-          {MIN_BIRTH_YEAR} to present.
-        </p>
 
         {/* Interaction hint - dismissible */}
         {showHint && (

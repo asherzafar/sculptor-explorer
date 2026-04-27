@@ -172,8 +172,8 @@ Built in increments alongside 3a-c, not saved for the end.
 - [ ] Sculpture (not portrait) images on detail pages via Met/AIC IIIF, public domain only — separate from the portrait win above; this would surface actual works.
 - [ ] Performance audit against budget (<3s paint, <5s interactive, <3MB payload)
 - [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
-- [ ] Empty-state polish + filter suggestions
-- [ ] Inline data degradation messaging ("Movement data unavailable for 12 sculptors")
+- [x] Empty-state polish + filter suggestions — shared `<EmptyState>` and `<LoadingState>` components, applied across explore (no-results), evolution (decade filter empties focus list), charts (no-data block), transparency (load error). Replaces 5 ad-hoc loading copy variants.
+- [x] Inline data degradation messaging — detail page now shows explicit "No art movement listed on Wikidata" / "Birthplace not recorded" lines instead of silently hiding sections. Death-place absence is suppressed for living sculptors.
 - [ ] **Design audit — page-level polish** (flagged by user). Specific asks:
   - Page-header spacing/layout consistency across all top-of-page sections (Explore, Lineage, Timeline, Evolution, Transparency, About). Currently each page rolls its own header pattern; titles, subtitles, controls, and counts don't share a system.
   - Network map on `/lineage` could be levelled up — denser visual hierarchy, better legend, possibly a focused-on-hover interaction that dims the rest. The current bipartite layout is functional but not yet beautiful.

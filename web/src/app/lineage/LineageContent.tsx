@@ -15,6 +15,7 @@ import {
 import { LineageGraph } from "@/components/charts/LineageGraph";
 import { formatDisplayValue } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
+import { PageHeader } from "@/components/PageHeader";
 
 /**
  * LineageContent — filter UI + URL-backed state for the lineage graph.
@@ -263,18 +264,18 @@ export function LineageContent() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
-          Lineage
-        </h1>
-        <p className="text-text-secondary max-w-3xl">
-          Influence and student-teacher relationships between sculptors,
-          sourced from Wikidata. Click a sculptor to see their details; click a
-          mentor to open their Wikidata page. Use the filters below to focus on
-          a single sculptor&apos;s ego network, isolate a movement, or surface
-          the most-connected backbone of the graph.
-        </p>
-      </div>
+      <PageHeader
+        title="Lineage"
+        subtitle={
+          <>
+            Influence and student–teacher relationships between sculptors,
+            sourced from Wikidata. Click a sculptor to see their details;
+            click a mentor to open their Wikidata page. Use the filters
+            below to focus on a single sculptor&rsquo;s ego network, isolate
+            a movement, or surface the most-connected backbone of the graph.
+          </>
+        }
+      />
 
       {/* ------------- Cross-cultural stat banner -------------
           A single line above the filters because the cross-cultural

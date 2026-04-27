@@ -19,6 +19,7 @@ import { loadSculptors } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
+import { PageHeader } from "@/components/PageHeader";
 
 // Diacritic-insensitive text normalization for search
 function normalizeText(text: string): string {
@@ -193,12 +194,10 @@ export default function ExplorePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
-        Explore Sculptors
-      </h1>
-      <p className="text-muted-foreground mb-6">
-        Search and filter {sculptors.length.toLocaleString()} sculptors from the collection.
-      </p>
+      <PageHeader
+        title="Explore Sculptors"
+        subtitle={`Search and filter ${sculptors.length.toLocaleString()} sculptors from the collection.`}
+      />
 
       {/* Global search */}
       <div className="relative mb-4 max-w-md">

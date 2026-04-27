@@ -15,6 +15,7 @@ import type {
 } from "@/lib/types";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
+import { PageHeader } from "@/components/PageHeader";
 
 /**
  * Transparency page — Option A.3 standing commitment.
@@ -781,23 +782,26 @@ export default function TransparencyPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <Link
-        href="/about"
-        className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
-      >
-        <ArrowLeft className="h-3.5 w-3.5" />
-        About
-      </Link>
-
-      <h1 className="font-display text-3xl font-bold text-text-primary mt-8 mb-2">
-        Transparency Audit
-      </h1>
-      <p className="text-text-secondary mb-6 leading-relaxed">
-        Every figure you see elsewhere on this site is drawn from the{" "}
-        <strong>Included</strong> subset below. This page shows which
-        sculptors we publish, why, and how that choice affects
-        representation. Regenerated on every pipeline run.
-      </p>
+      <PageHeader
+        title="Transparency Audit"
+        eyebrow={
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-1.5 text-text-tertiary hover:text-text-primary transition-colors"
+          >
+            <ArrowLeft className="h-3 w-3" />
+            About
+          </Link>
+        }
+        subtitle={
+          <>
+            Every figure you see elsewhere on this site is drawn from the{" "}
+            <strong>Included</strong> subset below. This page shows which
+            sculptors we publish, why, and how that choice affects
+            representation. Regenerated on every pipeline run.
+          </>
+        }
+      />
       <p className="text-xs text-text-tertiary mb-10">
         Snapshot generated {generated}.
       </p>

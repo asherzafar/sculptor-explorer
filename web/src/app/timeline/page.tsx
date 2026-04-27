@@ -6,6 +6,7 @@ import type { TimelineSculptor } from "@/lib/types";
 import { loadTimelineSculptors } from "@/lib/data";
 import { LifespanTimeline, type SortMode } from "@/components/charts/LifespanTimeline";
 import { LoadingState } from "@/components/LoadingState";
+import { PageHeader } from "@/components/PageHeader";
 
 const SORT_OPTIONS: { key: SortMode; label: string; title: string }[] = [
   { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by last name" },
@@ -59,18 +60,10 @@ function TimelineContent() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="font-display text-3xl font-bold text-text-primary mb-2">
-          Notable Sculptors — Lifespans
-        </h1>
-        <p className="text-muted-foreground">
-          A visual timeline of {sculptors.length} sculptors curated with the
-          National Sculpture Society, showing when they lived. Bars are
-          color-coded by birth decade. This list emphasizes the American
-          figurative tradition and is not a comprehensive survey of global
-          sculpture.
-        </p>
-      </div>
+      <PageHeader
+        title="Notable Sculptors — Lifespans"
+        subtitle={`A visual timeline of ${sculptors.length} sculptors curated with the National Sculpture Society, showing when they lived. Bars are color-coded by birth decade. This list emphasizes the American figurative tradition and is not a comprehensive survey of global sculpture.`}
+      />
 
       {/* Sort controls */}
       <div className="mb-8 flex items-center gap-2">
