@@ -166,7 +166,7 @@ Built in increments alongside 3a-c, not saved for the end.
 - [x] **Cross-cultural collaboration story** — tri-state `crossesBorders` flag on edges, lineage filter pills + headline stat banner, per-sculptor cross-border count on detail page, transparency section with by-decade breakdown.
 - [x] **Portrait images on detail pages** (Wikidata P18 → Wikimedia Commons). 2,303 of 3,630 included sculptors (63%) have a portrait. Floats right of the header block; Commons file-page link for licence/author attribution. Met/AIC IIIF integration for actual sculptures deferred — see below.
 - [x] **Per-field coverage on transparency** — birth_place, death_place, native_name, image, authority_links, movement, citizenship.
-- [ ] **OG preview image** (screenshot of evolution page, 1200×630px) — moved up from previous plan; shareability matters now
+- [x] **OG preview image** — generated at build time via `app/opengraph-image.tsx` (next/og + Satori). 1200×630, on-brand verdigris accent, headline + 3,630-sculptor subhead. Twitter card set to summary_large_image. metadataBase points at sculptor-explorer.vercel.app.
 - [ ] **Custom domain** (if desired) — credibility infrastructure
 - [ ] **Mobile support** — revisit the `MobileGate` decision. If strangers share on phones, gating cuts most traffic. Options: adapt key pages, or keep gate with improved copy.
 - [ ] Sculpture (not portrait) images on detail pages via Met/AIC IIIF, public domain only — separate from the portrait win above; this would surface actual works.
