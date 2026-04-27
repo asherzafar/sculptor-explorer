@@ -38,10 +38,28 @@ def main():
         
         # Step 4: Export to JSON
         print("\n" + "=" * 60)
-        print("STEP 4/4: Exporting to JSON")
+        print("STEP 4/5: Exporting to JSON")
         print("=" * 60)
         from export_json import export_all
         export_results = export_all()
+
+        # Step 5: Getty ULAN cross-reference (Phase 3b).
+        # Optional — gracefully no-ops if the network is unavailable, or if
+        # we choose to skip by deleting getty_verified.parquet. The export
+        # above is the canonical sculptors.json; this step augments it
+        # in-place with a `gettyVerified` block per sculptor and writes the
+        # transparency-page audit JSON.
+        print("\n" + "=" * 60)
+        print("STEP 5/5: Getty ULAN cross-reference")
+        print("=" * 60)
+        try:
+            from query_getty import fetch_all
+            fetch_all()
+            from audit_getty import run_audit, merge_into_sculptors_json
+            run_audit()
+            merge_into_sculptors_json()
+        except Exception as e:
+            print(f"⚠ Getty step skipped or failed: {e}")
         
         print("\n" + "=" * 60)
         print("PIPELINE COMPLETE!")

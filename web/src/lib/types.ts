@@ -109,6 +109,45 @@ export interface LegacySculptor {
   nonEnSitelinkCount?: number;
   /** Which Option A.3 signals fired for this sculptor's inclusion. */
   inclusionSignals?: InclusionSignal[];
+
+  /**
+   * Phase 3b — Getty ULAN cross-reference.
+   *
+   * Present only for the ~64% of sculptors whose Wikidata records carry
+   * a ULAN ID (P245). Holds Getty's parallel data plus per-field
+   * agreement flags computed against the Wikidata record at export time.
+   * The UI uses this to (a) fill birth/death-place gaps when Wikidata
+   * lacks them and (b) show a small "Verified by Getty" or "Sources
+   * differ" affordance.
+   */
+  gettyVerified?: GettyVerified;
+}
+
+export interface GettyVerified {
+  ulanId: string | null;
+  url: string | null;
+  /** Getty's preferred display form, e.g. "Brancusi, Constantin" — last-name-first. */
+  label: string | null;
+  birthYear: number | null;
+  birthPlace: string | null;
+  deathYear: number | null;
+  deathPlace: string | null;
+  /**
+   * Cultural-attribution chips in Getty's model. NOT legally equivalent
+   * to Wikidata's `citizenships[]` — Getty uses adjective form
+   * ("French", "Romanian"). Treat as parallel evidence, not authority.
+   */
+  nationalities: string[];
+  agreement: {
+    /** "match" | "off1" | "off_big" | "missing" */
+    birthYear: string | null;
+    deathYear: string | null;
+    /** null = one or both sources lack the data; can't compare. */
+    birthPlace: boolean | null;
+    deathPlace: boolean | null;
+    /** Jaccard similarity of nationality sets after adjective→country mapping. */
+    natJaccard: number | null;
+  };
 }
 
 /** The five inclusion signals in Option A.3. Authority IDs are NOT a gate. */
@@ -164,6 +203,63 @@ export interface TransparencyBreakdown {
   gender?: Record<string, number>;
   topCitizenships?: Record<string, number>;
   byBirthDecade?: Record<string, number>;
+}
+
+/**
+ * Phase 3b — Wikidata ↔ Getty cross-reference audit. Populated by
+ * `pipeline/audit_getty.py`, consumed by `/transparency`.
+ */
+export interface GettyAudit {
+  version: number;
+  aggregate: {
+    compared: number;
+    birth_year: {
+      comparable: number;
+      exact_match: number;
+      off_by_1: number;
+      off_by_more: number;
+      missing_one_or_both: number;
+    };
+    death_year: {
+      comparable: number;
+      exact_match: number;
+      off_by_1: number;
+      off_by_more: number;
+      missing_one_or_both: number;
+    };
+    birth_place: {
+      wd_present: number;
+      getty_present: number;
+      both_present: number;
+      agreement_rate: number | null;
+      getty_fills_wd_gap: number;
+      wd_fills_getty_gap: number;
+    };
+    death_place: {
+      wd_present: number;
+      getty_present: number;
+      both_present: number;
+      agreement_rate: number | null;
+      getty_fills_wd_gap: number;
+      wd_fills_getty_gap: number;
+    };
+    nationality: {
+      comparable: number;
+      mean_jaccard: number | null;
+      full_agreement: number;
+      any_overlap: number;
+      no_overlap: number;
+      getty_adds_country: number;
+      wd_adds_country: number;
+    };
+  };
+  samples: {
+    birth_year_off_by_more: Array<Record<string, unknown>>;
+    birth_place_disagree: Array<Record<string, unknown>>;
+    getty_fills_birthplace_gap: Array<Record<string, unknown>>;
+    nationality_no_overlap: Array<Record<string, unknown>>;
+    nationality_getty_adds: Array<Record<string, unknown>>;
+  };
 }
 
 /** Snapshot of Option A.3 inclusion criteria + demographic audit. */

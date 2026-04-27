@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { loadTransparency } from "@/lib/data";
-import type { TransparencyAudit } from "@/lib/types";
+import { loadGettyAudit, loadTransparency } from "@/lib/data";
+import type { GettyAudit, TransparencyAudit } from "@/lib/types";
 
 /**
  * Transparency page — Option A.3 standing commitment.
@@ -31,6 +31,330 @@ const SIGNAL_LABELS: Record<string, string> = {
 function formatPct(n: number, total: number): string {
   if (!total) return "0.0%";
   return `${((100 * n) / total).toFixed(1)}%`;
+}
+
+/**
+ * GettyCrossReference — renders Phase 3b's Wikidata ↔ Getty audit.
+ *
+ * Layout choice: keep it numerical and tabular like the rest of the
+ * transparency page. The point of cross-referencing two sources isn't
+ * to declare a winner; it's to disclose where they agree, where they
+ * disagree, and where one fills a gap in the other.
+ */
+function GettyCrossReference({ audit }: { audit: GettyAudit }) {
+  const a = audit.aggregate;
+  const totalCompared = a.compared || 1; // guard /0
+
+  const pct = (n: number, total: number) =>
+    total ? `${((100 * n) / total).toFixed(1)}%` : "—";
+
+  // Tiny inline bar — same vocabulary as the existing signal-coverage
+  // section so the page reads as one document.
+  function Bar({
+    label,
+    n,
+    total,
+    color = "bg-accent-primary",
+  }: {
+    label: string;
+    n: number;
+    total: number;
+    color?: string;
+  }) {
+    return (
+      <li className="flex items-center gap-3 text-sm">
+        <span className="w-44 shrink-0 text-text-secondary">{label}</span>
+        <div className="flex-1 h-2 bg-bg-secondary rounded-sm overflow-hidden">
+          <div
+            className={`h-full ${color}`}
+            style={{
+              width: `${total ? Math.min(100, (100 * n) / total) : 0}%`,
+            }}
+          />
+        </div>
+        <span className="w-32 text-right tabular-nums text-text-tertiary">
+          {n.toLocaleString()} · {pct(n, total)}
+        </span>
+      </li>
+    );
+  }
+
+  function SampleTable({
+    title,
+    rows,
+    columns,
+  }: {
+    title: string;
+    rows: Array<Record<string, unknown>>;
+    columns: { key: string; label: string }[];
+  }) {
+    if (rows.length === 0) return null;
+    const stringify = (v: unknown): string => {
+      if (v == null) return "—";
+      if (Array.isArray(v)) return v.length ? v.join(", ") : "—";
+      return String(v);
+    };
+    return (
+      <div className="mb-5">
+        <h4 className="text-sm font-semibold text-text-primary mb-2">
+          {title}
+        </h4>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead className="text-text-tertiary">
+              <tr>
+                {columns.map((c) => (
+                  <th
+                    key={c.key}
+                    className="text-left font-medium px-2 py-1.5"
+                  >
+                    {c.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="text-text-secondary">
+              {rows.map((r, i) => (
+                <tr
+                  key={i}
+                  className={i % 2 === 0 ? "bg-bg-secondary/40" : ""}
+                >
+                  {columns.map((c) => (
+                    <td key={c.key} className="px-2 py-1.5 align-top">
+                      {stringify(r[c.key])}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <section className="mb-10">
+      <h2 className="text-xl font-semibold text-text-primary mb-3">
+        Cross-reference: Getty ULAN
+      </h2>
+      <p className="text-text-secondary leading-relaxed mb-4 max-w-3xl">
+        Where Wikidata records a Getty ULAN identifier we fetch the parallel
+        Getty record and compare. The two sources model some things
+        differently — Getty&apos;s &ldquo;nationality&rdquo; is cultural
+        attribution, Wikidata&apos;s <code className="text-xs">citizenships[]</code>{" "}
+        is legal citizenship — so disagreement is information, not a
+        defect. Numbers below are honest base rates, no smoothing.
+      </p>
+
+      {/* Headline */}
+      <section className="mb-6 grid grid-cols-3 gap-4">
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Records compared
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {a.compared.toLocaleString()}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            sculptors with a ULAN ID
+          </p>
+        </div>
+        <div className="rounded-md border border-accent-primary/30 bg-accent-muted/20 p-4">
+          <p className="text-xs uppercase tracking-wide text-accent-primary">
+            Birth-year exact match
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {pct(a.birth_year.exact_match, a.birth_year.comparable)}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            {a.birth_year.exact_match.toLocaleString()} of{" "}
+            {a.birth_year.comparable.toLocaleString()} comparable
+          </p>
+        </div>
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Birthplace gaps Getty fills
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {a.birth_place.getty_fills_wd_gap.toLocaleString()}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            sculptors where Wikidata had nothing
+          </p>
+        </div>
+      </section>
+
+      {/* Year accuracy */}
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Year accuracy (across {a.compared.toLocaleString()} records)
+      </h3>
+      <ul className="space-y-1.5 mb-5">
+        <Bar
+          label="Birth year exact match"
+          n={a.birth_year.exact_match}
+          total={totalCompared}
+          color="bg-accent-primary"
+        />
+        <Bar
+          label="Birth year off by 1"
+          n={a.birth_year.off_by_1}
+          total={totalCompared}
+          color="bg-accent-primary/60"
+        />
+        <Bar
+          label="Birth year off by 2+"
+          n={a.birth_year.off_by_more}
+          total={totalCompared}
+          color="bg-text-tertiary/60"
+        />
+        <Bar
+          label="Death year exact match"
+          n={a.death_year.exact_match}
+          total={totalCompared}
+          color="bg-accent-primary"
+        />
+        <Bar
+          label="Death year off by 1"
+          n={a.death_year.off_by_1}
+          total={totalCompared}
+          color="bg-accent-primary/60"
+        />
+        <Bar
+          label="Death year off by 2+"
+          n={a.death_year.off_by_more}
+          total={totalCompared}
+          color="bg-text-tertiary/60"
+        />
+      </ul>
+
+      {/* Place coverage + agreement */}
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Place coverage and agreement
+      </h3>
+      <ul className="space-y-1.5 mb-2">
+        <Bar
+          label="Both have birthplace"
+          n={a.birth_place.both_present}
+          total={totalCompared}
+          color="bg-accent-primary"
+        />
+        <Bar
+          label="Getty fills Wikidata gap"
+          n={a.birth_place.getty_fills_wd_gap}
+          total={totalCompared}
+          color="bg-accent-primary/60"
+        />
+        <Bar
+          label="Wikidata fills Getty gap"
+          n={a.birth_place.wd_fills_getty_gap}
+          total={totalCompared}
+          color="bg-text-tertiary/60"
+        />
+      </ul>
+      <p className="text-xs text-text-tertiary mb-5">
+        Birthplace agreement (when both present):{" "}
+        <strong className="text-text-secondary">
+          {a.birth_place.agreement_rate != null
+            ? `${(100 * a.birth_place.agreement_rate).toFixed(1)}%`
+            : "—"}
+        </strong>{" "}
+        · Death-place agreement:{" "}
+        <strong className="text-text-secondary">
+          {a.death_place.agreement_rate != null
+            ? `${(100 * a.death_place.agreement_rate).toFixed(1)}%`
+            : "—"}
+        </strong>
+        . &ldquo;Agreement&rdquo; means one source&apos;s place name appears
+        as a substring of the other&apos;s; this catches city-vs-country
+        differences but treats &ldquo;Kyiv&rdquo; and &ldquo;Russian
+        Empire&rdquo; as a disagreement even when they describe the same
+        person.
+      </p>
+
+      {/* Nationality */}
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Nationality / citizenship overlap
+      </h3>
+      <ul className="space-y-1.5 mb-2">
+        <Bar
+          label="Full agreement"
+          n={a.nationality.full_agreement}
+          total={a.nationality.comparable}
+          color="bg-accent-primary"
+        />
+        <Bar
+          label="Some overlap"
+          n={a.nationality.any_overlap - a.nationality.full_agreement}
+          total={a.nationality.comparable}
+          color="bg-accent-primary/60"
+        />
+        <Bar
+          label="No overlap"
+          n={a.nationality.no_overlap}
+          total={a.nationality.comparable}
+          color="bg-text-tertiary/60"
+        />
+      </ul>
+      <p className="text-xs text-text-tertiary mb-5">
+        Mean Jaccard similarity:{" "}
+        <strong className="text-text-secondary">
+          {a.nationality.mean_jaccard != null
+            ? a.nationality.mean_jaccard.toFixed(2)
+            : "—"}
+        </strong>
+        . Getty introduces a country Wikidata doesn&apos;t have for{" "}
+        {a.nationality.getty_adds_country.toLocaleString()} sculptors;
+        Wikidata returns the favour for{" "}
+        {a.nationality.wd_adds_country.toLocaleString()}.
+      </p>
+
+      {/* Spot-check tables */}
+      <details className="mb-2">
+        <summary className="cursor-pointer text-sm text-accent-primary hover:underline mb-2">
+          Spot-check disagreements
+        </summary>
+        <div className="mt-3">
+          <SampleTable
+            title="Birth year disagreements (off by 2+)"
+            rows={audit.samples.birth_year_off_by_more}
+            columns={[
+              { key: "name", label: "Sculptor" },
+              { key: "wd_birth_year", label: "Wikidata" },
+              { key: "getty_birth_year", label: "Getty" },
+            ]}
+          />
+          <SampleTable
+            title="Birthplace disagreements (both sources have data)"
+            rows={audit.samples.birth_place_disagree}
+            columns={[
+              { key: "name", label: "Sculptor" },
+              { key: "wd_birth_city", label: "Wikidata city" },
+              { key: "wd_birth_country", label: "Wikidata country" },
+              { key: "getty_birth_place", label: "Getty place" },
+            ]}
+          />
+          <SampleTable
+            title="Birthplaces Getty fills (Wikidata had nothing)"
+            rows={audit.samples.getty_fills_birthplace_gap}
+            columns={[
+              { key: "name", label: "Sculptor" },
+              { key: "getty_birth_place", label: "Getty place" },
+            ]}
+          />
+          <SampleTable
+            title="Nationality with no overlap"
+            rows={audit.samples.nationality_no_overlap}
+            columns={[
+              { key: "name", label: "Sculptor" },
+              { key: "wd_citizenships", label: "Wikidata" },
+              { key: "getty_nationalities", label: "Getty" },
+            ]}
+          />
+        </div>
+      </details>
+    </section>
+  );
 }
 
 interface BreakdownProps {
@@ -129,13 +453,19 @@ function Breakdown({ title, data, accent }: BreakdownProps) {
 
 export default function TransparencyPage() {
   const [audit, setAudit] = useState<TransparencyAudit | null>(null);
+  const [getty, setGetty] = useState<GettyAudit | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function load() {
       try {
-        setAudit(await loadTransparency());
+        const [a, g] = await Promise.all([
+          loadTransparency(),
+          loadGettyAudit(),
+        ]);
+        setAudit(a);
+        setGetty(g);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load");
       } finally {
@@ -309,6 +639,12 @@ export default function TransparencyPage() {
           />
         </div>
       </section>
+
+      {/* Phase 3b — Wikidata ↔ Getty cross-reference. Renders only when
+          getty_audit.json is present (the file is generated by
+          pipeline/audit_getty.py and is therefore optional during
+          early development / first runs). */}
+      {getty && <GettyCrossReference audit={getty} />}
 
       <section className="text-sm text-text-tertiary">
         <p>

@@ -1,0 +1,364 @@
+{
+  "version": 1,
+  "aggregate": {
+    "compared": 2340,
+    "birth_year": {
+      "comparable": 2338,
+      "exact_match": 2211,
+      "off_by_1": 44,
+      "off_by_more": 83,
+      "missing_one_or_both": 2
+    },
+    "death_year": {
+      "comparable": 1849,
+      "exact_match": 1514,
+      "off_by_1": 27,
+      "off_by_more": 308,
+      "missing_one_or_both": 491
+    },
+    "birth_place": {
+      "wd_present": 2333,
+      "getty_present": 1416,
+      "both_present": 1412,
+      "agreement_rate": 0.6919263456090652,
+      "getty_fills_wd_gap": 4,
+      "wd_fills_getty_gap": 921
+    },
+    "death_place": {
+      "wd_present": 1801,
+      "getty_present": 849,
+      "both_present": 847,
+      "agreement_rate": 0.6328217237308147,
+      "getty_fills_wd_gap": 2,
+      "wd_fills_getty_gap": 954
+    },
+    "nationality": {
+      "comparable": 2340,
+      "mean_jaccard": 0.6178454415954416,
+      "full_agreement": 1179,
+      "any_overlap": 1752,
+      "no_overlap": 588,
+      "getty_adds_country": 785,
+      "wd_adds_country": 902
+    }
+  },
+  "samples": {
+    "birth_year_off_by_more": [
+      {
+        "qid": "Q2831074",
+        "name": "Albert Dammouse",
+        "wd_birth_year": 1848,
+        "getty_birth_year": 1818.0
+      },
+      {
+        "qid": "Q2835395",
+        "name": "Alfred Pina",
+        "wd_birth_year": 1887,
+        "getty_birth_year": 1883.0
+      },
+      {
+        "qid": "Q701564",
+        "name": "Allen Jones",
+        "wd_birth_year": 1937,
+        "getty_birth_year": 1837.0
+      },
+      {
+        "qid": "Q2847629",
+        "name": "André Deluol",
+        "wd_birth_year": 1909,
+        "getty_birth_year": 1906.0
+      },
+      {
+        "qid": "Q233590",
+        "name": "Anna Chromý",
+        "wd_birth_year": 1940,
+        "getty_birth_year": 1880.0
+      },
+      {
+        "qid": "Q381950",
+        "name": "Antoine Pevsner",
+        "wd_birth_year": 1884,
+        "getty_birth_year": 1886.0
+      },
+      {
+        "qid": "Q2857548",
+        "name": "Antoine Samuel Adam-Salomon",
+        "wd_birth_year": 1818,
+        "getty_birth_year": 1811.0
+      },
+      {
+        "qid": "Q2861981",
+        "name": "Armand Vaillancourt",
+        "wd_birth_year": 1929,
+        "getty_birth_year": 1932.0
+      }
+    ],
+    "birth_place_disagree": [
+      {
+        "qid": "Q55210",
+        "name": "Abbas Kiarostami",
+        "wd_birth_city": "Tehran",
+        "wd_birth_country": "Iran",
+        "getty_birth_place": "Tehrān"
+      },
+      {
+        "qid": "Q353674",
+        "name": "Adel Abdessemed",
+        "wd_birth_city": "Constantine",
+        "wd_birth_country": "Algeria",
+        "getty_birth_place": "Qacentina"
+      },
+      {
+        "qid": "Q364808",
+        "name": "Adolf von Hildebrand",
+        "wd_birth_city": "Marburg",
+        "wd_birth_country": "Germany",
+        "getty_birth_place": "Deutschland"
+      },
+      {
+        "qid": "Q265044",
+        "name": "Adolph Alexander Weinman",
+        "wd_birth_city": "Durmersheim",
+        "wd_birth_country": "Germany",
+        "getty_birth_place": "Karlsruhe"
+      },
+      {
+        "qid": "Q399285",
+        "name": "Agustín Hernández Navarro",
+        "wd_birth_city": "Mexico City",
+        "wd_birth_country": "Mexico",
+        "getty_birth_place": "Ciudad de México"
+      },
+      {
+        "qid": "Q399295",
+        "name": "Agustín Ibarrola",
+        "wd_birth_city": "Basauri",
+        "wd_birth_country": "Spain",
+        "getty_birth_place": "Bilbao"
+      },
+      {
+        "qid": "Q1091015",
+        "name": "Aki Kuroda",
+        "wd_birth_city": "Kyoto",
+        "wd_birth_country": "Japan",
+        "getty_birth_place": "Kyōto"
+      },
+      {
+        "qid": "Q996131",
+        "name": "Aladár Farkas",
+        "wd_birth_city": "Újpest",
+        "wd_birth_country": "Hungary",
+        "getty_birth_place": "Budapest"
+      }
+    ],
+    "getty_fills_birthplace_gap": [
+      {
+        "qid": "Q1124592",
+        "name": "Hubert Duprat",
+        "getty_birth_place": "Nérac"
+      },
+      {
+        "qid": "Q1677339",
+        "name": "Jackson Hlungwani",
+        "getty_birth_place": "Limpopo"
+      },
+      {
+        "qid": "Q2027983",
+        "name": "Kjartan Slettemark",
+        "getty_birth_place": "Naustdal"
+      },
+      {
+        "qid": "Q2150089",
+        "name": "Richard Lin Show Yu",
+        "getty_birth_place": "Chung-hua Min-kuo"
+      }
+    ],
+    "nationality_no_overlap": [
+      {
+        "qid": "Q1910641",
+        "name": "Aart Lamberts",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ]
+      },
+      {
+        "qid": "Q55210",
+        "name": "Abbas Kiarostami",
+        "wd_citizenships": [
+          "Iran"
+        ],
+        "getty_nationalities": []
+      },
+      {
+        "qid": "Q2439713",
+        "name": "Abraham Yakin",
+        "wd_citizenships": [
+          "Israel"
+        ],
+        "getty_nationalities": []
+      },
+      {
+        "qid": "Q1887115",
+        "name": "Achiam",
+        "wd_citizenships": [
+          "France",
+          "Israel"
+        ],
+        "getty_nationalities": []
+      },
+      {
+        "qid": "Q263967",
+        "name": "Achille D’Orsi",
+        "wd_citizenships": [
+          "Kingdom of Italy"
+        ],
+        "getty_nationalities": [
+          "Italian"
+        ]
+      },
+      {
+        "qid": "Q1867015",
+        "name": "Ad Arma",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ]
+      },
+      {
+        "qid": "Q827088",
+        "name": "Ad Dekkers",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ]
+      },
+      {
+        "qid": "Q353674",
+        "name": "Adel Abdessemed",
+        "wd_citizenships": [
+          "France",
+          "Algeria"
+        ],
+        "getty_nationalities": []
+      }
+    ],
+    "nationality_getty_adds": [
+      {
+        "qid": "Q279088",
+        "name": "A. R. Penck",
+        "wd_citizenships": [
+          "Germany",
+          "German Democratic Republic"
+        ],
+        "getty_nationalities": [
+          "German",
+          "Irish"
+        ],
+        "nat_getty_only": [
+          "Ireland"
+        ]
+      },
+      {
+        "qid": "Q1910641",
+        "name": "Aart Lamberts",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ],
+        "nat_getty_only": [
+          "Netherlands"
+        ]
+      },
+      {
+        "qid": "Q329930",
+        "name": "Abraham David Christian",
+        "wd_citizenships": [
+          "Germany"
+        ],
+        "getty_nationalities": [
+          "American",
+          "German"
+        ],
+        "nat_getty_only": [
+          "United States"
+        ]
+      },
+      {
+        "qid": "Q263967",
+        "name": "Achille D’Orsi",
+        "wd_citizenships": [
+          "Kingdom of Italy"
+        ],
+        "getty_nationalities": [
+          "Italian"
+        ],
+        "nat_getty_only": [
+          "Italy"
+        ]
+      },
+      {
+        "qid": "Q1867015",
+        "name": "Ad Arma",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ],
+        "nat_getty_only": [
+          "Netherlands"
+        ]
+      },
+      {
+        "qid": "Q827088",
+        "name": "Ad Dekkers",
+        "wd_citizenships": [
+          "Kingdom of the Netherlands"
+        ],
+        "getty_nationalities": [
+          "Dutch"
+        ],
+        "nat_getty_only": [
+          "Netherlands"
+        ]
+      },
+      {
+        "qid": "Q618310",
+        "name": "Adam Colton",
+        "wd_citizenships": [
+          "United Kingdom"
+        ],
+        "getty_nationalities": [
+          "Dutch",
+          "English",
+          "British"
+        ],
+        "nat_getty_only": [
+          "Netherlands"
+        ]
+      },
+      {
+        "qid": "Q361083",
+        "name": "Adolf Brütt",
+        "wd_citizenships": [
+          "German Reich"
+        ],
+        "getty_nationalities": [
+          "German"
+        ],
+        "nat_getty_only": [
+          "Germany"
+        ]
+      }
+    ]
+  }
+}

@@ -108,6 +108,40 @@ export function SculptorDetail({ qid }: { qid: string }) {
     .join(", ");
   const hasBirthPlace = !!birthPlaceLine;
   const hasDeathPlace = !!deathPlaceLine;
+
+  // Phase 3b — Getty cross-reference. Two surfaces:
+  //  1. Gap-fill: when Wikidata has no birth/death place but Getty does,
+  //     render Getty's value with a small "(via Getty)" attribution.
+  //  2. Cross-reference status: a one-line affordance near the lifespan
+  //     summarising whether the two sources agree. Only render when
+  //     there's something to say — silent agreement isn't useful chrome.
+  const getty = sculptor.gettyVerified ?? null;
+  const gettyFillsBirth = !!getty && !hasBirthPlace && !!getty.birthPlace;
+  const gettyFillsDeath = !!getty && !hasDeathPlace && !!getty.deathPlace;
+
+  type CrossRefState = "verified" | "differs" | null;
+  function computeCrossRefState(): CrossRefState {
+    if (!getty) return null;
+    const a = getty.agreement;
+    const substantiveDisagreement =
+      a.birthYear === "off_big" ||
+      a.deathYear === "off_big" ||
+      a.birthPlace === false ||
+      a.deathPlace === false ||
+      a.natJaccard === 0;
+    if (substantiveDisagreement) return "differs";
+    // We require at least one positive comparison — otherwise we have a
+    // record but nothing to verify against, which is "no signal" rather
+    // than "verified."
+    const positiveComparisons =
+      a.birthYear === "match" ||
+      a.deathYear === "match" ||
+      a.birthPlace === true ||
+      a.deathPlace === true ||
+      (a.natJaccard !== null && a.natJaccard > 0);
+    return positiveComparisons ? "verified" : null;
+  }
+  const crossRefState = computeCrossRefState();
   // Only render the native-name subhead when the canonical form is actually
   // different from the romanized display name. Wikidata returns en-language
   // P1559 entries that just echo the name; rendering those would be visual
@@ -186,7 +220,39 @@ export function SculptorDetail({ qid }: { qid: string }) {
         )}
 
         {/* Lifespan line */}
-        <p className="text-sm text-text-secondary mb-4">{lifespanLine}</p>
+        <p className="text-sm text-text-secondary mb-1">{lifespanLine}</p>
+
+        {/* Cross-reference status — Phase 3b. We only render when there's
+            something to communicate (verified / differs); silent agreement
+            isn't worth the visual weight. The link goes to the Getty
+            record so curious readers can audit. */}
+        {crossRefState && getty && (
+          <p
+            className={`text-xs mb-4 ${
+              crossRefState === "verified"
+                ? "text-accent-primary"
+                : "text-text-tertiary"
+            }`}
+          >
+            {crossRefState === "verified"
+              ? "✓ Cross-referenced with Getty ULAN"
+              : "△ Differs from Getty ULAN"}
+            {getty.url && (
+              <>
+                {" · "}
+                <a
+                  href={getty.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  view Getty record
+                </a>
+              </>
+            )}
+          </p>
+        )}
+        {!crossRefState && <div className="mb-3" />}
 
         {/* Movement pill — only if present */}
         {hasMovement && (
@@ -221,8 +287,11 @@ export function SculptorDetail({ qid }: { qid: string }) {
           <p className="text-sm text-text-secondary mb-3">{genderLabel}</p>
         )}
 
-        {/* Place-of-birth / place-of-death */}
-        {(hasBirthPlace || hasDeathPlace) && (
+        {/* Place-of-birth / place-of-death. When Wikidata lacks the
+            place but Getty has it (Phase 3b), surface Getty's value
+            with a small attribution so the user can tell which source
+            said what. */}
+        {(hasBirthPlace || hasDeathPlace || gettyFillsBirth || gettyFillsDeath) && (
           <div className="text-sm text-text-secondary mb-3 space-y-0.5">
             {hasBirthPlace && (
               <p>
@@ -230,10 +299,28 @@ export function SculptorDetail({ qid }: { qid: string }) {
                 {birthPlaceLine}
               </p>
             )}
+            {!hasBirthPlace && gettyFillsBirth && getty?.birthPlace && (
+              <p>
+                <span className="text-text-tertiary">Born in</span>{" "}
+                {getty.birthPlace}
+                <span className="ml-1.5 text-xs italic text-text-tertiary">
+                  (via Getty)
+                </span>
+              </p>
+            )}
             {hasDeathPlace && (
               <p>
                 <span className="text-text-tertiary">Died in</span>{" "}
                 {deathPlaceLine}
+              </p>
+            )}
+            {!hasDeathPlace && gettyFillsDeath && getty?.deathPlace && (
+              <p>
+                <span className="text-text-tertiary">Died in</span>{" "}
+                {getty.deathPlace}
+                <span className="ml-1.5 text-xs italic text-text-tertiary">
+                  (via Getty)
+                </span>
               </p>
             )}
           </div>

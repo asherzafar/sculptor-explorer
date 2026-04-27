@@ -58,6 +58,22 @@ export async function loadTransparency(): Promise<TransparencyAudit> {
   return res.json();
 }
 
+/**
+ * Load getty_audit.json (Phase 3b Wikidata↔Getty cross-reference). Returns
+ * null when the file isn't present yet — the pipeline only produces it
+ * after Getty ingest, so first-run builds before that step should
+ * gracefully omit the section instead of erroring.
+ */
+export async function loadGettyAudit(): Promise<import("./types").GettyAudit | null> {
+  try {
+    const res = await fetch("/data/getty_audit.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 /** Load geography_by_birth_country.json — place-of-birth aggregation. */
 export async function loadGeographyByBirthCountry(): Promise<DecadeAggregation[]> {
   const res = await fetch("/data/geography_by_birth_country.json");

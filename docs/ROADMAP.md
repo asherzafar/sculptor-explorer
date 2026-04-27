@@ -118,11 +118,21 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 - Periodic review of bot-dominated Wikipedias list (currently ceb, war)
 - Gender representation: Phase 3a only moved 13% → 14.4% female. What would it take to do better? Is that even a filter question, or a data-source question?
 
-### 3b. Getty ULAN crosswalk — authoritative nationality & activity data
-- [ ] Use Wikidata's **P245 (ULAN ID)** to get the crosswalk for free (no fuzzy-match required)
-- [ ] Query Getty's SPARQL endpoint (http://vocab.getty.edu/sparql) in small batches for: nationalities-over-time, verified birth/death places, places of activity
-- [ ] Schema: sculptor gains `nationalities[]` array (with source provenance per entry) and `activity_places[]`
-- [ ] License: ODC-By 1.0, attribute Getty on About page
+### 3b. Getty ULAN crosswalk — Wikidata cross-reference
+- [x] **P245 (ULAN ID) crosswalk** — 2,340 of 3,630 sculptors (64.5%) carry a Wikidata-supplied ULAN ID; no fuzzy match required.
+- [x] **Per-record JSON-LD ingest** — `pipeline/query_getty.py` fetches `https://vocab.getty.edu/ulan/{id}.json` (the per-record endpoint, *not* the unstable SPARQL endpoint), with disk cache + politeness throttle. Resume-on-rerun is free. Full ingest: ~17 min, zero failures.
+- [x] **Wikidata ↔ Getty audit** — `pipeline/audit_getty.py` produces both `getty_audit.json` (aggregate metrics + spot-check tables) and `getty_compared.parquet` (per-record). Cross-reference badge on detail pages; full audit section on `/transparency`.
+- [x] **Schema** — sculptors gain a `gettyVerified` block: Getty's parallel data (label, birth/death year + place, nationality chips) plus per-field agreement flags computed at export time.
+- [x] **UI surfaces** — detail page shows a one-line cross-ref status (verified / differs) with a deep link to the Getty record; place data falls back to Getty when Wikidata is missing (rare — only 4 cases in practice).
+- [ ] **Activity places (migration view data)** — NOT in the basic JSON-LD record. Would require Getty's SPARQL endpoint (unreliable) or the bulk LOD download (~3GB TTL). Deferred unless we re-prioritise the dedicated migration chart.
+- [ ] **License attribution** — ODC-By 1.0, Getty named on About page (pending small About-page touch).
+
+**Honest readout from the audit (live numbers on `/transparency`):**
+- Birth-year agreement: **94.6% exact**, 1.9% off-by-1, 3.5% off-by-2+ (Getty has more transcription typos than Wikidata: e.g. Allen Jones = 1837 vs 1937).
+- Death-year agreement: **81.9% exact**, with a long tail of "Getty hasn't updated death dates for living artists."
+- Birthplace agreement: **69.2%** when both have data — most "disagreements" are transliteration drift (Tehran/Tehrān, Constantine/Qacentina) or city-vs-country granularity differences, not factual disagreements.
+- **Wikidata is the larger source by far.** Getty fills 4 birthplace gaps; Wikidata fills 921 the other way. Getty's value here is verification, not coverage.
+- Mean nationality Jaccard: **0.62** — partly because Getty uses adjective form (`Dutch`) and Wikidata uses legal-state form (`Kingdom of the Netherlands`); partly because the two model different concepts (cultural attribution vs. citizenship).
 
 ### 3c. SAAM (Smithsonian American Art Museum) — biographical narratives
 - [ ] Download SAAM LOD dataset (CC0, GitHub)
