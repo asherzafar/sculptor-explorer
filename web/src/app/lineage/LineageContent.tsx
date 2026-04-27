@@ -38,6 +38,19 @@ const EDGE_OPTIONS = [
 ] as const;
 type EdgeValue = (typeof EDGE_OPTIONS)[number]["key"];
 
+// Phase 4 — cross-cultural filter. "All" keeps the existing behaviour;
+// "cross" surfaces only émigré / cross-border lineages; "same" surfaces
+// connections within a shared citizenship. Edges with null
+// `crossesBorders` (typically external-mentor edges where we lack
+// citizenship data) get hidden under "cross" and "same" rather than
+// silently lumped into either bucket.
+const BORDER_OPTIONS = [
+  { key: "all", label: "All" },
+  { key: "cross", label: "Crosses borders" },
+  { key: "same", label: "Same nationality" },
+] as const;
+type BorderValue = (typeof BORDER_OPTIONS)[number]["key"];
+
 const MAX_MOVEMENT_PILLS = 12;
 
 export function LineageContent() {
@@ -81,6 +94,10 @@ export function LineageContent() {
     return v === "influenced_by" || v === "student_of" ? v : "all";
   })();
   const minDegree = Math.max(0, Number(searchParams.get("minDeg") || 0));
+  const borderFilter: BorderValue = (() => {
+    const v = searchParams.get("border");
+    return v === "cross" || v === "same" ? v : "all";
+  })();
   const selectedMovements = useMemo(() => {
     const raw = searchParams.get("mov");
     if (!raw) return new Set<string>();
@@ -171,6 +188,12 @@ export function LineageContent() {
       else p.set("minDeg", String(n));
     });
   }
+  function setBorderFilter(v: BorderValue) {
+    update((p) => {
+      if (v === "all") p.delete("border");
+      else p.set("border", v);
+    });
+  }
   function toggleMovement(slug: string) {
     update((p) => {
       const cur = new Set(selectedMovements);
@@ -190,7 +213,44 @@ export function LineageContent() {
     hideMentors ||
     edgeType !== "all" ||
     minDegree > 0 ||
-    selectedMovements.size > 0;
+    selectedMovements.size > 0 ||
+    borderFilter !== "all";
+
+  // Apply the cross-cultural filter at this layer rather than pushing it
+  // into LineageGraph — LineageGraph already has plenty of filter logic
+  // and the simple edges-array filter is the cleanest insertion point.
+  // Tri-state edges (crossesBorders == null) drop out under cross/same
+  // filters so the visible network reflects only classifiable
+  // relationships.
+  const filteredEdges = useMemo(() => {
+    if (borderFilter === "all") return edges;
+    return edges.filter((e) =>
+      borderFilter === "cross"
+        ? e.crossesBorders === true
+        : e.crossesBorders === false
+    );
+  }, [edges, borderFilter]);
+
+  // Headline stats — small, factual, sits above the filter bar so the
+  // reader sees the cross-cultural rate before adjusting any filters.
+  const crossCulturalStats = useMemo(() => {
+    let cross = 0;
+    let same = 0;
+    let unknown = 0;
+    for (const e of edges) {
+      if (e.crossesBorders === true) cross += 1;
+      else if (e.crossesBorders === false) same += 1;
+      else unknown += 1;
+    }
+    const comparable = cross + same;
+    return {
+      cross,
+      same,
+      unknown,
+      comparable,
+      pct: comparable ? (100 * cross) / comparable : null,
+    };
+  }, [edges]);
 
   if (loading) {
     return (
@@ -214,6 +274,42 @@ export function LineageContent() {
           the most-connected backbone of the graph.
         </p>
       </div>
+
+      {/* ------------- Cross-cultural stat banner -------------
+          A single line above the filters because the cross-cultural
+          rate is a story the reader should see before they start
+          slicing the data. The "comparable" denominator reminds the
+          reader that not every edge can be classified — external-mentor
+          edges (the diamonds) are excluded since we don't fetch
+          citizenship for non-sculptor teachers. */}
+      {crossCulturalStats.pct !== null && (
+        <div className="mb-3 rounded-md border border-border-subtle bg-bg-secondary/60 px-4 py-2.5 text-sm text-text-secondary">
+          <strong className="text-text-primary">
+            {crossCulturalStats.cross.toLocaleString()}
+          </strong>{" "}
+          of{" "}
+          <strong className="text-text-primary">
+            {crossCulturalStats.comparable.toLocaleString()}
+          </strong>{" "}
+          classifiable connections (
+          <strong className="text-accent-primary">
+            {crossCulturalStats.pct.toFixed(0)}%
+          </strong>
+          ) cross national borders — émigré sculptors who studied
+          abroad, refugees who carried traditions across continents, and
+          the cosmopolitan ateliers that taught everyone.{" "}
+          <button
+            onClick={() =>
+              setBorderFilter(borderFilter === "cross" ? "all" : "cross")
+            }
+            className="text-accent-primary hover:underline"
+          >
+            {borderFilter === "cross"
+              ? "Show all connections"
+              : "Show only cross-border →"}
+          </button>
+        </div>
+      )}
 
       {/* ------------- Filter bar ------------- */}
       <div className="mb-4 grid gap-4 rounded-md bg-bg-secondary p-4 lg:grid-cols-2">
@@ -315,6 +411,37 @@ export function LineageContent() {
             </div>
           </div>
 
+          {/* Border filter — surfaces the cross-cultural collaboration
+              cut as a peer of "Connection type" rather than buried in a
+              menu. Disabled tooltip-style help via title attribute. */}
+          <div>
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">
+              National borders
+            </label>
+            <div className="flex flex-wrap gap-1.5">
+              {BORDER_OPTIONS.map(({ key, label }) => (
+                <button
+                  key={key}
+                  onClick={() => setBorderFilter(key)}
+                  title={
+                    key === "cross"
+                      ? "Edges where the two sculptors share no citizenship"
+                      : key === "same"
+                      ? "Edges where the two sculptors share at least one citizenship"
+                      : "All classifiable connections + edges with unknown citizenship"
+                  }
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                    borderFilter === key
+                      ? "bg-accent-primary text-white"
+                      : "bg-bg-primary text-text-secondary hover:bg-accent-muted"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="flex items-center justify-between gap-4">
             <label className="flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
               <input
@@ -381,7 +508,7 @@ export function LineageContent() {
       {/* ------------- Graph ------------- */}
       <LineageGraph
         sculptors={sculptors}
-        edges={edges}
+        edges={filteredEdges}
         externalMentors={mentors}
         height={680}
         focusQid={focusQid}

@@ -1,0 +1,161 @@
+{
+  "totalEdges": 1418,
+  "comparable": 543,
+  "crossBorder": 157,
+  "sameNationality": 386,
+  "crossPctOfComparable": 0.289134438305709,
+  "byDecade": [
+    {
+      "decade": 1800,
+      "total": 60,
+      "cross": 8,
+      "same": 52
+    },
+    {
+      "decade": 1810,
+      "total": 30,
+      "cross": 14,
+      "same": 16
+    },
+    {
+      "decade": 1820,
+      "total": 35,
+      "cross": 3,
+      "same": 32
+    },
+    {
+      "decade": 1830,
+      "total": 44,
+      "cross": 15,
+      "same": 29
+    },
+    {
+      "decade": 1840,
+      "total": 102,
+      "cross": 28,
+      "same": 74
+    },
+    {
+      "decade": 1850,
+      "total": 30,
+      "cross": 13,
+      "same": 17
+    },
+    {
+      "decade": 1860,
+      "total": 39,
+      "cross": 16,
+      "same": 23
+    },
+    {
+      "decade": 1870,
+      "total": 36,
+      "cross": 13,
+      "same": 23
+    },
+    {
+      "decade": 1880,
+      "total": 64,
+      "cross": 29,
+      "same": 35
+    },
+    {
+      "decade": 1890,
+      "total": 15,
+      "cross": 6,
+      "same": 9
+    },
+    {
+      "decade": 1900,
+      "total": 36,
+      "cross": 2,
+      "same": 34
+    },
+    {
+      "decade": 1910,
+      "total": 15,
+      "cross": 2,
+      "same": 13
+    },
+    {
+      "decade": 1920,
+      "total": 21,
+      "cross": 2,
+      "same": 19
+    },
+    {
+      "decade": 1930,
+      "total": 9,
+      "cross": 5,
+      "same": 4
+    },
+    {
+      "decade": 1940,
+      "total": 7,
+      "cross": 1,
+      "same": 6
+    }
+  ],
+  "topPairs": [
+    {
+      "a": "Germany",
+      "b": "Kingdom of Prussia",
+      "count": 11
+    },
+    {
+      "a": "France",
+      "b": "United States",
+      "count": 7
+    },
+    {
+      "a": "German Reich",
+      "b": "Germany",
+      "count": 7
+    },
+    {
+      "a": "France",
+      "b": "Spain",
+      "count": 6
+    },
+    {
+      "a": "France",
+      "b": "Germany",
+      "count": 6
+    },
+    {
+      "a": "France",
+      "b": "Sweden",
+      "count": 5
+    },
+    {
+      "a": "France",
+      "b": "Switzerland",
+      "count": 4
+    },
+    {
+      "a": "Germany",
+      "b": "Kingdom of Bavaria",
+      "count": 4
+    },
+    {
+      "a": "Austria",
+      "b": "Germany",
+      "count": 4
+    },
+    {
+      "a": "France",
+      "b": "Kingdom of Italy",
+      "count": 3
+    },
+    {
+      "a": "France",
+      "b": "Hungary",
+      "count": 3
+    },
+    {
+      "a": "Grand Duchy of Mecklenburg-Strelitz",
+      "b": "Kingdom of Prussia",
+      "count": 3
+    }
+  ]
+}

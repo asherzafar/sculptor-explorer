@@ -104,15 +104,52 @@ def create_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     return [_sculptor_record(row) for _, row in included.iterrows()]
 
 
-def create_edges_json(relations: pd.DataFrame) -> list[dict]:
+def create_edges_json(
+    relations: pd.DataFrame, nodes: pd.DataFrame
+) -> list[dict]:
     """Create edges.json with relationship edges.
 
     Preserves ALL edges, including those to external mentors. Each edge
     records whether the `from` endpoint is an external mentor so the web
     client can style it differently.
+
+    Phase 4 — adds `crossesBorders` per edge for the cross-cultural
+    collaboration story:
+      - True  if both endpoints have non-empty citizenship sets that are
+              disjoint (no shared country).
+      - False if both have non-empty citizenship sets that intersect.
+      - None  if either side lacks citizenship data (most commonly when
+              the `from` endpoint is an external mentor — we don't fetch
+              citizenship for non-sculptor mentors).
+
+    The tri-state matters: a False count is meaningful, but conflating
+    None with False would inflate the "same-nationality" denominator.
     """
     if len(relations) == 0:
         return []
+
+    # Build a citizenship lookup keyed by QID. We use the full
+    # `citizenships` array (Wikidata P27 — may have multiple values for
+    # émigré sculptors) so dual-citizenship cases are properly handled.
+    citz_by_qid: dict[str, set[str]] = {}
+    for _, row in nodes.iterrows():
+        citz = row.get("citizenships")
+        if citz is None:
+            continue
+        try:
+            arr = list(citz)
+        except TypeError:
+            continue
+        clean = {str(c) for c in arr if c and str(c).strip()}
+        if clean:
+            citz_by_qid[row["qid"]] = clean
+
+    def _crosses(from_qid: str, to_qid: str) -> bool | None:
+        f = citz_by_qid.get(from_qid)
+        t = citz_by_qid.get(to_qid)
+        if not f or not t:
+            return None
+        return len(f & t) == 0
 
     records = []
     for _, row in relations.iterrows():
@@ -122,9 +159,97 @@ def create_edges_json(relations: pd.DataFrame) -> list[dict]:
             "fromName": row["from_name"],
             "toName": row["to_name"],
             "relationType": row["relation_type"],
+            "crossesBorders": _crosses(row["from_qid"], row["to_qid"]),
         })
 
     return records
+
+
+def create_cross_cultural_summary(edges: list[dict], nodes: pd.DataFrame) -> dict:
+    """Aggregate cross-cultural lineage statistics for /transparency.
+
+    Splits each comparable edge by the FROM-side sculptor's birth decade
+    (the teacher / influencer in `student_of` and `influenced_by` relations)
+    so the timeline reflects when the formative connection happened.
+
+    Output shape:
+      {
+        "totalEdges": int,
+        "comparable": int,           # crossesBorders is not None
+        "crossBorder": int,
+        "sameNationality": int,
+        "crossPctOfComparable": float,
+        "byDecade": [{decade, total, cross, same}],
+        "topPairs": [{a, b, count}]  # top 12 country-pair combos
+      }
+    """
+    by_qid_decade = {
+        row["qid"]: int(row["birth_decade"])
+        for _, row in nodes.iterrows()
+        if pd.notna(row.get("birth_decade"))
+    }
+    by_qid_citz = {}
+    for _, row in nodes.iterrows():
+        citz = row.get("citizenships")
+        if citz is None:
+            continue
+        try:
+            arr = list(citz)
+        except TypeError:
+            continue
+        clean = [str(c) for c in arr if c and str(c).strip()]
+        if clean:
+            by_qid_citz[row["qid"]] = clean
+
+    decade_buckets: dict[int, dict[str, int]] = {}
+    pair_counts: dict[tuple[str, str], int] = {}
+    cross = same = 0
+
+    for e in edges:
+        flag = e["crossesBorders"]
+        if flag is None:
+            continue
+        decade = by_qid_decade.get(e["fromQid"]) or by_qid_decade.get(e["toQid"])
+        if decade is None:
+            continue
+        bucket = decade_buckets.setdefault(
+            decade, {"decade": decade, "total": 0, "cross": 0, "same": 0}
+        )
+        bucket["total"] += 1
+        if flag:
+            cross += 1
+            bucket["cross"] += 1
+            # Record the country-pair for the topPairs aggregation.
+            # Use the first citizenship from each side as the canonical
+            # representative — multi-citizenship sculptors get folded into
+            # their primary national identity. Sorted so (FR, US) and
+            # (US, FR) collapse to the same key.
+            f_citz = by_qid_citz.get(e["fromQid"], [])
+            t_citz = by_qid_citz.get(e["toQid"], [])
+            if f_citz and t_citz:
+                key = tuple(sorted([f_citz[0], t_citz[0]]))
+                if key[0] != key[1]:
+                    pair_counts[key] = pair_counts.get(key, 0) + 1
+        else:
+            same += 1
+            bucket["same"] += 1
+
+    comparable = cross + same
+    by_decade = sorted(decade_buckets.values(), key=lambda b: b["decade"])
+    top_pairs = sorted(
+        ({"a": a, "b": b, "count": c} for (a, b), c in pair_counts.items()),
+        key=lambda r: -r["count"],
+    )[:12]
+
+    return {
+        "totalEdges": len(edges),
+        "comparable": comparable,
+        "crossBorder": cross,
+        "sameNationality": same,
+        "crossPctOfComparable": (cross / comparable) if comparable else None,
+        "byDecade": by_decade,
+        "topPairs": top_pairs,
+    }
 
 
 def create_external_mentors_json(external_mentors: pd.DataFrame) -> list[dict]:
@@ -408,12 +533,22 @@ def export_all():
         json.dump(sculptors, f, indent=2)
     print(f"✓ Exported {len(sculptors)} sculptors to {sculptors_path.name}")
     
-    # Export edges.json
-    edges = create_edges_json(relations)
+    # Export edges.json (now includes per-edge crossesBorders flag)
+    edges = create_edges_json(relations, nodes)
     edges_path = WEB_DATA_DIR / "edges.json"
     with open(edges_path, "w") as f:
         json.dump(edges, f, indent=2)
     print(f"✓ Exported {len(edges)} edges to {edges_path.name}")
+
+    # Export cross_cultural_summary.json (Phase 4 collaboration story)
+    cc_summary = create_cross_cultural_summary(edges, nodes)
+    cc_path = WEB_DATA_DIR / "cross_cultural_summary.json"
+    with open(cc_path, "w") as f:
+        json.dump(cc_summary, f, indent=2)
+    print(
+        f"✓ Cross-cultural lineages: {cc_summary['crossBorder']}/"
+        f"{cc_summary['comparable']} comparable edges cross national borders"
+    )
 
     # Export external_mentors.json
     ext_mentors = create_external_mentors_json(external_mentors)

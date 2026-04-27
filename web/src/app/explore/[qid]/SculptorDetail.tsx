@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowLeft } from "lucide-react";
-import type { LegacySculptor } from "@/lib/types";
-import { loadSculptors } from "@/lib/data";
+import type { LegacyEdge, LegacySculptor } from "@/lib/types";
+import { loadEdges, loadSculptors } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 
 /** Single data-completeness dot with tooltip. */
@@ -26,14 +26,23 @@ function CompletenessDot({ present, label }: { present: boolean; label: string }
 export function SculptorDetail({ qid }: { qid: string }) {
   const router = useRouter();
   const [sculptor, setSculptor] = useState<LegacySculptor | null>(null);
+  // edges loaded alongside the sculptor so we can compute the
+  // per-sculptor cross-cultural connection count without a second
+  // round-trip. The full edges payload is small (~150KB) and already
+  // cached by other pages.
+  const [edges, setEdges] = useState<LegacyEdge[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const sculptors = await loadSculptors();
+        const [sculptors, allEdges] = await Promise.all([
+          loadSculptors(),
+          loadEdges(),
+        ]);
         const found = sculptors.find((s) => s.qid === qid);
         setSculptor(found || null);
+        setEdges(allEdges);
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
@@ -85,6 +94,15 @@ export function SculptorDetail({ qid }: { qid: string }) {
   const hasMovement = !!sculptor.movement && movementLabel !== "—";
   const hasCitizenship = !!sculptor.citizenship;
   const hasEdges = sculptor.totalDegree > 0;
+
+  // Phase 4 — per-sculptor cross-cultural connection count. Only
+  // counts edges where this sculptor appears as an endpoint AND the
+  // edge has a classifiable `crossesBorders` flag (excludes external-
+  // mentor edges where citizenship data is missing on one side).
+  const myCrossBorderCount = edges.reduce((n, e) => {
+    if (e.crossesBorders !== true) return n;
+    return n + (e.fromQid === qid || e.toQid === qid ? 1 : 0);
+  }, 0);
   const hasGender = !!sculptor.gender;
 
   // Multi-citizenship: when Wikidata records more than one country we render
@@ -326,7 +344,10 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </div>
         )}
 
-        {/* Connections — only if > 0 */}
+        {/* Connections — only if > 0. Phase 4 appends a cross-border
+            count when any of the connections cross national lines, so
+            émigré sculptors' international training shows up at a
+            glance. */}
         {hasEdges && (
           <p className="text-sm text-text-secondary mb-4">
             {sculptor.totalDegree} connection{sculptor.totalDegree === 1 ? "" : "s"}
@@ -334,6 +355,15 @@ export function SculptorDetail({ qid }: { qid: string }) {
             <span className="text-text-tertiary">
               ({sculptor.inDegree} in, {sculptor.outDegree} out)
             </span>
+            {myCrossBorderCount > 0 && (
+              <>
+                {" · "}
+                <span className="text-accent-primary">
+                  {myCrossBorderCount} cross{" "}
+                  {myCrossBorderCount === 1 ? "border" : "borders"}
+                </span>
+              </>
+            )}
           </p>
         )}
 

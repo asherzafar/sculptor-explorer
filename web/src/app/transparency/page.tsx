@@ -3,8 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { loadGettyAudit, loadTransparency } from "@/lib/data";
-import type { GettyAudit, TransparencyAudit } from "@/lib/types";
+import {
+  loadCrossCulturalSummary,
+  loadGettyAudit,
+  loadTransparency,
+} from "@/lib/data";
+import type {
+  CrossCulturalSummary,
+  GettyAudit,
+  TransparencyAudit,
+} from "@/lib/types";
 
 /**
  * Transparency page — Option A.3 standing commitment.
@@ -31,6 +39,199 @@ const SIGNAL_LABELS: Record<string, string> = {
 function formatPct(n: number, total: number): string {
   if (!total) return "0.0%";
   return `${((100 * n) / total).toFixed(1)}%`;
+}
+
+/**
+ * CrossCulturalCollaboration — Phase 4 migration-story surface.
+ *
+ * Shows what fraction of mentor-student / influence edges cross
+ * national borders, by decade. Designed to read alongside the
+ * Option A.3 inclusion audit: same numerical-tabular style, same
+ * commitment to disclosing the messy edges.
+ *
+ * Caveats surfaced inline rather than buried:
+ *   - Tri-state denominator: external-mentor edges (no citizenship
+ *     data) are excluded from both numerator and denominator.
+ *   - Historical-state name drift: pairs like "Germany ↔ Kingdom of
+ *     Prussia" or "German Reich ↔ Germany" describe the same place
+ *     under different historical names; we show them honestly rather
+ *     than collapsing them, with a note explaining why.
+ */
+function CrossCulturalCollaboration({
+  summary,
+}: {
+  summary: CrossCulturalSummary;
+}) {
+  const headlinePct =
+    summary.crossPctOfComparable !== null
+      ? `${(100 * summary.crossPctOfComparable).toFixed(1)}%`
+      : "—";
+
+  // Decade buckets with low N (< 5 comparable edges) are noisy — we
+  // still render them but render the bar at lower opacity so the
+  // reader sees the data sparsity at a glance. This is the same
+  // pattern as the inclusion-signal coverage section above.
+  const maxDecadeTotal = Math.max(
+    1,
+    ...summary.byDecade.map((b) => b.total),
+  );
+
+  return (
+    <section className="mb-10">
+      <h2 className="text-xl font-semibold text-text-primary mb-3">
+        Cross-cultural collaboration
+      </h2>
+      <p className="text-text-secondary leading-relaxed mb-4 max-w-3xl">
+        How many lineage connections cross national borders? An édge
+        crosses borders when its two endpoints share no citizenship —
+        the émigré who studied abroad, the refugee who carried a
+        tradition with them, the student who travelled to a famous
+        atelier. The denominator below excludes edges to external
+        mentors (the diamonds on{" "}
+        <Link href="/lineage" className="text-accent-primary hover:underline">
+          /lineage
+        </Link>
+        ), since we don&apos;t fetch citizenship for non-sculptor
+        teachers.
+      </p>
+
+      {/* Headline */}
+      <section className="mb-6 grid grid-cols-3 gap-4">
+        <div className="rounded-md border border-accent-primary/30 bg-accent-muted/20 p-4">
+          <p className="text-xs uppercase tracking-wide text-accent-primary">
+            Cross-border rate
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {headlinePct}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            of {summary.comparable.toLocaleString()} classifiable edges
+          </p>
+        </div>
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Cross-border edges
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {summary.crossBorder.toLocaleString()}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            émigré / international training
+          </p>
+        </div>
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Same-nationality edges
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {summary.sameNationality.toLocaleString()}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            within a single country
+          </p>
+        </div>
+      </section>
+
+      {/* By decade — the migration story is fundamentally a temporal
+          one, so the decade chart is the centrepiece. */}
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        By teacher / influencer&apos;s birth decade
+      </h3>
+      <ul className="space-y-1.5 mb-3">
+        {summary.byDecade.map((b) => {
+          const pct = b.total ? (100 * b.cross) / b.total : 0;
+          const sparse = b.total < 5;
+          return (
+            <li
+              key={b.decade}
+              className={`flex items-center gap-3 text-sm ${
+                sparse ? "opacity-60" : ""
+              }`}
+              title={
+                sparse
+                  ? `Sparse decade — only ${b.total} classifiable edges`
+                  : undefined
+              }
+            >
+              <span className="w-16 shrink-0 text-text-secondary tabular-nums">
+                {b.decade}s
+              </span>
+              <div className="relative flex-1 h-3 bg-bg-secondary rounded-sm overflow-hidden">
+                {/* Stacked bar: cross-border on top of same-nationality
+                    base. Width of the base reflects total volume of
+                    edges in that decade so the reader can see both
+                    rate and sample size at once. */}
+                <div
+                  className="absolute inset-y-0 left-0 bg-text-tertiary/40"
+                  style={{
+                    width: `${(100 * b.total) / maxDecadeTotal}%`,
+                  }}
+                />
+                <div
+                  className="absolute inset-y-0 left-0 bg-accent-primary"
+                  style={{
+                    width: `${
+                      ((100 * b.cross) / maxDecadeTotal)
+                    }%`,
+                  }}
+                />
+              </div>
+              <span className="w-32 text-right tabular-nums text-text-tertiary text-xs">
+                {b.cross}/{b.total} · {pct.toFixed(0)}%
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <p className="text-xs text-text-tertiary mb-5 max-w-3xl">
+        Faded rows have fewer than 5 comparable edges and are noisy. The
+        narrow bar shows total volume of classifiable connections; the
+        accent-coloured slice shows the cross-border share. The mid-19th
+        century peaks reflect the era of European cross-pollination —
+        Paris and Rome as cosmopolitan training grounds.
+      </p>
+
+      {/* Top country pairs */}
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Most-common country pairs
+      </h3>
+      <div className="overflow-x-auto mb-3">
+        <table className="w-full text-sm max-w-2xl">
+          <thead className="text-text-tertiary text-xs">
+            <tr>
+              <th className="text-left font-medium px-2 py-1.5">From</th>
+              <th className="text-left font-medium px-2 py-1.5">To</th>
+              <th className="text-right font-medium px-2 py-1.5">Edges</th>
+            </tr>
+          </thead>
+          <tbody className="text-text-secondary">
+            {summary.topPairs.map((p, i) => (
+              <tr
+                key={`${p.a}-${p.b}`}
+                className={i % 2 === 0 ? "bg-bg-secondary/40" : ""}
+              >
+                <td className="px-2 py-1.5">{p.a}</td>
+                <td className="px-2 py-1.5">{p.b}</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {p.count}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-text-tertiary max-w-3xl">
+        <strong className="text-text-secondary">Caveat — historical states.</strong>{" "}
+        Wikidata records citizenship as the country that existed at the
+        sculptor&apos;s lifetime, so pairs like &ldquo;Germany ↔
+        Kingdom of Prussia&rdquo; or &ldquo;German Reich ↔ Germany&rdquo;
+        describe the same physical place under different historical
+        names. We&apos;re showing them honestly rather than silently
+        collapsing them; tracked as a parking-lot item for a future data
+        pass.
+      </p>
+    </section>
+  );
 }
 
 /**
@@ -454,18 +655,22 @@ function Breakdown({ title, data, accent }: BreakdownProps) {
 export default function TransparencyPage() {
   const [audit, setAudit] = useState<TransparencyAudit | null>(null);
   const [getty, setGetty] = useState<GettyAudit | null>(null);
+  const [crossCultural, setCrossCultural] =
+    useState<CrossCulturalSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function load() {
       try {
-        const [a, g] = await Promise.all([
+        const [a, g, cc] = await Promise.all([
           loadTransparency(),
           loadGettyAudit(),
+          loadCrossCulturalSummary(),
         ]);
         setAudit(a);
         setGetty(g);
+        setCrossCultural(cc);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load");
       } finally {
@@ -644,6 +849,11 @@ export default function TransparencyPage() {
           getty_audit.json is present (the file is generated by
           pipeline/audit_getty.py and is therefore optional during
           early development / first runs). */}
+      {/* Phase 4 — cross-cultural collaboration. Renders only when
+          cross_cultural_summary.json is present (generated by
+          export_json.py). */}
+      {crossCultural && <CrossCulturalCollaboration summary={crossCultural} />}
+
       {getty && <GettyCrossReference audit={getty} />}
 
       <section className="text-sm text-text-tertiary">

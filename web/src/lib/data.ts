@@ -59,6 +59,23 @@ export async function loadTransparency(): Promise<TransparencyAudit> {
 }
 
 /**
+ * Load cross_cultural_summary.json (Phase 4 collaboration story).
+ * Returns null on missing file so the page can gracefully omit the
+ * section pre-pipeline-rerun.
+ */
+export async function loadCrossCulturalSummary(): Promise<
+  import("./types").CrossCulturalSummary | null
+> {
+  try {
+    const res = await fetch("/data/cross_cultural_summary.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Load getty_audit.json (Phase 3b Wikidata↔Getty cross-reference). Returns
  * null when the file isn't present yet — the pipeline only produces it
  * after Getty ingest, so first-run builds before that step should
