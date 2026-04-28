@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
-import { MobileGate } from "@/components/MobileGate";
+import { MobileNav } from "@/components/MobileNav";
 
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -57,9 +57,14 @@ export default function RootLayout({
       className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="h-full bg-bg-primary text-text-primary font-body">
-        <MobileGate />
-        <div className="hidden md:flex h-full">
+        {/* Responsive shell:
+            - <md: column with top bar (MobileNav) + scrolling content
+            - md+: row with sidebar (Nav) + scrolling content
+            Both nav components self-gate by breakpoint, so they coexist
+            in the tree without flicker. */}
+        <div className="flex h-full flex-col md:flex-row">
           <Nav />
+          <MobileNav />
           <main className="flex-1 overflow-y-auto">{children}</main>
         </div>
       </body>
