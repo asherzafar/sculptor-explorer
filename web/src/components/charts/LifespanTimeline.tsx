@@ -225,7 +225,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
 
   if (data.length === 0) {
     return (
-      <p className="text-muted-foreground text-sm">No timeline data available.</p>
+      <p className="text-text-tertiary text-sm">No timeline data available.</p>
     );
   }
 
@@ -457,12 +457,12 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
           }}
         >
           <p className="font-semibold text-sm">{tooltip.sculptor.name}</p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-text-secondary">
             {tooltip.sculptor.birthYear} –{" "}
             {tooltip.sculptor.deathYear ?? "present"}
           </p>
           {tooltip.sculptor.deathYear && (
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-text-secondary">
               Lived {tooltip.sculptor.deathYear - tooltip.sculptor.birthYear} years
             </p>
           )}
@@ -471,7 +471,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
 
       {/* Continuous gradient legend using design tokens */}
       <div className="mt-4 flex items-center justify-start gap-2">
-        <span className="text-xs text-muted-foreground">{decades[0] ?? 1800}s</span>
+        <span className="text-xs text-text-tertiary">{decades[0] ?? 1800}s</span>
         <div
           className="h-3 rounded-sm"
           style={{
@@ -479,7 +479,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
             background: "linear-gradient(to right, var(--color-data-1), var(--color-data-2))",
           }}
         />
-        <span className="text-xs text-muted-foreground">{decades[decades.length - 1] ?? 1970}s</span>
+        <span className="text-xs text-text-tertiary">{decades[decades.length - 1] ?? 1970}s</span>
       </div>
     </div>
   );

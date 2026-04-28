@@ -119,7 +119,7 @@ function SortHeader({
   return (
     <button
       onClick={() => column.toggleSorting()}
-      className="flex items-center gap-1 font-semibold text-xs uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+      className="flex items-center gap-1 font-semibold text-xs uppercase tracking-wide text-text-tertiary hover:text-text-primary transition-colors"
     >
       {children}
       {sort === "asc" && <ArrowUp className="h-3 w-3" />}
@@ -201,17 +201,17 @@ export default function ExplorePage() {
 
       {/* Global search */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-tertiary" />
         <input
           type="text"
-          placeholder="Search by name (diacritics optional)..."
+          placeholder="Search by name (diacritics optional)…"
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
-          className="w-full pl-9 pr-3 py-2 rounded-md border bg-background text-sm"
+          className="w-full pl-9 pr-3 py-2 rounded-md border border-border-subtle bg-bg-primary text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent-primary focus:outline-none"
         />
       </div>
 
-      <p className="text-sm text-muted-foreground mb-4">
+      <p className="text-sm text-text-secondary mb-4">
         Showing {filteredData.length.toLocaleString()} of{" "}
         {sculptors.length.toLocaleString()} sculptors
       </p>
@@ -247,7 +247,7 @@ export default function ExplorePage() {
                 <tr
                   key={row.id}
                   onClick={() => router.push(`/explore/${sculptor.qid}`)}
-                  className={`cursor-pointer hover:bg-accent/30 transition-colors ${
+                  className={`cursor-pointer hover:bg-accent-muted transition-colors ${
                     index % 2 === 0 ? "bg-bg-primary" : "bg-bg-secondary"
                   }`}
                 >

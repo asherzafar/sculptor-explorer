@@ -23,7 +23,11 @@ export function LoadingState({
   label?: string;
 }) {
   return (
-    <p className="text-text-secondary text-sm" role="status" aria-live="polite">
+    <p
+      className="text-text-secondary text-sm motion-safe:animate-pulse"
+      role="status"
+      aria-live="polite"
+    >
       {label}…
     </p>
   );

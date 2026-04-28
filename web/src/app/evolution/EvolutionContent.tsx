@@ -151,29 +151,26 @@ export function EvolutionContent() {
         title="Evolution of Sculpture"
         subtitle={`How sculpture evolved over time — geography and movements from ${MIN_BIRTH_YEAR} to present.`}
       />
-      <div className="mb-8">
-
-        {/* Interaction hint - dismissible */}
-        {showHint && (
-          <div className="mt-4 flex items-center gap-2 text-sm text-accent-primary bg-accent-muted rounded-md px-3 py-2 w-fit">
-            <MousePointerClick className="h-4 w-4" />
-            <span>Click any decade area to filter sculptors</span>
-            <button
-              onClick={() => setShowHint(false)}
-              className="ml-2 p-1 hover:bg-accent-primary/20 rounded"
-              aria-label="Dismiss hint"
-            >
-              <X className="h-3 w-3" />
-            </button>
-          </div>
-        )}
-      </div>
+      {/* Interaction hint — dismissible, sits just below the header */}
+      {showHint && (
+        <div className="mb-6 flex items-center gap-2 text-sm text-accent-primary bg-accent-muted rounded-md px-3 py-2 w-fit motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-300">
+          <MousePointerClick className="h-4 w-4" />
+          <span>Click any decade area to filter sculptors</span>
+          <button
+            onClick={() => setShowHint(false)}
+            className="ml-2 p-1 rounded hover:bg-accent-muted-dark transition-colors"
+            aria-label="Dismiss hint"
+          >
+            <X className="h-3 w-3" />
+          </button>
+        </div>
+      )}
 
       {/* Active decade banner */}
       {activeDecade && (
-        <div className="mb-6 flex items-center gap-4 rounded-lg border bg-accent/30 p-4">
-          <span className="font-medium">Filtered: {activeDecade}s</span>
-          <span className="text-sm text-muted-foreground">
+        <div className="mb-6 flex items-center gap-4 rounded-lg border border-accent-primary/30 bg-accent-muted p-4 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-2 motion-safe:duration-200">
+          <span className="font-medium text-text-primary">Filtered: {activeDecade}s</span>
+          <span className="text-sm text-text-secondary">
             {filteredSculptors.length} focus sculptor
             {filteredSculptors.length !== 1 ? "s" : ""}
           </span>
@@ -190,7 +187,7 @@ export function EvolutionContent() {
       )}
 
       {/* Charts grid */}
-      <div className="grid gap-8 lg:grid-cols-2 mb-10">
+      <div className="grid gap-8 lg:grid-cols-2 mb-8">
         <section>
           <div className="flex items-start justify-between gap-3 mb-1">
             <h2 className="text-base font-semibold text-text-primary">
@@ -222,7 +219,7 @@ export function EvolutionContent() {
               })}
             </div>
           </div>
-          <p className="text-xs text-muted-foreground mb-3">
+          <p className="text-xs text-text-tertiary mb-3">
             {GEO_SOURCE_SUBTITLE[geoSource]}
           </p>
           <GeographyChart
@@ -236,7 +233,7 @@ export function EvolutionContent() {
           <h2 className="text-base font-semibold mb-1 text-text-primary">
             Art Movements
           </h2>
-          <p className="text-xs text-muted-foreground mb-3">
+          <p className="text-xs text-text-tertiary mb-3">
             Top movements per decade — click to filter
           </p>
           <MovementsChart
@@ -252,7 +249,7 @@ export function EvolutionContent() {
             <h2 className="text-base font-semibold mb-1 text-text-primary">
               Materials
             </h2>
-            <p className="text-xs text-muted-foreground mb-3">
+            <p className="text-xs text-text-tertiary mb-3">
               From museum collections (Met + AIC)
             </p>
             <MaterialsChart
@@ -265,12 +262,12 @@ export function EvolutionContent() {
       </div>
 
       {/* Focus sculptors — filtered by active decade */}
-      <section className="p-6">
+      <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">
+          <h2 className="font-display text-xl font-semibold text-text-primary">
             {activeDecade ? `${activeDecade}s Focus Sculptors` : "Focus Sculptors"}
           </h2>
-          <span className="text-sm text-muted-foreground">
+          <span className="text-sm text-text-tertiary">
             {filteredSculptors.length} of {focusSculptors.length}
           </span>
         </div>
@@ -291,7 +288,7 @@ export function EvolutionContent() {
               <Link
                 key={sculptor.qid}
                 href={`/explore/${sculptor.qid}`}
-                className="block rounded-md bg-bg-secondary p-4 hover:bg-accent/30 transition-colors cursor-pointer group"
+                className="block rounded-md bg-bg-secondary p-4 hover:bg-accent-muted transition-colors cursor-pointer group"
               >
                 <h3 className="font-medium text-sm text-text-primary group-hover:text-accent-primary transition-colors">
                   {sculptor.name}

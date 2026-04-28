@@ -67,7 +67,7 @@ function TimelineContent() {
 
       {/* Sort controls */}
       <div className="mb-8 flex items-center gap-2">
-        <span className="text-xs text-muted-foreground mr-1">Sort:</span>
+        <span className="text-xs text-text-tertiary mr-1">Sort:</span>
         {SORT_OPTIONS.map(({ key, label, title }) => (
           <button
             key={key}
@@ -76,7 +76,7 @@ function TimelineContent() {
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
               sortMode === key
                 ? "bg-accent-primary text-white"
-                : "bg-bg-secondary text-text-secondary hover:bg-accent-primary/20 hover:text-text-primary"
+                : "bg-bg-secondary text-text-secondary hover:bg-accent-muted hover:text-text-primary"
             }`}
           >
             {label}

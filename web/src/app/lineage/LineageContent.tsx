@@ -285,7 +285,7 @@ export function LineageContent() {
           edges (the diamonds) are excluded since we don't fetch
           citizenship for non-sculptor teachers. */}
       {crossCulturalStats.pct !== null && (
-        <div className="mb-3 rounded-md border border-border-subtle bg-bg-secondary/60 px-4 py-2.5 text-sm text-text-secondary">
+        <div className="mb-4 rounded-md border border-border-subtle bg-bg-secondary/60 px-4 py-2.5 text-sm text-text-secondary motion-safe:animate-in motion-safe:fade-in motion-safe:duration-300">
           <strong className="text-text-primary">
             {crossCulturalStats.cross.toLocaleString()}
           </strong>{" "}
@@ -521,7 +521,7 @@ export function LineageContent() {
         minDegree={minDegree}
       />
 
-      <div className="mt-6 max-w-3xl text-sm text-text-secondary space-y-2">
+      <div className="mt-8 max-w-3xl text-sm text-text-secondary space-y-2">
         <p>
           <strong className="text-text-primary">What you&apos;re seeing:</strong>{" "}
           circles are sculptors; diamonds are external mentors — painters,

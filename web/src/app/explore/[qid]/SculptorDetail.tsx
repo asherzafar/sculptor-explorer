@@ -266,9 +266,9 @@ export function SculptorDetail({ qid }: { qid: string }) {
     <div className="container mx-auto px-4 py-8">
       <button
         onClick={handleBack}
-        className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+        className="group inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
       >
-        <ArrowLeft className="h-3.5 w-3.5" />
+        <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
         Back to explore
       </button>
 
