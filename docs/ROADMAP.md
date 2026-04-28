@@ -174,10 +174,12 @@ Built in increments alongside 3a-c, not saved for the end.
 - [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
 - [x] Empty-state polish + filter suggestions — shared `<EmptyState>` and `<LoadingState>` components, applied across explore (no-results), evolution (decade filter empties focus list), charts (no-data block), transparency (load error). Replaces 5 ad-hoc loading copy variants.
 - [x] Inline data degradation messaging — detail page now shows explicit "No art movement listed on Wikidata" / "Birthplace not recorded" lines instead of silently hiding sections. Death-place absence is suppressed for living sculptors.
-- [ ] **Design audit — page-level polish** (flagged by user). Specific asks:
-  - Page-header spacing/layout consistency across all top-of-page sections (Explore, Lineage, Timeline, Evolution, Transparency, About). Currently each page rolls its own header pattern; titles, subtitles, controls, and counts don't share a system.
-  - Network map on `/lineage` could be levelled up — denser visual hierarchy, better legend, possibly a focused-on-hover interaction that dims the rest. The current bipartite layout is functional but not yet beautiful.
-  - General: tighten vertical rhythm, audit hover states, make the typographic system more visible (Fraunces for display, DM Sans for UI is correct — but consistency of weight/size across pages is uneven).
+- [x] **Page-header consistency** — shared `<PageHeader>` component (title, subtitle, eyebrow, actions slots) applied to all six top-level pages. Fixes `mb-6`/`mb-8` drift, `text-muted-foreground` vs `text-text-secondary` token leakage, and the `max-w-3xl` reading-width that was only on the lineage page. Transparency's "← About" link is now an eyebrow rather than a sibling above the H1.
+- [x] **Lineage network map level-up** — movement palette legend (capped at 12 with `+N more`), stronger hover focus (verdigris halo on hovered node, pinned labels for hovered node + neighbours, thicker focus edges), radial-gradient backdrop for atmospheric perspective, translucent pill chrome for stats and legend. Hover-to-focus interaction is now explicit in the hint copy.
+- [ ] **Remaining design polish** (do after seeing the above live):
+  - Vertical rhythm sweep — chart-section spacing, filter-bar margins, footnote density.
+  - Hover-state audit — buttons, links, table rows, chart labels.
+  - Typographic system audit — confirm Fraunces/DM Sans size and weight scale is consistent across pages now that PageHeader has nailed down the H1 contract.
 
 ## Phase 5: Optional — if energy remains
 

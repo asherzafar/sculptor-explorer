@@ -109,7 +109,7 @@ export function LineageGraph({
   }, []);
 
   /** Build the filtered bipartite graph. */
-  const { nodes, links, movementColor, neighborMap, totals } = useMemo(() => {
+  const { nodes, links, movementColor, neighborMap, totals, visibleMovements } = useMemo(() => {
     const sculptorMap = new Map(sculptors.map((s) => [s.qid, s]));
     const mentorMap = new Map(externalMentors.map((m) => [m.qid, m]));
 
@@ -296,11 +296,26 @@ export function LineageGraph({
       neighborMap.get(e.toQid)!.add(e.fromQid);
     });
 
+    // Movement legend entries — emit (slug, label, color) triples for the
+    // movements actually drawn. Doing this here (rather than in the render
+    // effect) keeps the rendering function free of palette logic and
+    // means the React-rendered legend stays in lockstep with the D3
+    // node fills, including after a filter changes.
+    const visibleMovements = movements.map((slug, i) => ({
+      slug,
+      label: formatDisplayValue(slug, { isMovement: true }),
+      color: cssVar(
+        PALETTE_VARS[i % PALETTE_VARS.length],
+        PALETTE_FALLBACKS[i % PALETTE_VARS.length],
+      ),
+    }));
+
     return {
       nodes,
       links,
       movementColor,
       neighborMap,
+      visibleMovements,
       totals: {
         sculptors: totalSculptors.size,
         mentors: totalMentors.size,
@@ -386,6 +401,11 @@ export function LineageGraph({
       .attr("stroke", (d) =>
         d.hasMovement ? COLORS.marble : COLORS.noMovementStroke
       )
+      // Stash the original stroke so the hover handler can restore it
+      // without re-running the hasMovement branch logic.
+      .attr("data-original-stroke", (d) =>
+        d.hasMovement ? COLORS.marble : COLORS.noMovementStroke
+      )
       .attr("stroke-opacity", 0.7)
       .attr("stroke-width", 0.5)
       .attr("stroke-dasharray", (d) => (d.hasMovement ? "none" : "2 2"));
@@ -401,6 +421,7 @@ export function LineageGraph({
       .attr("fill", COLORS.sandstoneFill)
       .attr("fill-opacity", 0.6)
       .attr("stroke", COLORS.mentorStroke)
+      .attr("data-original-stroke", COLORS.mentorStroke)
       .attr("stroke-width", 0.8)
       .attr("stroke-opacity", 0.9);
 
@@ -499,7 +520,53 @@ export function LineageGraph({
         if (!hoveredId) return 1;
         if (d.id === hoveredId) return 1;
         if (neighbors?.has(d.id)) return 1;
-        return 0.15;
+        return 0.12;
+      });
+
+    // Pin labels for the hovered node and its immediate neighbors so the
+    // focus path is fully readable, even for low-degree nodes whose
+    // labels are normally hidden by the density rule. When nothing is
+    // hovered we fall back to the per-node default opacity rule the
+    // render effect set up.
+    svg
+      .selectAll<SVGTextElement, GraphNode>("g > g > g > text")
+      .transition()
+      .duration(150)
+      .attr("opacity", function (d) {
+        if (!hoveredId) {
+          // Restore the original density-based default. We re-derive it
+          // here rather than store it on the datum to keep state simple.
+          if (focusQid) return 1;
+          if (d.kind === "mentor") return d.degree >= 2 ? 0.9 : 0;
+          return d.degree >= 3 ? 0.85 : 0;
+        }
+        if (d.id === hoveredId) return 1;
+        if (neighbors?.has(d.id)) return 0.95;
+        return 0;
+      });
+
+    // Halo on the hovered node — a second, larger marble-stroke ring that
+    // makes the focus point unmistakable even on dense graphs. We toggle
+    // a CSS class rather than adding/removing elements so the simulation
+    // tick handler doesn't need to know about it.
+    svg
+      .selectAll<SVGCircleElement | SVGRectElement, GraphNode>(
+        "g > g > g > circle, g > g > g > rect",
+      )
+      .transition()
+      .duration(150)
+      .attr("stroke-width", (d) =>
+        d.id === hoveredId ? 2.5 : d.kind === "mentor" ? 0.8 : 0.5,
+      )
+      .attr("stroke-opacity", (d) =>
+        d.id === hoveredId ? 1 : d.kind === "mentor" ? 0.9 : 0.7,
+      )
+      .attr("stroke", function (d) {
+        if (d.id === hoveredId) return VERDIGRIS;
+        // Restore original stroke (which differs by node type / hasMovement).
+        // Reading from the DOM avoids re-resolving CSS vars; the default
+        // strokes were set on render and only change here.
+        return d3.select(this).attr("data-original-stroke") ?? MARBLE;
       });
 
     svg
@@ -510,7 +577,13 @@ export function LineageGraph({
         if (!hoveredId) return 0.25;
         const sourceId = (d.source as GraphNode).id;
         const targetId = (d.target as GraphNode).id;
-        return sourceId === hoveredId || targetId === hoveredId ? 0.8 : 0.05;
+        return sourceId === hoveredId || targetId === hoveredId ? 0.85 : 0.04;
+      })
+      .attr("stroke-width", (d) => {
+        if (!hoveredId) return 0.75;
+        const sourceId = (d.source as GraphNode).id;
+        const targetId = (d.target as GraphNode).id;
+        return sourceId === hoveredId || targetId === hoveredId ? 1.5 : 0.75;
       })
       .attr("stroke", (d) => {
         const sourceId = (d.source as GraphNode).id;
@@ -519,7 +592,7 @@ export function LineageGraph({
           ? VERDIGRIS
           : MARBLE;
       });
-  }, [hoveredId, neighborMap]);
+  }, [hoveredId, neighborMap, focusQid]);
 
   if (nodes.length === 0) {
     return (
@@ -546,12 +619,35 @@ export function LineageGraph({
     );
   }
 
+  // Sculptor / mentor counts derived once for the stats badge so the
+  // header chrome doesn't recompute on every hover-driven re-render.
+  const sculptorCount = nodes.filter((n) => n.kind === "sculptor").length;
+  const mentorCount = nodes.filter((n) => n.kind === "mentor").length;
+
+  // Cap the in-canvas legend at MAX_LEGEND_ROWS visible movements; if
+  // more are on screen, the overflow rolls up into a "+N more" tail.
+  // Twelve is the same cap the LineageContent filter pills use, so the
+  // two surfaces tell the same story.
+  const MAX_LEGEND_ROWS = 12;
+  const legendVisible = visibleMovements.slice(0, MAX_LEGEND_ROWS);
+  const legendOverflow = Math.max(0, visibleMovements.length - MAX_LEGEND_ROWS);
+
   return (
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden rounded-md"
       style={{
-        backgroundColor: cssVar("--color-bg-sidebar", "#1A1D1C"),
+        // Subtle radial-gradient backdrop. Pulls the eye toward the
+        // graph's centre of mass without competing with the nodes.
+        // Two stops on the same dark token; the offset is small (8%)
+        // so it feels like atmospheric perspective, not a vignette.
+        background: `radial-gradient(circle at 50% 45%, ${cssVar(
+          "--color-bg-sidebar",
+          "#1A1D1C",
+        )} 0%, color-mix(in srgb, ${cssVar(
+          "--color-bg-sidebar",
+          "#1A1D1C",
+        )} 92%, black) 75%)`,
         height,
       }}
     >
@@ -562,46 +658,119 @@ export function LineageGraph({
         style={{ display: "block" }}
       />
 
-      {/* Stats overlay */}
+      {/* Stats badge — pill chrome instead of bare text. Sits inside a
+          subtle dark surface that survives the radial gradient. */}
       <div
-        className="absolute top-3 left-3 text-xs"
+        className="absolute top-3 left-3 flex flex-col gap-1 text-xs"
         style={{ color: cssVar("--color-sidebar-text-muted", "#9CA3A0") }}
       >
-        <div>
-          {nodes.filter((n) => n.kind === "sculptor").length} sculptors ·{" "}
-          {nodes.filter((n) => n.kind === "mentor").length} mentors ·{" "}
-          {links.length} connections
-        </div>
-        <div className="mt-0.5 opacity-70">
-          Drag to rearrange · scroll to zoom
+        <div className="rounded-md bg-black/30 backdrop-blur-sm px-2.5 py-1.5 leading-tight">
+          <div className="text-sidebar-text">
+            <strong className="font-semibold">
+              {sculptorCount.toLocaleString()}
+            </strong>{" "}
+            sculptors
+            {mentorCount > 0 && (
+              <>
+                {" · "}
+                <strong className="font-semibold">
+                  {mentorCount.toLocaleString()}
+                </strong>{" "}
+                mentors
+              </>
+            )}
+            {" · "}
+            <strong className="font-semibold">
+              {links.length.toLocaleString()}
+            </strong>{" "}
+            connections
+          </div>
+          <div className="opacity-60 mt-0.5">
+            Hover a node to focus its network · drag to rearrange · scroll to zoom
+          </div>
         </div>
       </div>
 
-      {/* Legend */}
+      {/* Legend — bottom-left. Two sections stacked: shape encodings on
+          top (sculptor circle, mentor diamond, dashed = no movement)
+          and the active movement palette below. The movement section
+          is only rendered when there's a palette to decode; on a single-
+          movement filter or a graph with no recorded movements it
+          collapses gracefully. */}
       <div
-        className="absolute bottom-3 left-3 text-xs flex items-center gap-4"
+        className="absolute bottom-3 left-3 text-xs leading-tight"
         style={{ color: cssVar("--color-sidebar-text-muted", "#9CA3A0") }}
       >
-        <span className="inline-flex items-center gap-1.5">
-          <span
-            className="inline-block w-2.5 h-2.5 rounded-full"
-            style={{
-              backgroundColor: cssVar("--color-data-3", "#6B8F84"),
-            }}
-          />
-          Sculptor
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <span
-            className="inline-block w-2.5 h-2.5"
-            style={{
-              backgroundColor: cssVar("--color-data-4", "#D4A574"),
-              transform: "rotate(45deg)",
-              border: `1px solid ${cssVar("--color-data-5", "#8B7B6B")}`,
-            }}
-          />
-          External mentor
-        </span>
+        <div className="rounded-md bg-black/30 backdrop-blur-sm px-2.5 py-2 max-w-[18rem]">
+          {/* Shape encodings */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className="inline-block w-2.5 h-2.5 rounded-full"
+                style={{
+                  backgroundColor: cssVar("--color-data-3", "#6B8F84"),
+                  outline: `1px solid ${cssVar("--color-bg-primary", "#FAFAF9")}`,
+                  outlineOffset: -0.5,
+                }}
+              />
+              Sculptor
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className="inline-block w-2.5 h-2.5"
+                style={{
+                  backgroundColor: cssVar("--color-data-4", "#D4A574"),
+                  transform: "rotate(45deg)",
+                  border: `1px solid ${cssVar("--color-data-5", "#8B7B6B")}`,
+                }}
+              />
+              External mentor
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className="inline-block w-2.5 h-2.5 rounded-full"
+                style={{
+                  border: `1px dashed ${cssVar(
+                    "--color-text-tertiary",
+                    "#6B706D",
+                  )}`,
+                }}
+              />
+              No movement
+            </span>
+          </div>
+
+          {/* Movement palette — only the movements actually drawn. */}
+          {legendVisible.length > 0 && (
+            <>
+              <div
+                className="mt-2 mb-1 text-[10px] uppercase tracking-wider opacity-60"
+              >
+                Movements ({visibleMovements.length})
+              </div>
+              <div className="flex flex-wrap gap-x-2 gap-y-1">
+                {legendVisible.map(({ slug, label, color }) => (
+                  <span
+                    key={slug}
+                    className="inline-flex items-center gap-1"
+                    title={slug}
+                  >
+                    <span
+                      className="inline-block w-2 h-2 rounded-full"
+                      style={{ backgroundColor: color }}
+                    />
+                    <span className="text-[11px]">{label}</span>
+                  </span>
+                ))}
+                {legendOverflow > 0 && (
+                  <span className="text-[11px] opacity-60">
+                    +{legendOverflow} more
+                  </span>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
