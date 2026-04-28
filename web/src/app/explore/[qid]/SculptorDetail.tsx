@@ -9,6 +9,7 @@ import { loadEdges, loadSculptor } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
+import { WorksGallery } from "@/components/WorksGallery";
 
 /**
  * Portrait — Phase 4 visual polish.
@@ -542,6 +543,11 @@ export function SculptorDetail({ qid }: { qid: string }) {
           <span className="ml-2 text-xs text-text-tertiary">Data completeness</span>
         </div>
       </div>
+
+      {/* Works gallery — public-domain images from Met + AIC. Renders
+          nothing when the sculptor has no museum coverage, so the
+          absence is silent rather than an error state. */}
+      <WorksGallery works={sculptor.works} sculptorName={sculptor.name} />
     </div>
   );
 }

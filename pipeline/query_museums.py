@@ -109,6 +109,14 @@ def query_met_for_sculptors(sculptor_names: list[str]) -> pd.DataFrame:
                         "end_year": obj_data.get("objectEndDate"),
                         "culture": obj_data.get("culture", ""),
                         "department": obj_data.get("department", ""),
+                        # IIIF image fields — captured even when not
+                        # public-domain, so the export step has the
+                        # full picture and can apply its own filter.
+                        "is_public_domain": bool(obj_data.get("isPublicDomain", False)),
+                        "image_url": obj_data.get("primaryImage", "") or "",
+                        "thumbnail_url": obj_data.get("primaryImageSmall", "") or "",
+                        "museum_url": obj_data.get("objectURL", "") or "",
+                        "credit_line": obj_data.get("creditLine", "") or "",
                     })
             
             time.sleep(MET_RATE_LIMIT)
@@ -137,7 +145,22 @@ def search_aic_by_artist(artist_name: str) -> list[dict]:
     url = f"{AIC_API_BASE}/artworks/search"
     params = {
         "q": artist_name,
-        "fields": "id,title,artist_display,date_display,medium_display,artwork_type_title",
+        # `image_id` is the UUID we stitch into AIC's IIIF endpoint to
+        # render at any size. `is_public_domain` is the strict gate for
+        # the works gallery. `thumbnail` carries lqip + dimensions used
+        # for blur-up placeholders if we ever want them.
+        "fields": ",".join([
+            "id",
+            "title",
+            "artist_display",
+            "date_display",
+            "medium_display",
+            "artwork_type_title",
+            "image_id",
+            "is_public_domain",
+            "thumbnail",
+            "credit_line",
+        ]),
         "limit": 20,
     }
     headers = {"User-Agent": USER_AGENT}
@@ -184,10 +207,28 @@ def query_aic_for_sculptors(sculptor_names: list[str]) -> pd.DataFrame:
             artwork_type = artwork.get("artwork_type_title", "")
             
             if any(s.lower() in artwork_type.lower() for s in sculpture_types):
+                aic_id = artwork.get("id")
+                image_id = artwork.get("image_id") or ""
+                # AIC's IIIF endpoint is documented at
+                # https://api.artic.edu/docs/#iiif-image-api. 843px is
+                # the recommended display width per their guidance.
+                image_url = (
+                    f"https://www.artic.edu/iiif/2/{image_id}/full/843,/0/default.jpg"
+                    if image_id
+                    else ""
+                )
+                thumb_url = (
+                    f"https://www.artic.edu/iiif/2/{image_id}/full/200,/0/default.jpg"
+                    if image_id
+                    else ""
+                )
+                museum_url = (
+                    f"https://www.artic.edu/artworks/{aic_id}" if aic_id else ""
+                )
                 records.append({
                     "source": "aic",
                     "sculptor_name": name,
-                    "object_id": str(artwork.get("id")),
+                    "object_id": str(aic_id) if aic_id is not None else "",
                     "title": artwork.get("title", ""),
                     "medium": artwork.get("medium_display", ""),
                     "date": artwork.get("date_display", ""),
@@ -195,6 +236,11 @@ def query_aic_for_sculptors(sculptor_names: list[str]) -> pd.DataFrame:
                     "end_year": None,
                     "culture": "",
                     "department": artwork_type,
+                    "is_public_domain": bool(artwork.get("is_public_domain", False)),
+                    "image_url": image_url,
+                    "thumbnail_url": thumb_url,
+                    "museum_url": museum_url,
+                    "credit_line": artwork.get("credit_line", "") or "",
                 })
         
         time.sleep(AIC_RATE_LIMIT)

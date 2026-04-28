@@ -118,6 +118,19 @@ export interface LegacySculptor {
   inclusionSignals?: InclusionSignal[];
 
   /**
+   * Public-domain museum works for the gallery on the detail page.
+   * Sourced from Met Museum + Art Institute of Chicago APIs and joined
+   * by sculptor name in the pipeline (see build_works_index()).
+   *
+   * Coverage is intentionally sparse: the works index runs against the
+   * focus list (~48 sculptors) at time of writing, so only that subset
+   * gets a populated array. Absence is rendered as silence, not an
+   * error — most sculptors outside the focus list aren't in either
+   * museum's collection anyway.
+   */
+  works?: Work[];
+
+  /**
    * Phase 3b — Getty ULAN cross-reference.
    *
    * Present only for the ~64% of sculptors whose Wikidata records carry
@@ -128,6 +141,32 @@ export interface LegacySculptor {
    * differ" affordance.
    */
   gettyVerified?: GettyVerified;
+}
+
+/**
+ * A single public-domain museum work, embedded in a sculptor shard.
+ *
+ * Source-of-truth for these records is `pipeline/export_json.py ::
+ * build_works_index()`. All URLs are hot-linked CDN endpoints that
+ * the museums explicitly permit for PD works:
+ *   - Met: `https://images.metmuseum.org/...` (primaryImage[Small])
+ *   - AIC: `https://www.artic.edu/iiif/2/{id}/full/{w},/0/default.jpg`
+ *
+ * `thumbnailUrl` is sized for grid display (~200–400px); `imageUrl`
+ * is for the full-size view in a future lightbox. `museumUrl` deep
+ * links to the institution's web page for the work, which is the
+ * right destination for "see more on ${museum}".
+ */
+export interface Work {
+  source: "met" | "aic";
+  objectId: string;
+  title: string;
+  date: string | null;
+  medium: string | null;
+  imageUrl: string;
+  thumbnailUrl: string;
+  museumUrl: string | null;
+  creditLine: string | null;
 }
 
 export interface GettyVerified {

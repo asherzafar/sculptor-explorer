@@ -7,6 +7,8 @@ from config import (
     NODES_METRICS_PATH,
     RELATIONS_CLEAN_PATH,
     MATERIALS_BY_DECADE_PATH,
+    MET_OBJECTS_CACHE_PATH,
+    AIC_OBJECTS_CACHE_PATH,
     WEB_DATA_DIR,
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
@@ -556,6 +558,132 @@ def create_materials_by_decade_json(materials: pd.DataFrame) -> list[dict]:
     return sorted(records, key=lambda r: (r["decade"], -r["count"]))
 
 
+# Per-sculptor cap. Six works gives a 2x3 grid on desktop and a single
+# scrollable column on tablet without overwhelming the meta block. The
+# pipeline is the right place to truncate (rather than the client) so
+# the shards stay small — each work record is ~250 bytes including
+# image URLs.
+MAX_WORKS_PER_SCULPTOR = 6
+
+
+def build_works_index(nodes: pd.DataFrame) -> dict[str, list[dict]]:
+    """Join Met + AIC museum parquet caches to QIDs and return a dict
+    mapping QID → list of public-domain work records ready to embed in
+    per-sculptor shards.
+
+    Sources:
+      - MET_OBJECTS_CACHE_PATH (written by query_museums.py)
+      - AIC_OBJECTS_CACHE_PATH (same)
+
+    Filtering: strict public-domain only, AND must have a non-empty
+    image_url. The PD flag without an image is useless for a gallery
+    and the image without PD is a rights problem; both gates apply.
+
+    Matching: the museum cache keys works by sculptor_name (the focus
+    list display name). We normalize_name() against `nodes.name_norm`
+    to find the QID. Sculptors not in the museum cache (which is
+    everyone outside the focus list at the time of writing) simply
+    return an empty list at lookup time and the detail page renders
+    nothing — the absence is honest.
+
+    Returns top MAX_WORKS_PER_SCULPTOR per sculptor, sorted oldest
+    first by year-extracted-from-date and breaking ties in source
+    preference order (Met → AIC). The "oldest first" rule shows a
+    sculptor's career arc rather than a random crop.
+    """
+    if not (MET_OBJECTS_CACHE_PATH.exists() or AIC_OBJECTS_CACHE_PATH.exists()):
+        return {}
+
+    name_to_qid = {row["name_norm"]: row["qid"] for _, row in nodes.iterrows()}
+
+    frames = []
+    if MET_OBJECTS_CACHE_PATH.exists():
+        frames.append(pd.read_parquet(MET_OBJECTS_CACHE_PATH))
+    if AIC_OBJECTS_CACHE_PATH.exists():
+        frames.append(pd.read_parquet(AIC_OBJECTS_CACHE_PATH))
+    if not frames:
+        return {}
+    works_df = pd.concat(frames, ignore_index=True, sort=False)
+
+    # Older parquets (from before image fields were captured) won't
+    # have these columns — guard so a stale cache doesn't crash the
+    # whole export. Caller should re-run query_museums to populate.
+    required = {"is_public_domain", "image_url", "thumbnail_url", "museum_url"}
+    missing = required - set(works_df.columns)
+    if missing:
+        print(
+            f"⚠ Museum cache missing image columns {sorted(missing)} — "
+            "re-run pipeline with REFRESH_FROM_MET / REFRESH_FROM_AIC = True. "
+            "Skipping works index for this build."
+        )
+        return {}
+
+    # Strict gate: PD + non-empty image URL.
+    pd_mask = works_df["is_public_domain"].fillna(False).astype(bool)
+    img_mask = works_df["image_url"].fillna("").astype(str).str.len() > 0
+    works_df = works_df[pd_mask & img_mask].copy()
+
+    if len(works_df) == 0:
+        print("⚠ No public-domain works with images found in museum cache")
+        return {}
+
+    # Year for sorting. Prefer numeric begin_year (Met provides it),
+    # else parse from the display date string (AIC). When neither
+    # works the work sorts last via a sentinel.
+    import re
+
+    def _year(row) -> int:
+        by = row.get("begin_year")
+        if pd.notna(by):
+            try:
+                return int(by)
+            except (TypeError, ValueError):
+                pass
+        date_str = str(row.get("date", "") or "")
+        match = re.search(r"\b(1[7-9]\d{2}|20\d{2})\b", date_str)
+        if match:
+            return int(match.group(1))
+        return 9999  # unsortable → bottom of the list
+
+    works_df["_year"] = works_df.apply(_year, axis=1)
+    works_df["_source_rank"] = works_df["source"].map({"met": 0, "aic": 1}).fillna(2)
+
+    # Resolve sculptor_name → QID via name normalization.
+    works_df["_qid"] = works_df["sculptor_name"].apply(
+        lambda n: name_to_qid.get(normalize_name(n))
+    )
+    works_df = works_df[works_df["_qid"].notna()].copy()
+
+    if len(works_df) == 0:
+        print(
+            "⚠ Museum works found but none matched a sculptor by name — "
+            "check normalize_name() against focus list display names."
+        )
+        return {}
+
+    index: dict[str, list[dict]] = {}
+    for qid, group in works_df.groupby("_qid"):
+        group_sorted = group.sort_values(by=["_year", "_source_rank", "object_id"])
+        records = []
+        for _, row in group_sorted.head(MAX_WORKS_PER_SCULPTOR).iterrows():
+            records.append({
+                "source": str(row["source"]),
+                "objectId": str(row["object_id"]),
+                "title": str(row.get("title") or "Untitled"),
+                "date": str(row.get("date") or "") or None,
+                "medium": str(row.get("medium") or "") or None,
+                "imageUrl": str(row["image_url"]),
+                "thumbnailUrl": str(row.get("thumbnail_url") or row["image_url"]),
+                "museumUrl": str(row.get("museum_url") or "") or None,
+                "creditLine": str(row.get("credit_line") or "") or None,
+            })
+        index[str(qid)] = records
+
+    total = sum(len(v) for v in index.values())
+    print(f"✓ Built works index: {total} PD images across {len(index)} sculptors")
+    return index
+
+
 def export_all():
     """Export all JSON files."""
     print("=" * 60)
@@ -585,12 +713,27 @@ def export_all():
     # served forever by Vercel's static cache.
     for stale in shard_dir.glob("*.json"):
         stale.unlink()
+
+    # Build the per-QID works index once, then merge per-sculptor.
+    # Sculptors with no museum coverage (the vast majority outside the
+    # focus list) simply don't get a `works` field; the detail page
+    # treats absence as "no PD images available" rather than an error.
+    works_index = build_works_index(nodes)
+
     for record in sculptors:
         qid = record["qid"]
+        shard = dict(record)
+        works = works_index.get(qid)
+        if works:
+            shard["works"] = works
         shard_path = shard_dir / f"{qid}.json"
         with open(shard_path, "w") as f:
-            json.dump(record, f, separators=(",", ":"))
-    print(f"✓ Exported {len(sculptors)} per-sculptor shards to {shard_dir.name}/")
+            json.dump(shard, f, separators=(",", ":"))
+    sculptors_with_works = sum(1 for r in sculptors if works_index.get(r["qid"]))
+    print(
+        f"✓ Exported {len(sculptors)} per-sculptor shards to {shard_dir.name}/ "
+        f"({sculptors_with_works} include PD museum works)"
+    )
 
     # Export edges.json (now includes per-edge crossesBorders flag)
     edges = create_edges_json(relations, nodes)
