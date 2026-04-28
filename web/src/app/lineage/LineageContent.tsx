@@ -277,18 +277,6 @@ export function LineageContent() {
         }
       />
 
-      {/* ------------- Lineage lab panel -------------
-          Dark surface that unifies the stat banner, filter bar, and
-          graph into a single "interactive instrument" on the light
-          editorial page. Uses the design system's `bg-sidebar` token
-          (same dark as the nav rail) so the lab feels like a peer of
-          navigation — a place you go to explore — rather than a
-          figure dropped into prose. All inner chrome is recoloured
-          with sidebar-text / sidebar-text-muted / accent-primary so
-          we stay inside the palette. Verdigris stays the through-line
-          for active states; it works on both light and dark. */}
-      <section className="rounded-lg bg-bg-sidebar p-4 sm:p-6 shadow-sm">
-
       {/* ------------- Cross-cultural stat banner -------------
           A single line above the filters because the cross-cultural
           rate is a story the reader should see before they start
@@ -297,16 +285,16 @@ export function LineageContent() {
           edges (the diamonds) are excluded since we don't fetch
           citizenship for non-sculptor teachers. */}
       {crossCulturalStats.pct !== null && (
-        <div className="mb-3 rounded-md bg-white/5 px-4 py-2.5 text-sm text-sidebar-text-muted">
-          <strong className="font-semibold text-sidebar-text">
+        <div className="mb-3 rounded-md border border-border-subtle bg-bg-secondary/60 px-4 py-2.5 text-sm text-text-secondary">
+          <strong className="text-text-primary">
             {crossCulturalStats.cross.toLocaleString()}
           </strong>{" "}
           of{" "}
-          <strong className="font-semibold text-sidebar-text">
+          <strong className="text-text-primary">
             {crossCulturalStats.comparable.toLocaleString()}
           </strong>{" "}
           classifiable connections (
-          <strong className="font-semibold text-accent-primary">
+          <strong className="text-accent-primary">
             {crossCulturalStats.pct.toFixed(0)}%
           </strong>
           ) cross national borders — émigré sculptors who studied
@@ -326,10 +314,10 @@ export function LineageContent() {
       )}
 
       {/* ------------- Filter bar ------------- */}
-      <div className="mb-4 grid gap-4 rounded-md bg-white/5 p-4 lg:grid-cols-2">
+      <div className="mb-4 grid gap-4 rounded-md bg-bg-secondary p-4 lg:grid-cols-2">
         {/* Search → ego network */}
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-medium text-sidebar-text-muted">
+          <label className="text-xs font-medium text-text-secondary">
             Focus on a sculptor (ego network)
           </label>
           <div className="relative">
@@ -344,15 +332,15 @@ export function LineageContent() {
                   setFocus(searchMatches[0].qid);
                 }
               }}
-              placeholder="Type a name (e.g. Rodin, Brâncuşi)"
-              className="w-full rounded-md border border-white/10 bg-black/30 px-3 py-2 text-sm text-sidebar-text placeholder:text-sidebar-text-muted/70 focus:border-accent-primary focus:outline-none"
+              placeholder="Type a name (e.g. Rodin, Brâncuși)"
+              className="w-full rounded-md border border-border-subtle bg-bg-primary px-3 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent-primary focus:outline-none"
             />
             {searchMatches.length > 0 && (
-              <ul className="absolute z-10 mt-1 max-h-64 w-full overflow-auto rounded-md border border-white/10 bg-bg-sidebar shadow-lg">
+              <ul className="absolute z-10 mt-1 max-h-64 w-full overflow-auto rounded-md border border-border-subtle bg-bg-primary shadow-sm">
                 {searchMatches.map((s) => (
                   <li
                     key={s.qid}
-                    className="cursor-pointer px-3 py-2 text-sm text-sidebar-text hover:bg-accent-muted-dark"
+                    className="cursor-pointer px-3 py-2 text-sm text-text-primary hover:bg-accent-muted"
                     onClick={() => {
                       setFocus(s.qid);
                       setSearchInput(s.name);
@@ -360,7 +348,7 @@ export function LineageContent() {
                   >
                     <span>{s.name}</span>
                     {s.movement && s.movement !== "No movement listed" && (
-                      <span className="ml-2 text-xs text-sidebar-text-muted">
+                      <span className="ml-2 text-xs text-text-tertiary">
                         {formatDisplayValue(s.movement, { isMovement: true })}
                       </span>
                     )}
@@ -376,7 +364,7 @@ export function LineageContent() {
               focusQid ? "" : "opacity-50"
             }`}
           >
-            <span className="text-xs text-sidebar-text-muted">Hops:</span>
+            <span className="text-xs text-text-secondary">Hops:</span>
             {HOP_OPTIONS.map((h) => (
               <button
                 key={h}
@@ -385,7 +373,7 @@ export function LineageContent() {
                 className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
                   hops === h && focusQid
                     ? "bg-accent-primary text-white"
-                    : "bg-white/5 text-sidebar-text-muted hover:bg-accent-muted-dark hover:text-sidebar-text"
+                    : "bg-bg-primary text-text-secondary hover:bg-accent-muted"
                 }`}
               >
                 {h}
@@ -405,7 +393,7 @@ export function LineageContent() {
         {/* Edge type + mentors + backbone */}
         <div className="flex flex-col gap-3">
           <div>
-            <label className="block text-xs font-medium text-sidebar-text-muted mb-1.5">
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">
               Connection type
             </label>
             <div className="flex flex-wrap gap-1.5">
@@ -416,7 +404,7 @@ export function LineageContent() {
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                     edgeType === key
                       ? "bg-accent-primary text-white"
-                      : "bg-white/5 text-sidebar-text-muted hover:bg-accent-muted-dark hover:text-sidebar-text"
+                      : "bg-bg-primary text-text-secondary hover:bg-accent-muted"
                   }`}
                 >
                   {label}
@@ -429,7 +417,7 @@ export function LineageContent() {
               cut as a peer of "Connection type" rather than buried in a
               menu. Disabled tooltip-style help via title attribute. */}
           <div>
-            <label className="block text-xs font-medium text-sidebar-text-muted mb-1.5">
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">
               National borders
             </label>
             <div className="flex flex-wrap gap-1.5">
@@ -447,7 +435,7 @@ export function LineageContent() {
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                     borderFilter === key
                       ? "bg-accent-primary text-white"
-                      : "bg-white/5 text-sidebar-text-muted hover:bg-accent-muted-dark hover:text-sidebar-text"
+                      : "bg-bg-primary text-text-secondary hover:bg-accent-muted"
                   }`}
                 >
                   {label}
@@ -457,7 +445,7 @@ export function LineageContent() {
           </div>
 
           <div className="flex items-center justify-between gap-4">
-            <label className="flex items-center gap-2 text-xs text-sidebar-text-muted cursor-pointer hover:text-sidebar-text">
+            <label className="flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
               <input
                 type="checkbox"
                 checked={!hideMentors}
@@ -468,7 +456,7 @@ export function LineageContent() {
             </label>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-sidebar-text-muted">
+              <span className="text-xs text-text-secondary">
                 Min connections: {minDegree || "—"}
               </span>
               <input
@@ -486,7 +474,7 @@ export function LineageContent() {
 
         {/* Movement pills — full width across both cols */}
         <div className="lg:col-span-2">
-          <label className="block text-xs font-medium text-sidebar-text-muted mb-1.5">
+          <label className="block text-xs font-medium text-text-secondary mb-1.5">
             Filter by movement (top {MAX_MOVEMENT_PILLS} by edge count)
           </label>
           <div className="flex flex-wrap gap-1.5">
@@ -500,7 +488,7 @@ export function LineageContent() {
                   className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
                     active
                       ? "bg-accent-primary text-white"
-                      : "bg-white/5 text-sidebar-text-muted hover:bg-accent-muted-dark hover:text-sidebar-text"
+                      : "bg-bg-primary text-text-secondary hover:bg-accent-muted"
                   }`}
                 >
                   {label}
@@ -519,11 +507,7 @@ export function LineageContent() {
         </div>
       </div>
 
-      {/* ------------- Graph -------------
-          Sits inside the dark lab panel. The graph component provides
-          its own rounded corners and radial-gradient interior so it
-          reads as a distinct "canvas" within the surrounding filter
-          surface — like an embedded Observable cell. */}
+      {/* ------------- Graph ------------- */}
       <LineageGraph
         sculptors={sculptors}
         edges={filteredEdges}
@@ -536,7 +520,6 @@ export function LineageContent() {
         edgeType={edgeType}
         minDegree={minDegree}
       />
-      </section>
 
       <div className="mt-6 max-w-3xl text-sm text-text-secondary space-y-2">
         <p>
