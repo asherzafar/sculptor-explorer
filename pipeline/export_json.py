@@ -570,7 +570,28 @@ def export_all():
     with open(sculptors_path, "w") as f:
         json.dump(sculptors, f, indent=2)
     print(f"✓ Exported {len(sculptors)} sculptors to {sculptors_path.name}")
-    
+
+    # Export per-sculptor shards under data/sculptors/{qid}.json so the
+    # detail page can fetch a single ~1.2KB record instead of the full
+    # 5.9MB list. The aggregate file stays for /explore (data table)
+    # and /lineage (graph) — both genuinely need the full roster.
+    #
+    # Shards are written with `indent=None` (compact) since no human
+    # reads them and the size savings compound across 3,600+ files.
+    shard_dir = WEB_DATA_DIR / "sculptors"
+    shard_dir.mkdir(parents=True, exist_ok=True)
+    # Wipe any stale shards from previous runs — QIDs can disappear
+    # when inclusion signals change and we don't want orphaned files
+    # served forever by Vercel's static cache.
+    for stale in shard_dir.glob("*.json"):
+        stale.unlink()
+    for record in sculptors:
+        qid = record["qid"]
+        shard_path = shard_dir / f"{qid}.json"
+        with open(shard_path, "w") as f:
+            json.dump(record, f, separators=(",", ":"))
+    print(f"✓ Exported {len(sculptors)} per-sculptor shards to {shard_dir.name}/")
+
     # Export edges.json (now includes per-edge crossesBorders flag)
     edges = create_edges_json(relations, nodes)
     edges_path = WEB_DATA_DIR / "edges.json"

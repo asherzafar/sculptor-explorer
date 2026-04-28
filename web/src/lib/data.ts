@@ -9,6 +9,22 @@ export async function loadSculptors(): Promise<LegacySculptor[]> {
   return res.json();
 }
 
+/** Load a single sculptor by qid from its per-sculptor shard.
+ *
+ * The detail page uses this instead of `loadSculptors()` because the
+ * aggregate file is ~5.9MB and we only need one ~1.2KB record. Shards
+ * are emitted by `pipeline/export_json.py` under /data/sculptors/.
+ *
+ * Returns null for unknown QIDs (404) so the caller can render the
+ * not-found state rather than treat it as a network error.
+ */
+export async function loadSculptor(qid: string): Promise<LegacySculptor | null> {
+  const res = await fetch(`/data/sculptors/${qid}.json`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Failed to load sculptor ${qid}`);
+  return res.json();
+}
+
 /** Load edges.json (legacy camelCase format) */
 export async function loadEdges(): Promise<LegacyEdge[]> {
   const res = await fetch("/data/edges.json");

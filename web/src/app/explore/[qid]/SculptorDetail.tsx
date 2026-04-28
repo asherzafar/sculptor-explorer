@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import type { LegacyEdge, LegacySculptor } from "@/lib/types";
-import { loadEdges, loadSculptors } from "@/lib/data";
+import { loadEdges, loadSculptor } from "@/lib/data";
 import { formatDisplayValue, formatGender } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
@@ -91,12 +91,14 @@ export function SculptorDetail({ qid }: { qid: string }) {
   useEffect(() => {
     async function loadData() {
       try {
-        const [sculptors, allEdges] = await Promise.all([
-          loadSculptors(),
+        // Single-sculptor shard (~1.2KB) instead of the full 5.9MB
+        // sculptors.json. Edges still loads in parallel since the
+        // detail page needs it for the per-sculptor connection list.
+        const [found, allEdges] = await Promise.all([
+          loadSculptor(qid),
           loadEdges(),
         ]);
-        const found = sculptors.find((s) => s.qid === qid);
-        setSculptor(found || null);
+        setSculptor(found);
         setEdges(allEdges);
       } catch (err) {
         console.error("Failed to load data:", err);
