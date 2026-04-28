@@ -340,7 +340,7 @@ export function LineageGraph({
 
     // Resolve theme colors that D3 will paint with.
     const COLORS = {
-      bg: cssVar("--color-bg-sidebar", "#1A1D1C"),
+      bg: cssVar("--color-bg-canvas", "#16191A"),
       marble: cssVar("--color-bg-primary", "#FAFAF9"),
       verdigris: cssVar("--color-accent-primary", "#3D7A68"),
       sandstoneFill: cssVar("--color-data-4", "#D4A574"),
@@ -600,7 +600,7 @@ export function LineageGraph({
         ref={containerRef}
         className="rounded-md p-8 text-sm"
         style={{
-          backgroundColor: cssVar("--color-bg-sidebar", "#1A1D1C"),
+          backgroundColor: cssVar("--color-bg-canvas", "#16191A"),
           color: cssVar("--color-sidebar-text-muted", "#9CA3A0"),
           minHeight: 220,
         }}
@@ -639,14 +639,16 @@ export function LineageGraph({
       style={{
         // Subtle radial-gradient backdrop. Pulls the eye toward the
         // graph's centre of mass without competing with the nodes.
-        // Two stops on the same dark token; the offset is small (8%)
-        // so it feels like atmospheric perspective, not a vignette.
+        // Centre uses the dedicated `bg-canvas` token (slightly darker
+        // and cooler than the nav rail's `bg-sidebar`) so navigation
+        // chrome and content canvas read as related but distinct.
+        // Edges fade ~8% darker for atmospheric perspective.
         background: `radial-gradient(circle at 50% 45%, ${cssVar(
-          "--color-bg-sidebar",
-          "#1A1D1C",
+          "--color-bg-canvas",
+          "#16191A",
         )} 0%, color-mix(in srgb, ${cssVar(
-          "--color-bg-sidebar",
-          "#1A1D1C",
+          "--color-bg-canvas",
+          "#16191A",
         )} 92%, black) 75%)`,
         height,
       }}

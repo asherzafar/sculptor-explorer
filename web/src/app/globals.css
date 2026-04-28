@@ -46,6 +46,10 @@
   --color-bg-primary: #FAFAF9;
   --color-bg-secondary: #F0F1EE;
   --color-bg-sidebar: #1A1D1C;
+  /* Canvas surface for interactive viz (lineage network, etc.) —
+     a touch darker and cooler than `bg-sidebar` so navigation chrome
+     and content canvas read as related but distinct. */
+  --color-bg-canvas: #16191A;
 
   /* Sidebar text (light-on-dark) */
   --color-sidebar-text: #FAFAF9;
