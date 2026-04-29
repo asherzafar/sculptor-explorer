@@ -4,6 +4,7 @@ from typing import Optional
 
 import pandas as pd
 import requests
+from helpers import normalize_name
 from config import (
     MET_API_BASE,
     AIC_API_BASE,
@@ -18,6 +19,37 @@ from config import (
 )
 
 
+def _artist_matches(queried: str, museum_artist: str) -> bool:
+    """Verify that a museum record's artist field corresponds to the
+    sculptor we queried for.
+
+    Both Met and AIC search endpoints, even with artist-restricted
+    parameters, can return records where the artist field contains a
+    different person whose name shares tokens with our query (e.g.
+    "George Grey Barnard" surfacing on a search for "George Barnard").
+    Without this check, we'd attribute the wrong sculptor's works.
+
+    Strategy: require every token in the queried name to appear as a
+    substring of the museum artist string after normalization. The
+    queried name is the focus-list display form (we control it), so
+    its token set is reasonable to demand exhaustively. The museum
+    artist string can be much longer — "Auguste Rodin\\nFrench,
+    1840-1917" or "Designed by X, made by Y" — so substring rather
+    than equality is appropriate.
+    """
+    if not museum_artist:
+        return False
+    q_norm = normalize_name(queried)
+    m_norm = normalize_name(museum_artist)
+    if not q_norm or not m_norm:
+        return False
+    # Tokens of length >= 2 to ignore single-letter initials.
+    q_tokens = [t for t in q_norm.split() if len(t) >= 2]
+    if not q_tokens:
+        return False
+    return all(token in m_norm for token in q_tokens)
+
+
 # =============================================================================
 # Met Museum API
 # =============================================================================
@@ -28,9 +60,21 @@ def search_met_by_artist(artist_name: str) -> list[int]:
     Returns list of object IDs.
     """
     url = f"{MET_API_BASE}/search"
+    # Met's `artistOrCulture=true` parameter looks like the right
+    # restriction on paper, but in practice it returns 0 hits even for
+    # major figures (q=Rodin&artistOrCulture=true → 0; q=Rodin alone →
+    # 264). Empirically it requires an exact match against an internal
+    # artist-name index that doesn't carry the forms we use.
+    #
+    # Without it, q= searches across all text fields including curator
+    # notes and donor credits, which produces a long tail of false
+    # positives (e.g. searching "Karl Bitter" returned pre-Columbian
+    # works where he was a former owner). The defense is post-fetch:
+    # _artist_matches() below verifies that the object's
+    # artistDisplayName actually contains the queried sculptor's name
+    # tokens, which is the source-of-truth field for attribution.
     params = {
         "q": artist_name,
-        "medium": "Sculpture",  # Filter to sculpture medium
     }
     headers = {"User-Agent": USER_AGENT}
     
@@ -90,14 +134,43 @@ def query_met_for_sculptors(sculptor_names: list[str]) -> pd.DataFrame:
         
         print(f"    Found {len(object_ids)} objects")
         
-        # Fetch details for each object (limit to first 20 to be nice to the API)
-        for obj_id in object_ids[:20]:
+        # Fetch details for each object. We cap per-artist to keep
+        # the run bounded — Met's q= can return hundreds of results
+        # (Rodin: 264), most of which won't survive the artist-match
+        # check anyway. 50 is enough to capture an artist's notable
+        # works while keeping total Met time under a minute.
+        for obj_id in object_ids[:50]:
             obj_data = fetch_met_object(obj_id)
             
             if obj_data and obj_data.get("objectID"):
-                # Check if it's actually a sculpture
+                # Filter to sculpture-class objects.
+                #
+                # Met's `classification` field is the right gate: values
+                # are stable controlled-vocabulary strings like
+                # "Sculpture", "Sculpture-Architectural",
+                # "Drawings", etc. The earlier implementation checked
+                # the `medium` field for the substring "sculpture",
+                # but `medium` is the material text ("Bronze, marble
+                # base") and almost never contains the word — which
+                # silently dropped ~all Met results. Keeping
+                # `objectName` as a secondary signal catches records
+                # with no classification but explicit "Statue" /
+                # "Bust" / "Relief" naming.
+                classification = (obj_data.get("classification") or "").lower()
+                object_name = (obj_data.get("objectName") or "").lower()
                 medium = obj_data.get("medium", "")
-                if medium and ("sculpture" in medium.lower() or "sculptor" in medium.lower()):
+                is_sculpture = (
+                    "sculpture" in classification
+                    or any(
+                        kw in object_name
+                        for kw in ("statue", "bust", "relief", "figurine", "sculpt")
+                    )
+                )
+                # Verify the object's artist actually matches our queried
+                # sculptor (artistOrCulture restricts the search, but the
+                # object detail is the source of truth on attribution).
+                artist_field = obj_data.get("artistDisplayName") or ""
+                if is_sculpture and _artist_matches(name, artist_field):
                     records.append({
                         "source": "met",
                         "sculptor_name": name,
@@ -206,7 +279,11 @@ def query_aic_for_sculptors(sculptor_names: list[str]) -> pd.DataFrame:
         for artwork in artworks:
             artwork_type = artwork.get("artwork_type_title", "")
             
-            if any(s.lower() in artwork_type.lower() for s in sculpture_types):
+            artist_field = artwork.get("artist_display") or ""
+            if (
+                any(s.lower() in artwork_type.lower() for s in sculpture_types)
+                and _artist_matches(name, artist_field)
+            ):
                 aic_id = artwork.get("id")
                 image_id = artwork.get("image_id") or ""
                 # AIC's IIIF endpoint is documented at

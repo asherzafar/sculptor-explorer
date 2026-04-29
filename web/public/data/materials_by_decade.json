@@ -1,28 +1,38 @@
 [
   {
     "decade": 1830,
-    "category": "Bronze",
-    "count": 1
+    "category": "Marble",
+    "count": 2
   },
   {
     "decade": 1840,
-    "category": "Bronze",
-    "count": 2
+    "category": "Marble",
+    "count": 1
   },
   {
     "decade": 1850,
     "category": "Marble",
+    "count": 3
+  },
+  {
+    "decade": 1850,
+    "category": "Plaster",
     "count": 1
   },
   {
     "decade": 1860,
     "category": "Bronze",
-    "count": 1
+    "count": 4
   },
   {
     "decade": 1860,
     "category": "Marble",
-    "count": 1
+    "count": 2
+  },
+  {
+    "decade": 1870,
+    "category": "Bronze",
+    "count": 3
   },
   {
     "decade": 1870,
@@ -31,18 +41,13 @@
   },
   {
     "decade": 1870,
-    "category": "Bronze",
-    "count": 1
-  },
-  {
-    "decade": 1870,
     "category": "Plaster",
     "count": 1
   },
   {
     "decade": 1880,
     "category": "Bronze",
-    "count": 9
+    "count": 10
   },
   {
     "decade": 1880,
@@ -57,17 +62,22 @@
   {
     "decade": 1890,
     "category": "Bronze",
-    "count": 10
+    "count": 7
   },
   {
     "decade": 1890,
     "category": "Plaster",
+    "count": 1
+  },
+  {
+    "decade": 1890,
+    "category": "Terracotta",
     "count": 1
   },
   {
     "decade": 1900,
     "category": "Bronze",
-    "count": 10
+    "count": 11
   },
   {
     "decade": 1900,
@@ -87,22 +97,22 @@
   {
     "decade": 1910,
     "category": "Marble",
-    "count": 2
+    "count": 1
   },
   {
     "decade": 1910,
     "category": "Wood",
-    "count": 2
+    "count": 1
   },
   {
     "decade": 1910,
     "category": "Iron",
-    "count": 2
+    "count": 1
   },
   {
     "decade": 1920,
     "category": "Bronze",
-    "count": 10
+    "count": 7
   },
   {
     "decade": 1920,
@@ -115,9 +125,19 @@
     "count": 1
   },
   {
+    "decade": 1920,
+    "category": "Terracotta",
+    "count": 1
+  },
+  {
+    "decade": 1920,
+    "category": "Ceramic",
+    "count": 1
+  },
+  {
     "decade": 1930,
     "category": "Bronze",
-    "count": 5
+    "count": 3
   },
   {
     "decade": 1930,
@@ -132,26 +152,26 @@
   {
     "decade": 1940,
     "category": "Bronze",
-    "count": 9
+    "count": 7
   },
   {
     "decade": 1940,
     "category": "Steel",
-    "count": 4
-  },
-  {
-    "decade": 1940,
-    "category": "Iron",
     "count": 2
   },
   {
     "decade": 1940,
-    "category": "Leather",
+    "category": "Stone",
     "count": 2
   },
   {
     "decade": 1940,
     "category": "Marble",
+    "count": 1
+  },
+  {
+    "decade": 1940,
+    "category": "Iron",
     "count": 1
   },
   {
@@ -162,22 +182,12 @@
   {
     "decade": 1950,
     "category": "Steel",
-    "count": 4
-  },
-  {
-    "decade": 1950,
-    "category": "Other",
-    "count": 1
+    "count": 2
   },
   {
     "decade": 1960,
     "category": "Steel",
-    "count": 7
-  },
-  {
-    "decade": 1960,
-    "category": "Wood",
-    "count": 4
+    "count": 5
   },
   {
     "decade": 1960,
@@ -187,36 +197,26 @@
   {
     "decade": 1960,
     "category": "Lead",
-    "count": 3
-  },
-  {
-    "decade": 1960,
-    "category": "Other",
     "count": 2
   },
   {
     "decade": 1960,
-    "category": "Paper",
+    "category": "Wood",
     "count": 1
   },
   {
     "decade": 1970,
     "category": "Wood",
-    "count": 5
+    "count": 2
   },
   {
     "decade": 1970,
     "category": "Bronze",
-    "count": 2
+    "count": 1
   },
   {
     "decade": 1970,
     "category": "Steel",
-    "count": 2
-  },
-  {
-    "decade": 1970,
-    "category": "Paper",
     "count": 1
   },
   {
@@ -226,18 +226,18 @@
   },
   {
     "decade": 1980,
-    "category": "Paper",
-    "count": 3
-  },
-  {
-    "decade": 1980,
     "category": "Steel",
-    "count": 2
+    "count": 1
   },
   {
     "decade": 1980,
     "category": "Wood",
-    "count": 2
+    "count": 1
+  },
+  {
+    "decade": 1980,
+    "category": "Ceramic",
+    "count": 1
   },
   {
     "decade": 1990,
@@ -245,18 +245,8 @@
     "count": 1
   },
   {
-    "decade": 1990,
-    "category": "Wood",
-    "count": 1
-  },
-  {
     "decade": 2010,
     "category": "Steel",
-    "count": 1
-  },
-  {
-    "decade": 2010,
-    "category": "Paper",
     "count": 1
   },
   {
