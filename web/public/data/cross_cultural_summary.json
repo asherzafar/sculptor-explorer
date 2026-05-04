@@ -1,9 +1,9 @@
 {
-  "totalEdges": 1418,
-  "comparable": 543,
-  "crossBorder": 157,
-  "sameNationality": 386,
-  "crossPctOfComparable": 0.289134438305709,
+  "totalEdges": 1423,
+  "comparable": 557,
+  "crossBorder": 160,
+  "sameNationality": 397,
+  "crossPctOfComparable": 0.2872531418312388,
   "byDecade": [
     {
       "decade": 1800,
@@ -25,15 +25,15 @@
     },
     {
       "decade": 1830,
-      "total": 44,
+      "total": 46,
       "cross": 15,
-      "same": 29
+      "same": 31
     },
     {
       "decade": 1840,
-      "total": 102,
+      "total": 103,
       "cross": 28,
-      "same": 74
+      "same": 75
     },
     {
       "decade": 1850,
@@ -43,9 +43,9 @@
     },
     {
       "decade": 1860,
-      "total": 39,
-      "cross": 16,
-      "same": 23
+      "total": 49,
+      "cross": 19,
+      "same": 30
     },
     {
       "decade": 1870,
@@ -55,9 +55,9 @@
     },
     {
       "decade": 1880,
-      "total": 64,
+      "total": 65,
       "cross": 29,
-      "same": 35
+      "same": 36
     },
     {
       "decade": 1890,
@@ -98,17 +98,17 @@
   ],
   "topPairs": [
     {
+      "a": "German Reich",
+      "b": "Germany",
+      "count": 10
+    },
+    {
       "a": "Germany",
       "b": "Kingdom of Prussia",
-      "count": 11
+      "count": 8
     },
     {
       "a": "France",
-      "b": "United States",
-      "count": 7
-    },
-    {
-      "a": "German Reich",
       "b": "Germany",
       "count": 7
     },
@@ -119,18 +119,18 @@
     },
     {
       "a": "France",
-      "b": "Germany",
+      "b": "United States",
       "count": 6
+    },
+    {
+      "a": "France",
+      "b": "Switzerland",
+      "count": 5
     },
     {
       "a": "France",
       "b": "Sweden",
       "count": 5
-    },
-    {
-      "a": "France",
-      "b": "Switzerland",
-      "count": 4
     },
     {
       "a": "Germany",

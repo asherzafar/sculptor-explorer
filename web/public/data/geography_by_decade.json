@@ -36,6 +36,11 @@
   },
   {
     "decade": 1800,
+    "category": "United States",
+    "count": 2
+  },
+  {
+    "decade": 1800,
     "category": "German Reich",
     "count": 1
   },
@@ -57,11 +62,6 @@
   {
     "decade": 1800,
     "category": "United Kingdom",
-    "count": 1
-  },
-  {
-    "decade": 1800,
-    "category": "United States",
     "count": 1
   },
   {
@@ -272,7 +272,7 @@
   {
     "decade": 1840,
     "category": "Germany",
-    "count": 51
+    "count": 50
   },
   {
     "decade": 1840,
@@ -321,17 +321,17 @@
   },
   {
     "decade": 1840,
+    "category": "Russian Empire",
+    "count": 4
+  },
+  {
+    "decade": 1840,
     "category": "Switzerland",
     "count": 4
   },
   {
     "decade": 1840,
     "category": "Hungary",
-    "count": 3
-  },
-  {
-    "decade": 1840,
-    "category": "Russian Empire",
     "count": 3
   },
   {
@@ -432,7 +432,7 @@
   {
     "decade": 1860,
     "category": "France",
-    "count": 47
+    "count": 48
   },
   {
     "decade": 1860,
@@ -462,7 +462,7 @@
   {
     "decade": 1860,
     "category": "United States",
-    "count": 11
+    "count": 12
   },
   {
     "decade": 1860,
@@ -592,7 +592,7 @@
   {
     "decade": 1880,
     "category": "France",
-    "count": 49
+    "count": 50
   },
   {
     "decade": 1880,
@@ -622,7 +622,7 @@
   {
     "decade": 1880,
     "category": "United States",
-    "count": 15
+    "count": 17
   },
   {
     "decade": 1880,
@@ -757,7 +757,7 @@
   {
     "decade": 1900,
     "category": "Hungary",
-    "count": 38
+    "count": 37
   },
   {
     "decade": 1900,
@@ -767,7 +767,7 @@
   {
     "decade": 1900,
     "category": "United States",
-    "count": 33
+    "count": 34
   },
   {
     "decade": 1900,
@@ -922,7 +922,7 @@
   {
     "decade": 1920,
     "category": "United States",
-    "count": 48
+    "count": 52
   },
   {
     "decade": 1920,
@@ -977,7 +977,7 @@
   {
     "decade": 1930,
     "category": "Germany",
-    "count": 219
+    "count": 218
   },
   {
     "decade": 1930,
@@ -1147,7 +1147,7 @@
   {
     "decade": 1950,
     "category": "United States",
-    "count": 36
+    "count": 37
   },
   {
     "decade": 1950,
@@ -1212,7 +1212,7 @@
   {
     "decade": 1960,
     "category": "United States",
-    "count": 27
+    "count": 28
   },
   {
     "decade": 1960,

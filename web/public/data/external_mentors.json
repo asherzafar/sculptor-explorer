@@ -720,6 +720,14 @@
     "occupation": "painter"
   },
   {
+    "qid": "Q139532371",
+    "name": "Q139532371",
+    "birthYear": null,
+    "deathYear": null,
+    "gender": null,
+    "occupation": null
+  },
+  {
     "qid": "Q140201",
     "name": "J. G. Ballard",
     "birthYear": 1930,
@@ -2672,14 +2680,6 @@
     "occupation": "entrepreneur"
   },
   {
-    "qid": "Q314350",
-    "name": "\u00c9mile-Antoine Bourdelle",
-    "birthYear": 1861,
-    "deathYear": 1929,
-    "gender": "male",
-    "occupation": "teacher"
-  },
-  {
     "qid": "Q314886",
     "name": "Jo\u017ee Ple\u010dnik",
     "birthYear": 1872,
@@ -3550,14 +3550,6 @@
     "deathYear": 1945,
     "gender": "male",
     "occupation": "artist"
-  },
-  {
-    "qid": "Q385941",
-    "name": "William Zorach",
-    "birthYear": 1887,
-    "deathYear": 1966,
-    "gender": "male",
-    "occupation": "writer"
   },
   {
     "qid": "Q38785",

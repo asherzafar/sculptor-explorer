@@ -56,6 +56,11 @@
   },
   {
     "decade": 1800,
+    "category": "United States",
+    "count": 2
+  },
+  {
+    "decade": 1800,
     "category": "Romania",
     "count": 1
   },
@@ -67,11 +72,6 @@
   {
     "decade": 1800,
     "category": "Switzerland",
-    "count": 1
-  },
-  {
-    "decade": 1800,
-    "category": "United States",
     "count": 1
   },
   {
@@ -482,7 +482,7 @@
   {
     "decade": 1860,
     "category": "France",
-    "count": 45
+    "count": 46
   },
   {
     "decade": 1860,
@@ -557,7 +557,7 @@
   {
     "decade": 1860,
     "category": "Unknown",
-    "count": 3
+    "count": 4
   },
   {
     "decade": 1870,
@@ -652,12 +652,12 @@
   {
     "decade": 1880,
     "category": "Other",
-    "count": 54
+    "count": 55
   },
   {
     "decade": 1880,
     "category": "France",
-    "count": 39
+    "count": 40
   },
   {
     "decade": 1880,
@@ -717,7 +717,7 @@
   {
     "decade": 1880,
     "category": "Unknown",
-    "count": 7
+    "count": 8
   },
   {
     "decade": 1880,
@@ -827,7 +827,7 @@
   {
     "decade": 1900,
     "category": "Hungary",
-    "count": 35
+    "count": 34
   },
   {
     "decade": 1900,
@@ -866,17 +866,17 @@
   },
   {
     "decade": 1900,
+    "category": "Unknown",
+    "count": 12
+  },
+  {
+    "decade": 1900,
     "category": "Romania",
     "count": 11
   },
   {
     "decade": 1900,
     "category": "Spain",
-    "count": 11
-  },
-  {
-    "decade": 1900,
-    "category": "Unknown",
     "count": 11
   },
   {
@@ -1041,17 +1041,17 @@
   },
   {
     "decade": 1920,
+    "category": "Unknown",
+    "count": 20
+  },
+  {
+    "decade": 1920,
     "category": "Belgium",
     "count": 18
   },
   {
     "decade": 1920,
     "category": "Spain",
-    "count": 16
-  },
-  {
-    "decade": 1920,
-    "category": "Unknown",
     "count": 16
   },
   {
@@ -1072,7 +1072,7 @@
   {
     "decade": 1930,
     "category": "Germany",
-    "count": 183
+    "count": 182
   },
   {
     "decade": 1930,
@@ -1262,7 +1262,7 @@
   {
     "decade": 1950,
     "category": "Unknown",
-    "count": 35
+    "count": 36
   },
   {
     "decade": 1950,
@@ -1352,7 +1352,7 @@
   {
     "decade": 1960,
     "category": "Unknown",
-    "count": 21
+    "count": 22
   },
   {
     "decade": 1960,

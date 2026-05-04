@@ -1202,10 +1202,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q289711",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "\u00c9tienne Hajd\u00fa",
     "relationType": "influenced_by",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q335011",
@@ -1978,10 +1978,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q3161887",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Jane Poupelet",
     "relationType": "influenced_by",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q3099151",
@@ -2330,18 +2330,18 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q157194",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Alberto Giacometti",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q314350",
     "toQid": "Q234601",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Vera Mukhina",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": true
   },
   {
     "fromQid": "Q362498",
@@ -3696,6 +3696,14 @@
     "crossesBorders": true
   },
   {
+    "fromQid": "Q2731089",
+    "toQid": "Q1495586",
+    "fromName": "Jean-Paul Aub\u00e9",
+    "toName": "Gaston Lachaise",
+    "relationType": "student_of",
+    "crossesBorders": false
+  },
+  {
     "fromQid": "Q3023427",
     "toQid": "Q930245",
     "fromName": "Denys Puech",
@@ -3762,10 +3770,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q289711",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "\u00c9tienne Hajd\u00fa",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1289500",
@@ -3780,6 +3788,14 @@
     "toQid": "Q294326",
     "fromName": "Michael Craig-Martin",
     "toName": "Damien Hirst",
+    "relationType": "student_of",
+    "crossesBorders": false
+  },
+  {
+    "fromQid": "Q30755",
+    "toQid": "Q314350",
+    "fromName": "Auguste Rodin",
+    "toName": "Antoine Bourdelle",
     "relationType": "student_of",
     "crossesBorders": false
   },
@@ -3845,7 +3861,7 @@
     "fromName": "William Zorach",
     "toName": "Lee Bontecou",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q448426",
@@ -4008,6 +4024,14 @@
     "crossesBorders": null
   },
   {
+    "fromQid": "Q2140000",
+    "toQid": "Q314350",
+    "fromName": "Alexandre Falgui\u00e8re",
+    "toName": "Antoine Bourdelle",
+    "relationType": "student_of",
+    "crossesBorders": false
+  },
+  {
     "fromQid": "Q2268595",
     "toQid": "Q1290386",
     "fromName": "Selmar Werner",
@@ -4132,6 +4156,14 @@
     "toQid": "Q953278",
     "fromName": "Louis Leygue",
     "toName": "Roland Guillaumel",
+    "relationType": "student_of",
+    "crossesBorders": null
+  },
+  {
+    "fromQid": "Q3370584",
+    "toQid": "Q314350",
+    "fromName": "Paul Baudo\u00fcin",
+    "toName": "Antoine Bourdelle",
     "relationType": "student_of",
     "crossesBorders": null
   },
@@ -5426,10 +5458,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q676365",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Lucie Bouniol",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q316041",
@@ -6386,10 +6418,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q1381971",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Otto Gutfreund",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": true
   },
   {
     "fromQid": "Q314567",
@@ -7112,6 +7144,14 @@
     "crossesBorders": null
   },
   {
+    "fromQid": "Q139532371",
+    "toQid": "Q447851",
+    "fromName": "Q139532371",
+    "toName": "Emilie Mayer",
+    "relationType": "student_of",
+    "crossesBorders": null
+  },
+  {
     "fromQid": "Q5589",
     "toQid": "Q690155",
     "fromName": "Henri Matisse",
@@ -7602,10 +7642,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q2424895",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "L\u00e9on Indenbaum",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q364498",
@@ -8090,10 +8130,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q2835211",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Alfred Janniot",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": false
   },
   {
     "fromQid": "Q346491",
@@ -8554,10 +8594,10 @@
   {
     "fromQid": "Q314350",
     "toQid": "Q520200",
-    "fromName": "\u00c9mile-Antoine Bourdelle",
+    "fromName": "Antoine Bourdelle",
     "toName": "Karl Albiker",
     "relationType": "student_of",
-    "crossesBorders": null
+    "crossesBorders": true
   },
   {
     "fromQid": "Q326434",

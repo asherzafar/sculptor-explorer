@@ -1,12 +1,12 @@
 [
   {
-    "id": "curated-hiram-powers",
+    "id": "Q2572996",
     "name": "Hiram Powers",
     "birthYear": 1805,
     "deathYear": 1873,
     "birthDecade": 1800,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -50,13 +50,13 @@
     "source": "fabio"
   },
   {
-    "id": "curated-attilio-piccirilli",
+    "id": "Q3629278",
     "name": "Attilio Piccirilli",
     "birthYear": 1866,
     "deathYear": 1945,
     "birthDecade": 1860,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -140,13 +140,13 @@
     "source": "fabio"
   },
   {
-    "id": "curated-gaston-lachaise",
+    "id": "Q1495586",
     "name": "Gaston Lachaise",
     "birthYear": 1882,
     "deathYear": 1935,
     "birthDecade": 1880,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "France",
     "source": "fabio"
   },
   {
@@ -170,13 +170,13 @@
     "source": "fabio"
   },
   {
-    "id": "curated-paul-manship",
+    "id": "Q3371768",
     "name": "Paul Manship",
     "birthYear": 1885,
     "deathYear": 1966,
     "birthDecade": 1880,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -190,13 +190,13 @@
     "source": "fabio"
   },
   {
-    "id": "curated-william-zorach",
+    "id": "Q385941",
     "name": "William Zorach",
     "birthYear": 1887,
     "deathYear": 1966,
     "birthDecade": 1880,
-    "movement": null,
-    "citizenship": null,
+    "movement": "cubism",
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -260,13 +260,13 @@
     "source": "fabio"
   },
   {
-    "id": "curated-charlotte-dunwiddie",
+    "id": "Q108480398",
     "name": "Charlotte Dunwiddie",
     "birthYear": 1907,
     "deathYear": 1995,
     "birthDecade": 1900,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -290,43 +290,43 @@
     "source": "fabio"
   },
   {
-    "id": "curated-marcel-jovine",
+    "id": "Q6756130",
     "name": "Marcel Jovine",
     "birthYear": 1921,
     "deathYear": 2003,
     "birthDecade": 1920,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
-    "id": "curated-richard-mcdermott-miller",
+    "id": "Q105801830",
     "name": "Richard McDermott Miller",
     "birthYear": 1922,
     "deathYear": 2004,
     "birthDecade": 1920,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
-    "id": "curated-stanley-bleifeld",
+    "id": "Q7599481",
     "name": "Stanley Bleifeld",
     "birthYear": 1924,
     "deathYear": 2011,
     "birthDecade": 1920,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
-    "id": "curated-neil-estern",
+    "id": "Q66012989",
     "name": "Neil Estern",
     "birthYear": 1926,
     "deathYear": 2019,
     "birthDecade": 1920,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -370,23 +370,23 @@
     "source": "fabio"
   },
   {
-    "id": "curated-dan-ostermiller",
+    "id": "Q5214147",
     "name": "Dan Ostermiller",
     "birthYear": 1956,
     "deathYear": null,
     "birthDecade": 1950,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
-    "id": "curated-simone-leigh",
+    "id": "Q16200002",
     "name": "Simone Leigh",
     "birthYear": 1967,
     "deathYear": null,
     "birthDecade": 1960,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "United States",
     "source": "fabio"
   },
   {
@@ -410,13 +410,13 @@
     "source": "original"
   },
   {
-    "id": "curated-antoine-bourdelle",
+    "id": "Q314350",
     "name": "Antoine Bourdelle",
     "birthYear": 1861,
     "deathYear": 1929,
     "birthDecade": 1860,
     "movement": null,
-    "citizenship": null,
+    "citizenship": "France",
     "source": "original"
   },
   {
