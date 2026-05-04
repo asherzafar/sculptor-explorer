@@ -11,6 +11,7 @@ from config import (
     MENTOR_META_CACHE_PATH,
     VALUES_BATCH_SIZE,
     REFRESH_FROM_WIKIDATA,
+    MISSING_QIDS_PATH,
 )
 from helpers import query_sparql, query_sparql_batched
 
@@ -46,18 +47,18 @@ PREFIX wikibase: <http://wikiba.se/ontology#>
 
 SELECT
   (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?qid_clean)
-  ?name
+  (SAMPLE(?nameAny) AS ?name)
   (MIN(?b) AS ?birth)
   (MAX(?d) AS ?death)
   (SAMPLE(?genderLabel) AS ?gender)
 WHERE {
   {{VALUES_BLOCK}}
-  ?qid rdfs:label ?name . FILTER(LANG(?name) = 'en')
+  ?qid rdfs:label ?nameAny . FILTER(LANG(?nameAny) IN ('en', 'mul'))
   ?qid wdt:P569 ?b .
   OPTIONAL { ?qid wdt:P570 ?d . }
   OPTIONAL { ?qid wdt:P21 ?genderEntity . ?genderEntity rdfs:label ?genderLabel . FILTER(LANG(?genderLabel) = 'en') }
 }
-GROUP BY ?qid ?name
+GROUP BY ?qid
 """
 
 
@@ -189,13 +190,31 @@ GROUP BY ?qid
 
 
 def run_qid_discovery() -> pd.DataFrame:
-    """Run the QID discovery query to find all sculptor QIDs."""
+    """Run the QID discovery query to find all sculptor QIDs.
+    
+    Injects missing QIDs from overrides/missing_sculptor_qids.csv that aren't
+    being discovered by the SPARQL query (likely due to birth date formatting
+    issues in Wikidata).
+    """
     query = QID_DISCOVERY_QUERY.format(min_birth_year=MIN_BIRTH_YEAR)
-    return query_sparql(
+    discovered = query_sparql(
         query=query,
         cache_path=QID_CACHE_PATH,
         refresh=REFRESH_FROM_WIKIDATA,
     )
+    
+    # Inject missing QIDs from override file
+    if MISSING_QIDS_PATH.exists():
+        missing_df = pd.read_csv(MISSING_QIDS_PATH)
+        if "qid" in missing_df.columns:
+            # Merge with discovered QIDs, keeping all unique QIDs
+            combined = pd.concat([discovered, missing_df[["qid"]]], ignore_index=True)
+            combined = combined.drop_duplicates(subset=["qid"], keep="first")
+            if len(combined) > len(discovered):
+                print(f"  + Injected {len(combined) - len(discovered)} missing QIDs from override file")
+            return combined
+    
+    return discovered
 
 
 def run_node_details(qids: list[str]) -> pd.DataFrame:

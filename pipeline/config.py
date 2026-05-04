@@ -42,6 +42,9 @@ REFRESH_FROM_AIC = True
 # Edit overrides/focus_sculptors.csv to add/remove sculptors.
 FOCUS_SCULPTORS_CSV = OVERRIDES_DIR / "focus_sculptors.csv"
 
+# Missing sculptor QIDs that aren't being discovered by the Wikidata query
+MISSING_QIDS_PATH = OVERRIDES_DIR / "missing_sculptor_qids.csv"
+
 
 def load_focus_sculptors() -> list[dict]:
     """Load the canonical focus sculptor list from CSV."""
