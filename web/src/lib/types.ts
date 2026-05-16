@@ -337,6 +337,89 @@ export interface GettyAudit {
   };
 }
 
+/**
+ * One birth → death country flow on the Migration view. A row in
+ * `migration.json :: flows` (and inside each `flowsByBirthDecade` slice).
+ *
+ * `sculptors` is a *capped* sample (max 12 per pipeline constant) sorted
+ * alphabetically — meant for the side panel preview, not a full roster.
+ * The full roster is reachable via the per-sculptor shards.
+ */
+export interface MigrationFlow {
+  from: string;
+  to: string;
+  count: number;
+  sameCountry: boolean;
+  sculptors: Array<{ qid: string; name: string }>;
+}
+
+/** Headline counts on the Migration view. */
+export interface MigrationMeta {
+  totalIncluded: number;
+  eligible: number;
+  withBothCountries: number;
+  crossedBorders: number;
+  sameCountry: number;
+  missingBirthCountry: number;
+  missingDeathCountry: number;
+  livingExcluded: number;
+  topFlows: MigrationFlow[];
+}
+
+/** Full payload for `/migration`. Decade keys are stringified ints (e.g. "1880"). */
+export interface MigrationData {
+  meta: MigrationMeta;
+  flows: MigrationFlow[];
+  flowsByBirthDecade: Record<string, MigrationFlow[]>;
+}
+
+/**
+ * Notable-sculptor row used by both /decade/[year] and /movement/[slug]
+ * pages — same shape so the two consumers can share a card component.
+ */
+export interface NotableSculptor {
+  qid: string;
+  name: string;
+  birthYear: number | null;
+  deathYear: number | null;
+  movement?: string | null;
+  citizenship: string | null;
+  totalDegree: number;
+}
+
+/** /decade/[year] payload (one entry from `decades.json`). */
+export interface DecadeStats {
+  decade: number;
+  totalBorn: number;
+  gender: { female: number; male: number; otherOrUnknown: number };
+  topCountries: Array<{ country: string; count: number }>;
+  topMovements: Array<{ movement: string; count: number }>;
+  topCorridors: Array<{ from: string; to: string; count: number }>;
+  migration: { eligible: number; crossed: number; crossPct: number | null };
+  notable: NotableSculptor[];
+}
+
+export type DecadesData = Record<string, DecadeStats>;
+
+/** /movement/[slug] payload (one entry from `movements.json`). */
+export interface MovementStats {
+  slug: string;
+  name: string;
+  total: number;
+  yearsMin: number | null;
+  yearsMax: number | null;
+  yearsMedian: number | null;
+  peakDecade: number | null;
+  byDecade: Array<{ decade: number; count: number }>;
+  topCountries: Array<{ country: string; count: number }>;
+  notable: NotableSculptor[];
+}
+
+export interface MovementsData {
+  movements: Record<string, MovementStats>;
+  index: Array<{ slug: string; name: string; total: number; peakDecade: number | null }>;
+}
+
 /** Snapshot of Option A.3 inclusion criteria + demographic audit. */
 export interface TransparencyAudit {
   generatedAt: string;

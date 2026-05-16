@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptor } from "@/lib/data";
-import { formatDisplayValue, formatGender } from "@/lib/utils";
+import { formatDisplayValue, formatGender, movementSlug } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { WorksGallery } from "@/components/WorksGallery";
@@ -354,9 +354,12 @@ export function SculptorDetail({ qid }: { qid: string }) {
             deliberately small so it doesn't compete with the lifespan and
             citizenship lines, but it does tell the reader we checked. */}
         {hasMovement ? (
-          <span className="inline-block rounded-full bg-accent-muted text-accent-primary text-xs font-medium px-3 py-1 mb-4">
+          <Link
+            href={`/movement/${movementSlug(sculptor.movement)}`}
+            className="inline-block rounded-full bg-accent-muted text-accent-primary hover:bg-accent-primary hover:text-white text-xs font-medium px-3 py-1 mb-4 transition-colors"
+          >
             {movementLabel}
-          </span>
+          </Link>
         ) : (
           <p className="text-xs text-text-tertiary mb-4">
             No art movement listed on Wikidata for this sculptor.

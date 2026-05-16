@@ -1,6 +1,6 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor } from "./types";
+import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor, MigrationData, DecadesData, MovementsData } from "./types";
 
 /** Load sculptors.json (legacy camelCase format) */
 export async function loadSculptors(): Promise<LegacySculptor[]> {
@@ -119,4 +119,42 @@ export async function loadExternalMentors(): Promise<ExternalMentor[]> {
   const res = await fetch("/data/external_mentors.json");
   if (!res.ok) throw new Error("Failed to load external_mentors.json");
   return res.json();
+}
+
+/** Load decades.json — per-decade aggregates for /decade/[year] pages. */
+export async function loadDecades(): Promise<DecadesData | null> {
+  try {
+    const res = await fetch("/data/decades.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+/** Load movements.json — per-movement aggregates for /movement/[slug] pages. */
+export async function loadMovements(): Promise<MovementsData | null> {
+  try {
+    const res = await fetch("/data/movements.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Load migration.json (birth → death country flows + headline counts).
+ * Returns null if the file is absent so the page can render an
+ * empty-state instead of erroring on first builds before the
+ * pipeline has been re-run.
+ */
+export async function loadMigration(): Promise<MigrationData | null> {
+  try {
+    const res = await fetch("/data/migration.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
 }

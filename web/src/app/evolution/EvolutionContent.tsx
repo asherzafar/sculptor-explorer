@@ -174,6 +174,12 @@ export function EvolutionContent() {
             {filteredSculptors.length} focus sculptor
             {filteredSculptors.length !== 1 ? "s" : ""}
           </span>
+          <Link
+            href={`/decade/${activeDecade}`}
+            className="text-sm text-accent-primary hover:text-accent-hover underline-offset-2 hover:underline transition-colors"
+          >
+            Open the {activeDecade}s page →
+          </Link>
           <Button
             variant="ghost"
             size="sm"

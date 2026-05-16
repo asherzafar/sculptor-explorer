@@ -87,3 +87,23 @@ export function formatGender(gender: string | null | undefined): string {
   const normalized = gender.toLowerCase().trim()
   return GENDER_DISPLAY_MAP[normalized] || toTitleCase(gender)
 }
+
+/**
+ * URL slug for a movement display name. **Must mirror the Python
+ * `_movement_slug` in `pipeline/export_json.py`** so client-side links
+ * land on the right /movement/[slug] page. Drift between the two
+ * implementations is the kind of bug that's invisible until a user
+ * clicks a movement pill and gets a 404; if you change one of these
+ * functions, change the other in the same diff.
+ *
+ * Algorithm: NFKD-normalize, strip non-ASCII, lowercase, replace any
+ * run of non-alphanumeric characters with a single hyphen, trim
+ * leading/trailing hyphens.
+ */
+export function movementSlug(name: string | null | undefined): string {
+  if (!name) return "unknown"
+  const folded = name.normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+  const ascii = folded.replace(/[^\x00-\x7F]/g, "")
+  const slug = ascii.replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase()
+  return slug || "unknown"
+}

@@ -26,6 +26,7 @@ const navItems = [
   { href: "/timeline", label: "Timeline" },
   { href: "/explore", label: "Explore" },
   { href: "/evolution", label: "Evolution" },
+  { href: "/migration", label: "Migration" },
   { href: "/lineage", label: "Lineage" },
   { href: "/about", label: "About" },
   { href: "/transparency", label: "Transparency" },
