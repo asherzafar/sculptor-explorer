@@ -1,0 +1,7809 @@
+{
+  "1800": {
+    "decade": 1800,
+    "totalBorn": 68,
+    "gender": {
+      "female": 2,
+      "male": 66,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 24
+      },
+      {
+        "country": "Germany",
+        "count": 15
+      },
+      {
+        "country": "Italy",
+        "count": 9
+      },
+      {
+        "country": "United Kingdom",
+        "count": 3
+      },
+      {
+        "country": "Belgium",
+        "count": 3
+      },
+      {
+        "country": "Denmark",
+        "count": 2
+      },
+      {
+        "country": "Czech Republic",
+        "count": 2
+      },
+      {
+        "country": "Poland",
+        "count": 2
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Romanticism",
+        "count": 3
+      },
+      {
+        "movement": "Baroque",
+        "count": 2
+      },
+      {
+        "movement": "Neoclassicism",
+        "count": 2
+      },
+      {
+        "movement": "Danish Golden Age",
+        "count": 1
+      },
+      {
+        "movement": "realism",
+        "count": 1
+      },
+      {
+        "movement": "Orientalism",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Germany",
+        "to": "Italy",
+        "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "France",
+        "count": 2
+      },
+      {
+        "from": "United States",
+        "to": "Italy",
+        "count": 1
+      },
+      {
+        "from": "Russia",
+        "to": "Russian Empire",
+        "count": 1
+      },
+      {
+        "from": "Romania",
+        "to": "France",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 67,
+      "crossed": 11,
+      "crossPct": 16
+    },
+    "notable": [
+      {
+        "qid": "Q1374591",
+        "name": "Fran\u00e7ois Jouffroy",
+        "birthYear": 1806,
+        "deathYear": 1882,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 24
+      },
+      {
+        "qid": "Q179725",
+        "name": "Augustin-Alexandre Dumont",
+        "birthYear": 1801,
+        "deathYear": 1884,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 17
+      },
+      {
+        "qid": "Q587417",
+        "name": "Antoine \u00c9tex",
+        "birthYear": 1808,
+        "deathYear": 1888,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q515914",
+        "name": "Ernst Friedrich August Rietschel",
+        "birthYear": 1804,
+        "deathYear": 1861,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Saxony",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1442354",
+        "name": "Francisque Joseph Duret",
+        "birthYear": 1804,
+        "deathYear": 1865,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q448426",
+        "name": "Ludwig Michael Schwanthaler",
+        "birthYear": 1802,
+        "deathYear": 1848,
+        "movement": "Classicism",
+        "citizenship": "Kingdom of Bavaria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2059735",
+        "name": "Paul Gayrard",
+        "birthYear": 1807,
+        "deathYear": 1855,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3472951",
+        "name": "Santo Varni",
+        "birthYear": 1807,
+        "deathYear": 1885,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2074586",
+        "name": "Antoine-Augustin Pr\u00e9ault",
+        "birthYear": 1809,
+        "deathYear": 1879,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q514178",
+        "name": "Friedrich Drake",
+        "birthYear": 1805,
+        "deathYear": 1882,
+        "movement": "No movement listed",
+        "citizenship": "Principality of Waldeck",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q642956",
+        "name": "Jean-Louis Jaley",
+        "birthYear": 1802,
+        "deathYear": 1866,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q389430",
+        "name": "Jean-Pierre Dantan",
+        "birthYear": 1800,
+        "deathYear": 1869,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1707756",
+        "name": "Josef Otto Entres",
+        "birthYear": 1804,
+        "deathYear": 1870,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q138156",
+        "name": "J\u00f8rgen Roed",
+        "birthYear": 1808,
+        "deathYear": 1888,
+        "movement": "Danish Golden Age",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1911455",
+        "name": "Maurice Borrel",
+        "birthYear": 1804,
+        "deathYear": 1882,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1670847",
+        "name": "Niels Simonsen",
+        "birthYear": 1807,
+        "deathYear": 1885,
+        "movement": "Orientalism",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1525640",
+        "name": "Simon Ganneau",
+        "birthYear": 1806,
+        "deathYear": 1851,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3535633",
+        "name": "Toussaint-Fran\u00e7ois Jourjon",
+        "birthYear": 1809,
+        "deathYear": 1857,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q569587",
+        "name": "Anselm Sickinger",
+        "birthYear": 1807,
+        "deathYear": 1873,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2853705",
+        "name": "Antoine Bontoux",
+        "birthYear": 1805,
+        "deathYear": 1892,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q352978",
+        "name": "Antoine Wiertz",
+        "birthYear": 1806,
+        "deathYear": 1865,
+        "movement": "Romanticism",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q695338",
+        "name": "Arnold Hermann Lossow",
+        "birthYear": 1805,
+        "deathYear": 1874,
+        "movement": "No movement listed",
+        "citizenship": "Bremen",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q761255",
+        "name": "August Fischer",
+        "birthYear": 1805,
+        "deathYear": 1866,
+        "movement": "No movement listed",
+        "citizenship": "Unknown",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q767233",
+        "name": "Auguste de Ch\u00e2tillon",
+        "birthYear": 1806,
+        "deathYear": 1881,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q817732",
+        "name": "Benjamin Waterhouse Hawkins",
+        "birthYear": 1807,
+        "deathYear": 1894,
+        "movement": "No movement listed",
+        "citizenship": "United Kingdom of Great Britain and Ireland",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q882358",
+        "name": "Georg Ferdinand Howaldt",
+        "birthYear": 1802,
+        "deathYear": 1883,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q302580",
+        "name": "Henry de Triqueti",
+        "birthYear": 1803,
+        "deathYear": 1874,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3136083",
+        "name": "Hippolyte Maindron",
+        "birthYear": 1801,
+        "deathYear": 1884,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q978253",
+        "name": "Horatio Greenough",
+        "birthYear": 1805,
+        "deathYear": 1852,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3157885",
+        "name": "Jacques-Auguste Fauginet",
+        "birthYear": 1809,
+        "deathYear": 1847,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3164185",
+        "name": "Jean Baptiste Joseph Debay",
+        "birthYear": 1802,
+        "deathYear": 1863,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3163864",
+        "name": "Jean-Baptiste Barr\u00e9",
+        "birthYear": 1804,
+        "deathYear": 1877,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q728635",
+        "name": "Joseph Geefs",
+        "birthYear": 1808,
+        "deathYear": 1885,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q729465",
+        "name": "Louis Jehotte",
+        "birthYear": 1803,
+        "deathYear": 1884,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q110204",
+        "name": "Ludwig Foltz",
+        "birthYear": 1809,
+        "deathYear": 1867,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Bavaria",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q376342",
+        "name": "\u00c9tienne M\u00e9lingue",
+        "birthYear": 1807,
+        "deathYear": 1875,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1810": {
+    "decade": 1810,
+    "totalBorn": 83,
+    "gender": {
+      "female": 4,
+      "male": 79,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 21
+      },
+      {
+        "country": "Germany",
+        "count": 20
+      },
+      {
+        "country": "Italy",
+        "count": 6
+      },
+      {
+        "country": "United Kingdom",
+        "count": 5
+      },
+      {
+        "country": "United States",
+        "count": 5
+      },
+      {
+        "country": "Belgium",
+        "count": 4
+      },
+      {
+        "country": "Austria",
+        "count": 4
+      },
+      {
+        "country": "Spain",
+        "count": 3
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Neoclassicism",
+        "count": 3
+      },
+      {
+        "movement": "French Realism",
+        "count": 1
+      },
+      {
+        "movement": "Symbolism",
+        "count": 1
+      },
+      {
+        "movement": "Classicism",
+        "count": 1
+      },
+      {
+        "movement": "academic art",
+        "count": 1
+      },
+      {
+        "movement": "Romanticism",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Austria",
+        "to": "Germany",
+        "count": 2
+      },
+      {
+        "from": "France",
+        "to": "Italy",
+        "count": 2
+      },
+      {
+        "from": "Poland",
+        "to": "Austria",
+        "count": 1
+      },
+      {
+        "from": "Sweden",
+        "to": "United Kingdom",
+        "count": 1
+      },
+      {
+        "from": "Slovakia",
+        "to": "Hungary",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 82,
+      "crossed": 14,
+      "crossPct": 17
+    },
+    "notable": [
+      {
+        "qid": "Q34618",
+        "name": "Gustave Courbet",
+        "birthYear": 1819,
+        "deathYear": 1877,
+        "movement": "French Realism",
+        "citizenship": "France",
+        "totalDegree": 12
+      },
+      {
+        "qid": "Q1588564",
+        "name": "Ponciano Ponzano",
+        "birthYear": 1813,
+        "deathYear": 1877,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 8
+      },
+      {
+        "qid": "Q286318",
+        "name": "Albert Wolff",
+        "birthYear": 1814,
+        "deathYear": 1892,
+        "movement": "No movement listed",
+        "citizenship": "Grand Duchy of Mecklenburg-Strelitz",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q445022",
+        "name": "Carl Wahlbom",
+        "birthYear": 1810,
+        "deathYear": 1858,
+        "movement": "No movement listed",
+        "citizenship": "Sweden",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q405756",
+        "name": "Aim\u00e9 Millet",
+        "birthYear": 1819,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q447851",
+        "name": "Emilie Mayer",
+        "birthYear": 1812,
+        "deathYear": 1883,
+        "movement": "No movement listed",
+        "citizenship": "Grand Duchy of Mecklenburg-Strelitz",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q315517",
+        "name": "Gustav Bl\u00e4ser",
+        "birthYear": 1813,
+        "deathYear": 1874,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1553626",
+        "name": "Jean-Fran\u00e7ois Soitoux",
+        "birthYear": 1816,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q323779",
+        "name": "Joseph Knabl",
+        "birthYear": 1819,
+        "deathYear": 1881,
+        "movement": "No movement listed",
+        "citizenship": "Unknown",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q585463",
+        "name": "Eug\u00e8ne Simonis",
+        "birthYear": 1810,
+        "deathYear": 1882,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3163744",
+        "name": "Jean-Auguste Barre",
+        "birthYear": 1811,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q94650",
+        "name": "Vincenz Pilz",
+        "birthYear": 1816,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "Austrian Empire",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2824754",
+        "name": "Adolphe-Victor Geoffroy-Dechaume",
+        "birthYear": 1816,
+        "deathYear": 1892,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q766841",
+        "name": "Auguste Ottin",
+        "birthYear": 1811,
+        "deathYear": 1890,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q567374",
+        "name": "Ernst Julius H\u00e4hnel",
+        "birthYear": 1811,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Saxony",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1539412",
+        "name": "Gottfried Renn",
+        "birthYear": 1818,
+        "deathYear": 1900,
+        "movement": "No movement listed",
+        "citizenship": "Austrian Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q316085",
+        "name": "Johann Halbig",
+        "birthYear": 1814,
+        "deathYear": 1882,
+        "movement": "Classicism",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q602274",
+        "name": "Victor Vilain",
+        "birthYear": 1818,
+        "deathYear": 1899,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q762198",
+        "name": "August Julius Streichenberg",
+        "birthYear": 1814,
+        "deathYear": 1878,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1731657",
+        "name": "Carl Hoffmann",
+        "birthYear": 1816,
+        "deathYear": 1872,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1040134",
+        "name": "Carl Radnitzky",
+        "birthYear": 1818,
+        "deathYear": 1901,
+        "movement": "No movement listed",
+        "citizenship": "Unknown",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q960307",
+        "name": "Dom\u00e8nec Talarn",
+        "birthYear": 1812,
+        "deathYear": 1902,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2719726",
+        "name": "Eug\u00e8ne-Louis Lequesne",
+        "birthYear": 1815,
+        "deathYear": 1887,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2917027",
+        "name": "Francisco Bellver y Collazos",
+        "birthYear": 1812,
+        "deathYear": 1890,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1285046",
+        "name": "Friedrich Brugger",
+        "birthYear": 1815,
+        "deathYear": 1870,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1556072",
+        "name": "Gustav Kaupert",
+        "birthYear": 1819,
+        "deathYear": 1897,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1606961",
+        "name": "Henry Kirke Brown",
+        "birthYear": 1814,
+        "deathYear": 1886,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q266334",
+        "name": "Hermann Heidel",
+        "birthYear": 1810,
+        "deathYear": 1865,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q880623",
+        "name": "Hermann Schievelbein",
+        "birthYear": 1817,
+        "deathYear": 1867,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2415052",
+        "name": "Jean-Baptiste-Jules Klagmann",
+        "birthYear": 1810,
+        "deathYear": 1867,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2730042",
+        "name": "Jean-Joseph Perraud",
+        "birthYear": 1819,
+        "deathYear": 1876,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q354786",
+        "name": "Jean-Louis-Ernest Meissonier",
+        "birthYear": 1815,
+        "deathYear": 1891,
+        "movement": "academic art",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1446788",
+        "name": "Joseph F\u00e9lon",
+        "birthYear": 1818,
+        "deathYear": 1896,
+        "movement": "Romanticism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q872142",
+        "name": "Joseph Gasser von Valhorn",
+        "birthYear": 1816,
+        "deathYear": 1900,
+        "movement": "No movement listed",
+        "citizenship": "Austrian Empire",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q551834",
+        "name": "Joseph-Hugues Fabisch",
+        "birthYear": 1812,
+        "deathYear": 1886,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q530581",
+        "name": "Mary Thornycroft",
+        "birthYear": 1814,
+        "deathYear": 1895,
+        "movement": "No movement listed",
+        "citizenship": "United Kingdom of Great Britain and Ireland",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1820": {
+    "decade": 1820,
+    "totalBorn": 80,
+    "gender": {
+      "female": 2,
+      "male": 78,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 36
+      },
+      {
+        "country": "Germany",
+        "count": 14
+      },
+      {
+        "country": "United States",
+        "count": 7
+      },
+      {
+        "country": "Switzerland",
+        "count": 3
+      },
+      {
+        "country": "Netherlands",
+        "count": 3
+      },
+      {
+        "country": "Czech Republic",
+        "count": 3
+      },
+      {
+        "country": "Italy",
+        "count": 3
+      },
+      {
+        "country": "Poland",
+        "count": 3
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Romanticism",
+        "count": 3
+      },
+      {
+        "movement": "Symbolism",
+        "count": 2
+      },
+      {
+        "movement": "French Realism",
+        "count": 1
+      },
+      {
+        "movement": "academic art",
+        "count": 1
+      },
+      {
+        "movement": "Pre-Raphaelite Brotherhood",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "France",
+        "to": "Italy",
+        "count": 2
+      },
+      {
+        "from": "United States",
+        "to": "Italy",
+        "count": 2
+      },
+      {
+        "from": "Switzerland",
+        "to": "Italy",
+        "count": 1
+      },
+      {
+        "from": "Slovakia",
+        "to": "Hungary",
+        "count": 1
+      },
+      {
+        "from": "Poland",
+        "to": "Italy",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 77,
+      "crossed": 20,
+      "crossPct": 26
+    },
+    "notable": [
+      {
+        "qid": "Q212499",
+        "name": "Jean-L\u00e9on G\u00e9r\u00f4me",
+        "birthYear": 1824,
+        "deathYear": 1904,
+        "movement": "academic art",
+        "citizenship": "France",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q314567",
+        "name": "Johannes Schilling",
+        "birthYear": 1828,
+        "deathYear": 1910,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q2143726",
+        "name": "Albert-Ernest Carrier-Belleuse",
+        "birthYear": 1824,
+        "deathYear": 1887,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q203828",
+        "name": "Gustave Moreau",
+        "birthYear": 1826,
+        "deathYear": 1898,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q598120",
+        "name": "Hubert Ponscarme",
+        "birthYear": 1827,
+        "deathYear": 1903,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q2615320",
+        "name": "Gabriel Thomas",
+        "birthYear": 1824,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2828050",
+        "name": "Aim\u00e9 Charles Irvoy",
+        "birthYear": 1824,
+        "deathYear": 1898,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2834893",
+        "name": "Alfred-Adolphe-\u00c9douard Lep\u00e8re",
+        "birthYear": 1827,
+        "deathYear": 1904,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q182791",
+        "name": "Jean-Baptiste Carpeaux",
+        "birthYear": 1827,
+        "deathYear": 1875,
+        "movement": "Romanticism",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2615602",
+        "name": "Jean-Baptiste Claude Eug\u00e8ne Guillaume",
+        "birthYear": 1822,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1805358",
+        "name": "Mathurin Moreau",
+        "birthYear": 1822,
+        "deathYear": 1912,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2834020",
+        "name": "Pierre Alexandre Schoenewerk",
+        "birthYear": 1820,
+        "deathYear": 1885,
+        "movement": "Romanticism",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2844647",
+        "name": "Am\u00e9d\u00e9e Doublemard",
+        "birthYear": 1826,
+        "deathYear": 1900,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q766022",
+        "name": "Auguste Cain",
+        "birthYear": 1821,
+        "deathYear": 1894,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2271869",
+        "name": "Charles Gumery",
+        "birthYear": 1827,
+        "deathYear": 1871,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q714875",
+        "name": "Charles Henri Joseph Cordier",
+        "birthYear": 1827,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3144708",
+        "name": "H\u00e9l\u00e8ne Bertaux",
+        "birthYear": 1825,
+        "deathYear": 1909,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q322909",
+        "name": "Konrad Knoll",
+        "birthYear": 1829,
+        "deathYear": 1899,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Bavaria",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q693511",
+        "name": "Vincenzo Vela",
+        "birthYear": 1820,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q527599",
+        "name": "William Morris Hunt",
+        "birthYear": 1824,
+        "deathYear": 1879,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q764829",
+        "name": "August Wittig",
+        "birthYear": 1823,
+        "deathYear": 1893,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Saxony",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q340122",
+        "name": "Cyprian Norwid",
+        "birthYear": 1821,
+        "deathYear": 1883,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3027003",
+        "name": "Didier D\u00e9but",
+        "birthYear": 1824,
+        "deathYear": 1893,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2464552",
+        "name": "Frans Strack\u00e9",
+        "birthYear": 1820,
+        "deathYear": 1898,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q880885",
+        "name": "Gustav Adolf Kietz",
+        "birthYear": 1824,
+        "deathYear": 1908,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Saxony",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1578582",
+        "name": "Hans Baur",
+        "birthYear": 1829,
+        "deathYear": 1897,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2600560",
+        "name": "Henri Alfred Jacquemart",
+        "birthYear": 1824,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3163687",
+        "name": "Jean-Andr\u00e9 Delorme",
+        "birthYear": 1829,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3163867",
+        "name": "Jean-Baptiste Baujault",
+        "birthYear": 1828,
+        "deathYear": 1899,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q942302",
+        "name": "Johannes Hinderikus Egenberger",
+        "birthYear": 1822,
+        "deathYear": 1897,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1712618",
+        "name": "Julius Franz",
+        "birthYear": 1824,
+        "deathYear": 1887,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3839375",
+        "name": "Luigi Borro",
+        "birthYear": 1826,
+        "deathYear": 1886,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2524533",
+        "name": "Paul Dubois",
+        "birthYear": 1829,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q328300",
+        "name": "Pierre Louis Rouillard",
+        "birthYear": 1820,
+        "deathYear": 1881,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q940298",
+        "name": "Richard Morris Hunt",
+        "birthYear": 1827,
+        "deathYear": 1895,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q241732",
+        "name": "Rosa Bonheur",
+        "birthYear": 1822,
+        "deathYear": 1899,
+        "movement": "French Realism",
+        "citizenship": "France",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1830": {
+    "decade": 1830,
+    "totalBorn": 94,
+    "gender": {
+      "female": 3,
+      "male": 91,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 30
+      },
+      {
+        "country": "Germany",
+        "count": 19
+      },
+      {
+        "country": "Belgium",
+        "count": 5
+      },
+      {
+        "country": "Italy",
+        "count": 5
+      },
+      {
+        "country": "Austria",
+        "count": 4
+      },
+      {
+        "country": "Russia",
+        "count": 4
+      },
+      {
+        "country": "United States",
+        "count": 4
+      },
+      {
+        "country": "United Kingdom",
+        "count": 3
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "French Realism",
+        "count": 3
+      },
+      {
+        "movement": "Symbolism",
+        "count": 2
+      },
+      {
+        "movement": "Impressionism",
+        "count": 2
+      },
+      {
+        "movement": "realism",
+        "count": 2
+      },
+      {
+        "movement": "Byzantine Revival architecture",
+        "count": 1
+      },
+      {
+        "movement": "parnassianism",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "United States",
+        "to": "Italy",
+        "count": 1
+      },
+      {
+        "from": "United Kingdom",
+        "to": "United States",
+        "count": 1
+      },
+      {
+        "from": "Russian Empire",
+        "to": "Russia",
+        "count": 1
+      },
+      {
+        "from": "Russia",
+        "to": "Ukraine",
+        "count": 1
+      },
+      {
+        "from": "Russia",
+        "to": "Germany",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 92,
+      "crossed": 16,
+      "crossPct": 17
+    },
+    "notable": [
+      {
+        "qid": "Q2140000",
+        "name": "Alexandre Falgui\u00e8re",
+        "birthYear": 1831,
+        "deathYear": 1900,
+        "movement": "French Realism",
+        "citizenship": "France",
+        "totalDegree": 19
+      },
+      {
+        "qid": "Q603105",
+        "name": "Reinhold Begas",
+        "birthYear": 1831,
+        "deathYear": 1911,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q1663230",
+        "name": "Melchior Anton zur Strassen",
+        "birthYear": 1832,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q46373",
+        "name": "Edgar Degas",
+        "birthYear": 1834,
+        "deathYear": 1917,
+        "movement": "Impressionism",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q654201",
+        "name": "Henri Chapu",
+        "birthYear": 1833,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q708568",
+        "name": "Jean-Paul Laurens",
+        "birthYear": 1838,
+        "deathYear": 1921,
+        "movement": "academic art",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1748575",
+        "name": "Jules-Cl\u00e9ment Chaplain",
+        "birthYear": 1839,
+        "deathYear": 1909,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q2092993",
+        "name": "Pierre Ernest Prins",
+        "birthYear": 1838,
+        "deathYear": 1913,
+        "movement": "Impressionism",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q716808",
+        "name": "Theodor Aman",
+        "birthYear": 1831,
+        "deathYear": 1891,
+        "movement": "realism",
+        "citizenship": "Romania",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1658378",
+        "name": "Alfred Borrel",
+        "birthYear": 1836,
+        "deathYear": 1927,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2841015",
+        "name": "Amand Pierre Harel",
+        "birthYear": 1836,
+        "deathYear": 1885,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2731089",
+        "name": "Jean-Paul Aub\u00e9",
+        "birthYear": 1837,
+        "deathYear": 1916,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q69059",
+        "name": "Josef Durm",
+        "birthYear": 1837,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q120587",
+        "name": "Rudolf Siemering",
+        "birthYear": 1835,
+        "deathYear": 1905,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3047965",
+        "name": "Edmond Pr\u00e9vot",
+        "birthYear": 1838,
+        "deathYear": 1892,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q832321",
+        "name": "Friedrich Wilhelm Mengelberg",
+        "birthYear": 1837,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q223274",
+        "name": "Fr\u00e9d\u00e9ric Auguste Bartholdi",
+        "birthYear": 1834,
+        "deathYear": 1904,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3164135",
+        "name": "Gustave Deloye",
+        "birthYear": 1838,
+        "deathYear": 1899,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1598505",
+        "name": "Heinrich Pohlmann",
+        "birthYear": 1839,
+        "deathYear": 1917,
+        "movement": "No movement listed",
+        "citizenship": "German Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3136110",
+        "name": "Hippolyte Moulin",
+        "birthYear": 1832,
+        "deathYear": 1883,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3136125",
+        "name": "Hippolyte Rubin",
+        "birthYear": 1830,
+        "deathYear": 1895,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3837027",
+        "name": "Lorenzo Orengo",
+        "birthYear": 1838,
+        "deathYear": 1909,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q364748",
+        "name": "Adolf von Donndorf",
+        "birthYear": 1835,
+        "deathYear": 1916,
+        "movement": "No movement listed",
+        "citizenship": "Saxe-Weimar-Eisenach",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q569182",
+        "name": "Alexander Calandrelli",
+        "birthYear": 1834,
+        "deathYear": 1903,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q957538",
+        "name": "Alphonse Legros",
+        "birthYear": 1837,
+        "deathYear": 1911,
+        "movement": "French Realism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1813557",
+        "name": "Charles Wiener",
+        "birthYear": 1832,
+        "deathYear": 1887,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2542241",
+        "name": "Cl\u00e9ment Carbon",
+        "birthYear": 1835,
+        "deathYear": 1907,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q552440",
+        "name": "Constantin Meunier",
+        "birthYear": 1831,
+        "deathYear": 1905,
+        "movement": "realism",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1341955",
+        "name": "Engelbert Joseph Peiffer",
+        "birthYear": 1830,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1356062",
+        "name": "Eug\u00e8ne Delaplanche",
+        "birthYear": 1836,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1226005",
+        "name": "Friedrich Wilhelm Schwenk",
+        "birthYear": 1830,
+        "deathYear": 1871,
+        "movement": "No movement listed",
+        "citizenship": "German Empire",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1509435",
+        "name": "Georgios Vitalis",
+        "birthYear": 1838,
+        "deathYear": 1901,
+        "movement": "No movement listed",
+        "citizenship": "Greece",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q572686",
+        "name": "Giulio Monteverde",
+        "birthYear": 1837,
+        "deathYear": 1917,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q6682",
+        "name": "Gustave Dor\u00e9",
+        "birthYear": 1832,
+        "deathYear": 1883,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1803038",
+        "name": "Henrik Olrik",
+        "birthYear": 1830,
+        "deathYear": 1890,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3136094",
+        "name": "Hippolyte Moreau",
+        "birthYear": 1832,
+        "deathYear": 1926,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1840": {
+    "decade": 1840,
+    "totalBorn": 129,
+    "gender": {
+      "female": 8,
+      "male": 121,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 38
+      },
+      {
+        "country": "Germany",
+        "count": 30
+      },
+      {
+        "country": "Italy",
+        "count": 13
+      },
+      {
+        "country": "United Kingdom",
+        "count": 6
+      },
+      {
+        "country": "United States",
+        "count": 5
+      },
+      {
+        "country": "Belgium",
+        "count": 5
+      },
+      {
+        "country": "Austria",
+        "count": 5
+      },
+      {
+        "country": "Czech Republic",
+        "count": 4
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "realism",
+        "count": 5
+      },
+      {
+        "movement": "Symbolism",
+        "count": 4
+      },
+      {
+        "movement": "Romanticism",
+        "count": 2
+      },
+      {
+        "movement": "Impressionism",
+        "count": 1
+      },
+      {
+        "movement": "Expressionism",
+        "count": 1
+      },
+      {
+        "movement": "Verismo",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 3
+      },
+      {
+        "from": "Germany",
+        "to": "Italy",
+        "count": 3
+      },
+      {
+        "from": "Germany",
+        "to": "Bavaria",
+        "count": 1
+      },
+      {
+        "from": "Slovakia",
+        "to": "Hungary",
+        "count": 1
+      },
+      {
+        "from": "United States",
+        "to": "United Kingdom",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 128,
+      "crossed": 29,
+      "crossPct": 23
+    },
+    "notable": [
+      {
+        "qid": "Q172911",
+        "name": "Ilya Repin",
+        "birthYear": 1844,
+        "deathYear": 1930,
+        "movement": "realism",
+        "citizenship": "Russian Empire",
+        "totalDegree": 24
+      },
+      {
+        "qid": "Q30755",
+        "name": "Auguste Rodin",
+        "birthYear": 1840,
+        "deathYear": 1917,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 21
+      },
+      {
+        "qid": "Q2274629",
+        "name": "Antonin Merci\u00e9",
+        "birthYear": 1845,
+        "deathYear": 1916,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 17
+      },
+      {
+        "qid": "Q1289500",
+        "name": "Louis-Ernest Barrias",
+        "birthYear": 1841,
+        "deathYear": 1905,
+        "movement": "Neo-Baroque",
+        "citizenship": "France",
+        "totalDegree": 14
+      },
+      {
+        "qid": "Q2728181",
+        "name": "Jules Coutan",
+        "birthYear": 1848,
+        "deathYear": 1939,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 12
+      },
+      {
+        "qid": "Q37693",
+        "name": "Paul Gauguin",
+        "birthYear": 1848,
+        "deathYear": 1903,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 12
+      },
+      {
+        "qid": "Q316041",
+        "name": "Fritz Schaper",
+        "birthYear": 1841,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 8
+      },
+      {
+        "qid": "Q980407",
+        "name": "Josef V\u00e1clav Myslbek",
+        "birthYear": 1848,
+        "deathYear": 1922,
+        "movement": "No movement listed",
+        "citizenship": "Austria\u2013Hungary",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q871262",
+        "name": "Ernst Herter",
+        "birthYear": 1846,
+        "deathYear": 1917,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1971720",
+        "name": "Laurent Marqueste",
+        "birthYear": 1848,
+        "deathYear": 1920,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q2831079",
+        "name": "Albert Darcq",
+        "birthYear": 1848,
+        "deathYear": 1895,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q326167",
+        "name": "Alfred Philippe Roll",
+        "birthYear": 1845,
+        "deathYear": 1919,
+        "movement": "realism",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q740524",
+        "name": "Louis-Robert Carrier-Belleuse",
+        "birthYear": 1848,
+        "deathYear": 1913,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q154349",
+        "name": "Odilon Redon",
+        "birthYear": 1840,
+        "deathYear": 1916,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2847071",
+        "name": "Andr\u00e9-Joseph Allar",
+        "birthYear": 1845,
+        "deathYear": 1926,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2861361",
+        "name": "Aristide Croisy",
+        "birthYear": 1840,
+        "deathYear": 1899,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1126862",
+        "name": "Conrad Kiesel",
+        "birthYear": 1846,
+        "deathYear": 1921,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q524154",
+        "name": "Eug\u00e8ne Grasset",
+        "birthYear": 1845,
+        "deathYear": 1917,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q707904",
+        "name": "Jean-Jules-Antoine Lecomte du Nou\u00ff",
+        "birthYear": 1842,
+        "deathYear": 1923,
+        "movement": "academic art",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2621732",
+        "name": "Louis-Oscar Roty",
+        "birthYear": 1846,
+        "deathYear": 1911,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1658754",
+        "name": "Syrius Eberle",
+        "birthYear": 1844,
+        "deathYear": 1903,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Bavaria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q326777",
+        "name": "Viktor Tilgner",
+        "birthYear": 1844,
+        "deathYear": 1896,
+        "movement": "No movement listed",
+        "citizenship": "Cisleithania",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q362040",
+        "name": "Adolf Heer",
+        "birthYear": 1849,
+        "deathYear": 1898,
+        "movement": "No movement listed",
+        "citizenship": "Grand Duchy of Baden",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q364808",
+        "name": "Adolf von Hildebrand",
+        "birthYear": 1847,
+        "deathYear": 1921,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2840025",
+        "name": "Alphonse de Tombay",
+        "birthYear": 1843,
+        "deathYear": 1918,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2847075",
+        "name": "Andr\u00e9-Louis-Adolphe Laoust",
+        "birthYear": 1843,
+        "deathYear": 1924,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q601749",
+        "name": "Antonio Dal Zotto",
+        "birthYear": 1841,
+        "deathYear": 1918,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q860272",
+        "name": "Charles van der Stappen",
+        "birthYear": 1843,
+        "deathYear": 1910,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1338608",
+        "name": "Emmerich Andresen",
+        "birthYear": 1843,
+        "deathYear": 1902,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q761843",
+        "name": "Enrico Butti",
+        "birthYear": 1847,
+        "deathYear": 1932,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3056944",
+        "name": "Ernest Eug\u00e8ne Chr\u00e9tien",
+        "birthYear": 1840,
+        "deathYear": 1909,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1405100",
+        "name": "Ferdinand Barth",
+        "birthYear": 1842,
+        "deathYear": 1892,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1611333",
+        "name": "Hermann G\u00f6tz",
+        "birthYear": 1848,
+        "deathYear": 1901,
+        "movement": "No movement listed",
+        "citizenship": "Grand Duchy of Baden",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3140234",
+        "name": "Honor\u00e9 Icard",
+        "birthYear": 1843,
+        "deathYear": 1917,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q360376",
+        "name": "Jean Gautherin",
+        "birthYear": 1840,
+        "deathYear": 1890,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q871911",
+        "name": "Josef Moroder-Lusenberg",
+        "birthYear": 1846,
+        "deathYear": 1939,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      }
+    ]
+  },
+  "1850": {
+    "decade": 1850,
+    "totalBorn": 141,
+    "gender": {
+      "female": 5,
+      "male": 136,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 36
+      },
+      {
+        "country": "Germany",
+        "count": 24
+      },
+      {
+        "country": "Italy",
+        "count": 13
+      },
+      {
+        "country": "Belgium",
+        "count": 6
+      },
+      {
+        "country": "Spain",
+        "count": 6
+      },
+      {
+        "country": "Poland",
+        "count": 5
+      },
+      {
+        "country": "Czech Republic",
+        "count": 4
+      },
+      {
+        "country": "United States",
+        "count": 4
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Art Nouveau",
+        "count": 5
+      },
+      {
+        "movement": "Symbolism",
+        "count": 4
+      },
+      {
+        "movement": "New Sculpture",
+        "count": 3
+      },
+      {
+        "movement": "realism",
+        "count": 2
+      },
+      {
+        "movement": "Impressionism",
+        "count": 2
+      },
+      {
+        "movement": "Art Nouveau architecture",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 3
+      },
+      {
+        "from": "Germany",
+        "to": "Poland",
+        "count": 2
+      },
+      {
+        "from": "United States",
+        "to": "France",
+        "count": 2
+      },
+      {
+        "from": "Spain",
+        "to": "Italy",
+        "count": 2
+      },
+      {
+        "from": "Slovakia",
+        "to": "Hungary",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 139,
+      "crossed": 31,
+      "crossPct": 22
+    },
+    "notable": [
+      {
+        "qid": "Q3023427",
+        "name": "Denys Puech",
+        "birthYear": 1854,
+        "deathYear": 1942,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 8
+      },
+      {
+        "qid": "Q720910",
+        "name": "Daniel Chester French",
+        "birthYear": 1850,
+        "deathYear": 1931,
+        "movement": "American Renaissance",
+        "citizenship": "United States",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q2556545",
+        "name": "Georgine Schwartze",
+        "birthYear": 1854,
+        "deathYear": 1935,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q943537",
+        "name": "Leon Wycz\u00f3\u0142kowski",
+        "birthYear": 1852,
+        "deathYear": 1936,
+        "movement": "realism",
+        "citizenship": "Poland",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1338276",
+        "name": "Emmanuel Hannaux",
+        "birthYear": 1855,
+        "deathYear": 1934,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q609754",
+        "name": "Fran\u00e7ois Pompon",
+        "birthYear": 1855,
+        "deathYear": 1933,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q117489",
+        "name": "Karl Stauffer-Bern",
+        "birthYear": 1857,
+        "deathYear": 1891,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q44252",
+        "name": "Max Klinger",
+        "birthYear": 1857,
+        "deathYear": 1920,
+        "movement": "Symbolism",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q964683",
+        "name": "Victor Prouv\u00e9",
+        "birthYear": 1858,
+        "deathYear": 1943,
+        "movement": "\u00c9cole de Nancy",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2834901",
+        "name": "Alfred Lenoir",
+        "birthYear": 1850,
+        "deathYear": 1920,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q223576",
+        "name": "Edmund von Hellmer",
+        "birthYear": 1850,
+        "deathYear": 1935,
+        "movement": "Art Nouveau",
+        "citizenship": "Austria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2497967",
+        "name": "Edouard Drouot",
+        "birthYear": 1859,
+        "deathYear": 1945,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2130178",
+        "name": "Jacques de Lalaing",
+        "birthYear": 1858,
+        "deathYear": 1917,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1879407",
+        "name": "L\u00e9on-Joseph Chavalliaud",
+        "birthYear": 1858,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2824897",
+        "name": "L\u00e9onard Adolphe Rivet",
+        "birthYear": 1855,
+        "deathYear": 1925,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q365068",
+        "name": "Peder Severin Kr\u00f8yer",
+        "birthYear": 1851,
+        "deathYear": 1909,
+        "movement": "Impressionism",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2483743",
+        "name": "Thomas Vin\u00e7otte",
+        "birthYear": 1850,
+        "deathYear": 1925,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3526488",
+        "name": "Th\u00e9odore Rivi\u00e8re",
+        "birthYear": 1857,
+        "deathYear": 1912,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2576027",
+        "name": "Wilhelm von R\u00fcmann",
+        "birthYear": 1850,
+        "deathYear": 1906,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q714577",
+        "name": "Alajos Strobl",
+        "birthYear": 1856,
+        "deathYear": 1926,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q980735",
+        "name": "Alexandre Charpentier",
+        "birthYear": 1856,
+        "deathYear": 1909,
+        "movement": "Art Nouveau",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2839821",
+        "name": "Alphonse Guilloux",
+        "birthYear": 1852,
+        "deathYear": 1939,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1835418",
+        "name": "Antonin Carl\u00e8s",
+        "birthYear": 1851,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2934999",
+        "name": "Camille Lef\u00e8vre",
+        "birthYear": 1853,
+        "deathYear": 1933,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3047437",
+        "name": "Edgar-Henri Boutry",
+        "birthYear": 1857,
+        "deathYear": 1938,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q532168",
+        "name": "Elizabeth Nourse",
+        "birthYear": 1859,
+        "deathYear": 1938,
+        "movement": "realism",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q259946",
+        "name": "Ettore Tito",
+        "birthYear": 1859,
+        "deathYear": 1941,
+        "movement": "Symbolism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2399072",
+        "name": "F\u00e9lix Charpentier",
+        "birthYear": 1858,
+        "deathYear": 1924,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2361651",
+        "name": "Jules Jacques Labatut",
+        "birthYear": 1851,
+        "deathYear": 1935,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1360808",
+        "name": "Leonardo Bistolfi",
+        "birthYear": 1859,
+        "deathYear": 1933,
+        "movement": "Symbolism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1572073",
+        "name": "Max Kruse",
+        "birthYear": 1854,
+        "deathYear": 1942,
+        "movement": "No movement listed",
+        "citizenship": "German Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q347856",
+        "name": "Max Unger",
+        "birthYear": 1854,
+        "deathYear": 1918,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Prussia",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q215100",
+        "name": "Mikhail Vrubel",
+        "birthYear": 1856,
+        "deathYear": 1910,
+        "movement": "Symbolism",
+        "citizenship": "Russian Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2057733",
+        "name": "Philippe Wolfers",
+        "birthYear": 1858,
+        "deathYear": 1929,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q331158",
+        "name": "Yannoulis Chalepas",
+        "birthYear": 1851,
+        "deathYear": 1938,
+        "movement": "Neoclassicism",
+        "citizenship": "Greece",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q405759",
+        "name": "Aim\u00e9 Morot",
+        "birthYear": 1850,
+        "deathYear": 1913,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1860": {
+    "decade": 1860,
+    "totalBorn": 185,
+    "gender": {
+      "female": 17,
+      "male": 168,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 37
+      },
+      {
+        "country": "France",
+        "count": 34
+      },
+      {
+        "country": "Italy",
+        "count": 11
+      },
+      {
+        "country": "Austria",
+        "count": 11
+      },
+      {
+        "country": "United States",
+        "count": 10
+      },
+      {
+        "country": "Belgium",
+        "count": 9
+      },
+      {
+        "country": "Poland",
+        "count": 8
+      },
+      {
+        "country": "Spain",
+        "count": 6
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Symbolism",
+        "count": 8
+      },
+      {
+        "movement": "Art Nouveau",
+        "count": 6
+      },
+      {
+        "movement": "Expressionism",
+        "count": 4
+      },
+      {
+        "movement": "Impressionism",
+        "count": 4
+      },
+      {
+        "movement": "realism",
+        "count": 4
+      },
+      {
+        "movement": "Catalan modernism",
+        "count": 3
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 6
+      },
+      {
+        "from": "Austria",
+        "to": "United States",
+        "count": 3
+      },
+      {
+        "from": "Austria",
+        "to": "Germany",
+        "count": 2
+      },
+      {
+        "from": "Spain",
+        "to": "France",
+        "count": 2
+      },
+      {
+        "from": "Switzerland",
+        "to": "Germany",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 177,
+      "crossed": 55,
+      "crossPct": 31
+    },
+    "notable": [
+      {
+        "qid": "Q61064",
+        "name": "Wassily Kandinsky",
+        "birthYear": 1866,
+        "deathYear": 1944,
+        "movement": "Expressionism",
+        "citizenship": "Germany",
+        "totalDegree": 14
+      },
+      {
+        "qid": "Q314350",
+        "name": "Antoine Bourdelle",
+        "birthYear": 1861,
+        "deathYear": 1929,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 12
+      },
+      {
+        "qid": "Q153920",
+        "name": "Aristide Maillol",
+        "birthYear": 1861,
+        "deathYear": 1944,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 10
+      },
+      {
+        "qid": "Q5589",
+        "name": "Henri Matisse",
+        "birthYear": 1869,
+        "deathYear": 1954,
+        "movement": "Impressionism",
+        "citizenship": "France",
+        "totalDegree": 9
+      },
+      {
+        "qid": "Q1062517",
+        "name": "Giulio Aristide Sartorio",
+        "birthYear": 1860,
+        "deathYear": 1932,
+        "movement": "Symbolism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q78484",
+        "name": "Rudolf Steiner",
+        "birthYear": 1861,
+        "deathYear": 1925,
+        "movement": "anthroposophy",
+        "citizenship": "Austria",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q2848770",
+        "name": "Andr\u00e9 C\u00e9sar Vermare",
+        "birthYear": 1869,
+        "deathYear": 1949,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q163290",
+        "name": "Adolfo Wildt",
+        "birthYear": 1868,
+        "deathYear": 1931,
+        "movement": "modernism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q462022",
+        "name": "Anna Golubkina",
+        "birthYear": 1864,
+        "deathYear": 1927,
+        "movement": "Impressionism",
+        "citizenship": "Russian Empire",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q3057012",
+        "name": "Ernest Henri Dubois",
+        "birthYear": 1863,
+        "deathYear": 1930,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q336432",
+        "name": "Gutzon Borglum",
+        "birthYear": 1867,
+        "deathYear": 1941,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q316422",
+        "name": "Hector Guimard",
+        "birthYear": 1867,
+        "deathYear": 1942,
+        "movement": "Art Nouveau",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q281698",
+        "name": "Hippolyte Lef\u00e8bvre",
+        "birthYear": 1863,
+        "deathYear": 1935,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q142472",
+        "name": "K\u00e4the Kollwitz",
+        "birthYear": 1867,
+        "deathYear": 1945,
+        "movement": "Expressionism",
+        "citizenship": "German Empire",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q445407",
+        "name": "Louis Tuaillon",
+        "birthYear": 1862,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2550826",
+        "name": "Achille Chainaye",
+        "birthYear": 1862,
+        "deathYear": 1915,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2827030",
+        "name": "Agnes de Frumerie",
+        "birthYear": 1869,
+        "deathYear": 1937,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2914475",
+        "name": "Caterina Albert",
+        "birthYear": 1869,
+        "deathYear": 1966,
+        "movement": "Catalan modernism",
+        "citizenship": "Spain",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q152788",
+        "name": "Emil Nolde",
+        "birthYear": 1867,
+        "deathYear": 1956,
+        "movement": "Expressionism",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q559281",
+        "name": "George Minne",
+        "birthYear": 1866,
+        "deathYear": 1941,
+        "movement": "Symbolism",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1303535",
+        "name": "Gerhard Janensch",
+        "birthYear": 1860,
+        "deathYear": 1933,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q452079",
+        "name": "Lola Mora",
+        "birthYear": 1866,
+        "deathYear": 1936,
+        "movement": "Classicism",
+        "citizenship": "Argentina",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q583534",
+        "name": "Paolo Troubetzkoy",
+        "birthYear": 1866,
+        "deathYear": 1938,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q526858",
+        "name": "Paul Gasq",
+        "birthYear": 1860,
+        "deathYear": 1944,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2831519",
+        "name": "Albert Roze",
+        "birthYear": 1861,
+        "deathYear": 1952,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2839787",
+        "name": "Alphonse Emmanuel de Moncel de Perrin",
+        "birthYear": 1866,
+        "deathYear": 1930,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q893776",
+        "name": "Boris Schatz",
+        "birthYear": 1866,
+        "deathYear": 1932,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q606267",
+        "name": "Constant Roux",
+        "birthYear": 1865,
+        "deathYear": 1942,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q652723",
+        "name": "Georges Lacombe",
+        "birthYear": 1868,
+        "deathYear": 1916,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q450730",
+        "name": "Georgette Agutte",
+        "birthYear": 1867,
+        "deathYear": 1922,
+        "movement": "Fauvism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1678927",
+        "name": "Jakob Bradl",
+        "birthYear": 1864,
+        "deathYear": 1919,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2677198",
+        "name": "Jules Lagae",
+        "birthYear": 1862,
+        "deathYear": 1931,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q727940",
+        "name": "Lucien L\u00e9vy-Dhurmer",
+        "birthYear": 1865,
+        "deathYear": 1953,
+        "movement": "Symbolism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q26408",
+        "name": "Pierre Bonnard",
+        "birthYear": 1867,
+        "deathYear": 1947,
+        "movement": "Les Nabis",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1333398",
+        "name": "Pietro Canonica",
+        "birthYear": 1869,
+        "deathYear": 1959,
+        "movement": "realism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q174917",
+        "name": "Raymond Sabouraud",
+        "birthYear": 1864,
+        "deathYear": 1938,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      }
+    ]
+  },
+  "1870": {
+    "decade": 1870,
+    "totalBorn": 191,
+    "gender": {
+      "female": 16,
+      "male": 175,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "France",
+        "count": 36
+      },
+      {
+        "country": "Germany",
+        "count": 35
+      },
+      {
+        "country": "Italy",
+        "count": 16
+      },
+      {
+        "country": "Austria",
+        "count": 10
+      },
+      {
+        "country": "Russia",
+        "count": 8
+      },
+      {
+        "country": "Czech Republic",
+        "count": 8
+      },
+      {
+        "country": "United States",
+        "count": 8
+      },
+      {
+        "country": "Spain",
+        "count": 7
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Symbolism",
+        "count": 6
+      },
+      {
+        "movement": "Art Nouveau",
+        "count": 4
+      },
+      {
+        "movement": "Expressionism",
+        "count": 3
+      },
+      {
+        "movement": "abstract art",
+        "count": 3
+      },
+      {
+        "movement": "Fauvism",
+        "count": 2
+      },
+      {
+        "movement": "realism",
+        "count": 2
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Austria",
+        "to": "Germany",
+        "count": 4
+      },
+      {
+        "from": "Italy",
+        "to": "Germany",
+        "count": 2
+      },
+      {
+        "from": "Latvia",
+        "to": "United States",
+        "count": 2
+      },
+      {
+        "from": "Germany",
+        "to": "United States",
+        "count": 2
+      },
+      {
+        "from": "Slovakia",
+        "to": "Hungary",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 188,
+      "crossed": 54,
+      "crossPct": 29
+    },
+    "notable": [
+      {
+        "qid": "Q368977",
+        "name": "Frederic Storck",
+        "birthYear": 1872,
+        "deathYear": 1942,
+        "movement": "realism",
+        "citizenship": "Romania",
+        "totalDegree": 8
+      },
+      {
+        "qid": "Q153048",
+        "name": "Constantin Br\u00e2ncu\u0219i",
+        "birthYear": 1876,
+        "deathYear": 1957,
+        "movement": "modernism",
+        "citizenship": "France",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q82291",
+        "name": "Charles Despiau",
+        "birthYear": 1874,
+        "deathYear": 1946,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1597877",
+        "name": "Heinrich Jobst",
+        "birthYear": 1874,
+        "deathYear": 1943,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q455549",
+        "name": "Hugo Lederer",
+        "birthYear": 1871,
+        "deathYear": 1940,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q159552",
+        "name": "Johannes V. Jensen",
+        "birthYear": 1873,
+        "deathYear": 1950,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q710530",
+        "name": "Paul Landowski",
+        "birthYear": 1875,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q3161887",
+        "name": "Jane Poupelet",
+        "birthYear": 1874,
+        "deathYear": 1932,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1871418",
+        "name": "Louis Henri Nicot",
+        "birthYear": 1878,
+        "deathYear": 1944,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1874475",
+        "name": "Ludwig Habich",
+        "birthYear": 1872,
+        "deathYear": 1949,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1241381",
+        "name": "Pierre-Victor Dautel",
+        "birthYear": 1873,
+        "deathYear": 1951,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2833596",
+        "name": "Alexandre Descatoire",
+        "birthYear": 1874,
+        "deathYear": 1949,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2620765",
+        "name": "Alphonse Terroir",
+        "birthYear": 1875,
+        "deathYear": 1955,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q529975",
+        "name": "Angelina Beloff",
+        "birthYear": 1879,
+        "deathYear": 1969,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q84250",
+        "name": "Josef Hoffmann",
+        "birthYear": 1870,
+        "deathYear": 1956,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q930245",
+        "name": "Robert Delandre",
+        "birthYear": 1879,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1441046",
+        "name": "Victor Seifert",
+        "birthYear": 1870,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1771339",
+        "name": "Abel Lafleur",
+        "birthYear": 1875,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2361646",
+        "name": "Achille Jacopin",
+        "birthYear": 1874,
+        "deathYear": 1958,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2828028",
+        "name": "Aim\u00e9 Blaise",
+        "birthYear": 1877,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2834602",
+        "name": "Alexis M\u00e9rodack-Jeaneau",
+        "birthYear": 1873,
+        "deathYear": 1919,
+        "movement": "Fauvism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2835118",
+        "name": "Alfred Finot",
+        "birthYear": 1876,
+        "deathYear": 1947,
+        "movement": "\u00c9cole de Nancy",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2847134",
+        "name": "Andr\u00e9 Abbal",
+        "birthYear": 1876,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2848840",
+        "name": "Andr\u00e9 de Chastenet de la Ferri\u00e8re",
+        "birthYear": 1879,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q32370",
+        "name": "Anton Hanak",
+        "birthYear": 1875,
+        "deathYear": 1934,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2934846",
+        "name": "Camille Alaphilippe",
+        "birthYear": 1874,
+        "deathYear": 1950,
+        "movement": "Art Nouveau",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q590615",
+        "name": "Eug\u00e8ne Piron",
+        "birthYear": 1875,
+        "deathYear": 1928,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1557858",
+        "name": "Ignatius Taschner",
+        "birthYear": 1871,
+        "deathYear": 1913,
+        "movement": "No movement listed",
+        "citizenship": "German Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q686485",
+        "name": "James Vibert",
+        "birthYear": 1872,
+        "deathYear": 1942,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1990069",
+        "name": "Jean Dunand",
+        "birthYear": 1877,
+        "deathYear": 1942,
+        "movement": "Art Deco",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3042936",
+        "name": "Josep Clar\u00e0 i Ayats",
+        "birthYear": 1878,
+        "deathYear": 1958,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q520200",
+        "name": "Karl Albiker",
+        "birthYear": 1878,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q972711",
+        "name": "Ludwig Moroder",
+        "birthYear": 1879,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1130038",
+        "name": "Mikl\u00f3s Ligeti",
+        "birthYear": 1871,
+        "deathYear": 1944,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2916828",
+        "name": "Alfons De Cuyper",
+        "birthYear": 1877,
+        "deathYear": 1954,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2899918",
+        "name": "Bessie Potter Vonnoh",
+        "birthYear": 1872,
+        "deathYear": 1955,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1880": {
+    "decade": 1880,
+    "totalBorn": 255,
+    "gender": {
+      "female": 28,
+      "male": 227,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 50
+      },
+      {
+        "country": "France",
+        "count": 29
+      },
+      {
+        "country": "Italy",
+        "count": 28
+      },
+      {
+        "country": "Hungary",
+        "count": 12
+      },
+      {
+        "country": "Belgium",
+        "count": 10
+      },
+      {
+        "country": "Czech Republic",
+        "count": 10
+      },
+      {
+        "country": "United States",
+        "count": 9
+      },
+      {
+        "country": "Netherlands",
+        "count": 9
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Expressionism",
+        "count": 19
+      },
+      {
+        "movement": "cubism",
+        "count": 13
+      },
+      {
+        "movement": "abstract art",
+        "count": 5
+      },
+      {
+        "movement": "Futurism",
+        "count": 3
+      },
+      {
+        "movement": "Art Nouveau",
+        "count": 3
+      },
+      {
+        "movement": "Symbolism",
+        "count": 3
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Germany",
+        "to": "Switzerland",
+        "count": 4
+      },
+      {
+        "from": "Italy",
+        "to": "France",
+        "count": 4
+      },
+      {
+        "from": "Germany",
+        "to": "France",
+        "count": 4
+      },
+      {
+        "from": "Spain",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Russia",
+        "to": "France",
+        "count": 3
+      }
+    ],
+    "migration": {
+      "eligible": 250,
+      "crossed": 78,
+      "crossPct": 31
+    },
+    "notable": [
+      {
+        "qid": "Q5593",
+        "name": "Pablo Picasso",
+        "birthYear": 1881,
+        "deathYear": 1973,
+        "movement": "surrealism",
+        "citizenship": "Spain",
+        "totalDegree": 20
+      },
+      {
+        "qid": "Q157183",
+        "name": "Fernand L\u00e9ger",
+        "birthYear": 1881,
+        "deathYear": 1955,
+        "movement": "cubism",
+        "citizenship": "France",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q93284",
+        "name": "Marc Chagall",
+        "birthYear": 1887,
+        "deathYear": 1985,
+        "movement": "Expressionism",
+        "citizenship": "France",
+        "totalDegree": 7
+      },
+      {
+        "qid": "Q170071",
+        "name": "Josef Albers",
+        "birthYear": 1888,
+        "deathYear": 1976,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q2833546",
+        "name": "Aleksandr Shevchenko",
+        "birthYear": 1883,
+        "deathYear": 1948,
+        "movement": "Rayonism",
+        "citizenship": "Russian Empire",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q120993",
+        "name": "Amedeo Modigliani",
+        "birthYear": 1884,
+        "deathYear": 1920,
+        "movement": "modern art",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q700094",
+        "name": "Ewald Matar\u00e9",
+        "birthYear": 1887,
+        "deathYear": 1965,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1679686",
+        "name": "Jakub Obrovsk\u00fd",
+        "birthYear": 1882,
+        "deathYear": 1949,
+        "movement": "Symbolism",
+        "citizenship": "Austria\u2013Hungary",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q234601",
+        "name": "Vera Mukhina",
+        "birthYear": 1889,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q421524",
+        "name": "Aksel Waldemar Johannessen",
+        "birthYear": 1880,
+        "deathYear": 1922,
+        "movement": "No movement listed",
+        "citizenship": "Norway",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2835211",
+        "name": "Alfred Janniot",
+        "birthYear": 1889,
+        "deathYear": 1969,
+        "movement": "Art Deco",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1890202",
+        "name": "Jan Boon",
+        "birthYear": 1882,
+        "deathYear": 1975,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q686396",
+        "name": "Josef Thorak",
+        "birthYear": 1889,
+        "deathYear": 1952,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1895017",
+        "name": "Margarete Scheel",
+        "birthYear": 1881,
+        "deathYear": 1969,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q456991",
+        "name": "Pau Gargallo",
+        "birthYear": 1881,
+        "deathYear": 1934,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q156272",
+        "name": "Andr\u00e9 Derain",
+        "birthYear": 1880,
+        "deathYear": 1954,
+        "movement": "cubism",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q463065",
+        "name": "Andr\u00e9 Lhote",
+        "birthYear": 1885,
+        "deathYear": 1962,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1185426",
+        "name": "Demetre Chiparus",
+        "birthYear": 1886,
+        "deathYear": 1947,
+        "movement": "Art Deco",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1278958",
+        "name": "Eberhard Encke",
+        "birthYear": 1881,
+        "deathYear": 1936,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2385890",
+        "name": "Francis Renaud",
+        "birthYear": 1887,
+        "deathYear": 1973,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2344168",
+        "name": "Ion Jalea",
+        "birthYear": 1887,
+        "deathYear": 1983,
+        "movement": "Tinerimea artistic\u0103",
+        "citizenship": "Romania",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q155158",
+        "name": "Kurt Schwitters",
+        "birthYear": 1887,
+        "deathYear": 1948,
+        "movement": "Dada",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q4724",
+        "name": "Le Corbusier",
+        "birthYear": 1887,
+        "deathYear": 1965,
+        "movement": "brutalist architecture",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q5912",
+        "name": "Marcel Duchamp",
+        "birthYear": 1887,
+        "deathYear": 1968,
+        "movement": "conceptual art",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q939197",
+        "name": "Rik Wouters",
+        "birthYear": 1882,
+        "deathYear": 1916,
+        "movement": "Brabant fauvism",
+        "citizenship": "Belgium",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2835034",
+        "name": "Alfred Courtens",
+        "birthYear": 1889,
+        "deathYear": 1967,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1496561",
+        "name": "Alfred Thiele",
+        "birthYear": 1886,
+        "deathYear": 1957,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2856716",
+        "name": "Antoine Sartorio",
+        "birthYear": 1885,
+        "deathYear": 1988,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2939255",
+        "name": "Charles Marie Louis Joseph Sarrabezolles",
+        "birthYear": 1888,
+        "deathYear": 1971,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q171128",
+        "name": "Diego Rivera",
+        "birthYear": 1886,
+        "deathYear": 1957,
+        "movement": "social realism",
+        "citizenship": "Mexico",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q153793",
+        "name": "Georges Braque",
+        "birthYear": 1882,
+        "deathYear": 1963,
+        "movement": "cubism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1556513",
+        "name": "Gustav Weidanz",
+        "birthYear": 1889,
+        "deathYear": 1970,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q213597",
+        "name": "Hans Richter",
+        "birthYear": 1888,
+        "deathYear": 1976,
+        "movement": "cubism",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q151152",
+        "name": "Juan Gris",
+        "birthYear": 1887,
+        "deathYear": 1927,
+        "movement": "cubism",
+        "citizenship": "Spain",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3844044",
+        "name": "Malvina Hoffman",
+        "birthYear": 1885,
+        "deathYear": 1966,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1912416",
+        "name": "Max Domenig",
+        "birthYear": 1886,
+        "deathYear": 1952,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      }
+    ]
+  },
+  "1890": {
+    "decade": 1890,
+    "totalBorn": 225,
+    "gender": {
+      "female": 31,
+      "male": 193,
+      "otherOrUnknown": 1
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 38
+      },
+      {
+        "country": "Italy",
+        "count": 22
+      },
+      {
+        "country": "France",
+        "count": 18
+      },
+      {
+        "country": "Poland",
+        "count": 15
+      },
+      {
+        "country": "Austria",
+        "count": 12
+      },
+      {
+        "country": "Russia",
+        "count": 11
+      },
+      {
+        "country": "Netherlands",
+        "count": 11
+      },
+      {
+        "country": "Hungary",
+        "count": 9
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "Expressionism",
+        "count": 14
+      },
+      {
+        "movement": "surrealism",
+        "count": 7
+      },
+      {
+        "movement": "abstract art",
+        "count": 5
+      },
+      {
+        "movement": "Constructivism",
+        "count": 3
+      },
+      {
+        "movement": "Art Deco",
+        "count": 3
+      },
+      {
+        "movement": "Movimento Arte Concreta",
+        "count": 3
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 5
+      },
+      {
+        "from": "Poland",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Russia",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Germany",
+        "to": "United States",
+        "count": 2
+      },
+      {
+        "from": "Germany",
+        "to": "France",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 222,
+      "crossed": 86,
+      "crossPct": 39
+    },
+    "notable": [
+      {
+        "qid": "Q7836",
+        "name": "Ren\u00e9 Magritte",
+        "birthYear": 1898,
+        "deathYear": 1967,
+        "movement": "Belgian surrealism",
+        "citizenship": "Belgium",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q2511203",
+        "name": "Vasos Germenis",
+        "birthYear": 1896,
+        "deathYear": 1966,
+        "movement": "No movement listed",
+        "citizenship": "Greece",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q620483",
+        "name": "Aleksandr Deyneka",
+        "birthYear": 1899,
+        "deathYear": 1969,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1614709",
+        "name": "Hertha Guttenberg",
+        "birthYear": 1896,
+        "deathYear": 1990,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q152384",
+        "name": "Joan Mir\u00f3",
+        "birthYear": 1893,
+        "deathYear": 1983,
+        "movement": "surrealism",
+        "citizenship": "Spain",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q961323",
+        "name": "Louis Bertola",
+        "birthYear": 1891,
+        "deathYear": 1973,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1470",
+        "name": "M. C. Escher",
+        "birthYear": 1898,
+        "deathYear": 1972,
+        "movement": "modern art",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q153104",
+        "name": "Otto Dix",
+        "birthYear": 1891,
+        "deathYear": 1969,
+        "movement": "Expressionism",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q555505",
+        "name": "Paul Colin",
+        "birthYear": 1892,
+        "deathYear": 1985,
+        "movement": "surrealism",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q2850590",
+        "name": "Anna Quinquaud",
+        "birthYear": 1890,
+        "deathYear": 1984,
+        "movement": "africanism",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q927356",
+        "name": "Franti\u0161ek Lydie Gahura",
+        "birthYear": 1891,
+        "deathYear": 1958,
+        "movement": "No movement listed",
+        "citizenship": "Czechoslovakia",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1358816",
+        "name": "Nathan Altman",
+        "birthYear": 1890,
+        "deathYear": 1970,
+        "movement": "avant-garde",
+        "citizenship": "Russian Empire",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2586673",
+        "name": "Pierre Turin",
+        "birthYear": 1891,
+        "deathYear": 1968,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q533147",
+        "name": "Ralph Teleki",
+        "birthYear": 1890,
+        "deathYear": 1982,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2847176",
+        "name": "Andr\u00e9 Augustin Sall\u00e9",
+        "birthYear": 1891,
+        "deathYear": 1961,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3507548",
+        "name": "B\u0159etislav Benda",
+        "birthYear": 1897,
+        "deathYear": 1983,
+        "movement": "No movement listed",
+        "citizenship": "Czechoslovakia",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1290386",
+        "name": "Eduard Wiiralt",
+        "birthYear": 1898,
+        "deathYear": 1954,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q44032",
+        "name": "Egon Schiele",
+        "birthYear": 1890,
+        "deathYear": 1918,
+        "movement": "Expressionism",
+        "citizenship": "Cisleithania",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3049418",
+        "name": "Eileen Agar",
+        "birthYear": 1899,
+        "deathYear": 1991,
+        "movement": "surrealism",
+        "citizenship": "United Kingdom",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1447507",
+        "name": "Franz Josef Kranewitter",
+        "birthYear": 1893,
+        "deathYear": 1974,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q151097",
+        "name": "Henry Moore",
+        "birthYear": 1898,
+        "deathYear": 1986,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q676365",
+        "name": "Lucie Bouniol",
+        "birthYear": 1896,
+        "deathYear": 1988,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q312392",
+        "name": "Lucio Fontana",
+        "birthYear": 1899,
+        "deathYear": 1968,
+        "movement": "Movimento Arte Concreta",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q513465",
+        "name": "Oscar Han",
+        "birthYear": 1891,
+        "deathYear": 1976,
+        "movement": "Tinerimea artistic\u0103",
+        "citizenship": "Romania",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2509424",
+        "name": "Vally Wieselthier",
+        "birthYear": 1895,
+        "deathYear": 1945,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q216424",
+        "name": "Will Lammert",
+        "birthYear": 1892,
+        "deathYear": 1957,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q782127",
+        "name": "Yervand Kochar",
+        "birthYear": 1899,
+        "deathYear": 1979,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2831453",
+        "name": "Albert Patrisse",
+        "birthYear": 1892,
+        "deathYear": 1964,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q151580",
+        "name": "Alexander Calder",
+        "birthYear": 1898,
+        "deathYear": 1976,
+        "movement": "kinetic art",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2909660",
+        "name": "Cephas Stauthamer",
+        "birthYear": 1899,
+        "deathYear": 1983,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1865834",
+        "name": "Charles Eyck",
+        "birthYear": 1897,
+        "deathYear": 1983,
+        "movement": "Expressionism",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2664419",
+        "name": "Charlotte van Pallandt",
+        "birthYear": 1898,
+        "deathYear": 1997,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1082085",
+        "name": "Christian Theunert",
+        "birthYear": 1899,
+        "deathYear": 1981,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q216105",
+        "name": "Eugen Hoffmann",
+        "birthYear": 1892,
+        "deathYear": 1955,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1403110",
+        "name": "Felicjan Kowarski",
+        "birthYear": 1890,
+        "deathYear": 1948,
+        "movement": "No movement listed",
+        "citizenship": "Poland",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1280270",
+        "name": "Frano Kr\u0161ini\u0107",
+        "birthYear": 1897,
+        "deathYear": 1982,
+        "movement": "No movement listed",
+        "citizenship": "Yugoslavia",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1900": {
+    "decade": 1900,
+    "totalBorn": 250,
+    "gender": {
+      "female": 32,
+      "male": 217,
+      "otherOrUnknown": 1
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 32
+      },
+      {
+        "country": "Italy",
+        "count": 22
+      },
+      {
+        "country": "United States",
+        "count": 19
+      },
+      {
+        "country": "France",
+        "count": 18
+      },
+      {
+        "country": "Hungary",
+        "count": 17
+      },
+      {
+        "country": "Switzerland",
+        "count": 14
+      },
+      {
+        "country": "Austria",
+        "count": 11
+      },
+      {
+        "country": "Spain",
+        "count": 11
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 17
+      },
+      {
+        "movement": "abstract expressionism",
+        "count": 12
+      },
+      {
+        "movement": "surrealism",
+        "count": 6
+      },
+      {
+        "movement": "Expressionism",
+        "count": 2
+      },
+      {
+        "movement": "School of Paris",
+        "count": 2
+      },
+      {
+        "movement": "French Realism",
+        "count": 2
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Austria",
+        "to": "United States",
+        "count": 3
+      },
+      {
+        "from": "Romania",
+        "to": "Hungary",
+        "count": 3
+      },
+      {
+        "from": "Hungary",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Hungary",
+        "to": "United States",
+        "count": 2
+      },
+      {
+        "from": "Lithuania",
+        "to": "United States",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 241,
+      "crossed": 75,
+      "crossPct": 31
+    },
+    "notable": [
+      {
+        "qid": "Q283715",
+        "name": "Victor Nicolas",
+        "birthYear": 1906,
+        "deathYear": 1979,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q2496021",
+        "name": "Andrej Biembie\u013a",
+        "birthYear": 1905,
+        "deathYear": 1986,
+        "movement": "No movement listed",
+        "citizenship": "Soviet Union",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q883221",
+        "name": "Heinrich Drake",
+        "birthYear": 1903,
+        "deathYear": 1994,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q958634",
+        "name": "J\u00f3zsef Fekete",
+        "birthYear": 1903,
+        "deathYear": 1979,
+        "movement": "Tinerimea artistic\u0103",
+        "citizenship": "Hungary",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q700797",
+        "name": "Li Mei-shu",
+        "birthYear": 1902,
+        "deathYear": 1983,
+        "movement": "French Realism",
+        "citizenship": "Empire of Japan",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1427499",
+        "name": "Walter Arnold",
+        "birthYear": 1909,
+        "deathYear": 1979,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q3846694",
+        "name": "Yen Shui-long",
+        "birthYear": 1903,
+        "deathYear": 1997,
+        "movement": "No movement listed",
+        "citizenship": "Taiwan",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1467673",
+        "name": "Fritz Nuss",
+        "birthYear": 1907,
+        "deathYear": 1999,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q360286",
+        "name": "Paul-\u00c9mile Borduas",
+        "birthYear": 1905,
+        "deathYear": 1960,
+        "movement": "abstract expressionism",
+        "citizenship": "Canada",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q5577",
+        "name": "Salvador Dal\u00ed",
+        "birthYear": 1904,
+        "deathYear": 1989,
+        "movement": "surrealism",
+        "citizenship": "Spain",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q654827",
+        "name": "Flaminio Bertoni",
+        "birthYear": 1903,
+        "deathYear": 1964,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q695289",
+        "name": "Fritz Wotruba",
+        "birthYear": 1907,
+        "deathYear": 1975,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q84844",
+        "name": "Gustav Seitz",
+        "birthYear": 1906,
+        "deathYear": 1969,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2413064",
+        "name": "Henry Heerup",
+        "birthYear": 1907,
+        "deathYear": 1993,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1345724",
+        "name": "Karl Hemmeter",
+        "birthYear": 1904,
+        "deathYear": 1986,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2600571",
+        "name": "Tamar Abakelia",
+        "birthYear": 1905,
+        "deathYear": 1953,
+        "movement": "No movement listed",
+        "citizenship": "Russian Empire",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2830982",
+        "name": "Albert Bouquillon",
+        "birthYear": 1908,
+        "deathYear": 1997,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2857029",
+        "name": "Anton Prinner",
+        "birthYear": 1902,
+        "deathYear": 1983,
+        "movement": "Constructivism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q61055",
+        "name": "Arno Breker",
+        "birthYear": 1900,
+        "deathYear": 1991,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q212346",
+        "name": "Christos Kapralos",
+        "birthYear": 1909,
+        "deathYear": 1993,
+        "movement": "No movement listed",
+        "citizenship": "Greece",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q529593",
+        "name": "Fritz Cremer",
+        "birthYear": 1906,
+        "deathYear": 1993,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3142119",
+        "name": "Hubert Yencesse",
+        "birthYear": 1900,
+        "deathYear": 1987,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q442628",
+        "name": "Isamu Noguchi",
+        "birthYear": 1904,
+        "deathYear": 1988,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q952223",
+        "name": "Jaume Busquets i Mollera",
+        "birthYear": 1903,
+        "deathYear": 1968,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3817904",
+        "name": "Joaquim Ros i Bofarull",
+        "birthYear": 1906,
+        "deathYear": 1991,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q703980",
+        "name": "Marino Marini",
+        "birthYear": 1901,
+        "deathYear": 1980,
+        "movement": "modern art",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q770179",
+        "name": "Nel Klaassen",
+        "birthYear": 1906,
+        "deathYear": 1989,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2014025",
+        "name": "Oda Schottm\u00fcller",
+        "birthYear": 1905,
+        "deathYear": 1943,
+        "movement": "No movement listed",
+        "citizenship": "German Reich",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q132305",
+        "name": "Willem de Kooning",
+        "birthYear": 1904,
+        "deathYear": 1997,
+        "movement": "abstract expressionism",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q157194",
+        "name": "Alberto Giacometti",
+        "birthYear": 1901,
+        "deathYear": 1966,
+        "movement": "surrealism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2847629",
+        "name": "Andr\u00e9 Deluol",
+        "birthYear": 1909,
+        "deathYear": 2003,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q594440",
+        "name": "Antun Augustin\u010di\u0107",
+        "birthYear": 1900,
+        "deathYear": 1979,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q930389",
+        "name": "Asger Andersen",
+        "birthYear": 1908,
+        "deathYear": 1980,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q893695",
+        "name": "Boris Kalin",
+        "birthYear": 1905,
+        "deathYear": 1975,
+        "movement": "realism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q708028",
+        "name": "Bruno Munari",
+        "birthYear": 1907,
+        "deathYear": 1998,
+        "movement": "Futurism",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2399898",
+        "name": "Cecil Baugh",
+        "birthYear": 1908,
+        "deathYear": 2005,
+        "movement": "No movement listed",
+        "citizenship": "Jamaica",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1910": {
+    "decade": 1910,
+    "totalBorn": 233,
+    "gender": {
+      "female": 39,
+      "male": 194,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Italy",
+        "count": 36
+      },
+      {
+        "country": "Netherlands",
+        "count": 22
+      },
+      {
+        "country": "Germany",
+        "count": 15
+      },
+      {
+        "country": "United Kingdom",
+        "count": 13
+      },
+      {
+        "country": "United States",
+        "count": 13
+      },
+      {
+        "country": "France",
+        "count": 11
+      },
+      {
+        "country": "Poland",
+        "count": 10
+      },
+      {
+        "country": "Hungary",
+        "count": 8
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 28
+      },
+      {
+        "movement": "abstract expressionism",
+        "count": 8
+      },
+      {
+        "movement": "surrealism",
+        "count": 5
+      },
+      {
+        "movement": "Expressionism",
+        "count": 4
+      },
+      {
+        "movement": "modernism",
+        "count": 2
+      },
+      {
+        "movement": "French Realism",
+        "count": 2
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Ukraine",
+        "to": "United States",
+        "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 3
+      },
+      {
+        "from": "Hungary",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "United States",
+        "count": 3
+      }
+    ],
+    "migration": {
+      "eligible": 222,
+      "crossed": 84,
+      "crossPct": 38
+    },
+    "notable": [
+      {
+        "qid": "Q529158",
+        "name": "Andr\u00e1s Beck",
+        "birthYear": 1911,
+        "deathYear": 1985,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q585177",
+        "name": "Dick Elffers",
+        "birthYear": 1910,
+        "deathYear": 1990,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q83578",
+        "name": "Asger Jorn",
+        "birthYear": 1914,
+        "deathYear": 1973,
+        "movement": "COBRA",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2093742",
+        "name": "Pierre Nocca",
+        "birthYear": 1916,
+        "deathYear": 2016,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2857531",
+        "name": "Antoniucci Volti",
+        "birthYear": 1915,
+        "deathYear": 1989,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1415319",
+        "name": "Art\u00far Vetr\u00f3",
+        "birthYear": 1919,
+        "deathYear": 1992,
+        "movement": "No movement listed",
+        "citizenship": "Unknown",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q813581",
+        "name": "Bernhard Heiliger",
+        "birthYear": 1915,
+        "deathYear": 1995,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2272827",
+        "name": "Cor Hund",
+        "birthYear": 1915,
+        "deathYear": 2008,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q290331",
+        "name": "Elizabeth Catlett",
+        "birthYear": 1915,
+        "deathYear": 2012,
+        "movement": "Harlem Renaissance",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1605510",
+        "name": "Henning Koppel",
+        "birthYear": 1918,
+        "deathYear": 1981,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q839712",
+        "name": "Memos Makris",
+        "birthYear": 1913,
+        "deathYear": 1993,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q94354",
+        "name": "Michel Sima",
+        "birthYear": 1912,
+        "deathYear": 1987,
+        "movement": "No movement listed",
+        "citizenship": "Poland",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1348015",
+        "name": "Olle B\u00e6rtling",
+        "birthYear": 1911,
+        "deathYear": 1981,
+        "movement": "No movement listed",
+        "citizenship": "Sweden",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2537577",
+        "name": "Pieter Starreveld",
+        "birthYear": 1911,
+        "deathYear": 1989,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2847885",
+        "name": "Andr\u00e9 Greck",
+        "birthYear": 1912,
+        "deathYear": 1993,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q83484",
+        "name": "Anthony Quinn",
+        "birthYear": 1915,
+        "deathYear": 2001,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2245400",
+        "name": "Ejler Bille",
+        "birthYear": 1910,
+        "deathYear": 2004,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q449536",
+        "name": "Elaine de Kooning",
+        "birthYear": 1918,
+        "deathYear": 1989,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3058952",
+        "name": "Esther Barugel",
+        "birthYear": 1917,
+        "deathYear": 2007,
+        "movement": "No movement listed",
+        "citizenship": "Argentina",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q622586",
+        "name": "Fuad Abdurahmanov",
+        "birthYear": 1915,
+        "deathYear": 1971,
+        "movement": "No movement listed",
+        "citizenship": "Soviet Union",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q389886",
+        "name": "G\u00e9za Vida",
+        "birthYear": 1913,
+        "deathYear": 1980,
+        "movement": "primitivism",
+        "citizenship": "Romania",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1580738",
+        "name": "Hans Kindermann",
+        "birthYear": 1911,
+        "deathYear": 1997,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1471865",
+        "name": "Ibram Lassaw",
+        "birthYear": 1913,
+        "deathYear": 2003,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1293596",
+        "name": "Iv\u00e1n Szab\u00f3",
+        "birthYear": 1913,
+        "deathYear": 1998,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3161863",
+        "name": "Jane Frank",
+        "birthYear": 1918,
+        "deathYear": 1986,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q168359",
+        "name": "Jean Marais",
+        "birthYear": 1913,
+        "deathYear": 1998,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q362319",
+        "name": "Ji\u0159\u00ed Trnka",
+        "birthYear": 1912,
+        "deathYear": 1969,
+        "movement": "No movement listed",
+        "citizenship": "Czechoslovakia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1733798",
+        "name": "Karlheinz Goedtke",
+        "birthYear": 1915,
+        "deathYear": 1995,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q159409",
+        "name": "Louise Bourgeois",
+        "birthYear": 1911,
+        "deathYear": 2010,
+        "movement": "abstract expressionism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q314669",
+        "name": "Luciano Minguzzi",
+        "birthYear": 1911,
+        "deathYear": 2004,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q304680",
+        "name": "Mark Macken",
+        "birthYear": 1913,
+        "deathYear": 1977,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1911276",
+        "name": "Maurice Ascalon",
+        "birthYear": 1913,
+        "deathYear": 2003,
+        "movement": "No movement listed",
+        "citizenship": "Israel",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q555200",
+        "name": "Oswaldo Guayasam\u00edn",
+        "birthYear": 1919,
+        "deathYear": 1999,
+        "movement": "No movement listed",
+        "citizenship": "Colombia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q708631",
+        "name": "Pierre Soulages",
+        "birthYear": 1919,
+        "deathYear": 2022,
+        "movement": "abstract art",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1975871",
+        "name": "Piet Esser",
+        "birthYear": 1914,
+        "deathYear": 2004,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q642729",
+        "name": "Quinto Ghermandi",
+        "birthYear": 1916,
+        "deathYear": 1994,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Italy",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1920": {
+    "decade": 1920,
+    "totalBorn": 439,
+    "gender": {
+      "female": 63,
+      "male": 376,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 61
+      },
+      {
+        "country": "United States",
+        "count": 39
+      },
+      {
+        "country": "Netherlands",
+        "count": 39
+      },
+      {
+        "country": "Italy",
+        "count": 34
+      },
+      {
+        "country": "France",
+        "count": 26
+      },
+      {
+        "country": "Poland",
+        "count": 16
+      },
+      {
+        "country": "Spain",
+        "count": 16
+      },
+      {
+        "country": "Czech Republic",
+        "count": 16
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 55
+      },
+      {
+        "movement": "abstract expressionism",
+        "count": 9
+      },
+      {
+        "movement": "pop art",
+        "count": 9
+      },
+      {
+        "movement": "contemporary art",
+        "count": 5
+      },
+      {
+        "movement": "Nouveau r\u00e9alisme",
+        "count": 4
+      },
+      {
+        "movement": "kinetic art",
+        "count": 4
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 4
+      },
+      {
+        "from": "Belgium",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Czech Republic",
+        "to": "Germany",
+        "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "Switzerland",
+        "count": 2
+      },
+      {
+        "from": "Switzerland",
+        "to": "France",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 384,
+      "crossed": 122,
+      "crossPct": 32
+    },
+    "notable": [
+      {
+        "qid": "Q153965",
+        "name": "Joseph Beuys",
+        "birthYear": 1921,
+        "deathYear": 1986,
+        "movement": "Fluxus",
+        "citizenship": "Germany",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q5603",
+        "name": "Andy Warhol",
+        "birthYear": 1928,
+        "deathYear": 1987,
+        "movement": "pop art",
+        "citizenship": "United States",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q159566",
+        "name": "Cy Twombly",
+        "birthYear": 1928,
+        "deathYear": 2011,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1791520",
+        "name": "Lygia Clark",
+        "birthYear": 1920,
+        "deathYear": 1988,
+        "movement": "Antropophagia",
+        "citizenship": "Brazil",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1248030",
+        "name": "Ursula Hanke-F\u00f6rster",
+        "birthYear": 1924,
+        "deathYear": 2013,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 5
+      },
+      {
+        "qid": "Q1504948",
+        "name": "Georg Karl Pfahler",
+        "birthYear": 1926,
+        "deathYear": 2002,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q730687",
+        "name": "Albert F\u00e9raud",
+        "birthYear": 1921,
+        "deathYear": 2008,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q235281",
+        "name": "Helen Frankenthaler",
+        "birthYear": 1928,
+        "deathYear": 2011,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q629054",
+        "name": "Krishna Reddy",
+        "birthYear": 1925,
+        "deathYear": 2018,
+        "movement": "No movement listed",
+        "citizenship": "India",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1874350",
+        "name": "Ludwig Engelhardt",
+        "birthYear": 1924,
+        "deathYear": 2001,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1726398",
+        "name": "Otto Zewe",
+        "birthYear": 1921,
+        "deathYear": 2003,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q526470",
+        "name": "Sam Francis",
+        "birthYear": 1923,
+        "deathYear": 1994,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q87268",
+        "name": "Wolfgang Mattheuer",
+        "birthYear": 1927,
+        "deathYear": 2004,
+        "movement": "Leipzig School",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2830129",
+        "name": "Alain M\u00e9tayer",
+        "birthYear": 1926,
+        "deathYear": 2010,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q263730",
+        "name": "Alejandro Jodorowsky",
+        "birthYear": 1929,
+        "deathYear": null,
+        "movement": "surrealism",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2848308",
+        "name": "Andr\u00e9 Minaux",
+        "birthYear": 1923,
+        "deathYear": 1986,
+        "movement": "School of Paris",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q529591",
+        "name": "Anthony Caro",
+        "birthYear": 1924,
+        "deathYear": 2013,
+        "movement": "abstract art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q330535",
+        "name": "Bj\u00f6rn Berg",
+        "birthYear": 1923,
+        "deathYear": 2008,
+        "movement": "No movement listed",
+        "citizenship": "Sweden",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1042835",
+        "name": "Carlos Cruz-Diez",
+        "birthYear": 1923,
+        "deathYear": 2019,
+        "movement": "abstract art",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1987133",
+        "name": "Cornelis Zitman",
+        "birthYear": 1926,
+        "deathYear": 2016,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3035392",
+        "name": "Dominique Pi\u00e9chaud",
+        "birthYear": 1922,
+        "deathYear": 2011,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q276510",
+        "name": "Ernesto Cardenal",
+        "birthYear": 1925,
+        "deathYear": 2020,
+        "movement": "No movement listed",
+        "citizenship": "Nicaragua",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1576827",
+        "name": "Hans-Detlev Hennig",
+        "birthYear": 1927,
+        "deathYear": 2017,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q3159549",
+        "name": "Jacques Mennessons",
+        "birthYear": 1923,
+        "deathYear": 1983,
+        "movement": "School of Paris",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1705460",
+        "name": "Josef Pillhofer",
+        "birthYear": 1921,
+        "deathYear": 2010,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1717881",
+        "name": "J\u00fcrgen von Woyski",
+        "birthYear": 1929,
+        "deathYear": 2000,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1895700",
+        "name": "Maria Becke-Rausch",
+        "birthYear": 1923,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q581327",
+        "name": "Reinhart Heinsdorff",
+        "birthYear": 1923,
+        "deathYear": 2002,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q164358",
+        "name": "Robert Rauschenberg",
+        "birthYear": 1925,
+        "deathYear": 2008,
+        "movement": "contemporary art",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q953278",
+        "name": "Roland Guillaumel",
+        "birthYear": 1926,
+        "deathYear": 2014,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q151679",
+        "name": "Roy Lichtenstein",
+        "birthYear": 1923,
+        "deathYear": 1997,
+        "movement": "pop art",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1784940",
+        "name": "Aldemir Martins",
+        "birthYear": 1922,
+        "deathYear": 2006,
+        "movement": "No movement listed",
+        "citizenship": "Brazil",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q366380",
+        "name": "Allan Kaprow",
+        "birthYear": 1927,
+        "deathYear": 2006,
+        "movement": "Fluxus",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q565203",
+        "name": "Anne Daubenspeck-Focke",
+        "birthYear": 1922,
+        "deathYear": 2021,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q367973",
+        "name": "Arman",
+        "birthYear": 1928,
+        "deathYear": 2005,
+        "movement": "Nouveau r\u00e9alisme",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q816503",
+        "name": "Ben Guntenaar",
+        "birthYear": 1922,
+        "deathYear": 2009,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1930": {
+    "decade": 1930,
+    "totalBorn": 372,
+    "gender": {
+      "female": 47,
+      "male": 325,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 66
+      },
+      {
+        "country": "United States",
+        "count": 39
+      },
+      {
+        "country": "Italy",
+        "count": 32
+      },
+      {
+        "country": "Netherlands",
+        "count": 29
+      },
+      {
+        "country": "United Kingdom",
+        "count": 15
+      },
+      {
+        "country": "France",
+        "count": 15
+      },
+      {
+        "country": "Poland",
+        "count": 13
+      },
+      {
+        "country": "Hungary",
+        "count": 13
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 51
+      },
+      {
+        "movement": "contemporary art",
+        "count": 9
+      },
+      {
+        "movement": "pop art",
+        "count": 9
+      },
+      {
+        "movement": "Minimalism",
+        "count": 7
+      },
+      {
+        "movement": "Fluxus",
+        "count": 4
+      },
+      {
+        "movement": "Arte Povera",
+        "count": 4
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 4
+      },
+      {
+        "from": "Germany",
+        "to": "Spain",
+        "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "Austria",
+        "count": 2
+      },
+      {
+        "from": "Russia",
+        "to": "France",
+        "count": 2
+      },
+      {
+        "from": "Italy",
+        "to": "United States",
+        "count": 2
+      }
+    ],
+    "migration": {
+      "eligible": 231,
+      "crossed": 73,
+      "crossPct": 32
+    },
+    "notable": [
+      {
+        "qid": "Q102135",
+        "name": "Werner St\u00f6tzer",
+        "birthYear": 1931,
+        "deathYear": 2010,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 6
+      },
+      {
+        "qid": "Q1381751",
+        "name": "Evelyn Hartnick-Geismeier",
+        "birthYear": 1931,
+        "deathYear": 2017,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q272877",
+        "name": "Fernando Botero",
+        "birthYear": 1932,
+        "deathYear": 2023,
+        "movement": "contemporary art",
+        "citizenship": "France",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1392180",
+        "name": "Ingrid Dahn",
+        "birthYear": 1939,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q1362461",
+        "name": "Wieland F\u00f6rster",
+        "birthYear": 1930,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q159907",
+        "name": "David Hockney",
+        "birthYear": 1937,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1707424",
+        "name": "Karl Gerstner",
+        "birthYear": 1930,
+        "deathYear": 2017,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q202621",
+        "name": "Larry Bell",
+        "birthYear": 1939,
+        "deathYear": null,
+        "movement": "minimalism",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2061447",
+        "name": "Paul Neagu",
+        "birthYear": 1938,
+        "deathYear": 2004,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2075804",
+        "name": "Peter Hoppe",
+        "birthYear": 1938,
+        "deathYear": 2010,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1273559",
+        "name": "Renee Nele",
+        "birthYear": 1932,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2230957",
+        "name": "Schang Hutter",
+        "birthYear": 1934,
+        "deathYear": 2021,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q857039",
+        "name": "Bie Norling",
+        "birthYear": 1937,
+        "deathYear": 2022,
+        "movement": "No movement listed",
+        "citizenship": "Sweden",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1393442",
+        "name": "Gerson Fehrenbach",
+        "birthYear": 1932,
+        "deathYear": 2004,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1500200",
+        "name": "Hubertus von Pilgrim",
+        "birthYear": 1931,
+        "deathYear": 2026,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1318360",
+        "name": "Jean-Michel Folon",
+        "birthYear": 1934,
+        "deathYear": 2005,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q714363",
+        "name": "Ju Ming",
+        "birthYear": 1938,
+        "deathYear": 2023,
+        "movement": "No movement listed",
+        "citizenship": "Taiwan",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q276372",
+        "name": "Lee Bontecou",
+        "birthYear": 1931,
+        "deathYear": 2022,
+        "movement": "abstract expressionism",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2076300",
+        "name": "Peter Klasen",
+        "birthYear": 1935,
+        "deathYear": null,
+        "movement": "Figuration narrative",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2343351",
+        "name": "Stephan Horota",
+        "birthYear": 1932,
+        "deathYear": 2024,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q279088",
+        "name": "A. R. Penck",
+        "birthYear": 1939,
+        "deathYear": 2017,
+        "movement": "neo-expressionism",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2829591",
+        "name": "Alain Bonnefoit",
+        "birthYear": 1937,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1257924",
+        "name": "Antonio L\u00f3pez Garc\u00eda",
+        "birthYear": 1936,
+        "deathYear": null,
+        "movement": "new media art",
+        "citizenship": "Spain",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q567070",
+        "name": "Antonio Segu\u00ed",
+        "birthYear": 1934,
+        "deathYear": 2022,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q315348",
+        "name": "Carl Andre",
+        "birthYear": 1935,
+        "deathYear": 2024,
+        "movement": "Minimalism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1040890",
+        "name": "Carl Vezerfi-Clemm",
+        "birthYear": 1939,
+        "deathYear": 2012,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1221494",
+        "name": "Diet Sayler",
+        "birthYear": 1939,
+        "deathYear": null,
+        "movement": "Constructivism",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3048405",
+        "name": "Eduardo \u00darculo",
+        "birthYear": 1938,
+        "deathYear": 2003,
+        "movement": "pop art",
+        "citizenship": "Spain",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3057510",
+        "name": "Ervin P\u00e1tkai",
+        "birthYear": 1937,
+        "deathYear": 1985,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2685480",
+        "name": "Fioen Blaisse",
+        "birthYear": 1932,
+        "deathYear": 2012,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q375268",
+        "name": "Frank Stella",
+        "birthYear": 1936,
+        "deathYear": 2024,
+        "movement": "Minimalism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1524106",
+        "name": "Gilberto Aceves Navarro",
+        "birthYear": 1931,
+        "deathYear": 2019,
+        "movement": "No movement listed",
+        "citizenship": "Mexico",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2041451",
+        "name": "G\u00e9rard Fromanger",
+        "birthYear": 1939,
+        "deathYear": 2021,
+        "movement": "hyperrealism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1583898",
+        "name": "Hansj\u00f6rg Wagner",
+        "birthYear": 1930,
+        "deathYear": 2013,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1596578",
+        "name": "Heinrich Apel",
+        "birthYear": 1935,
+        "deathYear": 2020,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1604409",
+        "name": "Helmuth Gs\u00f6llpointner",
+        "birthYear": 1933,
+        "deathYear": 2025,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1940": {
+    "decade": 1940,
+    "totalBorn": 371,
+    "gender": {
+      "female": 74,
+      "male": 297,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 64
+      },
+      {
+        "country": "United States",
+        "count": 52
+      },
+      {
+        "country": "Netherlands",
+        "count": 32
+      },
+      {
+        "country": "France",
+        "count": 27
+      },
+      {
+        "country": "United Kingdom",
+        "count": 17
+      },
+      {
+        "country": "Italy",
+        "count": 17
+      },
+      {
+        "country": "Switzerland",
+        "count": 12
+      },
+      {
+        "country": "Poland",
+        "count": 11
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 53
+      },
+      {
+        "movement": "contemporary art",
+        "count": 19
+      },
+      {
+        "movement": "conceptual art",
+        "count": 12
+      },
+      {
+        "movement": "feminist art",
+        "count": 4
+      },
+      {
+        "movement": "Minimalism",
+        "count": 3
+      },
+      {
+        "movement": "pop art",
+        "count": 3
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Czech Republic",
+        "to": "Germany",
+        "count": 2
+      },
+      {
+        "from": "Egypt",
+        "to": "Israel",
+        "count": 1
+      },
+      {
+        "from": "Spain",
+        "to": "Netherlands",
+        "count": 1
+      },
+      {
+        "from": "Poland",
+        "to": "Germany",
+        "count": 1
+      },
+      {
+        "from": "Romania",
+        "to": "Hungary",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 113,
+      "crossed": 27,
+      "crossPct": 24
+    },
+    "notable": [
+      {
+        "qid": "Q170344",
+        "name": "Anselm Kiefer",
+        "birthYear": 1945,
+        "deathYear": null,
+        "movement": "neo-expressionism",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q970219",
+        "name": "Ingeborg G. Pluhar",
+        "birthYear": 1944,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1420531",
+        "name": "Margret Middell",
+        "birthYear": 1940,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q1151149",
+        "name": "Olga Gimeno",
+        "birthYear": 1940,
+        "deathYear": 2017,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2444124",
+        "name": "Pierre Bergounioux",
+        "birthYear": 1949,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2084364",
+        "name": "Renate Vincken",
+        "birthYear": 1943,
+        "deathYear": 2013,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q312786",
+        "name": "Robert Mapplethorpe",
+        "birthYear": 1946,
+        "deathYear": 1989,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q2301627",
+        "name": "Sonja Eschefeld",
+        "birthYear": 1948,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3491102",
+        "name": "Soph\u00eda V\u00e1ri",
+        "birthYear": 1940,
+        "deathYear": 2023,
+        "movement": "No movement listed",
+        "citizenship": "Greece",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q3013959",
+        "name": "Daniel Druet",
+        "birthYear": 1941,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1245351",
+        "name": "Doris Waschk-Balz",
+        "birthYear": 1942,
+        "deathYear": 2025,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1794177",
+        "name": "Kurt Trampedach",
+        "birthYear": 1943,
+        "deathYear": 2013,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q24503",
+        "name": "Michael Craig-Martin",
+        "birthYear": 1941,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q362718",
+        "name": "Ryan Larkin",
+        "birthYear": 1943,
+        "deathYear": 2007,
+        "movement": "No movement listed",
+        "citizenship": "Canada",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q319569",
+        "name": "Sherrie Levine",
+        "birthYear": 1947,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2833150",
+        "name": "Alexander Kosolapov",
+        "birthYear": 1943,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1128002",
+        "name": "Andr\u00e1s Lapis",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2848360",
+        "name": "Andr\u00e9 Nouyrit",
+        "birthYear": 1940,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q233590",
+        "name": "Anna Chrom\u00fd",
+        "birthYear": 1940,
+        "deathYear": 2021,
+        "movement": "surrealism",
+        "citizenship": "Czechoslovakia",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q823533",
+        "name": "Bernd G\u00f6bel",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q320080",
+        "name": "Bernd Lohaus",
+        "birthYear": 1940,
+        "deathYear": 2010,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q879842",
+        "name": "Bj\u00f8rn N\u00f8rgaard",
+        "birthYear": 1947,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q565472",
+        "name": "Blinky Palermo",
+        "birthYear": 1943,
+        "deathYear": 1977,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2929427",
+        "name": "B\u00e9atrice Casadesus",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2609793",
+        "name": "Carol Cairns",
+        "birthYear": 1941,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1078030",
+        "name": "Christa Biederbick",
+        "birthYear": 1940,
+        "deathYear": 2026,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q878416",
+        "name": "Claus Bury",
+        "birthYear": 1946,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1173593",
+        "name": "David Ascalon",
+        "birthYear": 1945,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1293908",
+        "name": "Edward Tufte",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1452504",
+        "name": "Fred Sandback",
+        "birthYear": 1943,
+        "deathYear": 2003,
+        "movement": "Minimalism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2469140",
+        "name": "Gabri\u00ebl Sterk",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1527496",
+        "name": "Gisela Bruchhausen",
+        "birthYear": 1940,
+        "deathYear": 2025,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1219296",
+        "name": "G\u00e9rard Garouste",
+        "birthYear": 1946,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1609237",
+        "name": "Herbert Volz",
+        "birthYear": 1944,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q957078",
+        "name": "Igor Mitoraj",
+        "birthYear": 1944,
+        "deathYear": 2014,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q321527",
+        "name": "Jonathan Borofsky",
+        "birthYear": 1942,
+        "deathYear": null,
+        "movement": "pop art",
+        "citizenship": "United States",
+        "totalDegree": 1
+      }
+    ]
+  },
+  "1950": {
+    "decade": 1950,
+    "totalBorn": 272,
+    "gender": {
+      "female": 66,
+      "male": 206,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Germany",
+        "count": 52
+      },
+      {
+        "country": "United States",
+        "count": 30
+      },
+      {
+        "country": "Netherlands",
+        "count": 29
+      },
+      {
+        "country": "United Kingdom",
+        "count": 14
+      },
+      {
+        "country": "Austria",
+        "count": 11
+      },
+      {
+        "country": "Hungary",
+        "count": 8
+      },
+      {
+        "country": "Belgium",
+        "count": 8
+      },
+      {
+        "country": "Spain",
+        "count": 8
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "abstract art",
+        "count": 41
+      },
+      {
+        "movement": "contemporary art",
+        "count": 25
+      },
+      {
+        "movement": "conceptual art",
+        "count": 7
+      },
+      {
+        "movement": "pop art",
+        "count": 4
+      },
+      {
+        "movement": "Dakar School",
+        "count": 2
+      },
+      {
+        "movement": "kinetic art",
+        "count": 2
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "Cuba",
+        "to": "United States",
+        "count": 1
+      },
+      {
+        "from": "Netherlands",
+        "to": "Germany",
+        "count": 1
+      },
+      {
+        "from": "United States",
+        "to": "Mexico",
+        "count": 1
+      },
+      {
+        "from": "Ukraine",
+        "to": "France",
+        "count": 1
+      },
+      {
+        "from": "People's Republic of China",
+        "to": "France",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 29,
+      "crossed": 8,
+      "crossPct": 28
+    },
+    "notable": [
+      {
+        "qid": "Q3161753",
+        "name": "Jan Sivertsen",
+        "birthYear": 1951,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 4
+      },
+      {
+        "qid": "Q709449",
+        "name": "Arthur Ganson",
+        "birthYear": 1955,
+        "deathYear": null,
+        "movement": "kinetic art",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q983193",
+        "name": "Hans Pauli Olsen",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q297525",
+        "name": "Jeff Koons",
+        "birthYear": 1955,
+        "deathYear": null,
+        "movement": "pop art",
+        "citizenship": "United States",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q977506",
+        "name": "Robert Schad",
+        "birthYear": 1953,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 3
+      },
+      {
+        "qid": "Q816590",
+        "name": "Ben Siebenrock",
+        "birthYear": 1951,
+        "deathYear": 2018,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1239698",
+        "name": "Donald Baechler",
+        "birthYear": 1956,
+        "deathYear": 2022,
+        "movement": "pop art",
+        "citizenship": "United States",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1554875",
+        "name": "Gunter Damisch",
+        "birthYear": 1958,
+        "deathYear": 2016,
+        "movement": "Neue Wilde",
+        "citizenship": "Austria",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q1745018",
+        "name": "Klaus Duschat",
+        "birthYear": 1955,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Germany",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q2022801",
+        "name": "Lydeke von D\u00fclmen Krumpelmann",
+        "birthYear": 1952,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q168482",
+        "name": "Santiago Calatrava",
+        "birthYear": 1951,
+        "deathYear": null,
+        "movement": "high-tech architecture",
+        "citizenship": "Spain",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q327293",
+        "name": "Anish Kapoor",
+        "birthYear": 1954,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q865177",
+        "name": "Birgid Helmy",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2940434",
+        "name": "Carsten Theumer",
+        "birthYear": 1956,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q872846",
+        "name": "Charles Ray",
+        "birthYear": 1953,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1078053",
+        "name": "Christa Feuerberg",
+        "birthYear": 1955,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1869889",
+        "name": "Daphn\u00e9 Du Barry",
+        "birthYear": 1950,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2738613",
+        "name": "Dick Verdult",
+        "birthYear": 1954,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1477736",
+        "name": "Gabriele Kutschera",
+        "birthYear": 1950,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q705880",
+        "name": "George Condo",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1587452",
+        "name": "Hartmut Hornung",
+        "birthYear": 1952,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1587536",
+        "name": "Hartmut Renner",
+        "birthYear": 1951,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1605269",
+        "name": "Henk Visch",
+        "birthYear": 1950,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1231473",
+        "name": "Iv\u00e1n Paulikovics",
+        "birthYear": 1953,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Hungary",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q776564",
+        "name": "Jean-Pierre Rives",
+        "birthYear": 1952,
+        "deathYear": null,
+        "movement": "abstract expressionism",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q345379",
+        "name": "Julian Schnabel",
+        "birthYear": 1951,
+        "deathYear": null,
+        "movement": "neo-expressionism",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1346679",
+        "name": "J\u00fcrgen Paas",
+        "birthYear": 1958,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q24218",
+        "name": "Nick Cave",
+        "birthYear": 1959,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q3531897",
+        "name": "Tony Souli\u00e9",
+        "birthYear": 1955,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1309412",
+        "name": "Winni Schaak",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q600456",
+        "name": "Wolfgang Laib",
+        "birthYear": 1950,
+        "deathYear": null,
+        "movement": "conceptual art",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2015324",
+        "name": "Yoshitomo Nara",
+        "birthYear": 1959,
+        "deathYear": null,
+        "movement": "pop art",
+        "citizenship": "Japan",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q329930",
+        "name": "Abraham David Christian",
+        "birthYear": 1952,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1867015",
+        "name": "Ad Arma",
+        "birthYear": 1954,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q618310",
+        "name": "Adam Colton",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q160115",
+        "name": "Ai Weiwei",
+        "birthYear": 1957,
+        "deathYear": null,
+        "movement": "conceptual art",
+        "citizenship": "People's Republic of China",
+        "totalDegree": 0
+      }
+    ]
+  },
+  "1960": {
+    "decade": 1960,
+    "totalBorn": 182,
+    "gender": {
+      "female": 59,
+      "male": 121,
+      "otherOrUnknown": 2
+    },
+    "topCountries": [
+      {
+        "country": "United Kingdom",
+        "count": 26
+      },
+      {
+        "country": "Germany",
+        "count": 22
+      },
+      {
+        "country": "United States",
+        "count": 17
+      },
+      {
+        "country": "Netherlands",
+        "count": 13
+      },
+      {
+        "country": "Italy",
+        "count": 7
+      },
+      {
+        "country": "Poland",
+        "count": 6
+      },
+      {
+        "country": "Switzerland",
+        "count": 6
+      },
+      {
+        "country": "Spain",
+        "count": 6
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "contemporary art",
+        "count": 22
+      },
+      {
+        "movement": "abstract art",
+        "count": 13
+      },
+      {
+        "movement": "pop art",
+        "count": 4
+      },
+      {
+        "movement": "Young British Artists",
+        "count": 3
+      },
+      {
+        "movement": "conceptual art",
+        "count": 3
+      },
+      {
+        "movement": "neo-expressionism",
+        "count": 1
+      }
+    ],
+    "topCorridors": [
+      {
+        "from": "United Kingdom",
+        "to": "Spain",
+        "count": 1
+      }
+    ],
+    "migration": {
+      "eligible": 6,
+      "crossed": 1,
+      "crossPct": 17
+    },
+    "notable": [
+      {
+        "qid": "Q322060",
+        "name": "Douglas Coupland",
+        "birthYear": 1961,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Canada",
+        "totalDegree": 2
+      },
+      {
+        "qid": "Q294326",
+        "name": "Damien Hirst",
+        "birthYear": 1965,
+        "deathYear": null,
+        "movement": "Young British Artists",
+        "citizenship": "United Kingdom",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q378305",
+        "name": "David \u010cern\u00fd",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Czech Republic",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q892493",
+        "name": "Goddy Leye",
+        "birthYear": 1965,
+        "deathYear": 2011,
+        "movement": "No movement listed",
+        "citizenship": "Cameroon",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1660745",
+        "name": "Jacques Tilly",
+        "birthYear": 1963,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q618442",
+        "name": "Rob Birza",
+        "birthYear": 1962,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1609488",
+        "name": "Sigr\u00fan \u00d3lafsd\u00f3ttir",
+        "birthYear": 1963,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Iceland",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q352460",
+        "name": "Todd McFarlane",
+        "birthYear": 1961,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q349892",
+        "name": "Adam Jones",
+        "birthYear": 1965,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q297618",
+        "name": "Adam Savage",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q381167",
+        "name": "Aernout Mik",
+        "birthYear": 1962,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q958340",
+        "name": "Agnes Nyanhongo",
+        "birthYear": 1960,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Zimbabwe",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q401858",
+        "name": "Ahmet G\u00fcne\u015ftekin",
+        "birthYear": 1966,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Turkey",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2831839",
+        "name": "Alberto Varanda",
+        "birthYear": 1965,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1443303",
+        "name": "Alejandra Ruddoff",
+        "birthYear": 1960,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Chile",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q338853",
+        "name": "Alexandra Bircken",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q532361",
+        "name": "Angela Bulloch",
+        "birthYear": 1966,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Canada",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2849884",
+        "name": "Anh Duong",
+        "birthYear": 1960,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2263750",
+        "name": "Annet van Egmond",
+        "birthYear": 1964,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q722603",
+        "name": "Barth\u00e9l\u00e9my Toguo",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Cameroon",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q452946",
+        "name": "Beata Pozniak",
+        "birthYear": 1960,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q516538",
+        "name": "Ben Wilson",
+        "birthYear": 1963,
+        "deathYear": null,
+        "movement": "outsider art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q446408",
+        "name": "Berlinde De Bruyckere",
+        "birthYear": 1964,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q531350",
+        "name": "Bethan Huws",
+        "birthYear": 1961,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2900658",
+        "name": "Bharti Kher",
+        "birthYear": 1969,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "India",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2925458",
+        "name": "Brigitte Nahon",
+        "birthYear": 1960,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2942106",
+        "name": "Catherine Wilkening",
+        "birthYear": 1963,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1051273",
+        "name": "Catrin G Grosse",
+        "birthYear": 1964,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1077608",
+        "name": "Chris Ofili",
+        "birthYear": 1968,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q60119",
+        "name": "Christoph Br\u00fcx",
+        "birthYear": 1965,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q685898",
+        "name": "Christoph B\u00fcchel",
+        "birthYear": 1966,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Switzerland",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q274115",
+        "name": "Colleen Madamombe",
+        "birthYear": 1964,
+        "deathYear": 2009,
+        "movement": "No movement listed",
+        "citizenship": "Zimbabwe",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q388005",
+        "name": "Cosima von Bonin",
+        "birthYear": 1962,
+        "deathYear": null,
+        "movement": "conceptual art",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1158576",
+        "name": "Dami\u00e1n Ortega",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Mexico",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2297038",
+        "name": "Danae Stratou",
+        "birthYear": 1964,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Greece",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1160534",
+        "name": "Daniel Edwards",
+        "birthYear": 1965,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      }
+    ]
+  },
+  "1970": {
+    "decade": 1970,
+    "totalBorn": 62,
+    "gender": {
+      "female": 21,
+      "male": 41,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "United States",
+        "count": 5
+      },
+      {
+        "country": "United Kingdom",
+        "count": 5
+      },
+      {
+        "country": "Germany",
+        "count": 4
+      },
+      {
+        "country": "People's Republic of China",
+        "count": 3
+      },
+      {
+        "country": "Spain",
+        "count": 3
+      },
+      {
+        "country": "Poland",
+        "count": 3
+      },
+      {
+        "country": "Japan",
+        "count": 3
+      },
+      {
+        "country": "Iran",
+        "count": 2
+      }
+    ],
+    "topMovements": [
+      {
+        "movement": "contemporary art",
+        "count": 5
+      },
+      {
+        "movement": "abstract art",
+        "count": 3
+      },
+      {
+        "movement": "Expressionism",
+        "count": 1
+      },
+      {
+        "movement": "new media art",
+        "count": 1
+      },
+      {
+        "movement": "Postmodernism",
+        "count": 1
+      }
+    ],
+    "topCorridors": [],
+    "migration": {
+      "eligible": 0,
+      "crossed": 0,
+      "crossPct": null
+    },
+    "notable": [
+      {
+        "qid": "Q532640",
+        "name": "Angela Glajcar",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Germany",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q1394159",
+        "name": "Jeppe Hein",
+        "birthYear": 1974,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Kingdom of Denmark",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q2424825",
+        "name": "Thomas Houseago",
+        "birthYear": 1972,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q353674",
+        "name": "Adel Abdessemed",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q863976",
+        "name": "Ahmed Al Safi",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "Expressionism",
+        "citizenship": "Iraq",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2832510",
+        "name": "Aleksander Balos",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2833412",
+        "name": "Alexandre Arrechea",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Cuba",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1578729",
+        "name": "Alicja Kwade",
+        "birthYear": 1979,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Poland",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q512166",
+        "name": "Andro Wekua",
+        "birthYear": 1977,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Georgia",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1856624",
+        "name": "Arne Quinze",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Belgium",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q133600",
+        "name": "Banksy",
+        "birthYear": 1973,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q529028",
+        "name": "Camille Rose Garcia",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2935117",
+        "name": "Camille de Toledo",
+        "birthYear": 1976,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1034078",
+        "name": "Cao Fei",
+        "birthYear": 1978,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "People's Republic of China",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q574921",
+        "name": "Darren Almond",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2725057",
+        "name": "David Altmejd",
+        "birthYear": 1974,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Canada",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2326906",
+        "name": "David Bade",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "Kingdom of the Netherlands",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1370120",
+        "name": "Esther Stocker",
+        "birthYear": 1974,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Italy",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1379191",
+        "name": "Eva Grubinger",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Austria",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2108207",
+        "name": "Fernando S\u00e1nchez Castillo",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Spain",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q437373",
+        "name": "Gabr\u00edela Fri\u00f0riksd\u00f3ttir",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Iceland",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1432588",
+        "name": "Giovanni Ricciardi",
+        "birthYear": 1977,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Italy",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1567689",
+        "name": "Haegue Yang",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "South Korea",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2383791",
+        "name": "James Angus",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Australia",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1684006",
+        "name": "Jason deCaires Taylor",
+        "birthYear": 1974,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1075166",
+        "name": "Jin Katagiri",
+        "birthYear": 1973,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Japan",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q541888",
+        "name": "John Type",
+        "birthYear": 1972,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Zimbabwe",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q459431",
+        "name": "Jonathan Meese",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "Germany",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q325698",
+        "name": "Juan Garaizabal",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "new media art",
+        "citizenship": "Spain",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1712072",
+        "name": "Julian Wild",
+        "birthYear": 1973,
+        "deathYear": null,
+        "movement": "abstract art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q512749",
+        "name": "Junichi Kakizaki",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Japan",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q230173",
+        "name": "Kari Byron",
+        "birthYear": 1974,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2364908",
+        "name": "Karlien de Villiers",
+        "birthYear": 1975,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "South Africa",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q1737637",
+        "name": "Kcho",
+        "birthYear": 1970,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Cuba",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q431874",
+        "name": "Leslie Stefanson",
+        "birthYear": 1971,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q2837848",
+        "name": "Lincon Muteta",
+        "birthYear": 1975,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Zimbabwe",
+        "totalDegree": 0
+      }
+    ]
+  },
+  "1980": {
+    "decade": 1980,
+    "totalBorn": 9,
+    "gender": {
+      "female": 4,
+      "male": 5,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Ghana",
+        "count": 2
+      },
+      {
+        "country": "United States",
+        "count": 1
+      },
+      {
+        "country": "Romania",
+        "count": 1
+      },
+      {
+        "country": "France",
+        "count": 1
+      },
+      {
+        "country": "Eswatini",
+        "count": 1
+      },
+      {
+        "country": "Poland",
+        "count": 1
+      },
+      {
+        "country": "Czech Republic",
+        "count": 1
+      },
+      {
+        "country": "Colombia",
+        "count": 1
+      }
+    ],
+    "topMovements": [],
+    "topCorridors": [],
+    "migration": {
+      "eligible": 0,
+      "crossed": 0,
+      "crossPct": null
+    },
+    "notable": [
+      {
+        "qid": "Q1267768",
+        "name": "Jakub Julian Zi\u00f3\u0142kowski",
+        "birthYear": 1980,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Poland",
+        "totalDegree": 1
+      },
+      {
+        "qid": "Q115853",
+        "name": "Alexandra Nechita",
+        "birthYear": 1985,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q675742",
+        "name": "Cyprien Gaillard",
+        "birthYear": 1980,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q559477",
+        "name": "Eric Adjetey Anang",
+        "birthYear": 1985,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Ghana",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q3156061",
+        "name": "Iv\u00e1n Argote",
+        "birthYear": 1983,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "France",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q510045",
+        "name": "Kudjoe Affutu",
+        "birthYear": 1985,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Ghana",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q229228",
+        "name": "Leelee Sobieski",
+        "birthYear": 1983,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q437583",
+        "name": "Nandipha Mntambo",
+        "birthYear": 1982,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "South Africa",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q3495263",
+        "name": "Zuzana \u010c\u00ed\u017ekov\u00e1",
+        "birthYear": 1982,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "Czech Republic",
+        "totalDegree": 0
+      }
+    ]
+  },
+  "2000": {
+    "decade": 2000,
+    "totalBorn": 2,
+    "gender": {
+      "female": 0,
+      "male": 2,
+      "otherOrUnknown": 0
+    },
+    "topCountries": [
+      {
+        "country": "Bolivia",
+        "count": 1
+      }
+    ],
+    "topMovements": [],
+    "topCorridors": [],
+    "migration": {
+      "eligible": 0,
+      "crossed": 0,
+      "crossPct": null
+    },
+    "notable": [
+      {
+        "qid": "Q1911440",
+        "name": "Maurice Stern",
+        "birthYear": 2000,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      },
+      {
+        "qid": "Q956439",
+        "name": "Pablo Eduardo",
+        "birthYear": 2000,
+        "deathYear": null,
+        "movement": "No movement listed",
+        "citizenship": "United States",
+        "totalDegree": 0
+      }
+    ]
+  }
+}

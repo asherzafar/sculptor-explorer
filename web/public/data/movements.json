@@ -1,0 +1,7236 @@
+{
+  "movements": {
+    "art-deco": {
+      "slug": "art-deco",
+      "name": "Art Deco",
+      "total": 7,
+      "yearsMin": 1877,
+      "yearsMax": 1897,
+      "yearsMedian": 1889,
+      "peakDecade": 1890,
+      "byDecade": [
+        {
+          "decade": 1870,
+          "count": 2
+        },
+        {
+          "decade": 1880,
+          "count": 2
+        },
+        {
+          "decade": 1890,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 2
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "Russia",
+          "count": 1
+        },
+        {
+          "country": "Romania",
+          "count": 1
+        },
+        {
+          "country": "Switzerland",
+          "count": 1
+        },
+        {
+          "country": "Belgium",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2835211",
+          "name": "Alfred Janniot",
+          "birthYear": 1889,
+          "deathYear": 1969,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q1185426",
+          "name": "Demetre Chiparus",
+          "birthYear": 1886,
+          "deathYear": 1947,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q1990069",
+          "name": "Jean Dunand",
+          "birthYear": 1877,
+          "deathYear": 1942,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q373280",
+          "name": "Jean Puiforcat",
+          "birthYear": 1897,
+          "deathYear": 1945,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q984309",
+          "name": "Ert\u00e9",
+          "birthYear": 1892,
+          "deathYear": 1990,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1827402",
+          "name": "Henri Joseph Thomas",
+          "birthYear": 1878,
+          "deathYear": 1972,
+          "citizenship": "Belgium",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q866758",
+          "name": "Josef Lorenzl",
+          "birthYear": 1892,
+          "deathYear": 1950,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "art-nouveau": {
+      "slug": "art-nouveau",
+      "name": "Art Nouveau",
+      "total": 20,
+      "yearsMin": 1838,
+      "yearsMax": 1889,
+      "yearsMedian": 1865,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1830,
+          "count": 1
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1850,
+          "count": 5
+        },
+        {
+          "decade": 1860,
+          "count": 6
+        },
+        {
+          "decade": 1870,
+          "count": 4
+        },
+        {
+          "decade": 1880,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 8
+        },
+        {
+          "country": "Germany",
+          "count": 2
+        },
+        {
+          "country": "Italy",
+          "count": 2
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "Hungary",
+          "count": 1
+        },
+        {
+          "country": "Denmark",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q316422",
+          "name": "Hector Guimard",
+          "birthYear": 1867,
+          "deathYear": 1942,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q223576",
+          "name": "Edmund von Hellmer",
+          "birthYear": 1850,
+          "deathYear": 1935,
+          "citizenship": "Austria",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q980735",
+          "name": "Alexandre Charpentier",
+          "birthYear": 1856,
+          "deathYear": 1909,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q2934846",
+          "name": "Camille Alaphilippe",
+          "birthYear": 1874,
+          "deathYear": 1950,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q321589",
+          "name": "Emmanuel Villanis",
+          "birthYear": 1858,
+          "deathYear": 1914,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1122412",
+          "name": "Giannino Castiglioni",
+          "birthYear": 1884,
+          "deathYear": 1971,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q775430",
+          "name": "Joseph Gustave Ch\u00e9ret",
+          "birthYear": 1838,
+          "deathYear": 1894,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1170283",
+          "name": "Karl Korschann",
+          "birthYear": 1872,
+          "deathYear": 1943,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2389481",
+          "name": "Maurice Bouval",
+          "birthYear": 1863,
+          "deathYear": 1916,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2059586",
+          "name": "Paul Follot",
+          "birthYear": 1877,
+          "deathYear": 1942,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q706041",
+          "name": "Th\u00e9ophile Steinlen",
+          "birthYear": 1859,
+          "deathYear": 1923,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q391508",
+          "name": "Agathon L\u00e9onard",
+          "birthYear": 1841,
+          "deathYear": 1923,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2343025",
+          "name": "Armando Rever\u00f3n",
+          "birthYear": 1889,
+          "deathYear": 1954,
+          "citizenship": "Venezuela",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q442841",
+          "name": "Elsa von Freytag-Loringhoven",
+          "birthYear": 1874,
+          "deathYear": 1927,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1447406",
+          "name": "Franz Iffland",
+          "birthYear": 1862,
+          "deathYear": 1935,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q288218",
+          "name": "Georg Jensen",
+          "birthYear": 1866,
+          "deathYear": 1935,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q908890",
+          "name": "Gyula Don\u00e1th",
+          "birthYear": 1850,
+          "deathYear": 1909,
+          "citizenship": "Hungary",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q119891",
+          "name": "Ludwig Fahrenkrog",
+          "birthYear": 1867,
+          "deathYear": 1952,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q935392",
+          "name": "Mario Sarto",
+          "birthYear": 1885,
+          "deathYear": 1955,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2036946",
+          "name": "Othmar Schimkowitz",
+          "birthYear": 1864,
+          "deathYear": 1947,
+          "citizenship": "Hungary",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "arte-povera": {
+      "slug": "arte-povera",
+      "name": "Arte Povera",
+      "total": 7,
+      "yearsMin": 1915,
+      "yearsMax": 1940,
+      "yearsMedian": 1934,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 4
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 7
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q1093530",
+          "name": "Pino Pascali",
+          "birthYear": 1935,
+          "deathYear": 1968,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q461740",
+          "name": "Alberto Burri",
+          "birthYear": 1915,
+          "deathYear": 1995,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q556337",
+          "name": "Alighiero Boetti",
+          "birthYear": 1940,
+          "deathYear": 1994,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q637274",
+          "name": "Giovanni Anselmo",
+          "birthYear": 1934,
+          "deathYear": 2023,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q554008",
+          "name": "Luciano Fabro",
+          "birthYear": 1936,
+          "deathYear": 2007,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q698877",
+          "name": "Mario Merz",
+          "birthYear": 1925,
+          "deathYear": 2003,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q573178",
+          "name": "Michelangelo Pistoletto",
+          "birthYear": 1933,
+          "deathYear": null,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "cobra": {
+      "slug": "cobra",
+      "name": "COBRA",
+      "total": 6,
+      "yearsMin": 1904,
+      "yearsMax": 1928,
+      "yearsMedian": 1918,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 2
+        },
+        {
+          "decade": 1920,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Denmark",
+          "count": 2
+        },
+        {
+          "country": "Netherlands",
+          "count": 2
+        },
+        {
+          "country": "Belgium",
+          "count": 1
+        },
+        {
+          "country": "South Africa",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q83578",
+          "name": "Asger Jorn",
+          "birthYear": 1914,
+          "deathYear": 1973,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q689279",
+          "name": "Lucebert",
+          "birthYear": 1924,
+          "deathYear": 1994,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q966116",
+          "name": "Carl-Henning Pedersen",
+          "birthYear": 1913,
+          "deathYear": 2007,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3057074",
+          "name": "Ernest Mancoba",
+          "birthYear": 1904,
+          "deathYear": 2002,
+          "citizenship": "South Africa",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2843600",
+          "name": "Lotti van der Gaag",
+          "birthYear": 1923,
+          "deathYear": 1999,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1810287",
+          "name": "Reinhoud D'Haese",
+          "birthYear": 1928,
+          "deathYear": 2007,
+          "citizenship": "Belgium",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "catalan-modernism": {
+      "slug": "catalan-modernism",
+      "name": "Catalan modernism",
+      "total": 5,
+      "yearsMin": 1863,
+      "yearsMax": 1903,
+      "yearsMedian": 1869,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1860,
+          "count": 3
+        },
+        {
+          "decade": 1870,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Spain",
+          "count": 4
+        },
+        {
+          "country": "United Kingdom",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2914475",
+          "name": "Caterina Albert",
+          "birthYear": 1869,
+          "deathYear": 1966,
+          "citizenship": "Spain",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q1584929",
+          "name": "Eusebi Arnau i Mascort",
+          "birthYear": 1863,
+          "deathYear": 1933,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q3138880",
+          "name": "Josep Llimona i Bruguera",
+          "birthYear": 1864,
+          "deathYear": 1934,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q234109",
+          "name": "Barbara Hepworth",
+          "birthYear": 1903,
+          "deathYear": 1975,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3816702",
+          "name": "Lambert Escaler i Mil\u00e0",
+          "birthYear": 1874,
+          "deathYear": 1957,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "classicism": {
+      "slug": "classicism",
+      "name": "Classicism",
+      "total": 3,
+      "yearsMin": 1802,
+      "yearsMax": 1866,
+      "yearsMedian": 1814,
+      "peakDecade": 1800,
+      "byDecade": [
+        {
+          "decade": 1800,
+          "count": 1
+        },
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1860,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 2
+        },
+        {
+          "country": "Argentina",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q452079",
+          "name": "Lola Mora",
+          "birthYear": 1866,
+          "deathYear": 1936,
+          "citizenship": "Argentina",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q448426",
+          "name": "Ludwig Michael Schwanthaler",
+          "birthYear": 1802,
+          "deathYear": 1848,
+          "citizenship": "Kingdom of Bavaria",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q316085",
+          "name": "Johann Halbig",
+          "birthYear": 1814,
+          "deathYear": 1882,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        }
+      ]
+    },
+    "constructivism": {
+      "slug": "constructivism",
+      "name": "Constructivism",
+      "total": 8,
+      "yearsMin": 1879,
+      "yearsMax": 1939,
+      "yearsMedian": 1892,
+      "peakDecade": 1890,
+      "byDecade": [
+        {
+          "decade": 1870,
+          "count": 1
+        },
+        {
+          "decade": 1880,
+          "count": 2
+        },
+        {
+          "decade": 1890,
+          "count": 3
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Hungary",
+          "count": 2
+        },
+        {
+          "country": "Switzerland",
+          "count": 1
+        },
+        {
+          "country": "Ukraine",
+          "count": 1
+        },
+        {
+          "country": "Germany",
+          "count": 1
+        },
+        {
+          "country": "Russia",
+          "count": 1
+        },
+        {
+          "country": "Latvia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2857029",
+          "name": "Anton Prinner",
+          "birthYear": 1902,
+          "deathYear": 1983,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1221494",
+          "name": "Diet Sayler",
+          "birthYear": 1939,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q130777",
+          "name": "Kazimir Malevich",
+          "birthYear": 1879,
+          "deathYear": 1935,
+          "citizenship": "Russian Empire",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q254395",
+          "name": "Sophie Taeuber-Arp",
+          "birthYear": 1889,
+          "deathYear": 1943,
+          "citizenship": "Switzerland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q310320",
+          "name": "Vladimir Tatlin",
+          "birthYear": 1885,
+          "deathYear": 1953,
+          "citizenship": "Russian Empire",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q89311",
+          "name": "Franz Wilhelm Seiwert",
+          "birthYear": 1894,
+          "deathYear": 1933,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1387109",
+          "name": "K\u0101rlis Johansons",
+          "birthYear": 1890,
+          "deathYear": 1929,
+          "citizenship": "Russian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q160448",
+          "name": "L\u00e1szl\u00f3 Moholy-Nagy",
+          "birthYear": 1895,
+          "deathYear": 1946,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "dada": {
+      "slug": "dada",
+      "name": "Dada",
+      "total": 4,
+      "yearsMin": 1886,
+      "yearsMax": 1925,
+      "yearsMedian": 1890,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 2
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 1
+        },
+        {
+          "country": "Switzerland",
+          "count": 1
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "United States",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q155158",
+          "name": "Kurt Schwitters",
+          "birthYear": 1887,
+          "deathYear": 1948,
+          "citizenship": "Germany",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q163938",
+          "name": "Jean Tinguely",
+          "birthYear": 1925,
+          "deathYear": 1991,
+          "citizenship": "Switzerland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q459378",
+          "name": "Beatrice Wood",
+          "birthYear": 1893,
+          "deathYear": 1998,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q84503",
+          "name": "Raoul Hausmann",
+          "birthYear": 1886,
+          "deathYear": 1971,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "dakar-school": {
+      "slug": "dakar-school",
+      "name": "Dakar School",
+      "total": 3,
+      "yearsMin": 1948,
+      "yearsMax": 1953,
+      "yearsMedian": 1953,
+      "peakDecade": 1950,
+      "byDecade": [
+        {
+          "decade": 1940,
+          "count": 1
+        },
+        {
+          "decade": 1950,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Senegal",
+          "count": 3
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q3032927",
+          "name": "Djibril Andr\u00e9 Diop",
+          "birthYear": 1953,
+          "deathYear": null,
+          "citizenship": "Senegal",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2376440",
+          "name": "Moussa Tine",
+          "birthYear": 1953,
+          "deathYear": null,
+          "citizenship": "Senegal",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3479800",
+          "name": "Serigne Mbaye Camara",
+          "birthYear": 1948,
+          "deathYear": null,
+          "citizenship": "Senegal",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "expressionism": {
+      "slug": "expressionism",
+      "name": "Expressionism",
+      "total": 53,
+      "yearsMin": 1849,
+      "yearsMax": 1971,
+      "yearsMedian": 1889,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1860,
+          "count": 4
+        },
+        {
+          "decade": 1870,
+          "count": 3
+        },
+        {
+          "decade": 1880,
+          "count": 19
+        },
+        {
+          "decade": 1890,
+          "count": 14
+        },
+        {
+          "decade": 1900,
+          "count": 2
+        },
+        {
+          "decade": 1910,
+          "count": 4
+        },
+        {
+          "decade": 1920,
+          "count": 4
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        },
+        {
+          "decade": 1970,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 19
+        },
+        {
+          "country": "Netherlands",
+          "count": 5
+        },
+        {
+          "country": "France",
+          "count": 4
+        },
+        {
+          "country": "Austria",
+          "count": 3
+        },
+        {
+          "country": "Romania",
+          "count": 3
+        },
+        {
+          "country": "Belgium",
+          "count": 3
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q61064",
+          "name": "Wassily Kandinsky",
+          "birthYear": 1866,
+          "deathYear": 1944,
+          "citizenship": "Germany",
+          "totalDegree": 14
+        },
+        {
+          "qid": "Q93284",
+          "name": "Marc Chagall",
+          "birthYear": 1887,
+          "deathYear": 1985,
+          "citizenship": "France",
+          "totalDegree": 7
+        },
+        {
+          "qid": "Q142472",
+          "name": "K\u00e4the Kollwitz",
+          "birthYear": 1867,
+          "deathYear": 1945,
+          "citizenship": "German Empire",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q153104",
+          "name": "Otto Dix",
+          "birthYear": 1891,
+          "deathYear": 1969,
+          "citizenship": "Germany",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q152788",
+          "name": "Emil Nolde",
+          "birthYear": 1867,
+          "deathYear": 1956,
+          "citizenship": "Germany",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q44032",
+          "name": "Egon Schiele",
+          "birthYear": 1890,
+          "deathYear": 1918,
+          "citizenship": "Cisleithania",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q120582",
+          "name": "Camille Claudel",
+          "birthYear": 1864,
+          "deathYear": 1943,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1865834",
+          "name": "Charles Eyck",
+          "birthYear": 1897,
+          "deathYear": 1983,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q62992",
+          "name": "Christian Rohlfs",
+          "birthYear": 1849,
+          "deathYear": 1938,
+          "citizenship": "German Reich",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q156890",
+          "name": "Ernst Barlach",
+          "birthYear": 1870,
+          "deathYear": 1938,
+          "citizenship": "German Reich",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q690155",
+          "name": "Marcel Gromaire",
+          "birthYear": 1892,
+          "deathYear": 1971,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q315544",
+          "name": "Paul Rebeyrolle",
+          "birthYear": 1926,
+          "deathYear": 2005,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q328248",
+          "name": "Pierre Alechinsky",
+          "birthYear": 1927,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q160422",
+          "name": "Theo van Doesburg",
+          "birthYear": 1883,
+          "deathYear": 1931,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q551282",
+          "name": "Wilhelm Lehmbruck",
+          "birthYear": 1881,
+          "deathYear": 1919,
+          "citizenship": "German Empire",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q863976",
+          "name": "Ahmed Al Safi",
+          "birthYear": 1971,
+          "deathYear": null,
+          "citizenship": "Iraq",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q259565",
+          "name": "Alfred Macalik",
+          "birthYear": 1888,
+          "deathYear": 1979,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q552055",
+          "name": "Anton\u00edn Proch\u00e1zka",
+          "birthYear": 1882,
+          "deathYear": 1945,
+          "citizenship": "Czechoslovakia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q33981",
+          "name": "August Macke",
+          "birthYear": 1887,
+          "deathYear": 1914,
+          "citizenship": "Kingdom of Prussia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q213790",
+          "name": "Bernhard Hoetger",
+          "birthYear": 1874,
+          "deathYear": 1949,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1039465",
+          "name": "Carl Lohse",
+          "birthYear": 1895,
+          "deathYear": 1965,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q381911",
+          "name": "Constant Permeke",
+          "birthYear": 1886,
+          "deathYear": 1952,
+          "citizenship": "Belgium",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1352028",
+          "name": "Erich Buchholz",
+          "birthYear": 1891,
+          "deathYear": 1972,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q229272",
+          "name": "Ernst Ludwig Kirchner",
+          "birthYear": 1880,
+          "deathYear": 1938,
+          "citizenship": "German Reich",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q622814",
+          "name": "Ernst Neizvestny",
+          "birthYear": 1925,
+          "deathYear": 2016,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1380885",
+          "name": "Georges Gimel",
+          "birthYear": 1898,
+          "deathYear": 1962,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q732739",
+          "name": "Gustaw Gwozdecki",
+          "birthYear": 1880,
+          "deathYear": 1935,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q828405",
+          "name": "Hanns Bolz",
+          "birthYear": 1885,
+          "deathYear": 1918,
+          "citizenship": "Kingdom of Prussia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q655484",
+          "name": "Hans Purrmann",
+          "birthYear": 1880,
+          "deathYear": 1966,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q743877",
+          "name": "Henryk Gotlib",
+          "birthYear": 1890,
+          "deathYear": 1966,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q324194",
+          "name": "Herbert Boeckl",
+          "birthYear": 1894,
+          "deathYear": 1966,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q677797",
+          "name": "Hermann Scherer",
+          "birthYear": 1893,
+          "deathYear": 1927,
+          "citizenship": "Switzerland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q518148",
+          "name": "Ida Kohlmeyer",
+          "birthYear": 1912,
+          "deathYear": 1997,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2675322",
+          "name": "Jan Wiegers",
+          "birthYear": 1893,
+          "deathYear": 1959,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q830827",
+          "name": "J\u00e1nos Mattis-Teutsch",
+          "birthYear": 1884,
+          "deathYear": 1960,
+          "citizenship": "Romania",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1732271",
+          "name": "Karl Manfred Rennertz",
+          "birthYear": 1952,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "fauvism": {
+      "slug": "fauvism",
+      "name": "Fauvism",
+      "total": 3,
+      "yearsMin": 1867,
+      "yearsMax": 1877,
+      "yearsMedian": 1873,
+      "peakDecade": 1870,
+      "byDecade": [
+        {
+          "decade": 1860,
+          "count": 1
+        },
+        {
+          "decade": 1870,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 2
+        },
+        {
+          "country": "Netherlands",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2834602",
+          "name": "Alexis M\u00e9rodack-Jeaneau",
+          "birthYear": 1873,
+          "deathYear": 1919,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q450730",
+          "name": "Georgette Agutte",
+          "birthYear": 1867,
+          "deathYear": 1922,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q170345",
+          "name": "Kees van Dongen",
+          "birthYear": 1877,
+          "deathYear": 1968,
+          "citizenship": "France",
+          "totalDegree": 1
+        }
+      ]
+    },
+    "fluxus": {
+      "slug": "fluxus",
+      "name": "Fluxus",
+      "total": 7,
+      "yearsMin": 1921,
+      "yearsMax": 1933,
+      "yearsMedian": 1930,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 3
+        },
+        {
+          "decade": 1930,
+          "count": 4
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 2
+        },
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Romania",
+          "count": 1
+        },
+        {
+          "country": "Japan",
+          "count": 1
+        },
+        {
+          "country": "Lithuania",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q153965",
+          "name": "Joseph Beuys",
+          "birthYear": 1921,
+          "deathYear": 1986,
+          "citizenship": "Germany",
+          "totalDegree": 6
+        },
+        {
+          "qid": "Q366380",
+          "name": "Allan Kaprow",
+          "birthYear": 1927,
+          "deathYear": 2006,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q117012",
+          "name": "Yoko Ono",
+          "birthYear": 1933,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q123487",
+          "name": "Daniel Spoerri",
+          "birthYear": 1930,
+          "deathYear": 2024,
+          "citizenship": "Switzerland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q686321",
+          "name": "George Brecht",
+          "birthYear": 1924,
+          "deathYear": 2008,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q455931",
+          "name": "George Maciunas",
+          "birthYear": 1931,
+          "deathYear": 1978,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q326226",
+          "name": "Wolf Vostell",
+          "birthYear": 1932,
+          "deathYear": 1998,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "french-realism": {
+      "slug": "french-realism",
+      "name": "French Realism",
+      "total": 15,
+      "yearsMin": 1819,
+      "yearsMax": 1935,
+      "yearsMedian": 1860,
+      "peakDecade": 1830,
+      "byDecade": [
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1820,
+          "count": 1
+        },
+        {
+          "decade": 1830,
+          "count": 3
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1850,
+          "count": 1
+        },
+        {
+          "decade": 1860,
+          "count": 2
+        },
+        {
+          "decade": 1900,
+          "count": 2
+        },
+        {
+          "decade": 1910,
+          "count": 2
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 5
+        },
+        {
+          "country": "Ukraine",
+          "count": 2
+        },
+        {
+          "country": "Belarus",
+          "count": 2
+        },
+        {
+          "country": "Serbia",
+          "count": 2
+        },
+        {
+          "country": "United States",
+          "count": 1
+        },
+        {
+          "country": "Empire of Japan",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2140000",
+          "name": "Alexandre Falgui\u00e8re",
+          "birthYear": 1831,
+          "deathYear": 1900,
+          "citizenship": "France",
+          "totalDegree": 19
+        },
+        {
+          "qid": "Q34618",
+          "name": "Gustave Courbet",
+          "birthYear": 1819,
+          "deathYear": 1877,
+          "citizenship": "France",
+          "totalDegree": 12
+        },
+        {
+          "qid": "Q700797",
+          "name": "Li Mei-shu",
+          "birthYear": 1902,
+          "deathYear": 1983,
+          "citizenship": "Empire of Japan",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q214905",
+          "name": "Thomas Eakins",
+          "birthYear": 1844,
+          "deathYear": 1916,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q957538",
+          "name": "Alphonse Legros",
+          "birthYear": 1837,
+          "deathYear": 1911,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q255253",
+          "name": "Marie Bashkirtseva",
+          "birthYear": 1860,
+          "deathYear": 1884,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q241732",
+          "name": "Rosa Bonheur",
+          "birthYear": 1822,
+          "deathYear": 1899,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q36777",
+          "name": "Sergey Adashkevich",
+          "birthYear": 1918,
+          "deathYear": 2007,
+          "citizenship": "Soviet Union",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2911053",
+          "name": "Boris Zaborov",
+          "birthYear": 1935,
+          "deathYear": 2021,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2388812",
+          "name": "Jacques Hnizdovsky",
+          "birthYear": 1915,
+          "deathYear": 1985,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q551648",
+          "name": "Jules Dalou",
+          "birthYear": 1838,
+          "deathYear": 1902,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1821967",
+          "name": "Lev Russov",
+          "birthYear": 1926,
+          "deathYear": 1988,
+          "citizenship": "Soviet Union",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1816563",
+          "name": "Paul Gustav Fischer",
+          "birthYear": 1860,
+          "deathYear": 1934,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2382623",
+          "name": "Petar Ubavki\u0107",
+          "birthYear": 1852,
+          "deathYear": 1910,
+          "citizenship": "Serbia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1566263",
+          "name": "Stevan Bodnarov",
+          "birthYear": 1905,
+          "deathYear": 1993,
+          "citizenship": "Serbia",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "futurism": {
+      "slug": "futurism",
+      "name": "Futurism",
+      "total": 9,
+      "yearsMin": 1871,
+      "yearsMax": 1910,
+      "yearsMedian": 1890,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1870,
+          "count": 1
+        },
+        {
+          "decade": 1880,
+          "count": 3
+        },
+        {
+          "decade": 1890,
+          "count": 2
+        },
+        {
+          "decade": 1900,
+          "count": 2
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 8
+        },
+        {
+          "country": "Russia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q708028",
+          "name": "Bruno Munari",
+          "birthYear": 1907,
+          "deathYear": 1998,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q368254",
+          "name": "Giacomo Balla",
+          "birthYear": 1871,
+          "deathYear": 1958,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q169984",
+          "name": "Gino Severini",
+          "birthYear": 1883,
+          "deathYear": 1966,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q309618",
+          "name": "Giorgio Morandi",
+          "birthYear": 1890,
+          "deathYear": 1964,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1115614",
+          "name": "Arnaldo Ginna",
+          "birthYear": 1890,
+          "deathYear": 1982,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q232391",
+          "name": "Natalia Goncharova",
+          "birthYear": 1881,
+          "deathYear": 1962,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1750181",
+          "name": "Renato Bertelli",
+          "birthYear": 1900,
+          "deathYear": 1974,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2423054",
+          "name": "Sante Monachesi",
+          "birthYear": 1910,
+          "deathYear": 1991,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q152797",
+          "name": "Umberto Boccioni",
+          "birthYear": 1882,
+          "deathYear": 1916,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "impressionism": {
+      "slug": "impressionism",
+      "name": "Impressionism",
+      "total": 10,
+      "yearsMin": 1834,
+      "yearsMax": 1891,
+      "yearsMedian": 1855,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1830,
+          "count": 2
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1850,
+          "count": 2
+        },
+        {
+          "decade": 1860,
+          "count": 4
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 5
+        },
+        {
+          "country": "Sweden",
+          "count": 1
+        },
+        {
+          "country": "Norway",
+          "count": 1
+        },
+        {
+          "country": "Russia",
+          "count": 1
+        },
+        {
+          "country": "Lithuania",
+          "count": 1
+        },
+        {
+          "country": "Colombia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q5589",
+          "name": "Henri Matisse",
+          "birthYear": 1869,
+          "deathYear": 1954,
+          "citizenship": "France",
+          "totalDegree": 9
+        },
+        {
+          "qid": "Q46373",
+          "name": "Edgar Degas",
+          "birthYear": 1834,
+          "deathYear": 1917,
+          "citizenship": "France",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q462022",
+          "name": "Anna Golubkina",
+          "birthYear": 1864,
+          "deathYear": 1927,
+          "citizenship": "Russian Empire",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q2092993",
+          "name": "Pierre Ernest Prins",
+          "birthYear": 1838,
+          "deathYear": 1913,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q365068",
+          "name": "Peder Severin Kr\u00f8yer",
+          "birthYear": 1851,
+          "deathYear": 1909,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q39931",
+          "name": "Pierre-Auguste Renoir",
+          "birthYear": 1841,
+          "deathYear": 1919,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q206820",
+          "name": "Anders Zorn",
+          "birthYear": 1860,
+          "deathYear": 1920,
+          "citizenship": "Sweden",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q658862",
+          "name": "Jean-Fran\u00e7ois Raffa\u00eblli",
+          "birthYear": 1850,
+          "deathYear": 1924,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q524942",
+          "name": "Andr\u00e9s de Santa Maria",
+          "birthYear": 1860,
+          "deathYear": 1945,
+          "citizenship": "Colombia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q692098",
+          "name": "Lasar Segall",
+          "birthYear": 1891,
+          "deathYear": 1957,
+          "citizenship": "Brazil",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "minimalism": {
+      "slug": "minimalism",
+      "name": "Minimalism",
+      "total": 12,
+      "yearsMin": 1921,
+      "yearsMax": 1943,
+      "yearsMedian": 1935,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 2
+        },
+        {
+          "decade": 1930,
+          "count": 7
+        },
+        {
+          "decade": 1940,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 9
+        },
+        {
+          "country": "Germany",
+          "count": 2
+        },
+        {
+          "country": "Italy",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q315348",
+          "name": "Carl Andre",
+          "birthYear": 1935,
+          "deathYear": 2024,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q250293",
+          "name": "Donald Judd",
+          "birthYear": 1928,
+          "deathYear": 1994,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q375268",
+          "name": "Frank Stella",
+          "birthYear": 1936,
+          "deathYear": 2024,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1452504",
+          "name": "Fred Sandback",
+          "birthYear": 1943,
+          "deathYear": 2003,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q565848",
+          "name": "Anne Truitt",
+          "birthYear": 1921,
+          "deathYear": 2004,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q861946",
+          "name": "Bill Bollinger",
+          "birthYear": 1939,
+          "deathYear": 1988,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1067301",
+          "name": "Charlotte Posenenske",
+          "birthYear": 1930,
+          "deathYear": 1985,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2585256",
+          "name": "Eliseo Mattiacci",
+          "birthYear": 1940,
+          "deathYear": 2019,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q241977",
+          "name": "Imi Knoebel",
+          "birthYear": 1940,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q947075",
+          "name": "John McCracken",
+          "birthYear": 1934,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q321245",
+          "name": "Richard Serra",
+          "birthYear": 1938,
+          "deathYear": 2024,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q126506",
+          "name": "Walter De Maria",
+          "birthYear": 1935,
+          "deathYear": 2013,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "movimento-arte-concreta": {
+      "slug": "movimento-arte-concreta",
+      "name": "Movimento Arte Concreta",
+      "total": 8,
+      "yearsMin": 1894,
+      "yearsMax": 1930,
+      "yearsMedian": 1921,
+      "peakDecade": 1890,
+      "byDecade": [
+        {
+          "decade": 1890,
+          "count": 3
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 3
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 7
+        },
+        {
+          "country": "Argentina",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q312392",
+          "name": "Lucio Fontana",
+          "birthYear": 1899,
+          "deathYear": 1968,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q340242",
+          "name": "Achille Perilli",
+          "birthYear": 1927,
+          "deathYear": 2021,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2939027",
+          "name": "Carla Accardi",
+          "birthYear": 1924,
+          "deathYear": 2014,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q921345",
+          "name": "Enrico Prampolini",
+          "birthYear": 1894,
+          "deathYear": 1956,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2119700",
+          "name": "Francesco Somaini",
+          "birthYear": 1926,
+          "deathYear": 2005,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q709990",
+          "name": "Joe Colombo",
+          "birthYear": 1930,
+          "deathYear": 1971,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3852911",
+          "name": "Mauro Reggiani",
+          "birthYear": 1897,
+          "deathYear": 1980,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q999174",
+          "name": "Renato Barisani",
+          "birthYear": 1918,
+          "deathYear": 2011,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "neoclassicism": {
+      "slug": "neoclassicism",
+      "name": "Neoclassicism",
+      "total": 9,
+      "yearsMin": 1806,
+      "yearsMax": 1879,
+      "yearsMedian": 1817,
+      "peakDecade": 1810,
+      "byDecade": [
+        {
+          "decade": 1800,
+          "count": 2
+        },
+        {
+          "decade": 1810,
+          "count": 3
+        },
+        {
+          "decade": 1830,
+          "count": 1
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1850,
+          "count": 1
+        },
+        {
+          "decade": 1870,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 2
+        },
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Moldova",
+          "count": 1
+        },
+        {
+          "country": "Denmark",
+          "count": 1
+        },
+        {
+          "country": "Greece",
+          "count": 1
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q331158",
+          "name": "Yannoulis Chalepas",
+          "birthYear": 1851,
+          "deathYear": 1938,
+          "citizenship": "Greece",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q200644",
+          "name": "Moissey Kogan",
+          "birthYear": 1879,
+          "deathYear": 1943,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q916057",
+          "name": "Giovanni Dupr\u00e9",
+          "birthYear": 1817,
+          "deathYear": 1882,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q434452",
+          "name": "Giovanni Maria Benzoni",
+          "birthYear": 1809,
+          "deathYear": 1873,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q448214",
+          "name": "Harriet Hosmer",
+          "birthYear": 1830,
+          "deathYear": 1908,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q288087",
+          "name": "Jens Adolf Jerichau",
+          "birthYear": 1816,
+          "deathYear": 1883,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1713028",
+          "name": "Julius Troschel",
+          "birthYear": 1806,
+          "deathYear": 1863,
+          "citizenship": "Kingdom of Prussia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2417604",
+          "name": "Theodor Friedl",
+          "birthYear": 1842,
+          "deathYear": 1900,
+          "citizenship": "Austrian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1863438",
+          "name": "Thomas Crawford",
+          "birthYear": 1813,
+          "deathYear": 1857,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "new-sculpture": {
+      "slug": "new-sculpture",
+      "name": "New Sculpture",
+      "total": 4,
+      "yearsMin": 1852,
+      "yearsMax": 1860,
+      "yearsMedian": 1855,
+      "peakDecade": 1850,
+      "byDecade": [
+        {
+          "decade": 1850,
+          "count": 3
+        },
+        {
+          "decade": 1860,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United Kingdom",
+          "count": 4
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2835166",
+          "name": "Alfred Gilbert",
+          "birthYear": 1854,
+          "deathYear": 1934,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2065439",
+          "name": "Edward Onslow Ford",
+          "birthYear": 1852,
+          "deathYear": 1901,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2835078",
+          "name": "Alfred Drury",
+          "birthYear": 1856,
+          "deathYear": 1944,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2265709",
+          "name": "George Frampton",
+          "birthYear": 1860,
+          "deathYear": 1928,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "nouveau-realisme": {
+      "slug": "nouveau-realisme",
+      "name": "Nouveau r\u00e9alisme",
+      "total": 4,
+      "yearsMin": 1921,
+      "yearsMax": 1928,
+      "yearsMedian": 1927,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 4
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 3
+        },
+        {
+          "country": "United States",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q367973",
+          "name": "Arman",
+          "birthYear": 1928,
+          "deathYear": 2005,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q445065",
+          "name": "C\u00e9sar Baldaccini",
+          "birthYear": 1921,
+          "deathYear": 1998,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q317823",
+          "name": "Raymond Hains",
+          "birthYear": 1926,
+          "deathYear": 2005,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q154335",
+          "name": "Yves Klein",
+          "birthYear": 1928,
+          "deathYear": 1962,
+          "citizenship": "France",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "postmodernism": {
+      "slug": "postmodernism",
+      "name": "Postmodernism",
+      "total": 5,
+      "yearsMin": 1926,
+      "yearsMax": 1974,
+      "yearsMedian": 1940,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        },
+        {
+          "decade": 1970,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "Australia",
+          "count": 1
+        },
+        {
+          "country": "Netherlands",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q78884",
+          "name": "Hans Hollein",
+          "birthYear": 1934,
+          "deathYear": 2014,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q445487",
+          "name": "Jimmie Durham",
+          "birthYear": 1940,
+          "deathYear": 2021,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2701831",
+          "name": "Peer Veneman",
+          "birthYear": 1952,
+          "deathYear": null,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1666908",
+          "name": "Ricky Swallow",
+          "birthYear": 1974,
+          "deathYear": null,
+          "citizenship": "Australia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q526954",
+          "name": "Robert Breer",
+          "birthYear": 1926,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "pre-raphaelite-brotherhood": {
+      "slug": "pre-raphaelite-brotherhood",
+      "name": "Pre-Raphaelite Brotherhood",
+      "total": 3,
+      "yearsMin": 1825,
+      "yearsMax": 1843,
+      "yearsMedian": 1839,
+      "peakDecade": 1820,
+      "byDecade": [
+        {
+          "decade": 1820,
+          "count": 1
+        },
+        {
+          "decade": 1830,
+          "count": 1
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United Kingdom",
+          "count": 3
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q276064",
+          "name": "Maria Zambaco",
+          "birthYear": 1843,
+          "deathYear": 1914,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1763678",
+          "name": "Henry Holiday",
+          "birthYear": 1839,
+          "deathYear": 1927,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2280558",
+          "name": "Thomas Woolner",
+          "birthYear": 1825,
+          "deathYear": 1892,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "romanticism": {
+      "slug": "romanticism",
+      "name": "Romanticism",
+      "total": 9,
+      "yearsMin": 1802,
+      "yearsMax": 1848,
+      "yearsMedian": 1820,
+      "peakDecade": 1800,
+      "byDecade": [
+        {
+          "decade": 1800,
+          "count": 3
+        },
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1820,
+          "count": 3
+        },
+        {
+          "decade": 1840,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 5
+        },
+        {
+          "country": "United Kingdom",
+          "count": 1
+        },
+        {
+          "country": "Belgium",
+          "count": 1
+        },
+        {
+          "country": "Belarus",
+          "count": 1
+        },
+        {
+          "country": "Hungary",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q182791",
+          "name": "Jean-Baptiste Carpeaux",
+          "birthYear": 1827,
+          "deathYear": 1875,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q2834020",
+          "name": "Pierre Alexandre Schoenewerk",
+          "birthYear": 1820,
+          "deathYear": 1885,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q352978",
+          "name": "Antoine Wiertz",
+          "birthYear": 1806,
+          "deathYear": 1865,
+          "citizenship": "Belgium",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1446788",
+          "name": "Joseph F\u00e9lon",
+          "birthYear": 1818,
+          "deathYear": 1896,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q367832",
+          "name": "Kazimierz Alchimowicz",
+          "birthYear": 1840,
+          "deathYear": 1916,
+          "citizenship": "Russian Empire",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1389252",
+          "name": "Albert Bartholom\u00e9",
+          "birthYear": 1848,
+          "deathYear": 1928,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2907846",
+          "name": "Constantin Daniel Rosenthal",
+          "birthYear": 1820,
+          "deathYear": 1851,
+          "citizenship": "Austrian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q328369",
+          "name": "Edwin Landseer",
+          "birthYear": 1802,
+          "deathYear": 1873,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q676001",
+          "name": "Eug\u00e8ne Dev\u00e9ria",
+          "birthYear": 1805,
+          "deathYear": 1865,
+          "citizenship": "France",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "school-of-paris": {
+      "slug": "school-of-paris",
+      "name": "School of Paris",
+      "total": 9,
+      "yearsMin": 1881,
+      "yearsMax": 1923,
+      "yearsMedian": 1904,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1890,
+          "count": 2
+        },
+        {
+          "decade": 1900,
+          "count": 2
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 5
+        },
+        {
+          "country": "Ukraine",
+          "count": 1
+        },
+        {
+          "country": "Lithuania",
+          "count": 1
+        },
+        {
+          "country": "Belgium",
+          "count": 1
+        },
+        {
+          "country": "Greece",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2848308",
+          "name": "Andr\u00e9 Minaux",
+          "birthYear": 1923,
+          "deathYear": 1986,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q3159549",
+          "name": "Jacques Mennessons",
+          "birthYear": 1923,
+          "deathYear": 1983,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q3133215",
+          "name": "Henry de Waroquier",
+          "birthYear": 1881,
+          "deathYear": 1970,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2826889",
+          "name": "Aglae Liberaki",
+          "birthYear": 1923,
+          "deathYear": 1985,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q516950",
+          "name": "Andr\u00e9 Beaudin",
+          "birthYear": 1895,
+          "deathYear": 1979,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q662900",
+          "name": "Henri-Georges Adam",
+          "birthYear": 1904,
+          "deathYear": 1967,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q946061",
+          "name": "Max Band",
+          "birthYear": 1901,
+          "deathYear": 1974,
+          "citizenship": "Lithuania",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q654902",
+          "name": "Raoul Ubac",
+          "birthYear": 1910,
+          "deathYear": 1985,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q245361",
+          "name": "Zygmunt Menkes",
+          "birthYear": 1896,
+          "deathYear": 1986,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "scuola-romana": {
+      "slug": "scuola-romana",
+      "name": "Scuola Romana",
+      "total": 3,
+      "yearsMin": 1885,
+      "yearsMax": 1914,
+      "yearsMedian": 1902,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 3
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q2288889",
+          "name": "Antonio Cardile",
+          "birthYear": 1914,
+          "deathYear": 1986,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1898902",
+          "name": "Mario Mafai",
+          "birthYear": 1902,
+          "deathYear": 1965,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q94130",
+          "name": "Roberto Melli",
+          "birthYear": 1885,
+          "deathYear": 1958,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "symbolism": {
+      "slug": "symbolism",
+      "name": "Symbolism",
+      "total": 32,
+      "yearsMin": 1817,
+      "yearsMax": 1943,
+      "yearsMedian": 1865,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1820,
+          "count": 2
+        },
+        {
+          "decade": 1830,
+          "count": 2
+        },
+        {
+          "decade": 1840,
+          "count": 4
+        },
+        {
+          "decade": 1850,
+          "count": 4
+        },
+        {
+          "decade": 1860,
+          "count": 8
+        },
+        {
+          "decade": 1870,
+          "count": 6
+        },
+        {
+          "decade": 1880,
+          "count": 3
+        },
+        {
+          "decade": 1940,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 8
+        },
+        {
+          "country": "Italy",
+          "count": 3
+        },
+        {
+          "country": "Russia",
+          "count": 3
+        },
+        {
+          "country": "Belgium",
+          "count": 3
+        },
+        {
+          "country": "Switzerland",
+          "count": 2
+        },
+        {
+          "country": "United Kingdom",
+          "count": 2
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q30755",
+          "name": "Auguste Rodin",
+          "birthYear": 1840,
+          "deathYear": 1917,
+          "citizenship": "France",
+          "totalDegree": 21
+        },
+        {
+          "qid": "Q37693",
+          "name": "Paul Gauguin",
+          "birthYear": 1848,
+          "deathYear": 1903,
+          "citizenship": "France",
+          "totalDegree": 12
+        },
+        {
+          "qid": "Q153920",
+          "name": "Aristide Maillol",
+          "birthYear": 1861,
+          "deathYear": 1944,
+          "citizenship": "France",
+          "totalDegree": 10
+        },
+        {
+          "qid": "Q1062517",
+          "name": "Giulio Aristide Sartorio",
+          "birthYear": 1860,
+          "deathYear": 1932,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 6
+        },
+        {
+          "qid": "Q203828",
+          "name": "Gustave Moreau",
+          "birthYear": 1826,
+          "deathYear": 1898,
+          "citizenship": "France",
+          "totalDegree": 6
+        },
+        {
+          "qid": "Q1679686",
+          "name": "Jakub Obrovsk\u00fd",
+          "birthYear": 1882,
+          "deathYear": 1949,
+          "citizenship": "Austria\u2013Hungary",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q44252",
+          "name": "Max Klinger",
+          "birthYear": 1857,
+          "deathYear": 1920,
+          "citizenship": "Germany",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q154349",
+          "name": "Odilon Redon",
+          "birthYear": 1840,
+          "deathYear": 1916,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q524154",
+          "name": "Eug\u00e8ne Grasset",
+          "birthYear": 1845,
+          "deathYear": 1917,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q559281",
+          "name": "George Minne",
+          "birthYear": 1866,
+          "deathYear": 1941,
+          "citizenship": "Belgium",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q259946",
+          "name": "Ettore Tito",
+          "birthYear": 1859,
+          "deathYear": 1941,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q652723",
+          "name": "Georges Lacombe",
+          "birthYear": 1868,
+          "deathYear": 1916,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1360808",
+          "name": "Leonardo Bistolfi",
+          "birthYear": 1859,
+          "deathYear": 1933,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q727940",
+          "name": "Lucien L\u00e9vy-Dhurmer",
+          "birthYear": 1865,
+          "deathYear": 1953,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q215100",
+          "name": "Mikhail Vrubel",
+          "birthYear": 1856,
+          "deathYear": 1910,
+          "citizenship": "Russian Empire",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q6682",
+          "name": "Gustave Dor\u00e9",
+          "birthYear": 1832,
+          "deathYear": 1883,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q264193",
+          "name": "\u00c9mile Bernard",
+          "birthYear": 1868,
+          "deathYear": 1941,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q123071",
+          "name": "Arnold B\u00f6cklin",
+          "birthYear": 1827,
+          "deathYear": 1901,
+          "citizenship": "Switzerland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2909319",
+          "name": "Boles\u0142aw Biegas",
+          "birthYear": 1877,
+          "deathYear": 1954,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3498169",
+          "name": "Dmitri Stelletsky",
+          "birthYear": 1875,
+          "deathYear": 1947,
+          "citizenship": "Russian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q957157",
+          "name": "Franti\u0161ek B\u00edlek",
+          "birthYear": 1872,
+          "deathYear": 1941,
+          "citizenship": "Czechoslovakia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q160252",
+          "name": "Frederic Leighton",
+          "birthYear": 1830,
+          "deathYear": 1896,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2554704",
+          "name": "Geo Verbanck",
+          "birthYear": 1881,
+          "deathYear": 1961,
+          "citizenship": "Belgium",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q183245",
+          "name": "George Frederic Watts",
+          "birthYear": 1817,
+          "deathYear": 1904,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q450114",
+          "name": "Henry de Groux",
+          "birthYear": 1866,
+          "deathYear": 1930,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q263080",
+          "name": "Hugo Simberg",
+          "birthYear": 1873,
+          "deathYear": 1917,
+          "citizenship": "Grand Duchy of Finland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q458861",
+          "name": "Jan Thorn Prikker",
+          "birthYear": 1868,
+          "deathYear": 1932,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3162050",
+          "name": "Jann Haworth",
+          "birthYear": 1942,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2025924",
+          "name": "Mihail Chemiakin",
+          "birthYear": 1943,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q282583",
+          "name": "Naoum Aronson",
+          "birthYear": 1873,
+          "deathYear": 1943,
+          "citizenship": "Russian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q569451",
+          "name": "Sascha Schneider",
+          "birthYear": 1870,
+          "deathYear": 1927,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1435414",
+          "name": "Xul Solar",
+          "birthYear": 1887,
+          "deathYear": 1963,
+          "citizenship": "Argentina",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "tinerimea-artistica": {
+      "slug": "tinerimea-artistica",
+      "name": "Tinerimea artistic\u0103",
+      "total": 4,
+      "yearsMin": 1864,
+      "yearsMax": 1903,
+      "yearsMedian": 1889,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1860,
+          "count": 1
+        },
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Romania",
+          "count": 4
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q958634",
+          "name": "J\u00f3zsef Fekete",
+          "birthYear": 1903,
+          "deathYear": 1979,
+          "citizenship": "Hungary",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q2344168",
+          "name": "Ion Jalea",
+          "birthYear": 1887,
+          "deathYear": 1983,
+          "citizenship": "Romania",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q513465",
+          "name": "Oscar Han",
+          "birthYear": 1891,
+          "deathYear": 1976,
+          "citizenship": "Romania",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1265042",
+          "name": "Dumitru Mirea",
+          "birthYear": 1864,
+          "deathYear": 1942,
+          "citizenship": "Romania",
+          "totalDegree": 1
+        }
+      ]
+    },
+    "young-british-artists": {
+      "slug": "young-british-artists",
+      "name": "Young British Artists",
+      "total": 4,
+      "yearsMin": 1958,
+      "yearsMax": 1966,
+      "yearsMedian": 1964,
+      "peakDecade": 1960,
+      "byDecade": [
+        {
+          "decade": 1950,
+          "count": 1
+        },
+        {
+          "decade": 1960,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United Kingdom",
+          "count": 3
+        },
+        {
+          "country": "Australia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q294326",
+          "name": "Damien Hirst",
+          "birthYear": 1965,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1252327",
+          "name": "Douglas Gordon",
+          "birthYear": 1966,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q510808",
+          "name": "Ron Mueck",
+          "birthYear": 1958,
+          "deathYear": null,
+          "citizenship": "Australia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q241185",
+          "name": "Tracey Emin",
+          "birthYear": 1963,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "abstract-art": {
+      "slug": "abstract-art",
+      "name": "abstract art",
+      "total": 274,
+      "yearsMin": 1874,
+      "yearsMax": 1974,
+      "yearsMedian": 1935,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1870,
+          "count": 3
+        },
+        {
+          "decade": 1880,
+          "count": 5
+        },
+        {
+          "decade": 1890,
+          "count": 5
+        },
+        {
+          "decade": 1900,
+          "count": 17
+        },
+        {
+          "decade": 1910,
+          "count": 28
+        },
+        {
+          "decade": 1920,
+          "count": 55
+        },
+        {
+          "decade": 1930,
+          "count": 51
+        },
+        {
+          "decade": 1940,
+          "count": 53
+        },
+        {
+          "decade": 1950,
+          "count": 41
+        },
+        {
+          "decade": 1960,
+          "count": 13
+        },
+        {
+          "decade": 1970,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Netherlands",
+          "count": 63
+        },
+        {
+          "country": "Germany",
+          "count": 58
+        },
+        {
+          "country": "United States",
+          "count": 17
+        },
+        {
+          "country": "United Kingdom",
+          "count": 17
+        },
+        {
+          "country": "Spain",
+          "count": 13
+        },
+        {
+          "country": "Poland",
+          "count": 12
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q170071",
+          "name": "Josef Albers",
+          "birthYear": 1888,
+          "deathYear": 1976,
+          "citizenship": "Germany",
+          "totalDegree": 6
+        },
+        {
+          "qid": "Q977506",
+          "name": "Robert Schad",
+          "birthYear": 1953,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q529591",
+          "name": "Anthony Caro",
+          "birthYear": 1924,
+          "deathYear": 2013,
+          "citizenship": "United Kingdom",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q813581",
+          "name": "Bernhard Heiliger",
+          "birthYear": 1915,
+          "deathYear": 1995,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1042835",
+          "name": "Carlos Cruz-Diez",
+          "birthYear": 1923,
+          "deathYear": 2019,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1393442",
+          "name": "Gerson Fehrenbach",
+          "birthYear": 1932,
+          "deathYear": 2004,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1745018",
+          "name": "Klaus Duschat",
+          "birthYear": 1955,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q216424",
+          "name": "Will Lammert",
+          "birthYear": 1892,
+          "deathYear": 1957,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q461165",
+          "name": "Bernhard Luginb\u00fchl",
+          "birthYear": 1929,
+          "deathYear": 2011,
+          "citizenship": "Switzerland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q879842",
+          "name": "Bj\u00f8rn N\u00f8rgaard",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q565472",
+          "name": "Blinky Palermo",
+          "birthYear": 1943,
+          "deathYear": 1977,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1078238",
+          "name": "Christa von Schnitzler",
+          "birthYear": 1922,
+          "deathYear": 2003,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q544899",
+          "name": "Ellsworth Kelly",
+          "birthYear": 1923,
+          "deathYear": 2015,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q667780",
+          "name": "Fran\u00e7ois Morellet",
+          "birthYear": 1926,
+          "deathYear": 2016,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q632656",
+          "name": "George Rickey",
+          "birthYear": 1907,
+          "deathYear": 2002,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1527496",
+          "name": "Gisela Bruchhausen",
+          "birthYear": 1940,
+          "deathYear": 2025,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1411156",
+          "name": "Hans Uhlmann",
+          "birthYear": 1900,
+          "deathYear": 1975,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q738892",
+          "name": "Henri Laurens",
+          "birthYear": 1885,
+          "deathYear": 1954,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1609237",
+          "name": "Herbert Volz",
+          "birthYear": 1944,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2512291",
+          "name": "Hugo Duchateau",
+          "birthYear": 1938,
+          "deathYear": null,
+          "citizenship": "Belgium",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1681954",
+          "name": "Jan Koblasa",
+          "birthYear": 1932,
+          "deathYear": 2017,
+          "citizenship": "Czechoslovakia",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1394159",
+          "name": "Jeppe Hein",
+          "birthYear": 1974,
+          "deathYear": null,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q571534",
+          "name": "Joannis Avramidis",
+          "birthYear": 1922,
+          "deathYear": 2016,
+          "citizenship": "Austria",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q520713",
+          "name": "Joaqu\u00edn Torres-Garc\u00eda",
+          "birthYear": 1874,
+          "deathYear": 1949,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q613525",
+          "name": "Joost Barbiers",
+          "birthYear": 1949,
+          "deathYear": 2015,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q316531",
+          "name": "Julio Gonz\u00e1lez",
+          "birthYear": 1876,
+          "deathYear": 1942,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1731434",
+          "name": "Karl Hartung",
+          "birthYear": 1908,
+          "deathYear": 1967,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1881669",
+          "name": "Marijke de Goey",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q123454",
+          "name": "Max Bill",
+          "birthYear": 1908,
+          "deathYear": 1994,
+          "citizenship": "Switzerland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q309482",
+          "name": "Naum Gabo",
+          "birthYear": 1890,
+          "deathYear": 1977,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q708631",
+          "name": "Pierre Soulages",
+          "birthYear": 1919,
+          "deathYear": 2022,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1401377",
+          "name": "Rudolf Hoflehner",
+          "birthYear": 1916,
+          "deathYear": 1995,
+          "citizenship": "Austria",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q820821",
+          "name": "Tim Scott",
+          "birthYear": 1937,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q747973",
+          "name": "Tom Bass",
+          "birthYear": 1916,
+          "deathYear": 2010,
+          "citizenship": "Australia",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2418633",
+          "name": "Walter Schelenz",
+          "birthYear": 1903,
+          "deathYear": 1987,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1992597",
+          "name": "Wolfgang Bier",
+          "birthYear": 1943,
+          "deathYear": 1998,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        }
+      ]
+    },
+    "abstract-expressionism": {
+      "slug": "abstract-expressionism",
+      "name": "abstract expressionism",
+      "total": 37,
+      "yearsMin": 1889,
+      "yearsMax": 1959,
+      "yearsMedian": 1915,
+      "peakDecade": 1900,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 12
+        },
+        {
+          "decade": 1910,
+          "count": 8
+        },
+        {
+          "decade": 1920,
+          "count": 9
+        },
+        {
+          "decade": 1930,
+          "count": 3
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        },
+        {
+          "decade": 1950,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 18
+        },
+        {
+          "country": "Netherlands",
+          "count": 4
+        },
+        {
+          "country": "France",
+          "count": 3
+        },
+        {
+          "country": "Ukraine",
+          "count": 2
+        },
+        {
+          "country": "Italy",
+          "count": 2
+        },
+        {
+          "country": "Turkey",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q159566",
+          "name": "Cy Twombly",
+          "birthYear": 1928,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q360286",
+          "name": "Paul-\u00c9mile Borduas",
+          "birthYear": 1905,
+          "deathYear": 1960,
+          "citizenship": "Canada",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q235281",
+          "name": "Helen Frankenthaler",
+          "birthYear": 1928,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q526470",
+          "name": "Sam Francis",
+          "birthYear": 1923,
+          "deathYear": 1994,
+          "citizenship": "United States",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q442628",
+          "name": "Isamu Noguchi",
+          "birthYear": 1904,
+          "deathYear": 1988,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q276372",
+          "name": "Lee Bontecou",
+          "birthYear": 1931,
+          "deathYear": 2022,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q132305",
+          "name": "Willem de Kooning",
+          "birthYear": 1904,
+          "deathYear": 1997,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1906150",
+          "name": "Charles Alston",
+          "birthYear": 1907,
+          "deathYear": 1977,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q726169",
+          "name": "David Smith",
+          "birthYear": 1906,
+          "deathYear": 1965,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q449536",
+          "name": "Elaine de Kooning",
+          "birthYear": 1918,
+          "deathYear": 1989,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1471865",
+          "name": "Ibram Lassaw",
+          "birthYear": 1913,
+          "deathYear": 2003,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q3161863",
+          "name": "Jane Frank",
+          "birthYear": 1918,
+          "deathYear": 1986,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q776564",
+          "name": "Jean-Pierre Rives",
+          "birthYear": 1952,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q159409",
+          "name": "Louise Bourgeois",
+          "birthYear": 1911,
+          "deathYear": 2010,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q365388",
+          "name": "Adolph Gottlieb",
+          "birthYear": 1903,
+          "deathYear": 1974,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q827547",
+          "name": "Alfonso A. Ossorio",
+          "birthYear": 1916,
+          "deathYear": 1990,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q577242",
+          "name": "Alfred Leslie",
+          "birthYear": 1927,
+          "deathYear": 2023,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q165648",
+          "name": "Arshile Gorky",
+          "birthYear": 1904,
+          "deathYear": 1948,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q374504",
+          "name": "Barnett Newman",
+          "birthYear": 1905,
+          "deathYear": 1970,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q435791",
+          "name": "Betty Parsons",
+          "birthYear": 1900,
+          "deathYear": 1982,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q312264",
+          "name": "Captain Beefheart",
+          "birthYear": 1941,
+          "deathYear": 2010,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q522662",
+          "name": "Carmen Herrera",
+          "birthYear": 1915,
+          "deathYear": 2022,
+          "citizenship": "Cuba",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3019301",
+          "name": "Day Schnabel",
+          "birthYear": 1905,
+          "deathYear": 1991,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2574382",
+          "name": "Enrico Donati",
+          "birthYear": 1909,
+          "deathYear": 2008,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q834939",
+          "name": "Georges Mathieu",
+          "birthYear": 1921,
+          "deathYear": 2012,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q884048",
+          "name": "Ger Lataster",
+          "birthYear": 1920,
+          "deathYear": 2012,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q436874",
+          "name": "Hedda Sterne",
+          "birthYear": 1910,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q448845",
+          "name": "James Rosenquist",
+          "birthYear": 1934,
+          "deathYear": 2017,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2741607",
+          "name": "Joseph Pace",
+          "birthYear": 1959,
+          "deathYear": null,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q428550",
+          "name": "Jules Olitski",
+          "birthYear": 1922,
+          "deathYear": 2007,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q152793",
+          "name": "Karel Appel",
+          "birthYear": 1921,
+          "deathYear": 2006,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q7531",
+          "name": "Louise Nevelson",
+          "birthYear": 1899,
+          "deathYear": 1988,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q567421",
+          "name": "Mark di Suvero",
+          "birthYear": 1933,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2471759",
+          "name": "Piet Peters",
+          "birthYear": 1889,
+          "deathYear": 1950,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q951321",
+          "name": "Robert De Niro Sr.",
+          "birthYear": 1922,
+          "deathYear": 1993,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3481038",
+          "name": "Seymour Fogel",
+          "birthYear": 1911,
+          "deathYear": 1984,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "academic-art": {
+      "slug": "academic-art",
+      "name": "academic art",
+      "total": 7,
+      "yearsMin": 1815,
+      "yearsMax": 1872,
+      "yearsMedian": 1842,
+      "peakDecade": 1810,
+      "byDecade": [
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1820,
+          "count": 1
+        },
+        {
+          "decade": 1830,
+          "count": 1
+        },
+        {
+          "decade": 1840,
+          "count": 1
+        },
+        {
+          "decade": 1850,
+          "count": 1
+        },
+        {
+          "decade": 1860,
+          "count": 1
+        },
+        {
+          "decade": 1870,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 5
+        },
+        {
+          "country": "Philippines",
+          "count": 1
+        },
+        {
+          "country": "Canada",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q212499",
+          "name": "Jean-L\u00e9on G\u00e9r\u00f4me",
+          "birthYear": 1824,
+          "deathYear": 1904,
+          "citizenship": "France",
+          "totalDegree": 7
+        },
+        {
+          "qid": "Q708568",
+          "name": "Jean-Paul Laurens",
+          "birthYear": 1838,
+          "deathYear": 1921,
+          "citizenship": "France",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q707904",
+          "name": "Jean-Jules-Antoine Lecomte du Nou\u00ff",
+          "birthYear": 1842,
+          "deathYear": 1923,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q354786",
+          "name": "Jean-Louis-Ernest Meissonier",
+          "birthYear": 1815,
+          "deathYear": 1891,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q260166",
+          "name": "Marc-Aur\u00e8le de Foy Suzor-Cot\u00e9",
+          "birthYear": 1869,
+          "deathYear": 1937,
+          "citizenship": "Canada",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2853720",
+          "name": "Antoine Bourlange",
+          "birthYear": 1872,
+          "deathYear": 1951,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q28867",
+          "name": "Juan Luna",
+          "birthYear": 1857,
+          "deathYear": 1899,
+          "citizenship": "Philippines",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "conceptual-art": {
+      "slug": "conceptual-art",
+      "name": "conceptual art",
+      "total": 28,
+      "yearsMin": 1887,
+      "yearsMax": 1969,
+      "yearsMedian": 1945,
+      "peakDecade": 1940,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 2
+        },
+        {
+          "decade": 1930,
+          "count": 3
+        },
+        {
+          "decade": 1940,
+          "count": 12
+        },
+        {
+          "decade": 1950,
+          "count": 7
+        },
+        {
+          "decade": 1960,
+          "count": 3
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 9
+        },
+        {
+          "country": "Germany",
+          "count": 3
+        },
+        {
+          "country": "People's Republic of China",
+          "count": 2
+        },
+        {
+          "country": "France",
+          "count": 2
+        },
+        {
+          "country": "United Kingdom",
+          "count": 2
+        },
+        {
+          "country": "Serbia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q5912",
+          "name": "Marcel Duchamp",
+          "birthYear": 1887,
+          "deathYear": 1968,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q1485390",
+          "name": "Mel Bochner",
+          "birthYear": 1940,
+          "deathYear": 2025,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q368645",
+          "name": "Richard Long",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q600456",
+          "name": "Wolfgang Laib",
+          "birthYear": 1950,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q160115",
+          "name": "Ai Weiwei",
+          "birthYear": 1957,
+          "deathYear": null,
+          "citizenship": "People's Republic of China",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q545445",
+          "name": "Bernar Venet",
+          "birthYear": 1941,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q720832",
+          "name": "Chris Burden",
+          "birthYear": 1946,
+          "deathYear": 2015,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q388005",
+          "name": "Cosima von Bonin",
+          "birthYear": 1962,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1173627",
+          "name": "David Bainbridge",
+          "birthYear": 1941,
+          "deathYear": 2013,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q439856",
+          "name": "Dennis Oppenheim",
+          "birthYear": 1938,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1383041",
+          "name": "Ewerdt Hilgemann",
+          "birthYear": 1938,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1288359",
+          "name": "F\u00e9lix Gonz\u00e1lez-Torres",
+          "birthYear": 1957,
+          "deathYear": 1996,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q315897",
+          "name": "Genco G\u00fclan",
+          "birthYear": 1969,
+          "deathYear": null,
+          "citizenship": "Turkey",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q827998",
+          "name": "Ger van Elk",
+          "birthYear": 1941,
+          "deathYear": 2014,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2909944",
+          "name": "Gideon Gechtman",
+          "birthYear": 1942,
+          "deathYear": 2008,
+          "citizenship": "Israel",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q826845",
+          "name": "Giulio Paolini",
+          "birthYear": 1940,
+          "deathYear": null,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q830980",
+          "name": "Heimo Zobernig",
+          "birthYear": 1958,
+          "deathYear": null,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q882861",
+          "name": "James Lee Byars",
+          "birthYear": 1932,
+          "deathYear": 1997,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q270388",
+          "name": "Jenny Holzer",
+          "birthYear": 1950,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q313113",
+          "name": "Joseph Kosuth",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2583093",
+          "name": "Ken Lum",
+          "birthYear": 1956,
+          "deathYear": null,
+          "citizenship": "Canada",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q680192",
+          "name": "Lawrence Weiner",
+          "birthYear": 1942,
+          "deathYear": 2021,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q834926",
+          "name": "Marcel Broodthaers",
+          "birthYear": 1924,
+          "deathYear": 1976,
+          "citizenship": "Belgium",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q47496",
+          "name": "Marina Abramovi\u0107",
+          "birthYear": 1946,
+          "deathYear": null,
+          "citizenship": "Socialist Federal Republic of Yugoslavia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q826319",
+          "name": "Roger Welch",
+          "birthYear": 1946,
+          "deathYear": 2022,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q65990",
+          "name": "Rosemarie Trockel",
+          "birthYear": 1952,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q168587",
+          "name": "Sol LeWitt",
+          "birthYear": 1928,
+          "deathYear": 2007,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q180740",
+          "name": "Zhang Huan",
+          "birthYear": 1965,
+          "deathYear": null,
+          "citizenship": "People's Republic of China",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "concrete-art": {
+      "slug": "concrete-art",
+      "name": "concrete art",
+      "total": 3,
+      "yearsMin": 1917,
+      "yearsMax": 1945,
+      "yearsMedian": 1920,
+      "peakDecade": 1910,
+      "byDecade": [
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 1
+        },
+        {
+          "country": "Switzerland",
+          "count": 1
+        },
+        {
+          "country": "Brazil",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q949563",
+          "name": "Am\u00edlcar de Castro",
+          "birthYear": 1920,
+          "deathYear": 2002,
+          "citizenship": "Brazil",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q115873",
+          "name": "Gottfried Honegger",
+          "birthYear": 1917,
+          "deathYear": 2016,
+          "citizenship": "Switzerland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q107313",
+          "name": "HD Schrader",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "contemporary-art": {
+      "slug": "contemporary-art",
+      "name": "contemporary art",
+      "total": 87,
+      "yearsMin": 1898,
+      "yearsMax": 1978,
+      "yearsMedian": 1954,
+      "peakDecade": 1950,
+      "byDecade": [
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 5
+        },
+        {
+          "decade": 1930,
+          "count": 9
+        },
+        {
+          "decade": 1940,
+          "count": 19
+        },
+        {
+          "decade": 1950,
+          "count": 25
+        },
+        {
+          "decade": 1960,
+          "count": 22
+        },
+        {
+          "decade": 1970,
+          "count": 5
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United Kingdom",
+          "count": 25
+        },
+        {
+          "country": "United States",
+          "count": 17
+        },
+        {
+          "country": "Germany",
+          "count": 6
+        },
+        {
+          "country": "Japan",
+          "count": 4
+        },
+        {
+          "country": "France",
+          "count": 3
+        },
+        {
+          "country": "Netherlands",
+          "count": 3
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q272877",
+          "name": "Fernando Botero",
+          "birthYear": 1932,
+          "deathYear": 2023,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q159907",
+          "name": "David Hockney",
+          "birthYear": 1937,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q2061447",
+          "name": "Paul Neagu",
+          "birthYear": 1938,
+          "deathYear": 2004,
+          "citizenship": "United Kingdom",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q151097",
+          "name": "Henry Moore",
+          "birthYear": 1898,
+          "deathYear": 1986,
+          "citizenship": "United Kingdom",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q24503",
+          "name": "Michael Craig-Martin",
+          "birthYear": 1941,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q164358",
+          "name": "Robert Rauschenberg",
+          "birthYear": 1925,
+          "deathYear": 2008,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q319569",
+          "name": "Sherrie Levine",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q327293",
+          "name": "Anish Kapoor",
+          "birthYear": 1954,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q165397",
+          "name": "Eduardo Paolozzi",
+          "birthYear": 1924,
+          "deathYear": 2005,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q705880",
+          "name": "George Condo",
+          "birthYear": 1957,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q24218",
+          "name": "Nick Cave",
+          "birthYear": 1959,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2424825",
+          "name": "Thomas Houseago",
+          "birthYear": 1972,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q360371",
+          "name": "Antony Gormley",
+          "birthYear": 1950,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q133600",
+          "name": "Banksy",
+          "birthYear": 1973,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2900658",
+          "name": "Bharti Kher",
+          "birthYear": 1969,
+          "deathYear": null,
+          "citizenship": "India",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q234449",
+          "name": "Bridget Riley",
+          "birthYear": 1931,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q930462",
+          "name": "Cai Guo-Qiang",
+          "birthYear": 1957,
+          "deathYear": null,
+          "citizenship": "People's Republic of China",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1034078",
+          "name": "Cao Fei",
+          "birthYear": 1978,
+          "deathYear": null,
+          "citizenship": "People's Republic of China",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2379422",
+          "name": "Carel Lanters",
+          "birthYear": 1955,
+          "deathYear": null,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1077608",
+          "name": "Chris Ofili",
+          "birthYear": 1968,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q705225",
+          "name": "Christian Boltanski",
+          "birthYear": 1944,
+          "deathYear": 2021,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q441501",
+          "name": "Cornelia Parker",
+          "birthYear": 1956,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q613380",
+          "name": "Dale Chihuly",
+          "birthYear": 1941,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q320846",
+          "name": "David Hammons",
+          "birthYear": 1943,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q436472",
+          "name": "David Nash",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q278183",
+          "name": "David Shrigley",
+          "birthYear": 1967,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q763686",
+          "name": "David Tremlett",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3033213",
+          "name": "Do Ho Suh",
+          "birthYear": 1962,
+          "deathYear": null,
+          "citizenship": "South Korea",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q879098",
+          "name": "Eberhard Bosslet",
+          "birthYear": 1953,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1323876",
+          "name": "El Anatsui",
+          "birthYear": 1944,
+          "deathYear": null,
+          "citizenship": "Ghana",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1343964",
+          "name": "Enrique Chagoya",
+          "birthYear": 1953,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q78841",
+          "name": "Erwin Wurm",
+          "birthYear": 1954,
+          "deathYear": null,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2528299",
+          "name": "Francesco Messina",
+          "birthYear": 1900,
+          "deathYear": 1995,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1504722",
+          "name": "Georg Herold",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q444690",
+          "name": "Glenn Brown",
+          "birthYear": 1966,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q567547",
+          "name": "Ian Hamilton Finlay",
+          "birthYear": 1925,
+          "deathYear": 2006,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "cubism": {
+      "slug": "cubism",
+      "name": "cubism",
+      "total": 19,
+      "yearsMin": 1876,
+      "yearsMax": 1925,
+      "yearsMedian": 1887,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1870,
+          "count": 2
+        },
+        {
+          "decade": 1880,
+          "count": 13
+        },
+        {
+          "decade": 1890,
+          "count": 2
+        },
+        {
+          "decade": 1920,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 7
+        },
+        {
+          "country": "Russia",
+          "count": 2
+        },
+        {
+          "country": "Spain",
+          "count": 1
+        },
+        {
+          "country": "Ukraine",
+          "count": 1
+        },
+        {
+          "country": "Belarus",
+          "count": 1
+        },
+        {
+          "country": "Germany",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q157183",
+          "name": "Fernand L\u00e9ger",
+          "birthYear": 1881,
+          "deathYear": 1955,
+          "citizenship": "France",
+          "totalDegree": 7
+        },
+        {
+          "qid": "Q156272",
+          "name": "Andr\u00e9 Derain",
+          "birthYear": 1880,
+          "deathYear": 1954,
+          "citizenship": "France",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q153793",
+          "name": "Georges Braque",
+          "birthYear": 1882,
+          "deathYear": 1963,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q213597",
+          "name": "Hans Richter",
+          "birthYear": 1888,
+          "deathYear": 1976,
+          "citizenship": "Germany",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q151152",
+          "name": "Juan Gris",
+          "birthYear": 1887,
+          "deathYear": 1927,
+          "citizenship": "Spain",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q160172",
+          "name": "Ossip Zadkine",
+          "birthYear": 1888,
+          "deathYear": 1967,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q462767",
+          "name": "Marie Vassilieff",
+          "birthYear": 1884,
+          "deathYear": 1957,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q705282",
+          "name": "Raymond Duchamp-Villon",
+          "birthYear": 1876,
+          "deathYear": 1918,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q718882",
+          "name": "Roger de La Fresnaye",
+          "birthYear": 1885,
+          "deathYear": 1925,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q385941",
+          "name": "William Zorach",
+          "birthYear": 1887,
+          "deathYear": 1966,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q157578",
+          "name": "Alexander Archipenko",
+          "birthYear": 1887,
+          "deathYear": 1964,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q312631",
+          "name": "Alexander Rodchenko",
+          "birthYear": 1891,
+          "deathYear": 1956,
+          "citizenship": "Russian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1043100",
+          "name": "Carlos Santiago M\u00e9rida",
+          "birthYear": 1891,
+          "deathYear": 1984,
+          "citizenship": "Guatemala",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2943690",
+          "name": "Cecil de Blaquiere Howard",
+          "birthYear": 1888,
+          "deathYear": 1956,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q391182",
+          "name": "Charles Dufresne",
+          "birthYear": 1876,
+          "deathYear": 1938,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q687335",
+          "name": "Emil Filla",
+          "birthYear": 1882,
+          "deathYear": 1953,
+          "citizenship": "Austria\u2013Hungary",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q827495",
+          "name": "Jean Messagier",
+          "birthYear": 1920,
+          "deathYear": 1999,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q730344",
+          "name": "Joseph Csaky",
+          "birthYear": 1888,
+          "deathYear": 1971,
+          "citizenship": "Hungary",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1873941",
+          "name": "\u013dudov\u00edt Lehen",
+          "birthYear": 1925,
+          "deathYear": 2014,
+          "citizenship": "Slovakia",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "feminist-art": {
+      "slug": "feminist-art",
+      "name": "feminist art",
+      "total": 9,
+      "yearsMin": 1888,
+      "yearsMax": 1949,
+      "yearsMedian": 1930,
+      "peakDecade": 1940,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 2
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        },
+        {
+          "decade": 1940,
+          "count": 4
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Canada",
+          "count": 1
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "France",
+          "count": 1
+        },
+        {
+          "country": "Italy",
+          "count": 1
+        },
+        {
+          "country": "Croatia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q463639",
+          "name": "Ana Mendieta",
+          "birthYear": 1948,
+          "deathYear": 1985,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q593656",
+          "name": "Anna Maria Maiolino",
+          "birthYear": 1942,
+          "deathYear": null,
+          "citizenship": "Brazil",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1488149",
+          "name": "Ida Applebroog",
+          "birthYear": 1929,
+          "deathYear": 2023,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q235066",
+          "name": "Laurie Anderson",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q538534",
+          "name": "Maria Lassnig",
+          "birthYear": 1919,
+          "deathYear": 2014,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q542496",
+          "name": "Miriam Schapiro",
+          "birthYear": 1923,
+          "deathYear": 2015,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q168704",
+          "name": "Niki de Saint Phalle",
+          "birthYear": 1930,
+          "deathYear": 2002,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q451563",
+          "name": "Sanja Ivekovi\u0107",
+          "birthYear": 1949,
+          "deathYear": null,
+          "citizenship": "Croatia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q517138",
+          "name": "Siri Derkert",
+          "birthYear": 1888,
+          "deathYear": 1973,
+          "citizenship": "Sweden",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "kinetic-art": {
+      "slug": "kinetic-art",
+      "name": "kinetic art",
+      "total": 7,
+      "yearsMin": 1898,
+      "yearsMax": 1955,
+      "yearsMedian": 1928,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 4
+        },
+        {
+          "decade": 1950,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Argentina",
+          "count": 1
+        },
+        {
+          "country": "Israel",
+          "count": 1
+        },
+        {
+          "country": "Spain",
+          "count": 1
+        },
+        {
+          "country": "Venezuela",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q709449",
+          "name": "Arthur Ganson",
+          "birthYear": 1955,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q151580",
+          "name": "Alexander Calder",
+          "birthYear": 1898,
+          "deathYear": 1976,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q3017596",
+          "name": "David C. Roy",
+          "birthYear": 1952,
+          "deathYear": null,
+          "citizenship": "Unknown",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q993400",
+          "name": "Eusebio Sempere",
+          "birthYear": 1923,
+          "deathYear": 1985,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q519367",
+          "name": "Jes\u00fas Rafael Soto",
+          "birthYear": 1923,
+          "deathYear": 2005,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q177313",
+          "name": "Julio Le Parc",
+          "birthYear": 1928,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q276030",
+          "name": "Yaacov Agam",
+          "birthYear": 1928,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "mail-art": {
+      "slug": "mail-art",
+      "name": "mail art",
+      "total": 3,
+      "yearsMin": 1929,
+      "yearsMax": 1939,
+      "yearsMedian": 1939,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Poland",
+          "count": 1
+        },
+        {
+          "country": "Hungary",
+          "count": 1
+        },
+        {
+          "country": "Italy",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q1153501",
+          "name": "Andrzej D\u0142u\u017cniewski",
+          "birthYear": 1939,
+          "deathYear": 2012,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1251184",
+          "name": "Lenke Rothman",
+          "birthYear": 1929,
+          "deathYear": 2008,
+          "citizenship": "Sweden",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1911626",
+          "name": "Maurizio Nannucci",
+          "birthYear": 1939,
+          "deathYear": null,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "modern-art": {
+      "slug": "modern-art",
+      "name": "modern art",
+      "total": 5,
+      "yearsMin": 1884,
+      "yearsMax": 1940,
+      "yearsMedian": 1901,
+      "peakDecade": 1880,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 2
+        },
+        {
+          "country": "Austria",
+          "count": 1
+        },
+        {
+          "country": "Netherlands",
+          "count": 1
+        },
+        {
+          "country": "Spain",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q120993",
+          "name": "Amedeo Modigliani",
+          "birthYear": 1884,
+          "deathYear": 1920,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q1470",
+          "name": "M. C. Escher",
+          "birthYear": 1898,
+          "deathYear": 1972,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q703980",
+          "name": "Marino Marini",
+          "birthYear": 1901,
+          "deathYear": 1980,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q2302591",
+          "name": "Elena Asins",
+          "birthYear": 1940,
+          "deathYear": 2015,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q151836",
+          "name": "Friedensreich Hundertwasser",
+          "birthYear": 1928,
+          "deathYear": 2000,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "modernism": {
+      "slug": "modernism",
+      "name": "modernism",
+      "total": 8,
+      "yearsMin": 1868,
+      "yearsMax": 1947,
+      "yearsMedian": 1916,
+      "peakDecade": 1910,
+      "byDecade": [
+        {
+          "decade": 1860,
+          "count": 1
+        },
+        {
+          "decade": 1870,
+          "count": 1
+        },
+        {
+          "decade": 1890,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 2
+        },
+        {
+          "decade": 1920,
+          "count": 2
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United Kingdom",
+          "count": 1
+        },
+        {
+          "country": "Romania",
+          "count": 1
+        },
+        {
+          "country": "Italy",
+          "count": 1
+        },
+        {
+          "country": "Brazil",
+          "count": 1
+        },
+        {
+          "country": "Croatia",
+          "count": 1
+        },
+        {
+          "country": "Mexico",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q153048",
+          "name": "Constantin Br\u00e2ncu\u0219i",
+          "birthYear": 1876,
+          "deathYear": 1957,
+          "citizenship": "France",
+          "totalDegree": 7
+        },
+        {
+          "qid": "Q163290",
+          "name": "Adolfo Wildt",
+          "birthYear": 1868,
+          "deathYear": 1931,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q690790",
+          "name": "Rufino Tamayo",
+          "birthYear": 1899,
+          "deathYear": 1990,
+          "citizenship": "Mexico",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q516236",
+          "name": "Du\u0161an D\u017eamonja",
+          "birthYear": 1928,
+          "deathYear": 2009,
+          "citizenship": "Croatia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q544072",
+          "name": "Gessiron Alves Franco",
+          "birthYear": 1947,
+          "deathYear": null,
+          "citizenship": "Brazil",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2058575",
+          "name": "Iba Ndiaye",
+          "birthYear": 1928,
+          "deathYear": 2008,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q135099",
+          "name": "Robert Adams",
+          "birthYear": 1917,
+          "deathYear": 1984,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q566790",
+          "name": "Vojin Baki\u0107",
+          "birthYear": 1915,
+          "deathYear": 1992,
+          "citizenship": "Hungary",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "naive-art": {
+      "slug": "naive-art",
+      "name": "na\u00efve art",
+      "total": 3,
+      "yearsMin": 1836,
+      "yearsMax": 1961,
+      "yearsMedian": 1888,
+      "peakDecade": 1830,
+      "byDecade": [
+        {
+          "decade": 1830,
+          "count": 1
+        },
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1960,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 1
+        },
+        {
+          "country": "Italy",
+          "count": 1
+        },
+        {
+          "country": "France",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q352434",
+          "name": "Ferdinand Cheval",
+          "birthYear": 1836,
+          "deathYear": 1924,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q617543",
+          "name": "Guido Vedovato",
+          "birthYear": 1961,
+          "deathYear": null,
+          "citizenship": "Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q325076",
+          "name": "Horace Pippin",
+          "birthYear": 1888,
+          "deathYear": 1946,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "neo-expressionism": {
+      "slug": "neo-expressionism",
+      "name": "neo-expressionism",
+      "total": 6,
+      "yearsMin": 1925,
+      "yearsMax": 1960,
+      "yearsMedian": 1945,
+      "peakDecade": 1940,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 1
+        },
+        {
+          "decade": 1940,
+          "count": 2
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        },
+        {
+          "decade": 1960,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Germany",
+          "count": 3
+        },
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "Poland",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q170344",
+          "name": "Anselm Kiefer",
+          "birthYear": 1945,
+          "deathYear": null,
+          "citizenship": "Germany",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q279088",
+          "name": "A. R. Penck",
+          "birthYear": 1939,
+          "deathYear": 2017,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q345379",
+          "name": "Julian Schnabel",
+          "birthYear": 1951,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q75858",
+          "name": "J\u00f6rg Immendorff",
+          "birthYear": 1945,
+          "deathYear": 2007,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q362880",
+          "name": "Bronis\u0142aw Chromy",
+          "birthYear": 1925,
+          "deathYear": 2017,
+          "citizenship": "Poland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q155407",
+          "name": "Jean-Michel Basquiat",
+          "birthYear": 1960,
+          "deathYear": 1988,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "new-media-art": {
+      "slug": "new-media-art",
+      "name": "new media art",
+      "total": 5,
+      "yearsMin": 1924,
+      "yearsMax": 1971,
+      "yearsMedian": 1939,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1930,
+          "count": 2
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        },
+        {
+          "decade": 1970,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Spain",
+          "count": 2
+        },
+        {
+          "country": "Netherlands",
+          "count": 2
+        },
+        {
+          "country": "Croatia",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q1257924",
+          "name": "Antonio L\u00f3pez Garc\u00eda",
+          "birthYear": 1936,
+          "deathYear": null,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1564289",
+          "name": "Aleksandar Srnec",
+          "birthYear": 1924,
+          "deathYear": 2010,
+          "citizenship": "Croatia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2586677",
+          "name": "Giny Vos",
+          "birthYear": 1959,
+          "deathYear": null,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q325698",
+          "name": "Juan Garaizabal",
+          "birthYear": 1971,
+          "deathYear": null,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2706817",
+          "name": "Peter Struycken",
+          "birthYear": 1939,
+          "deathYear": null,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "outsider-art": {
+      "slug": "outsider-art",
+      "name": "outsider art",
+      "total": 9,
+      "yearsMin": 1869,
+      "yearsMax": 1963,
+      "yearsMedian": 1924,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1860,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 4
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        },
+        {
+          "decade": 1960,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 4
+        },
+        {
+          "country": "Serbia",
+          "count": 2
+        },
+        {
+          "country": "Netherlands",
+          "count": 1
+        },
+        {
+          "country": "Pakistan",
+          "count": 1
+        },
+        {
+          "country": "United Kingdom",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q170076",
+          "name": "Jean Dubuffet",
+          "birthYear": 1901,
+          "deathYear": 1985,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q516538",
+          "name": "Ben Wilson",
+          "birthYear": 1963,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2908718",
+          "name": "Bogosav \u017divkovi\u0107",
+          "birthYear": 1920,
+          "deathYear": 2005,
+          "citizenship": "Serbia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3038867",
+          "name": "Dragutin Aleksi\u0107",
+          "birthYear": 1947,
+          "deathYear": 2011,
+          "citizenship": "Serbia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1495558",
+          "name": "Gaston Chaissac",
+          "birthYear": 1910,
+          "deathYear": 1964,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1596580",
+          "name": "Heinrich Anton M\u00fcller",
+          "birthYear": 1869,
+          "deathYear": 1930,
+          "citizenship": "Switzerland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1678108",
+          "name": "Jacques Soisson",
+          "birthYear": 1928,
+          "deathYear": 2012,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2087833",
+          "name": "Nek Chand Saini",
+          "birthYear": 1924,
+          "deathYear": 2015,
+          "citizenship": "India",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2338443",
+          "name": "Willem Van Genk",
+          "birthYear": 1927,
+          "deathYear": 2005,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "pop-art": {
+      "slug": "pop-art",
+      "name": "pop art",
+      "total": 30,
+      "yearsMin": 1906,
+      "yearsMax": 1963,
+      "yearsMedian": 1937,
+      "peakDecade": 1920,
+      "byDecade": [
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1920,
+          "count": 9
+        },
+        {
+          "decade": 1930,
+          "count": 9
+        },
+        {
+          "decade": 1940,
+          "count": 3
+        },
+        {
+          "decade": 1950,
+          "count": 4
+        },
+        {
+          "decade": 1960,
+          "count": 4
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 12
+        },
+        {
+          "country": "Spain",
+          "count": 2
+        },
+        {
+          "country": "United Kingdom",
+          "count": 2
+        },
+        {
+          "country": "Japan",
+          "count": 2
+        },
+        {
+          "country": "Netherlands",
+          "count": 2
+        },
+        {
+          "country": "Hungary",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q5603",
+          "name": "Andy Warhol",
+          "birthYear": 1928,
+          "deathYear": 1987,
+          "citizenship": "United States",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q297525",
+          "name": "Jeff Koons",
+          "birthYear": 1955,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 3
+        },
+        {
+          "qid": "Q1239698",
+          "name": "Donald Baechler",
+          "birthYear": 1956,
+          "deathYear": 2022,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q151679",
+          "name": "Roy Lichtenstein",
+          "birthYear": 1923,
+          "deathYear": 1997,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q3048405",
+          "name": "Eduardo \u00darculo",
+          "birthYear": 1938,
+          "deathYear": 2003,
+          "citizenship": "Spain",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q321527",
+          "name": "Jonathan Borofsky",
+          "birthYear": 1942,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q2015324",
+          "name": "Yoshitomo Nara",
+          "birthYear": 1959,
+          "deathYear": null,
+          "citizenship": "Japan",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q919265",
+          "name": "Alex Katz",
+          "birthYear": 1927,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q701564",
+          "name": "Allen Jones",
+          "birthYear": 1937,
+          "deathYear": null,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q156731",
+          "name": "Claes Oldenburg",
+          "birthYear": 1929,
+          "deathYear": 2022,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q458734",
+          "name": "Coosje van Bruggen",
+          "birthYear": 1942,
+          "deathYear": 2009,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q706462",
+          "name": "Duane Hanson",
+          "birthYear": 1925,
+          "deathYear": 1996,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q430967",
+          "name": "Ed Ruscha",
+          "birthYear": 1937,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q555137",
+          "name": "Eduardo Arroyo",
+          "birthYear": 1937,
+          "deathYear": 2018,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q445946",
+          "name": "Err\u00f3",
+          "birthYear": 1932,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1906403",
+          "name": "Herman Makkink",
+          "birthYear": 1937,
+          "deathYear": 2013,
+          "citizenship": "Kingdom of the Netherlands",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1237656",
+          "name": "James Rizzi",
+          "birthYear": 1950,
+          "deathYear": 2011,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1363990",
+          "name": "Joe Tilson",
+          "birthYear": 1928,
+          "deathYear": 2023,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q664291",
+          "name": "Larry Rivers",
+          "birthYear": 1923,
+          "deathYear": 2002,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q438248",
+          "name": "Marisol Escobar",
+          "birthYear": 1930,
+          "deathYear": 2016,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q724401",
+          "name": "Mark Kostabi",
+          "birthYear": 1960,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q434671",
+          "name": "Martina Schettina",
+          "birthYear": 1961,
+          "deathYear": null,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q461046",
+          "name": "Olja Ivanjicki",
+          "birthYear": 1931,
+          "deathYear": 2009,
+          "citizenship": "Socialist Federal Republic of Yugoslavia",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1436161",
+          "name": "Poul Gernes",
+          "birthYear": 1925,
+          "deathYear": 1996,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q169281",
+          "name": "Robert Indiana",
+          "birthYear": 1928,
+          "deathYear": 2018,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1378152",
+          "name": "Romero Britto",
+          "birthYear": 1963,
+          "deathYear": null,
+          "citizenship": "Brazil",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q376062",
+          "name": "Sigmar Polke",
+          "birthYear": 1941,
+          "deathYear": 2010,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q352437",
+          "name": "Takashi Murakami",
+          "birthYear": 1962,
+          "deathYear": null,
+          "citizenship": "Japan",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q154448",
+          "name": "Victor Vasarely",
+          "birthYear": 1906,
+          "deathYear": 1997,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2590766",
+          "name": "Wolfgang Oppermann",
+          "birthYear": 1937,
+          "deathYear": 2001,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "postminimalism": {
+      "slug": "postminimalism",
+      "name": "postminimalism",
+      "total": 4,
+      "yearsMin": 1936,
+      "yearsMax": 1941,
+      "yearsMedian": 1940,
+      "peakDecade": 1930,
+      "byDecade": [
+        {
+          "decade": 1930,
+          "count": 2
+        },
+        {
+          "decade": 1940,
+          "count": 2
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "United States",
+          "count": 3
+        },
+        {
+          "country": "Germany",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q836743",
+          "name": "Richard Tuttle",
+          "birthYear": 1941,
+          "deathYear": null,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q215457",
+          "name": "Eva Hesse",
+          "birthYear": 1936,
+          "deathYear": 1970,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q327520",
+          "name": "Keith Sonnier",
+          "birthYear": 1941,
+          "deathYear": 2020,
+          "citizenship": "United States",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q541831",
+          "name": "Nancy Graves",
+          "birthYear": 1939,
+          "deathYear": 1995,
+          "citizenship": "United States",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "realism": {
+      "slug": "realism",
+      "name": "realism",
+      "total": 22,
+      "yearsMin": 1808,
+      "yearsMax": 1955,
+      "yearsMedian": 1860,
+      "peakDecade": 1840,
+      "byDecade": [
+        {
+          "decade": 1800,
+          "count": 1
+        },
+        {
+          "decade": 1830,
+          "count": 2
+        },
+        {
+          "decade": 1840,
+          "count": 5
+        },
+        {
+          "decade": 1850,
+          "count": 2
+        },
+        {
+          "decade": 1860,
+          "count": 4
+        },
+        {
+          "decade": 1870,
+          "count": 2
+        },
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        },
+        {
+          "decade": 1910,
+          "count": 2
+        },
+        {
+          "decade": 1920,
+          "count": 1
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Italy",
+          "count": 3
+        },
+        {
+          "country": "Ukraine",
+          "count": 2
+        },
+        {
+          "country": "United States",
+          "count": 2
+        },
+        {
+          "country": "France",
+          "count": 2
+        },
+        {
+          "country": "Croatia",
+          "count": 2
+        },
+        {
+          "country": "Albania",
+          "count": 2
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q172911",
+          "name": "Ilya Repin",
+          "birthYear": 1844,
+          "deathYear": 1930,
+          "citizenship": "Russian Empire",
+          "totalDegree": 24
+        },
+        {
+          "qid": "Q368977",
+          "name": "Frederic Storck",
+          "birthYear": 1872,
+          "deathYear": 1942,
+          "citizenship": "Romania",
+          "totalDegree": 8
+        },
+        {
+          "qid": "Q943537",
+          "name": "Leon Wycz\u00f3\u0142kowski",
+          "birthYear": 1852,
+          "deathYear": 1936,
+          "citizenship": "Poland",
+          "totalDegree": 5
+        },
+        {
+          "qid": "Q326167",
+          "name": "Alfred Philippe Roll",
+          "birthYear": 1845,
+          "deathYear": 1919,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q716808",
+          "name": "Theodor Aman",
+          "birthYear": 1831,
+          "deathYear": 1891,
+          "citizenship": "Romania",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q532168",
+          "name": "Elizabeth Nourse",
+          "birthYear": 1859,
+          "deathYear": 1938,
+          "citizenship": "United States",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q1333398",
+          "name": "Pietro Canonica",
+          "birthYear": 1869,
+          "deathYear": 1959,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q893695",
+          "name": "Boris Kalin",
+          "birthYear": 1905,
+          "deathYear": 1975,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q552440",
+          "name": "Constantin Meunier",
+          "birthYear": 1831,
+          "deathYear": 1905,
+          "citizenship": "Belgium",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q560787",
+          "name": "Frederic Remington",
+          "birthYear": 1861,
+          "deathYear": 1909,
+          "citizenship": "United States",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1278661",
+          "name": "J\u0101nis Tillbergs",
+          "birthYear": 1880,
+          "deathYear": 1972,
+          "citizenship": "Russian Empire",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q942029",
+          "name": "Louis Hasselriis",
+          "birthYear": 1844,
+          "deathYear": 1912,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q119344",
+          "name": "Rolf Brem",
+          "birthYear": 1926,
+          "deathYear": 2014,
+          "citizenship": "Switzerland",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q691706",
+          "name": "Sadik Kaceli",
+          "birthYear": 1914,
+          "deathYear": 2000,
+          "citizenship": "Albania",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q1337281",
+          "name": "Stephan Sinding",
+          "birthYear": 1846,
+          "deathYear": 1922,
+          "citizenship": "Kingdom of Denmark",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q187506",
+          "name": "Honor\u00e9 Daumier",
+          "birthYear": 1808,
+          "deathYear": 1879,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q976198",
+          "name": "Ivan Rendi\u0107",
+          "birthYear": 1849,
+          "deathYear": 1932,
+          "citizenship": "Austrian Empire",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1390711",
+          "name": "Kol\u00eb Idromeno",
+          "birthYear": 1860,
+          "deathYear": 1939,
+          "citizenship": "Albania",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1503259",
+          "name": "Michele Tripisciano",
+          "birthYear": 1860,
+          "deathYear": 1913,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q129525",
+          "name": "Peter Fishman",
+          "birthYear": 1955,
+          "deathYear": null,
+          "citizenship": "Soviet Union",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1348381",
+          "name": "Pietro Annigoni",
+          "birthYear": 1910,
+          "deathYear": 1988,
+          "citizenship": "Kingdom of Italy",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q1403459",
+          "name": "Simeon Roksandi\u0107",
+          "birthYear": 1874,
+          "deathYear": 1943,
+          "citizenship": "Serbia",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "social-realism": {
+      "slug": "social-realism",
+      "name": "social realism",
+      "total": 3,
+      "yearsMin": 1817,
+      "yearsMax": 1905,
+      "yearsMedian": 1886,
+      "peakDecade": 1810,
+      "byDecade": [
+        {
+          "decade": 1810,
+          "count": 1
+        },
+        {
+          "decade": 1880,
+          "count": 1
+        },
+        {
+          "decade": 1900,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "Mexico",
+          "count": 1
+        },
+        {
+          "country": "United Kingdom",
+          "count": 1
+        },
+        {
+          "country": "Argentina",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q171128",
+          "name": "Diego Rivera",
+          "birthYear": 1886,
+          "deathYear": 1957,
+          "citizenship": "Mexico",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q2835467",
+          "name": "Alfred Stevens",
+          "birthYear": 1817,
+          "deathYear": 1875,
+          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q2566694",
+          "name": "Antonio Berni",
+          "birthYear": 1905,
+          "deathYear": 1981,
+          "citizenship": "Argentina",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "surrealism": {
+      "slug": "surrealism",
+      "name": "surrealism",
+      "total": 25,
+      "yearsMin": 1881,
+      "yearsMax": 1957,
+      "yearsMedian": 1905,
+      "peakDecade": 1890,
+      "byDecade": [
+        {
+          "decade": 1880,
+          "count": 2
+        },
+        {
+          "decade": 1890,
+          "count": 7
+        },
+        {
+          "decade": 1900,
+          "count": 6
+        },
+        {
+          "decade": 1910,
+          "count": 5
+        },
+        {
+          "decade": 1920,
+          "count": 3
+        },
+        {
+          "decade": 1940,
+          "count": 1
+        },
+        {
+          "decade": 1950,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 6
+        },
+        {
+          "country": "Spain",
+          "count": 5
+        },
+        {
+          "country": "Germany",
+          "count": 2
+        },
+        {
+          "country": "Chile",
+          "count": 2
+        },
+        {
+          "country": "United Kingdom",
+          "count": 1
+        },
+        {
+          "country": "Czech Republic",
+          "count": 1
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q5593",
+          "name": "Pablo Picasso",
+          "birthYear": 1881,
+          "deathYear": 1973,
+          "citizenship": "Spain",
+          "totalDegree": 20
+        },
+        {
+          "qid": "Q152384",
+          "name": "Joan Mir\u00f3",
+          "birthYear": 1893,
+          "deathYear": 1983,
+          "citizenship": "Spain",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q555505",
+          "name": "Paul Colin",
+          "birthYear": 1892,
+          "deathYear": 1985,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q5577",
+          "name": "Salvador Dal\u00ed",
+          "birthYear": 1904,
+          "deathYear": 1989,
+          "citizenship": "Spain",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q263730",
+          "name": "Alejandro Jodorowsky",
+          "birthYear": 1929,
+          "deathYear": null,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q3049418",
+          "name": "Eileen Agar",
+          "birthYear": 1899,
+          "deathYear": 1991,
+          "citizenship": "United Kingdom",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q157194",
+          "name": "Alberto Giacometti",
+          "birthYear": 1901,
+          "deathYear": 1966,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q233590",
+          "name": "Anna Chrom\u00fd",
+          "birthYear": 1940,
+          "deathYear": 2021,
+          "citizenship": "Czechoslovakia",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q236161",
+          "name": "Dora Maar",
+          "birthYear": 1907,
+          "deathYear": 1997,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q708544",
+          "name": "Jean Paul Riopelle",
+          "birthYear": 1923,
+          "deathYear": 2002,
+          "citizenship": "Canada",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q154842",
+          "name": "Max Ernst",
+          "birthYear": 1891,
+          "deathYear": 1976,
+          "citizenship": "Germany",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q700655",
+          "name": "Ren\u00e9 Ich\u00e9",
+          "birthYear": 1897,
+          "deathYear": 1954,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q440731",
+          "name": "Ali Divandari",
+          "birthYear": 1957,
+          "deathYear": null,
+          "citizenship": "Iran",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q543787",
+          "name": "Christian d'Orgeix",
+          "birthYear": 1927,
+          "deathYear": 2019,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q219634",
+          "name": "Claude Cahun",
+          "birthYear": 1894,
+          "deathYear": 1954,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q213703",
+          "name": "Hans Bellmer",
+          "birthYear": 1902,
+          "deathYear": 1975,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q3159139",
+          "name": "Jacques H\u00e9rold",
+          "birthYear": 1910,
+          "deathYear": 1987,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q153739",
+          "name": "Jean Arp",
+          "birthYear": 1886,
+          "deathYear": 1966,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q260436",
+          "name": "Joan Brossa",
+          "birthYear": 1919,
+          "deathYear": 1998,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q233207",
+          "name": "Leonora Carrington",
+          "birthYear": 1917,
+          "deathYear": 2011,
+          "citizenship": "United Kingdom",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q46139",
+          "name": "Man Ray",
+          "birthYear": 1890,
+          "deathYear": 1976,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q61594",
+          "name": "Meret Oppenheim",
+          "birthYear": 1913,
+          "deathYear": 1985,
+          "citizenship": "Germany",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q235275",
+          "name": "Remedios Varo",
+          "birthYear": 1908,
+          "deathYear": 1963,
+          "citizenship": "Spain",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q450236",
+          "name": "Roberto Matta",
+          "birthYear": 1911,
+          "deathYear": 2002,
+          "citizenship": "France",
+          "totalDegree": 0
+        },
+        {
+          "qid": "Q669728",
+          "name": "Wolfgang Paalen",
+          "birthYear": 1905,
+          "deathYear": 1959,
+          "citizenship": "Austria",
+          "totalDegree": 0
+        }
+      ]
+    },
+    "ecole-de-nancy": {
+      "slug": "ecole-de-nancy",
+      "name": "\u00c9cole de Nancy",
+      "total": 4,
+      "yearsMin": 1858,
+      "yearsMax": 1876,
+      "yearsMedian": 1863,
+      "peakDecade": 1860,
+      "byDecade": [
+        {
+          "decade": 1850,
+          "count": 1
+        },
+        {
+          "decade": 1860,
+          "count": 2
+        },
+        {
+          "decade": 1870,
+          "count": 1
+        }
+      ],
+      "topCountries": [
+        {
+          "country": "France",
+          "count": 4
+        }
+      ],
+      "notable": [
+        {
+          "qid": "Q964683",
+          "name": "Victor Prouv\u00e9",
+          "birthYear": 1858,
+          "deathYear": 1943,
+          "citizenship": "France",
+          "totalDegree": 4
+        },
+        {
+          "qid": "Q2835118",
+          "name": "Alfred Finot",
+          "birthYear": 1876,
+          "deathYear": 1947,
+          "citizenship": "France",
+          "totalDegree": 2
+        },
+        {
+          "qid": "Q3056870",
+          "name": "Ernest Bussi\u00e8re",
+          "birthYear": 1863,
+          "deathYear": 1913,
+          "citizenship": "France",
+          "totalDegree": 1
+        },
+        {
+          "qid": "Q207755",
+          "name": "\u00c9mile Friant",
+          "birthYear": 1863,
+          "deathYear": 1932,
+          "citizenship": "France",
+          "totalDegree": 0
+        }
+      ]
+    }
+  },
+  "index": [
+    {
+      "slug": "abstract-art",
+      "name": "abstract art",
+      "total": 274,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "contemporary-art",
+      "name": "contemporary art",
+      "total": 87,
+      "peakDecade": 1950
+    },
+    {
+      "slug": "expressionism",
+      "name": "Expressionism",
+      "total": 53,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "abstract-expressionism",
+      "name": "abstract expressionism",
+      "total": 37,
+      "peakDecade": 1900
+    },
+    {
+      "slug": "symbolism",
+      "name": "Symbolism",
+      "total": 32,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "pop-art",
+      "name": "pop art",
+      "total": 30,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "conceptual-art",
+      "name": "conceptual art",
+      "total": 28,
+      "peakDecade": 1940
+    },
+    {
+      "slug": "surrealism",
+      "name": "surrealism",
+      "total": 25,
+      "peakDecade": 1890
+    },
+    {
+      "slug": "realism",
+      "name": "realism",
+      "total": 22,
+      "peakDecade": 1840
+    },
+    {
+      "slug": "art-nouveau",
+      "name": "Art Nouveau",
+      "total": 20,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "cubism",
+      "name": "cubism",
+      "total": 19,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "french-realism",
+      "name": "French Realism",
+      "total": 15,
+      "peakDecade": 1830
+    },
+    {
+      "slug": "minimalism",
+      "name": "Minimalism",
+      "total": 12,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "impressionism",
+      "name": "Impressionism",
+      "total": 10,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "futurism",
+      "name": "Futurism",
+      "total": 9,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "neoclassicism",
+      "name": "Neoclassicism",
+      "total": 9,
+      "peakDecade": 1810
+    },
+    {
+      "slug": "romanticism",
+      "name": "Romanticism",
+      "total": 9,
+      "peakDecade": 1800
+    },
+    {
+      "slug": "school-of-paris",
+      "name": "School of Paris",
+      "total": 9,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "feminist-art",
+      "name": "feminist art",
+      "total": 9,
+      "peakDecade": 1940
+    },
+    {
+      "slug": "outsider-art",
+      "name": "outsider art",
+      "total": 9,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "constructivism",
+      "name": "Constructivism",
+      "total": 8,
+      "peakDecade": 1890
+    },
+    {
+      "slug": "movimento-arte-concreta",
+      "name": "Movimento Arte Concreta",
+      "total": 8,
+      "peakDecade": 1890
+    },
+    {
+      "slug": "modernism",
+      "name": "modernism",
+      "total": 8,
+      "peakDecade": 1910
+    },
+    {
+      "slug": "art-deco",
+      "name": "Art Deco",
+      "total": 7,
+      "peakDecade": 1890
+    },
+    {
+      "slug": "arte-povera",
+      "name": "Arte Povera",
+      "total": 7,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "fluxus",
+      "name": "Fluxus",
+      "total": 7,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "academic-art",
+      "name": "academic art",
+      "total": 7,
+      "peakDecade": 1810
+    },
+    {
+      "slug": "kinetic-art",
+      "name": "kinetic art",
+      "total": 7,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "cobra",
+      "name": "COBRA",
+      "total": 6,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "neo-expressionism",
+      "name": "neo-expressionism",
+      "total": 6,
+      "peakDecade": 1940
+    },
+    {
+      "slug": "catalan-modernism",
+      "name": "Catalan modernism",
+      "total": 5,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "postmodernism",
+      "name": "Postmodernism",
+      "total": 5,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "modern-art",
+      "name": "modern art",
+      "total": 5,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "new-media-art",
+      "name": "new media art",
+      "total": 5,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "dada",
+      "name": "Dada",
+      "total": 4,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "new-sculpture",
+      "name": "New Sculpture",
+      "total": 4,
+      "peakDecade": 1850
+    },
+    {
+      "slug": "nouveau-realisme",
+      "name": "Nouveau r\u00e9alisme",
+      "total": 4,
+      "peakDecade": 1920
+    },
+    {
+      "slug": "tinerimea-artistica",
+      "name": "Tinerimea artistic\u0103",
+      "total": 4,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "young-british-artists",
+      "name": "Young British Artists",
+      "total": 4,
+      "peakDecade": 1960
+    },
+    {
+      "slug": "postminimalism",
+      "name": "postminimalism",
+      "total": 4,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "ecole-de-nancy",
+      "name": "\u00c9cole de Nancy",
+      "total": 4,
+      "peakDecade": 1860
+    },
+    {
+      "slug": "classicism",
+      "name": "Classicism",
+      "total": 3,
+      "peakDecade": 1800
+    },
+    {
+      "slug": "dakar-school",
+      "name": "Dakar School",
+      "total": 3,
+      "peakDecade": 1950
+    },
+    {
+      "slug": "fauvism",
+      "name": "Fauvism",
+      "total": 3,
+      "peakDecade": 1870
+    },
+    {
+      "slug": "pre-raphaelite-brotherhood",
+      "name": "Pre-Raphaelite Brotherhood",
+      "total": 3,
+      "peakDecade": 1820
+    },
+    {
+      "slug": "scuola-romana",
+      "name": "Scuola Romana",
+      "total": 3,
+      "peakDecade": 1880
+    },
+    {
+      "slug": "concrete-art",
+      "name": "concrete art",
+      "total": 3,
+      "peakDecade": 1910
+    },
+    {
+      "slug": "mail-art",
+      "name": "mail art",
+      "total": 3,
+      "peakDecade": 1930
+    },
+    {
+      "slug": "naive-art",
+      "name": "na\u00efve art",
+      "total": 3,
+      "peakDecade": 1830
+    },
+    {
+      "slug": "social-realism",
+      "name": "social realism",
+      "total": 3,
+      "peakDecade": 1810
+    }
+  ]
+}
