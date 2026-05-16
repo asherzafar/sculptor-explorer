@@ -369,6 +369,398 @@ def create_geography_by_birth_country_json(nodes: pd.DataFrame) -> list[dict]:
     return _geography_by_decade(nodes, "birth_country")
 
 
+# Maximum sculptors embedded per flow record. Prevents `migration.json`
+# from ballooning on high-volume corridors (Germany→France etc.) while
+# still giving the detail panel enough names to show a representative
+# list. The detail page can fetch individual QIDs if a full roster is
+# ever wanted.
+MAX_SCULPTORS_PER_FLOW = 12
+
+
+def create_migration_json(nodes: pd.DataFrame) -> dict:
+    """Birth → death country flows for the Migration view (Phase 4/5).
+
+    Only sculptors with both ``birth_country`` and ``death_country`` are
+    eligible. Living sculptors are excluded — we don't yet know where they
+    will end up, and showing a "died in <country>" edge for them is wrong.
+    The page surfaces the exclusion count so the absence is explicit.
+
+    Shape:
+        {
+          "meta": {
+            "totalIncluded": 3643,
+            "withBothCountries": 2648,
+            "crossedBorders": 784,
+            "sameCountry": 1864,
+            "missingBirthCountry": int,
+            "missingDeathCountry": int,
+            "livingExcluded": int,
+            "topFlows": [{...top 10 overall}]
+          },
+          "flows": [
+            {
+              "from": "Poland",
+              "to": "Germany",
+              "count": 34,
+              "sameCountry": false,
+              "sculptors": [{"qid":"Q...", "name":"..."}, ... up to MAX]
+            }, ...
+          ],
+          "flowsByBirthDecade": {
+            "1870": [...same flow shape, filtered to sculptors born in that decade...],
+            ...
+          }
+        }
+
+    Flows are sorted by descending count. Same-country flows are included
+    (they outnumber migrations roughly 2:1 in the data and a reader who
+    filters by decade deserves to see both).
+    """
+    # Only sculptors that pass A.3 inclusion are published, so we restrict
+    # the migration view to the same set. This keeps numbers consistent
+    # with /transparency and /explore.
+    df = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
+
+    # Eligibility gates, logged individually so the UI can be honest about
+    # absences.
+    living_mask = df["alive"].fillna(False).astype(bool) if "alive" in df.columns else pd.Series(False, index=df.index)
+    missing_birth = df["birth_country"].isna() | (df["birth_country"] == "")
+    missing_death = df["death_country"].isna() | (df["death_country"] == "")
+
+    eligible = df[~living_mask & ~missing_birth & ~missing_death].copy()
+
+    same = eligible[eligible["birth_country"] == eligible["death_country"]]
+    crossed = eligible[eligible["birth_country"] != eligible["death_country"]]
+
+    def _build_flows(frame: pd.DataFrame) -> list[dict]:
+        """Group a frame into flows sorted by count descending."""
+        if len(frame) == 0:
+            return []
+        grouped = (
+            frame.groupby(["birth_country", "death_country"], dropna=False)
+            .apply(
+                lambda g: g.sort_values("name")[["qid", "name"]].to_dict("records"),
+                include_groups=False,
+            )
+            .reset_index(name="sculptors")
+        )
+        grouped["count"] = grouped["sculptors"].apply(len)
+        grouped = grouped.sort_values("count", ascending=False)
+        out: list[dict] = []
+        for _, row in grouped.iterrows():
+            sculptors = row["sculptors"][:MAX_SCULPTORS_PER_FLOW]
+            out.append({
+                "from": str(row["birth_country"]),
+                "to": str(row["death_country"]),
+                "count": int(row["count"]),
+                "sameCountry": row["birth_country"] == row["death_country"],
+                "sculptors": [
+                    {"qid": s["qid"], "name": s["name"]}
+                    for s in sculptors
+                ],
+            })
+        return out
+
+    all_flows = _build_flows(eligible)
+
+    # Per-decade slices keyed by *birth* decade. Birth decade is the cleanest
+    # anchor because a sculptor's flight from Europe in 1933 is a single
+    # event, but bucketing by death decade would split generationally-linked
+    # migrations (Bauhaus emigrés all died across 1950s-1980s). See also the
+    # existing `_geography_by_decade` helper which uses the same anchor.
+    flows_by_decade: dict[str, list[dict]] = {}
+    for decade, group in eligible.groupby("birth_decade"):
+        if pd.isna(decade):
+            continue
+        flows_by_decade[str(int(decade))] = _build_flows(group)
+
+    # Top cross-border corridors for the headline call-outs. Same-country
+    # flows are excluded here — "Born in USA → Died in USA" has 400+ entries
+    # and dominates the list without adding narrative value.
+    top_flows = [f for f in all_flows if not f["sameCountry"]][:10]
+
+    # Make the four buckets a clean partition of `totalIncluded`:
+    #   livingExcluded   = living sculptors (we don't yet know where they'll die)
+    #   missingBirthCountry = non-living, no birth country
+    #   missingDeathCountry = non-living, has birth country but no death country
+    #   eligible         = non-living with both countries
+    # Previously `missingDeathCountry` silently included living sculptors,
+    # making the four buckets sum to more than totalIncluded.
+    missing_birth_nonliving = (~living_mask & missing_birth).sum()
+    missing_death_nonliving = (~living_mask & ~missing_birth & missing_death).sum()
+    return {
+        "meta": {
+            "totalIncluded": int(len(df)),
+            "eligible": int(len(eligible)),
+            "withBothCountries": int(len(eligible)),
+            "crossedBorders": int(len(crossed)),
+            "sameCountry": int(len(same)),
+            "missingBirthCountry": int(missing_birth_nonliving),
+            "missingDeathCountry": int(missing_death_nonliving),
+            "livingExcluded": int(living_mask.sum()),
+            "topFlows": top_flows,
+        },
+        "flows": all_flows,
+        "flowsByBirthDecade": flows_by_decade,
+    }
+
+
+DECADE_NOTABLE_LIMIT = 36
+DECADE_TOP_COUNTRIES = 8
+DECADE_TOP_MOVEMENTS = 6
+DECADE_TOP_CORRIDORS = 5
+
+
+def create_decades_json(nodes: pd.DataFrame, migration: dict) -> dict:
+    """Per-decade aggregates that power /decade/[year] pages.
+
+    A single bundle keyed by decade (str), each value carries the headline
+    stats, top countries / movements / corridors, and a roster of notable
+    sculptors (top by ``total_degree`` so the page leads with people the
+    network knows about). All counts are computed against the *included*
+    set so they line up with /explore and /transparency.
+
+    Why not per-decade shards: the full bundle is small (~30 KB) and a
+    single fetch beats 22 separate shards for a navigation pattern where
+    a reader is likely to flip between adjacent decades.
+    """
+    df = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
+    df = df[df["birth_decade"].notna()].copy()
+    df["birth_decade"] = df["birth_decade"].astype(int)
+
+    flows_by_decade = migration.get("flowsByBirthDecade", {}) if migration else {}
+
+    out: dict[str, dict] = {}
+    for decade, group in df.groupby("birth_decade"):
+        decade = int(decade)
+        if decade < 1800:
+            continue
+
+        total = int(len(group))
+
+        # Gender breakdown — count female + male only; "Other / unspecified"
+        # is computed by subtraction so the chart stays honest about
+        # records with no gender on Wikidata.
+        female = int((group["gender"].fillna("").str.lower() == "female").sum())
+        male = int((group["gender"].fillna("").str.lower() == "male").sum())
+        other_or_unknown = total - female - male
+
+        # Top countries by birth (P19 → P17). Group small countries into
+        # "Other" so the page shows a clean ordered list, but always
+        # surface the actual count of "Other" rather than dropping.
+        country_counts = (
+            group["birth_country"].dropna().value_counts().head(DECADE_TOP_COUNTRIES)
+        )
+        top_countries = [
+            {"country": str(k), "count": int(v)} for k, v in country_counts.items()
+        ]
+
+        # Top movements (display-form). Same rationale as countries.
+        # Exclude the "No movement listed" sentinel — it's a fill-NA marker
+        # from process.py, not a real movement, and it would otherwise rank
+        # #1 in every decade (~73% of sculptors lack a Wikidata movement).
+        movement_series = group["movement_display"].dropna()
+        movement_series = movement_series[movement_series != "No movement listed"]
+        movement_counts = movement_series.value_counts().head(DECADE_TOP_MOVEMENTS)
+        top_movements = [
+            {"movement": str(k), "count": int(v)} for k, v in movement_counts.items()
+        ]
+
+        # Top notable sculptors — by total_degree (in + out edges in the
+        # lineage graph). Falls back to alphabetical when degree is 0.
+        notable_df = group.copy()
+        notable_df["_deg"] = notable_df["total_degree"].fillna(0).astype(int)
+        notable_df = notable_df.sort_values(
+            ["_deg", "name"], ascending=[False, True]
+        ).head(DECADE_NOTABLE_LIMIT)
+        notable = [
+            {
+                "qid": str(r["qid"]),
+                "name": str(r["name"]),
+                "birthYear": int(r["birth_year"]) if pd.notna(r.get("birth_year")) else None,
+                "deathYear": int(r["death_year"]) if pd.notna(r.get("death_year")) else None,
+                "movement": str(r["movement_display"]) if pd.notna(r.get("movement_display")) else None,
+                "citizenship": str(r["citizenship_display"]) if pd.notna(r.get("citizenship_display")) else None,
+                "totalDegree": int(r["_deg"]),
+            }
+            for _, r in notable_df.iterrows()
+        ]
+
+        # Top migration corridors — pull from the precomputed migration
+        # bundle to avoid recomputing the same group-by twice. Drop
+        # same-country flows so the call-out tells the migration story.
+        decade_flows = flows_by_decade.get(str(decade), [])
+        cross_border_flows = [f for f in decade_flows if not f.get("sameCountry")]
+        top_corridors = [
+            {"from": f["from"], "to": f["to"], "count": int(f["count"])}
+            for f in cross_border_flows[:DECADE_TOP_CORRIDORS]
+        ]
+
+        # Cross-border share for the decade headline ("X% left their
+        # birth country"). Denominator is sculptors with both birth +
+        # death country known — same definition as the Migration page.
+        eligible_for_migration = sum(int(f["count"]) for f in decade_flows)
+        crossed_for_migration = sum(int(f["count"]) for f in cross_border_flows)
+        cross_pct = (
+            round(crossed_for_migration / eligible_for_migration * 100)
+            if eligible_for_migration > 0
+            else None
+        )
+
+        out[str(decade)] = {
+            "decade": decade,
+            "totalBorn": total,
+            "gender": {
+                "female": female,
+                "male": male,
+                "otherOrUnknown": other_or_unknown,
+            },
+            "topCountries": top_countries,
+            "topMovements": top_movements,
+            "topCorridors": top_corridors,
+            "migration": {
+                "eligible": eligible_for_migration,
+                "crossed": crossed_for_migration,
+                "crossPct": cross_pct,
+            },
+            "notable": notable,
+        }
+
+    return out
+
+
+MOVEMENT_NOTABLE_LIMIT = 36
+MOVEMENT_TOP_COUNTRIES = 6
+MOVEMENT_MIN_SCULPTORS = 3
+
+
+def _movement_slug(name: str) -> str:
+    """URL-safe slug for a movement display name.
+
+    Lowercase, ASCII-fold non-letters, collapse runs of non-word chars
+    into hyphens. We keep this in the pipeline (not the web app) so the
+    JSON it emits already carries the canonical slug — that way the web
+    app never has to re-derive a key it would then have to keep in sync
+    with our slugger forever.
+    """
+    import re
+    import unicodedata
+
+    folded = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", folded).strip("-").lower()
+    return slug or "unknown"
+
+
+def create_movements_json(nodes: pd.DataFrame) -> dict:
+    """Per-movement aggregates that power /movement/[slug] pages.
+
+    Each entry carries: total sculptor count, decade histogram, top
+    countries, and a notable-sculptor roster (top by ``total_degree``).
+    Movements with fewer than ``MOVEMENT_MIN_SCULPTORS`` sculptors are
+    dropped — single-sculptor "movements" are usually Wikidata
+    long-tail labels (e.g. one obscure local circle) that don't merit
+    a destination page and would dilute the index list.
+
+    The bundle structure mirrors decades.json: a single object keyed by
+    *slug*, plus an ``index`` list ordered by sculptor count for the
+    /movement landing page (deferred — for now /movement/[slug] is
+    reachable from detail-page pills).
+    """
+    df = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
+    # Drop the "No movement listed" sentinel before grouping — it's a
+    # fill-NA marker from process.py (covers ~73% of sculptors who simply
+    # lack a P135 on Wikidata), not a real movement. Without this filter
+    # /movement/no-movement-listed becomes the largest movement page.
+    df = df[
+        df["movement_display"].notna()
+        & (df["movement_display"] != "")
+        & (df["movement_display"] != "No movement listed")
+    ].copy()
+
+    movements: dict[str, dict] = {}
+    index_rows: list[dict] = []
+
+    for movement, group in df.groupby("movement_display"):
+        total = int(len(group))
+        if total < MOVEMENT_MIN_SCULPTORS:
+            continue
+
+        slug = _movement_slug(str(movement))
+
+        # Birth-decade histogram. Sparse — we only emit decades that
+        # actually have sculptors so the chart consumer doesn't have
+        # to filter out zero rows it never plotted.
+        by_decade = (
+            group["birth_decade"]
+            .dropna()
+            .astype(int)
+            .value_counts()
+            .sort_index()
+            .to_dict()
+        )
+        by_decade_list = [
+            {"decade": int(d), "count": int(c)} for d, c in by_decade.items()
+        ]
+
+        country_counts = (
+            group["birth_country"].dropna().value_counts().head(MOVEMENT_TOP_COUNTRIES)
+        )
+        top_countries = [
+            {"country": str(k), "count": int(v)} for k, v in country_counts.items()
+        ]
+
+        # Notable sculptors — same definition as decade pages.
+        notable_df = group.copy()
+        notable_df["_deg"] = notable_df["total_degree"].fillna(0).astype(int)
+        notable_df = notable_df.sort_values(
+            ["_deg", "name"], ascending=[False, True]
+        ).head(MOVEMENT_NOTABLE_LIMIT)
+        notable = [
+            {
+                "qid": str(r["qid"]),
+                "name": str(r["name"]),
+                "birthYear": int(r["birth_year"]) if pd.notna(r.get("birth_year")) else None,
+                "deathYear": int(r["death_year"]) if pd.notna(r.get("death_year")) else None,
+                "citizenship": str(r["citizenship_display"]) if pd.notna(r.get("citizenship_display")) else None,
+                "totalDegree": int(r["_deg"]),
+            }
+            for _, r in notable_df.iterrows()
+        ]
+
+        # Median birth year — lightweight "era" anchor for the headline
+        # ("Cubism — sculptors born 1882–1928, peak 1900s").
+        years = group["birth_year"].dropna().astype(int)
+        years_min = int(years.min()) if len(years) else None
+        years_max = int(years.max()) if len(years) else None
+        years_median = int(years.median()) if len(years) else None
+        peak_decade = int(group["birth_decade"].dropna().mode().iloc[0]) if len(group["birth_decade"].dropna()) else None
+
+        movements[slug] = {
+            "slug": slug,
+            "name": str(movement),
+            "total": total,
+            "yearsMin": years_min,
+            "yearsMax": years_max,
+            "yearsMedian": years_median,
+            "peakDecade": peak_decade,
+            "byDecade": by_decade_list,
+            "topCountries": top_countries,
+            "notable": notable,
+        }
+        index_rows.append(
+            {
+                "slug": slug,
+                "name": str(movement),
+                "total": total,
+                "peakDecade": peak_decade,
+            }
+        )
+
+    index_rows.sort(key=lambda r: r["total"], reverse=True)
+
+    return {"movements": movements, "index": index_rows}
+
+
 def create_timeline_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     """Create timeline_sculptors.json driven by the curated focus CSV.
 
@@ -779,6 +1171,39 @@ def export_all():
     with open(geography_birth_path, "w") as f:
         json.dump(geography_birth, f, indent=2)
     print(f"✓ Exported geography by birth country to {geography_birth_path.name}")
+
+    # Export migration.json — birth → death country flows for the
+    # Migration view. Same nodes frame as everything else; no extra
+    # Wikidata queries.
+    migration = create_migration_json(nodes)
+    migration_path = WEB_DATA_DIR / "migration.json"
+    with open(migration_path, "w") as f:
+        json.dump(migration, f, indent=2)
+    print(
+        f"✓ Exported migration flows to {migration_path.name} "
+        f"({migration['meta']['crossedBorders']} crossed borders, "
+        f"{migration['meta']['sameCountry']} stayed put, "
+        f"{len(migration['flows'])} unique corridors)"
+    )
+
+    # Export decades.json — per-decade aggregates for /decade/[year] pages.
+    # Reuses the migration bundle for top corridors so we don't recompute
+    # the group-by twice.
+    decades = create_decades_json(nodes, migration)
+    decades_path = WEB_DATA_DIR / "decades.json"
+    with open(decades_path, "w") as f:
+        json.dump(decades, f, indent=2)
+    print(f"✓ Exported decade aggregates to {decades_path.name} ({len(decades)} decades)")
+
+    # Export movements.json — per-movement aggregates for /movement/[slug] pages.
+    movements_bundle = create_movements_json(nodes)
+    movements_bundle_path = WEB_DATA_DIR / "movements.json"
+    with open(movements_bundle_path, "w") as f:
+        json.dump(movements_bundle, f, indent=2)
+    print(
+        f"✓ Exported movement aggregates to {movements_bundle_path.name} "
+        f"({len(movements_bundle['movements'])} movements with ≥{MOVEMENT_MIN_SCULPTORS} sculptors)"
+    )
     
     # Export focus_sculptors.json
     focus = create_focus_sculptors_json(nodes)
