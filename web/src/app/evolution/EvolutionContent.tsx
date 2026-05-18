@@ -246,7 +246,6 @@ export function EvolutionContent() {
             data={movementsData}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
-            showEvents={true}
           />
         </section>
 

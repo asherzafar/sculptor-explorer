@@ -330,9 +330,20 @@ function FlowDetailPanel({
   pinned: boolean;
   onClear: () => void;
 }) {
+  // The panel is a passive sidebar by default. We only mark it as a
+  // polite live region when the user has *pinned* a corridor (an
+  // explicit click action), so screen-reader users don't hear an
+  // announcement on every mouse-hover tick across the Sankey. Hover
+  // is a noisy signal; pin is intent.
+  const liveProps = pinned
+    ? ({ "aria-live": "polite", "aria-atomic": true } as const)
+    : ({} as const);
   if (!flow) {
     return (
-      <aside className="rounded-md bg-bg-secondary p-4 text-sm text-text-tertiary self-start">
+      <aside
+        className="rounded-md bg-bg-secondary p-4 text-sm text-text-tertiary self-start"
+        aria-label="Migration corridor detail"
+      >
         <p className="font-medium text-text-secondary mb-1">
           Hover a corridor
         </p>
@@ -348,7 +359,11 @@ function FlowDetailPanel({
     flow.from.startsWith("Other (") || flow.to.startsWith("Other (");
 
   return (
-    <aside className="rounded-md bg-bg-secondary p-4 self-start">
+    <aside
+      className="rounded-md bg-bg-secondary p-4 self-start"
+      aria-label="Migration corridor detail"
+      {...liveProps}
+    >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="text-xs uppercase tracking-[0.12em] text-text-tertiary">
           {flow.sameCountry ? "Stayed in" : "Migration corridor"}
@@ -358,15 +373,16 @@ function FlowDetailPanel({
             variant="ghost"
             size="sm"
             onClick={onClear}
+            aria-label="Clear pinned corridor"
             className="h-6 px-2 -mr-2"
           >
-            <X className="h-3 w-3" />
+            <X className="h-3 w-3" aria-hidden="true" />
           </Button>
         )}
       </div>
       <div className="font-display text-lg font-semibold text-text-primary leading-tight">
         {flow.from}{" "}
-        <ArrowRight className="inline h-4 w-4 text-text-tertiary mb-0.5" />{" "}
+        <ArrowRight className="inline h-4 w-4 text-text-tertiary mb-0.5" aria-hidden="true" />{" "}
         {flow.to}
       </div>
       <div className="mt-1 text-sm text-text-secondary tabular-nums">
