@@ -9,6 +9,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { NotableSculptorCard } from "@/components/NotableSculptorCard";
+import { StatBlock } from "@/components/StatBlock";
 import { formatDisplayValue } from "@/lib/utils";
 
 /**
@@ -74,7 +75,7 @@ export function MovementView({ slug }: { slug: string }) {
               href="/explore"
               className="inline-flex items-center gap-1 hover:text-accent-primary transition-colors"
             >
-              <ArrowLeft className="h-3 w-3" /> Explore
+              <ArrowLeft className="h-3 w-3" aria-hidden="true" /> Explore
             </Link>
           }
           title={slug}
@@ -271,38 +272,6 @@ export function MovementView({ slug }: { slug: string }) {
 }
 
 // ── small components, page-local ────────────────────────────────────────
-
-function StatBlock({
-  label,
-  value,
-  sub,
-  accent = false,
-}: {
-  label: string;
-  value: string;
-  sub?: string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="rounded-md bg-bg-secondary p-4">
-      <div className="text-xs uppercase tracking-[0.12em] text-text-tertiary">
-        {label}
-      </div>
-      <div
-        className={`mt-1 font-display text-2xl font-semibold tabular-nums leading-tight ${
-          accent ? "text-accent-primary" : "text-text-primary"
-        }`}
-      >
-        {value}
-      </div>
-      {sub && (
-        <div className="mt-1 text-xs text-text-secondary leading-snug">
-          {sub}
-        </div>
-      )}
-    </div>
-  );
-}
 
 /**
  * DecadeHistogram — minimal CSS-only bar chart for a movement's birth

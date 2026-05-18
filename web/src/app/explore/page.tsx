@@ -16,7 +16,7 @@ import {
 import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
 import type { LegacySculptor } from "@/lib/types";
 import { loadSculptors } from "@/lib/data";
-import { formatDisplayValue, formatGender } from "@/lib/utils";
+import { formatDisplayValue, formatGender, movementSlug } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { PageHeader } from "@/components/PageHeader";
@@ -79,7 +79,21 @@ const columns: ColumnDef<LegacySculptor>[] = [
     header: "Movement",
     cell: ({ row }) => {
       const movement = row.getValue("movement") as string;
-      return formatDisplayValue(movement, { isMovement: true });
+      // Only real movements get a destination page — the "No movement
+      // listed" sentinel is filtered out of movements.json, so linking
+      // it would 404. The dash is consistent with how empty cells
+      // render in the other columns.
+      if (!movement || movement === "No movement listed") {
+        return formatDisplayValue(movement, { isMovement: true });
+      }
+      return (
+        <Link
+          href={`/movement/${movementSlug(movement)}`}
+          className="text-accent-primary hover:underline"
+        >
+          {formatDisplayValue(movement, { isMovement: true })}
+        </Link>
+      );
     },
   },
   {

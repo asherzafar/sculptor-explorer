@@ -9,6 +9,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { NotableSculptorCard } from "@/components/NotableSculptorCard";
+import { StatBlock } from "@/components/StatBlock";
 
 /**
  * DecadeView — renders one /decade/[year] page.
@@ -73,7 +74,7 @@ export function DecadeView({ year }: { year: string }) {
               href="/timeline"
               className="inline-flex items-center gap-1 hover:text-accent-primary transition-colors"
             >
-              <ArrowLeft className="h-3 w-3" /> Timeline
+              <ArrowLeft className="h-3 w-3" aria-hidden="true" /> Timeline
             </Link>
           }
           title={`${year}s`}
@@ -102,7 +103,7 @@ export function DecadeView({ year }: { year: string }) {
             href="/timeline"
             className="inline-flex items-center gap-1 hover:text-accent-primary transition-colors"
           >
-            <ArrowLeft className="h-3 w-3" /> Timeline
+            <ArrowLeft className="h-3 w-3" aria-hidden="true" /> Timeline
           </Link>
         }
         title={`The ${year}s`}
@@ -222,7 +223,7 @@ export function DecadeView({ year }: { year: string }) {
                   <span className="font-medium text-text-primary">
                     {f.from}
                   </span>
-                  <ArrowRight className="h-3.5 w-3.5 text-text-tertiary" />
+                  <ArrowRight className="h-3.5 w-3.5 text-text-tertiary" aria-hidden="true" />
                   <span className="font-medium text-text-primary">{f.to}</span>
                   <span className="ml-auto text-text-tertiary tabular-nums">
                     {f.count}
@@ -236,7 +237,7 @@ export function DecadeView({ year }: { year: string }) {
             className="mt-3 inline-flex items-center gap-1 text-sm text-accent-primary hover:text-accent-hover transition-colors"
           >
             See the full Sankey for the {year}s
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
         </section>
       )}
@@ -277,38 +278,6 @@ export function DecadeView({ year }: { year: string }) {
 }
 
 // ── small components, page-local ────────────────────────────────────────
-
-function StatBlock({
-  label,
-  value,
-  sub,
-  accent = false,
-}: {
-  label: string;
-  value: string;
-  sub?: string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="rounded-md bg-bg-secondary p-4">
-      <div className="text-xs uppercase tracking-[0.12em] text-text-tertiary">
-        {label}
-      </div>
-      <div
-        className={`mt-1 font-display text-2xl font-semibold tabular-nums leading-tight ${
-          accent ? "text-accent-primary" : "text-text-primary"
-        }`}
-      >
-        {value}
-      </div>
-      {sub && (
-        <div className="mt-1 text-xs text-text-secondary leading-snug">
-          {sub}
-        </div>
-      )}
-    </div>
-  );
-}
 
 interface RankedItem {
   label: string;
@@ -368,13 +337,14 @@ function DecadeNav({
       {prev != null ? (
         <Link
           href={`/decade/${prev}`}
+          aria-label={`Previous decade, ${prev}s`}
           className="inline-flex items-center gap-1 text-text-secondary hover:text-accent-primary transition-colors"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           {verbose ? `${prev}s` : <span className="tabular-nums">{prev}s</span>}
         </Link>
       ) : (
-        <span className="opacity-30 inline-flex items-center gap-1">
+        <span className="opacity-30 inline-flex items-center gap-1" aria-hidden="true">
           <ChevronLeft className="h-4 w-4" />
           {verbose ? "—" : null}
         </span>
@@ -382,13 +352,14 @@ function DecadeNav({
       {next != null ? (
         <Link
           href={`/decade/${next}`}
+          aria-label={`Next decade, ${next}s`}
           className="inline-flex items-center gap-1 text-text-secondary hover:text-accent-primary transition-colors"
         >
           {verbose ? `${next}s` : <span className="tabular-nums">{next}s</span>}
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       ) : (
-        <span className="opacity-30 inline-flex items-center gap-1">
+        <span className="opacity-30 inline-flex items-center gap-1" aria-hidden="true">
           {verbose ? "—" : null}
           <ChevronRight className="h-4 w-4" />
         </span>

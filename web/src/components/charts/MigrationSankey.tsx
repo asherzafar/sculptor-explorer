@@ -339,9 +339,18 @@ export function MigrationSankey({
     );
   }
 
+  const ariaLabel = `Sankey diagram of sculptor migration: ${flows.length} birth-to-death-country corridor${
+    flows.length === 1 ? "" : "s"
+  }. Hover or focus a corridor to see who crossed it.`;
+
   return (
     <div className="w-full overflow-x-auto">
-      <svg ref={svgRef} className="w-full" />
+      <svg
+        ref={svgRef}
+        className="w-full"
+        role="img"
+        aria-label={ariaLabel}
+      />
     </div>
   );
 }

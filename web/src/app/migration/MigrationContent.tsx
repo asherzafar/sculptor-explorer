@@ -11,6 +11,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { Button } from "@/components/ui/button";
+import { StatBlock } from "@/components/StatBlock";
 
 /**
  * MigrationContent — client component for /migration.
@@ -118,6 +119,22 @@ export function MigrationContent() {
   // click "sticks" until the user clicks elsewhere or clears.
   const detailFlow = pinnedFlow ?? hoveredFlow;
 
+  // Stable Sankey props — without these, hovering any corridor re-renders
+  // the parent (hoveredFlow state change), which would otherwise pass a
+  // fresh `onFlowClick` closure and a fresh `highlightedFlow` object into
+  // MigrationSankey. The Sankey's D3 effect depends on those references,
+  // so the entire SVG would be torn down and rebuilt on every mouseenter.
+  // useCallback + useMemo keep the references stable across hover ticks.
+  const handleFlowClick = useCallback((f: MigrationFlow) => {
+    setPinnedFlow((cur) => (cur === f ? null : f));
+  }, []);
+
+  const highlightedFlow = useMemo(
+    () =>
+      pinnedFlow ? { from: pinnedFlow.from, to: pinnedFlow.to } : null,
+    [pinnedFlow]
+  );
+
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -213,10 +230,8 @@ export function MigrationContent() {
             flows={flowsForChart}
             includeSameCountry={includeSameCountry}
             onFlowHover={setHoveredFlow}
-            onFlowClick={(f) => setPinnedFlow((cur) => (cur === f ? null : f))}
-            highlightedFlow={
-              pinnedFlow ? { from: pinnedFlow.from, to: pinnedFlow.to } : null
-            }
+            onFlowClick={handleFlowClick}
+            highlightedFlow={highlightedFlow}
           />
           <p className="mt-3 text-xs text-text-tertiary">
             Hover a corridor to see who crossed it. Click to pin. The
@@ -281,38 +296,6 @@ export function MigrationContent() {
 
 // ── small components, page-local ────────────────────────────────────────
 
-function StatBlock({
-  label,
-  value,
-  sub,
-  accent = false,
-}: {
-  label: string;
-  value: string;
-  sub?: string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="rounded-md bg-bg-secondary p-4">
-      <div className="text-xs uppercase tracking-[0.12em] text-text-tertiary">
-        {label}
-      </div>
-      <div
-        className={`mt-1 font-display text-3xl font-semibold tabular-nums ${
-          accent ? "text-accent-primary" : "text-text-primary"
-        }`}
-      >
-        {value}
-      </div>
-      {sub && (
-        <div className="mt-1 text-xs text-text-secondary leading-snug">
-          {sub}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function DecadeChip({
   label,
   active,
@@ -326,6 +309,7 @@ function DecadeChip({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={
         active
           ? "px-2.5 py-1 rounded-full text-xs font-medium bg-accent-primary text-white"

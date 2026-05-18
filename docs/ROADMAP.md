@@ -189,6 +189,32 @@ Built in increments alongside 3a-c, not saved for the end.
 - [ ] Curated tours — pre-set lenses ("Women the canon forgot," "From marble to steel")
 - [ ] Wikidata-independent lineage via museum provenance records (finally makes the network graph real)
 
+### Backlog: institutions, studios, places as first-class nodes
+Open question raised in May 2026: do we have data on the institutions
+(academies, foundries, artist colonies), studios, or geographies that
+sculptors were related to, and should those become nodes/edges in the
+network graph or other views?
+
+**What Wikidata exposes per sculptor (already partially ingested):**
+- P69 — *educated at* (academies, ateliers, universities)
+- P937 — *work location* (cities, studios, artist colonies)
+- P1066 — *student of* (already a lineage edge, but only when target is a person — institutional teachers are dropped)
+- P108 — *employer* (rare for sculptors but appears for foundry-trained artists)
+- P39 — *position held* (membership in NSS, NAD, Académie, etc.)
+- P361 — *part of* (artist groups, secessions, schools)
+
+**What this would unlock if integrated:**
+- Lineage graph gains *institutional* nodes (Académie Julian, ASL, Black Mountain, Cranbrook) — likely the highest-degree hubs in the data and a more honest model of training than person-to-person edges alone.
+- Geography view gains *activity-place* dimension on top of citizenship/birth — addresses the "deferred to 3b" gap in the migration view.
+- Movement pages (above) become richer because the institutional anchors of each movement (Bauhaus, Black Mountain) are nodes, not strings.
+
+**Open design questions before building:**
+- Lineage graph already pushes ~6k nodes once external mentors are included. Adding institutions might cross the threshold where d3-force gets unhappy and we need a Canvas/WebGL fallback.
+- Bipartite vs. tripartite: sculptor (circle) + person-mentor (diamond) is the current model. Add institution (square)? Or model institutions as edge attributes on existing edges instead of new nodes?
+- How to draw an *origin* line on the migration view from a city node when many records only have country granularity?
+
+**Decision:** parked, not started. Revisit after Phase 4 polish lands and after the d3-force performance budget is measured. If we cross the WebGL threshold for any reason, this becomes free to add.
+
 ---
 
 ## What to build vs. defer — quick reference
