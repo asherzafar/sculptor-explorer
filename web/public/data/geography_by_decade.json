@@ -6,13 +6,8 @@
   },
   {
     "decade": 1800,
-    "category": "Other",
-    "count": 22
-  },
-  {
-    "decade": 1800,
     "category": "Germany",
-    "count": 19
+    "count": 29
   },
   {
     "decade": 1800,
@@ -21,8 +16,18 @@
   },
   {
     "decade": 1800,
-    "category": "Kingdom of Italy",
+    "category": "Other",
+    "count": 8
+  },
+  {
+    "decade": 1800,
+    "category": "Italy",
     "count": 7
+  },
+  {
+    "decade": 1800,
+    "category": "United Kingdom",
+    "count": 4
   },
   {
     "decade": 1800,
@@ -31,18 +36,18 @@
   },
   {
     "decade": 1800,
-    "category": "Kingdom of the Netherlands",
+    "category": "Austria",
+    "count": 2
+  },
+  {
+    "decade": 1800,
+    "category": "Netherlands",
     "count": 2
   },
   {
     "decade": 1800,
     "category": "United States",
     "count": 2
-  },
-  {
-    "decade": 1800,
-    "category": "German Reich",
-    "count": 1
   },
   {
     "decade": 1800,
@@ -60,14 +65,9 @@
     "count": 1
   },
   {
-    "decade": 1800,
-    "category": "United Kingdom",
-    "count": 1
-  },
-  {
     "decade": 1810,
-    "category": "Other",
-    "count": 34
+    "category": "Germany",
+    "count": 37
   },
   {
     "decade": 1810,
@@ -76,22 +76,27 @@
   },
   {
     "decade": 1810,
-    "category": "Germany",
-    "count": 21
-  },
-  {
-    "decade": 1810,
     "category": "Unknown",
     "count": 7
   },
   {
     "decade": 1810,
-    "category": "Kingdom of Italy",
+    "category": "Austria",
     "count": 6
   },
   {
     "decade": 1810,
-    "category": "Kingdom of the Netherlands",
+    "category": "Italy",
+    "count": 6
+  },
+  {
+    "decade": 1810,
+    "category": "United Kingdom",
+    "count": 6
+  },
+  {
+    "decade": 1810,
+    "category": "Netherlands",
     "count": 5
   },
   {
@@ -111,7 +116,17 @@
   },
   {
     "decade": 1810,
+    "category": "Other",
+    "count": 3
+  },
+  {
+    "decade": 1810,
     "category": "Spain",
+    "count": 3
+  },
+  {
+    "decade": 1810,
+    "category": "Sweden",
     "count": 3
   },
   {
@@ -131,13 +146,13 @@
   },
   {
     "decade": 1820,
-    "category": "Other",
-    "count": 21
+    "category": "Germany",
+    "count": 27
   },
   {
     "decade": 1820,
-    "category": "Germany",
-    "count": 18
+    "category": "Other",
+    "count": 10
   },
   {
     "decade": 1820,
@@ -151,13 +166,18 @@
   },
   {
     "decade": 1820,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 5
   },
   {
     "decade": 1820,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 4
+  },
+  {
+    "decade": 1820,
+    "category": "Austria",
+    "count": 3
   },
   {
     "decade": 1820,
@@ -168,11 +188,6 @@
     "decade": 1820,
     "category": "Russian Empire",
     "count": 3
-  },
-  {
-    "decade": 1820,
-    "category": "German Reich",
-    "count": 2
   },
   {
     "decade": 1820,
@@ -190,9 +205,14 @@
     "count": 1
   },
   {
+    "decade": 1820,
+    "category": "United Kingdom",
+    "count": 1
+  },
+  {
     "decade": 1830,
-    "category": "Other",
-    "count": 39
+    "category": "Germany",
+    "count": 40
   },
   {
     "decade": 1830,
@@ -201,12 +221,12 @@
   },
   {
     "decade": 1830,
-    "category": "Germany",
-    "count": 19
+    "category": "Other",
+    "count": 15
   },
   {
     "decade": 1830,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 10
   },
   {
@@ -216,17 +236,17 @@
   },
   {
     "decade": 1830,
+    "category": "Austria",
+    "count": 5
+  },
+  {
+    "decade": 1830,
     "category": "Belgium",
     "count": 5
   },
   {
     "decade": 1830,
-    "category": "German Reich",
-    "count": 5
-  },
-  {
-    "decade": 1830,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 5
   },
   {
@@ -236,13 +256,18 @@
   },
   {
     "decade": 1830,
+    "category": "United Kingdom",
+    "count": 5
+  },
+  {
+    "decade": 1830,
     "category": "Unknown",
     "count": 4
   },
   {
     "decade": 1830,
-    "category": "Austria",
-    "count": 3
+    "category": "Sweden",
+    "count": 2
   },
   {
     "decade": 1830,
@@ -265,14 +290,9 @@
     "count": 1
   },
   {
-    "decade": 1830,
-    "category": "United Kingdom",
-    "count": 1
-  },
-  {
     "decade": 1840,
     "category": "Germany",
-    "count": 50
+    "count": 68
   },
   {
     "decade": 1840,
@@ -281,18 +301,23 @@
   },
   {
     "decade": 1840,
-    "category": "Other",
-    "count": 32
+    "category": "Italy",
+    "count": 16
   },
   {
     "decade": 1840,
-    "category": "Kingdom of Italy",
-    "count": 16
+    "category": "Other",
+    "count": 10
   },
   {
     "decade": 1840,
     "category": "Unknown",
     "count": 10
+  },
+  {
+    "decade": 1840,
+    "category": "Austria",
+    "count": 9
   },
   {
     "decade": 1840,
@@ -306,17 +331,12 @@
   },
   {
     "decade": 1840,
-    "category": "German Reich",
-    "count": 5
+    "category": "United Kingdom",
+    "count": 6
   },
   {
     "decade": 1840,
-    "category": "Austria",
-    "count": 4
-  },
-  {
-    "decade": 1840,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 4
   },
   {
@@ -340,9 +360,9 @@
     "count": 3
   },
   {
-    "decade": 1840,
-    "category": "United Kingdom",
-    "count": 2
+    "decade": 1850,
+    "category": "Germany",
+    "count": 74
   },
   {
     "decade": 1850,
@@ -351,23 +371,13 @@
   },
   {
     "decade": 1850,
-    "category": "Germany",
-    "count": 44
+    "category": "Italy",
+    "count": 20
   },
   {
     "decade": 1850,
     "category": "Other",
-    "count": 36
-  },
-  {
-    "decade": 1850,
-    "category": "Kingdom of Italy",
-    "count": 19
-  },
-  {
-    "decade": 1850,
-    "category": "German Reich",
-    "count": 15
+    "count": 16
   },
   {
     "decade": 1850,
@@ -377,11 +387,11 @@
   {
     "decade": 1850,
     "category": "Hungary",
-    "count": 10
+    "count": 11
   },
   {
     "decade": 1850,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 9
   },
   {
@@ -412,11 +422,16 @@
   {
     "decade": 1850,
     "category": "United Kingdom",
+    "count": 3
+  },
+  {
+    "decade": 1850,
+    "category": "Sweden",
     "count": 2
   },
   {
     "decade": 1850,
-    "category": "Italy",
+    "category": "Poland",
     "count": 1
   },
   {
@@ -427,7 +442,7 @@
   {
     "decade": 1860,
     "category": "Germany",
-    "count": 90
+    "count": 117
   },
   {
     "decade": 1860,
@@ -436,27 +451,22 @@
   },
   {
     "decade": 1860,
-    "category": "Other",
-    "count": 32
-  },
-  {
-    "decade": 1860,
     "category": "Austria",
     "count": 22
   },
   {
     "decade": 1860,
-    "category": "German Reich",
+    "category": "Other",
     "count": 21
   },
   {
     "decade": 1860,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 15
   },
   {
     "decade": 1860,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 13
   },
   {
@@ -477,7 +487,7 @@
   {
     "decade": 1860,
     "category": "United Kingdom",
-    "count": 7
+    "count": 8
   },
   {
     "decade": 1860,
@@ -505,9 +515,19 @@
     "count": 2
   },
   {
+    "decade": 1860,
+    "category": "Poland",
+    "count": 2
+  },
+  {
+    "decade": 1860,
+    "category": "Sweden",
+    "count": 2
+  },
+  {
     "decade": 1870,
     "category": "Germany",
-    "count": 120
+    "count": 164
   },
   {
     "decade": 1870,
@@ -516,18 +536,13 @@
   },
   {
     "decade": 1870,
-    "category": "Other",
-    "count": 44
-  },
-  {
-    "decade": 1870,
     "category": "Austria",
     "count": 31
   },
   {
     "decade": 1870,
-    "category": "German Reich",
-    "count": 30
+    "category": "Other",
+    "count": 21
   },
   {
     "decade": 1870,
@@ -541,12 +556,12 @@
   },
   {
     "decade": 1870,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 14
   },
   {
     "decade": 1870,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 12
   },
   {
@@ -571,23 +586,28 @@
   },
   {
     "decade": 1870,
+    "category": "Poland",
+    "count": 4
+  },
+  {
+    "decade": 1870,
+    "category": "United Kingdom",
+    "count": 4
+  },
+  {
+    "decade": 1870,
     "category": "Canada",
     "count": 3
   },
   {
     "decade": 1870,
-    "category": "United Kingdom",
-    "count": 2
+    "category": "Sweden",
+    "count": 3
   },
   {
     "decade": 1880,
     "category": "Germany",
-    "count": 134
-  },
-  {
-    "decade": 1880,
-    "category": "Other",
-    "count": 55
+    "count": 156
   },
   {
     "decade": 1880,
@@ -596,18 +616,23 @@
   },
   {
     "decade": 1880,
+    "category": "Other",
+    "count": 42
+  },
+  {
+    "decade": 1880,
     "category": "Austria",
     "count": 29
   },
   {
     "decade": 1880,
-    "category": "Kingdom of the Netherlands",
+    "category": "Italy",
     "count": 25
   },
   {
     "decade": 1880,
-    "category": "Kingdom of Italy",
-    "count": 24
+    "category": "Netherlands",
+    "count": 25
   },
   {
     "decade": 1880,
@@ -626,11 +651,6 @@
   },
   {
     "decade": 1880,
-    "category": "German Reich",
-    "count": 13
-  },
-  {
-    "decade": 1880,
     "category": "Russian Empire",
     "count": 13
   },
@@ -651,23 +671,23 @@
   },
   {
     "decade": 1880,
-    "category": "Unknown",
+    "category": "Poland",
     "count": 2
   },
   {
     "decade": 1880,
-    "category": "Italy",
-    "count": 1
+    "category": "Sweden",
+    "count": 2
+  },
+  {
+    "decade": 1880,
+    "category": "Unknown",
+    "count": 2
   },
   {
     "decade": 1890,
     "category": "Germany",
-    "count": 111
-  },
-  {
-    "decade": 1890,
-    "category": "Other",
-    "count": 54
+    "count": 115
   },
   {
     "decade": 1890,
@@ -676,12 +696,17 @@
   },
   {
     "decade": 1890,
-    "category": "Kingdom of the Netherlands",
+    "category": "Other",
+    "count": 40
+  },
+  {
+    "decade": 1890,
+    "category": "Netherlands",
     "count": 36
   },
   {
     "decade": 1890,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 22
   },
   {
@@ -706,6 +731,11 @@
   },
   {
     "decade": 1890,
+    "category": "Poland",
+    "count": 10
+  },
+  {
+    "decade": 1890,
     "category": "Switzerland",
     "count": 10
   },
@@ -731,7 +761,7 @@
   },
   {
     "decade": 1890,
-    "category": "German Reich",
+    "category": "Sweden",
     "count": 3
   },
   {
@@ -742,12 +772,12 @@
   {
     "decade": 1900,
     "category": "Germany",
-    "count": 159
+    "count": 164
   },
   {
     "decade": 1900,
     "category": "Other",
-    "count": 65
+    "count": 52
   },
   {
     "decade": 1900,
@@ -761,7 +791,7 @@
   },
   {
     "decade": 1900,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 34
   },
   {
@@ -781,7 +811,7 @@
   },
   {
     "decade": 1900,
-    "category": "Kingdom of Italy",
+    "category": "Italy",
     "count": 19
   },
   {
@@ -801,6 +831,11 @@
   },
   {
     "decade": 1900,
+    "category": "Sweden",
+    "count": 7
+  },
+  {
+    "decade": 1900,
     "category": "United Kingdom",
     "count": 5
   },
@@ -811,8 +846,8 @@
   },
   {
     "decade": 1900,
-    "category": "German Reich",
-    "count": 2
+    "category": "Poland",
+    "count": 3
   },
   {
     "decade": 1900,
@@ -822,17 +857,17 @@
   {
     "decade": 1910,
     "category": "Germany",
-    "count": 108
+    "count": 111
+  },
+  {
+    "decade": 1910,
+    "category": "Netherlands",
+    "count": 64
   },
   {
     "decade": 1910,
     "category": "Other",
-    "count": 76
-  },
-  {
-    "decade": 1910,
-    "category": "Kingdom of the Netherlands",
-    "count": 64
+    "count": 63
   },
   {
     "decade": 1910,
@@ -841,8 +876,8 @@
   },
   {
     "decade": 1910,
-    "category": "Kingdom of Italy",
-    "count": 33
+    "category": "Italy",
+    "count": 34
   },
   {
     "decade": 1910,
@@ -881,8 +916,18 @@
   },
   {
     "decade": 1910,
+    "category": "Sweden",
+    "count": 6
+  },
+  {
+    "decade": 1910,
     "category": "Unknown",
     "count": 5
+  },
+  {
+    "decade": 1910,
+    "category": "Poland",
+    "count": 4
   },
   {
     "decade": 1910,
@@ -895,23 +940,18 @@
     "count": 1
   },
   {
-    "decade": 1910,
-    "category": "Italy",
-    "count": 1
-  },
-  {
     "decade": 1920,
     "category": "Germany",
-    "count": 259
+    "count": 260
   },
   {
     "decade": 1920,
     "category": "Other",
-    "count": 131
+    "count": 113
   },
   {
     "decade": 1920,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 91
   },
   {
@@ -926,13 +966,13 @@
   },
   {
     "decade": 1920,
-    "category": "Austria",
-    "count": 38
+    "category": "Italy",
+    "count": 43
   },
   {
     "decade": 1920,
-    "category": "Kingdom of Italy",
-    "count": 31
+    "category": "Austria",
+    "count": 38
   },
   {
     "decade": 1920,
@@ -956,18 +996,23 @@
   },
   {
     "decade": 1920,
-    "category": "Italy",
-    "count": 12
-  },
-  {
-    "decade": 1920,
     "category": "Canada",
     "count": 11
   },
   {
     "decade": 1920,
+    "category": "Poland",
+    "count": 10
+  },
+  {
+    "decade": 1920,
     "category": "United Kingdom",
     "count": 9
+  },
+  {
+    "decade": 1920,
+    "category": "Sweden",
+    "count": 7
   },
   {
     "decade": 1920,
@@ -982,11 +1027,11 @@
   {
     "decade": 1930,
     "category": "Other",
-    "count": 97
+    "count": 83
   },
   {
     "decade": 1930,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 81
   },
   {
@@ -998,6 +1043,11 @@
     "decade": 1930,
     "category": "Hungary",
     "count": 40
+  },
+  {
+    "decade": 1930,
+    "category": "Italy",
+    "count": 39
   },
   {
     "decade": 1930,
@@ -1021,16 +1071,6 @@
   },
   {
     "decade": 1930,
-    "category": "Kingdom of Italy",
-    "count": 20
-  },
-  {
-    "decade": 1930,
-    "category": "Italy",
-    "count": 19
-  },
-  {
-    "decade": 1930,
     "category": "Canada",
     "count": 12
   },
@@ -1041,8 +1081,18 @@
   },
   {
     "decade": 1930,
+    "category": "Sweden",
+    "count": 8
+  },
+  {
+    "decade": 1930,
     "category": "Belgium",
     "count": 7
+  },
+  {
+    "decade": 1930,
+    "category": "Poland",
+    "count": 6
   },
   {
     "decade": 1930,
@@ -1052,17 +1102,17 @@
   {
     "decade": 1940,
     "category": "Germany",
-    "count": 224
+    "count": 225
+  },
+  {
+    "decade": 1940,
+    "category": "Netherlands",
+    "count": 114
   },
   {
     "decade": 1940,
     "category": "Other",
-    "count": 118
-  },
-  {
-    "decade": 1940,
-    "category": "Kingdom of the Netherlands",
-    "count": 114
+    "count": 105
   },
   {
     "decade": 1940,
@@ -1097,7 +1147,7 @@
   {
     "decade": 1940,
     "category": "Italy",
-    "count": 17
+    "count": 21
   },
   {
     "decade": 1940,
@@ -1116,12 +1166,17 @@
   },
   {
     "decade": 1940,
+    "category": "Poland",
+    "count": 8
+  },
+  {
+    "decade": 1940,
     "category": "Unknown",
     "count": 5
   },
   {
     "decade": 1940,
-    "category": "Kingdom of Italy",
+    "category": "Sweden",
     "count": 4
   },
   {
@@ -1131,13 +1186,13 @@
   },
   {
     "decade": 1950,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 95
   },
   {
     "decade": 1950,
     "category": "Other",
-    "count": 95
+    "count": 89
   },
   {
     "decade": 1950,
@@ -1191,8 +1246,18 @@
   },
   {
     "decade": 1950,
+    "category": "Sweden",
+    "count": 4
+  },
+  {
+    "decade": 1950,
     "category": "Unknown",
     "count": 4
+  },
+  {
+    "decade": 1950,
+    "category": "Poland",
+    "count": 2
   },
   {
     "decade": 1960,
@@ -1202,11 +1267,11 @@
   {
     "decade": 1960,
     "category": "Other",
-    "count": 80
+    "count": 73
   },
   {
     "decade": 1960,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 38
   },
   {
@@ -1256,6 +1321,11 @@
   },
   {
     "decade": 1960,
+    "category": "Poland",
+    "count": 6
+  },
+  {
+    "decade": 1960,
     "category": "Canada",
     "count": 5
   },
@@ -1265,9 +1335,14 @@
     "count": 3
   },
   {
+    "decade": 1960,
+    "category": "Sweden",
+    "count": 1
+  },
+  {
     "decade": 1970,
     "category": "Other",
-    "count": 36
+    "count": 33
   },
   {
     "decade": 1970,
@@ -1276,7 +1351,7 @@
   },
   {
     "decade": 1970,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 10
   },
   {
@@ -1331,13 +1406,23 @@
   },
   {
     "decade": 1970,
+    "category": "Poland",
+    "count": 2
+  },
+  {
+    "decade": 1970,
+    "category": "Sweden",
+    "count": 1
+  },
+  {
+    "decade": 1970,
     "category": "Unknown",
     "count": 1
   },
   {
     "decade": 1980,
     "category": "Other",
-    "count": 6
+    "count": 5
   },
   {
     "decade": 1980,
@@ -1356,12 +1441,17 @@
   },
   {
     "decade": 1980,
-    "category": "Kingdom of the Netherlands",
+    "category": "Netherlands",
     "count": 2
   },
   {
     "decade": 1980,
     "category": "Hungary",
+    "count": 1
+  },
+  {
+    "decade": 1980,
+    "category": "Poland",
     "count": 1
   },
   {

@@ -213,7 +213,7 @@
           "name": "Giannino Castiglioni",
           "birthYear": 1884,
           "deathYear": 1971,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -293,7 +293,7 @@
           "name": "Georg Jensen",
           "birthYear": 1866,
           "deathYear": 1935,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 0
         },
         {
@@ -317,7 +317,7 @@
           "name": "Mario Sarto",
           "birthYear": 1885,
           "deathYear": 1955,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -368,7 +368,7 @@
           "name": "Pino Pascali",
           "birthYear": 1935,
           "deathYear": 1968,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -376,7 +376,7 @@
           "name": "Alberto Burri",
           "birthYear": 1915,
           "deathYear": 1995,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -384,7 +384,7 @@
           "name": "Alighiero Boetti",
           "birthYear": 1940,
           "deathYear": 1994,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -400,7 +400,7 @@
           "name": "Luciano Fabro",
           "birthYear": 1936,
           "deathYear": 2007,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -408,7 +408,7 @@
           "name": "Mario Merz",
           "birthYear": 1925,
           "deathYear": 2003,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -467,7 +467,7 @@
           "name": "Asger Jorn",
           "birthYear": 1914,
           "deathYear": 1973,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 3
         },
         {
@@ -475,7 +475,7 @@
           "name": "Lucebert",
           "birthYear": 1924,
           "deathYear": 1994,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 1
         },
         {
@@ -483,7 +483,7 @@
           "name": "Carl-Henning Pedersen",
           "birthYear": 1913,
           "deathYear": 2007,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 0
         },
         {
@@ -499,7 +499,7 @@
           "name": "Lotti van der Gaag",
           "birthYear": 1923,
           "deathYear": 1999,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -633,7 +633,7 @@
           "name": "Ludwig Michael Schwanthaler",
           "birthYear": 1802,
           "deathYear": 1848,
-          "citizenship": "Kingdom of Bavaria",
+          "citizenship": "Germany",
           "totalDegree": 3
         },
         {
@@ -993,7 +993,7 @@
           "name": "K\u00e4the Kollwitz",
           "birthYear": 1867,
           "deathYear": 1945,
-          "citizenship": "German Empire",
+          "citizenship": "Germany",
           "totalDegree": 4
         },
         {
@@ -1033,7 +1033,7 @@
           "name": "Charles Eyck",
           "birthYear": 1897,
           "deathYear": 1983,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 1
         },
         {
@@ -1041,7 +1041,7 @@
           "name": "Christian Rohlfs",
           "birthYear": 1849,
           "deathYear": 1938,
-          "citizenship": "German Reich",
+          "citizenship": "Germany",
           "totalDegree": 1
         },
         {
@@ -1049,7 +1049,7 @@
           "name": "Ernst Barlach",
           "birthYear": 1870,
           "deathYear": 1938,
-          "citizenship": "German Reich",
+          "citizenship": "Germany",
           "totalDegree": 1
         },
         {
@@ -1081,7 +1081,7 @@
           "name": "Theo van Doesburg",
           "birthYear": 1883,
           "deathYear": 1931,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 1
         },
         {
@@ -1089,7 +1089,7 @@
           "name": "Wilhelm Lehmbruck",
           "birthYear": 1881,
           "deathYear": 1919,
-          "citizenship": "German Empire",
+          "citizenship": "Germany",
           "totalDegree": 1
         },
         {
@@ -1121,7 +1121,7 @@
           "name": "August Macke",
           "birthYear": 1887,
           "deathYear": 1914,
-          "citizenship": "Kingdom of Prussia",
+          "citizenship": "Germany",
           "totalDegree": 0
         },
         {
@@ -1161,7 +1161,7 @@
           "name": "Ernst Ludwig Kirchner",
           "birthYear": 1880,
           "deathYear": 1938,
-          "citizenship": "German Reich",
+          "citizenship": "Germany",
           "totalDegree": 0
         },
         {
@@ -1193,7 +1193,7 @@
           "name": "Hanns Bolz",
           "birthYear": 1885,
           "deathYear": 1918,
-          "citizenship": "Kingdom of Prussia",
+          "citizenship": "Germany",
           "totalDegree": 0
         },
         {
@@ -1241,7 +1241,7 @@
           "name": "Jan Wiegers",
           "birthYear": 1893,
           "deathYear": 1959,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -1488,7 +1488,7 @@
           "count": 1
         },
         {
-          "country": "Empire of Japan",
+          "country": "Japan",
           "count": 1
         }
       ],
@@ -1514,7 +1514,7 @@
           "name": "Li Mei-shu",
           "birthYear": 1902,
           "deathYear": 1983,
-          "citizenship": "Empire of Japan",
+          "citizenship": "Japan",
           "totalDegree": 5
         },
         {
@@ -1594,7 +1594,7 @@
           "name": "Paul Gustav Fischer",
           "birthYear": 1860,
           "deathYear": 1934,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 0
         },
         {
@@ -1661,7 +1661,7 @@
           "name": "Bruno Munari",
           "birthYear": 1907,
           "deathYear": 1998,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -1669,7 +1669,7 @@
           "name": "Giacomo Balla",
           "birthYear": 1871,
           "deathYear": 1958,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -1685,7 +1685,7 @@
           "name": "Giorgio Morandi",
           "birthYear": 1890,
           "deathYear": 1964,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -1693,7 +1693,7 @@
           "name": "Arnaldo Ginna",
           "birthYear": 1890,
           "deathYear": 1982,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -1709,7 +1709,7 @@
           "name": "Renato Bertelli",
           "birthYear": 1900,
           "deathYear": 1974,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -1717,7 +1717,7 @@
           "name": "Sante Monachesi",
           "birthYear": 1910,
           "deathYear": 1991,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -1725,7 +1725,7 @@
           "name": "Umberto Boccioni",
           "birthYear": 1882,
           "deathYear": 1916,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         }
       ]
@@ -1824,7 +1824,7 @@
           "name": "Peder Severin Kr\u00f8yer",
           "birthYear": 1851,
           "deathYear": 1909,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 3
         },
         {
@@ -2046,7 +2046,7 @@
           "name": "Lucio Fontana",
           "birthYear": 1899,
           "deathYear": 1968,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 2
         },
         {
@@ -2062,7 +2062,7 @@
           "name": "Carla Accardi",
           "birthYear": 1924,
           "deathYear": 2014,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2070,7 +2070,7 @@
           "name": "Enrico Prampolini",
           "birthYear": 1894,
           "deathYear": 1956,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2078,7 +2078,7 @@
           "name": "Francesco Somaini",
           "birthYear": 1926,
           "deathYear": 2005,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2086,7 +2086,7 @@
           "name": "Joe Colombo",
           "birthYear": 1930,
           "deathYear": 1971,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2094,7 +2094,7 @@
           "name": "Mauro Reggiani",
           "birthYear": 1897,
           "deathYear": 1980,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2102,7 +2102,7 @@
           "name": "Renato Barisani",
           "birthYear": 1918,
           "deathYear": 2011,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         }
       ]
@@ -2189,7 +2189,7 @@
           "name": "Giovanni Dupr\u00e9",
           "birthYear": 1817,
           "deathYear": 1882,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2197,7 +2197,7 @@
           "name": "Giovanni Maria Benzoni",
           "birthYear": 1809,
           "deathYear": 1873,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2213,7 +2213,7 @@
           "name": "Jens Adolf Jerichau",
           "birthYear": 1816,
           "deathYear": 1883,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 0
         },
         {
@@ -2221,7 +2221,7 @@
           "name": "Julius Troschel",
           "birthYear": 1806,
           "deathYear": 1863,
-          "citizenship": "Kingdom of Prussia",
+          "citizenship": "Germany",
           "totalDegree": 0
         },
         {
@@ -2229,7 +2229,7 @@
           "name": "Theodor Friedl",
           "birthYear": 1842,
           "deathYear": 1900,
-          "citizenship": "Austrian Empire",
+          "citizenship": "Austria",
           "totalDegree": 0
         },
         {
@@ -2280,7 +2280,7 @@
           "name": "Edward Onslow Ford",
           "birthYear": 1852,
           "deathYear": 1901,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 1
         },
         {
@@ -2430,7 +2430,7 @@
           "name": "Peer Veneman",
           "birthYear": 1952,
           "deathYear": null,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -2485,7 +2485,7 @@
           "name": "Maria Zambaco",
           "birthYear": 1843,
           "deathYear": 1914,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 1
         },
         {
@@ -2501,7 +2501,7 @@
           "name": "Thomas Woolner",
           "birthYear": 1825,
           "deathYear": 1892,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 0
         }
       ]
@@ -2608,7 +2608,7 @@
           "name": "Constantin Daniel Rosenthal",
           "birthYear": 1820,
           "deathYear": 1851,
-          "citizenship": "Austrian Empire",
+          "citizenship": "Austria",
           "totalDegree": 0
         },
         {
@@ -2616,7 +2616,7 @@
           "name": "Edwin Landseer",
           "birthYear": 1802,
           "deathYear": 1873,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 0
         },
         {
@@ -2790,7 +2790,7 @@
           "name": "Antonio Cardile",
           "birthYear": 1914,
           "deathYear": 1986,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2798,7 +2798,7 @@
           "name": "Mario Mafai",
           "birthYear": 1902,
           "deathYear": 1965,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -2806,7 +2806,7 @@
           "name": "Roberto Melli",
           "birthYear": 1885,
           "deathYear": 1958,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         }
       ]
@@ -2913,7 +2913,7 @@
           "name": "Giulio Aristide Sartorio",
           "birthYear": 1860,
           "deathYear": 1932,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 6
         },
         {
@@ -2969,7 +2969,7 @@
           "name": "Ettore Tito",
           "birthYear": 1859,
           "deathYear": 1941,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 2
         },
         {
@@ -2985,7 +2985,7 @@
           "name": "Leonardo Bistolfi",
           "birthYear": 1859,
           "deathYear": 1933,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 2
         },
         {
@@ -3057,7 +3057,7 @@
           "name": "Frederic Leighton",
           "birthYear": 1830,
           "deathYear": 1896,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 0
         },
         {
@@ -3073,7 +3073,7 @@
           "name": "George Frederic Watts",
           "birthYear": 1817,
           "deathYear": 1904,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 0
         },
         {
@@ -3089,7 +3089,7 @@
           "name": "Hugo Simberg",
           "birthYear": 1873,
           "deathYear": 1917,
-          "citizenship": "Grand Duchy of Finland",
+          "citizenship": "Finland",
           "totalDegree": 0
         },
         {
@@ -3097,7 +3097,7 @@
           "name": "Jan Thorn Prikker",
           "birthYear": 1868,
           "deathYear": 1932,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -3430,7 +3430,7 @@
           "name": "Bj\u00f8rn N\u00f8rgaard",
           "birthYear": 1947,
           "deathYear": null,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 1
         },
         {
@@ -3526,7 +3526,7 @@
           "name": "Jeppe Hein",
           "birthYear": 1974,
           "deathYear": null,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 1
         },
         {
@@ -3550,7 +3550,7 @@
           "name": "Joost Barbiers",
           "birthYear": 1949,
           "deathYear": 2015,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 1
         },
         {
@@ -3574,7 +3574,7 @@
           "name": "Marijke de Goey",
           "birthYear": 1947,
           "deathYear": null,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 1
         },
         {
@@ -3765,7 +3765,7 @@
           "name": "Willem de Kooning",
           "birthYear": 1904,
           "deathYear": 1997,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 2
         },
         {
@@ -3917,7 +3917,7 @@
           "name": "Ger Lataster",
           "birthYear": 1920,
           "deathYear": 2012,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -3957,7 +3957,7 @@
           "name": "Karel Appel",
           "birthYear": 1921,
           "deathYear": 2006,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -3981,7 +3981,7 @@
           "name": "Piet Peters",
           "birthYear": 1889,
           "deathYear": 1950,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -4157,7 +4157,7 @@
           "count": 3
         },
         {
-          "country": "People's Republic of China",
+          "country": "China",
           "count": 2
         },
         {
@@ -4211,7 +4211,7 @@
           "name": "Ai Weiwei",
           "birthYear": 1957,
           "deathYear": null,
-          "citizenship": "People's Republic of China",
+          "citizenship": "China",
           "totalDegree": 0
         },
         {
@@ -4283,7 +4283,7 @@
           "name": "Ger van Elk",
           "birthYear": 1941,
           "deathYear": 2014,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -4395,7 +4395,7 @@
           "name": "Zhang Huan",
           "birthYear": 1965,
           "deathYear": null,
-          "citizenship": "People's Republic of China",
+          "citizenship": "China",
           "totalDegree": 0
         }
       ]
@@ -4665,7 +4665,7 @@
           "name": "Cai Guo-Qiang",
           "birthYear": 1957,
           "deathYear": null,
-          "citizenship": "People's Republic of China",
+          "citizenship": "China",
           "totalDegree": 0
         },
         {
@@ -4673,7 +4673,7 @@
           "name": "Cao Fei",
           "birthYear": 1978,
           "deathYear": null,
-          "citizenship": "People's Republic of China",
+          "citizenship": "China",
           "totalDegree": 0
         },
         {
@@ -4681,7 +4681,7 @@
           "name": "Carel Lanters",
           "birthYear": 1955,
           "deathYear": null,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -4793,7 +4793,7 @@
           "name": "Francesco Messina",
           "birthYear": 1900,
           "deathYear": 1995,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -5376,7 +5376,7 @@
           "name": "Amedeo Modigliani",
           "birthYear": 1884,
           "deathYear": 1920,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 5
         },
         {
@@ -5384,7 +5384,7 @@
           "name": "M. C. Escher",
           "birthYear": 1898,
           "deathYear": 1972,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 4
         },
         {
@@ -5392,7 +5392,7 @@
           "name": "Marino Marini",
           "birthYear": 1901,
           "deathYear": 1980,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 2
         },
         {
@@ -5487,7 +5487,7 @@
           "name": "Adolfo Wildt",
           "birthYear": 1868,
           "deathYear": 1931,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 4
         },
         {
@@ -5760,7 +5760,7 @@
           "name": "Giny Vos",
           "birthYear": 1959,
           "deathYear": null,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -5776,7 +5776,7 @@
           "name": "Peter Struycken",
           "birthYear": 1939,
           "deathYear": null,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         }
       ]
@@ -5907,7 +5907,7 @@
           "name": "Willem Van Genk",
           "birthYear": 1927,
           "deathYear": 2005,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         }
       ]
@@ -6058,7 +6058,7 @@
           "name": "Coosje van Bruggen",
           "birthYear": 1942,
           "deathYear": 2009,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -6098,7 +6098,7 @@
           "name": "Herman Makkink",
           "birthYear": 1937,
           "deathYear": 2013,
-          "citizenship": "Kingdom of the Netherlands",
+          "citizenship": "Netherlands",
           "totalDegree": 0
         },
         {
@@ -6162,7 +6162,7 @@
           "name": "Poul Gernes",
           "birthYear": 1925,
           "deathYear": 1996,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 0
         },
         {
@@ -6412,7 +6412,7 @@
           "name": "Pietro Canonica",
           "birthYear": 1869,
           "deathYear": 1959,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 2
         },
         {
@@ -6420,7 +6420,7 @@
           "name": "Boris Kalin",
           "birthYear": 1905,
           "deathYear": 1975,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 1
         },
         {
@@ -6452,7 +6452,7 @@
           "name": "Louis Hasselriis",
           "birthYear": 1844,
           "deathYear": 1912,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 1
         },
         {
@@ -6476,7 +6476,7 @@
           "name": "Stephan Sinding",
           "birthYear": 1846,
           "deathYear": 1922,
-          "citizenship": "Kingdom of Denmark",
+          "citizenship": "Denmark",
           "totalDegree": 1
         },
         {
@@ -6492,7 +6492,7 @@
           "name": "Ivan Rendi\u0107",
           "birthYear": 1849,
           "deathYear": 1932,
-          "citizenship": "Austrian Empire",
+          "citizenship": "Austria",
           "totalDegree": 0
         },
         {
@@ -6508,7 +6508,7 @@
           "name": "Michele Tripisciano",
           "birthYear": 1860,
           "deathYear": 1913,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -6524,7 +6524,7 @@
           "name": "Pietro Annigoni",
           "birthYear": 1910,
           "deathYear": 1988,
-          "citizenship": "Kingdom of Italy",
+          "citizenship": "Italy",
           "totalDegree": 0
         },
         {
@@ -6587,7 +6587,7 @@
           "name": "Alfred Stevens",
           "birthYear": 1817,
           "deathYear": 1875,
-          "citizenship": "United Kingdom of Great Britain and Ireland",
+          "citizenship": "United Kingdom",
           "totalDegree": 0
         },
         {

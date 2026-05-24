@@ -1,8 +1,11 @@
-"""Export processed data to JSON files for the web app."""
+"""Export sculptor data for web app consumption."""
 import json
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
+
+from helpers import country_alias_stats, normalize_name
 from config import (
     NODES_METRICS_PATH,
     RELATIONS_CLEAN_PATH,
@@ -890,7 +893,26 @@ def create_transparency_json(nodes: pd.DataFrame) -> dict:
         # individually rather than aggregated so a reader can see which
         # data is sparse and which is well-covered.
         "fieldCoverage": _field_coverage(nodes[included_mask]),
+        # Country-name normalization meta. Combines static alias-table
+        # shape (loaded fresh) with per-run record-rewrite counts read
+        # from the sidecar JSON written by process.py at the end of
+        # process_nodes(). If the sidecar is missing (e.g. an older
+        # cached pipeline run), `recordsRewritten` is omitted and the
+        # /transparency page falls back to showing only the alias-table
+        # description.
+        "countryNormalization": _country_normalization_block(),
     }
+
+
+def _country_normalization_block() -> dict:
+    """Combine alias-table shape with per-run rewrite counts."""
+    block = country_alias_stats()
+    from config import PROCESSED_DIR
+    counts_path = PROCESSED_DIR / "country_normalization_counts.json"
+    if counts_path.exists():
+        with open(counts_path) as f:
+            block["recordsRewritten"] = json.load(f)
+    return block
 
 
 def _field_coverage(subset: pd.DataFrame) -> dict:

@@ -728,6 +728,87 @@ function FieldCoverageSection({
   );
 }
 
+/**
+ * CountryNormalizationSection — 3a follow-up (May 2026).
+ *
+ * Reports what we rewrite and what we deliberately don't. Leads with
+ * the singular `citizenship_display` count because that's the field
+ * readers see on the Explore table; the multi-citizenship list
+ * collapse and the place-of-birth/death rewrites are secondary.
+ */
+function CountryNormalizationSection({
+  block,
+}: {
+  block: NonNullable<TransparencyAudit["countryNormalization"]>;
+}) {
+  const counts = block.recordsRewritten;
+  const catA = block.by_category?.A ?? 0;
+  const catB = block.by_category?.B ?? 0;
+  return (
+    <section className="mb-10">
+      <h2 className="text-xl font-semibold text-text-primary mb-3">
+        Country names: what we rewrite, what we leave alone
+      </h2>
+      <p className="text-text-secondary leading-relaxed mb-4">
+        Wikidata returns the historical state under which a sculptor&rsquo;s
+        citizenship, birthplace, or place of death was registered. We
+        normalize {block.total_aliases} of these labels to their modern
+        display name at pipeline time so corridors on the migration view,
+        rows on the Explore table, and pills on detail pages share one
+        vocabulary. Multi-successor states are deliberately preserved
+        (see below).
+      </p>
+      {counts && (
+        <ul className="text-sm text-text-secondary space-y-1 mb-4">
+          <li>
+            <span className="text-text-tertiary">Citizenship records rewritten:</span>{" "}
+            <span className="tabular-nums font-medium text-text-primary">
+              {counts.citizenship_display.toLocaleString()}
+            </span>
+          </li>
+          <li>
+            <span className="text-text-tertiary">Multi-citizenship list entries collapsed via dedup:</span>{" "}
+            <span className="tabular-nums">
+              {counts.citizenships_list_collapsed.toLocaleString()}
+            </span>{" "}
+            <span className="text-text-tertiary">
+              (e.g. &ldquo;Kingdom of Bavaria&rdquo; + &ldquo;German Empire&rdquo; → &ldquo;Germany&rdquo;)
+            </span>
+          </li>
+          <li>
+            <span className="text-text-tertiary">Birth-country records rewritten:</span>{" "}
+            <span className="tabular-nums">{counts.birth_country.toLocaleString()}</span>
+          </li>
+          <li>
+            <span className="text-text-tertiary">Death-country records rewritten:</span>{" "}
+            <span className="tabular-nums">{counts.death_country.toLocaleString()}</span>
+          </li>
+        </ul>
+      )}
+      <p className="text-sm text-text-secondary mb-3">
+        The {block.total_aliases}-entry alias table breaks down as{" "}
+        <span className="tabular-nums">{catA}</span> formal-name-to-display-name
+        rewrites (lossless, e.g. &ldquo;Kingdom of the Netherlands&rdquo; →
+        &ldquo;Netherlands&rdquo;) and <span className="tabular-nums">{catB}</span>{" "}
+        single-successor historical states (defensible, e.g. &ldquo;Kingdom
+        of Prussia&rdquo; → &ldquo;Germany&rdquo;).
+      </p>
+      {block.deliberately_not_normalized?.length > 0 && (
+        <div className="rounded-md bg-bg-secondary p-4">
+          <h3 className="text-sm font-medium text-text-primary mb-2">
+            Deliberately not normalized
+          </h3>
+          <ul className="text-sm text-text-secondary leading-relaxed space-y-1.5 list-disc pl-5">
+            {block.deliberately_not_normalized.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  );
+}
+
 export default function TransparencyPage() {
   const [audit, setAudit] = useState<TransparencyAudit | null>(null);
   const [getty, setGetty] = useState<GettyAudit | null>(null);
@@ -934,6 +1015,15 @@ export default function TransparencyPage() {
           predate the fieldCoverage block. */}
       {audit.fieldCoverage && (
         <FieldCoverageSection coverage={audit.fieldCoverage} />
+      )}
+
+      {/* 3a follow-up — country-name normalization. Renders when the
+          countryNormalization block is present (added May 2026). The
+          point is to be honest about what we rewrite and what we
+          deliberately don't, given the migration Sankey now shows
+          aggregated corridors that depend on these labels. */}
+      {audit.countryNormalization && (
+        <CountryNormalizationSection block={audit.countryNormalization} />
       )}
 
       {/* Phase 3b — Wikidata ↔ Getty cross-reference. Renders only when

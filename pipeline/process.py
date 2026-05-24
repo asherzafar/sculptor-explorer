@@ -1,4 +1,5 @@
 """Clean, enrich, and compute metrics on sculptor data."""
+import json
 import re
 from datetime import date
 from pathlib import Path
@@ -33,7 +34,12 @@ from query_enrichment import (
     NATIVE_NAMES_CACHE_PATH,
     PORTRAITS_CACHE_PATH,
 )
-from helpers import normalize_name
+from helpers import (
+    country_alias_stats,
+    normalize_country,
+    normalize_country_list,
+    normalize_name,
+)
 
 
 # =============================================================================
@@ -225,6 +231,80 @@ def process_nodes() -> pd.DataFrame:
     )
     nodes_enriched["authority_links"] = nodes_enriched["authority_links"].apply(
         lambda v: v if isinstance(v, list) else []
+    )
+
+    # =========================================================================
+    # Country-name normalization (Phase 3a follow-up).
+    #
+    # Wikidata returns the historical-state name a sculptor's citizenship,
+    # birthplace or deathplace was registered under. That fragments what
+    # is really one country across multiple labels (Kingdom of the
+    # Netherlands / Netherlands; German Empire / German Reich / Kingdom
+    # of Prussia → Germany). We normalize at this single chokepoint so
+    # every downstream JSON inherits the same vocabulary. Multi-successor
+    # historical states (Russian Empire, Soviet Union, Czechoslovakia,
+    # Yugoslavia, Ottoman Empire) are deliberately left as-is — see
+    # docs/COUNTRY_NORMALIZATION.md and pipeline/data/country_aliases.json.
+    # =========================================================================
+    citizenship_before = nodes_enriched["citizenship_display"].copy()
+    nodes_enriched["citizenship_display"] = (
+        nodes_enriched["citizenship_display"].apply(normalize_country)
+    )
+    citizenship_changed = (citizenship_before != nodes_enriched["citizenship_display"]).sum()
+
+    citizenships_before_lens = nodes_enriched["citizenships"].apply(len)
+    nodes_enriched["citizenships"] = (
+        nodes_enriched["citizenships"].apply(normalize_country_list)
+    )
+    nodes_enriched["citizenship_count"] = nodes_enriched["citizenships"].apply(len)
+    citizenships_collapsed = (
+        citizenships_before_lens - nodes_enriched["citizenships"].apply(len)
+    ).sum()
+
+    if "birth_country" in nodes_enriched.columns:
+        bc_before = nodes_enriched["birth_country"].copy()
+        nodes_enriched["birth_country"] = (
+            nodes_enriched["birth_country"].apply(normalize_country)
+        )
+        birth_changed = ((bc_before != nodes_enriched["birth_country"]) &
+                         nodes_enriched["birth_country"].notna()).sum()
+    else:
+        birth_changed = 0
+
+    if "death_country" in nodes_enriched.columns:
+        dc_before = nodes_enriched["death_country"].copy()
+        nodes_enriched["death_country"] = (
+            nodes_enriched["death_country"].apply(normalize_country)
+        )
+        death_changed = ((dc_before != nodes_enriched["death_country"]) &
+                         nodes_enriched["death_country"].notna()).sum()
+    else:
+        death_changed = 0
+
+    stats = country_alias_stats()
+    # Persist per-run rewrite counts to a sidecar JSON so export_json can
+    # surface them in transparency.json. We write to PROCESSED_DIR (not
+    # WEB_DATA_DIR) because this is intermediate pipeline state, not a
+    # web artifact. df.attrs would have been simpler but doesn't survive
+    # the parquet round-trip between process.py and export_json.py.
+    counts = {
+        "citizenship_display": int(citizenship_changed),
+        "citizenships_list_collapsed": int(citizenships_collapsed),
+        "birth_country": int(birth_changed),
+        "death_country": int(death_changed),
+    }
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+    with open(PROCESSED_DIR / "country_normalization_counts.json", "w") as f:
+        json.dump(counts, f, indent=2)
+    print(
+        f"✓ Country-name normalization applied: "
+        f"{stats['total_aliases']} aliases in table "
+        f"({stats['by_category'].get('A', 0)} formal-to-display, "
+        f"{stats['by_category'].get('B', 0)} single-successor historical). "
+        f"Records rewritten: citizenship={citizenship_changed}, "
+        f"citizenships-list={citizenships_collapsed} "
+        f"(collapsed entries via dedup), "
+        f"birth_country={birth_changed}, death_country={death_changed}."
     )
 
     return nodes_enriched

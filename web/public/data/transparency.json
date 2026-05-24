@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-05-16T18:33:39.476419+00:00",
+  "generatedAt": "2026-05-24T16:29:59.187656+00:00",
   "totalCached": 6711,
-  "included": 3643,
-  "excluded": 3068,
-  "inclusionPctOfCache": 54.3,
+  "included": 3544,
+  "excluded": 3167,
+  "inclusionPctOfCache": 52.8,
   "signalCoverage": {
     "movement": 963,
     "sitelinks": 3094,
     "edge": 931,
-    "multi_citz": 834,
+    "multi_citz": 563,
     "focus": 48
   },
   "criterion": {
@@ -22,24 +22,24 @@
     ]
   },
   "includedBreakdown": {
-    "total": 3643,
+    "total": 3544,
     "gender": {
-      "male": 3118,
-      "female": 521,
+      "male": 3026,
+      "female": 514,
       "non-binary": 1,
       "trans man": 1,
       "trans woman": 1,
       "genderfluid": 1
     },
     "topCitizenships": {
-      "Germany": 570,
+      "Germany": 643,
       "France": 548,
       "United States": 372,
-      "Kingdom of the Netherlands": 248,
-      "Kingdom of Italy": 211,
-      "United Kingdom": 128,
-      "Austria": 120,
-      "Hungary": 117,
+      "Netherlands": 248,
+      "Italy": 191,
+      "United Kingdom": 144,
+      "Austria": 134,
+      "Hungary": 118,
       "Spain": 101,
       "Belgium": 98,
       "Switzerland": 89,
@@ -47,115 +47,134 @@
       "Poland": 53,
       "Sweden": 49,
       "Canada": 41,
-      "Kingdom of Denmark": 41,
-      "Italy": 39,
+      "Denmark": 41,
       "Japan": 36,
-      "German Reich": 35,
-      "Israel": 34
+      "Israel": 34,
+      "Mexico": 33,
+      "Czechoslovakia": 32
     },
     "byBirthDecade": {
       "1800": 68,
-      "1810": 83,
+      "1810": 82,
       "1820": 80,
-      "1830": 94,
-      "1840": 129,
-      "1850": 141,
-      "1860": 185,
-      "1870": 191,
-      "1880": 255,
-      "1890": 225,
-      "1900": 250,
-      "1910": 233,
-      "1920": 439,
-      "1930": 372,
-      "1940": 371,
-      "1950": 272,
-      "1960": 182,
+      "1830": 93,
+      "1840": 126,
+      "1850": 140,
+      "1860": 181,
+      "1870": 185,
+      "1880": 244,
+      "1890": 214,
+      "1900": 243,
+      "1910": 218,
+      "1920": 421,
+      "1930": 358,
+      "1940": 367,
+      "1950": 270,
+      "1960": 181,
       "1970": 62,
       "1980": 9,
       "2000": 2
     }
   },
   "excludedBreakdown": {
-    "total": 3068,
+    "total": 3167,
     "gender": {
-      "male": 2708,
-      "female": 360
+      "male": 2800,
+      "female": 367
     },
     "topCitizenships": {
-      "Germany": 1394,
-      "Kingdom of the Netherlands": 400,
-      "Austria": 203,
+      "Germany": 1532,
+      "Netherlands": 400,
+      "Austria": 207,
       "Hungary": 188,
       "France": 181,
+      "Italy": 123,
       "Switzerland": 93,
       "Belgium": 74,
       "Unknown": 66,
-      "German Reich": 62,
       "United States": 49,
-      "Italy": 34,
-      "Kingdom of Italy": 30,
+      "United Kingdom": 29,
       "Canada": 24,
-      "German Empire": 24,
-      "United Kingdom": 23,
       "Romania": 15,
       "Spain": 14,
       "Mexico": 14,
       "Australia": 12,
-      "Argentina": 10
+      "Argentina": 10,
+      "Japan": 9,
+      "Poland": 8,
+      "Austria\u2013Hungary": 7
     },
     "byBirthDecade": {
       "1800": 32,
-      "1810": 35,
+      "1810": 36,
       "1820": 39,
-      "1830": 48,
-      "1840": 67,
-      "1850": 88,
-      "1860": 117,
-      "1870": 185,
-      "1880": 168,
-      "1890": 140,
-      "1900": 237,
-      "1910": 197,
-      "1920": 346,
-      "1930": 308,
-      "1940": 411,
-      "1950": 357,
-      "1960": 221,
+      "1830": 49,
+      "1840": 70,
+      "1850": 89,
+      "1860": 121,
+      "1870": 191,
+      "1880": 179,
+      "1890": 151,
+      "1900": 244,
+      "1910": 212,
+      "1920": 364,
+      "1930": 322,
+      "1940": 415,
+      "1950": 359,
+      "1960": 222,
       "1970": 61,
       "1980": 8,
       "2000": 3
     }
   },
   "fieldCoverage": {
-    "total": 3643,
+    "total": 3544,
     "birth_place": {
-      "present": 3586,
+      "present": 3488,
       "pct": 98.4
     },
     "death_place": {
-      "present": 2655,
-      "pct": 72.9
+      "present": 2575,
+      "pct": 72.7
     },
     "native_name": {
-      "present": 1341,
-      "pct": 36.8
+      "present": 1334,
+      "pct": 37.6
     },
     "image": {
-      "present": 2307,
-      "pct": 63.3
+      "present": 2274,
+      "pct": 64.2
     },
     "authority_links": {
-      "present": 3643,
+      "present": 3544,
       "pct": 100.0
     },
     "movement_display": {
       "present": 963,
-      "pct": 26.4
+      "pct": 27.2
     },
     "citizenship_display": {
-      "present": 3626,
+      "present": 3527,
       "pct": 99.5
+    }
+  },
+  "countryNormalization": {
+    "total_aliases": 43,
+    "by_category": {
+      "A": 8,
+      "B": 35
+    },
+    "deliberately_not_normalized": [
+      "Russian Empire / Russian SFSR / Soviet Union / Byelorussian SSR \u2014 multi-successor; could be Russia, Ukraine, Belarus, Lithuania, Latvia, Estonia, Poland, Finland, Georgia, Armenia, Kazakhstan or others.",
+      "Czechoslovakia / Federal People's Republic of Yugoslavia / Kingdom of Yugoslavia / Federal Republic of Yugoslavia / Kingdom of Serbs, Croats and Slovenes / Socialist Federal Republic of Yugoslavia \u2014 multi-successor.",
+      "Ottoman Empire \u2014 30+ successor states.",
+      "Yemen, Republic of China, Dominion of India \u2014 political-status questions deferred until we have a stronger editorial position."
+    ],
+    "recordsRewritten": {
+      "citizenship_display": 1206,
+      "citizenships_list_collapsed": 331,
+      "birth_country": 27,
+      "death_country": 2
     }
   }
 }

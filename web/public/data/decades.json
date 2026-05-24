@@ -133,7 +133,7 @@
         "birthYear": 1804,
         "deathYear": 1861,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Saxony",
+        "citizenship": "Germany",
         "totalDegree": 4
       },
       {
@@ -151,7 +151,7 @@
         "birthYear": 1802,
         "deathYear": 1848,
         "movement": "Classicism",
-        "citizenship": "Kingdom of Bavaria",
+        "citizenship": "Germany",
         "totalDegree": 3
       },
       {
@@ -169,7 +169,7 @@
         "birthYear": 1807,
         "deathYear": 1885,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 3
       },
       {
@@ -223,7 +223,7 @@
         "birthYear": 1808,
         "deathYear": 1888,
         "movement": "Danish Golden Age",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 2
       },
       {
@@ -241,7 +241,7 @@
         "birthYear": 1807,
         "deathYear": 1885,
         "movement": "Orientalism",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 2
       },
       {
@@ -322,7 +322,7 @@
         "birthYear": 1807,
         "deathYear": 1894,
         "movement": "No movement listed",
-        "citizenship": "United Kingdom of Great Britain and Ireland",
+        "citizenship": "United Kingdom",
         "totalDegree": 1
       },
       {
@@ -412,7 +412,7 @@
         "birthYear": 1809,
         "deathYear": 1867,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Bavaria",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -428,10 +428,10 @@
   },
   "1810": {
     "decade": 1810,
-    "totalBorn": 83,
+    "totalBorn": 82,
     "gender": {
       "female": 4,
-      "male": 79,
+      "male": 78,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -441,7 +441,7 @@
       },
       {
         "country": "Germany",
-        "count": 20
+        "count": 19
       },
       {
         "country": "Italy",
@@ -522,7 +522,7 @@
       }
     ],
     "migration": {
-      "eligible": 82,
+      "eligible": 81,
       "crossed": 14,
       "crossPct": 17
     },
@@ -551,7 +551,7 @@
         "birthYear": 1814,
         "deathYear": 1892,
         "movement": "No movement listed",
-        "citizenship": "Grand Duchy of Mecklenburg-Strelitz",
+        "citizenship": "Germany",
         "totalDegree": 7
       },
       {
@@ -578,7 +578,7 @@
         "birthYear": 1812,
         "deathYear": 1883,
         "movement": "No movement listed",
-        "citizenship": "Grand Duchy of Mecklenburg-Strelitz",
+        "citizenship": "Germany",
         "totalDegree": 4
       },
       {
@@ -587,7 +587,7 @@
         "birthYear": 1813,
         "deathYear": 1874,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 4
       },
       {
@@ -632,7 +632,7 @@
         "birthYear": 1816,
         "deathYear": 1896,
         "movement": "No movement listed",
-        "citizenship": "Austrian Empire",
+        "citizenship": "Austria",
         "totalDegree": 3
       },
       {
@@ -659,7 +659,7 @@
         "birthYear": 1811,
         "deathYear": 1891,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Saxony",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -668,7 +668,7 @@
         "birthYear": 1818,
         "deathYear": 1900,
         "movement": "No movement listed",
-        "citizenship": "Austrian Empire",
+        "citizenship": "Austria",
         "totalDegree": 2
       },
       {
@@ -695,7 +695,7 @@
         "birthYear": 1814,
         "deathYear": 1878,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -758,7 +758,7 @@
         "birthYear": 1819,
         "deathYear": 1897,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -785,7 +785,7 @@
         "birthYear": 1817,
         "deathYear": 1867,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -830,7 +830,7 @@
         "birthYear": 1816,
         "deathYear": 1900,
         "movement": "No movement listed",
-        "citizenship": "Austrian Empire",
+        "citizenship": "Austria",
         "totalDegree": 1
       },
       {
@@ -848,7 +848,7 @@
         "birthYear": 1814,
         "deathYear": 1895,
         "movement": "No movement listed",
-        "citizenship": "United Kingdom of Great Britain and Ireland",
+        "citizenship": "United Kingdom",
         "totalDegree": 1
       }
     ]
@@ -965,7 +965,7 @@
         "birthYear": 1828,
         "deathYear": 1910,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 7
       },
       {
@@ -1109,7 +1109,7 @@
         "birthYear": 1829,
         "deathYear": 1899,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Bavaria",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -1136,7 +1136,7 @@
         "birthYear": 1823,
         "deathYear": 1893,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Saxony",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -1163,7 +1163,7 @@
         "birthYear": 1820,
         "deathYear": 1898,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -1172,7 +1172,7 @@
         "birthYear": 1824,
         "deathYear": 1908,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Saxony",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -1217,7 +1217,7 @@
         "birthYear": 1822,
         "deathYear": 1897,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -1235,7 +1235,7 @@
         "birthYear": 1826,
         "deathYear": 1886,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       },
       {
@@ -1278,10 +1278,10 @@
   },
   "1830": {
     "decade": 1830,
-    "totalBorn": 94,
+    "totalBorn": 93,
     "gender": {
       "female": 3,
-      "male": 91,
+      "male": 90,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -1291,7 +1291,7 @@
       },
       {
         "country": "Germany",
-        "count": 19
+        "count": 18
       },
       {
         "country": "Belgium",
@@ -1372,9 +1372,9 @@
       }
     ],
     "migration": {
-      "eligible": 92,
+      "eligible": 91,
       "crossed": 16,
-      "crossPct": 17
+      "crossPct": 18
     },
     "notable": [
       {
@@ -1392,7 +1392,7 @@
         "birthYear": 1831,
         "deathYear": 1911,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 7
       },
       {
@@ -1401,7 +1401,7 @@
         "birthYear": 1832,
         "deathYear": 1896,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 6
       },
       {
@@ -1500,7 +1500,7 @@
         "birthYear": 1835,
         "deathYear": 1905,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 3
       },
       {
@@ -1518,7 +1518,7 @@
         "birthYear": 1837,
         "deathYear": 1919,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -1545,7 +1545,7 @@
         "birthYear": 1839,
         "deathYear": 1917,
         "movement": "No movement listed",
-        "citizenship": "German Empire",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -1572,7 +1572,7 @@
         "birthYear": 1838,
         "deathYear": 1909,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -1590,7 +1590,7 @@
         "birthYear": 1834,
         "deathYear": 1903,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -1608,7 +1608,7 @@
         "birthYear": 1832,
         "deathYear": 1887,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -1635,7 +1635,7 @@
         "birthYear": 1830,
         "deathYear": 1896,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -1653,7 +1653,7 @@
         "birthYear": 1830,
         "deathYear": 1871,
         "movement": "No movement listed",
-        "citizenship": "German Empire",
+        "citizenship": "Germany",
         "totalDegree": 1
       },
       {
@@ -1671,7 +1671,7 @@
         "birthYear": 1837,
         "deathYear": 1917,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       },
       {
@@ -1689,7 +1689,7 @@
         "birthYear": 1830,
         "deathYear": 1890,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 1
       },
       {
@@ -1705,10 +1705,10 @@
   },
   "1840": {
     "decade": 1840,
-    "totalBorn": 129,
+    "totalBorn": 126,
     "gender": {
       "female": 8,
-      "male": 121,
+      "male": 118,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -1718,11 +1718,11 @@
       },
       {
         "country": "Germany",
-        "count": 30
+        "count": 28
       },
       {
         "country": "Italy",
-        "count": 13
+        "count": 12
       },
       {
         "country": "United Kingdom",
@@ -1799,7 +1799,7 @@
       }
     ],
     "migration": {
-      "eligible": 128,
+      "eligible": 125,
       "crossed": 29,
       "crossPct": 23
     },
@@ -1882,7 +1882,7 @@
         "birthYear": 1846,
         "deathYear": 1917,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 5
       },
       {
@@ -1990,7 +1990,7 @@
         "birthYear": 1844,
         "deathYear": 1903,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Bavaria",
+        "citizenship": "Germany",
         "totalDegree": 3
       },
       {
@@ -2008,7 +2008,7 @@
         "birthYear": 1849,
         "deathYear": 1898,
         "movement": "No movement listed",
-        "citizenship": "Grand Duchy of Baden",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2044,7 +2044,7 @@
         "birthYear": 1841,
         "deathYear": 1918,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -2062,7 +2062,7 @@
         "birthYear": 1843,
         "deathYear": 1902,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2071,7 +2071,7 @@
         "birthYear": 1847,
         "deathYear": 1932,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -2098,7 +2098,7 @@
         "birthYear": 1848,
         "deathYear": 1901,
         "movement": "No movement listed",
-        "citizenship": "Grand Duchy of Baden",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2132,10 +2132,10 @@
   },
   "1850": {
     "decade": 1850,
-    "totalBorn": 141,
+    "totalBorn": 140,
     "gender": {
       "female": 5,
-      "male": 136,
+      "male": 135,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -2145,7 +2145,7 @@
       },
       {
         "country": "Germany",
-        "count": 24
+        "count": 23
       },
       {
         "country": "Italy",
@@ -2226,7 +2226,7 @@
       }
     ],
     "migration": {
-      "eligible": 139,
+      "eligible": 138,
       "crossed": 31,
       "crossPct": 22
     },
@@ -2255,7 +2255,7 @@
         "birthYear": 1854,
         "deathYear": 1935,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 5
       },
       {
@@ -2372,7 +2372,7 @@
         "birthYear": 1851,
         "deathYear": 1909,
         "movement": "Impressionism",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 3
       },
       {
@@ -2399,7 +2399,7 @@
         "birthYear": 1850,
         "deathYear": 1906,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 3
       },
       {
@@ -2471,7 +2471,7 @@
         "birthYear": 1859,
         "deathYear": 1941,
         "movement": "Symbolism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -2498,7 +2498,7 @@
         "birthYear": 1859,
         "deathYear": 1933,
         "movement": "Symbolism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -2507,7 +2507,7 @@
         "birthYear": 1854,
         "deathYear": 1942,
         "movement": "No movement listed",
-        "citizenship": "German Empire",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2516,7 +2516,7 @@
         "birthYear": 1854,
         "deathYear": 1918,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Prussia",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2559,28 +2559,28 @@
   },
   "1860": {
     "decade": 1860,
-    "totalBorn": 185,
+    "totalBorn": 181,
     "gender": {
       "female": 17,
-      "male": 168,
+      "male": 164,
       "otherOrUnknown": 0
     },
     "topCountries": [
-      {
-        "country": "Germany",
-        "count": 37
-      },
       {
         "country": "France",
         "count": 34
       },
       {
-        "country": "Italy",
-        "count": 11
+        "country": "Germany",
+        "count": 34
       },
       {
         "country": "Austria",
         "count": 11
+      },
+      {
+        "country": "Italy",
+        "count": 10
       },
       {
         "country": "United States",
@@ -2637,11 +2637,6 @@
         "count": 3
       },
       {
-        "from": "Austria",
-        "to": "Germany",
-        "count": 2
-      },
-      {
         "from": "Spain",
         "to": "France",
         "count": 2
@@ -2650,11 +2645,16 @@
         "from": "Switzerland",
         "to": "Germany",
         "count": 2
+      },
+      {
+        "from": "Czech Republic",
+        "to": "Austria",
+        "count": 2
       }
     ],
     "migration": {
-      "eligible": 177,
-      "crossed": 55,
+      "eligible": 174,
+      "crossed": 54,
       "crossPct": 31
     },
     "notable": [
@@ -2700,7 +2700,7 @@
         "birthYear": 1860,
         "deathYear": 1932,
         "movement": "Symbolism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 6
       },
       {
@@ -2727,7 +2727,7 @@
         "birthYear": 1868,
         "deathYear": 1931,
         "movement": "modernism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 4
       },
       {
@@ -2781,7 +2781,7 @@
         "birthYear": 1867,
         "deathYear": 1945,
         "movement": "Expressionism",
-        "citizenship": "German Empire",
+        "citizenship": "Germany",
         "totalDegree": 4
       },
       {
@@ -2862,7 +2862,7 @@
         "birthYear": 1866,
         "deathYear": 1938,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 3
       },
       {
@@ -2934,7 +2934,7 @@
         "birthYear": 1864,
         "deathYear": 1919,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -2970,7 +2970,7 @@
         "birthYear": 1869,
         "deathYear": 1959,
         "movement": "realism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -2986,10 +2986,10 @@
   },
   "1870": {
     "decade": 1870,
-    "totalBorn": 191,
+    "totalBorn": 185,
     "gender": {
       "female": 16,
-      "male": 175,
+      "male": 169,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -2999,11 +2999,11 @@
       },
       {
         "country": "Germany",
-        "count": 35
+        "count": 32
       },
       {
         "country": "Italy",
-        "count": 16
+        "count": 13
       },
       {
         "country": "Austria",
@@ -3069,19 +3069,19 @@
         "count": 2
       },
       {
-        "from": "Germany",
-        "to": "United States",
+        "from": "Slovakia",
+        "to": "Hungary",
         "count": 2
       },
       {
-        "from": "Slovakia",
-        "to": "Hungary",
+        "from": "Germany",
+        "to": "United States",
         "count": 2
       }
     ],
     "migration": {
-      "eligible": 188,
-      "crossed": 54,
+      "eligible": 182,
+      "crossed": 53,
       "crossPct": 29
     },
     "notable": [
@@ -3118,7 +3118,7 @@
         "birthYear": 1874,
         "deathYear": 1943,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 5
       },
       {
@@ -3127,7 +3127,7 @@
         "birthYear": 1871,
         "deathYear": 1940,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 5
       },
       {
@@ -3136,7 +3136,7 @@
         "birthYear": 1873,
         "deathYear": 1950,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 5
       },
       {
@@ -3334,7 +3334,7 @@
         "birthYear": 1871,
         "deathYear": 1913,
         "movement": "No movement listed",
-        "citizenship": "German Empire",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -3379,7 +3379,7 @@
         "birthYear": 1879,
         "deathYear": 1953,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -3413,16 +3413,16 @@
   },
   "1880": {
     "decade": 1880,
-    "totalBorn": 255,
+    "totalBorn": 244,
     "gender": {
       "female": 28,
-      "male": 227,
+      "male": 216,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Germany",
-        "count": 50
+        "count": 48
       },
       {
         "country": "France",
@@ -3430,7 +3430,7 @@
       },
       {
         "country": "Italy",
-        "count": 28
+        "count": 21
       },
       {
         "country": "Hungary",
@@ -3507,9 +3507,9 @@
       }
     ],
     "migration": {
-      "eligible": 250,
-      "crossed": 78,
-      "crossPct": 31
+      "eligible": 241,
+      "crossed": 77,
+      "crossPct": 32
     },
     "notable": [
       {
@@ -3563,7 +3563,7 @@
         "birthYear": 1884,
         "deathYear": 1920,
         "movement": "modern art",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 5
       },
       {
@@ -3617,7 +3617,7 @@
         "birthYear": 1882,
         "deathYear": 1975,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 4
       },
       {
@@ -3840,20 +3840,16 @@
   },
   "1890": {
     "decade": 1890,
-    "totalBorn": 225,
+    "totalBorn": 214,
     "gender": {
-      "female": 31,
-      "male": 193,
+      "female": 30,
+      "male": 183,
       "otherOrUnknown": 1
     },
     "topCountries": [
       {
         "country": "Germany",
         "count": 38
-      },
-      {
-        "country": "Italy",
-        "count": 22
       },
       {
         "country": "France",
@@ -3873,6 +3869,10 @@
       },
       {
         "country": "Netherlands",
+        "count": 11
+      },
+      {
+        "country": "Italy",
         "count": 11
       },
       {
@@ -3913,12 +3913,12 @@
         "count": 5
       },
       {
-        "from": "Poland",
+        "from": "Russia",
         "to": "France",
         "count": 3
       },
       {
-        "from": "Russia",
+        "from": "Poland",
         "to": "France",
         "count": 3
       },
@@ -3928,15 +3928,15 @@
         "count": 2
       },
       {
-        "from": "Germany",
-        "to": "France",
+        "from": "Russia",
+        "to": "United States",
         "count": 2
       }
     ],
     "migration": {
-      "eligible": 222,
-      "crossed": 86,
-      "crossPct": 39
+      "eligible": 211,
+      "crossed": 84,
+      "crossPct": 40
     },
     "notable": [
       {
@@ -3999,7 +3999,7 @@
         "birthYear": 1898,
         "deathYear": 1972,
         "movement": "modern art",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 4
       },
       {
@@ -4143,7 +4143,7 @@
         "birthYear": 1899,
         "deathYear": 1968,
         "movement": "Movimento Arte Concreta",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -4206,7 +4206,7 @@
         "birthYear": 1899,
         "deathYear": 1983,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -4215,7 +4215,7 @@
         "birthYear": 1897,
         "deathYear": 1983,
         "movement": "Expressionism",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -4224,7 +4224,7 @@
         "birthYear": 1898,
         "deathYear": 1997,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -4267,20 +4267,16 @@
   },
   "1900": {
     "decade": 1900,
-    "totalBorn": 250,
+    "totalBorn": 243,
     "gender": {
       "female": 32,
-      "male": 217,
+      "male": 210,
       "otherOrUnknown": 1
     },
     "topCountries": [
       {
         "country": "Germany",
         "count": 32
-      },
-      {
-        "country": "Italy",
-        "count": 22
       },
       {
         "country": "United States",
@@ -4293,6 +4289,10 @@
       {
         "country": "Hungary",
         "count": 17
+      },
+      {
+        "country": "Italy",
+        "count": 16
       },
       {
         "country": "Switzerland",
@@ -4340,29 +4340,29 @@
         "count": 3
       },
       {
-        "from": "Romania",
-        "to": "Hungary",
-        "count": 3
-      },
-      {
         "from": "Hungary",
         "to": "France",
         "count": 3
       },
       {
-        "from": "Hungary",
-        "to": "United States",
+        "from": "Romania",
+        "to": "Hungary",
+        "count": 3
+      },
+      {
+        "from": "Poland",
+        "to": "Germany",
         "count": 2
       },
       {
-        "from": "Lithuania",
-        "to": "United States",
+        "from": "Poland",
+        "to": "France",
         "count": 2
       }
     ],
     "migration": {
-      "eligible": 241,
-      "crossed": 75,
+      "eligible": 236,
+      "crossed": 74,
       "crossPct": 31
     },
     "notable": [
@@ -4408,7 +4408,7 @@
         "birthYear": 1902,
         "deathYear": 1983,
         "movement": "French Realism",
-        "citizenship": "Empire of Japan",
+        "citizenship": "Japan",
         "totalDegree": 5
       },
       {
@@ -4417,7 +4417,7 @@
         "birthYear": 1909,
         "deathYear": 1979,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 5
       },
       {
@@ -4462,7 +4462,7 @@
         "birthYear": 1903,
         "deathYear": 1964,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 3
       },
       {
@@ -4489,7 +4489,7 @@
         "birthYear": 1907,
         "deathYear": 1993,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 3
       },
       {
@@ -4597,7 +4597,7 @@
         "birthYear": 1901,
         "deathYear": 1980,
         "movement": "modern art",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 2
       },
       {
@@ -4606,7 +4606,7 @@
         "birthYear": 1906,
         "deathYear": 1989,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -4615,7 +4615,7 @@
         "birthYear": 1905,
         "deathYear": 1943,
         "movement": "No movement listed",
-        "citizenship": "German Reich",
+        "citizenship": "Germany",
         "totalDegree": 2
       },
       {
@@ -4624,7 +4624,7 @@
         "birthYear": 1904,
         "deathYear": 1997,
         "movement": "abstract expressionism",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -4660,7 +4660,7 @@
         "birthYear": 1908,
         "deathYear": 1980,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 1
       },
       {
@@ -4669,7 +4669,7 @@
         "birthYear": 1905,
         "deathYear": 1975,
         "movement": "realism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       },
       {
@@ -4678,7 +4678,7 @@
         "birthYear": 1907,
         "deathYear": 1998,
         "movement": "Futurism",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       },
       {
@@ -4694,16 +4694,16 @@
   },
   "1910": {
     "decade": 1910,
-    "totalBorn": 233,
+    "totalBorn": 218,
     "gender": {
-      "female": 39,
-      "male": 194,
+      "female": 38,
+      "male": 180,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Italy",
-        "count": 36
+        "count": 24
       },
       {
         "country": "Netherlands",
@@ -4711,15 +4711,15 @@
       },
       {
         "country": "Germany",
-        "count": 15
-      },
-      {
-        "country": "United Kingdom",
-        "count": 13
+        "count": 14
       },
       {
         "country": "United States",
         "count": 13
+      },
+      {
+        "country": "United Kingdom",
+        "count": 12
       },
       {
         "country": "France",
@@ -4788,9 +4788,9 @@
       }
     ],
     "migration": {
-      "eligible": 222,
+      "eligible": 209,
       "crossed": 84,
-      "crossPct": 38
+      "crossPct": 40
     },
     "notable": [
       {
@@ -4808,7 +4808,7 @@
         "birthYear": 1910,
         "deathYear": 1990,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 4
       },
       {
@@ -4817,7 +4817,7 @@
         "birthYear": 1914,
         "deathYear": 1973,
         "movement": "COBRA",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 3
       },
       {
@@ -4862,7 +4862,7 @@
         "birthYear": 1915,
         "deathYear": 2008,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -4880,7 +4880,7 @@
         "birthYear": 1918,
         "deathYear": 1981,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 2
       },
       {
@@ -4916,7 +4916,7 @@
         "birthYear": 1911,
         "deathYear": 1989,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -4943,7 +4943,7 @@
         "birthYear": 1910,
         "deathYear": 2004,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 1
       },
       {
@@ -5060,7 +5060,7 @@
         "birthYear": 1911,
         "deathYear": 2004,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       },
       {
@@ -5105,7 +5105,7 @@
         "birthYear": 1914,
         "deathYear": 2004,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -5114,23 +5114,23 @@
         "birthYear": 1916,
         "deathYear": 1994,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Italy",
+        "citizenship": "Italy",
         "totalDegree": 1
       }
     ]
   },
   "1920": {
     "decade": 1920,
-    "totalBorn": 439,
+    "totalBorn": 421,
     "gender": {
-      "female": 63,
-      "male": 376,
+      "female": 61,
+      "male": 360,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Germany",
-        "count": 61
+        "count": 56
       },
       {
         "country": "United States",
@@ -5141,12 +5141,12 @@
         "count": 39
       },
       {
-        "country": "Italy",
-        "count": 34
-      },
-      {
         "country": "France",
         "count": 26
+      },
+      {
+        "country": "Italy",
+        "count": 22
       },
       {
         "country": "Poland",
@@ -5194,30 +5194,30 @@
         "count": 4
       },
       {
-        "from": "Belgium",
-        "to": "France",
-        "count": 3
-      },
-      {
         "from": "Czech Republic",
         "to": "Germany",
         "count": 3
       },
       {
-        "from": "Italy",
-        "to": "Switzerland",
+        "from": "Belgium",
+        "to": "France",
+        "count": 3
+      },
+      {
+        "from": "Lithuania",
+        "to": "Australia",
         "count": 2
       },
       {
-        "from": "Switzerland",
-        "to": "France",
+        "from": "Germany",
+        "to": "United Kingdom",
         "count": 2
       }
     ],
     "migration": {
-      "eligible": 384,
-      "crossed": 122,
-      "crossPct": 32
+      "eligible": 368,
+      "crossed": 120,
+      "crossPct": 33
     },
     "notable": [
       {
@@ -5397,7 +5397,7 @@
         "birthYear": 1926,
         "deathYear": 2016,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -5541,35 +5541,35 @@
         "birthYear": 1922,
         "deathYear": 2009,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       }
     ]
   },
   "1930": {
     "decade": 1930,
-    "totalBorn": 372,
+    "totalBorn": 358,
     "gender": {
-      "female": 47,
-      "male": 325,
+      "female": 46,
+      "male": 312,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Germany",
-        "count": 66
+        "count": 61
       },
       {
         "country": "United States",
         "count": 39
       },
       {
-        "country": "Italy",
-        "count": 32
-      },
-      {
         "country": "Netherlands",
         "count": 29
+      },
+      {
+        "country": "Italy",
+        "count": 27
       },
       {
         "country": "United Kingdom",
@@ -5580,12 +5580,12 @@
         "count": 15
       },
       {
-        "country": "Poland",
+        "country": "Hungary",
         "count": 13
       },
       {
-        "country": "Hungary",
-        "count": 13
+        "country": "Poland",
+        "count": 11
       }
     ],
     "topMovements": [
@@ -5616,14 +5616,14 @@
     ],
     "topCorridors": [
       {
-        "from": "Poland",
-        "to": "Germany",
-        "count": 4
-      },
-      {
         "from": "Germany",
         "to": "Spain",
         "count": 3
+      },
+      {
+        "from": "Italy",
+        "to": "United States",
+        "count": 2
       },
       {
         "from": "Italy",
@@ -5636,14 +5636,14 @@
         "count": 2
       },
       {
-        "from": "Italy",
-        "to": "United States",
+        "from": "Indonesia",
+        "to": "Netherlands",
         "count": 2
       }
     ],
     "migration": {
-      "eligible": 231,
-      "crossed": 73,
+      "eligible": 221,
+      "crossed": 70,
       "crossPct": 32
     },
     "notable": [
@@ -5914,7 +5914,7 @@
         "birthYear": 1932,
         "deathYear": 2012,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -5975,16 +5975,16 @@
   },
   "1940": {
     "decade": 1940,
-    "totalBorn": 371,
+    "totalBorn": 367,
     "gender": {
-      "female": 74,
-      "male": 297,
+      "female": 73,
+      "male": 294,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Germany",
-        "count": 64
+        "count": 62
       },
       {
         "country": "United States",
@@ -6004,15 +6004,15 @@
       },
       {
         "country": "Italy",
-        "count": 17
+        "count": 16
       },
       {
         "country": "Switzerland",
         "count": 12
       },
       {
-        "country": "Poland",
-        "count": 11
+        "country": "Czech Republic",
+        "count": 10
       }
     ],
     "topMovements": [
@@ -6125,7 +6125,7 @@
         "birthYear": 1943,
         "deathYear": 2013,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 3
       },
       {
@@ -6179,7 +6179,7 @@
         "birthYear": 1943,
         "deathYear": 2013,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 2
       },
       {
@@ -6269,7 +6269,7 @@
         "birthYear": 1947,
         "deathYear": null,
         "movement": "abstract art",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 1
       },
       {
@@ -6296,7 +6296,7 @@
         "birthYear": 1941,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -6350,7 +6350,7 @@
         "birthYear": 1942,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -6402,16 +6402,16 @@
   },
   "1950": {
     "decade": 1950,
-    "totalBorn": 272,
+    "totalBorn": 270,
     "gender": {
       "female": 66,
-      "male": 206,
+      "male": 204,
       "otherOrUnknown": 0
     },
     "topCountries": [
       {
         "country": "Germany",
-        "count": 52
+        "count": 50
       },
       {
         "country": "United States",
@@ -6470,13 +6470,8 @@
     ],
     "topCorridors": [
       {
-        "from": "Cuba",
-        "to": "United States",
-        "count": 1
-      },
-      {
-        "from": "Netherlands",
-        "to": "Germany",
+        "from": "China",
+        "to": "France",
         "count": 1
       },
       {
@@ -6490,15 +6485,20 @@
         "count": 1
       },
       {
-        "from": "People's Republic of China",
-        "to": "France",
+        "from": "Netherlands",
+        "to": "Germany",
+        "count": 1
+      },
+      {
+        "from": "Cuba",
+        "to": "United States",
         "count": 1
       }
     ],
     "migration": {
-      "eligible": 29,
+      "eligible": 28,
       "crossed": 8,
-      "crossPct": 28
+      "crossPct": 29
     },
     "notable": [
       {
@@ -6507,7 +6507,7 @@
         "birthYear": 1951,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 4
       },
       {
@@ -6525,7 +6525,7 @@
         "birthYear": 1957,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 3
       },
       {
@@ -6588,7 +6588,7 @@
         "birthYear": 1952,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 2
       },
       {
@@ -6651,7 +6651,7 @@
         "birthYear": 1950,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -6660,7 +6660,7 @@
         "birthYear": 1954,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -6705,7 +6705,7 @@
         "birthYear": 1950,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -6804,7 +6804,7 @@
         "birthYear": 1954,
         "deathYear": null,
         "movement": "abstract art",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 0
       },
       {
@@ -6822,16 +6822,16 @@
         "birthYear": 1957,
         "deathYear": null,
         "movement": "conceptual art",
-        "citizenship": "People's Republic of China",
+        "citizenship": "China",
         "totalDegree": 0
       }
     ]
   },
   "1960": {
     "decade": 1960,
-    "totalBorn": 182,
+    "totalBorn": 181,
     "gender": {
-      "female": 59,
+      "female": 58,
       "male": 121,
       "otherOrUnknown": 2
     },
@@ -6842,7 +6842,7 @@
       },
       {
         "country": "Germany",
-        "count": 22
+        "count": 21
       },
       {
         "country": "United States",
@@ -6959,7 +6959,7 @@
         "birthYear": 1962,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 1
       },
       {
@@ -7004,7 +7004,7 @@
         "birthYear": 1962,
         "deathYear": null,
         "movement": "No movement listed",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 0
       },
       {
@@ -7076,7 +7076,7 @@
         "birthYear": 1964,
         "deathYear": null,
         "movement": "abstract art",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 0
       },
       {
@@ -7152,15 +7152,6 @@
         "totalDegree": 0
       },
       {
-        "qid": "Q1051273",
-        "name": "Catrin G Grosse",
-        "birthYear": 1964,
-        "deathYear": null,
-        "movement": "No movement listed",
-        "citizenship": "Germany",
-        "totalDegree": 0
-      },
-      {
         "qid": "Q1077608",
         "name": "Chris Ofili",
         "birthYear": 1968,
@@ -7231,6 +7222,15 @@
         "movement": "No movement listed",
         "citizenship": "United States",
         "totalDegree": 0
+      },
+      {
+        "qid": "Q278183",
+        "name": "David Shrigley",
+        "birthYear": 1967,
+        "deathYear": null,
+        "movement": "contemporary art",
+        "citizenship": "United Kingdom",
+        "totalDegree": 0
       }
     ]
   },
@@ -7256,7 +7256,7 @@
         "count": 4
       },
       {
-        "country": "People's Republic of China",
+        "country": "China",
         "count": 3
       },
       {
@@ -7320,7 +7320,7 @@
         "birthYear": 1974,
         "deathYear": null,
         "movement": "abstract art",
-        "citizenship": "Kingdom of Denmark",
+        "citizenship": "Denmark",
         "totalDegree": 1
       },
       {
@@ -7428,7 +7428,7 @@
         "birthYear": 1978,
         "deathYear": null,
         "movement": "contemporary art",
-        "citizenship": "People's Republic of China",
+        "citizenship": "China",
         "totalDegree": 0
       },
       {
@@ -7455,7 +7455,7 @@
         "birthYear": 1970,
         "deathYear": null,
         "movement": "abstract art",
-        "citizenship": "Kingdom of the Netherlands",
+        "citizenship": "Netherlands",
         "totalDegree": 0
       },
       {

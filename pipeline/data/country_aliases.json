@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "purpose": "Map historical or formal-state country labels coming from Wikidata into the modern display name used across the UI. Applied at a single chokepoint in process.py so every downstream JSON inherits the same vocabulary.",
+    "categories": {
+      "A": "Formal modern-state name to common display name. Lossless — same polity, different label conventions.",
+      "B": "Historical state with a single unambiguous modern successor. Defensible — drops some historical specificity but matches how museum catalogs and atlases display these."
+    },
+    "deliberately_not_normalized": [
+      "Russian Empire / Russian SFSR / Soviet Union / Byelorussian SSR — multi-successor; could be Russia, Ukraine, Belarus, Lithuania, Latvia, Estonia, Poland, Finland, Georgia, Armenia, Kazakhstan or others.",
+      "Czechoslovakia / Federal People's Republic of Yugoslavia / Kingdom of Yugoslavia / Federal Republic of Yugoslavia / Kingdom of Serbs, Croats and Slovenes / Socialist Federal Republic of Yugoslavia — multi-successor.",
+      "Ottoman Empire — 30+ successor states.",
+      "Yemen, Republic of China, Dominion of India — political-status questions deferred until we have a stronger editorial position."
+    ],
+    "see_also": "docs/COUNTRY_NORMALIZATION.md"
+  },
+  "aliases": {
+    "Kingdom of the Netherlands": { "to": "Netherlands", "category": "A" },
+    "Kingdom of Denmark": { "to": "Denmark", "category": "A" },
+    "Empire of Japan": { "to": "Japan", "category": "A" },
+    "People's Republic of China": { "to": "China", "category": "A" },
+    "United Kingdom of Great Britain and Ireland": { "to": "United Kingdom", "category": "A" },
+    "Kingdom of Italy": { "to": "Italy", "category": "B" },
+    "Kingdom of Portugal": { "to": "Portugal", "category": "A" },
+    "Kingdom of Greece": { "to": "Greece", "category": "B" },
+    "Kingdom of Romania": { "to": "Romania", "category": "B" },
+    "Kingdom of Bulgaria": { "to": "Bulgaria", "category": "B" },
+    "People's Republic of Bulgaria": { "to": "Bulgaria", "category": "B" },
+    "Kingdom of Scotland": { "to": "United Kingdom", "category": "B" },
+    "Kingdom of Sardinia": { "to": "Italy", "category": "B" },
+    "Kingdom of Lombardy\u2013Venetia": { "to": "Italy", "category": "B" },
+    "Papal States": { "to": "Italy", "category": "B" },
+    "German Empire": { "to": "Germany", "category": "B" },
+    "German Reich": { "to": "Germany", "category": "B" },
+    "German Confederation": { "to": "Germany", "category": "B" },
+    "Kingdom of Prussia": { "to": "Germany", "category": "B" },
+    "Free State of Prussia": { "to": "Germany", "category": "B" },
+    "Prussia": { "to": "Germany", "category": "B" },
+    "Kingdom of Bavaria": { "to": "Germany", "category": "B" },
+    "Kingdom of Saxony": { "to": "Germany", "category": "B" },
+    "Kingdom of W\u00fcrttemberg": { "to": "Germany", "category": "B" },
+    "Kingdom of Hanover": { "to": "Germany", "category": "B" },
+    "Grand Duchy of Baden": { "to": "Germany", "category": "B" },
+    "Grand Duchy of Mecklenburg-Strelitz": { "to": "Germany", "category": "B" },
+    "Free State of Anhalt": { "to": "Germany", "category": "B" },
+    "German Democratic Republic": { "to": "Germany", "category": "B" },
+    "East Germany": { "to": "Germany", "category": "B" },
+    "West Germany": { "to": "Germany", "category": "B" },
+    "Federal Republic of Germany": { "to": "Germany", "category": "A" },
+    "Austrian Empire": { "to": "Austria", "category": "B" },
+    "Kingdom of Hungary": { "to": "Hungary", "category": "B" },
+    "Grand Duchy of Finland": { "to": "Finland", "category": "B" },
+    "Republic of Lithuania": { "to": "Lithuania", "category": "A" },
+    "Republic of Central Lithuania": { "to": "Lithuania", "category": "B" },
+    "Dominion of India": { "to": "India", "category": "B" },
+    "First Republic of Armenia": { "to": "Armenia", "category": "B" },
+    "Democratic Republic of Georgia": { "to": "Georgia", "category": "B" },
+    "Arab Kingdom of Syria": { "to": "Syria", "category": "B" },
+    "French protectorate of Tunisia": { "to": "Tunisia", "category": "B" },
+    "Empire of China": { "to": "China", "category": "B" }
+  }
+}

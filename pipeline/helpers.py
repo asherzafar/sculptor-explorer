@@ -1,4 +1,5 @@
 """Core helper functions for SPARQL queries and data processing."""
+import json
 import time
 import unicodedata
 from pathlib import Path
@@ -13,6 +14,14 @@ from config import (
     USER_AGENT,
 )
 
+# Module-level cache. The alias file is small (<2KB) and read at process
+# time only; we don't need a hot path here. The dict shape is the
+# {historical_name: modern_name} flattening of the on-disk file's richer
+# structure (which carries category + meta for transparency).
+_COUNTRY_ALIAS_PATH = Path(__file__).parent / "data" / "country_aliases.json"
+_country_alias_cache: Optional[dict[str, str]] = None
+_country_alias_categories_cache: Optional[dict[str, str]] = None
+
 
 def normalize_name(name: str) -> str:
     """Normalize a name for fuzzy matching: lowercase, strip diacritics, trim."""
@@ -22,6 +31,99 @@ def normalize_name(name: str) -> str:
     normalized = unicodedata.normalize("NFKD", name)
     ascii_name = normalized.encode("ASCII", "ignore").decode("ASCII")
     return ascii_name.lower().strip()
+
+
+def _load_country_aliases() -> tuple[dict[str, str], dict[str, str]]:
+    """Load `pipeline/data/country_aliases.json` and return two maps:
+
+    1. {historical_name -> modern_name}
+    2. {historical_name -> category_letter}  (for transparency reporting)
+
+    See `docs/COUNTRY_NORMALIZATION.md` for the curation rules. The file
+    structure is intentionally richer than these flat dicts because it
+    carries categories and "deliberately not normalized" notes that we
+    want to keep in source control next to the data.
+    """
+    global _country_alias_cache, _country_alias_categories_cache
+    if _country_alias_cache is not None and _country_alias_categories_cache is not None:
+        return _country_alias_cache, _country_alias_categories_cache
+    if not _COUNTRY_ALIAS_PATH.exists():
+        _country_alias_cache = {}
+        _country_alias_categories_cache = {}
+        return _country_alias_cache, _country_alias_categories_cache
+    with open(_COUNTRY_ALIAS_PATH, encoding="utf-8") as f:
+        payload = json.load(f)
+    aliases = payload.get("aliases", {})
+    flat: dict[str, str] = {}
+    cats: dict[str, str] = {}
+    for historical, entry in aliases.items():
+        flat[historical] = entry["to"]
+        cats[historical] = entry.get("category", "")
+    _country_alias_cache = flat
+    _country_alias_categories_cache = cats
+    return flat, cats
+
+
+def normalize_country(value: Optional[str]) -> Optional[str]:
+    """Map a single country label through the alias table.
+
+    Returns the value unchanged if it's None, empty, or not in the map.
+    Multi-successor states (Russian Empire, Soviet Union, Yugoslavia,
+    Czechoslovakia, Ottoman Empire, etc.) are deliberately absent from
+    the map and pass through verbatim — see country_aliases.json `_meta`
+    and docs/COUNTRY_NORMALIZATION.md for rationale.
+    """
+    if value is None or value == "":
+        return value
+    aliases, _ = _load_country_aliases()
+    return aliases.get(value, value)
+
+
+def normalize_country_list(values: Optional[list[str]]) -> list[str]:
+    """Apply `normalize_country` element-wise and de-duplicate.
+
+    Used for the `citizenships[]` array — after normalization, two
+    historical labels can collapse onto the same modern country (e.g. a
+    sculptor with both "Kingdom of Bavaria" and "German Empire" should
+    show up as just ["Germany"]). De-dup preserves first-seen order so
+    the primary citizenship sorting upstream isn't disturbed.
+    """
+    if not values:
+        return []
+    seen = set()
+    out: list[str] = []
+    for v in values:
+        normalized = normalize_country(v)
+        if normalized is None or normalized == "":
+            continue
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        out.append(normalized)
+    return out
+
+
+def country_alias_stats() -> dict:
+    """Return a small dict for transparency/debug logging.
+
+    Shape: {total_aliases, by_category: {A: n, B: n}, deliberately_not_normalized: [...]}
+    """
+    if not _COUNTRY_ALIAS_PATH.exists():
+        return {"total_aliases": 0, "by_category": {}, "deliberately_not_normalized": []}
+    with open(_COUNTRY_ALIAS_PATH, encoding="utf-8") as f:
+        payload = json.load(f)
+    aliases = payload.get("aliases", {})
+    by_cat: dict[str, int] = {}
+    for entry in aliases.values():
+        cat = entry.get("category", "?")
+        by_cat[cat] = by_cat.get(cat, 0) + 1
+    return {
+        "total_aliases": len(aliases),
+        "by_category": by_cat,
+        "deliberately_not_normalized": payload.get("_meta", {}).get(
+            "deliberately_not_normalized", []
+        ),
+    }
 
 
 def build_values_block(qids: list[str], varname: str = "?qid") -> str:

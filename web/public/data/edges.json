@@ -317,7 +317,7 @@
     "fromName": "Max Klinger",
     "toName": "K\u00e4the Kollwitz",
     "relationType": "influenced_by",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q46373",
@@ -2381,7 +2381,7 @@
     "fromName": "Hugo Lederer",
     "toName": "Kurt Harald Isenstein",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q463065",
@@ -2485,7 +2485,7 @@
     "fromName": "Balthasar Schmitt",
     "toName": "Hanns Braun",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q872469",
@@ -2517,7 +2517,7 @@
     "fromName": "Robert Diez",
     "toName": "Ernst Barlach",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1226079",
@@ -3085,7 +3085,7 @@
     "fromName": "Albert Wolff",
     "toName": "Erdmann Encke",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q315517",
@@ -3285,7 +3285,7 @@
     "fromName": "Melchior Anton zur Strassen",
     "toName": "Carl Seffner",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1695283",
@@ -3493,7 +3493,7 @@
     "fromName": "Albert Wolff",
     "toName": "Ernst Herter",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q314567",
@@ -3501,7 +3501,7 @@
     "fromName": "Johannes Schilling",
     "toName": "Robert Diez",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q314886",
@@ -3693,7 +3693,7 @@
     "fromName": "Wilhelm von R\u00fcmann",
     "toName": "Eberhard Encke",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q2731089",
@@ -3869,7 +3869,7 @@
     "fromName": "Ludwig Michael Schwanthaler",
     "toName": "Friedrich Brugger",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q448426",
@@ -4325,7 +4325,7 @@
     "fromName": "Albert Wolff",
     "toName": "Max Kruse",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q310437",
@@ -4349,7 +4349,7 @@
     "fromName": "Fritz Schaper",
     "toName": "Max Kruse",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q316085",
@@ -4357,7 +4357,7 @@
     "fromName": "Johann Halbig",
     "toName": "Konrad Knoll",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q346491",
@@ -4533,7 +4533,7 @@
     "fromName": "Syrius Eberle",
     "toName": "Ignatius Taschner",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1678927",
@@ -4541,7 +4541,7 @@
     "fromName": "Jakob Bradl",
     "toName": "Ignatius Taschner",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1682622",
@@ -4797,7 +4797,7 @@
     "fromName": "Albert Wolff",
     "toName": "Gerhard Janensch",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q316041",
@@ -4885,7 +4885,7 @@
     "fromName": "Syrius Eberle",
     "toName": "Carl Burger",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1682622",
@@ -5037,7 +5037,7 @@
     "fromName": "Rudolf Siemering",
     "toName": "Emil Hundrieser",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q157183",
@@ -5077,7 +5077,7 @@
     "fromName": "Hermann Heidel",
     "toName": "Engelbert Joseph Peiffer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q286318",
@@ -5173,7 +5173,7 @@
     "fromName": "Fritz Behn",
     "toName": "Hansj\u00f6rg Wagner",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q875794",
@@ -5453,7 +5453,7 @@
     "fromName": "Albert Wolff",
     "toName": "Heinrich Pohlmann",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q314350",
@@ -5477,7 +5477,7 @@
     "fromName": "Fritz Schaper",
     "toName": "Heinrich Pohlmann",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q360286",
@@ -5525,7 +5525,7 @@
     "fromName": "Reinhold Begas",
     "toName": "August Gaul",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q710530",
@@ -5861,7 +5861,7 @@
     "fromName": "Rudolf Siemering",
     "toName": "Adolf Heer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q170259",
@@ -5885,7 +5885,7 @@
     "fromName": "Albert Wolff",
     "toName": "Max Unger",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q316041",
@@ -5893,7 +5893,7 @@
     "fromName": "Fritz Schaper",
     "toName": "Max Unger",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q316041",
@@ -5941,7 +5941,7 @@
     "fromName": "Alexander Calandrelli",
     "toName": "Adolf Heer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q654201",
@@ -6013,7 +6013,7 @@
     "fromName": "Syrius Eberle",
     "toName": "Heinz Schiestl",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1663230",
@@ -6021,7 +6021,7 @@
     "fromName": "Melchior Anton zur Strassen",
     "toName": "Adolf Lehnert",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1892493",
@@ -6173,7 +6173,7 @@
     "fromName": "Ludwig Foltz",
     "toName": "Ferdinand Barth",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q157610",
@@ -6285,7 +6285,7 @@
     "fromName": "Alfred Thiele",
     "toName": "Walter Arnold",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1518026",
@@ -6429,7 +6429,7 @@
     "fromName": "Johannes Schilling",
     "toName": "Robert Toberentz",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q365691",
@@ -6845,7 +6845,7 @@
     "fromName": "Reinhold Begas",
     "toName": "Louis Tuaillon",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q703980",
@@ -6861,7 +6861,7 @@
     "fromName": "Christian Behrens",
     "toName": "Hugo Lederer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q871262",
@@ -6909,7 +6909,7 @@
     "fromName": "Robert Toberentz",
     "toName": "Hugo Lederer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1453234",
@@ -6933,7 +6933,7 @@
     "fromName": "Melchior Anton zur Strassen",
     "toName": "Felix Pfeifer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q2074124",
@@ -7733,7 +7733,7 @@
     "fromName": "Friedrich Wilhelm Schwenk",
     "toName": "Theodor Heinrich B\u00e4umer",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1246805",
@@ -7741,7 +7741,7 @@
     "fromName": "Milly Steger",
     "toName": "Oda Schottm\u00fcller",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1289500",
@@ -9117,7 +9117,7 @@
     "fromName": "Reinhold Begas",
     "toName": "August Kraus",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q695289",
@@ -9149,7 +9149,7 @@
     "fromName": "Ernst Herter",
     "toName": "Walter Schott",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q880623",
@@ -9157,7 +9157,7 @@
     "fromName": "Hermann Schievelbein",
     "toName": "Walter Schott",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q883221",
@@ -10349,7 +10349,7 @@
     "fromName": "Gustav Kaupert",
     "toName": "Ludwig Habich",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1587043",
@@ -10365,7 +10365,7 @@
     "fromName": "Hermann Volz",
     "toName": "Ludwig Habich",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q1712618",
@@ -10445,7 +10445,7 @@
     "fromName": "Wilhelm von R\u00fcmann",
     "toName": "Ludwig Habich",
     "relationType": "student_of",
-    "crossesBorders": true
+    "crossesBorders": false
   },
   {
     "fromQid": "Q2639959",

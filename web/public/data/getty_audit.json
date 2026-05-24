@@ -1,45 +1,45 @@
 {
   "version": 1,
   "aggregate": {
-    "compared": 2340,
+    "compared": 2311,
     "birth_year": {
-      "comparable": 2338,
-      "exact_match": 2211,
+      "comparable": 2309,
+      "exact_match": 2182,
       "off_by_1": 44,
       "off_by_more": 83,
       "missing_one_or_both": 2
     },
     "death_year": {
-      "comparable": 1849,
-      "exact_match": 1514,
+      "comparable": 1827,
+      "exact_match": 1497,
       "off_by_1": 27,
-      "off_by_more": 308,
-      "missing_one_or_both": 491
+      "off_by_more": 303,
+      "missing_one_or_both": 484
     },
     "birth_place": {
-      "wd_present": 2333,
-      "getty_present": 1416,
-      "both_present": 1412,
-      "agreement_rate": 0.6919263456090652,
+      "wd_present": 2304,
+      "getty_present": 1408,
+      "both_present": 1404,
+      "agreement_rate": 0.6901709401709402,
       "getty_fills_wd_gap": 4,
-      "wd_fills_getty_gap": 921
+      "wd_fills_getty_gap": 900
     },
     "death_place": {
-      "wd_present": 1801,
-      "getty_present": 849,
-      "both_present": 847,
-      "agreement_rate": 0.6328217237308147,
+      "wd_present": 1777,
+      "getty_present": 846,
+      "both_present": 844,
+      "agreement_rate": 0.6338862559241706,
       "getty_fills_wd_gap": 2,
-      "wd_fills_getty_gap": 954
+      "wd_fills_getty_gap": 933
     },
     "nationality": {
-      "comparable": 2340,
-      "mean_jaccard": 0.6178454415954416,
-      "full_agreement": 1179,
-      "any_overlap": 1752,
-      "no_overlap": 588,
-      "getty_adds_country": 785,
-      "wd_adds_country": 902
+      "comparable": 2311,
+      "mean_jaccard": 0.7575977210442809,
+      "full_agreement": 1526,
+      "any_overlap": 2008,
+      "no_overlap": 303,
+      "getty_adds_country": 529,
+      "wd_adds_country": 477
     }
   },
   "samples": {
@@ -175,16 +175,6 @@
     ],
     "nationality_no_overlap": [
       {
-        "qid": "Q1910641",
-        "name": "Aart Lamberts",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ]
-      },
-      {
         "qid": "Q55210",
         "name": "Abbas Kiarostami",
         "wd_citizenships": [
@@ -210,36 +200,6 @@
         "getty_nationalities": []
       },
       {
-        "qid": "Q263967",
-        "name": "Achille D’Orsi",
-        "wd_citizenships": [
-          "Kingdom of Italy"
-        ],
-        "getty_nationalities": [
-          "Italian"
-        ]
-      },
-      {
-        "qid": "Q1867015",
-        "name": "Ad Arma",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ]
-      },
-      {
-        "qid": "Q827088",
-        "name": "Ad Dekkers",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ]
-      },
-      {
         "qid": "Q353674",
         "name": "Adel Abdessemed",
         "wd_citizenships": [
@@ -247,6 +207,42 @@
           "Algeria"
         ],
         "getty_nationalities": []
+      },
+      {
+        "qid": "Q364748",
+        "name": "Adolf von Donndorf",
+        "wd_citizenships": [
+          "Saxe-Weimar-Eisenach"
+        ],
+        "getty_nationalities": [
+          "German"
+        ]
+      },
+      {
+        "qid": "Q160115",
+        "name": "Ai Weiwei",
+        "wd_citizenships": [
+          "China"
+        ],
+        "getty_nationalities": []
+      },
+      {
+        "qid": "Q1091015",
+        "name": "Aki Kuroda",
+        "wd_citizenships": [
+          "Japan"
+        ],
+        "getty_nationalities": []
+      },
+      {
+        "qid": "Q2117224",
+        "name": "Alejandro Otero",
+        "wd_citizenships": [
+          "Venezuela"
+        ],
+        "getty_nationalities": [
+          "South American"
+        ]
       }
     ],
     "nationality_getty_adds": [
@@ -254,8 +250,7 @@
         "qid": "Q279088",
         "name": "A. R. Penck",
         "wd_citizenships": [
-          "Germany",
-          "German Democratic Republic"
+          "Germany"
         ],
         "getty_nationalities": [
           "German",
@@ -263,19 +258,6 @@
         ],
         "nat_getty_only": [
           "Ireland"
-        ]
-      },
-      {
-        "qid": "Q1910641",
-        "name": "Aart Lamberts",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ],
-        "nat_getty_only": [
-          "Netherlands"
         ]
       },
       {
@@ -290,45 +272,6 @@
         ],
         "nat_getty_only": [
           "United States"
-        ]
-      },
-      {
-        "qid": "Q263967",
-        "name": "Achille D’Orsi",
-        "wd_citizenships": [
-          "Kingdom of Italy"
-        ],
-        "getty_nationalities": [
-          "Italian"
-        ],
-        "nat_getty_only": [
-          "Italy"
-        ]
-      },
-      {
-        "qid": "Q1867015",
-        "name": "Ad Arma",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ],
-        "nat_getty_only": [
-          "Netherlands"
-        ]
-      },
-      {
-        "qid": "Q827088",
-        "name": "Ad Dekkers",
-        "wd_citizenships": [
-          "Kingdom of the Netherlands"
-        ],
-        "getty_nationalities": [
-          "Dutch"
-        ],
-        "nat_getty_only": [
-          "Netherlands"
         ]
       },
       {
@@ -347,16 +290,79 @@
         ]
       },
       {
-        "qid": "Q361083",
-        "name": "Adolf Brütt",
+        "qid": "Q364748",
+        "name": "Adolf von Donndorf",
         "wd_citizenships": [
-          "German Reich"
+          "Saxe-Weimar-Eisenach"
         ],
         "getty_nationalities": [
           "German"
         ],
         "nat_getty_only": [
           "Germany"
+        ]
+      },
+      {
+        "qid": "Q364808",
+        "name": "Adolf von Hildebrand",
+        "wd_citizenships": [
+          "Germany"
+        ],
+        "getty_nationalities": [
+          "German",
+          "Italian",
+          "Swiss"
+        ],
+        "nat_getty_only": [
+          "Italy",
+          "Switzerland"
+        ]
+      },
+      {
+        "qid": "Q88777",
+        "name": "Adolfo Winternitz",
+        "wd_citizenships": [
+          "Austria",
+          "Peru"
+        ],
+        "getty_nationalities": [
+          "South American",
+          "Peruvian",
+          "German"
+        ],
+        "nat_getty_only": [
+          "Germany",
+          "South American"
+        ]
+      },
+      {
+        "qid": "Q391508",
+        "name": "Agathon Léonard",
+        "wd_citizenships": [
+          "France"
+        ],
+        "getty_nationalities": [
+          "Belgian",
+          "French"
+        ],
+        "nat_getty_only": [
+          "Belgium"
+        ]
+      },
+      {
+        "qid": "Q1344035",
+        "name": "Alejandro Obregón",
+        "wd_citizenships": [
+          "Spain",
+          "Colombia"
+        ],
+        "getty_nationalities": [
+          "South American",
+          "Colombian",
+          "Spanish"
+        ],
+        "nat_getty_only": [
+          "South American"
         ]
       }
     ]

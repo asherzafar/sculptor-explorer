@@ -446,4 +446,22 @@ export interface TransparencyAudit {
     total: number;
     [field: string]: number | { present: number; pct: number };
   };
+  /**
+   * Country-name normalization meta. Combines static alias-table shape
+   * (loaded from pipeline/data/country_aliases.json) with per-run record-
+   * rewrite counts (read from a sidecar JSON written by process.py).
+   * Optional because older transparency.json snapshots predate this
+   * block. See docs/COUNTRY_NORMALIZATION.md for the curation rules.
+   */
+  countryNormalization?: {
+    total_aliases: number;
+    by_category: Record<string, number>;
+    deliberately_not_normalized: string[];
+    recordsRewritten?: {
+      citizenship_display: number;
+      citizenships_list_collapsed: number;
+      birth_country: number;
+      death_country: number;
+    };
+  };
 }

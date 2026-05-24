@@ -557,7 +557,7 @@
     "citizenship": "United States",
     "citizenships": [
       "United States",
-      "Kingdom of Italy"
+      "Italy"
     ],
     "birthDecade": 1860,
     "inDegree": 0,
@@ -1736,8 +1736,7 @@
     "movement": "contemporary art",
     "citizenship": "United Kingdom",
     "citizenships": [
-      "United Kingdom",
-      "United Kingdom of Great Britain and Ireland"
+      "United Kingdom"
     ],
     "birthDecade": 1890,
     "inDegree": 0,
@@ -1802,7 +1801,6 @@
       "movement",
       "edge",
       "focus",
-      "multi_citz",
       "sitelinks"
     ]
   },

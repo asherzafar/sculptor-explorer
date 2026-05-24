@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Phase 3a shipped + 3d follow-throughs in flight. Lineage graph now has filters; detail page surfaces multi-citizenship and native names; Explore table shows native scripts.
+## Current status: Migration Sankey + per-decade + per-movement narrative pages shipped (May 2026). Country-name normalization (3a follow-up) shipped — 1,206 citizenship records rewritten, 331 multi-citizenship list entries collapsed via dedup, full transparency-page surface and `docs/COUNTRY_NORMALIZATION.md`.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -109,10 +109,23 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 - [x] **Aggregations use full 6,700** for honest base rates (`create_movements_by_decade_json` and `create_geography_by_decade_json` receive unfiltered nodes).
 - [x] **Transparency page** at `/transparency` — top-line counts, inclusion rule, signal coverage bars, side-by-side Included vs Excluded demographic breakdowns. This is the "Hidden from view" page promised in 3d, built early because the data was already in hand.
 
+### 3a follow-up: country-name normalization ✅ COMPLETE (May 2026)
+The migration Sankey turned out to be mostly clean — Wikidata's
+place→country resolver already maps to modern states for P19/P20.
+The real prize was the singular `citizenship` field used by the
+Explore table and detail-page pills.
+
+- [x] **Audit** — `birthCountry`/`deathCountry` are mostly clean (under 30 historical-state hits combined); `citizenships[]` and the singular `citizenship_display` carried ~1,200 records under historical or formal-state labels (Kingdom of the Netherlands, Kingdom of Italy, Russian Empire, Soviet Union, Kingdom of Prussia, etc.).
+- [x] **Curate** — `pipeline/data/country_aliases.json`: 43 entries split as 8 Category A (formal-name-to-display, lossless: Kingdom of the Netherlands → Netherlands) + 35 Category B (single-successor historical: Kingdom of Prussia / German Empire / German Reich → Germany). Multi-successor states (Russian Empire, Soviet Union, Czechoslovakia, Yugoslavia variants, Ottoman Empire) deliberately preserved.
+- [x] **Apply** — single chokepoint at end of `process_nodes()` in `pipeline/process.py`. New helpers in `pipeline/helpers.py`: `normalize_country`, `normalize_country_list` (element-wise + dedup), `country_alias_stats`. Per-run rewrite counts persisted to `data/processed/country_normalization_counts.json` sidecar so they survive the parquet round-trip into `export_json.py`.
+- [x] **Re-export** — every downstream JSON inherits the normalization (sculptors, migration, decades, movements, geography-by-decade, transparency). 1,206 citizenship records rewritten, 331 multi-citizenship list entries collapsed via dedup, 27 birth-country, 2 death-country.
+- [x] **Transparency surface** — `/transparency` now renders a "Country names: what we rewrite, what we leave alone" section with category split, per-run record counts, and the full deliberately-not-normalized list.
+- [x] **Document** — `docs/COUNTRY_NORMALIZATION.md` covers rationale, category definitions, deliberate non-decisions, and a maintenance procedure for adding new aliases.
+
+**Future enhancement (parked):** disambiguate multi-successor states on a per-record basis using `birth_place` city. Requires a curated city-to-modern-country map and explicit editorial position. Tracked under Phase 4+ "data-ethics analysis."
+
 ### Parking lot — deeper data-ethics analysis (revisit in Phase 4+)
 Questions surfaced by Phase 3a analysis but not resolved in this pass:
-- Historical-vs-modern country name normalization (Kingdom of Prussia → Germany, etc.) — affects migration story accuracy
-- Russian Empire / Soviet Union → Russia vs. Ukraine vs. other successor states
 - Could a weighted signal score (instead of binary OR) outperform? Authority↔sitelinks correlation is 0.67
 - Softer non-EN sitelinks ranking (top quartile of decade? logarithmic count?) rather than hard ≥3 threshold
 - Periodic review of bot-dominated Wikipedias list (currently ceb, war)
@@ -144,7 +157,7 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 ### 3d. Data-story UI — surfaces what the new data reveals
 Built in increments alongside 3a-c, not saved for the end.
 - [x] **Geography chart: source toggle** (citizenship / birth country) live on `/evolution`. Country-of-activity deferred to 3b (Getty ULAN).
-- [ ] **Migration view** — per-sculptor birth → residences → death trajectory as a dedicated visualization (Sankey / arc map). The lighter-touch version (born-in / died-in lines + multi-citizenship pills) ships under "Detail page enrichment (phase 2)" below; this slot stays for the richer chart once 3b lands activity-place data.
+- [x] **Migration view** — birth → death country Sankey shipped at `/migration` with decade-slice URL state (`?decade=1880`) and stayed-put toggle (`?stay=1`). Per-flow side panel shows a sample of sculptors per corridor (capped at 12). Activity-place data still deferred behind 3b; the v1 chart uses birth/death countries only.
 - [x] **"Hidden from view" page** — shipped as `/transparency`. Owns the included-vs-excluded distribution, signal coverage, and demographic gaps. Regenerates automatically on every pipeline run (standing commitment).
 - [x] **Detail page enrichment (phase 1)** — native name with `lang` attribute, birth/death place with country, authority-file chips (ULAN/VIAF/LCNAF/BnF/DNB/NDL/BNE), inclusion-signal chips ("Included because of…").
 - [x] **Detail page enrichment (phase 2)** — multi-citizenship pills surface the `citizenships[]` array (831 sculptors with >1 country) so émigré histories don't read as a single flat nationality. Native-name visibility tightened to non-English entries only (echoes of the romanized name suppressed). SAAM narrative snippet remains pending behind 3c.
@@ -184,8 +197,8 @@ Built in increments alongside 3a-c, not saved for the end.
 ## Phase 5: Optional — if energy remains
 
 - [ ] Map-based geography view (choropleth by decade) — may displace or complement the current stacked area chart
-- [ ] Decade pages (`/decade/1920s`) — editorial narrative with key sculptors, movements, works
-- [ ] Movement pages (`/movement/minimalism`) — elevate movements from pills to destinations
+- [x] Decade pages (`/decade/[year]`) — per-decade narrative: top countries, top movements, top corridors (deep-link into the Sankey filtered to that decade), notable-sculptor roster, prev/next adjacent-decade nav.
+- [x] Movement pages (`/movement/[slug]`) — per-movement narrative: stat blocks, decade histogram, top countries, peer movements (chronologically adjacent), notable roster. Movement pills on detail and Explore pages now link out.
 - [ ] Curated tours — pre-set lenses ("Women the canon forgot," "From marble to steel")
 - [ ] Wikidata-independent lineage via museum provenance records (finally makes the network graph real)
 

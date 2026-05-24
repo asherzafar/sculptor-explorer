@@ -1,63 +1,63 @@
 {
   "totalEdges": 1423,
   "comparable": 557,
-  "crossBorder": 160,
-  "sameNationality": 397,
-  "crossPctOfComparable": 0.2872531418312388,
+  "crossBorder": 116,
+  "sameNationality": 441,
+  "crossPctOfComparable": 0.20825852782764812,
   "byDecade": [
     {
       "decade": 1800,
       "total": 60,
-      "cross": 8,
-      "same": 52
+      "cross": 6,
+      "same": 54
     },
     {
       "decade": 1810,
       "total": 30,
-      "cross": 14,
-      "same": 16
+      "cross": 4,
+      "same": 26
     },
     {
       "decade": 1820,
       "total": 35,
-      "cross": 3,
-      "same": 32
+      "cross": 1,
+      "same": 34
     },
     {
       "decade": 1830,
       "total": 46,
-      "cross": 15,
-      "same": 31
+      "cross": 5,
+      "same": 41
     },
     {
       "decade": 1840,
       "total": 103,
-      "cross": 28,
-      "same": 75
+      "cross": 18,
+      "same": 85
     },
     {
       "decade": 1850,
       "total": 30,
-      "cross": 13,
-      "same": 17
+      "cross": 8,
+      "same": 22
     },
     {
       "decade": 1860,
       "total": 49,
-      "cross": 19,
-      "same": 30
+      "cross": 18,
+      "same": 31
     },
     {
       "decade": 1870,
       "total": 36,
-      "cross": 13,
-      "same": 23
+      "cross": 11,
+      "same": 25
     },
     {
       "decade": 1880,
       "total": 65,
-      "cross": 29,
-      "same": 36
+      "cross": 27,
+      "same": 38
     },
     {
       "decade": 1890,
@@ -98,17 +98,12 @@
   ],
   "topPairs": [
     {
-      "a": "German Reich",
-      "b": "Germany",
-      "count": 10
-    },
-    {
-      "a": "Germany",
-      "b": "Kingdom of Prussia",
-      "count": 8
-    },
-    {
       "a": "France",
+      "b": "Germany",
+      "count": 7
+    },
+    {
+      "a": "Austria",
       "b": "Germany",
       "count": 7
     },
@@ -134,17 +129,12 @@
     },
     {
       "a": "Germany",
-      "b": "Kingdom of Bavaria",
-      "count": 4
-    },
-    {
-      "a": "Austria",
-      "b": "Germany",
+      "b": "Hungary",
       "count": 4
     },
     {
       "a": "France",
-      "b": "Kingdom of Italy",
+      "b": "Italy",
       "count": 3
     },
     {
@@ -153,9 +143,19 @@
       "count": 3
     },
     {
-      "a": "Grand Duchy of Mecklenburg-Strelitz",
-      "b": "Kingdom of Prussia",
-      "count": 3
+      "a": "Spain",
+      "b": "United Kingdom",
+      "count": 2
+    },
+    {
+      "a": "France",
+      "b": "Mexico",
+      "count": 2
+    },
+    {
+      "a": "France",
+      "b": "Romania",
+      "count": 2
     }
   ]
 }
