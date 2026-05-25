@@ -1,6 +1,18 @@
 # Roadmap
 
-## Current status: Phase 4 polish + perf pass shipped (May 2026). Typography drift on /transparency fixed; slim `sculptors_index.json` drops /explore and /lineage payload by ~88% (5.8MB → 745KB). Mobile posture verified as deliberate read-only fallback. Country-name normalization (3a follow-up), migration Sankey, decade/movement narrative pages all live.
+## Current status: Phase 4 closed; Phase 5 plan adopted (May 2026).
+
+Project recast: from "ship to first feedback" to "better data, more
+interesting visualizations, explorable interactives." Phase 5 plan
+lives in `docs/PHASE_5_PLAN.md`; spine is institutional densification
+of the lineage graph (P69 probed at 34.3% coverage, 1,084 distinct
+institutions, ENSBA/Académie Julian/Bauhaus/ASL as real hubs).
+
+Recently shipped: Phase 4 polish + perf pass — typography drift fixed
+on /transparency, slim `sculptors_index.json` cuts /explore and
+/lineage payload by ~88% (5.8MB → 745KB), mobile posture verified as
+deliberate read-only fallback, country-name normalization (3a
+follow-up), migration Sankey, decade/movement narrative pages.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -191,39 +203,56 @@ Built in increments alongside 3a-c, not saved for the end.
 - [x] **Lineage network map level-up** — movement palette legend (capped at 12 with `+N more`), stronger hover focus (verdigris halo on hovered node, pinned labels for hovered node + neighbours, thicker focus edges), radial-gradient backdrop for atmospheric perspective, translucent pill chrome for stats and legend. Hover-to-focus interaction is now explicit in the hint copy.
 - [x] **Design polish sweep (May 2026)** — typography drift caught on /transparency (6 section H2s missing `font-display`, now consistent with /decade, /movement, /migration, /about). Hover-state audit: all interactive surfaces (table rows, links, buttons, sort headers, movement pills, chart labels) carry hover + `transition-colors`. Vertical-rhythm differences across pages are intentional (prose pages use `mb-8`, narrative pages use `mb-10`).
 
-## Phase 5: Optional — if energy remains
+## Phase 5: Densification + explorable interactives
 
-- [ ] Map-based geography view (choropleth by decade) — may displace or complement the current stacked area chart
-- [x] Decade pages (`/decade/[year]`) — per-decade narrative: top countries, top movements, top corridors (deep-link into the Sankey filtered to that decade), notable-sculptor roster, prev/next adjacent-decade nav.
-- [x] Movement pages (`/movement/[slug]`) — per-movement narrative: stat blocks, decade histogram, top countries, peer movements (chronologically adjacent), notable roster. Movement pills on detail and Explore pages now link out.
-- [ ] Curated tours — pre-set lenses ("Women the canon forgot," "From marble to steel")
-- [ ] Wikidata-independent lineage via museum provenance records (finally makes the network graph real)
+**Project recast (May 2026):** the goal is now "better data, more
+interesting visualizations, and explorable interactives." Phases 0–4
+produced a credible analytical explorer; Phase 5 takes it from
+"credible" to "actually shows you something you couldn't see anywhere
+else." Full milestone plan with risks, exit gates, and tests lives in
+**`docs/PHASE_5_PLAN.md`**. Discovery measurement (`pipeline/probe_*`
+scripts) confirmed the densification thesis: P69 educated_at adds
+**3,450 new edges** on top of our current 1,418 lineage edges, with
+real hub structure (ENSBA Paris 274 sculptors, Munich Academy 91,
+Académie Julian 57, Vienna 57, Düsseldorf 53, Bauhaus / Black Mountain
+present too).
 
-### Backlog: institutions, studios, places as first-class nodes
-Open question raised in May 2026: do we have data on the institutions
-(academies, foundries, artist colonies), studios, or geographies that
-sculptors were related to, and should those become nodes/edges in the
-network graph or other views?
+- [x] **5a — Discovery and sizing.** Probes against live Wikidata sized P69 (34.3% coverage, 1,084 distinct institutions, 58 hubs with ≥10 sculptors), P937 (27.6%, mixed cities/studios), P361 + P39 (<2%, dead). Decision: ingest P69 + P937, skip the others.
+- [ ] **5b — Densify the lineage graph with institutions.** P69 + P937 ingest, third node kind in `<LineageGraph />`, ≥3-sculptor render threshold, perf budget tests.
+- [ ] **5c — Time-coded edges and animated lineage.** P580/P582 qualifiers (18% coverage) + birth-year inference fallback, decade scrubber, URL-backed.
+- [ ] **5d — Career-trajectory Sankey.** Generalize `/migration` from 2 nodes (born → died) to 4 (born → educated → worked → died). Drops out of 5b + P937.
+- [ ] **5e — Coordinated multi-view.** Brush a decade on Timeline → highlight in Lineage / Migration / Geography. The Bret Victor / Distill pattern.
+- [ ] **5f — Choropleth map** for `/evolution`. Drops out of existing data; pure UI lift.
+- [ ] **5g — IIIF sculpture images.** Met + AIC widened beyond focus list.
+- [ ] **5h — Embedding viz** (UMAP/t-SNE on CLIP). Research, gated on 5g.
 
-**What Wikidata exposes per sculptor (already partially ingested):**
-- P69 — *educated at* (academies, ateliers, universities)
-- P937 — *work location* (cities, studios, artist colonies)
-- P1066 — *student of* (already a lineage edge, but only when target is a person — institutional teachers are dropped)
-- P108 — *employer* (rare for sculptors but appears for foundry-trained artists)
-- P39 — *position held* (membership in NSS, NAD, Académie, etc.)
-- P361 — *part of* (artist groups, secessions, schools)
+Each phase has an explicit exit gate that may rewrite the phases
+after it. See PHASE_5_PLAN.md for the full plan.
 
-**What this would unlock if integrated:**
-- Lineage graph gains *institutional* nodes (Académie Julian, ASL, Black Mountain, Cranbrook) — likely the highest-degree hubs in the data and a more honest model of training than person-to-person edges alone.
-- Geography view gains *activity-place* dimension on top of citizenship/birth — addresses the "deferred to 3b" gap in the migration view.
-- Movement pages (above) become richer because the institutional anchors of each movement (Bauhaus, Black Mountain) are nodes, not strings.
+### Already-shipped narrative pages (kept here for inventory)
 
-**Open design questions before building:**
-- Lineage graph already pushes ~6k nodes once external mentors are included. Adding institutions might cross the threshold where d3-force gets unhappy and we need a Canvas/WebGL fallback.
-- Bipartite vs. tripartite: sculptor (circle) + person-mentor (diamond) is the current model. Add institution (square)? Or model institutions as edge attributes on existing edges instead of new nodes?
-- How to draw an *origin* line on the migration view from a city node when many records only have country granularity?
+- [x] Decade pages (`/decade/[year]`) — top countries, top movements, top corridors (deep-link into the Sankey filtered to that decade), notable-sculptor roster, prev/next adjacent-decade nav.
+- [x] Movement pages (`/movement/[slug]`) — stat blocks, decade histogram, top countries, peer movements, notable roster. Movement pills on detail and Explore pages link out.
 
-**Decision:** parked, not started. Revisit after Phase 4 polish lands and after the d3-force performance budget is measured. If we cross the WebGL threshold for any reason, this becomes free to add.
+### Folded into Phase 5 plan
+
+- Curated tours ("Women the canon forgot", "From marble to steel") — moved into 5e as an instance of the explorable-interactive pattern (a pre-set selection state shared via URL).
+- Wikidata-independent lineage via museum provenance — kept parked. Provenance ingest is a multi-week lift with uncertain payoff once 5b lands the institutional hubs that were the original motivator.
+
+### Institutions, studios, places as first-class nodes — promoted
+
+This was a Phase 4 backlog item. It has been promoted to the spine of
+**Phase 5b–5d** after probes confirmed the densification thesis (P69
+educated_at: 34.3% coverage, 1,084 distinct institutions, real hub
+structure). See `docs/PHASE_5_PLAN.md` for the scoped plan, including
+how we'll handle the open design questions originally listed here:
+
+- d3-force perf budget at ~7,700 nodes / ~4,800 edges → **measured** in 5b.0 perf benchmark before the page changes; opt-in toggle if borderline; Canvas/WebGL fallback only if both fail.
+- Bipartite vs. tripartite → tripartite (institution = square), with a ≥3-sculptor render threshold to suppress the long tail.
+- City vs. country granularity for migration → P937 ingest gates city use behind label disambiguation; corridor view stays country-level until 5d's career-trajectory Sankey.
+
+P361 (part_of) and P39 (position_held) were probed and dropped (<2%
+coverage each). They are not on the Phase 5 path.
 
 ---
 
