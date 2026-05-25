@@ -128,18 +128,54 @@ and `intersect_envelopes()`. Maybe 80 lines of code, a snapshot test
 fixture, and a transparency-page surface for "edge confidence
 distribution."
 
-**What we'll learn from doing this.**
+**Measured (5b.2 SHIPPED, May 2026).** `audit_temporal.py` applied
+the helper to the full P69 + P937 ingest. Headline numbers:
 
-- How many edges end up with envelopes wider than 30 years? That's the
-  population the training-age prior would actually help. If it's
-  small, ship without the prior and stay honest.
-- Are there edges where the lifespan intersection is *empty* (one
-  party already dead before the other was born)? Those are Wikidata
-  data quality bugs; probably rare but worth logging.
-- Distribution of `confidence`: "high" qualifier-backed, "medium"
-  lifespan-backed, "low" prior-backed. Ratios determine whether
-  animated lineage is worth shipping or whether 5c collapses to
-  small-multiples instead.
+```
+P69 educated_at (no prior):
+  qualifier (high)            656  18.9%   median width  4 yr
+  lifespan_intersect (medium) 2646 76.2%   median width 73 yr
+  empty_intersection           41   1.2%   ← Wikidata data bugs
+  missing_institution_env     131   3.8%
+
+P69 educated_at (WITH age prior 16-30):
+  qualifier (high)            548  15.8%   median width  4 yr
+  lifespan_intersect           77   2.2%   late-career returnees
+  +age_prior (low)           2677  77.1%   median width 14 yr  ← 5× narrowing
+  empty_intersection           41   1.2%   (unchanged from no-prior)
+
+P937 work_location:
+  qualifier                   665  16.0%   median width 10 yr
+  lifespan_intersect         2243  54.0%   median width 75 yr
+  missing_institution_env   1230  29.6%   ← cities don't have P571
+```
+
+Three findings worth carrying forward:
+
+1. **The age prior delivers a 5× narrowing** on the bulk of P69 edges
+   (median width 73 → 14 years). Without the prior, animated lineage
+   would be dominated by edges "possibly active for ~70 years" —
+   visually close to "always on." With it, the median edge is active
+   in a 14-year window, which is meaningfully scrubbable.
+
+2. **41 P69 + 15 P937 edges have empty lifespan intersection** —
+   real Wikidata data bugs (sculptor lifespan doesn't overlap with
+   institution inception/dissolution). These are surfaced as a
+   transparency-page diagnostic, not silently dropped.
+
+3. **P937 has 30% missing institution metadata** because P937 values
+   are mostly cities, and cities rarely carry P571 inception in
+   Wikidata. For 5b.3 export, P937 edges without metadata fall back
+   to a "city has always existed" assumption (`existed_from = -∞`,
+   handled by treating the city's window as unbounded above the
+   sculptor's birth). The lifespan intersection then reduces to the
+   sculptor's lifespan alone, which is honest.
+
+The helper landed with 13 tests covering: lifespan intersection,
+qualifier precedence, qualifier sanity-check with ±2yr slack,
+qualifier clamping, age prior narrowing, age prior fallback when it
+empties node_a alone or the joint intersection, and empty lifespan
+intersections returning None.
 
 ---
 
