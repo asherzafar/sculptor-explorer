@@ -256,12 +256,37 @@ Bauhaus, ASL, and Black Mountain as visually distinct **hub nodes**
 they can click to filter the network down to "everyone trained at
 ENSBA". The existing person-mentor diamond pattern stays.
 
-**Inputs.**
-- New SPARQL: `query_institutions.py` for P69 (with P580/P582 quals)
-  + P937 (with same quals), batched like existing enrichment.
-- New SPARQL: institution metadata — `rdfs:label` (en, with mul fallback),
-  P571 (inception), P576 (dissolved). Inception + dissolved feed the
-  edge-dating envelope model defined above.
+**Inputs (5b.1 SHIPPED, May 2026).** `pipeline/query_institutions.py`
+ran against live Wikidata; cached in `data/raw/`:
+
+```
+P69 educated_at:    3,474 statements · 2,305 sculptors · 1,084 institutions
+P937 work_location: 4,153 statements · 2,027 sculptors · 813 locations
+Combined distinct:  1,892 institutions/places
+```
+
+Temporal qualifier coverage (drives the envelope's confidence axis):
+P69 19.9%, P937 22.4% — so ~80% of edges rely on the lifespan-envelope
+substrate. Institution metadata coverage: label 99.2%, inception
+(P571) 70.5%, dissolved (P576) 6.1% (most institutions still
+operating, which is correct).
+
+At the ≥3-sculptor render threshold: 226 P69 institutions + 175 P937
+locations ≈ ~400 graph nodes (vs the 370 estimate). Top P69 hubs by
+sculptor count: ENSBA 276, Munich 91, Hungarian University 79,
+Académie Julian / Vienna Academy 57 each, Düsseldorf 53, French
+Academy in Rome 52, Brera 49, Rijksakademie 35. Strong Parisian,
+Germanic, Italian, Dutch clusters confirmed before we render.
+
+`validate_institutions.py` is the harness that produced these numbers
+and stays as the regression check after schema or ingest changes.
+
+Sidecar provenance JSON written next to each parquet: source URL,
+fetched_at timestamp, query SHA, row count, input QID count. The
+/transparency page will surface "data fetched on YYYY-MM-DD" from
+these sidecars.
+
+**Still to ship in 5b.2–5b.5.**
 - New helper: `pipeline/temporal.py` exposing `compute_envelope(node_a,
   node_b, qualifier_start=None, qualifier_end=None, prior=None)`. Used
   by every edge type, not just institutional — backfills the existing
