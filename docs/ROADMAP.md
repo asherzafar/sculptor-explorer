@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Migration Sankey + per-decade + per-movement narrative pages shipped (May 2026). Country-name normalization (3a follow-up) shipped — 1,206 citizenship records rewritten, 331 multi-citizenship list entries collapsed via dedup, full transparency-page surface and `docs/COUNTRY_NORMALIZATION.md`.
+## Current status: Phase 4 polish + perf pass shipped (May 2026). Typography drift on /transparency fixed; slim `sculptors_index.json` drops /explore and /lineage payload by ~88% (5.8MB → 745KB). Mobile posture verified as deliberate read-only fallback. Country-name normalization (3a follow-up), migration Sankey, decade/movement narrative pages all live.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 
@@ -180,19 +180,16 @@ Built in increments alongside 3a-c, not saved for the end.
 - [x] **Portrait images on detail pages** (Wikidata P18 → Wikimedia Commons). 2,303 of 3,630 included sculptors (63%) have a portrait. Floats right of the header block; Commons file-page link for licence/author attribution. Met/AIC IIIF integration for actual sculptures deferred — see below.
 - [x] **Per-field coverage on transparency** — birth_place, death_place, native_name, image, authority_links, movement, citizenship.
 - [x] **OG preview image** — generated at build time via `app/opengraph-image.tsx` (next/og + Satori). 1200×630, on-brand verdigris accent, headline + 3,630-sculptor subhead. Twitter card set to summary_large_image. metadataBase points at sculptor-explorer.vercel.app.
-- [ ] **Custom domain** (if desired) — credibility infrastructure
-- [ ] **Mobile support** — revisit the `MobileGate` decision. If strangers share on phones, gating cuts most traffic. Options: adapt key pages, or keep gate with improved copy.
+- [ ] **Custom domain** (if desired) — credibility infrastructure.
+- [x] **Mobile posture** — kept as a per-page `<MobileNotice />` on /lineage, /evolution, /migration (the three views that genuinely don't render on a 375px viewport). /, /timeline, /explore, /explore/[qid], /decade, /movement, /about, /transparency all open on phones. This is the read-only fallback pattern, not a hard gate.
 - [ ] Sculpture (not portrait) images on detail pages via Met/AIC IIIF, public domain only — separate from the portrait win above; this would surface actual works.
-- [ ] Performance audit against budget (<3s paint, <5s interactive, <3MB payload)
-- [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades
+- [x] **Performance audit** — JS bundle 1.2MB (well under the 3MB budget). Main perf win was the heavy `sculptors.json` (5.8MB) being loaded by /explore and /lineage even though both pages only read ~10 fields. Added slim `sculptors_index.json` (745KB, ~88% smaller), wired through `loadSculptorsIndex()` + a new `SculptorIndexEntry` type. `sculptors.json` retained for build-time consumers + per-sculptor shards retained for the detail page.
+- [ ] Animation polish: chart transitions (400ms ease-out), page cross-fades.
 - [x] Empty-state polish + filter suggestions — shared `<EmptyState>` and `<LoadingState>` components, applied across explore (no-results), evolution (decade filter empties focus list), charts (no-data block), transparency (load error). Replaces 5 ad-hoc loading copy variants.
 - [x] Inline data degradation messaging — detail page now shows explicit "No art movement listed on Wikidata" / "Birthplace not recorded" lines instead of silently hiding sections. Death-place absence is suppressed for living sculptors.
 - [x] **Page-header consistency** — shared `<PageHeader>` component (title, subtitle, eyebrow, actions slots) applied to all six top-level pages. Fixes `mb-6`/`mb-8` drift, `text-muted-foreground` vs `text-text-secondary` token leakage, and the `max-w-3xl` reading-width that was only on the lineage page. Transparency's "← About" link is now an eyebrow rather than a sibling above the H1.
 - [x] **Lineage network map level-up** — movement palette legend (capped at 12 with `+N more`), stronger hover focus (verdigris halo on hovered node, pinned labels for hovered node + neighbours, thicker focus edges), radial-gradient backdrop for atmospheric perspective, translucent pill chrome for stats and legend. Hover-to-focus interaction is now explicit in the hint copy.
-- [ ] **Remaining design polish** (do after seeing the above live):
-  - Vertical rhythm sweep — chart-section spacing, filter-bar margins, footnote density.
-  - Hover-state audit — buttons, links, table rows, chart labels.
-  - Typographic system audit — confirm Fraunces/DM Sans size and weight scale is consistent across pages now that PageHeader has nailed down the H1 contract.
+- [x] **Design polish sweep (May 2026)** — typography drift caught on /transparency (6 section H2s missing `font-display`, now consistent with /decade, /movement, /migration, /about). Hover-state audit: all interactive surfaces (table rows, links, buttons, sort headers, movement pills, chart labels) carry hover + `transition-colors`. Vertical-rhythm differences across pages are intentional (prose pages use `mb-8`, narrative pages use `mb-10`).
 
 ## Phase 5: Optional — if energy remains
 
