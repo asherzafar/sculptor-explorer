@@ -1,11 +1,28 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor, MigrationData, DecadesData, MovementsData } from "./types";
+import type { LegacySculptor, SculptorIndexEntry, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor, MigrationData, DecadesData, MovementsData } from "./types";
 
-/** Load sculptors.json (legacy camelCase format) */
+/** Load sculptors.json (legacy camelCase format).
+ *
+ * Heavy (~6MB). Reserved for callers that genuinely need the full
+ * Option A.3 record. /explore and /lineage use loadSculptorsIndex()
+ * instead; the detail page uses loadSculptor(qid) shards.
+ */
 export async function loadSculptors(): Promise<LegacySculptor[]> {
   const res = await fetch("/data/sculptors.json");
   if (!res.ok) throw new Error("Failed to load sculptors.json");
+  return res.json();
+}
+
+/** Load the slim sculptors_index.json used by /explore and /lineage.
+ *
+ * Same roster as sculptors.json but only the 10 fields the table
+ * columns + graph node labels actually read. Drops the multi-MB
+ * payload to a few hundred KB.
+ */
+export async function loadSculptorsIndex(): Promise<SculptorIndexEntry[]> {
+  const res = await fetch("/data/sculptors_index.json");
+  if (!res.ok) throw new Error("Failed to load sculptors_index.json");
   return res.json();
 }
 

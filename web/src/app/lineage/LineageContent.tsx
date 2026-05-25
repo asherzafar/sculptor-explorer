@@ -5,12 +5,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type {
   ExternalMentor,
   LegacyEdge,
-  LegacySculptor,
+  SculptorIndexEntry,
 } from "@/lib/types";
 import {
   loadEdges,
   loadExternalMentors,
-  loadSculptors,
+  loadSculptorsIndex,
 } from "@/lib/data";
 import { LineageGraph } from "@/components/charts/LineageGraph";
 import { formatDisplayValue } from "@/lib/utils";
@@ -60,7 +60,7 @@ export function LineageContent() {
   const searchParams = useSearchParams();
 
   const [edges, setEdges] = useState<LegacyEdge[]>([]);
-  const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
+  const [sculptors, setSculptors] = useState<SculptorIndexEntry[]>([]);
   const [mentors, setMentors] = useState<ExternalMentor[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -69,7 +69,7 @@ export function LineageContent() {
       try {
         const [e, s, m] = await Promise.all([
           loadEdges(),
-          loadSculptors(),
+          loadSculptorsIndex(),
           loadExternalMentors(),
         ]);
         setEdges(e);

@@ -14,8 +14,8 @@ import {
   type ColumnFiltersState,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
-import type { LegacySculptor } from "@/lib/types";
-import { loadSculptors } from "@/lib/data";
+import type { SculptorIndexEntry } from "@/lib/types";
+import { loadSculptorsIndex } from "@/lib/data";
 import { formatDisplayValue, formatGender, movementSlug } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
@@ -29,7 +29,7 @@ function normalizeText(text: string): string {
     .replace(/[\u0300-\u036f]/g, ""); // Remove diacritics
 }
 
-const columns: ColumnDef<LegacySculptor>[] = [
+const columns: ColumnDef<SculptorIndexEntry>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -145,7 +145,7 @@ function SortHeader({
 
 export default function ExplorePage() {
   const router = useRouter();
-  const [sculptors, setSculptors] = useState<LegacySculptor[]>([]);
+  const [sculptors, setSculptors] = useState<SculptorIndexEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [sorting, setSorting] = useState<SortingState>([
     { id: "birthYear", desc: false }, // Default: chronological (oldest first)
@@ -156,7 +156,7 @@ export default function ExplorePage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await loadSculptors();
+        const data = await loadSculptorsIndex();
         setSculptors(data);
       } catch (err) {
         console.error("Failed to load data:", err);

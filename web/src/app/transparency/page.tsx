@@ -81,7 +81,7 @@ function CrossCulturalCollaboration({
 
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-text-primary mb-3">
+      <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
         Cross-cultural collaboration
       </h2>
       <p className="text-text-secondary leading-relaxed mb-4 max-w-3xl">
@@ -339,7 +339,7 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
 
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-text-primary mb-3">
+      <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
         Cross-reference: Getty ULAN
       </h2>
       <p className="text-text-secondary leading-relaxed mb-4 max-w-3xl">
@@ -697,7 +697,7 @@ function FieldCoverageSection({
 
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-text-primary mb-3">
+      <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
         What's filled in
       </h2>
       <p className="text-text-secondary mb-5">
@@ -746,7 +746,7 @@ function CountryNormalizationSection({
   const catB = block.by_category?.B ?? 0;
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-text-primary mb-3">
+      <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
         Country names: what we rewrite, what we leave alone
       </h2>
       <p className="text-text-secondary leading-relaxed mb-4">
@@ -926,7 +926,7 @@ export default function TransparencyPage() {
 
       {/* Inclusion rule */}
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-text-primary mb-3">
+        <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
           Inclusion rule (version {audit.criterion.version})
         </h2>
         <p className="text-text-secondary leading-relaxed mb-3">
@@ -988,7 +988,7 @@ export default function TransparencyPage() {
 
       {/* Demographic breakdowns */}
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-text-primary mb-3">
+        <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
           Demographic breakdown
         </h2>
         <p className="text-text-secondary mb-5">

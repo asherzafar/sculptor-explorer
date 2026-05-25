@@ -63,6 +63,30 @@ export interface AuthorityLink {
 }
 
 /**
+ * Slim sculptor record served by `/data/sculptors_index.json`.
+ *
+ * Both /explore (table) and /lineage (graph) need the full roster of
+ * included sculptors but only read a handful of columns each. The full
+ * sculptors.json is ~6MB; this index is ~5–8% of that. The detail page
+ * still fetches a per-sculptor shard for the full record.
+ *
+ * Field set is the union of what /explore renders (table columns +
+ * search) and what /lineage needs (node lookup + movement colouring).
+ */
+export interface SculptorIndexEntry {
+  qid: string;
+  name: string;
+  nativeName: string | null;
+  nativeLang: string | null;
+  birthYear: number | null;
+  deathYear: number | null;
+  birthDecade: number | null;
+  movement: string | null;
+  gender: string | null;
+  citizenship: string | null;
+}
+
+/**
  * The on-disk sculptor JSON shape (Option A.3 schema, Phase 3a+).
  *
  * Named "Legacy" for historical reasons — the rename to canonical

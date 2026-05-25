@@ -112,6 +112,40 @@ def create_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     return [_sculptor_record(row) for _, row in included.iterrows()]
 
 
+def create_sculptors_index_json(nodes: pd.DataFrame) -> list[dict]:
+    """Slim sculptors index for /explore (table) and /lineage (graph lookup).
+
+    The full sculptors.json is ~6MB because every record carries
+    authorityLinks, inclusionSignals, citizenships[], image URLs,
+    gettyVerified, sitelink counts, etc. Those fields are only needed on
+    the detail page — and the detail page already loads a per-sculptor
+    shard from /data/sculptors/{qid}.json.
+
+    This index keeps only the columns the Explore table renders and the
+    Lineage graph reads (qid, name, movement). One small file replaces a
+    multi-MB download for two of the most-trafficked pages.
+    """
+    included = nodes[nodes["is_included"]].copy()
+    records: list[dict] = []
+    for _, row in included.iterrows():
+        birth = row.get("birth_year")
+        death = row.get("death_year")
+        birth_decade = row.get("birth_decade")
+        records.append({
+            "qid": row["qid"],
+            "name": row["name"],
+            "nativeName": row["native_name"] if pd.notna(row.get("native_name")) else None,
+            "nativeLang": row["native_lang"] if pd.notna(row.get("native_lang")) else None,
+            "birthYear": int(birth) if pd.notna(birth) else None,
+            "deathYear": int(death) if pd.notna(death) else None,
+            "birthDecade": int(birth_decade) if pd.notna(birth_decade) else None,
+            "movement": row["movement_display"] if pd.notna(row.get("movement_display")) else None,
+            "gender": row["gender"] if pd.notna(row.get("gender")) else None,
+            "citizenship": row["citizenship_display"] if pd.notna(row.get("citizenship_display")) else None,
+        })
+    return records
+
+
 def create_edges_json(
     relations: pd.DataFrame, nodes: pd.DataFrame
 ) -> list[dict]:
@@ -1113,10 +1147,21 @@ def export_all():
         json.dump(sculptors, f, indent=2)
     print(f"✓ Exported {len(sculptors)} sculptors to {sculptors_path.name}")
 
+    # Export the slim sculptors_index.json used by /explore and /lineage.
+    # Written compact (no indent) because it's machine-read on every page
+    # load — the ~30% size win from dropping whitespace matters here.
+    # Detail page still uses per-sculptor shards for the full record.
+    sculptors_index = create_sculptors_index_json(nodes)
+    sculptors_index_path = WEB_DATA_DIR / "sculptors_index.json"
+    with open(sculptors_index_path, "w") as f:
+        json.dump(sculptors_index, f, separators=(",", ":"))
+    print(f"✓ Exported slim index to {sculptors_index_path.name} ({len(sculptors_index)} sculptors)")
+
     # Export per-sculptor shards under data/sculptors/{qid}.json so the
     # detail page can fetch a single ~1.2KB record instead of the full
-    # 5.9MB list. The aggregate file stays for /explore (data table)
-    # and /lineage (graph) — both genuinely need the full roster.
+    # 5.9MB list. /explore and /lineage now use the slim
+    # sculptors_index.json above; sculptors.json itself is retained for
+    # build-time consumers (generateStaticParams on the detail route).
     #
     # Shards are written with `indent=None` (compact) since no human
     # reads them and the size savings compound across 3,600+ files.

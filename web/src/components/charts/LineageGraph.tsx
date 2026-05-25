@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as d3 from "d3";
-import type { LegacyEdge, LegacySculptor, ExternalMentor } from "@/lib/types";
+import type { LegacyEdge, SculptorIndexEntry, ExternalMentor } from "@/lib/types";
 import { formatDisplayValue } from "@/lib/utils";
 
 /**
@@ -30,7 +30,7 @@ import { formatDisplayValue } from "@/lib/utils";
  */
 
 interface Props {
-  sculptors: LegacySculptor[];
+  sculptors: SculptorIndexEntry[];
   edges: LegacyEdge[];
   externalMentors?: ExternalMentor[];
   height?: number;
@@ -255,13 +255,14 @@ export function LineageGraph({
       if (sculptor) {
         const hasMovement =
           !!sculptor.movement && sculptor.movement !== "No movement listed";
+        const movement = sculptor.movement ?? "";
         return {
           id: qid,
           kind: "sculptor",
           name: sculptor.name,
-          movement: sculptor.movement,
+          movement,
           movementLabel: hasMovement
-            ? formatDisplayValue(sculptor.movement, { isMovement: true })
+            ? formatDisplayValue(movement, { isMovement: true })
             : "No movement",
           degree: degreeMap.get(qid) ?? 0,
           hasMovement,
