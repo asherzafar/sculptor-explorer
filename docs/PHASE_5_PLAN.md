@@ -289,19 +289,34 @@ ENSBA". The existing person-mentor diamond pattern stays.
   will reuse this when movements are added; 5d may add `,city`.
 
 **Risks and unknowns.**
-- **Perf budget.** Adding ~370 institutional nodes + ~3,000 edges on top
-  of current 4,300 nodes / 1,400 edges. d3-force documented to handle
-  10k nodes / 30k edges on modern hardware, but our current page
-  already takes 1.5–2.5s to settle. Risk: **Lineage initial layout
-  becomes >5s and motion-safe animations stall.**
-- **Mitigation A:** measure first — write a 5b.0 perf benchmark cell
-  that runs the simulation headless against synthetic data of varying
-  sizes before changing the page.
-- **Mitigation B:** if perf is borderline, ship an "Institutions" toggle
-  (off by default) so the densified view is opt-in. Better to surface
-  the data behind a click than to crash the page.
-- **Mitigation C (last resort):** Canvas/WebGL fallback. Adds 2–3 days
-  of work. Only invoke if A and B both fail.
+- **Perf budget — measured.** `web/perf/lineage-bench.mjs` was run
+  May 2026 with the exact force configuration the page uses, against
+  synthetic preferential-attachment graphs at each Phase-5 size point
+  (median of 3 runs after a warm-up). Headline numbers:
+  ```
+  scenario                  settled (α<0.02)   full converge   verdict
+  now (4.3k / 1.4k)         1.57s              2.77s           yellow (today)
+  +institutions (7.7k/4.8k) 3.36s              5.94s           RED
+  +movements (7.85k/5.4k)   3.43s              6.12s           RED (no cost over 5b)
+  stress (12k / 8k)         5.46s              9.67s           RED
+  ```
+  Force cost at 5b size: charge (forceManyBody) is the bottleneck at
+  ~55% of total, collide ~15%, link ~12%. N-body is Barnes-Hut
+  O(N log N) and N=7,700 pushes it past the budget.
+- **Decision: ship view-mode toggle with institutions OFF by default.**
+  The default `/lineage` keeps today's 1.57s settled time. The
+  densified view is one click away (`?nodes=sculptor,institution`),
+  deep-linkable from `/transparency` and per-institution pages.
+  Readers who want the rich view opt in; first-paint perf is preserved.
+- **Charge tuning — second mitigation in the same phase.** On the
+  heavy view, raise Barnes-Hut `theta` from 0.9 (default) to ~1.5
+  and consider dropping charge strength from -120 to -80. Looser
+  approximation, marginally less-tight clusters, ~half the N-body
+  cost. Tune empirically in 5b.4; ship the value that gets settled
+  time under 2.5s without making the layout read as muddy.
+- **Canvas/WebGL is parked, not promoted.** It addresses SVG render
+  cost, which isn't the bottleneck at this size. Re-evaluate only if
+  a future phase pushes us past 15k nodes.
 - **Long-tail label noise.** P69 distinct count is 1,084 but most are
   single-sculptor. Solved at ingest by filtering ≥3 for graph rendering;
   detail-page chips can show all without clutter.
@@ -316,8 +331,14 @@ ENSBA". The existing person-mentor diamond pattern stays.
   - Top-5 hub presence: ENSBA, Munich, Vienna, Académie Julian, Düsseldorf must all carry sculptor_count ≥30 in `institutions.json`
   - Schema regression: `institutions[]` is always a list, never null
   - Snapshot: top-30 institutions list compared turn-over-turn
-- `web/__perf__/lineage-bench.ts` — Playwright script that opens
-  `/lineage` and reports time-to-stable-layout. Budget: ≤4s.
+- `web/perf/lineage-bench.mjs` — the headless d3-force benchmark that
+  produced the numbers above. Re-run before/after charge tuning in
+  5b.4 to confirm settled time on the heavy view drops below 2.5s.
+- (Optional, post-5b.4) Playwright script that opens `/lineage` and
+  reports browser-side time-to-stable-layout including SVG rendering.
+  Browser numbers may diverge from the headless ones (rAF batching,
+  V8 vs Node V8); we'll add the Playwright harness only if the
+  divergence looks worth measuring.
 - `pipeline/audit.py` — extend with institutional-coverage section so
   Transparency page can surface "X% of sculptors have an educational
   institution recorded".
@@ -330,11 +351,15 @@ ENSBA". The existing person-mentor diamond pattern stays.
   you need to cover 80% of the canon.
 
 **Exit gate.**
-- Hard: lineage page renders in <4s with institutions on; tests pass;
-  top-5 hubs visible by eye in the graph.
+- Hard: default `/lineage` (institutions toggle off) settled time
+  unchanged from today (≤1.7s in the headless bench).
+- Hard: heavy view (institutions toggle on) settled time ≤2.5s after
+  charge tuning. If it stays above 2.5s, ship with the toggle but
+  surface a "computing…" hint on first paint of the heavy view.
+- Hard: top-5 hubs visible by eye in the heavy view; tests pass.
 - Soft: the densified graph "tells a different story" — at minimum,
   ENSBA-Académie Julian-École de Paris should form a visible Parisian
-  cluster, Bauhaus/Munich/Vienna a Germanic cluster, etc.
+  cluster, Bauhaus/Munich/Vienna a Germanic cluster.
 - **Decision after gate:** if soft criterion fails (the cluster
   structure is muddy or hubs are dwarfed by long-tail noise), reconsider
   the rendering threshold and possibly defer to a movement-tag
