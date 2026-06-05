@@ -322,18 +322,32 @@ fetched_at timestamp, query SHA, row count, input QID count. The
 /transparency page will surface "data fetched on YYYY-MM-DD" from
 these sidecars.
 
-**Still to ship in 5b.2–5b.5.**
-- New helper: `pipeline/temporal.py` exposing `compute_envelope(node_a,
-  node_b, qualifier_start=None, qualifier_end=None, prior=None)`. Used
-  by every edge type, not just institutional — backfills the existing
-  P1066/P737 person-person edges with the same envelope schema so /lineage
-  has a consistent dating substrate.
-- New columns in `sculptor_nodes_enriched`: `institutions[]` (list of
-  institution QIDs) and `institutional_edges[]` (per-edge with the
-  full envelope: min/max start, min/max end, date_source, confidence).
-- New JSON: `institutions.json` (one row per institution: qid, label,
-  inception, dissolved, sculptor_count, decade_range).
-- Schema additions to `LegacySculptor`: optional, append-only.
+**Shipped in 5b.2–5b.3.**
+- `pipeline/temporal.py` exposes `compute_envelope(...)` and is tested
+  against the edge dating cases described above.
+- `pipeline/export_json.py` emits additive `institutions[]` and
+  `institutionalEdges[]` fields on each `LegacySculptor` record.
+- `web/public/data/institutions.json` exports the graph-ready
+  institution/place bundle: qid, label, inception/dissolved years,
+  sculptor_count, relation counts, decade range, per-institution
+  roster, per-institution edges, and an index sorted by sculptor count.
+- `web/src/lib/types.ts` and `web/src/lib/data.ts` define
+  `InstitutionsData`, `InstitutionRecord`, `InstitutionalEdge`, and
+  `loadInstitutions()`.
+
+5b.3 export results (included sculptor roster only): 1,662 total
+institution/place nodes, 334 renderable at the ≥3-sculptor threshold,
+5,925 exported institutional/work-location edges, 54 skipped empty
+lifespan intersections. Edge confidence split: 1,004 high
+qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
+
+**Still to ship in 5b.4–5b.5.**
+- LineageGraph third node kind (`"institution"`) and URL-backed
+  node-kind view selector.
+- Backfill existing P1066/P737 person-person edges with the same
+  envelope schema so /lineage has a consistent dating substrate.
+- Transparency-page surfaces for institution coverage, edge confidence,
+  skipped empty intersections, and educational concentration.
 
 **Architecture.**
 - One new ingest module, mirrors `query_enrichment.py` pattern.

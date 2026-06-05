@@ -18,6 +18,21 @@ from config import (
     load_focus_sculptors,
 )
 from helpers import normalize_name
+from query_institutions import (
+    EDUCATED_AT_CACHE_PATH,
+    INSTITUTION_METADATA_CACHE_PATH,
+    WORK_LOCATION_CACHE_PATH,
+)
+from temporal import (
+    EDUCATED_AT_AGE_PRIOR,
+    WORK_LOCATION_AGE_PRIOR,
+    NodeEnvelope,
+    compute_envelope,
+)
+
+
+INSTITUTION_MIN_SCULPTORS = 3
+UNBOUNDED_INSTITUTION_START = -9999
 
 
 def load_data():
@@ -98,6 +113,8 @@ def _sculptor_record(row) -> dict:
         "sitelinkCount": int(row.get("sitelink_count") or 0),
         "nonEnSitelinkCount": int(row.get("non_en_sitelink_count") or 0),
         "inclusionSignals": _list(row.get("inclusion_signals")),
+        "institutions": _list(row.get("institutions")),
+        "institutionalEdges": _list(row.get("institutional_edges")),
     }
 
 
@@ -205,6 +222,278 @@ def create_edges_json(
         })
 
     return records
+
+
+def _int_or_none(value) -> int | None:
+    if value is None:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    return int(value)
+
+
+def _build_sculptor_envelopes(nodes: pd.DataFrame) -> dict[str, NodeEnvelope]:
+    envelopes: dict[str, NodeEnvelope] = {}
+    for _, row in nodes.iterrows():
+        birth_year = _int_or_none(row.get("birth_year"))
+        if birth_year is None:
+            continue
+        death_year = _int_or_none(row.get("death_year"))
+        try:
+            envelopes[str(row["qid"])] = NodeEnvelope(
+                existed_from=birth_year,
+                existed_to=death_year,
+            )
+        except ValueError:
+            continue
+    return envelopes
+
+
+def _build_institution_records(metadata: pd.DataFrame) -> dict[str, dict]:
+    records: dict[str, dict] = {}
+    if len(metadata) == 0:
+        return records
+    for qid, group in metadata.groupby("qid_clean"):
+        label = None
+        en = group[(group["label_lang"] == "en") & group["label"].notna()]
+        mul = group[(group["label_lang"] == "mul") & group["label"].notna()]
+        if len(en):
+            label = str(en.iloc[0]["label"])
+        elif len(mul):
+            label = str(mul.iloc[0]["label"])
+        inceptions = group["inception_year"].dropna()
+        dissolveds = group["dissolved_year"].dropna()
+        records[str(qid)] = {
+            "qid": str(qid),
+            "label": label or str(qid),
+            "inceptionYear": int(inceptions.min()) if len(inceptions) else None,
+            "dissolvedYear": int(dissolveds.max()) if len(dissolveds) else None,
+        }
+    return records
+
+
+def _build_institution_envelopes(records: dict[str, dict]) -> dict[str, NodeEnvelope]:
+    envelopes: dict[str, NodeEnvelope] = {}
+    for qid, record in records.items():
+        start = record.get("inceptionYear")
+        end = record.get("dissolvedYear")
+        if start is None:
+            start = UNBOUNDED_INSTITUTION_START
+        try:
+            envelopes[qid] = NodeEnvelope(existed_from=int(start), existed_to=end)
+        except ValueError:
+            envelopes[qid] = NodeEnvelope(
+                existed_from=UNBOUNDED_INSTITUTION_START,
+                existed_to=None,
+            )
+    return envelopes
+
+
+def _edge_envelope_dict(env) -> dict:
+    return {
+        "minStart": int(env.min_start),
+        "maxStart": int(env.max_start),
+        "minEnd": int(env.min_end),
+        "maxEnd": int(env.max_end),
+        "dateSource": env.date_source,
+        "confidence": env.confidence,
+    }
+
+
+def create_institutions_json(nodes: pd.DataFrame) -> tuple[dict, dict[str, list[str]], dict[str, list[dict]]]:
+    if (
+        not EDUCATED_AT_CACHE_PATH.exists()
+        or not WORK_LOCATION_CACHE_PATH.exists()
+        or not INSTITUTION_METADATA_CACHE_PATH.exists()
+    ):
+        return {
+            "meta": {
+                "minSculptors": INSTITUTION_MIN_SCULPTORS,
+                "totalInstitutions": 0,
+                "renderedInstitutions": 0,
+                "totalEdges": 0,
+                "exportedEdges": 0,
+                "skippedEmptyIntersection": 0,
+            },
+            "institutions": {},
+            "index": [],
+        }, {}, {}
+
+    included = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
+    included_qids = set(included["qid"].astype(str))
+    sculptor_lookup = included.set_index("qid").to_dict(orient="index")
+    sculptor_envs = _build_sculptor_envelopes(included)
+
+    educated = pd.read_parquet(EDUCATED_AT_CACHE_PATH)
+    work = pd.read_parquet(WORK_LOCATION_CACHE_PATH)
+    metadata = pd.read_parquet(INSTITUTION_METADATA_CACHE_PATH)
+    institution_records = _build_institution_records(metadata)
+    institution_envs = _build_institution_envelopes(institution_records)
+
+    rows: list[tuple[str, str, str, str, int | None, int | None, tuple[int, int]]] = []
+    for _, row in educated.iterrows():
+        qid = str(row["qid_clean"])
+        if qid in included_qids:
+            rows.append((
+                qid,
+                str(row["inst_qid"]),
+                "educated_at",
+                "P69",
+                _int_or_none(row.get("start_year")),
+                _int_or_none(row.get("end_year")),
+                EDUCATED_AT_AGE_PRIOR,
+            ))
+    for _, row in work.iterrows():
+        qid = str(row["qid_clean"])
+        if qid in included_qids:
+            rows.append((
+                qid,
+                str(row["loc_qid"]),
+                "work_location",
+                "P937",
+                _int_or_none(row.get("start_year")),
+                _int_or_none(row.get("end_year")),
+                WORK_LOCATION_AGE_PRIOR,
+            ))
+
+    institutions: dict[str, dict] = {}
+    by_sculptor_qids: dict[str, set[str]] = {}
+    by_sculptor_edges: dict[str, list[dict]] = {}
+    skipped_empty = 0
+    missing_metadata = 0
+
+    for sculptor_qid, inst_qid, relation_type, source_property, q_start, q_end, prior in rows:
+        sculptor_env = sculptor_envs.get(sculptor_qid)
+        if sculptor_env is None:
+            continue
+        inst_record = institution_records.get(inst_qid)
+        if inst_record is None:
+            missing_metadata += 1
+            inst_record = {
+                "qid": inst_qid,
+                "label": inst_qid,
+                "inceptionYear": None,
+                "dissolvedYear": None,
+            }
+            institution_records[inst_qid] = inst_record
+            institution_envs[inst_qid] = NodeEnvelope(
+                existed_from=UNBOUNDED_INSTITUTION_START,
+                existed_to=None,
+            )
+        env = compute_envelope(
+            sculptor_env,
+            institution_envs[inst_qid],
+            qualifier_start=q_start,
+            qualifier_end=q_end,
+            a_age_min=prior[0],
+            a_age_max=prior[1],
+        )
+        if env is None:
+            skipped_empty += 1
+            continue
+        sculptor = sculptor_lookup.get(sculptor_qid, {})
+        edge = {
+            "sculptorQid": sculptor_qid,
+            "sculptorName": str(sculptor.get("name") or sculptor_qid),
+            "institutionQid": inst_qid,
+            "institutionLabel": str(inst_record["label"]),
+            "relationType": relation_type,
+            "sourceProperty": source_property,
+            "qualifierStart": q_start,
+            "qualifierEnd": q_end,
+            **_edge_envelope_dict(env),
+        }
+        by_sculptor_qids.setdefault(sculptor_qid, set()).add(inst_qid)
+        by_sculptor_edges.setdefault(sculptor_qid, []).append(edge)
+
+        bucket = institutions.setdefault(
+            inst_qid,
+            {
+                **inst_record,
+                "sculptorCount": 0,
+                "educatedAtCount": 0,
+                "workLocationCount": 0,
+                "decadeRange": {"min": None, "max": None},
+                "render": False,
+                "edges": [],
+                "sculptors": [],
+            },
+        )
+        bucket["edges"].append(edge)
+        if relation_type == "educated_at":
+            bucket["educatedAtCount"] += 1
+        else:
+            bucket["workLocationCount"] += 1
+
+    for inst_qid, bucket in institutions.items():
+        seen: dict[str, dict] = {}
+        decades: list[int] = []
+        for edge in bucket["edges"]:
+            sculptor = sculptor_lookup.get(edge["sculptorQid"], {})
+            birth_decade = _int_or_none(sculptor.get("birth_decade"))
+            if birth_decade is not None:
+                decades.append(birth_decade)
+            seen.setdefault(
+                edge["sculptorQid"],
+                {
+                    "qid": edge["sculptorQid"],
+                    "name": edge["sculptorName"],
+                    "birthYear": _int_or_none(sculptor.get("birth_year")),
+                    "deathYear": _int_or_none(sculptor.get("death_year")),
+                    "birthDecade": birth_decade,
+                },
+            )
+        bucket["sculptors"] = sorted(seen.values(), key=lambda r: (r["birthYear"] or 9999, r["name"]))
+        bucket["sculptorCount"] = len(bucket["sculptors"])
+        bucket["render"] = bucket["sculptorCount"] >= INSTITUTION_MIN_SCULPTORS
+        if decades:
+            bucket["decadeRange"] = {"min": min(decades), "max": max(decades)}
+        bucket["edges"].sort(key=lambda e: (e["sculptorName"], e["relationType"], e["institutionQid"]))
+
+    index = [
+        {
+            "qid": qid,
+            "label": inst["label"],
+            "sculptorCount": inst["sculptorCount"],
+            "render": inst["render"],
+            "inceptionYear": inst["inceptionYear"],
+            "dissolvedYear": inst["dissolvedYear"],
+        }
+        for qid, inst in institutions.items()
+    ]
+    index.sort(key=lambda r: (-r["sculptorCount"], r["label"]))
+    rendered = sum(1 for inst in institutions.values() if inst["render"])
+    exported_edges = sum(len(inst["edges"]) for inst in institutions.values())
+
+    return {
+        "meta": {
+            "minSculptors": INSTITUTION_MIN_SCULPTORS,
+            "totalInstitutions": len(institutions),
+            "renderedInstitutions": rendered,
+            "totalEdges": len(rows),
+            "exportedEdges": exported_edges,
+            "skippedEmptyIntersection": skipped_empty,
+            "missingInstitutionMetadata": missing_metadata,
+        },
+        "institutions": dict(sorted(institutions.items())),
+        "index": index,
+    }, {
+        qid: sorted(values) for qid, values in by_sculptor_qids.items()
+    }, by_sculptor_edges
+
+
+def attach_institution_fields(
+    nodes: pd.DataFrame,
+    institutions_by_sculptor: dict[str, list[str]],
+    edges_by_sculptor: dict[str, list[dict]],
+) -> pd.DataFrame:
+    out = nodes.copy()
+    out["institutions"] = out["qid"].map(lambda q: institutions_by_sculptor.get(str(q), []))
+    out["institutional_edges"] = out["qid"].map(lambda q: edges_by_sculptor.get(str(q), []))
+    return out
 
 
 def create_cross_cultural_summary(edges: list[dict], nodes: pd.DataFrame) -> dict:
@@ -1139,6 +1428,13 @@ def export_all():
     print("=" * 60)
     
     nodes, relations, materials, external_mentors = load_data()
+
+    institutions_bundle, institutions_by_sculptor, institutional_edges_by_sculptor = create_institutions_json(nodes)
+    nodes = attach_institution_fields(
+        nodes,
+        institutions_by_sculptor,
+        institutional_edges_by_sculptor,
+    )
     
     # Export sculptors.json
     sculptors = create_sculptors_json(nodes)
@@ -1271,6 +1567,15 @@ def export_all():
         f"✓ Exported movement aggregates to {movements_bundle_path.name} "
         f"({len(movements_bundle['movements'])} movements with ≥{MOVEMENT_MIN_SCULPTORS} sculptors)"
     )
+
+    institutions_path = WEB_DATA_DIR / "institutions.json"
+    with open(institutions_path, "w") as f:
+        json.dump(institutions_bundle, f, separators=(",", ":"))
+    print(
+        f"✓ Exported institution aggregates to {institutions_path.name} "
+        f"({institutions_bundle['meta']['renderedInstitutions']}/"
+        f"{institutions_bundle['meta']['totalInstitutions']} renderable)"
+    )
     
     # Export focus_sculptors.json
     focus = create_focus_sculptors_json(nodes)
@@ -1312,6 +1617,7 @@ def export_all():
         "materials_by_decade": materials_export,
         "transparency": transparency,
         "external_mentors": ext_mentors,
+        "institutions": institutions_bundle,
     }
 
 

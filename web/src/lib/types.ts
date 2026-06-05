@@ -86,6 +86,69 @@ export interface SculptorIndexEntry {
   citizenship: string | null;
 }
 
+export interface InstitutionalEdge {
+  sculptorQid: string;
+  sculptorName: string;
+  institutionQid: string;
+  institutionLabel: string;
+  relationType: "educated_at" | "work_location";
+  sourceProperty: "P69" | "P937";
+  qualifierStart: number | null;
+  qualifierEnd: number | null;
+  minStart: number;
+  maxStart: number;
+  minEnd: number;
+  maxEnd: number;
+  dateSource:
+    | "qualifier"
+    | "lifespan_intersect"
+    | "lifespan_intersect+age_prior";
+  confidence: "high" | "medium" | "low";
+}
+
+export interface InstitutionSculptor {
+  qid: string;
+  name: string;
+  birthYear: number | null;
+  deathYear: number | null;
+  birthDecade: number | null;
+}
+
+export interface InstitutionRecord {
+  qid: string;
+  label: string;
+  inceptionYear: number | null;
+  dissolvedYear: number | null;
+  sculptorCount: number;
+  educatedAtCount: number;
+  workLocationCount: number;
+  decadeRange: { min: number | null; max: number | null };
+  render: boolean;
+  edges: InstitutionalEdge[];
+  sculptors: InstitutionSculptor[];
+}
+
+export interface InstitutionsData {
+  meta: {
+    minSculptors: number;
+    totalInstitutions: number;
+    renderedInstitutions: number;
+    totalEdges: number;
+    exportedEdges: number;
+    skippedEmptyIntersection: number;
+    missingInstitutionMetadata?: number;
+  };
+  institutions: Record<string, InstitutionRecord>;
+  index: Array<{
+    qid: string;
+    label: string;
+    sculptorCount: number;
+    render: boolean;
+    inceptionYear: number | null;
+    dissolvedYear: number | null;
+  }>;
+}
+
 /**
  * The on-disk sculptor JSON shape (Option A.3 schema, Phase 3a+).
  *
@@ -140,6 +203,8 @@ export interface LegacySculptor {
   nonEnSitelinkCount?: number;
   /** Which Option A.3 signals fired for this sculptor's inclusion. */
   inclusionSignals?: InclusionSignal[];
+  institutions?: string[];
+  institutionalEdges?: InstitutionalEdge[];
 
   /**
    * Public-domain museum works for the gallery on the detail page.

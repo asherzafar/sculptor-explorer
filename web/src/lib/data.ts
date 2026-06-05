@@ -1,6 +1,6 @@
 /** Data loading functions for JSON files. */
 
-import type { LegacySculptor, SculptorIndexEntry, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor, MigrationData, DecadesData, MovementsData } from "./types";
+import type { LegacySculptor, SculptorIndexEntry, LegacyEdge, DecadeAggregation, TimelineSculptor, TransparencyAudit, ExternalMentor, MigrationData, DecadesData, MovementsData, InstitutionsData } from "./types";
 
 /** Load sculptors.json (legacy camelCase format).
  *
@@ -153,6 +153,17 @@ export async function loadDecades(): Promise<DecadesData | null> {
 export async function loadMovements(): Promise<MovementsData | null> {
   try {
     const res = await fetch("/data/movements.json");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+/** Load institutions.json — institutional graph aggregates for /lineage. */
+export async function loadInstitutions(): Promise<InstitutionsData | null> {
+  try {
+    const res = await fetch("/data/institutions.json");
     if (!res.ok) return null;
     return await res.json();
   } catch {
