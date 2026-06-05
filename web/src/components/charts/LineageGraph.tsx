@@ -3,7 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as d3 from "d3";
-import type { LegacyEdge, SculptorIndexEntry, ExternalMentor } from "@/lib/types";
+import type {
+  ExternalMentor,
+  InstitutionalEdge,
+  InstitutionRecord,
+  InstitutionsData,
+  LegacyEdge,
+  SculptorIndexEntry,
+} from "@/lib/types";
 import { formatDisplayValue } from "@/lib/utils";
 
 /**
@@ -33,6 +40,8 @@ interface Props {
   sculptors: SculptorIndexEntry[];
   edges: LegacyEdge[];
   externalMentors?: ExternalMentor[];
+  institutions?: InstitutionsData | null;
+  showInstitutions?: boolean;
   height?: number;
 
   // ---- Filter props (all optional; component is usable without filters) ----
@@ -50,7 +59,20 @@ interface Props {
   minDegree?: number;
 }
 
-type NodeKind = "sculptor" | "mentor";
+type NodeKind = "sculptor" | "mentor" | "institution";
+type GraphRelationType =
+  | "influenced_by"
+  | "student_of"
+  | "educated_at"
+  | "work_location";
+
+interface InternalEdge {
+  fromQid: string;
+  toQid: string;
+  relationType: GraphRelationType;
+  institutional?: boolean;
+  institutionalEdge?: InstitutionalEdge;
+}
 
 interface GraphNode extends d3.SimulationNodeDatum {
   id: string;
@@ -64,7 +86,8 @@ interface GraphNode extends d3.SimulationNodeDatum {
 }
 
 interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
-  relationType: "influenced_by" | "student_of";
+  relationType: GraphRelationType;
+  institutional?: boolean;
 }
 
 /**
@@ -84,6 +107,8 @@ export function LineageGraph({
   sculptors,
   edges,
   externalMentors = [],
+  institutions = null,
+  showInstitutions = false,
   height = 640,
   focusQid = null,
   hops = 2,
@@ -112,23 +137,52 @@ export function LineageGraph({
   const { nodes, links, movementColor, neighborMap, totals, visibleMovements } = useMemo(() => {
     const sculptorMap = new Map(sculptors.map((s) => [s.qid, s]));
     const mentorMap = new Map(externalMentors.map((m) => [m.qid, m]));
+    const institutionEntries: Array<[string, InstitutionRecord]> = [];
+    if (institutions) {
+      for (const indexRow of institutions.index) {
+        const institution = institutions.institutions[indexRow.qid];
+        if (indexRow.render && institution) {
+          institutionEntries.push([indexRow.qid, institution]);
+        }
+      }
+    }
+    const institutionMap = new Map(institutionEntries);
+    const institutionalPool: InternalEdge[] =
+      showInstitutions && institutions
+        ? Object.values(institutions.institutions)
+            .filter((inst) => inst.render)
+            .flatMap((inst) =>
+              inst.edges
+                .filter((edge) => sculptorMap.has(edge.sculptorQid))
+                .map((edge) => ({
+                  fromQid: edge.sculptorQid,
+                  toQid: edge.institutionQid,
+                  relationType: edge.relationType,
+                  institutional: true,
+                  institutionalEdge: edge,
+                }))
+            )
+        : [];
 
     // Step 1: structural validity (target must be a known sculptor; source
     // must be a known sculptor or mentor). Same as before — this is what
     // makes the graph bipartite-ish.
-    let pool = edges.filter((e) => {
+    let pool: InternalEdge[] = edges.filter((e) => {
       const targetOk = sculptorMap.has(e.toQid);
       const sourceOk = sculptorMap.has(e.fromQid) || mentorMap.has(e.fromQid);
       return targetOk && sourceOk;
     });
+    pool = [...pool, ...institutionalPool];
 
     const totalEdges = pool.length;
     const totalSculptors = new Set<string>();
     const totalMentors = new Set<string>();
+    const totalInstitutions = new Set<string>();
     pool.forEach((e) => {
-      totalSculptors.add(e.toQid);
+      if (sculptorMap.has(e.toQid)) totalSculptors.add(e.toQid);
       if (sculptorMap.has(e.fromQid)) totalSculptors.add(e.fromQid);
       else if (mentorMap.has(e.fromQid)) totalMentors.add(e.fromQid);
+      if (institutionMap.has(e.toQid)) totalInstitutions.add(e.toQid);
     });
 
     // Step 2: edge-type filter.
@@ -268,6 +322,18 @@ export function LineageGraph({
           hasMovement,
         };
       }
+      const institution = institutionMap.get(qid);
+      if (institution) {
+        return {
+          id: qid,
+          kind: "institution",
+          name: institution.label,
+          movement: "",
+          movementLabel: `${institution.sculptorCount.toLocaleString()} sculptors`,
+          degree: degreeMap.get(qid) ?? 0,
+          hasMovement: false,
+        };
+      }
       const mentor = mentorMap.get(qid);
       const occ = mentor?.occupation ?? null;
       return {
@@ -287,6 +353,7 @@ export function LineageGraph({
       source: e.fromQid,
       target: e.toQid,
       relationType: e.relationType,
+      institutional: e.institutional,
     }));
 
     const neighborMap = new Map<string, Set<string>>();
@@ -320,6 +387,7 @@ export function LineageGraph({
       totals: {
         sculptors: totalSculptors.size,
         mentors: totalMentors.size,
+        institutions: totalInstitutions.size,
         edges: totalEdges,
       },
     };
@@ -327,6 +395,8 @@ export function LineageGraph({
     sculptors,
     edges,
     externalMentors,
+    institutions,
+    showInstitutions,
     edgeType,
     hideMentors,
     selectedMovements,
@@ -347,6 +417,8 @@ export function LineageGraph({
       sandstoneFill: cssVar("--color-data-4", "#D4A574"),
       sandstoneStroke: cssVar("--color-data-4", "#D4A574"),
       mentorStroke: cssVar("--color-data-5", "#8B7B6B"),
+      institutionFill: cssVar("--color-data-6", "#A8B5A3"),
+      institutionStroke: cssVar("--color-accent-primary", "#3D7A68"),
       noMovementStroke: cssVar("--color-text-tertiary", "#6B706D"),
     };
     const FONT_BODY = cssVar("--font-body", "system-ui, sans-serif");
@@ -367,11 +439,12 @@ export function LineageGraph({
     const link = g
       .append("g")
       .attr("stroke", COLORS.marble)
-      .attr("stroke-opacity", 0.25)
-      .attr("stroke-width", 0.75)
       .selectAll<SVGLineElement, GraphLink>("line")
       .data(links)
-      .join("line");
+      .join("line")
+      .attr("stroke-opacity", (d) => (d.institutional ? 0.16 : 0.25))
+      .attr("stroke-width", (d) => (d.institutional ? 0.6 : 0.75))
+      .attr("stroke-dasharray", (d) => (d.institutional ? "3 3" : "none"));
 
     const node = g
       .append("g")
@@ -392,6 +465,8 @@ export function LineageGraph({
     const radius = (d: GraphNode) =>
       d.kind === "mentor"
         ? 2.5 + Math.sqrt(d.degree) * 1.6
+        : d.kind === "institution"
+        ? 3.5 + Math.sqrt(d.degree) * 1.7
         : 3 + Math.sqrt(d.degree) * 2.2;
 
     node
@@ -427,6 +502,21 @@ export function LineageGraph({
       .attr("stroke-opacity", 0.9);
 
     node
+      .filter((d) => d.kind === "institution")
+      .append("rect")
+      .attr("x", (d) => -radius(d))
+      .attr("y", (d) => -radius(d))
+      .attr("width", (d) => radius(d) * 2)
+      .attr("height", (d) => radius(d) * 2)
+      .attr("rx", 1.5)
+      .attr("fill", COLORS.institutionFill)
+      .attr("fill-opacity", 0.55)
+      .attr("stroke", COLORS.institutionStroke)
+      .attr("data-original-stroke", COLORS.institutionStroke)
+      .attr("stroke-width", 0.9)
+      .attr("stroke-opacity", 0.95);
+
+    node
       .append("text")
       .text((d) => d.name)
       .attr("x", (d) => radius(d) + 4)
@@ -434,7 +524,11 @@ export function LineageGraph({
       .attr("font-size", 10)
       .attr("font-family", FONT_BODY)
       .attr("fill", (d) =>
-        d.kind === "mentor" ? COLORS.sandstoneFill : COLORS.marble
+        d.kind === "mentor"
+          ? COLORS.sandstoneFill
+          : d.kind === "institution"
+          ? COLORS.institutionFill
+          : COLORS.marble
       )
       .attr("font-style", (d) => (d.kind === "mentor" ? "italic" : "normal"))
       // Label visibility scales with zoom-out density. Focus mode (small N)
@@ -442,6 +536,7 @@ export function LineageGraph({
       .attr("opacity", (d) => {
         if (focusQid) return 1;
         if (d.kind === "mentor") return d.degree >= 2 ? 0.9 : 0;
+        if (d.kind === "institution") return d.degree >= 10 ? 0.9 : 0;
         return d.degree >= 3 ? 0.85 : 0;
       })
       .attr("pointer-events", "none");
@@ -449,6 +544,8 @@ export function LineageGraph({
     node.append("title").text((d) =>
       d.kind === "mentor"
         ? `${d.name} — ${d.movementLabel} (external mentor)`
+        : d.kind === "institution"
+        ? `${d.name} — ${d.movementLabel} (institution hub)`
         : `${d.name} — ${d.movementLabel}`
     );
 
@@ -477,10 +574,16 @@ export function LineageGraph({
         d3
           .forceLink<GraphNode, GraphLink>(links)
           .id((d) => d.id)
-          .distance(60)
-          .strength(0.6)
+          .distance((d) => (d.institutional ? 72 : 60))
+          .strength((d) => (d.institutional ? 0.35 : 0.6))
       )
-      .force("charge", d3.forceManyBody().strength(-120))
+      .force(
+        "charge",
+        d3
+          .forceManyBody()
+          .strength(showInstitutions ? -80 : -120)
+          .theta(showInstitutions ? 1.5 : 0.9)
+      )
       .force("center", d3.forceCenter(width / 2, height / 2))
       .force(
         "collide",
@@ -501,7 +604,7 @@ export function LineageGraph({
     return () => {
       simulation.stop();
     };
-  }, [nodes, links, movementColor, width, height, router, focusQid]);
+  }, [nodes, links, movementColor, width, height, router, focusQid, showInstitutions]);
 
   /** Hover highlighting — style updates only, no simulation restart. */
   useEffect(() => {
@@ -539,6 +642,7 @@ export function LineageGraph({
           // here rather than store it on the datum to keep state simple.
           if (focusQid) return 1;
           if (d.kind === "mentor") return d.degree >= 2 ? 0.9 : 0;
+          if (d.kind === "institution") return d.degree >= 10 ? 0.9 : 0;
           return d.degree >= 3 ? 0.85 : 0;
         }
         if (d.id === hoveredId) return 1;
@@ -557,10 +661,22 @@ export function LineageGraph({
       .transition()
       .duration(150)
       .attr("stroke-width", (d) =>
-        d.id === hoveredId ? 2.5 : d.kind === "mentor" ? 0.8 : 0.5,
+        d.id === hoveredId
+          ? 2.5
+          : d.kind === "mentor"
+          ? 0.8
+          : d.kind === "institution"
+          ? 0.9
+          : 0.5,
       )
       .attr("stroke-opacity", (d) =>
-        d.id === hoveredId ? 1 : d.kind === "mentor" ? 0.9 : 0.7,
+        d.id === hoveredId
+          ? 1
+          : d.kind === "mentor"
+          ? 0.9
+          : d.kind === "institution"
+          ? 0.95
+          : 0.7,
       )
       .attr("stroke", function (d) {
         if (d.id === hoveredId) return VERDIGRIS;
@@ -575,16 +691,20 @@ export function LineageGraph({
       .transition()
       .duration(150)
       .attr("stroke-opacity", (d) => {
-        if (!hoveredId) return 0.25;
+        if (!hoveredId) return d.institutional ? 0.16 : 0.25;
         const sourceId = (d.source as GraphNode).id;
         const targetId = (d.target as GraphNode).id;
         return sourceId === hoveredId || targetId === hoveredId ? 0.85 : 0.04;
       })
       .attr("stroke-width", (d) => {
-        if (!hoveredId) return 0.75;
+        if (!hoveredId) return d.institutional ? 0.6 : 0.75;
         const sourceId = (d.source as GraphNode).id;
         const targetId = (d.target as GraphNode).id;
-        return sourceId === hoveredId || targetId === hoveredId ? 1.5 : 0.75;
+        return sourceId === hoveredId || targetId === hoveredId
+          ? 1.5
+          : d.institutional
+          ? 0.6
+          : 0.75;
       })
       .attr("stroke", (d) => {
         const sourceId = (d.source as GraphNode).id;
@@ -624,6 +744,7 @@ export function LineageGraph({
   // header chrome doesn't recompute on every hover-driven re-render.
   const sculptorCount = nodes.filter((n) => n.kind === "sculptor").length;
   const mentorCount = nodes.filter((n) => n.kind === "mentor").length;
+  const institutionCount = nodes.filter((n) => n.kind === "institution").length;
 
   // Cap the in-canvas legend at MAX_LEGEND_ROWS visible movements; if
   // more are on screen, the overflow rolls up into a "+N more" tail.
@@ -682,6 +803,15 @@ export function LineageGraph({
                 mentors
               </>
             )}
+            {institutionCount > 0 && (
+              <>
+                {" · "}
+                <strong className="font-semibold">
+                  {institutionCount.toLocaleString()}
+                </strong>{" "}
+                institutions
+              </>
+            )}
             {" · "}
             <strong className="font-semibold">
               {links.length.toLocaleString()}
@@ -729,6 +859,18 @@ export function LineageGraph({
               />
               External mentor
             </span>
+            {institutionCount > 0 && (
+              <span className="inline-flex items-center gap-1.5">
+                <span
+                  className="inline-block w-2.5 h-2.5 rounded-[1px]"
+                  style={{
+                    backgroundColor: cssVar("--color-data-6", "#A8B5A3"),
+                    border: `1px solid ${cssVar("--color-accent-primary", "#3D7A68")}`,
+                  }}
+                />
+                Institution hub
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <span
                 className="inline-block w-2.5 h-2.5 rounded-full"

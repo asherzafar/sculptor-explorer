@@ -85,6 +85,7 @@ function makeSim({ nodes, links }, opts = {}) {
     collide = true,
     width = 1200,
     height = 680,
+    institutional = false,
   } = opts;
   const simNodes = nodes.map((n) => ({ ...n }));
   const simLinks = links.map((l) => ({ ...l }));
@@ -92,9 +93,20 @@ function makeSim({ nodes, links }, opts = {}) {
   if (link)
     sim.force(
       "link",
-      d3.forceLink(simLinks).id((d) => d.id).distance(60).strength(0.6),
+      d3
+        .forceLink(simLinks)
+        .id((d) => d.id)
+        .distance(institutional ? 72 : 60)
+        .strength(institutional ? 0.35 : 0.6),
     );
-  if (charge) sim.force("charge", d3.forceManyBody().strength(-120));
+  if (charge)
+    sim.force(
+      "charge",
+      d3
+        .forceManyBody()
+        .strength(institutional ? -80 : -120)
+        .theta(institutional ? 1.5 : 0.9),
+    );
   if (center) sim.force("center", d3.forceCenter(width / 2, height / 2));
   if (collide)
     sim.force(
@@ -128,10 +140,10 @@ function simulate(graph, opts = {}) {
 }
 
 const sizes = [
-  { name: "now", nodes: 4300, edges: 1400, hubs: 30 },
-  { name: "+institutions (5b)", nodes: 7700, edges: 4800, hubs: 80 },
-  { name: "+movements (5b.5)", nodes: 7850, edges: 5400, hubs: 100 },
-  { name: "stress (1.5×)", nodes: 12000, edges: 8000, hubs: 120 },
+  { name: "now", nodes: 4300, edges: 1400, hubs: 30, institutional: false },
+  { name: "+institutions (5b)", nodes: 7700, edges: 4800, hubs: 80, institutional: true },
+  { name: "+movements (5b.5)", nodes: 7850, edges: 5400, hubs: 100, institutional: true },
+  { name: "stress (1.5×)", nodes: 12000, edges: 8000, hubs: 120, institutional: true },
 ];
 
 function medianRun(graph, opts) {
@@ -152,7 +164,7 @@ console.log("-".repeat(82));
 
 for (const s of sizes) {
   const graph = buildGraph(s.nodes, s.edges, s.hubs);
-  const m = medianRun(graph);
+  const m = medianRun(graph, { institutional: s.institutional });
   const settledSec = (m.settledMs / 1000).toFixed(2);
   const totalSec = (m.total / 1000).toFixed(2);
   // Verdict is on perceived-settled time, not full-convergence.
@@ -173,10 +185,10 @@ console.log("-".repeat(82));
 const benchSize = sizes[1];
 const graph = buildGraph(benchSize.nodes, benchSize.edges, benchSize.hubs);
 const variants = [
-  { name: "all forces (baseline)", opts: {} },
-  { name: "minus collide", opts: { collide: false } },
-  { name: "minus charge", opts: { charge: false } },
-  { name: "minus link", opts: { link: false } },
+  { name: "all forces (5b.4 tuned)", opts: { institutional: true } },
+  { name: "minus collide", opts: { institutional: true, collide: false } },
+  { name: "minus charge", opts: { institutional: true, charge: false } },
+  { name: "minus link", opts: { institutional: true, link: false } },
 ];
 for (const v of variants) {
   const m = medianRun(graph, v.opts);

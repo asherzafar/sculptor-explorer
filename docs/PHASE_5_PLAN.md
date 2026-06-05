@@ -341,9 +341,20 @@ institution/place nodes, 334 renderable at the ≥3-sculptor threshold,
 lifespan intersections. Edge confidence split: 1,004 high
 qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
 
-**Still to ship in 5b.4–5b.5.**
-- LineageGraph third node kind (`"institution"`) and URL-backed
-  node-kind view selector.
+**Shipped in 5b.4.**
+- `/lineage` loads `institutions.json` and exposes a URL-backed
+  `?nodes=sculptor,institution` selector. The default route keeps
+  institutions off for first-paint performance.
+- `LineageGraph` renders institution hubs as square nodes, merges P69/P937
+  edges into the graph only when the institutional layer is active, and
+  preserves existing sculptor-circle / external-mentor-diamond encodings.
+- Heavy institutional view uses tuned force settings: institutional links
+  are looser and the many-body force switches to strength -80 / theta 1.5.
+- Headless benchmark with 5b.4 tuning: current graph 1.50s settled,
+  +institutions 1.93s settled, +movements projection 2.05s settled, stress
+  3.42s settled. This keeps institutions in the yellow opt-in band.
+
+**Still to ship in 5b.5.**
 - Backfill existing P1066/P737 person-person edges with the same
   envelope schema so /lineage has a consistent dating substrate.
 - Transparency-page surfaces for institution coverage, edge confidence,

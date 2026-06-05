@@ -4,12 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type {
   ExternalMentor,
+  InstitutionsData,
   LegacyEdge,
   SculptorIndexEntry,
 } from "@/lib/types";
 import {
   loadEdges,
   loadExternalMentors,
+  loadInstitutions,
   loadSculptorsIndex,
 } from "@/lib/data";
 import { LineageGraph } from "@/components/charts/LineageGraph";
@@ -62,19 +64,22 @@ export function LineageContent() {
   const [edges, setEdges] = useState<LegacyEdge[]>([]);
   const [sculptors, setSculptors] = useState<SculptorIndexEntry[]>([]);
   const [mentors, setMentors] = useState<ExternalMentor[]>([]);
+  const [institutions, setInstitutions] = useState<InstitutionsData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
       try {
-        const [e, s, m] = await Promise.all([
+        const [e, s, m, i] = await Promise.all([
           loadEdges(),
           loadSculptorsIndex(),
           loadExternalMentors(),
+          loadInstitutions(),
         ]);
         setEdges(e);
         setSculptors(s);
         setMentors(m);
+        setInstitutions(i);
       } catch (err) {
         console.error("Failed to load lineage data:", err);
       } finally {
@@ -105,6 +110,14 @@ export function LineageContent() {
     if (!raw) return new Set<string>();
     return new Set(raw.split(",").filter(Boolean));
   }, [searchParams]);
+  const selectedNodeKinds = useMemo(() => {
+    const raw = searchParams.get("nodes");
+    if (!raw) return new Set(["sculptor"]);
+    const values = raw.split(",").filter((v) => v === "sculptor" || v === "institution");
+    return new Set(values.length ? values : ["sculptor"]);
+  }, [searchParams]);
+  const showInstitutions = selectedNodeKinds.has("institution");
+  const activeShowInstitutions = showInstitutions && borderFilter === "all" && edgeType === "all";
 
   // ---- mutate URL helpers ----
   function update(mutate: (p: URLSearchParams) => void) {
@@ -196,6 +209,12 @@ export function LineageContent() {
       else p.set("border", v);
     });
   }
+  function setShowInstitutions(show: boolean) {
+    update((p) => {
+      if (show) p.set("nodes", "sculptor,institution");
+      else p.delete("nodes");
+    });
+  }
   function toggleMovement(slug: string) {
     update((p) => {
       const cur = new Set(selectedMovements);
@@ -216,7 +235,8 @@ export function LineageContent() {
     edgeType !== "all" ||
     minDegree > 0 ||
     selectedMovements.size > 0 ||
-    borderFilter !== "all";
+    borderFilter !== "all" ||
+    showInstitutions;
 
   // Apply the cross-cultural filter at this layer rather than pushing it
   // into LineageGraph — LineageGraph already has plenty of filter logic
@@ -454,6 +474,15 @@ export function LineageContent() {
               />
               Show external mentors ({mentors.length})
             </label>
+            <label className="flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showInstitutions}
+                onChange={(e) => setShowInstitutions(e.target.checked)}
+                className="h-4 w-4 accent-accent-primary"
+              />
+              Show institution hubs ({institutions?.meta.renderedInstitutions ?? 0})
+            </label>
 
             <div className="flex items-center gap-2">
               <span className="text-xs text-text-secondary">
@@ -512,6 +541,7 @@ export function LineageContent() {
         sculptors={sculptors}
         edges={filteredEdges}
         externalMentors={mentors}
+        institutions={institutions}
         height={680}
         focusQid={focusQid}
         hops={hops}
@@ -519,6 +549,7 @@ export function LineageContent() {
         selectedMovements={selectedMovements}
         edgeType={edgeType}
         minDegree={minDegree}
+        showInstitutions={activeShowInstitutions}
       />
 
       <div className="mt-8 max-w-3xl text-sm text-text-secondary space-y-2">
