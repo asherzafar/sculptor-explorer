@@ -350,9 +350,9 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   preserves existing sculptor-circle / external-mentor-diamond encodings.
 - Heavy institutional view uses tuned force settings: institutional links
   are looser and the many-body force switches to strength -80 / theta 1.5.
-- Headless benchmark with 5b.4 tuning: current graph 1.50s settled,
-  +institutions 1.93s settled, +movements projection 2.05s settled, stress
-  3.42s settled. This keeps institutions in the yellow opt-in band.
+- Headless benchmark with 5b.4 tuning: current graph 1.58s settled,
+  +institutions 1.92s settled, +movements projection 1.98s settled, stress
+  3.32s settled. This keeps institutions in the yellow opt-in band.
 
 **Still to ship in 5b.5.**
 - Backfill existing P1066/P737 person-person edges with the same
@@ -375,31 +375,30 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   5b.5 will reuse this when movements are added; 5d may add `,city`.
 
 **Risks and unknowns.**
-- **Perf budget — measured.** `web/perf/lineage-bench.mjs` was run
-  May 2026 with the exact force configuration the page uses, against
-  synthetic preferential-attachment graphs at each Phase-5 size point
-  (median of 3 runs after a warm-up). Headline numbers:
+- **Perf budget — measured and re-run after 5b.4 tuning.**
+  `web/perf/lineage-bench.mjs` runs the same force configuration the
+  page uses, against synthetic preferential-attachment graphs at each
+  Phase-5 size point (median of 3 runs after a warm-up). June 2026
+  review numbers:
   ```
   scenario                  settled (α<0.02)   full converge   verdict
-  now (4.3k / 1.4k)         1.57s              2.77s           yellow (today)
-  +institutions (7.7k/4.8k) 3.36s              5.94s           RED
-  +movements (7.85k/5.4k)   3.43s              6.12s           RED (no cost over 5b)
-  stress (12k / 8k)         5.46s              9.67s           RED
+  now (4.3k / 1.4k)         1.58s              2.73s           yellow
+  +institutions (7.7k/4.8k) 1.92s              3.34s           yellow
+  +movements (7.85k/5.4k)   1.98s              3.49s           yellow
+  stress (12k / 8k)         3.32s              5.85s           RED
   ```
-  Force cost at 5b size: charge (forceManyBody) is the bottleneck at
-  ~55% of total, collide ~15%, link ~12%. N-body is Barnes-Hut
-  O(N log N) and N=7,700 pushes it past the budget.
+  Force-cost review at 5b size still shows both collide and charge as
+  material costs; the tuned all-forces heavy view settles under the
+  2.5s gate, so Canvas/WebGL remains parked.
 - **Decision: ship view-mode toggle with institutions OFF by default.**
   The default `/lineage` keeps today's 1.57s settled time. The
   densified view is one click away (`?nodes=sculptor,institution`),
   deep-linkable from `/transparency` and per-institution pages.
   Readers who want the rich view opt in; first-paint perf is preserved.
-- **Charge tuning — second mitigation in the same phase.** On the
-  heavy view, raise Barnes-Hut `theta` from 0.9 (default) to ~1.5
-  and consider dropping charge strength from -120 to -80. Looser
-  approximation, marginally less-tight clusters, ~half the N-body
-  cost. Tune empirically in 5b.4; ship the value that gets settled
-  time under 2.5s without making the layout read as muddy.
+- **Charge tuning — shipped mitigation.** The heavy view uses
+  Barnes-Hut `theta=1.5`, charge strength -80, institutional link
+  distance 72, and institutional link strength 0.35. The layout stays
+  legible while keeping the institutional view in the yellow opt-in band.
 - **Canvas/WebGL is parked, not promoted.** It addresses SVG render
   cost, which isn't the bottleneck at this size. Re-evaluate only if
   a future phase pushes us past 15k nodes.
@@ -412,14 +411,15 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   different relationships.
 
 **Tests / harness.**
-- `pipeline/test_institutions.py` — new module:
+- `pipeline/test_institutions.py` — stdlib-only exported JSON regression:
   - Edge count regression: ≥2,500 institutional edges in clean export
-  - Top-5 hub presence: ENSBA, Munich, Vienna, Académie Julian, Düsseldorf must all carry sculptor_count ≥30 in `institutions.json`
-  - Schema regression: `institutions[]` is always a list, never null
-  - Snapshot: top-30 institutions list compared turn-over-turn
+  - Known-hub presence: ENSBA, Munich, Vienna, Académie Julian,
+    Düsseldorf must all render and clear minimum sculptor counts
+  - Schema regression: per-institution `edges[]` and `sculptors[]` are
+    always lists
 - `web/perf/lineage-bench.mjs` — the headless d3-force benchmark that
-  produced the numbers above. Re-run before/after charge tuning in
-  5b.4 to confirm settled time on the heavy view drops below 2.5s.
+  produced the numbers above. Re-run after graph-force changes to confirm
+  settled time on the heavy view stays below 2.5s.
 - (Optional, post-5b.4) Playwright script that opens `/lineage` and
   reports browser-side time-to-stable-layout including SVG rendering.
   Browser numbers may diverge from the headless ones (rAF batching,

@@ -29,6 +29,7 @@ import { PageHeader } from "@/components/PageHeader";
  *   - edge     "influenced_by" | "student_of" | (omitted = all)
  *   - minDeg   integer, drop nodes below this post-filter degree
  *   - mov      comma-separated movement slugs to retain
+ *   - nodes    comma-separated node kinds; `institution` opt-in loads hubs
  *
  * All defaults map to omitted params to keep shareable URLs short.
  */
@@ -70,16 +71,14 @@ export function LineageContent() {
   useEffect(() => {
     async function load() {
       try {
-        const [e, s, m, i] = await Promise.all([
+        const [e, s, m] = await Promise.all([
           loadEdges(),
           loadSculptorsIndex(),
           loadExternalMentors(),
-          loadInstitutions(),
         ]);
         setEdges(e);
         setSculptors(s);
         setMentors(m);
-        setInstitutions(i);
       } catch (err) {
         console.error("Failed to load lineage data:", err);
       } finally {
@@ -118,6 +117,23 @@ export function LineageContent() {
   }, [searchParams]);
   const showInstitutions = selectedNodeKinds.has("institution");
   const activeShowInstitutions = showInstitutions && borderFilter === "all" && edgeType === "all";
+
+  useEffect(() => {
+    if (!activeShowInstitutions || institutions) return;
+    let cancelled = false;
+    async function loadInstitutionData() {
+      try {
+        const i = await loadInstitutions();
+        if (!cancelled) setInstitutions(i);
+      } catch (err) {
+        if (!cancelled) console.error("Failed to load institution data:", err);
+      }
+    }
+    loadInstitutionData();
+    return () => {
+      cancelled = true;
+    };
+  }, [activeShowInstitutions, institutions]);
 
   // ---- mutate URL helpers ----
   function update(mutate: (p: URLSearchParams) => void) {
@@ -481,7 +497,11 @@ export function LineageContent() {
                 onChange={(e) => setShowInstitutions(e.target.checked)}
                 className="h-4 w-4 accent-accent-primary"
               />
-              Show institution hubs ({institutions?.meta.renderedInstitutions ?? 0})
+              Show institution hubs
+              {institutions && <> ({institutions.meta.renderedInstitutions})</>}
+              {showInstitutions && !activeShowInstitutions && (
+                <span className="text-text-tertiary">(hidden by current filters)</span>
+              )}
             </label>
 
             <div className="flex items-center gap-2">

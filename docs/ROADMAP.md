@@ -13,11 +13,13 @@ institutions off for first-paint performance.
 Recently shipped: Phase 5b.3–5b.4 institutional graph work — P69/P937
 institution data exports to `institutions.json`, sculptor shards carry
 institution chips/edges, and `LineageGraph` renders opt-in institution
-hubs with tuned force settings. Phase 4 polish remains closed: typography
-drift fixed on /transparency, slim `sculptors_index.json` cuts /explore
-and /lineage payload by ~88% (5.8MB → 745KB), mobile posture verified as
-deliberate read-only fallback, country-name normalization (3a
-follow-up), migration Sankey, decade/movement narrative pages.
+hubs with tuned force settings. The institution bundle lazy-loads only
+after opt-in, preserving the default lineage payload. Phase 4 polish
+remains closed: typography drift fixed on /transparency, slim
+`sculptors_index.json` cuts /explore and /lineage payload by ~88%
+(5.8MB → 745KB), mobile posture verified as deliberate read-only
+fallback, country-name normalization (3a follow-up), migration Sankey,
+decade/movement narrative pages.
 
 The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
 

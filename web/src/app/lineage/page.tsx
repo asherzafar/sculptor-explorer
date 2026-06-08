@@ -12,9 +12,9 @@ import { MobileNotice } from "@/components/MobileNotice";
  * graph with hover affordances, a multi-section filter bar, and a
  * 680px-tall canvas does not survive a 375px viewport. We render
  * <MobileNotice /> below md and the full experience above. CSS-only
- * gate (display:none on the unused branch); the JSON still downloads
- * either way, which is acceptable but a future perf win if it
- * matters.
+ * gate (display:none on the unused branch); base lineage JSON still
+ * downloads either way, while the institution bundle lazy-loads only
+ * when the user opts into institution hubs.
  */
 export default function LineagePage() {
   return (

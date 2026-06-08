@@ -9,8 +9,7 @@ Recent implementation commits:
 - `6022932 5b.3: export institutional graph data`
 - `a6d343b Implement lineage institution hubs`
 
-This handoff document and roadmap update should be the final prep commit
-before pushing to GitHub.
+This handoff document should be read first when continuing in Codex.
 
 ## Current phase
 
@@ -44,6 +43,8 @@ Behavior:
 
 - Default `/lineage`: institutions off.
 - Opt-in: `/lineage?nodes=sculptor,institution`.
+- The default route does not fetch `institutions.json`; the institution
+  bundle lazy-loads only after the URL/checkbox opts into institution hubs.
 - Institution layer is active only when relation type and cross-border filters are both `all`, because those filters apply to person-person lineage edges, not P69/P937 institutional edges.
 
 Graph encoding:
@@ -66,10 +67,10 @@ Benchmark harness:
 
 Latest headless benchmark results:
 
-- Current graph: 1.50s settled
-- +institutions: 1.93s settled
-- +movements projection: 2.05s settled
-- stress: 3.42s settled
+- Current graph: 1.58s settled
+- +institutions: 1.92s settled
+- +movements projection: 1.98s settled
+- stress: 3.32s settled
 
 ## Validation already run
 
@@ -81,10 +82,33 @@ npx eslint src/app/lineage/LineageContent.tsx src/components/charts/LineageGraph
 node perf/lineage-bench.mjs
 ```
 
+From repo root:
+
+```bash
+python3 pipeline/test_institutions.py
+```
+
 Route smoke tests were also run against the local dev server:
 
 - `/lineage` returned 200
 - `/lineage?nodes=sculptor,institution` returned 200
+
+Python environment note:
+
+- Use `python3`, not `python`, on this machine.
+- The lightweight `pipeline/test_institutions.py` harness uses only the
+  standard library and can run without installing pipeline dependencies.
+- `pipeline/validate_institutions.py` and `pipeline/test_temporal.py`
+  require a pipeline environment with `pandas`, `pyarrow`, and `pytest`.
+  The system `python3` used during this handoff review did not have those
+  packages installed.
+
+Review note:
+
+- Full `npm run lint` still fails on pre-existing unrelated issues,
+  primarily `react-hooks/static-components` and unescaped apostrophes in
+  `web/src/app/transparency/page.tsx`. The touched lineage files pass
+  targeted ESLint, and `npm run build` passes.
 
 ## Important files
 
@@ -94,6 +118,8 @@ Pipeline and data:
 - `pipeline/query_institutions.py`
 - `pipeline/temporal.py`
 - `pipeline/test_temporal.py`
+- `pipeline/test_institutions.py`
+- `pipeline/validate_institutions.py`
 
 Web data/schema:
 
@@ -134,6 +160,7 @@ Latest completed work:
 - 5b.3 exported institutional graph data.
 - 5b.4 added opt-in institution hubs to `/lineage` via `?nodes=sculptor,institution`.
 - Institutions are off by default.
+- Institution data lazy-loads only after opting in.
 - `LineageGraph` supports institution nodes as squares and dashed P69/P937 edges.
 - Force tuning for institutional view: link distance 72, link strength 0.35, many-body strength -80, theta 1.5.
 
