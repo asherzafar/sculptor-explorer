@@ -371,8 +371,8 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   `MOVEMENT_MIN_SCULPTORS=2`.
 - **Node-kind view modes.** With 3 node kinds, the legend starts to
   earn its keep but the graph also gets crowded. Add a URL-backed
-  `?nodes=sculptor,institution` selector (defaults to all-on). 5b.5
-  will reuse this when movements are added; 5d may add `,city`.
+  `?nodes=sculptor,institution` selector (institutions off by default).
+  5b.5 will reuse this when movements are added; 5d may add `,city`.
 
 **Risks and unknowns.**
 - **Perf budget — measured.** `web/perf/lineage-bench.mjs` was run

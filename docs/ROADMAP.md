@@ -1,16 +1,21 @@
 # Roadmap
 
-## Current status: Phase 4 closed; Phase 5 plan adopted (May 2026).
+## Current status: Phase 5b.4 shipped; Phase 5b.5 next (June 2026).
 
 Project recast: from "ship to first feedback" to "better data, more
 interesting visualizations, explorable interactives." Phase 5 plan
-lives in `docs/PHASE_5_PLAN.md`; spine is institutional densification
-of the lineage graph (P69 probed at 34.3% coverage, 1,084 distinct
-institutions, ENSBA/Académie Julian/Bauhaus/ASL as real hubs).
+lives in `docs/PHASE_5_PLAN.md`; handoff notes for continuing outside
+Windsurf live in `docs/CODEX_HANDOFF.md`. Institutional densification
+has shipped through 5b.4: `/lineage` can opt into square institution
+hubs via `?nodes=sculptor,institution`, while the default route keeps
+institutions off for first-paint performance.
 
-Recently shipped: Phase 4 polish + perf pass — typography drift fixed
-on /transparency, slim `sculptors_index.json` cuts /explore and
-/lineage payload by ~88% (5.8MB → 745KB), mobile posture verified as
+Recently shipped: Phase 5b.3–5b.4 institutional graph work — P69/P937
+institution data exports to `institutions.json`, sculptor shards carry
+institution chips/edges, and `LineageGraph` renders opt-in institution
+hubs with tuned force settings. Phase 4 polish remains closed: typography
+drift fixed on /transparency, slim `sculptors_index.json` cuts /explore
+and /lineage payload by ~88% (5.8MB → 745KB), mobile posture verified as
 deliberate read-only fallback, country-name normalization (3a
 follow-up), migration Sankey, decade/movement narrative pages.
 
@@ -218,7 +223,7 @@ Académie Julian 57, Vienna 57, Düsseldorf 53, Bauhaus / Black Mountain
 present too).
 
 - [x] **5a — Discovery and sizing.** Probes against live Wikidata sized P69 (34.3% coverage, 1,084 distinct institutions, 58 hubs with ≥10 sculptors), P937 (27.6%, mixed cities/studios), P361 + P39 (<2%, dead). Decision: ingest P69 + P937, skip the others.
-- [ ] **5b — Densify the lineage graph with institutions.** P69 + P937 ingest, third node kind in `<LineageGraph />`, ≥3-sculptor render threshold, perf budget tests. Also lands the **edge dating envelope** substrate (every edge gets `[min_start, max_start, min_end, max_end]` derived from endpoints' lifespans + optional Wikidata qualifiers + optional domain priors) and the **view-modes** UI pattern for heterogeneous-graph readability.
+- [~] **5b — Densify the lineage graph with institutions.** P69 + P937 ingest, `institutions.json` export, third node kind in `<LineageGraph />`, ≥3-sculptor render threshold, opt-in URL-backed institution hubs, and perf budget tests are shipped through 5b.4. Remaining 5b.5 work: backfill P1066/P737 person-person edges with the edge dating envelope schema and add transparency surfaces for institution coverage/confidence.
 - [ ] **5b.5 — Movements as nodes.** Promote `movement` from trait to first-class node (hexagon), with `member_of_movement` and `movement_transition` edges. Per-movement pages gain a small inline graph of peer movements. ~150 movement nodes total.
 - [ ] **5c — Time-coded edges and animated lineage.** Pure UI layer on the envelope substrate landed in 5b. Decade scrubber, URL-backed, with "definitely active" (solid) vs "possibly active" (translucent) edge encoding.
 - [ ] **5d — Career-trajectory Sankey.** Generalize `/migration` from 2 nodes (born → died) to 4 (born → educated → worked → died). Country-level top view, city-level drill-down (cities promoted from trait to node). Drops out of 5b + P937.
