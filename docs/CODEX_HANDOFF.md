@@ -141,7 +141,8 @@ Performance/docs:
 
 - `web/perf/lineage-bench.mjs`
 - `docs/PHASE_5_PLAN.md`
-- `docs/ROADMAP.md`
+- `docs/ROADMAP.md` — see "Improvement opportunities and future ideas
+  (June 2026 review)" for the ranked backlog beyond the Phase 5 spine.
 
 ## Next task: Phase 5b.5
 

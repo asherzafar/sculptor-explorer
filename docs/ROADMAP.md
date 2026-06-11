@@ -264,6 +264,72 @@ coverage each). They are not on the Phase 5 path.
 
 ---
 
+## Improvement opportunities and future ideas (June 2026 review)
+
+Candidates surfaced during the Codex-handoff QA passes. None are
+scheduled; they are ranked options to weigh against the Phase 5 spine.
+
+### Easy wins (hours, not days)
+
+- [x] **Remove unused `react-force-graph-2d` dependency.** Zero imports
+  remain after the D3 migration; it only inflates installs.
+- [ ] **Make full `npm run lint` green.** Pre-existing failures in
+  `web/src/app/transparency/page.tsx` (`react-hooks/static-components`,
+  unescaped apostrophes) are documented in `docs/CODEX_HANDOFF.md` but
+  worth fixing so lint can become a CI gate.
+- [ ] **Surface pipeline export date in the UI.** A "data as of …"
+  stamp in the footer or on /transparency builds trust and makes stale
+  deploys visible. The export metadata already exists in the JSON.
+- [ ] **Sitemap + per-page metadata.** Decade, movement, and sculptor
+  detail pages are SEO-ready narrative surfaces with no sitemap today.
+- [ ] **`npm audit` cleanup.** 8 advisories (6 moderate, 2 high) as of
+  June 2026; triage with `npm audit` and bump where non-breaking.
+
+### Process and infrastructure
+
+- [ ] **CI via GitHub Actions.** No `.github/workflows` exists. A
+  single workflow running `tsc --noEmit`, lint, `npm run build`, and
+  `python3 pipeline/test_institutions.py` would catch regressions on
+  every push — especially valuable with multiple AI tools in the loop.
+- [ ] **Scheduled pipeline refresh.** Wikidata moves; our export is a
+  snapshot. A monthly re-run with a diff report (new sculptors, changed
+  edges) keeps the data honest and gives /transparency a changelog.
+- [ ] **Privacy-friendly analytics** (Plausible/Umami). Before
+  investing in 5e+ interactives, learn which views people actually use.
+
+### Feature candidates (days)
+
+- [ ] **Per-institution pages** (`/institution/[qid]`). The natural
+  next step after 5b.4: mirror the movement-page pattern with roster,
+  decade histogram, and a small inline graph; deep-link from lineage
+  hub nodes and /transparency. The data is already in
+  `institutions.json`.
+- [ ] **Global search / command palette** (⌘K). One search box across
+  sculptors, institutions, and movements that jumps to the right page.
+  The slim `sculptors_index.json` plus the institution index make this
+  cheap; it would tie the growing page inventory together.
+- [ ] **Sculptor comparison view.** Parked since 3e. Two-up detail
+  comparison (lifespans, movements, institutions, shared mentors) is a
+  natural use of the per-sculptor shards.
+
+### Bigger bets (weeks; weigh against Phase 5 spine)
+
+- [ ] **Canvas/WebGL lineage renderer.** The stress benchmark scenario
+  (12k nodes) remains RED (~3.5s settled). Not needed at current sizes,
+  but it becomes the gate if movements (5b.6) + cities (5d) + a Getty
+  ULAN expansion ever land together.
+- [ ] **SAAM biographical narratives (3c).** Still the best unstarted
+  data story: CC0 émigré/Great Migration narrative text joined via
+  ULAN. Elevates detail pages from data sheets to stories.
+- [ ] **Works-level data (Met/AIC).** Unlocks the materials-over-time
+  chart, sculpture images beyond portraits (5g), and eventually the
+  embedding viz (5h). The single biggest data expansion left.
+- [ ] **Research data downloads.** Publish the JSON bundles as
+  documented, versioned downloads with a citation note. Cheap to do,
+  widens the audience from readers to researchers.
+
+---
+
 ## What to build vs. defer — quick reference
 
 | If you're about to build... | MVP? | Notes |
