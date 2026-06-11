@@ -4,10 +4,14 @@
 
 Branch: `main`
 
-Recent implementation commits:
+Notable implementation/review anchors:
 
 - `6022932 5b.3: export institutional graph data`
 - `a6d343b Implement lineage institution hubs`
+- `f8bbc60 Prepare Codex handoff`
+- `664064b Polish Codex handoff review`
+
+Run `git log --oneline -5` for the latest pushed review-polish commit.
 
 This handoff document should be read first when continuing in Codex.
 
@@ -37,14 +41,15 @@ Export results from the included sculptor roster:
 
 ## What shipped in 5b.4
 
-`/lineage` now loads institutions and can render institution hubs behind an opt-in URL state.
+`/lineage` can lazy-load institutions and render institution hubs behind an opt-in URL state.
 
 Behavior:
 
 - Default `/lineage`: institutions off.
 - Opt-in: `/lineage?nodes=sculptor,institution`.
 - The default route does not fetch `institutions.json`; the institution
-  bundle lazy-loads only after the URL/checkbox opts into institution hubs.
+  bundle lazy-loads only after the URL/checkbox opts into a renderable
+  institution-hub layer.
 - Institution layer is active only when relation type and cross-border filters are both `all`, because those filters apply to person-person lineage edges, not P69/P937 institutional edges.
 
 Graph encoding:
@@ -67,10 +72,10 @@ Benchmark harness:
 
 Latest headless benchmark results:
 
-- Current graph: 1.58s settled
-- +institutions: 1.92s settled
-- +movements projection: 1.98s settled
-- stress: 3.32s settled
+- Current graph: 1.66s settled
+- +institutions: 2.00s settled
+- +movements projection: 2.15s settled
+- stress: 3.48s settled
 
 ## Validation already run
 
@@ -78,7 +83,8 @@ From `web/`:
 
 ```bash
 npx tsc --noEmit
-npx eslint src/app/lineage/LineageContent.tsx src/components/charts/LineageGraph.tsx
+npx eslint src/app/lineage/LineageContent.tsx src/app/lineage/page.tsx src/components/charts/LineageGraph.tsx
+npm run build
 node perf/lineage-bench.mjs
 ```
 
@@ -160,15 +166,17 @@ Latest completed work:
 - 5b.3 exported institutional graph data.
 - 5b.4 added opt-in institution hubs to `/lineage` via `?nodes=sculptor,institution`.
 - Institutions are off by default.
-- Institution data lazy-loads only after opting in.
+- Institution data lazy-loads only after opting into a renderable institution layer.
 - `LineageGraph` supports institution nodes as squares and dashed P69/P937 edges.
 - Force tuning for institutional view: link distance 72, link strength 0.35, many-body strength -80, theta 1.5.
 
 Validation already passed:
 - `npx tsc --noEmit`
 - targeted ESLint for lineage files
+- `npm run build`
 - route smoke tests for default and institution lineage URLs
 - `node perf/lineage-bench.mjs`
+- `python3 pipeline/test_institutions.py`
 
 Next task: Phase 5b.5. Backfill P1066/P737 person-person lineage edges with temporal envelopes, then add transparency coverage/confidence surfaces.
 ```

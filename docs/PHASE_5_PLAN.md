@@ -199,7 +199,7 @@ Our current model and where it's underutilized:
 |---|---|---|---|
 | People | Node ✓ | Node | — |
 | Institutions | Trait (nothing) | Node | **5b** |
-| Movements | Trait on people (`movement: "Surrealism"`) | **Node** (founding date, manifesto, peer movements) | **5b.5** |
+| Movements | Trait on people (`movement: "Surrealism"`) | **Node** (founding date, manifesto, peer movements) | **5b.6** |
 | Cities | Trait via `citizenship` / `birth_country` | Node when surfacing P937 detail | **5d** (city-aware Sankey) |
 | Works (sculptures) | Outside the graph entirely | Reified node connecting (artist, year, material, location) | **5g** |
 | Exhibitions | Not modelled | Reified node connecting (artist, ..., venue, year) — N-ary | parked, stretch |
@@ -238,7 +238,7 @@ the embedding viz (5h) operates on them.
 
 ## Cross-cutting concept: view modes and dimension reduction
 
-Adding institutions (5b), movements (5b.5), cities (5d), and works (5g)
+Adding institutions (5b), movements (5b.6), cities (5d), and works (5g)
 takes us from 2 node kinds today to 5 by end of Phase 5. Each kind
 adds a shape to the legend and a visual-channel constraint (we already
 use colour for movement). There's a real "too many shapes" ceiling —
@@ -350,9 +350,9 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   preserves existing sculptor-circle / external-mentor-diamond encodings.
 - Heavy institutional view uses tuned force settings: institutional links
   are looser and the many-body force switches to strength -80 / theta 1.5.
-- Headless benchmark with 5b.4 tuning: current graph 1.58s settled,
-  +institutions 1.92s settled, +movements projection 1.98s settled, stress
-  3.32s settled. This keeps institutions in the yellow opt-in band.
+- Headless benchmark with 5b.4 tuning: current graph 1.66s settled,
+  +institutions 2.00s settled, +movements projection 2.15s settled, stress
+  3.48s settled. This keeps institutions in the yellow opt-in band.
 
 **Still to ship in 5b.5.**
 - Backfill existing P1066/P737 person-person edges with the same
@@ -372,7 +372,7 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
 - **Node-kind view modes.** With 3 node kinds, the legend starts to
   earn its keep but the graph also gets crowded. Add a URL-backed
   `?nodes=sculptor,institution` selector (institutions off by default).
-  5b.5 will reuse this when movements are added; 5d may add `,city`.
+  5b.6 will reuse this when movements are added; 5d may add `,city`.
 
 **Risks and unknowns.**
 - **Perf budget — measured and re-run after 5b.4 tuning.**
@@ -382,10 +382,10 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   review numbers:
   ```
   scenario                  settled (α<0.02)   full converge   verdict
-  now (4.3k / 1.4k)         1.58s              2.73s           yellow
-  +institutions (7.7k/4.8k) 1.92s              3.34s           yellow
-  +movements (7.85k/5.4k)   1.98s              3.49s           yellow
-  stress (12k / 8k)         3.32s              5.85s           RED
+  now (4.3k / 1.4k)         1.66s              2.88s           yellow
+  +institutions (7.7k/4.8k) 2.00s              3.50s           yellow
+  +movements (7.85k/5.4k)   2.15s              3.75s           yellow
+  stress (12k / 8k)         3.48s              6.14s           RED
   ```
   Force-cost review at 5b size still shows both collide and charge as
   material costs; the tuned all-forces heavy view settles under the
@@ -451,12 +451,13 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   the rendering threshold and possibly defer to a movement-tag
   approach instead of rendering institutions as nodes.
 
-**Also landing in 5b: the temporal envelope substrate.** Even though
-5b's visible feature is institutional nodes (not animated lineage),
-the ingest is also where edge envelopes get computed for every relation
-in the dataset. That's so 5c is purely a UI phase, and so /lineage
-gains a quiet "show only edges active in YEAR" filter as a cheap
-follow-up if we want one before the full scrubber.
+**Also landing across 5b: the temporal envelope substrate.** Even
+though 5b's visible feature is institutional nodes (not animated
+lineage), the institutional ingest already computes envelopes for
+P69/P937 edges. Phase 5b.5 completes that substrate by backfilling
+existing P1066/P737 person-person edges, so 5c can be purely a UI phase
+and /lineage can gain a quiet "show only edges active in YEAR" filter as
+a cheap follow-up if we want one before the full scrubber.
 
 **Estimate.** 3 sessions. SPARQL + ingest (institutions + temporal
 quals + institution metadata) is 1 session; `pipeline/temporal.py` +
@@ -467,9 +468,41 @@ sitting if perf needs an opt-in toggle.
 
 ---
 
-## Phase 5b.5 — Movements as nodes
+## Phase 5b.5 — Person-person temporal backfill and transparency
 
-**Goal.** Today every sculptor has a `movement` trait. After 5b.5,
+**Goal.** Existing P1066/P737 lineage edges carry the same temporal
+envelope fields as institutional P69/P937 edges, and /transparency can
+explain coverage, confidence, and skipped intersections without needing
+Codex to rediscover the substrate.
+
+**Inputs.**
+- Existing `edges.json` / relation export for P1066/P737 person-person
+  lineage.
+- `pipeline/temporal.py` and the institutional edge envelope schema.
+- Institutional export metadata: confidence split, skipped empty
+  intersections, and rendered institution counts.
+
+**Work.**
+- Backfill `minStart`, `maxStart`, `minEnd`, `maxEnd`, `dateSource`, and
+  `confidence` onto existing person-person lineage edges.
+- Add regression coverage so P1066/P737 edges and P69/P937 institutional
+  edges share the same envelope contract.
+- Extend transparency data/page surfaces for institution coverage, edge
+  confidence, skipped empty intersections, and educational concentration.
+
+**Exit gate.**
+- Hard: existing `/lineage` behavior and 5b.4 institution rendering stay
+  unchanged except for additive envelope fields.
+- Hard: exported person-person edges all have envelope fields or an
+  explicit documented null/skipped reason.
+- Hard: transparency surfaces match export metadata and explain
+  confidence levels plainly.
+
+---
+
+## Phase 5b.6 — Movements as nodes
+
+**Goal.** Today every sculptor has a `movement` trait. After 5b.6,
 movements are first-class nodes on `/lineage` (and joinable in the
 graph data substrate generally). A reader can click "Surrealism" and
 see the sculptor cluster + the institutions that hosted the movement +

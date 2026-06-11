@@ -7,7 +7,7 @@
  *
  *   - now              : current /lineage today
  *   - +institutions    : Phase 5b target (P69 + institutional rendering)
- *   - +movements       : Phase 5b.5 on top of 5b (~150 movement nodes)
+ *   - +movements       : Phase 5b.6 on top of 5b (~150 movement nodes)
  *   - stress           : 1.5× the largest plausible Phase-5 size, headroom check
  *
  * Measures total wall time and time per tick for the simulation alone
@@ -142,7 +142,7 @@ function simulate(graph, opts = {}) {
 const sizes = [
   { name: "now", nodes: 4300, edges: 1400, hubs: 30, institutional: false },
   { name: "+institutions (5b)", nodes: 7700, edges: 4800, hubs: 80, institutional: true },
-  { name: "+movements (5b.5)", nodes: 7850, edges: 5400, hubs: 100, institutional: true },
+  { name: "+movements (5b.6)", nodes: 7850, edges: 5400, hubs: 100, institutional: true },
   { name: "stress (1.5×)", nodes: 12000, edges: 8000, hubs: 120, institutional: true },
 ];
 
