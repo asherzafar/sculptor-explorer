@@ -10,7 +10,7 @@ This is the vendor-neutral entry point for every coding agent working in this re
 4. Read `docs/EXPLORATION_STRATEGY.md` for the sculpture-first scope, research-lab workflow, graph semantics, question atlas, and expansion path.
 5. Read `docs/DECISIONS.md` for active decisions, review triggers, and deferred founder choices.
 6. Read `docs/ROADMAP.md` and, for Phase 5 work, `docs/PHASE_5_PLAN.md` for sequencing and gates.
-7. Read the relevant specialist document: `docs/ARCHITECTURE.md`, `docs/DESIGN_SYSTEM.md`, `docs/RESEARCH_FOUNDATIONS.md`, `docs/DATASET_DATASHEET.md`, `docs/CLAIM_REGISTER.md`, or a pipeline/source-specific document.
+7. Read the relevant specialist document: `docs/ARCHITECTURE.md`, `docs/DESIGN_SYSTEM.md`, `docs/RESEARCH_FOUNDATIONS.md`, `docs/VISUAL_BASELINE_2026-08-02.md` during Phase 5Q visual work, `docs/DATASET_DATASHEET.md`, `docs/CLAIM_REGISTER.md`, or a pipeline/source-specific document.
 8. Read `docs/AGENT_HANDOFF.md` for the latest verified state and known issues. Use `docs/PROJECT_AUDIT_2026-08-02.md` when you need the dated evidence behind the roadmap reset.
 
 If documents conflict, the more specific and more current instruction wins. Strategic outcomes belong in the charter, current consequential choices in the decision log, sequencing in the roadmap, implementation values in `.windsurfrules`, and rationale in the deep-dive docs. Fix contradictions in the same change rather than choosing silently.

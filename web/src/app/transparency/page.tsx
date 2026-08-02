@@ -234,8 +234,8 @@ function CitizenshipComparison({
         </div>
       </section>
 
-      {/* By decade — the migration story is fundamentally a temporal
-          one, so the decade chart is the centrepiece. */}
+      {/* By decade — birth-decade context helps readers see how the recorded
+          endpoint comparison changes over time without implying a journey. */}
       <h3 className="text-sm font-semibold text-text-primary mb-2">
         By teacher / influencer&apos;s birth decade
       </h3>

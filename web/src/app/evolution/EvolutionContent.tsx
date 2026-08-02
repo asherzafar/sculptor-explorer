@@ -269,13 +269,9 @@ export function EvolutionContent() {
               Materials
             </h2>
             <p className="text-xs text-text-tertiary mb-3">
-              From museum collections (Met + AIC)
+              Object dates from bounded Met + AIC searches; independent of the artist-birth-decade filter above
             </p>
-            <MaterialsChart
-              data={materialsData}
-              activeDecade={activeDecade}
-              onDecadeClick={setActiveDecade}
-            />
+            <MaterialsChart data={materialsData} />
           </section>
         )}
       </div>

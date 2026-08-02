@@ -16,8 +16,7 @@ import { cn } from "@/lib/utils";
  *   rather than disappearing from the nav — being honest about what
  *   exists is part of the project's voice.
  * - Pills horizontally scroll on overflow rather than collapse into a
- *   hamburger. Six items fit on a phone, and a hamburger drawer adds
- *   tap-and-state machinery for no real navigation gain.
+ *   hamburger. All seven destinations remain in the DOM and reachable.
  * - Compact bar height matches the desktop sidebar header rhythm
  *   (~56px) so the page below starts at the same vertical position
  *   the desktop user sees.

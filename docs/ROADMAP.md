@@ -51,7 +51,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Horizon | Priority | Outcome |
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
-| Now | **5Q.3R stabilization, then 5Q.4 visual foundations** | Reconcile release truth and producer/consumer contracts, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
+| Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -338,7 +338,7 @@ major visual dimension.
 - [x] Put source, scope/denominator, freshness, and important missingness beside every analytical claim. `DataScopeNote` now supplies a snapshot-derived stamp and route-specific context on Timeline, Explore, Evolution, Migration, Lineage, Decade, and Movement; `docs/CLAIM_REGISTER.md` is the durable audit.
 - [x] Review gender, geography, historical-state, and cultural classification language. Current public copy attributes P21/P27/P135 labels, describes birth/death countries as endpoints, and treats the legacy `crossesBorders` field as disjoint recorded citizenship sets rather than travel or cross-cultural proof. The claim register requires relevant domain/community review before any consequential named cultural, identity, historical-state, or living-artist claim ships.
 
-#### 5Q.3R — Release-candidate stabilization (active)
+#### 5Q.3R — Release-candidate stabilization (complete)
 
 - [x] Separate source-query freshness, artifact release/review metadata, and per-record evidence-check dates in the generated contract and public copy.
 - [x] Make candidate accounting explicit: 6,711 source candidates, one evidence-backed person exclusion, 6,710 analytically eligible candidates, 3,543 published records, and 3,167 A.3 rule exclusions.
@@ -351,7 +351,8 @@ major visual dimension.
 
 ##### 5Q.4a — Visual foundations and baseline (do first)
 
-- [ ] Run the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: route/task matrix, consistent screenshots, encoding inventory, real-content type specimen, color/accessibility checks, and low-fidelity alternatives for the riskiest views.
+- [x] Record the route/task matrix, encoding inventory, source audit, ranked findings, and initial alternative set in `docs/VISUAL_BASELINE_2026-08-02.md`.
+- [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
 - [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
 - [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
 

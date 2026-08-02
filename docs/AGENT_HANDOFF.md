@@ -7,7 +7,7 @@
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
-Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The next clean boundary is 5Q.4a’s visual-foundations exercise, followed by route slices beginning with Explore. Structured chart equivalents, keyboard chart-detail access, mobile task equivalence, Explore state/DOM scale, and measured field performance remain open. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
+Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a is now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`, including the route/task matrix, encoding inventory, ranked findings, and alternatives. Rendered/perceptual evidence remains open because the Codex in-app browser safety layer denied this repository’s localhost URL; automated browser journeys are regression evidence, not a substitute for visual or assistive-technology review. After that evidence is completed or explicitly excepted, route slices begin with Explore. Structured chart equivalents, keyboard chart-detail access, mobile task equivalence, Explore state/DOM scale, and measured field performance remain open. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
 
 Checkpoint branch: `codex/phase-5q-stabilization`.
 
@@ -42,7 +42,7 @@ Checkpoint branch: `codex/phase-5q-stabilization`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
 - All four production chart SVGs now have roles and accessible names. Useful text/structured equivalents, keyboard-accessible chart details, focus behavior, and non-color encodings still require the systematic 5Q.4 pass.
-- The Codex app's in-app browser safety policy previously denied localhost inspection. Repository-local Chromium now renders all core/provenance journeys successfully, but 5Q.3 was a claims/data pass rather than a human aesthetic or assistive-technology review; do not treat it as the 5Q.4 visual/accessibility gate.
+- The Codex app's in-app browser safety policy denied localhost inspection during 5Q.4a. The earlier repository-local Chromium journeys still pass, but they test core routes/provenance rather than human aesthetics or assistive technology; do not treat them as the 5Q.4 visual/accessibility gate or route around the browser-policy boundary.
 
 ## Validation state at this handoff
 
@@ -80,9 +80,19 @@ was upgraded reproducibly with
 snapshot’s `generatedAt` value; the latter publishes its evidence separately
 through the person-exclusion block.
 
+Passed after the 5Q.4a source/contract baseline and its two P0 truth fixes:
+
+- `npm run lint` (zero errors; zero warnings)
+- `npm run typecheck`
+- `npm run build` — 3,625 static routes
+
+The explicit browser journey gate was not rerun for this slice after the
+in-app browser safety denial. Its last green seven-journey result remains the
+5Q.3R regression baseline, not rendered/perceptual evidence for 5Q.4a.
+
 ## Recommended next sequence
 
-1. Run 5Q.4a’s visual-foundations exercise: route/task matrix, baseline evidence, encoding inventory, real-content type/color/layout specimen, accessibility/performance checks, and low-fidelity alternatives.
+1. Complete 5Q.4a’s rendered evidence: consistent route screenshots, real-content type/color/layout specimen, zoom/reflow and keyboard/assistive-technology checks, perceptual and performance review. The source/contract baseline and alternatives are already recorded.
 2. Implement end-to-end route slices in order: Explore, Timeline, dense Lineage/Migration, then propagate earned patterns to the remaining routes; apply the route review gate each time.
 3. Add privacy-respecting analytics and run five structured user sessions across the audience hypotheses.
 4. Hold the Phase 5R strategic horizon workshop and use the evidence to choose among findability/connective tissue, coordinated views/entry points, works/IIIF story depth, and artist-neutral source/model pilots before further graph densification.
