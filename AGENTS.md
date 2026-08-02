@@ -87,6 +87,40 @@ python3 validate_institutions.py
 
 For documentation-only changes, at minimum run `git diff --check`, verify local links and terminology, and inspect `git diff`. Do not rerun the data pipeline unless the task changes pipeline inputs or generated data.
 
+## Publishing changes
+
+Publish only when the user explicitly asks for a commit, push, or pull
+request. Keep the local Git operations and the GitHub API operation distinct:
+
+1. Confirm the branch and intended scope with `git status -sb`,
+   `git diff --name-only`, `git diff --check`, and an inspection of the diff.
+2. Stage explicit paths. Do not use `git add -A` when unrelated work may be
+   present. Recheck with `git diff --cached --name-only` and
+   `git diff --cached --check` before committing.
+3. Commit with the user-approved message, then push with upstream tracking:
+
+   ```bash
+   git push -u origin "$(git branch --show-current)"
+   ```
+
+4. Open a draft pull request unless the user explicitly requests a ready PR.
+   Set the requested base branch explicitly rather than assuming the default
+   branch. Prefer the configured GitHub integration for PR creation; use the
+   GitHub CLI only when the integration cannot perform the operation.
+5. Verify the clean worktree, commit SHA, upstream branch, PR base/head, draft
+   state, and PR URL before handing off.
+
+Git HTTPS authentication and GitHub API authentication are separate paths. In
+a restricted automation sandbox, `gh auth status` can report an invalid token
+when `api.github.com` is unreachable even though the keyring credential and
+`git push` are valid. If the output also shows a connection or DNS failure, do
+not run `gh auth login`, `gh auth logout`, or change credentials. Retry the
+same read-only authentication check with narrowly scoped network access, or
+ask the user to verify it in their normal terminal. Treat an external 401/403
+or an actual push authentication error as the authoritative failure; stop and
+report the exact error without broadening permissions or mutating
+authentication.
+
 ## Current sequencing constraint
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. Complete the stabilization checkpoint and Phase 5Q product-quality gate in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d as public features. Isolated, time-boxed lab prototypes may run in parallel; they must not create production dependencies or bypass graduation gates. New large public visualizations remain hypotheses until their reader question, data fitness, usability evidence, and performance budget pass.
