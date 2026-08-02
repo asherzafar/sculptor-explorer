@@ -13,7 +13,7 @@ import type { MigrationFlow } from "@/lib/types";
 import { EmptyState } from "@/components/EmptyState";
 
 /**
- * MigrationSankey — D3 Sankey of birth → death country flows.
+ * MigrationSankey — D3 Sankey of recorded birth → death country endpoints.
  *
  * Interaction model:
  * - Hovering a link (corridor) calls `onFlowHover` with the flow record.
@@ -30,14 +30,13 @@ import { EmptyState } from "@/components/EmptyState";
  *   "Other" rollup node on each side. We considered a hard count
  *   threshold (e.g. drop links with count < 2) but rollup is more
  *   honest: the long tail isn't deleted, just summarized.
- * - Same-country flows are rendered as faint loops back to a "(stayed
- *   put)" pseudo-node — not the most beautiful Sankey gesture but the
- *   alternative (drop them) hides the actual majority of sculptors.
+ * - Same-country endpoint pairs are rendered faintly. They are not labeled
+ *   "stayed put" because matching endpoints do not establish residence.
  *   Toggleable via `includeSameCountry` prop; the page exposes a switch.
  *
- * Why not d3-chord: chord diagrams imply symmetric bilateral flow, which
- * misrepresents migration (Hungary→France ≠ France→Hungary in the data).
- * Sankey's directional left-to-right reads correctly as a journey.
+ * Why not d3-chord: chord diagrams imply symmetric bilateral values, while
+ * birth-country → death-country endpoints are directional. The left-to-right
+ * layout shows field direction only; it does not reconstruct a journey.
  */
 
 interface Props {
@@ -102,7 +101,7 @@ export function MigrationSankey({
 
     // Filter out same-country flows up front if requested. Counting
     // them in the totals when not displayed would bias the "top N"
-    // selection toward staying-put-heavy countries (US, France).
+    // selection toward high-volume same-endpoint countries (US, France).
     const visibleFlows = flows.filter(
       (f) => includeSameCountry || !f.sameCountry
     );
@@ -333,15 +332,15 @@ export function MigrationSankey({
     return (
       <EmptyState
         variant="block"
-        title="No migration data for this view"
-        description="There are no birth → death country flows for the current decade filter. Try widening the time range."
+        title="No endpoint-country data for this view"
+        description="There are no eligible birth-country → death-country pairs for the current decade filter. Try widening the time range."
       />
     );
   }
 
-  const ariaLabel = `Sankey diagram of sculptor migration: ${flows.length} birth-to-death-country corridor${
+  const ariaLabel = `Sankey diagram of recorded sculptor birth-country to death-country pairs: ${flows.length} pair${
     flows.length === 1 ? "" : "s"
-  }. Hover or focus a corridor to see who crossed it.`;
+  }. Hover a pair to inspect its records.`;
 
   return (
     <div className="w-full overflow-x-auto">

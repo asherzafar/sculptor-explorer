@@ -1,5 +1,17 @@
 # Phase 5 — Densification + explorable interactives
 
+> **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
+> implemented in the current release candidate; 5Q stabilization and visual
+> foundations are the active bounded implementation gate. Complete Phase 5Q
+> in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The later phases
+> in this document are researched hypotheses, not commitments; re-score
+> them against `docs/PROJECT_CHARTER.md` using the product, data,
+> accessibility, user-evidence, and performance gates in
+> `docs/RESEARCH_FOUNDATIONS.md`. Isolated, time-boxed research
+> prototypes may explore these ideas under
+> `docs/EXPLORATION_STRATEGY.md`; they do not count as starting the
+> production phase or create production dependencies.
+
 > **Project recast (May 2026):** the goal stops being "ship to Fabio /
 > first-deploy feedback" and becomes "better data, more interesting
 > visualizations, and explorable interactives." Phases 0–4 produced a
@@ -354,11 +366,13 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
   +institutions 2.00s settled, +movements projection 2.15s settled, stress
   3.48s settled. This keeps institutions in the yellow opt-in band.
 
-**Still to ship in 5b.5.**
-- Backfill existing P1066/P737 person-person edges with the same
-  envelope schema so /lineage has a consistent dating substrate.
-- Transparency-page surfaces for institution coverage, edge confidence,
+**Shipped in 5b.5.**
+- Existing P1066/P737 person-person edges now carry the same envelope
+  schema, or explicit null fields and a documented unavailable reason.
+- `/transparency` reports institution coverage, date confidence,
   skipped empty intersections, and educational concentration.
+- Regression checks verify both edge families and reconcile public
+  transparency figures with export metadata.
 
 **Architecture.**
 - One new ingest module, mirrors `query_enrichment.py` pattern.
@@ -454,7 +468,7 @@ qualifier-backed, 63 medium lifespan-only, 4,858 low age-prior-backed.
 **Also landing across 5b: the temporal envelope substrate.** Even
 though 5b's visible feature is institutional nodes (not animated
 lineage), the institutional ingest already computes envelopes for
-P69/P937 edges. Phase 5b.5 completes that substrate by backfilling
+P69/P937 edges. Phase 5b.5 completed that substrate by backfilling
 existing P1066/P737 person-person edges, so 5c can be purely a UI phase
 and /lineage can gain a quiet "show only edges active in YEAR" filter as
 a cheap follow-up if we want one before the full scrubber.
@@ -469,6 +483,14 @@ sitting if perf needs an opt-in toggle.
 ---
 
 ## Phase 5b.5 — Person-person temporal backfill and transparency
+
+**Status: completed 2026-08-02.** The committed snapshot dates 1,372
+of 1,423 P1066/P737 edges; the remaining 51 stay exported with null
+envelopes and explicit reasons. Institution links cover 2,393 of 3,543
+published sculptors, and `/transparency` exposes confidence splits,
+54 skipped empty institution intersections, and a top-five education
+concentration share of 15.8%. Regression checks compare both edge
+families and verify the public audit against export metadata.
 
 **Goal.** Existing P1066/P737 lineage edges carry the same temporal
 envelope fields as institutional P69/P937 edges, and /transparency can
@@ -775,7 +797,7 @@ IIIF. Public-domain only.
 
 **Inputs.** Existing `met_objects` (17 rows) and `aic_objects` (124
 rows) caches are tiny — they covered only the focus list. New ingest
-needs to widen the search to the full 3,544 published sculptors,
+needs to widen the search to the full 3,543 published sculptors,
 joined by name + birth year for fuzzy match (ULAN-ID join is cleaner
 where ULAN is present).
 
@@ -845,8 +867,10 @@ not feature delivery.
   5c/d before starting them.
 - **A phase taking >2× its estimate is a flag.** Stop, write down what
   you didn't anticipate, and decide whether to scope down or pivot.
-- **The phases are not strictly ordered.** 5f (choropleth) and 5g
-  (IIIF) don't depend on 5b. We can interleave if a phase stalls.
+- **5Q is a hard ordering constraint.** After 5b.5, do not use an
+  independent dependency graph as a reason to skip the product-quality
+  gate. Once 5Q passes, later phases can be interleaved only when their
+  own evidence and exit gates pass.
 
 ## Cross-cutting commitments
 
@@ -858,7 +882,15 @@ not feature delivery.
   receipt.
 - Every new schema field is **additive** — `LegacySculptor` keeps every
   Phase 0–4 field, new fields are optional, and old JSON consumers
-  continue to work.
+  continue to work. If a breaking contract becomes necessary, version
+  it explicitly and migrate producer, consumers, tests, and docs in one
+  bounded change.
 - Tests live next to the pipeline modules they cover and are runnable
   via `pytest pipeline/`. The bar is "guards against regression," not
   "100% coverage" — small, surgical, written before merge.
+- Every novel visualization records its reader question, data/task
+  abstraction, encoding rationale, uncertainty, accessible equivalent,
+  budget, success signal, and stop/simplify condition before build.
+- Every consequential state is URL-reproducible. Every novel chart
+  pattern has a keyboard-operable path, accessible name and summary,
+  non-color encoding, and reduced-motion behavior before it ships.

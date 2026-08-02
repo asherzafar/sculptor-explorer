@@ -7,6 +7,7 @@ import { loadTimelineSculptors } from "@/lib/data";
 import { LifespanTimeline, type SortMode } from "@/components/charts/LifespanTimeline";
 import { LoadingState } from "@/components/LoadingState";
 import { PageHeader } from "@/components/PageHeader";
+import { DataScopeNote } from "@/components/DataScopeNote";
 
 const SORT_OPTIONS: { key: SortMode; label: string; title: string }[] = [
   { key: "alpha",    label: "Alphabetical",  title: "Sort A → Z by last name" },
@@ -61,8 +62,15 @@ function TimelineContent() {
   return (
     <div className="container mx-auto px-4 py-8">
       <PageHeader
-        title="Notable Sculptors — Lifespans"
+        title="Focus Sculptors — Lifespans"
         subtitle={`A visual timeline of ${sculptors.length} sculptors curated with the National Sculpture Society, showing when they lived. Bars are color-coded by birth decade. This list emphasizes the American figurative tradition and is not a comprehensive survey of global sculpture.`}
+      />
+
+      <DataScopeNote
+        className="mb-6"
+        source="The canonical focus-list CSV supplies the roster and lifespan dates; Wikidata supplies QIDs, movement labels, and citizenship when matched."
+        scope={`${sculptors.length.toLocaleString()} curated focus sculptors, not the full published or cached population.`}
+        limits="The selection emphasizes the National Sculpture Society and American figurative tradition. Bar color encodes birth decade; it does not encode importance, movement, or influence."
       />
 
       {/* Sort controls */}
@@ -72,6 +80,7 @@ function TimelineContent() {
           <button
             key={key}
             title={title}
+            aria-pressed={sortMode === key}
             onClick={() => setSortMode(key)}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
               sortMode === key

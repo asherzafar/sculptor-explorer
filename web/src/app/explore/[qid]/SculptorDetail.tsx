@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import type { LegacyEdge, LegacySculptor } from "@/lib/types";
 import { loadEdges, loadSculptor } from "@/lib/data";
-import { formatDisplayValue, formatGender, movementSlug } from "@/lib/utils";
+import { formatDisplayValue, formatGender } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { WorksGallery } from "@/components/WorksGallery";
@@ -79,11 +79,17 @@ function CompletenessDot({ present, label }: { present: boolean; label: string }
   );
 }
 
-export function SculptorDetail({ qid }: { qid: string }) {
+export function SculptorDetail({
+  qid,
+  movementPageSlug,
+}: {
+  qid: string;
+  movementPageSlug: string | null;
+}) {
   const router = useRouter();
   const [sculptor, setSculptor] = useState<LegacySculptor | null>(null);
   // edges loaded alongside the sculptor so we can compute the
-  // per-sculptor cross-cultural connection count without a second
+  // per-sculptor disjoint-citizenship connection count without a second
   // round-trip. The full edges payload is small (~150KB) and already
   // cached by other pages.
   const [edges, setEdges] = useState<LegacyEdge[]>([]);
@@ -161,21 +167,22 @@ export function SculptorDetail({ qid }: { qid: string }) {
   const hasCitizenship = !!sculptor.citizenship;
   const hasEdges = sculptor.totalDegree > 0;
 
-  // Phase 4 — per-sculptor cross-cultural connection count. Only
+  // Per-sculptor disjoint-citizenship connection count. The retained
+  // `crossesBorders` field name means only that both endpoint sets exist
+  // and share no value; it does not establish travel or cultural identity.
+  // Only
   // counts edges where this sculptor appears as an endpoint AND the
   // edge has a classifiable `crossesBorders` flag (excludes external-
   // mentor edges where citizenship data is missing on one side).
-  const myCrossBorderCount = edges.reduce((n, e) => {
+  const myDifferentCitizenshipCount = edges.reduce((n, e) => {
     if (e.crossesBorders !== true) return n;
     return n + (e.fromQid === qid || e.toQid === qid ? 1 : 0);
   }, 0);
   const hasGender = !!sculptor.gender;
 
-  // Multi-citizenship: when Wikidata records more than one country we render
-  // pills instead of a single inline string. This is the canonical "migration
-  // canon" surface for the detail page — flat citizenship erases émigré
-  // histories (Brâncuși, Nadelman, Bourgeois, Noguchi all read as just "USA"
-  // without this).
+  // Multi-citizenship: when Wikidata records more than one P27 value we render
+  // pills instead of silently reducing the record to one. Citizenship remains
+  // a source classification, not a complete account of identity or movement.
   const allCitizenships = (sculptor.citizenships ?? []).filter(Boolean);
   const hasMultiCitizenship = allCitizenships.length > 1;
   const citizenshipLabel = hasCitizenship
@@ -229,7 +236,7 @@ export function SculptorDetail({ qid }: { qid: string }) {
   // Only render the native-name subhead when the canonical form is actually
   // different from the romanized display name. Wikidata returns en-language
   // P1559 entries that just echo the name; rendering those would be visual
-  // noise. ~1,185 of 3,630 sculptors have a meaningful non-English form.
+  // noise. Only a subset of sculptors has a meaningful non-English form.
   const hasNativeName =
     !!sculptor.nativeName &&
     !!sculptor.nativeLang &&
@@ -353,13 +360,20 @@ export function SculptorDetail({ qid }: { qid: string }) {
             implied data we do not have. The muted "—" framing is
             deliberately small so it doesn't compete with the lifespan and
             citizenship lines, but it does tell the reader we checked. */}
-        {hasMovement ? (
+        {hasMovement && movementPageSlug ? (
           <Link
-            href={`/movement/${movementSlug(sculptor.movement)}`}
+            href={`/movement/${movementPageSlug}`}
             className="inline-block rounded-full bg-accent-muted text-accent-primary hover:bg-accent-primary hover:text-white text-xs font-medium px-3 py-1 mb-4 transition-colors"
           >
             {movementLabel}
           </Link>
+        ) : hasMovement ? (
+          <span
+            title="This source label has fewer than three published sculptors, so it has no dedicated aggregate page."
+            className="inline-block rounded-full bg-bg-secondary text-text-secondary text-xs font-medium px-3 py-1 mb-4"
+          >
+            {movementLabel}
+          </span>
         ) : (
           <p className="text-xs text-text-tertiary mb-4">
             No art movement listed on Wikidata for this sculptor.
@@ -372,7 +386,9 @@ export function SculptorDetail({ qid }: { qid: string }) {
             information and shouldn't share punctuation). */}
         {hasMultiCitizenship && (
           <div className="mb-3">
-            <p className="text-xs text-text-tertiary mb-1.5">Citizenships</p>
+            <p className="text-xs text-text-tertiary mb-1.5">
+              Recorded citizenships (Wikidata)
+            </p>
             <div className="flex flex-wrap gap-1.5">
               {allCitizenships.map((c, i) => (
                 <span
@@ -386,10 +402,16 @@ export function SculptorDetail({ qid }: { qid: string }) {
           </div>
         )}
         {!hasMultiCitizenship && citizenshipLabel && (
-          <p className="text-sm text-text-secondary mb-3">{citizenshipLabel}</p>
+          <p className="text-sm text-text-secondary mb-3">
+            <span className="text-text-tertiary">Citizenship recorded in Wikidata:</span>{" "}
+            {citizenshipLabel}
+          </p>
         )}
         {genderLabel && (
-          <p className="text-sm text-text-secondary mb-3">{genderLabel}</p>
+          <p className="text-sm text-text-secondary mb-3">
+            <span className="text-text-tertiary">Gender recorded in Wikidata:</span>{" "}
+            {genderLabel}
+          </p>
         )}
 
         {/* Place-of-birth / place-of-death. When Wikidata lacks the
@@ -445,10 +467,9 @@ export function SculptorDetail({ qid }: { qid: string }) {
           )}
         </div>
 
-        {/* Connections — only if > 0. Phase 4 appends a cross-border
-            count when any of the connections cross national lines, so
-            émigré sculptors' international training shows up at a
-            glance. */}
+        {/* Connections — only if > 0. The optional comparison count uses
+            recorded citizenship sets and deliberately avoids a travel or
+            cross-cultural interpretation. */}
         {hasEdges && (
           <p className="text-sm text-text-secondary mb-4">
             {sculptor.totalDegree} connection{sculptor.totalDegree === 1 ? "" : "s"}
@@ -456,12 +477,14 @@ export function SculptorDetail({ qid }: { qid: string }) {
             <span className="text-text-tertiary">
               ({sculptor.inDegree} in, {sculptor.outDegree} out)
             </span>
-            {myCrossBorderCount > 0 && (
+            {myDifferentCitizenshipCount > 0 && (
               <>
                 {" · "}
                 <span className="text-accent-primary">
-                  {myCrossBorderCount} cross{" "}
-                  {myCrossBorderCount === 1 ? "border" : "borders"}
+                  {myDifferentCitizenshipCount}{" "}
+                  {myDifferentCitizenshipCount === 1
+                    ? "connection with no shared recorded citizenship"
+                    : "connections with no shared recorded citizenship"}
                 </span>
               </>
             )}

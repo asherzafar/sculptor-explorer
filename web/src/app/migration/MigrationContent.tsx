@@ -12,6 +12,7 @@ import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { Button } from "@/components/ui/button";
 import { StatBlock } from "@/components/StatBlock";
+import { DataScopeNote } from "@/components/DataScopeNote";
 
 /**
  * MigrationContent — client component for /migration.
@@ -20,9 +21,9 @@ import { StatBlock } from "@/components/StatBlock";
  *   ?decade=1880   filter the Sankey to sculptors born in that decade.
  *                  When absent, show all decades aggregated.
  *   ?stay=1        include same-country flows ("Born in France → Died
- *                  in France"). Off by default — the migration story is
- *                  the cross-border one, but the toggle exists so a
- *                  reader can sanity-check the staying-put majority.
+*                  in France"). Off by default so different-country
+*                  endpoints remain legible; the toggle exposes the full
+*                  eligible denominator without implying continuous residence.
  *
  * Both keys are shareable: the page link reproduces the exact decade +
  * toggle state. Default state always uses no params (clean URL).
@@ -162,23 +163,30 @@ export function MigrationContent() {
   const meta = data.meta;
   const subtitle =
     activeDecade != null
-      ? `Sculptors born in the ${activeDecade}s and where they ended up.`
-      : `${meta.crossedBorders.toLocaleString()} of ${meta.eligible.toLocaleString()} sculptors with both a birth and death country left the country they were born in. Living sculptors are excluded — we don't yet know where they end up.`;
+      ? `Recorded birth and death countries for eligible sculptors born in the ${activeDecade}s.`
+      : `${meta.crossedBorders.toLocaleString()} of ${meta.eligible.toLocaleString()} eligible sculptors have different recorded birth and death countries. This endpoint comparison does not reconstruct a migration path.`;
 
   return (
     <div className="container mx-auto px-4 py-8">
       <PageHeader title="Migration" subtitle={subtitle} />
 
+      <DataScopeNote
+        className="mb-6"
+        source="Wikidata place of birth and place of death, resolved to country (P19/P20 → P17) and passed through the documented country-name normalization table."
+        scope={`${meta.eligible.toLocaleString()} non-living published sculptors with both endpoint countries; ${meta.livingExcluded.toLocaleString()} living and ${(meta.missingBirthCountry + meta.missingDeathCountry).toLocaleString()} non-living records with a missing endpoint are excluded.`}
+        limits="Different endpoint countries do not prove when, why, or how often a person moved; same-country endpoints do not prove they stayed there. Multi-successor historical states remain unresolved where a modern mapping would impose an editorial claim."
+      />
+
       {/* Headline stats — slice-aware. Reads as a sentence rather than a row of cards. */}
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         <StatBlock
-          label="Crossed a border"
+          label="Different endpoint countries"
           value={`${sliceStats.crossed.toLocaleString()}`}
           sub={`${sliceStats.pct}% of ${sliceStats.total.toLocaleString()} in view`}
           accent
         />
         <StatBlock
-          label="Stayed in the country of birth"
+          label="Same endpoint country"
           value={`${sliceStats.stayed.toLocaleString()}`}
           sub={
             includeSameCountry
@@ -219,7 +227,7 @@ export function MigrationContent() {
             onChange={toggleSameCountry}
             className="accent-accent-primary"
           />
-          Include &quot;stayed put&quot; flows
+          Include same-country endpoints
         </label>
       </div>
 
@@ -234,7 +242,7 @@ export function MigrationContent() {
             highlightedFlow={highlightedFlow}
           />
           <p className="mt-3 text-xs text-text-tertiary">
-            Hover a corridor to see who crossed it. Click to pin. The
+            Hover a corridor to inspect its records. Click to pin. The
             chart shows top {18} countries on each side; smaller flows
             collapse into <em>Other (born)</em> / <em>Other (died)</em>.
           </p>
@@ -257,9 +265,9 @@ export function MigrationContent() {
             Top corridors across the full dataset
           </h2>
           <p className="text-sm text-text-secondary mb-4 max-w-3xl">
-            The 19th and 20th-century canon centers on Paris and the
-            Central European diaspora. The first few rows below are this
-            project&apos;s data telling exactly that story.
+            The most frequent different-country endpoint pairs in the full
+            eligible set. Counts describe this project&apos;s published records,
+            not the prevalence or causes of migration in sculpture history.
           </p>
           <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {meta.topFlows.map((f, i) => (
@@ -348,8 +356,8 @@ function FlowDetailPanel({
           Hover a corridor
         </p>
         <p>
-          The detail panel will show a sample of sculptors who took that
-          birth → death journey. Click a corridor to pin it.
+          The detail panel will show a sample of sculptors with that recorded
+          birth-country → death-country pair. Click a corridor to pin it.
         </p>
       </aside>
     );
@@ -366,7 +374,7 @@ function FlowDetailPanel({
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="text-xs uppercase tracking-[0.12em] text-text-tertiary">
-          {flow.sameCountry ? "Stayed in" : "Migration corridor"}
+          {flow.sameCountry ? "Same endpoint country" : "Endpoint pair"}
         </div>
         {pinned && (
           <Button

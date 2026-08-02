@@ -1,0 +1,9 @@
+---
+description: Canonical Sculpture in Data repository guidance
+alwaysApply: true
+---
+
+Read and follow the repository-root `AGENTS.md` before making changes. Then read `.windsurfrules` for current implementation values and the relevant scoped/deep-dive documentation named by `AGENTS.md`.
+
+Do not create Cursor-only project policy here. Keep durable policy in `AGENTS.md`, strategic outcomes in `docs/PROJECT_CHARTER.md`, roadmap order in `docs/ROADMAP.md`, and implementation values in `.windsurfrules`.
+

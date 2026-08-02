@@ -1,7 +1,10 @@
 # Sculpture in Data — Design Brief
 
-> **Values source:** All colors, fonts, routes, and current decisions live in `.windsurfrules`.
-> This document describes **rationale and patterns**. Do not duplicate values here.
+> **Values source:** Current colors, fonts, routes, and implementation
+> invariants live in `.windsurfrules`. Product outcomes live in
+> `docs/PROJECT_CHARTER.md`; evidence and validation practices live in
+> `docs/RESEARCH_FOUNDATIONS.md`. This document describes **design
+> rationale and patterns**. Do not duplicate volatile values here.
 
 ## Design DNA
 
@@ -18,6 +21,17 @@
 - Quiet confidence: everything looks intentional, nothing is decorative
 - Warm materiality: feels like printed matter, not software
 - Craft-legible: the care in the typography and spacing signals "someone made this thoughtfully" — the same way a well-finished watch dial communicates quality through precision, not flash
+
+### Public product versus lab
+
+These standards govern the public explorer. The exploration lab in
+`docs/EXPLORATION_STRATEGY.md` may deliberately try unfamiliar visual
+forms, palettes, layouts, animation, matrices, embeddings, or rough
+analytical displays. A lab artifact must be labeled as an experiment,
+state what it is testing, and remain isolated from production routes.
+Graduation into the public product requires this design system,
+accessibility, evidence, comprehension, and performance review; novelty
+alone is not a reason to flatten the established identity.
 
 ## References
 
@@ -110,9 +124,11 @@ The palette is organized into: backgrounds (3 tiers), text (3 tiers + inverse), 
 
 ### Accessibility rules (non-negotiable)
 - **Never rely on color alone to encode information.** Every color distinction must be reinforced with a second channel: texture, pattern, direct label, line style (solid/dashed), or shape. Stacked areas use 1px white separators between layers. Network graph nodes vary in size and shape, not just color.
-- **All text must meet WCAG AA** (4.5:1 contrast ratio on its background). Use Chrome DevTools → Rendering → Emulate vision deficiencies to test.
+- **Meet WCAG 2.2 Level AA.** Normal text needs 4.5:1 contrast and large text 3:1; controls, focus indicators, target size, reflow, motion, and status messaging also require review. Use automated checks as a floor, not the full test.
 - **Test the data palette under deuteranopia, protanopia, and tritanopia** before finalizing any chart. The palette was designed for CVD safety (warm umber separates from cool verdigris) but must be verified in context.
 - **Direct label charts whenever possible** — avoid forcing the reader to match colors between a legend and the chart. Label lines at their endpoints, label areas inline, label bars at their tips.
+- **Interactive SVGs need semantics and an equivalent path.** Give each chart an accessible name and concise summary, make consequential controls keyboard-operable with visible focus, and provide a structured table/list or other equivalent for details that cannot be navigated meaningfully in SVG.
+- **Respect user preferences.** Animation and force-layout motion must honor `prefers-reduced-motion`; content must remain usable at 200% zoom and under keyboard-only operation.
 
 ## Spacing & Layout
 
@@ -138,7 +154,10 @@ p-16 (64px) — page-level vertical rhythm
 - **No borders on charts.** The data IS the boundary. Use whitespace to separate.
 - **Left-align everything.** No centered text blocks (except maybe the landing hero).
 - **Sidebar nav is persistent** on desktop. It anchors the spatial experience.
-- **No horizontal scrolling ever.**
+- **No page-level horizontal overflow.** A bounded dense-data region may
+  scroll horizontally only when the affordance is explicit and a readable
+  text/list equivalent is adjacent; ordinary navigation and entity journeys
+  must reflow.
 
 ### Border usage standards
 The "no borders" rule is nuanced. Borders provide functional affordance for interactive elements but clutter content displays.
@@ -158,6 +177,17 @@ The "no borders" rule is nuanced. Borders provide functional affordance for inte
 **Rule of thumb:** If removing the border would make a user hesitate about where to click or what the element is, keep the border. If the border is purely decorative, remove it.
 
 ## Charts & Data Visualization
+
+### Visualization design review
+
+Use the nested-model sequence before implementation:
+
+1. **Domain problem:** Who is the reader and what question are they trying to answer?
+2. **Data/task abstraction:** What entities, attributes, relationships, filters, comparisons, and uncertainty actually support that question?
+3. **Encoding/interaction:** Why is this idiom more legible than a table, prose, small multiples, or an existing view? What is the overview, focus/filter path, and detail-on-demand path?
+4. **Implementation:** Can the data pipeline, browser, accessibility path, and performance budget deliver the intended experience reliably?
+
+Validate outside-in. A fast, polished implementation cannot rescue the wrong question or an unsupported data abstraction. Every large visualization uses the proposal template in `docs/RESEARCH_FOUNDATIONS.md` and names a stop/simplify condition.
 
 ### General chart style
 - **No chart borders or boxes.** Charts float in whitespace.
@@ -205,7 +235,7 @@ The "no borders" rule is nuanced. Borders provide functional affordance for inte
 - Zebra striping: alternating --bg-primary / --bg-card (very subtle)
 - No cell borders. Use spacing and background to separate rows.
 - Sortable columns with subtle arrow indicator
-- Search bar: minimal, no border, just a bottom line. Placeholder: "Search sculptors..."
+- Search bar: keep a visible functional border and focus treatment. Placeholder: "Search sculptors..."
 - On row hover: subtle background change + cursor pointer
 
 ## Components
@@ -215,10 +245,14 @@ The "no borders" rule is nuanced. Borders provide functional affordance for inte
 - Layout: vertical stack. No border on the card itself. Hover: subtle `--bg-secondary` background.
 - **Name:** Fraunces (display), `--text-lg`, `--text-primary`. Clicking anywhere on the card navigates to `/explore/{qid}`.
 - **Lifespan line:** `1911 – 2010` or `1946 – present` if `alive`. Sans, `--text-sm`, `--text-secondary`.
-- **Movement pill:** small pill badge with `--accent-muted` background and `--accent-primary` text. `text-capitalize` applied to movement label (see Capitalization Standards below). If no movement: omit entirely (do not show "No movement listed" — this is noise).
+- **Movement pill:** small pill badge with `--accent-muted` background and `--accent-primary` text. Apply the display formatter (see Capitalization Standards below). List/card summaries may omit a missing movement; the detail page explicitly discloses the source gap. Never render the pipeline sentinel “No movement listed.” A sparse real label remains plain text when no aggregate route exists.
 - **Citizenship + gender:** inline, `--text-sm`, `--text-secondary`, separated by · (centered dot)
 - **Connections count:** only show if > 0. Format: `{n} connections`. If 0: omit. Zero connections is a data gap, not a fact worth displaying.
-- **Data completeness indicator:** 4 small dots below the metadata (has_movement, has_citizenship, has_edges, has_museum_works). Filled dot = data present, hollow = missing. `--text-tertiary`, 6px. Tooltip on hover explains each dot. This signals data quality without cluttering.
+- **Data completeness indicator:** the detail page currently uses six labeled
+  dots (movement, citizenship, birth place, native name, connections, authority
+  files). Filled means present and hollow means missing; each dot has an
+  accessible label and tooltip. Review whether this compact pattern is
+  understood during 5Q.4 rather than adding more indicators by default.
 - **Wikidata link:** small external link icon (Lucide `ExternalLink`, 12px, `--text-tertiary`) at top-right corner. Links to `https://www.wikidata.org/wiki/{qid}`, `target="_blank"`. Only visible on card hover.
 - **Image placeholder** (Phase 5): when no image, show initials in Fraunces on `--bg-secondary` square.
 
@@ -249,10 +283,11 @@ The "no borders" rule is nuanced. Borders provide functional affordance for inte
 ### Page transitions
 - Cross-fade between routes (200ms)
 - Charts animate in on first load: areas grow from baseline, nodes fade in
+- Under `prefers-reduced-motion: reduce`, remove non-essential movement and present the final state immediately.
 
 ### Chart interactions
 - **Hover:** highlight the hovered element, dim others to 0.3 opacity
-- **Click:** toggle sticky selection (stays highlighted after mouse leaves)
+- **Click:** toggle sticky selection (stays highlighted after mouse leaves); if the selection materially changes the view or explanation, encode it in the URL.
 - **Zoom/pan:** on timeline charts, scroll to zoom X axis, drag to pan. Pinch on mobile.
 - **Linked views:** selecting a decade on the evolution page filters all three chart tracks simultaneously
 
@@ -260,41 +295,34 @@ The "no borders" rule is nuanced. Borders provide functional affordance for inte
 - Skeleton: show chart axes and layout immediately, data fades in
 - No spinner. No "Loading..." text. The structure appears instantly, data populates.
 
-## Responsive Strategy
+## Responsive strategy
 
-### v1: Desktop-first (1024px+)
+### Desktop (1024px+)
 - Sidebar nav, full charts, side-by-side layouts
-- This is the primary experience. Optimize here first.
+- This is the richest exploration mode. Preserve whitespace, readable labels, and direct manipulation.
 
-### v2 stretch: Tablet (768-1023px)
+### Tablet (768–1023px)
 - Sidebar collapses to hamburger menu
 - Charts go full-width
 - Small multiples: 2 columns
 
-### v3 stretch: Mobile (< 768px)
-- Bottom tab nav (not sidebar)
-- Charts go full-width, scrollable
-- Network graph may be impractical — show a simplified list view instead
-- Deprioritize mobile. This is a desk-based exploration tool.
+### Mobile (<768px)
+- Keep navigation, search, entity detail, prose, provenance, and shareable state fully usable.
+- Prefer one-column summaries, lists/tables, and focused subsets over shrinking a dense desktop chart until it is illegible.
+- A bounded chart may scroll horizontally when clearly signaled and paired with a text/structured equivalent.
+- The network graph may use a simplified ego-network/list view. Explain the richer desktop capability without gating the whole route.
 
-## Implementation Notes for Windsurf
+## Implementation Notes for Agents
 
-### Fonts (Google Fonts, loaded via next/font)
-```typescript
-import { Fraunces, DM_Sans } from 'next/font/google'
+### Fonts (repository-self-hosted Google Fonts releases)
 
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-})
-```
+The variable Fraunces and DM Sans WOFF2 subsets live in
+`web/public/fonts/` and are declared with explicit unicode ranges in
+`globals.css`. This preserves extended-Latin name coverage and `font-display:
+swap` without a build-time request to Google Fonts. Keep the family values in
+`.windsurfrules`, the CSS declarations, and `public/fonts/README.md` licensing
+record aligned; do not reintroduce `next/font/google` or another network font
+loader.
 
 ### Tailwind v4 (CSS-first)
 No `tailwind.config.ts`. All design tokens defined directly in `web/src/app/globals.css` using `@theme inline`. Font families, colors, and spacing are CSS custom properties consumed by Tailwind utility classes.
@@ -305,8 +333,8 @@ No `tailwind.config.ts`. All design tokens defined directly in `web/src/app/glob
 | Stacked area (materials, movements) | D3 in React wrapper | Full control over styling, animation, annotations |
 | Small multiples (geography) | D3 in React wrapper | Consistent with stacked area approach |
 | Timeline (sculptor lifespans) | D3 in React wrapper | Custom layout needed |
-| Network graph | react-force-graph-2d | Purpose-built, performant, customizable |
-| Data table | @tanstack/react-table + custom styled | Sorting, filtering, virtualization |
+| Network graph | D3 force simulation in React wrapper | Current implementation; performance is measured by `web/perf/lineage-bench.mjs` |
+| Data table | @tanstack/react-table + custom styling | Sorting/filtering today; pagination or virtualization is required in Phase 5Q |
 | Tooltips | Custom React component | Unified style across all chart types |
 
 Using D3 for the main charts (not Recharts) gives full control over every visual parameter — axis formatting, grid opacity, annotation placement, transition easing. This matches ggplot-style parameter tuning.
@@ -320,15 +348,15 @@ const axisConfig = {
   tickSize: 0,                    // no tick marks (or 4 for subtle)
   tickPadding: 8,                 // space between tick and label
   tickFormat: d3.format(','),     // number formatting
-  labelColor: '#6B706D',          // --text-tertiary (WCAG AA safe)
+  labelColor: 'var(--text-tertiary)',
   labelSize: '0.75rem',           // --text-xs
-  lineColor: '#CDD0CA',          // --border-axis
+  lineColor: 'var(--border-axis)',
   lineWidth: 1,
 }
 
 // Grid styling (≈ ggplot panel.grid)
 const gridConfig = {
-  color: '#EDEFE9',               // --border-grid
+  color: 'var(--border-grid)',
   opacity: 0.5,
   strokeDasharray: 'none',        // solid, not dashed
   // Only horizontal gridlines. No vertical.
@@ -354,11 +382,11 @@ const transition = {
 > Phasing, task lists, and current status: see `docs/ROADMAP.md`.
 > Architecture rules (URL state, D3, stable JSON, design tokens from day 1): see `.windsurfrules` § 8 Non-negotiable rules.
 
-**MVP exit criteria:** Fabio can open a URL, see a real chart with real data, search for a sculptor by name, and share a link that reproduces his view. The design looks intentional (not a prototype). He can give feedback.
+**Current quality outcome:** a representative reader can orient, find a known entity, explain one supported pattern and one limitation, and share the exact state without coaching. See the Phase 5Q gate and charter measures.
 
 ## Aspiration
 
-Imagine someone from the National Sculpture Society opens this link. Within 3 seconds they understand what it is. Within 10 seconds they've clicked something and seen the data respond. Within 30 seconds they've found a sculptor they know and learned something they didn't. Within 2 minutes they've shared the link with a colleague.
+Imagine a museum visitor, student, researcher, or sculpture practitioner opens this link. Within 3 seconds they understand what it is. Within 10 seconds they've clicked something and seen the data respond. Within 30 seconds they've found a sculptor they know and learned something they didn't. Within 2 minutes they've shared the link with a colleague—and can say what the view does not prove.
 
 The tool should feel like it was made by someone who cares about sculpture AND cares about design. Not one or the other.
 
@@ -367,7 +395,10 @@ The tool should feel like it was made by someone who cares about sculpture AND c
 The timeline page (the landing destination) should open with a brief orientation — not a scrollytelling essay, just enough context to frame the data:
 
 **Headline (serif, --text-2xl):** "How Sculpture Evolved"
-**Subtitle (sans, --text-base, --text-secondary):** "48,000 sculptors. 200 years of materials, movements, and geography — from Wikidata, the Met, and the Art Institute of Chicago."
+**Subtitle (sans, --text-base, --text-secondary):** "{current included count} sculptors. 200 years of movements, institutions, migration, and museum works — from Wikidata, Getty ULAN, the Met, and the Art Institute of Chicago."
+
+The count and source/freshness line must be derived from current export
+metadata. Do not freeze an audit count into display or social metadata.
 
 This sits above the first chart. Below it, the filter sentence ("Showing all countries in all movements from 1800 to 2020") provides the current-state description. Then the charts.
 
@@ -394,7 +425,7 @@ Wikidata movement labels are inconsistently cased: `abstract art`, `Expressionis
   - `formatDisplayValue(value, { isName?, isMovement?, isGender? })` — handles null/"No X listed" → em dash
   - `formatGender(gender)` — respectful gender display with known value mapping
 - **Apply in:** name column cells, movement pill on SculptorCard, movement column in Explore table, movement labels in chart legends, movement/citizenship/gender display in SculptorDetail.
-- **Gender display:** use `formatGender()` which maps: `male` → `Male`, `female` → `Female`, `non-binary` → `Non-binary`, `genderfluid` → `Genderfluid`, `trans man` → `Trans Man`, `trans woman` → `Trans Woman`. Gender is a sensitive field — display it respectfully, not as a raw database string.
+- **Gender display:** use `formatGender()` which maps: `male` → `Male`, `female` → `Female`, `non-binary` → `Non-binary`, `genderfluid` → `Genderfluid`, `trans man` → `Trans Man`, `trans woman` → `Trans Woman`. Gender is a sensitive Wikidata P21 source assertion: never infer it, attribute aggregate language to the source, and avoid collapsing “other or unknown” into an identity category. Follow `docs/CLAIM_REGISTER.md` for consequential uses.
 - **Null/placeholder handling:** any value matching `/^no\s+\w+\s+listed$/i`, `/^unknown$/i`, `/^none$/i`, or empty/null → display as `—` (em dash). Never show "No movement listed" in the UI.
 
 ### Explore table standards
@@ -452,18 +483,19 @@ Interactive charts must always signal their interactivity. Never require the use
 ### Social sharing (Open Graph)
 - Auto-generated OG meta tags in `layout.tsx`:
   - `og:title`: "Sculpture in Data — How Sculpture Evolved"
-  - `og:description`: "Explore 48,000 sculptors across 200 years of materials, movements, and geography."
+  - `og:description`: derive the current included count and accurately name the live dimensions/sources; avoid a hand-maintained number.
   - `og:image`: Static preview image (a screenshot of the evolution page, 1200×630px, stored in `public/og-image.png`). Generate once during Phase 4.
   - `og:url`: dynamic based on current page
 - Per-page titles: "Materials Over Time — Sculpture in Data", "Auguste Rodin — Sculpture in Data"
 
 ### Performance budget
-- **First contentful paint:** <3 seconds
-- **Time to interactive:** <5 seconds
-- **Total JSON payload:** <3MB (currently estimated ~2-3MB for ~10-15K sculptors + aggregations)
-- **Chart re-render on filter change:** <200ms (pre-aggregated data makes this achievable)
-- **No lazy loading of data** — load all JSON on initial page load, cache in memory. The dataset is small enough.
-- **Bundle size:** monitor with `next build` output. Flag any single dependency >100KB.
+- **Core Web Vitals at p75:** LCP ≤2.5 seconds, INP ≤200ms, CLS ≤0.1 on representative routes/devices.
+- **Initial route data:** target ≤500KB compressed for the default state. Load only the data the route needs; heavy graph/institution/works layers are opt-in and lazy-loaded.
+- **Interaction response:** <200ms for ordinary filter/search/sort feedback. Move expensive computation out of the client path or pre-aggregate it.
+- **Explore DOM:** do not mount thousands of table rows. Paginate or virtualize; verify search/sort semantics and accessibility.
+- **Lineage benchmark:** default <1.5s settled; opt-in heavy modes <3s. A mode above 3s must simplify, move off the default path, or justify a renderer decision with measurement.
+- **Static export:** track compressed route payloads, total output size/file count, and the largest regressions. A passing build is not a performance test.
+- **Bundle/dependencies:** inspect build output and route ownership. Flag material additions with their user value and measured cost instead of applying a context-free package-size threshold.
 
 ### Internationalization & character handling
 - UI language: English only.
@@ -472,11 +504,10 @@ Interactive charts must always signal their interactivity. Never require the use
 - Search should be diacritic-insensitive: searching "Brancusi" should find "Brâncuși". Implement with `normalize('NFD').replace(/[\u0300-\u036f]/g, '')` on both query and index.
 
 ### Mobile strategy (v1)
-- Desktop-first: optimized for 1024px+ viewport.
-- On viewports <768px: show a centered message over a blurred/dimmed screenshot of the app:
-  - "Sculpture in Data is designed for desktop."
-  - "Visit on a laptop or desktop for the full experience."
-- No attempt to make charts responsive in v1. This avoids shipping a broken mobile experience.
+- Desktop remains the richest exploratory canvas, but ordinary content, search, entity detail, provenance, and navigation must remain usable below 768px.
+- Dense visualization routes may switch to an explicit simplified reading mode: concise insight summary, filters that fit, and a structured list/table of the relevant entities. State what is available on desktop without blocking the rest of the page.
+- Horizontal scrolling is acceptable only for a labeled, bounded chart region with an equivalent summary. Page-level clipping, hidden controls, or unreachable data is a defect.
+- Test the core find → inspect → understand limitation → share journey at 375px and 200% zoom.
 
 ### About page content
 The about page should include:

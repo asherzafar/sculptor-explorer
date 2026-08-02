@@ -235,6 +235,8 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
         ref={svgRef}
         viewBox={`0 0 ${chartWidth} ${chartHeight}`}
         className="w-full min-w-[700px]"
+        role="img"
+        aria-label={`Timeline of ${sorted.length} focus sculptor lifespans from ${minYear} to ${maxYear}, sorted by ${sortMode}.`}
         style={{ height: `${Math.max(chartHeight, 400)}px`, fontFamily: "var(--font-body), system-ui, sans-serif" }}
       >
         {/* X-axis grid lines — D3 handles the axis labels in useEffect */}

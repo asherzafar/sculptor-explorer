@@ -42,7 +42,8 @@ export function MobileNotice({ viewName, reason }: MobileNoticeProps) {
           Best viewed on desktop
         </h1>
         <p className="text-sm text-text-secondary leading-relaxed mb-3">
-          <strong className="text-text-primary">{viewName}</strong> isn&apos;t
+          <strong className="text-text-primary">{viewName}</strong>{" "}
+          isn&apos;t
           available on phones. {reason}
         </p>
         <p className="text-sm text-text-secondary leading-relaxed mb-4">

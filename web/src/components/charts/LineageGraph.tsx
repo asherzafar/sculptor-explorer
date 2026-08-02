@@ -779,6 +779,8 @@ export function LineageGraph({
         ref={svgRef}
         width={width}
         height={height}
+        role="img"
+        aria-label={`Interactive lineage network with ${sculptorCount} sculptors, ${mentorCount} external mentors, ${institutionCount} institutions, and ${links.length} recorded relationships.`}
         style={{ display: "block" }}
       />
 

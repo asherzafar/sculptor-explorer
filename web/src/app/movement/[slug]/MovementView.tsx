@@ -11,6 +11,7 @@ import { EmptyState } from "@/components/EmptyState";
 import { NotableSculptorCard } from "@/components/NotableSculptorCard";
 import { StatBlock } from "@/components/StatBlock";
 import { formatDisplayValue } from "@/lib/utils";
+import { DataScopeNote } from "@/components/DataScopeNote";
 
 /**
  * MovementView — renders one /movement/[slug] page.
@@ -131,10 +132,17 @@ export function MovementView({ slug }: { slug: string }) {
         }
       />
 
+      <DataScopeNote
+        className="mb-6"
+        source="Wikidata P135 movement labels joined to published sculptor records; birth countries use P19 → P17 and connection counts use P737/P1066."
+        scope={`${movement.total.toLocaleString()} published sculptors carrying the ${displayName} P135 label; country lists show at most six recorded categories.`}
+        limits="A Wikidata movement label is a source classification, not a project endorsement or proof of direct membership, stylistic similarity, or influence. Missing birth countries and categories outside the top six are not separately exposed by this aggregate; percentages retain the full movement total as denominator."
+      />
+
       {/* Headline grid */}
       <div className="mb-10 grid gap-3 sm:grid-cols-3">
         <StatBlock
-          label="Sculptors associated"
+          label="Records with this P135 label"
           value={movement.total.toLocaleString()}
           sub={
             movement.yearsMedian
@@ -218,11 +226,11 @@ export function MovementView({ slug }: { slug: string }) {
         </section>
       </div>
 
-      {/* Notable sculptors */}
+      {/* Most-connected sculptors in this graph */}
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="font-display text-xl font-semibold text-text-primary">
-            Notable sculptors
+            Most-connected sculptors in this graph
           </h2>
           <span className="text-sm text-text-tertiary">
             Top {movement.notable.length} by lineage connections

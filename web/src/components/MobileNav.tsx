@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  *
  * Design intent:
  * - The desktop sidebar is the canonical navigation; mobile is a
- *   read-only fallback. So the mobile nav shows the same six routes,
+ *   read-only fallback. So the mobile nav shows the same seven routes,
  *   not a curated subset. Pages that don't render meaningfully on a
  *   phone (lineage, evolution) gate themselves with `<MobileNotice />`
  *   rather than disappearing from the nav — being honest about what
@@ -52,6 +52,7 @@ export function MobileNav() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={active ? "page" : undefined}
               className={cn(
                 "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
                 active

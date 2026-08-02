@@ -1,7 +1,12 @@
 # Architecture
 
-> **Values source:** All colors, fonts, routes, and current decisions live in `.windsurfrules`.
-> This document describes **data flow, schemas, and technical patterns**. Do not duplicate values here.
+> **Authority:** Start with `AGENTS.md`. Current design and implementation
+> values live in `.windsurfrules`; product outcomes live in
+> `docs/PROJECT_CHARTER.md`; the graph/temporal and expansion strategy
+> lives in `docs/EXPLORATION_STRATEGY.md`; sequencing lives in
+> `docs/ROADMAP.md`.
+> This document describes **data flow, schemas, and technical patterns**.
+> Counts and file sizes are dated audit snapshots, not schema contracts.
 
 ## Data flow
 
@@ -10,13 +15,18 @@ Pipeline (Python, run locally)          Web App (Next.js, deployed on Vercel)
 ──────────────────────────              ────────────────────────────────────
 Wikidata SPARQL ──┐                     
 Met API ──────────┤                     
-AIC API ──────────┼── process ──► JSON files ──► static import ──► client-side
-Getty ULAN ───────┤                     │                          filter/render
+AIC API ──────────┼── process ──► JSON files ──► route-scoped fetch ──► client
+Getty ULAN ───────┤                     │                  filter/render + D3
+Institutions ─────┤                     │
 Overrides CSV ────┘                     └── committed to git
                                             in web/public/data/
 ```
 
-All interactivity is client-side. No server. No API. JSON files load on first visit (~2-3MB), then everything is instant.
+The deployment is a static export with no runtime application server or
+private API. Interactivity is client-side, while Server Components may
+run at build time to generate routes. Data is loaded per route; heavy
+institution/graph layers are lazy-loaded after opt-in. Do not restore an
+“eager-load every JSON file” architecture.
 
 ## Tech stack
 
@@ -28,24 +38,63 @@ Key architectural choices:
 - **D3 for charts, React for containers.** D3 operates on refs inside `useEffect`.
 - **Pre-aggregated data.** Pipeline does the heavy lifting; web app just renders.
 
+## Graph architecture direction
+
+The domain is graph-shaped, but the deployed product does not need a
+runtime graph database today. The current architecture—source caches →
+pipeline/analysis → route-specific JSON projections → static client—is
+a deliberate fit for the dataset and deployment model.
+
+Generalization should happen in this order:
+
+1. Define an additive, artist-neutral conceptual model for entities,
+   roles, events, relationship layers, temporal intervals, source
+   assertions, derivations, and confidence.
+2. Preserve existing sculpture JSON contracts while generating new
+   analytical projections from that model.
+3. Prototype real temporal/multilayer questions and measure which
+   traversals or provenance queries remain awkward.
+4. Pilot one second artistic discipline and test interoperability
+   against CIDOC CRM / Linked Art concepts.
+5. Only then write an architecture decision comparing property graph,
+   RDF/linked-data, and relational/columnar analytical storage using
+   representative queries and export benchmarks.
+
+Regardless of storage, public routes receive small purpose-built
+projections. Asserted interpersonal relationships, affiliations,
+co-presence, similarity, and model-derived links remain separate layers;
+time validity and assertion/derivation provenance remain distinct.
+
 ## Directory structure
 
 ```
 sculpture-in-data/
-├── CLAUDE.md                        # AI agent conventions (entry point)
+├── AGENTS.md                        # Vendor-neutral agent entry point
+├── CLAUDE.md                        # Claude adapter importing AGENTS.md
+├── .cursor/rules/project.mdc        # Cursor adapter
+├── .github/copilot-instructions.md  # GitHub Copilot adapter
 ├── README.md
 ├── .gitignore
 │
 ├── docs/                            # Project documentation
+│   ├── PROJECT_CHARTER.md            #   Purpose, outcomes, decisions
+│   ├── EXPLORATION_STRATEGY.md        #   Graph/temporal lab + expansion
+│   ├── DECISIONS.md                   #   Active decisions + review triggers
+│   ├── RESEARCH_FOUNDATIONS.md       #   Evidence → practice standards
+│   ├── PROJECT_AUDIT_2026-08-02.md   #   Dated measured audit
+│   ├── AGENT_HANDOFF.md              #   Current verified state
 │   ├── DESIGN_SYSTEM.md             #   Typography, colors, components, accessibility
-│   ├── ROADMAP.md                   #   Phased plan with MVP scope
+│   ├── ROADMAP.md                   #   Priorities, phases, exit gates
 │   └── ARCHITECTURE.md              #   This file
 │
 ├── pipeline/                        # Python data pipeline (run locally, rarely)
 │   ├── config.py                    #   Endpoints, knobs, focus list, cache paths
 │   ├── helpers.py                   #   SPARQL query, batching, caching, normalization
 │   ├── query_wikidata.py            #   All 5 SPARQL queries
-│   ├── query_museums.py             #   Met + AIC API pulls (Phase 3)
+│   ├── query_museums.py             #   Met + AIC API pulls
+│   ├── query_getty.py               #   Getty ULAN JSON-LD ingest
+│   ├── query_institutions.py        #   P69/P937 institutional ingest
+│   ├── temporal.py                  #   Temporal-envelope inference
 │   ├── process.py                   #   Clean, enrich, join, graph metrics
 │   ├── export_json.py               #   Write web/public/data/*.json
 │   ├── requirements.txt
@@ -58,7 +107,7 @@ sculpture-in-data/
 ├── overrides/                       # Manual quality corrections (COMMITTED)
 │   ├── focus_sculptors.csv          #   Canonical focus sculptor list (single source of truth)
 │   ├── movement_overrides.csv       #   Focus sculptor movement label fixes
-│   └── medium_taxonomy.csv          #   Medium string → category mapping (Phase 3)
+│   └── medium_taxonomy.csv          #   Medium string → category mapping
 │
 ├── web/                             # Next.js app
 │   ├── package.json
@@ -66,8 +115,12 @@ sculpture-in-data/
 │   ├── tsconfig.json                #   Tailwind v4: tokens in globals.css, no tailwind.config.ts
 │   ├── public/
 │   │   └── data/                    #   JSON from pipeline (COMMITTED — small files)
-│   │       ├── sculptors.json
-│   │       ├── edges.json
+│   │       ├── sculptors.json       #   Full current records
+│   │       ├── sculptors_index.json #   Slim route index
+│   │       ├── edges.json           #   Person-person lineage
+│   │       ├── institutions.json    #   Institutional graph bundle
+│   │       ├── migration.json       #   Birth→death flows
+│   │       ├── transparency.json    #   Inclusion/coverage metadata
 │   │       ├── movements_by_decade.json
 │   │       ├── geography_by_decade.json
 │   │       └── focus_sculptors.json
@@ -80,9 +133,11 @@ sculpture-in-data/
 │       │   │   ├── page.tsx             #   Server Component wrapper with <Suspense>
 │       │   │   └── EvolutionContent.tsx #   Client Component: D3 charts, URL decade param
 │       │   ├── explore/
-│       │   │   ├── page.tsx         #   Search, filter, compare
+│       │   │   ├── page.tsx         #   Search, sort, browse
 │       │   │   └── [qid]/page.tsx   #   Individual sculptor (deep-link)
 │       │   ├── lineage/page.tsx     #   Network graph
+│       │   ├── migration/page.tsx   #   Birth→death Sankey
+│       │   ├── transparency/page.tsx#   Inclusion/coverage audit
 │       │   └── about/page.tsx       #   Methodology, sources, credits
 │       ├── components/
 │       │   ├── ui/                  #   shadcn/ui primitives
@@ -90,10 +145,11 @@ sculpture-in-data/
 │       │   │   ├── DecadeStackedArea.tsx  #   Shared stacked area (Geography + Movements)
 │       │   │   ├── GeographyChart.tsx     #   Country of birth by decade
 │       │   │   ├── MovementsChart.tsx     #   Art movements by decade
-│       │   │   ├── MaterialsChart.tsx     #   Materials (Phase 3)
+│       │   │   ├── MaterialsChart.tsx     #   Museum-works materials
 │       │   │   └── LifespanTimeline.tsx   #   Horizontal lifespan bars
-│       │   ├── Nav.tsx              #   Sidebar navigation (5 routes)
-│       │   └── MobileGate.tsx       #   "Visit on desktop" for <768px
+│       │   ├── Nav.tsx              #   Sidebar navigation (7 routes)
+│       │   ├── MobileNav.tsx        #   Compact navigation
+│       │   └── MobileNotice.tsx     #   Dense-view simplified-mode notice
 │       ├── lib/
 │       │   ├── data.ts              #   Load/parse JSON, React hooks
 │       │   ├── types.ts             #   TypeScript interfaces
@@ -109,28 +165,52 @@ sculpture-in-data/
 
 The pipeline writes these to `web/public/data/`. The web app loads them client-side.
 
-| File | Contents | Est. rows | Est. size |
-|------|----------|-----------|-----------|
-| `sculptors.json` | Notable sculptor metadata (name, dates, movement, country, gender, degree) | ~10-15K | ~2MB |
-| `edges.json` | Influence/teacher edges with labels | ~4K | ~300KB |
-| `movements_by_decade.json` | Tidy: `{decade, category, count}` rows | ~500 | ~20KB |
-| `geography_by_decade.json` | Tidy: `{decade, category, count}` rows | ~500 | ~20KB |
-| `focus_sculptors.json` | Enriched focus list with overrides applied | ~47 | ~15KB |
-| `timeline_sculptors.json` | Focus sculptors for lifespan timeline (hero page) | ~47 | ~10KB |
-| `materials_by_decade.json` | Tidy: `{decade, category, count}` rows (Phase 3) | ~500 | ~20KB |
+| File | Contents | 2026-08-02 snapshot |
+|---|---|---|
+| `sculptors.json` | Full included sculptor metadata and works/institution additions | 3,543 rows; 7.7MB raw / ~777KB gzip |
+| `sculptors_index.json` | Slim fields for Explore and default Lineage | 3,543 rows; 770KB raw / ~108KB gzip |
+| `edges.json` | P1066/P737 person-person lineage edges with temporal envelopes/reasons | 1,423 rows; 585KB raw / ~54KB gzip |
+| `external_mentors.json` | Non-sculptor lineage endpoints | 108KB raw |
+| `institutions.json` | Institution/place nodes, rosters, temporal edges, metadata | 1,662 nodes / 5,925 exported edges; 3.0MB raw / ~375KB gzip |
+| `migration.json` | Birth→death flows, decade slices, denominators | 520KB raw / ~71KB gzip |
+| `movements.json` / `movements_index.json` / `decades.json` | Narrative/entity page aggregates plus compact canonical movement-route index | 164KB / ~5KB / 182KB raw |
+| `transparency.json` / `getty_audit.json` | Inclusion, exclusions, relationship/institution coverage, normalization, cross-source audit | 8KB / 12KB raw |
+| `focus_sculptors.json` / `timeline_sculptors.json` | Enriched canonical focus list / timeline projection | 48 rows; 182KB / 10KB raw |
+| `*_by_decade.json` | Pre-aggregated chart rows | Route-specific, generally small |
 
-**Notability filter:** The pipeline ships ~10-15K "notable" sculptors to the web app (has movement OR has edges OR has museum works OR in focus list). The full ~48K stays in pipeline cache.
+**Inclusion filter:** the committed snapshot publishes 3,543 included
+sculptors from the wider cache. The exact rule is documented in
+`docs/INCLUSION_CRITERIA.md`; current counts and freshness must come
+from generated metadata rather than this dated table.
+
+`transparency.json` distinguishes `sourceCandidates` (before evidence-backed
+person exclusions), `eligibleCandidates` (after those exclusions and before
+A.3), and the legacy compatibility field `totalCached` (equal to
+`eligibleCandidates`). Its `release` block is produced from
+`overrides/data_release.json`; source-query freshness remains `generatedAt`.
+
+`overrides/person_exclusions.csv` is the evidence-backed compatibility
+boundary for source records that the integer-year public schema cannot
+represent honestly. The normal pipeline applies it before enrichment and all
+aggregations. When parquet caches are unavailable, the bounded
+`pipeline/backfill_person_exclusions.py` updates the committed static roster,
+dependent aggregates, and published exclusion provenance.
 
 ## Data sources
 
-| Source | Endpoint | Auth | Rate limit | Phase |
-|--------|----------|------|------------|-------|
-| Wikidata | `https://query.wikidata.org/sparql` | None | 2s between batches | 0 |
-| Met Museum | `https://collectionapi.metmuseum.org/public/collection/v1/` | None | ~80 req/sec | 3 |
-| Art Institute Chicago | `https://api.artic.edu/api/v1/artworks` | None | 1 req/sec | 3 |
-| Getty ULAN | `https://data.getty.edu/vocab/sparql` | None | Conservative | 5 |
+| Source | Endpoint | Auth | Local access pattern |
+|---|---|---|---|
+| Wikidata | `https://query.wikidata.org/sparql` | None | Batched SPARQL with disk cache and polite delay |
+| Met Museum | `https://collectionapi.metmuseum.org/public/collection/v1/` | None | Artist/object API with disk cache |
+| Art Institute Chicago | `https://api.artic.edu/api/v1/artworks` | None | Search/object API; ~1 request/sec |
+| Getty ULAN | `https://vocab.getty.edu/ulan/{id}.json` | None | Per-record JSON-LD with disk cache and attribution |
 
-All data sources are free. Met/AIC/Wikidata are CC0. Getty ULAN is ODC-By (attribution required on about page).
+Wikidata structured data is CC0; the current Met/AIC open-data and eligible
+public-domain image paths are treated as CC0; Getty ULAN is ODC-By 1.0 and is
+attributed on About. Commons file licenses vary and remain linked at the file
+page. The maintained field/source/license record is
+`docs/DATASET_DATASHEET.md`; source-specific terms still apply to the mixed
+export.
 
 ## SPARQL queries (Wikidata)
 
@@ -147,33 +227,50 @@ WHERE {
   ?sculptor wdt:P31  wd:Q5 .
   ?sculptor wdt:P106 ?occ .
   ?occ      wdt:P279* wd:Q1281618 .
-  ?sculptor wdt:P569 ?birth .
+  ?sculptor p:P569 ?birthStatement .
+  ?birthStatement psv:P569 ?birthValue .
+  ?birthValue wikibase:timeValue ?birth ;
+              wikibase:timePrecision ?birthPrecision .
+  FILTER(?birthPrecision >= 9)
   FILTER(?birth >= '{min_birth_year}-01-01T00:00:00Z'^^xsd:dateTime)
 }
 ```
 
-Returns ~50K QIDs. Cache as parquet.
+Precision 9 is year-level; month/day precision is higher. Decade, century, or
+broader values are not flattened into fake boundary years. Cache as parquet.
 
 ### Query 2: Node details (batched via VALUES on ?qid)
 
 ```sparql
 SELECT
   (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?qid_clean)
-  ?name
+  (SAMPLE(?nameAny) AS ?name)
   (MIN(?b) AS ?birth)
+  (MAX(?birthPrecisionRaw) AS ?birth_precision)
   (MAX(?d) AS ?death)
+  (MAX(?deathPrecisionRaw) AS ?death_precision)
   (SAMPLE(?genderLabel) AS ?gender)
 WHERE {
   {{VALUES_BLOCK}}
-  ?qid rdfs:label ?name . FILTER(LANG(?name) = 'en')
-  ?qid wdt:P569 ?b .
-  OPTIONAL { ?qid wdt:P570 ?d . }
+  ?qid rdfs:label ?nameAny . FILTER(LANG(?nameAny) IN ('en', 'mul'))
+  ?qid p:P569 ?birthStatement .
+  ?birthStatement psv:P569 ?birthValue .
+  ?birthValue wikibase:timeValue ?b ;
+              wikibase:timePrecision ?birthPrecisionRaw .
+  FILTER(?birthPrecisionRaw >= 9)
+  OPTIONAL {
+    ?qid p:P570 ?deathStatement .
+    ?deathStatement psv:P570 ?deathValue .
+    ?deathValue wikibase:timeValue ?d ;
+                wikibase:timePrecision ?deathPrecisionRaw .
+    FILTER(?deathPrecisionRaw >= 9)
+  }
   OPTIONAL {
     ?qid wdt:P21 ?genderEntity .
     ?genderEntity rdfs:label ?genderLabel . FILTER(LANG(?genderLabel) = 'en')
   }
 }
-GROUP BY ?qid ?name
+GROUP BY ?qid
 ```
 
 ### Query 3: Movements (batched)
@@ -204,35 +301,24 @@ WHERE {
 
 ### Query 5: Relations (batched)
 
-⚠️ **CRITICAL:** The variable in `{{VALUES_BLOCK}}` MUST be `?qid` — the same variable used in the query body. A previous version used `?sculptor` in the body but `?qid` in VALUES, causing a cartesian product (449M rows).
-
-⚠️ **CRITICAL:** The source sculptor filter (`?sourceOcc wdt:P279* wd:Q1281618`) is REQUIRED. Without it, the query returns all influences (painters, architects, etc.) producing 2GB+ results.
+The variable in `{{VALUES_BLOCK}}` must be `?qid`, the target sculptor. P737
+and P1066 run as separate templates because the previous `UNION` plan timed
+out. Source endpoints need only be humans: cross-media mentors are intentional
+and are exported as `external_mentors.json` rather than silently discarded.
 
 ```sparql
-SELECT
+SELECT DISTINCT
   (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?to_qid)
-  ?sculptorLabel
   (REPLACE(STR(?source), 'http://www.wikidata.org/entity/', '') AS ?from_qid)
-  ?sourceLabel
-  ?relation_type
 WHERE {
   {{VALUES_BLOCK}}
-  {
-    ?qid wdt:P737 ?source .
-    BIND('influenced_by' AS ?relation_type)
-  }
-  UNION
-  {
-    ?qid wdt:P1066 ?source .
-    BIND('student_of' AS ?relation_type)
-  }
+  ?qid wdt:P737 ?source . # second pass substitutes P1066
   ?source wdt:P31 wd:Q5 .
-  ?source wdt:P106 ?sourceOcc .
-  ?sourceOcc wdt:P279* wd:Q1281618 .
-  ?qid rdfs:label ?sculptorLabel . FILTER(LANG(?sculptorLabel) = 'en')
-  ?source rdfs:label ?sourceLabel . FILTER(LANG(?sourceLabel) = 'en')
 }
 ```
+
+Endpoint labels are fetched in a separate multilingual-fallback query so a
+missing English label never removes an edge.
 
 ### Batching pattern
 
@@ -245,28 +331,33 @@ def build_values_block(qids: list[str]) -> str:
     return f"VALUES ?qid {{ {values} }}"
 ```
 
-Batch size: 300 QIDs per request. 0.5s delay between batches.
+Batch size: 300 QIDs per request. 2s delay between batches.
 Template uses `{{VALUES_BLOCK}}` placeholder, replaced at runtime.
 
 ## Known data quality issues
 
 1. **Wikidata movement labels are unreliable.** 4 of 15 focus sculptors had wrong labels (e.g., Barbara Hepworth = "Catalan modernism" instead of Unit One/Abstraction-Création). Fix via `overrides/movement_overrides.csv`.
-2. **Relations are sparse for famous modern sculptors.** Wikidata has ~3,864 sculptor-to-sculptor edges total but only 1 among the focus list. Getty ULAN (Phase 5) will help.
+2. **Person-person relations remain sparse and uneven.** The published snapshot has 1,423 P1066/P737 edges plus external mentors; institution hubs add useful structure but do not make the graph a complete record of influence.
 3. **Connections chart skews toward French/German academic institutions.** Rümann (91 edges), Falguière (69), Jouffroy (65) are well-documented professors, not necessarily the most influential sculptors. This is institutional documentation density, not art-historical importance.
-4. **Met/AIC medium strings need parsing.** Strings like "Marble, with traces of paint" need mapping to clean categories via Claude API classification → `overrides/medium_taxonomy.csv`.
+4. **Met/AIC medium strings require editorial taxonomy.** Strings like “Marble, with traces of paint” are mapped through `overrides/medium_taxonomy.csv`; preserve the source string and audit the mapping rather than treating a classifier output as fact.
 5. **"Contemporary art" as a movement label is a catch-all.** It signals incomplete data, not a real movement classification.
+6. **Imprecise source dates require an explicit boundary.** `Q87366` exposed the failure mode: Wikidata’s “18th century” value was previously flattened to 1800, creating an impossible 1800–1756 lifespan. Discovery/details now require year precision or better, `process_nodes()` rejects any remaining birth-after-death row, `overrides/person_exclusions.csv` protects old caches, and `pipeline/test_data_contracts.py` verifies the committed public export.
 
 ## Focus sculptors
 
 The canonical list lives in **`overrides/focus_sculptors.csv`** (single source of truth). The pipeline reads it at runtime via `config.load_focus_sculptors()`.
 
-Currently 47 sculptors: 38 from Fabio's curated NSS list + 9 additions for broader art history coverage. The CSV tracks `name`, `birth_year`, `death_year`, `source` (fabio/original), and optional `notes`.
+Currently 48 sculptors: 39 from Fabio's curated NSS list + 9 additions for broader art history coverage. The CSV tracks `name`, `birth_year`, `death_year`, `source` (fabio/original), and optional `notes`.
 
 To add a sculptor: edit the CSV. The pipeline will pick it up on the next run.
 
 ## TypeScript interfaces
 
-These are the exact shapes of the JSON files the web app loads. Implement in `src/lib/types.ts`.
+The examples below preserve the original core schema for rationale, but
+they are no longer the complete contract. The exact current TypeScript
+shapes live in `web/src/lib/types.ts`; the producer is
+`pipeline/export_json.py`. Verify both before changing a field, and keep
+producer, consumers, tests, and this document synchronized.
 
 ```typescript
 export interface Sculptor {
@@ -274,7 +365,7 @@ export interface Sculptor {
   name: string;                   // "Auguste Rodin"
   birth_year: number | null;      // 1840
   death_year: number | null;      // 1917 (null if living)
-  gender: string | null;          // "male" | "female" | null
+  gender: string | null;          // source P21 English label; never inferred
   movement: string | null;        // display movement (most frequent label)
   citizenship: string | null;     // display citizenship (most frequent)
   birth_decade: number;           // 1840
@@ -290,6 +381,14 @@ export interface Edge {
   to_qid: string;                 // "Q156458"
   to_name: string;                // "Camille Claudel"
   relation_type: string;          // "influenced_by" | "student_of"
+  min_start: number | null;       // earliest possible start
+  max_start: number | null;       // latest possible start
+  min_end: number | null;         // earliest possible end
+  max_end: number | null;         // latest possible end
+  date_source: string | null;     // qualifier | lifespan_intersect | +age_prior
+  confidence: string | null;      // high | medium | low (dating only)
+  temporal_status: string;        // dated | unavailable
+  temporal_reason: string | null; // explicit reason when unavailable
 }
 
 export interface DecadeAggregation {
@@ -303,9 +402,25 @@ export type SculptorsJSON = Sculptor[];
 export type EdgesJSON = Edge[];
 export type MovementsByDecadeJSON = DecadeAggregation[];
 export type GeographyByDecadeJSON = DecadeAggregation[];
-export type MaterialsByDecadeJSON = DecadeAggregation[];  // Phase 3
+export type MaterialsByDecadeJSON = DecadeAggregation[];
 export type FocusSculptorsJSON = Sculptor[];               // subset with overrides applied
 ```
+
+The committed web projection uses camelCase equivalents (`minStart`,
+`dateSource`, `temporalStatus`, and so on) for compatibility with the
+existing app. P1066/P737 and P69/P937 edges share the six envelope
+fields. Known person-person assertions with invalid, missing, or
+disjoint endpoint lifespans remain in `edges.json` with null envelope
+fields and an explicit `temporalReason`; institutional source rows with
+empty intersections are excluded and counted in export/transparency
+metadata. Confidence describes temporal precision, not the truth of the
+relationship assertion.
+
+Fresh full exports require the gitignored parquet caches. When a
+worktree only has the committed static snapshot, run
+`python3 pipeline/backfill_relationship_exports.py`; it uses the same
+pure helpers as `export_json.py` and preserves the source snapshot’s
+`generatedAt` date.
 
 ## Next.js static export
 
@@ -425,15 +540,15 @@ Q159409,Louise Bourgeois,abstract expressionism,Feminist art / Surrealism,"Not A
 
 The pipeline reads this file in `process.py` and replaces the Wikidata movement with the corrected value for these QIDs.
 
-## Future data sources (researched, not yet integrated)
+## Data/source expansion candidates
 
 | Source | What it gives us | Access | Priority |
 |--------|-----------------|--------|----------|
-| **Getty ULAN** | 293K+ artists with teacher/student/influence relationships. SPARQL at `vocab.getty.edu/sparql` | Free (ODC-By) | High — transforms lineage graph |
-| **Wikidata P18** | Wikimedia Commons image URL for ~40% of sculptors | Free (CC0) | Low — images deferred |
+| **SAAM LOD** | Biographical narratives relevant to migration and Great Migration stories | Free (CC0) | Medium/high after 5Q; validate join/rights and narrative coverage |
+| **Met/AIC IIIF widening** | More public-domain works and sculpture images beyond current coverage | Free APIs/IIIF | Medium; coverage, attribution, and interpretive value gate |
 | **Europeana API** | 50M+ cultural heritage items from European museums | Free API key | Medium |
-| **IIIF** | Standardized image serving from Met, AIC, and 100+ museums | Free | Low — when images needed |
-| **Wikidata P186** | Material used for specific works (marble, bronze, etc.) | Free (CC0) | Medium |
+| **Additional IIIF institutions** | Standardized image delivery from many museums | Varies | Medium/long term; source/license review required |
+| **Wikidata P186** | Material used for specific works | Free (CC0) | Supplemental; measure accuracy/completeness against museum records |
 
 ## Exemplary projects (reference, not implementation targets)
 
@@ -441,9 +556,13 @@ The pipeline reads this file in `process.py` and replaces the Wikidata movement 
 - **Google "Museum of the World"** (`britishmuseum.withgoogle.com`) — Timeline of objects across continents/cultures. WebGL.
 - **Yale PixPlot** (`dhlab.yale.edu/projects/pixplot`) — UMAP embedding visualization of large image collections. Reference for future embedding scatter feature.
 - **The Pudding** (`pudding.cool`) — Visual essay methodology. "Making Internet Things" series on data → narrative → visual.
-- **Sigma.js** (`sigmajs.org`) — WebGL network graph library. Candidate to replace `react-force-graph-2d` when lineage graph scales.
+- **Sigma.js** (`sigmajs.org`) — WebGL network reference. The current graph is D3 force/SVG; consider Canvas/WebGL only when a valuable view exceeds the measured budget after simplification.
 
-## Embedding visualization concept (Phase 3-4)
+## Embedding visualization concept (Phase 5h, evidence-gated)
+
+This is a research sketch, not an active commitment. Works coverage,
+rights, reader task, bias analysis, interpretability, and simpler
+baselines must pass before implementation.
 
 A "Sculpture Space" where every sculptor is a 2D point, clustered by similarity:
 
@@ -461,4 +580,3 @@ Open questions:
 - Distance metric: Gower (handles mixed types natively) vs. one-hot + cosine?
 - Evaluation: how to assess if clusters are meaningful vs. reflecting documentation density?
 - Later: CLIP image embeddings (multimodal) once sculpture images are available.
-

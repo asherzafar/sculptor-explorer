@@ -1,8 +1,16 @@
-# Codex Handoff
+# Codex Handoff (historical 5b.4 record)
+
+> This document preserves the detailed 5b.3–5b.4 implementation handoff.
+> For current work in Codex, Claude, Cursor, Windsurf, Copilot, or another
+> agent, start with root `AGENTS.md` and `docs/AGENT_HANDOFF.md`.
+> Current strategy lives in `docs/PROJECT_CHARTER.md` and
+> `docs/EXPLORATION_STRATEGY.md`, active choices in
+> `docs/DECISIONS.md`, and sequencing in `docs/ROADMAP.md`.
 
 ## Current repo state
 
-Branch: `main`
+Recorded branch at the time of the handoff: `main`. Verify the current
+checkout rather than assuming this remains true.
 
 Notable implementation/review anchors:
 
@@ -13,7 +21,8 @@ Notable implementation/review anchors:
 
 Run `git log --oneline -5` for the latest pushed review-polish commit.
 
-This handoff document should be read first when continuing in Codex.
+This historical handoff should be read when changing the institutional
+graph substrate or reconstructing the 5b.3–5b.4 decisions.
 
 ## Current phase
 

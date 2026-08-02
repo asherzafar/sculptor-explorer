@@ -15,11 +15,13 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ArrowUp, ArrowDown, Search } from "lucide-react";
 import type { SculptorIndexEntry } from "@/lib/types";
-import { loadSculptorsIndex } from "@/lib/data";
-import { formatDisplayValue, formatGender, movementSlug } from "@/lib/utils";
+import { loadMovementIndex, loadSculptorsIndex } from "@/lib/data";
+import { formatDisplayValue, formatGender } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { PageHeader } from "@/components/PageHeader";
+import { DataScopeNote } from "@/components/DataScopeNote";
+import { dataSnapshot } from "@/lib/snapshot";
 
 // Diacritic-insensitive text normalization for search
 function normalizeText(text: string): string {
@@ -29,98 +31,106 @@ function normalizeText(text: string): string {
     .replace(/[\u0300-\u036f]/g, ""); // Remove diacritics
 }
 
-const columns: ColumnDef<SculptorIndexEntry>[] = [
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => {
-      const s = row.original;
-      // Show the native form as a second line only when it's meaningfully
-      // distinct from the romanization (different script or different
-      // spelling). Wikidata's en-language P1559 entries that just echo the
-      // display name would be noise.
-      const showNative =
-        !!s.nativeName &&
-        !!s.nativeLang &&
-        s.nativeLang !== "en" &&
-        s.nativeName !== s.name;
-      return (
-        <Link
-          href={`/explore/${s.qid}`}
-          className="block group cursor-pointer"
-        >
-          <span className="text-accent-primary group-hover:underline">
-            {s.name}
-          </span>
-          {showNative && (
-            <span
-              lang={s.nativeLang ?? undefined}
-              className="block text-xs text-text-tertiary mt-0.5"
-            >
-              {s.nativeName}
+function createColumns(
+  movementPages: ReadonlyMap<string, string>,
+): ColumnDef<SculptorIndexEntry>[] {
+  return [
+    {
+      accessorKey: "name",
+      header: "Name",
+      cell: ({ row }) => {
+        const s = row.original;
+        // Show the native form as a second line only when it's meaningfully
+        // distinct from the romanization (different script or different
+        // spelling). Wikidata's en-language P1559 entries that just echo the
+        // display name would be noise.
+        const showNative =
+          !!s.nativeName &&
+          !!s.nativeLang &&
+          s.nativeLang !== "en" &&
+          s.nativeName !== s.name;
+        return (
+          <Link
+            href={`/explore/${s.qid}`}
+            className="block group cursor-pointer"
+          >
+            <span className="text-accent-primary group-hover:underline">
+              {s.name}
             </span>
-          )}
-        </Link>
-      );
+            {showNative && (
+              <span
+                lang={s.nativeLang ?? undefined}
+                className="block text-xs text-text-tertiary mt-0.5"
+              >
+                {s.nativeName}
+              </span>
+            )}
+          </Link>
+        );
+      },
     },
-  },
-  {
-    accessorKey: "birthYear",
-    header: "Born",
-    cell: ({ row }) => row.getValue("birthYear") ?? "—",
-  },
-  {
-    accessorKey: "deathYear",
-    header: "Died",
-    cell: ({ row }) => row.getValue("deathYear") ?? "—",
-  },
-  {
-    accessorKey: "movement",
-    header: "Movement",
-    cell: ({ row }) => {
-      const movement = row.getValue("movement") as string;
-      // Only real movements get a destination page — the "No movement
-      // listed" sentinel is filtered out of movements.json, so linking
-      // it would 404. The dash is consistent with how empty cells
-      // render in the other columns.
-      if (!movement || movement === "No movement listed") {
-        return formatDisplayValue(movement, { isMovement: true });
-      }
-      return (
-        <Link
-          href={`/movement/${movementSlug(movement)}`}
-          className="text-accent-primary hover:underline"
-        >
-          {formatDisplayValue(movement, { isMovement: true })}
-        </Link>
-      );
+    {
+      accessorKey: "birthYear",
+      header: "Born",
+      cell: ({ row }) => row.getValue("birthYear") ?? "—",
     },
-  },
-  {
-    accessorKey: "gender",
-    header: "Gender",
-    cell: ({ row }) => {
-      const gender = row.getValue("gender") as string;
-      return formatGender(gender);
+    {
+      accessorKey: "deathYear",
+      header: "Died",
+      cell: ({ row }) => row.getValue("deathYear") ?? "—",
     },
-  },
-  {
-    accessorKey: "citizenship",
-    header: "Citizenship",
-    cell: ({ row }) => {
-      const citizenship = row.getValue("citizenship") as string;
-      return citizenship || "—";
+    {
+      accessorKey: "movement",
+      header: "Movement",
+      cell: ({ row }) => {
+        const movement = row.getValue("movement") as string;
+        // The exporter only creates aggregate pages for labels attached to at
+        // least three published sculptors. Lower-frequency source labels stay
+        // visible as text without advertising a route that does not exist.
+        if (!movement || movement === "No movement listed") {
+          return formatDisplayValue(movement, { isMovement: true });
+        }
+        const pageSlug = movementPages.get(movement);
+        if (!pageSlug) {
+          return formatDisplayValue(movement, { isMovement: true });
+        }
+        return (
+          <Link
+            href={`/movement/${pageSlug}`}
+            onClick={(event) => event.stopPropagation()}
+            className="text-accent-primary hover:underline"
+          >
+            {formatDisplayValue(movement, { isMovement: true })}
+          </Link>
+        );
+      },
     },
-  },
-  {
-    accessorKey: "birthDecade",
-    header: "Decade",
-    cell: ({ row }) => {
-      const decade = row.getValue("birthDecade") as number | null;
-      return decade ? `${decade}s` : "—";
+    {
+      accessorKey: "gender",
+      header: "Gender",
+      cell: ({ row }) => {
+        const gender = row.getValue("gender") as string;
+        return formatGender(gender);
+      },
     },
-  },
-];
+    {
+      accessorKey: "citizenship",
+      header: "Citizenship",
+      cell: ({ row }) => {
+        const citizenship = row.getValue("citizenship") as string;
+        return citizenship || "—";
+      },
+    },
+    {
+      accessorKey: "birthDecade",
+      header: "Decade",
+      cell: ({ row }) => {
+        const decade = row.getValue("birthDecade") as number | null;
+        return decade ? `${decade}s` : "—";
+      },
+    },
+  ];
+}
 
 function SortHeader({
   column,
@@ -152,12 +162,21 @@ export default function ExplorePage() {
   ]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const [movementPages, setMovementPages] = useState<ReadonlyMap<string, string>>(
+    () => new Map(),
+  );
 
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await loadSculptorsIndex();
+        const [data, movementIndex] = await Promise.all([
+          loadSculptorsIndex(),
+          loadMovementIndex().catch(() => []),
+        ]);
         setSculptors(data);
+        setMovementPages(
+          new Map(movementIndex.map((movement) => [movement.name, movement.slug])),
+        );
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
@@ -183,6 +202,11 @@ export default function ExplorePage() {
       return false;
     });
   }, [sculptors, globalFilter]);
+
+  const columns = useMemo(
+    () => createColumns(movementPages),
+    [movementPages],
+  );
 
   const table = useReactTable({
     data: filteredData,
@@ -211,6 +235,13 @@ export default function ExplorePage() {
       <PageHeader
         title="Explore Sculptors"
         subtitle={`Search and filter ${sculptors.length.toLocaleString()} sculptors from the collection.`}
+      />
+
+      <DataScopeNote
+        className="mb-6"
+        source={`Wikidata artist records selected by inclusion methodology ${dataSnapshot.methodologyVersion}; explicit overrides and exclusions are disclosed on Transparency.`}
+        scope={`${sculptors.length.toLocaleString()} published sculptors from ${dataSnapshot.eligibleCandidates.toLocaleString()} analytically eligible candidates after evidence-backed exclusions.`}
+        limits={`Fields are source assertions, not editorial identity judgments. Missing values render as —; movement is present for ${dataSnapshot.fieldCoverage.movement_display.present.toLocaleString()} of ${dataSnapshot.fieldCoverage.total.toLocaleString()} published records.`}
       />
 
       {/* Global search */}

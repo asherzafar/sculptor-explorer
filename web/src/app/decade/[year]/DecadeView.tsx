@@ -10,6 +10,7 @@ import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { NotableSculptorCard } from "@/components/NotableSculptorCard";
 import { StatBlock } from "@/components/StatBlock";
+import { DataScopeNote } from "@/components/DataScopeNote";
 
 /**
  * DecadeView — renders one /decade/[year] page.
@@ -90,7 +91,7 @@ export function DecadeView({ year }: { year: string }) {
 
   const genderTotal =
     decade.gender.female + decade.gender.male + decade.gender.otherOrUnknown;
-  const femalePct =
+  const femaleLabelPct =
     genderTotal > 0
       ? Math.round((decade.gender.female / genderTotal) * 100)
       : 0;
@@ -109,7 +110,7 @@ export function DecadeView({ year }: { year: string }) {
         title={`The ${year}s`}
         subtitle={`${decade.totalBorn.toLocaleString()} sculptors in the published set were born in this decade.${
           decade.migration.crossPct != null
-            ? ` ${decade.migration.crossPct}% of those with both birth and death countries on record left the country they were born in.`
+            ? ` ${decade.migration.crossPct}% of those with both endpoint countries recorded have different birth and death countries.`
             : ""
         }`}
         actions={
@@ -117,15 +118,22 @@ export function DecadeView({ year }: { year: string }) {
         }
       />
 
+      <DataScopeNote
+        className="mb-6"
+        source="Published Wikidata records: P569/P570 for dates, P21 for recorded gender, P19/P20 → P17 for endpoint countries, P135 for movements, and P737/P1066 for graph degree."
+        scope={`${decade.totalBorn.toLocaleString()} published sculptors born in the ${year}s; endpoint-country percentages use ${decade.migration.eligible.toLocaleString()} non-living records with both countries.`}
+        limits="Gender categories reproduce source labels and are not inferred. Country and movement lists show only leading recorded categories; their percentages use the full decade cohort, so missing and long-tail values remain outside the displayed bars. Endpoint-country differences do not reconstruct migration paths."
+      />
+
       {/* Headline grid — three small stat blocks summarizing the decade. */}
       <div className="mb-10 grid gap-3 sm:grid-cols-3">
         <StatBlock
-          label="Sculptors born"
-          value={decade.totalBorn.toLocaleString()}
-          sub={`${femalePct}% women on record · ${decade.gender.otherOrUnknown} unspecified`}
+          label="Recorded gender (Wikidata P21)"
+          value={`${femaleLabelPct}%`}
+          sub={`${decade.gender.female} of ${genderTotal} labeled female · ${decade.gender.otherOrUnknown} other labels or unknown`}
         />
         <StatBlock
-          label="Cross-border share"
+          label="Different endpoint countries"
           value={
             decade.migration.crossPct != null
               ? `${decade.migration.crossPct}%`
@@ -206,9 +214,9 @@ export function DecadeView({ year }: { year: string }) {
             Top migration corridors
           </h2>
           <p className="text-sm text-text-secondary mb-4 max-w-3xl">
-            Where sculptors born in the {year}s were most likely to die.
-            Numbers cap at sculptors with both a birth and death country
-            on record.
+            The most frequent recorded birth-country → death-country pairs
+            among eligible sculptors born in the {year}s. These endpoints do
+            not show the route, timing, or reason for movement.
           </p>
           <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {decade.topCorridors.map((f, i) => (
@@ -242,11 +250,11 @@ export function DecadeView({ year }: { year: string }) {
         </section>
       )}
 
-      {/* Notable sculptors */}
+      {/* Most-connected sculptors in this graph */}
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="font-display text-xl font-semibold text-text-primary">
-            Notable sculptors
+            Most-connected sculptors in this graph
           </h2>
           <span className="text-sm text-text-tertiary">
             Top {decade.notable.length} by lineage connections
@@ -255,7 +263,7 @@ export function DecadeView({ year }: { year: string }) {
         {decade.notable.length === 0 ? (
           <EmptyState
             variant="block"
-            title="No notable sculptors found"
+            title="No connected sculptors found"
             description="The published set has no entries for this decade. This is rare — check the URL."
           />
         ) : (
