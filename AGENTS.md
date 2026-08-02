@@ -90,11 +90,10 @@ Before handing off:
 
 ## Validation commands
 
-Use Node 20 for the current committed repository contract. Vercel already
-reports Node 24, and the focused alignment task in `docs/ROADMAP.md` must update
-this instruction, both version files, the package engine/lockfile, CI, and
-deployment documentation together. The canonical bounded gate, from the
-repository root, is:
+Use Node 24 for the canonical local, CI, and Vercel repository contract. The
+root and `web` `.nvmrc` files both select 24, `web/package.json` declares
+`engines.node: "24.x"`, and CI selects Node 24 explicitly. The canonical
+bounded gate, from the repository root, is:
 
 ```bash
 ./scripts/validate.sh

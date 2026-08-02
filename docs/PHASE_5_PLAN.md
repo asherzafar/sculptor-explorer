@@ -3,9 +3,10 @@
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
 > implemented in the current release candidate; 5Q stabilization and visual
 > foundations are the active bounded implementation gate. The verified
-> branch/CI/Vercel workflow and focused Node 24 repository alignment in
-> `docs/ROADMAP.md` are small release enablers before the next route code
-> slice; they do not reopen feature densification. Complete Phase 5Q
+> branch/CI/Vercel workflow and locally validated Node 24 repository alignment
+> in `docs/ROADMAP.md` are small release enablers before the next route code
+> slice; the latter still requires same-head GitHub/Vercel confirmation before
+> archive. They do not reopen feature densification. Complete Phase 5Q
 > in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The later phases
 > in this document are researched hypotheses, not commitments; re-score
 > them against `docs/PROJECT_CHARTER.md` using the product, data,

@@ -12,13 +12,12 @@ The committed snapshot audited on 2026-08-02 contains 3,543 included sculptors a
 
 ## Quick start
 
-The repository currently declares Node 20.9 or newer for local/CI use, while
-the connected Vercel project already reports Node `24.x`. The next focused
-infrastructure task standardizes all three environments on Node 24; until that
-review lands, follow the committed local/CI contract rather than changing one
-surface ad hoc.
+Node 24 is the canonical runtime for local development, GitHub Actions, and
+Vercel. From the repository root, `nvm use` reads the root `.nvmrc`; the
+`web/.nvmrc` and `web/package.json` engine contract select the same major.
 
 ```bash
+nvm use
 cd web
 npm ci
 npm run dev
@@ -128,7 +127,7 @@ statically exported by Next.js.
 | Root directory | `web` |
 | Build command | `npm run build` |
 | Output directory | `out` |
-| Node version | Vercel project: `24.x`; repository/CI currently: `20.9+` (`web/.nvmrc`, `web/package.json`, and CI), with alignment scheduled next |
+| Node version | `24.x` in Vercel, `web/package.json`, both `.nvmrc` files, and GitHub Actions |
 
 The stale <https://sculpture-in-data.netlify.app/> deployment is a legacy
 host scheduled for deliberate retirement in Phase 5Q.4c. Replace its stale
