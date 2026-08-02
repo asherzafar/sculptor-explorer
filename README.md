@@ -102,7 +102,9 @@ See `docs/AGENT_HANDOFF.md` for the current pass/fail baseline. As of the Phase 
 
 ## Deployment
 
-The app is hosted on Vercel and statically exported by Next.js.
+The canonical production site is
+<https://sculptor-explorer.vercel.app/>. It is hosted on Vercel and
+statically exported by Next.js.
 
 | Setting | Value |
 |---|---|
@@ -112,4 +114,10 @@ The app is hosted on Vercel and statically exported by Next.js.
 | Output directory | `out` |
 | Node version | 20.9+ (`web/.nvmrc` and `web/package.json`) |
 
-Netlify is retained as historical/fallback configuration. Cloudflare’s free static-asset manifest limit is below the current per-sculptor export’s file count, so Vercel remains the practical target unless the export architecture changes.
+The stale <https://sculpture-in-data.netlify.app/> deployment is a legacy
+host scheduled for deliberate retirement in Phase 5Q.4c. Replace its stale
+content with a path-preserving redirect before deciding whether to delete the
+Netlify project; do not deploy the current application there. Cloudflare’s
+free static-asset manifest limit is below the current per-sculptor export’s
+file count, so Vercel remains the practical target unless the export
+architecture changes.

@@ -11,6 +11,11 @@ Phase 5Q—the product clarity and quality gate—is active before 5b.6 movement
 
 Checkpoint branch: `codex/phase-5q-stabilization`.
 
+Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
+identified <https://sculpture-in-data.netlify.app/> as a stale legacy
+deployment; 5Q.4c schedules a path-preserving redirect and observation window
+before any Netlify project deletion. Do not deploy current work to Netlify.
+
 ## Founder direction added 2026-08-02
 
 - The project began with a National Sculpture Society friend’s request for a sculptor lifespan graph, then became a vehicle for playful art-data visualization and AI-assisted development.
@@ -42,7 +47,7 @@ Checkpoint branch: `codex/phase-5q-stabilization`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
 - All four production chart SVGs now have roles and accessible names. Useful text/structured equivalents, keyboard-accessible chart details, focus behavior, and non-color encodings still require the systematic 5Q.4 pass.
-- The Codex app's in-app browser safety policy denied localhost inspection during 5Q.4a. The earlier repository-local Chromium journeys still pass, but they test core routes/provenance rather than human aesthetics or assistive technology; do not treat them as the 5Q.4 visual/accessibility gate or route around the browser-policy boundary.
+- The Codex app's in-app browser safety policy denied localhost inspection and a later read-only attempt on the canonical Vercel URL during 5Q.4a. The earlier repository-local Chromium journeys still pass, but they test core routes/provenance rather than human aesthetics or assistive technology; do not treat them as the 5Q.4 visual/accessibility gate or route around the browser-policy boundary.
 
 ## Validation state at this handoff
 
@@ -92,7 +97,7 @@ in-app browser safety denial. Its last green seven-journey result remains the
 
 ## Recommended next sequence
 
-1. Complete 5Q.4a’s rendered evidence: consistent route screenshots, real-content type/color/layout specimen, zoom/reflow and keyboard/assistive-technology checks, perceptual and performance review. The source/contract baseline and alternatives are already recorded.
+1. Validate the current branch-to-Vercel preview workflow without promoting production, then complete 5Q.4a’s rendered evidence: consistent route screenshots, real-content type/color/layout specimen, zoom/reflow and keyboard/assistive-technology checks, perceptual and performance review. The source/contract baseline and alternatives are already recorded.
 2. Implement end-to-end route slices in order: Explore, Timeline, dense Lineage/Migration, then propagate earned patterns to the remaining routes; apply the route review gate each time.
 3. Add privacy-respecting analytics and run five structured user sessions across the audience hypotheses.
 4. Hold the Phase 5R strategic horizon workshop and use the evidence to choose among findability/connective tissue, coordinated views/entry points, works/IIIF story depth, and artist-neutral source/model pilots before further graph densification.

@@ -17,6 +17,7 @@ This is the compact record of consequential product, research, and architecture 
 | D009 | Treat 1800 as the current public data boundary, not a permanent model limit. | Accepted | An earlier-period source-fitness pilot supports a responsible boundary change. | `docs/EXPLORATION_STRATEGY.md` |
 | D010 | The public explorer may show rule- or model-derived relationships only as opt-in layers that are visibly and semantically distinct from source assertions and expose their method/evidence. | Accepted | User research shows the distinction is still misunderstood, or the evidence contract cannot be met. | Founder confirmation, 2026-08-02; `docs/EXPLORATION_STRATEGY.md` |
 | D011 | Attribute gender, citizenship, movement, and cultural labels to their source; do not infer identity or expand disjoint P27 sets/endpoints into travel, migration motive, refugee status, or cross-cultural influence. | Accepted | A stronger source/model is added or relevant domain/community review supports a specific consequential claim. | `docs/DATASET_DATASHEET.md`; `docs/CLAIM_REGISTER.md` |
+| D012 | Treat `sculptor-explorer.vercel.app` as canonical production. Retire the stale Netlify deployment through a path-preserving redirect and review window before deciding whether to delete it. | Accepted | A custom domain becomes canonical or a different host passes deployment-scale review. | Founder direction, 2026-08-02; `docs/ROADMAP.md` |
 
 ## Decisions requiring founder input
 

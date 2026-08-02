@@ -23,10 +23,13 @@ This artifact distinguishes three evidence levels:
    chart-detail inspection, zoom/reflow, screen reader behavior, and
    comprehension with readers.
 
-The Codex in-app browser safety layer denied this repository’s localhost URL.
-That is an automatic browser-policy boundary, not a request for broader file
+The Codex in-app browser safety layer denied both this repository’s localhost
+URL and a later read-only attempt on the canonical Vercel deployment. That is
+an automatic browser-policy boundary, not a request for broader file
 permissions. No alternate browser-control route was used. Automated browser
-success is therefore not presented as visual or assistive-technology evidence.
+success is therefore not presented as visual or assistive-technology evidence;
+the branch-preview workflow or user-supplied screenshots must provide the next
+supported rendered-evidence path.
 
 ## Route and task matrix
 

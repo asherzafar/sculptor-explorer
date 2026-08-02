@@ -134,7 +134,7 @@ semantics, provenance, temporal queries, and a second-domain use case.
 - [x] Add Evolution to nav as 5th route (now that it has real charts)
 - [x] Filters write to URL params via `useSearchParams()` (decade → `?decade=1920`)
 - [x] Decade selector: clicking chart area filters focus sculptors + updates URL
-- [x] Deploy to Netlify — https://sculpture-in-data.netlify.app
+- [x] Initial Netlify deploy (historical; stale host scheduled for 5Q.4c retirement) — https://sculpture-in-data.netlify.app
 - [ ] Share with Fabio, collect feedback
 
 ---
@@ -352,6 +352,7 @@ major visual dimension.
 ##### 5Q.4a — Visual foundations and baseline (do first)
 
 - [x] Record the route/task matrix, encoding inventory, source audit, ranked findings, and initial alternative set in `docs/VISUAL_BASELINE_2026-08-02.md`.
+- [ ] Validate the branch-to-Vercel preview workflow from the current checkpoint before rendered review: preview only, no production promotion; record the preview URL, access boundary, source commit, and cleanup/retention behavior.
 - [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
 - [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
 - [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
@@ -373,6 +374,7 @@ major visual dimension.
 
 - [ ] Run the route-slice review gate on every primary journey, synthesize unresolved issues by severity, and update `docs/DESIGN_SYSTEM.md` only with patterns that passed evidence and reuse checks.
 - [ ] Preserve a before/after visual and performance record so future agents can distinguish intentional design decisions from drift.
+- [ ] Retire the stale `sculpture-in-data.netlify.app` deployment after Vercel production and preview behavior are verified: replace stale content with a path-preserving 301 to `sculptor-explorer.vercel.app`, review known repository references and available traffic/backlink evidence, keep the redirect through an explicit observation window, then record whether the safer endpoint is a long-lived redirect or Netlify project deletion.
 
 #### 5Q.5 — Learn before choosing the next bet
 
