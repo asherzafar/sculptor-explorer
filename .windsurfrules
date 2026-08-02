@@ -117,6 +117,9 @@ Recently completed:
 - Phase 5Q.1–5Q.3: one project truth, CI/browser gates, dependency triage, static-export/data invariants, dataset datasheet, claim register, route-level provenance, and sensitive-classification language review
 
 Next bounded work:
+- Phase 5Q release enabler: align the repository and GitHub Actions with the
+  already-configured Vercel Node 24 runtime in one reviewed infrastructure
+  branch; do not combine it with unrelated dependency or CI-optimization work
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase

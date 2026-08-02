@@ -191,8 +191,36 @@ The repository uses `AGENTS.md` as the canonical vendor-neutral entry point and 
 | Cursor | `.cursor/rules/project.mdc` | Repository project rule marked always-on. |
 | Windsurf | `.windsurfrules` | Repository rules file; retained as the implementation-values source. |
 | GitHub Copilot | `.github/copilot-instructions.md` | Repository-wide custom-instructions file. |
+| Skill-aware agents | `.agents/skills/ship-pr/` and `.agents/skills/visual-qa/` | Optional instruction-only workflow accelerators; `AGENTS.md` remains authoritative. |
 
 Unique policy must not live only in an adapter. When a tool cannot import another file, the adapter tells it which canonical files to read and contains only the minimum safe bootstrap rules.
+
+### Review, preview, and task-boundary practice
+
+The delivery evidence forms a chain rather than one undifferentiated “done”
+state:
+
+| Boundary | Question answered | Minimum evidence |
+|---|---|---|
+| Local implementation | Did one coherent change produce the intended result? | Scoped diff, proportional checks, and local review against the intended base. |
+| Remote validation | Does the exact published commit pass reproducibly? | Remote head/PR identity plus GitHub Actions results and useful failure logs. |
+| Preview validation | Does the hosted artifact correspond to that commit and build correctly? | Vercel Preview URL, source SHA, ready/build state, and deployment logs when needed. |
+| Rendered QA | Does the interface work and communicate at representative viewports and input modes? | Route/task evidence, console, desktop/mobile, keyboard/accessibility, URL restoration, and the applicable visual gate. |
+| Product decision | Should the change merge or the pattern propagate? | Required checks, rendered evidence, unresolved-risk ownership, and explicit founder decision where required. |
+
+Manual local review is the default before every publish. An automated Codex or
+other PR reviewer may be added later as an independent second perspective, but
+it does not replace the scoped diff review, deterministic checks, rendered QA,
+or the founder’s merge authority. Pilot it on a small number of draft PRs,
+measure signal/noise and usage cost, and do not make it a required check until
+its permissions, reliability, and false-positive handling are understood.
+
+Each bounded agent task ends as **COMPLETE — safe to archive**, **REVIEW READY
+— keep open**, or **BLOCKED — keep open**. The final handoff records exact
+artifacts/checks and supplies a ready-to-paste prompt for the next bounded
+task. This prevents long chats from becoming hidden project state and makes
+parallel tasks safe only when their branches, files, and completion boundaries
+are genuinely independent.
 
 ## Primary references
 
@@ -248,3 +276,8 @@ Unique policy must not live only in an adapter. When a tool cannot import anothe
 - Cursor, *Best practices for coding with agents*: <https://cursor.com/blog/agent-best-practices>
 - Windsurf, *Introduction to Rules, Memories, & Workflows*: <https://windsurf.com/university/general-education/intro-rules-memories>
 - GitHub, *Adding repository custom instructions for GitHub Copilot*: <https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions>
+- GitHub Actions, official releases for
+  [`actions/checkout`](https://github.com/actions/checkout/releases),
+  [`actions/setup-node`](https://github.com/actions/setup-node/releases), and
+  [`actions/setup-python`](https://github.com/actions/setup-python/releases).
+- Vercel, *Node.js Versions*: <https://vercel.com/docs/functions/runtimes/node-js/node-js-versions>

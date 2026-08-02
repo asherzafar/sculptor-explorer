@@ -48,16 +48,53 @@ While changing files:
 - Keep tool-specific agent files as thin adapters. Do not place unique project policy only in `CLAUDE.md`, `.cursor/`, `.github/`, or another vendor directory.
 - Do not adopt a graph database because the domain is graph-shaped. First document the semantic model, real queries, provenance/temporal requirements, benchmark, and architecture decision.
 
+## Task lifecycle and completion
+
+Keep one coherent outcome per task. The default delivery loop is:
+
+1. Inspect the governing context and evidence, make a bounded plan, and create
+   or use the intended named `codex/...` branch.
+2. Implement the smallest coherent change, validate it proportionally, and
+   review the complete diff against its intended base.
+3. Publish only with explicit user authorization. When available, use the
+   repository `ship-pr` skill in `.agents/skills/ship-pr/` for the commit,
+   draft-PR, GitHub Actions, and Vercel Preview workflow.
+4. For rendered-interface changes, run read-only QA against the exact preview
+   commit. When available, use `.agents/skills/visual-qa/`; fix confirmed
+   defects in the implementation task, then repeat validation and review.
+5. Merge only when the user explicitly requests it and the PR, required checks,
+   and rendered preview tell the same story.
+
+End every bounded task with exactly one status:
+
+- **COMPLETE — safe to archive:** the requested outcome and required checks are
+  complete; provide the exact next-task seed prompt when more work remains.
+- **REVIEW READY — keep open:** implementation or analysis is complete, but a
+  requested user review or publishing decision remains.
+- **BLOCKED — keep open:** name the exact blocker, evidence, safe attempts made,
+  and user/external action needed. Do not use this for ordinary future work.
+
+Repository skills are optional workflow accelerators, not new policy sources.
+They must import the intent of this file rather than duplicate product rules;
+agents that do not support repository skills must follow the same lifecycle
+directly.
+
 Before handing off:
 
 1. Run checks proportional to the change and report both successes and pre-existing failures.
 2. Reconcile status, counts, routes, schemas, and priorities across affected docs.
 3. Update `docs/AGENT_HANDOFF.md` when the verified state or next clean boundary changes.
 4. Summarize the outcome, files changed, tests run, known risks, and next decision. Do not claim a check passed if it was not run.
+5. State the task status, whether the task is safe to archive, and the exact
+   seed prompt for the next bounded task when continuation is expected.
 
 ## Validation commands
 
-Use Node 20. The canonical bounded gate, from the repository root, is:
+Use Node 20 for the current committed repository contract. Vercel already
+reports Node 24, and the focused alignment task in `docs/ROADMAP.md` must update
+this instruction, both version files, the package engine/lockfile, CI, and
+deployment documentation together. The canonical bounded gate, from the
+repository root, is:
 
 ```bash
 ./scripts/validate.sh

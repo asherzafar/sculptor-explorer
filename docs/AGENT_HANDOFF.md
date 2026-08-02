@@ -9,8 +9,22 @@ Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidat
 
 Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a and the first rendered Timeline slice are now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`. The rendered review covers 1440×900, 390×844, a 720×450 reflow proxy, pointer/URL behavior, representative focus, sampled contrast, chart focusability, and console output. It confirms that Timeline’s mobile chart, keyboard-detail path, touch targets, disclosure hierarchy, one annotation color, and shared skip-link behavior remain below the product gate. Remaining routes, actual browser zoom, text-spacing/forced-colors/reduced-motion, sequential keyboard/assistive-technology use, screen-reader output, performance, and reader comprehension remain open. Route slices still begin with Explore so its responsive list/state patterns can be earned before Timeline and dense charts reuse them. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
 
+The complete publishing/preview checkpoint is now independently verified at
+`8bb61a777007851abc060047894ed7e9c1828629`: draft PR #1 is mergeable, both
+final GitHub Actions runs passed the root gate and all seven Playwright
+journeys, and Vercel plus Vercel Preview Comments passed on that exact head.
+The rendered-Timeline audit task is complete and safe to archive. The remaining
+Cloudflare Workers failure belongs to the separate 5Q.4c hosting inventory; it
+does not mean repository code failed.
+
 Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
-Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline`.
+Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline` at
+`8bb61a777007851abc060047894ed7e9c1828629`, draft PR
+[#1](https://github.com/asherzafar/sculptor-explorer/pull/1).
+Workflow-standards continuation branch:
+`codex/phase-5q4-workflow-standards`, based on `8bb61a7`; its roadmap,
+handoff, lifecycle, and repository-skill changes require founder diff review
+before any commit or push.
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy
@@ -34,6 +48,13 @@ before any Netlify project deletion. Do not deploy current work to Netlify.
 - The snapshot has 1,423 person-person edges: 1,372 (96.4%) have temporal envelopes; 40 have disjoint lifespans and 11 lack the source person’s birth year. No known edge is silently dropped.
 - Institutional links cover 2,393 included sculptors (67.5%); 1,826 (51.5%) have education links. The top five recorded education hubs hold 15.8% of 2,868 education edges.
 - Production build, TypeScript, zero-warning lint, data contracts, seven browser journeys, and bounded performance checks pass locally. Browser coverage includes the shared source/scope/snapshot/limits disclosure on all seven analytical route types and exact movement-link/route integrity. GitHub Actions defines the non-browser root gate and explicit browser gate; the verified build generates 3,625 static pages.
+- The Vercel project currently reports Node `24.x`, and its latest PR #1
+  preview is READY at
+  `https://sculptor-explorer-hgkmgumny-asherzafars-projects.vercel.app` for
+  source `8bb61a7`. The repository still declares Node 20 in CI,
+  `web/.nvmrc`, `web/package.json`, `AGENTS.md`, and `README.md`; this is a
+  real reproducibility drift scheduled as the next focused infrastructure
+  task, not a failed deployment.
 - The current static export is large: approximately 228 MB and 36,201 files, driven mainly by per-sculptor pages/assets.
 - Default lineage performance is acceptable but has little expansion headroom: roughly 1.68 s current, 2.26 s with institutions, 2.09 s with movements, and 3.72 s in the stress scenario on the audit machine.
 - The Explore page mounts all included rows and keeps search/sort state locally rather than in the URL.
@@ -55,7 +76,8 @@ before any Netlify project deletion. Do not deploy current work to Netlify.
 
 ## Validation state at this handoff
 
-Passed after the 2026-08-02 Phase 5Q.3R stabilization implementation:
+Passed after the 2026-08-02 Phase 5Q.3R stabilization implementation and again
+on the final PR #1 head where applicable:
 
 - `python3 pipeline/test_data_contracts.py` — 3,543 sculptors, exact full/index/shard parity, valid lifespans/endpoints/aggregate denominators, exact movement-route parity, explicit release metadata, and source/eligible candidate accounting
 - `python3 pipeline/test_institutions.py`
@@ -96,9 +118,10 @@ Passed after the 5Q.4a source/contract baseline and its two P0 truth fixes:
 - `npm run build` — 3,625 static routes
 
 The explicit repository-local browser journey gate was not rerun for the
-source/contract documentation slice. Its last green seven-journey result
-remains the 5Q.3R regression baseline. The later successful in-app preview
-review is separate rendered/perceptual evidence, not a rerun of that gate.
+initial source/contract documentation commit. It was subsequently rerun in
+both final-head GitHub Actions workflows on `8bb61a7`; all seven journeys
+passed. The successful in-app preview review remains separate rendered/
+perceptual evidence rather than a substitute for that gate.
 
 Recorded on `codex/phase-5q4-rendered-baseline` without production-code or
 deployment changes:
@@ -136,8 +159,16 @@ routes, performance, and comprehension remain unverified.
   The workflow now supplies runner-specific 9 s / 11 s regression tripwires;
   these do not replace the full local median or real-browser product budgets.
   Treat the latest checks on PR #1 as the authoritative validation result.
-- The external `Workers Builds: sculpture-in-data` check also failed at
-  [Cloudflare build `9c9cebd5-4123-4dbf-9779-014ce3bd61ff`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/9c9cebd5-4123-4dbf-9779-014ce3bd61ff).
+- Final push run
+  [30768319691](https://github.com/asherzafar/sculptor-explorer/actions/runs/30768319691)
+  and pull-request run
+  [30768321252](https://github.com/asherzafar/sculptor-explorer/actions/runs/30768321252)
+  both completed successfully at `8bb61a7`, including the complete validation
+  gate and all seven Playwright journeys. Vercel and Vercel Preview Comments
+  also passed at the same head.
+- The external `Workers Builds: sculpture-in-data` check most recently failed
+  at
+  [Cloudflare build `8735cabc-6f56-4eb3-9cfc-3377607f375d`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/8735cabc-6f56-4eb3-9cfc-3377607f375d).
   Treat this as Phase 5Q.4c hosting-inventory work. The integration and service
   were not changed or deleted; Vercel remains the canonical production host.
 
@@ -146,11 +177,32 @@ inventory rather than being silenced by changing the integration in this task.
 
 ## Recommended next sequence
 
-1. Keep the rendered preview as evidence only—do not promote production—and complete 5Q.4a on the remaining routes plus actual zoom, text spacing, forced colors, reduced motion, keyboard/screen-reader behavior, perceptual performance, and reader comprehension. Independently record Vercel preview source/retention metadata when the deployment surface exposes it.
-2. Implement end-to-end route slices in order: Explore, Timeline, dense Lineage/Migration, then propagate earned patterns to the remaining routes. Use Explore to establish the responsive list/table, URL-state, skip-link, target-size, and focus patterns. In Timeline, prioritize the structured lifespan equivalent and semantic keyboard path before scroll/correlation, disclosure hierarchy, touch-target, and annotation-contrast polish.
-3. Add privacy-respecting analytics and run five structured user sessions across the audience hypotheses.
-4. Hold the Phase 5R strategic horizon workshop and use the evidence to choose among findability/connective tissue, coordinated views/entry points, works/IIIF story depth, and artist-neutral source/model pilots before further graph densification.
-5. In parallel, run at most one bounded exploration—E4 institution/city biography is the recommended first option, with E1 temporal ego journey as the alternative—and record its learning without coupling it to production.
+1. Review the complete diff on `codex/phase-5q4-workflow-standards`. If
+   approved, commit and publish it as a focused stacked draft PR with explicit
+   base `codex/phase-5q4-rendered-baseline`; verify GitHub and Vercel before
+   archiving the task.
+2. Create a focused Node 24 alignment branch from the approved workflow
+   checkpoint. Align local version files, package engine/lockfile, CI, current
+   GitHub Action majors, and docs; do not upgrade unrelated dependencies.
+   Run `npm ci`, the root gate, and Playwright, then stop at **REVIEW READY**
+   with the full diff before commit/push.
+3. Run the 5Q.4c hosting inventory as a separate read-only task. It may overlap
+   the Node investigation only if it does not edit shared roadmap/handoff
+   files. Inventory Vercel, Netlify, and Cloudflare ownership, configuration,
+   traffic/redirect needs, and rollback paths; make no deletion, integration,
+   authentication, or production change.
+4. Keep the rendered preview as evidence only—do not promote production—and
+   complete 5Q.4a on the remaining routes plus actual zoom, text spacing,
+   forced colors, reduced motion, keyboard/screen-reader behavior, perceptual
+   performance, and reader comprehension.
+5. Implement end-to-end route slices in order: Explore, Timeline, dense
+   Lineage/Migration, then propagate earned patterns. Use Explore to establish
+   the responsive list/table, URL-state, skip-link, target-size, and focus
+   patterns. Run a separate read-only visual-QA task on each rendered PR before
+   fixes and final validation.
+6. Add privacy-respecting analytics and run five structured user sessions,
+   then hold the Phase 5R strategic horizon workshop before the next major
+   public phase. At most one isolated lab experiment may run in parallel.
 
 ## Starting instructions for any agent
 
