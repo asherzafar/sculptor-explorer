@@ -40,6 +40,11 @@ jobs:
         run: npm run test:e2e:install
 
       - name: Validate code, data, build, and performance
+        env:
+          # Shared ubuntu-latest runners are materially slower than the local
+          # product benchmark. These remain regression tripwires, not UX budgets.
+          LINEAGE_BENCH_DEFAULT_LIMIT_MS: "9000"
+          LINEAGE_BENCH_INSTITUTIONS_LIMIT_MS: "11000"
         run: ./scripts/validate.sh
 
       - name: Validate core browser journeys

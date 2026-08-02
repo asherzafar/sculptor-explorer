@@ -129,8 +129,13 @@ routes, performance, and comprehension remain unverified.
   `web/.playwright-browsers/` before the root validation gate, and ESLint's flat
   config scanned Chromium's generated `inspector_overlay/main.js`. The browser
   bundle is gitignored third-party code, so this branch now excludes
-  `.playwright-browsers/**` explicitly in `web/eslint.config.mjs`. Treat the
-  latest checks on PR #1 as the authoritative validation result.
+  `.playwright-browsers/**` explicitly in `web/eslint.config.mjs`.
+- Once lint passed, two GitHub-hosted Ubuntu runs consistently measured the
+  deterministic lineage benchmark at 6.43–6.56 s for the default scenario and
+  7.93–8.38 s with institutions, versus 1.68 s and 2.11 s on the audit machine.
+  The workflow now supplies runner-specific 9 s / 11 s regression tripwires;
+  these do not replace the full local median or real-browser product budgets.
+  Treat the latest checks on PR #1 as the authoritative validation result.
 - The external `Workers Builds: sculpture-in-data` check also failed at
   [Cloudflare build `9c9cebd5-4123-4dbf-9779-014ce3bd61ff`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/9c9cebd5-4123-4dbf-9779-014ce3bd61ff).
   Treat this as Phase 5Q.4c hosting-inventory work. The integration and service
