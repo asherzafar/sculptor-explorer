@@ -1,10 +1,14 @@
 # Phase 5Q Visual Baseline — 2026-08-02
 
-**Status:** route/task and encoding baseline complete; rendered perceptual
+**Status:** route/task and encoding baseline complete; rendered Timeline
+desktop/390px evidence recorded; remaining routes and assistive-technology
 review pending
 
 **Release candidate:** 2026-08-02.1 on
 `codex/phase-5q-stabilization`
+
+**Rendered-evidence branch:** `codex/phase-5q4-rendered-baseline`, based on
+`54a095f`
 
 **Method:** `docs/RESEARCH_FOUNDATIONS.md` visual-foundations exercise and
 `docs/ROADMAP.md` review gates
@@ -18,18 +22,86 @@ This artifact distinguishes three evidence levels:
    denominators.
 2. **Verified by automated Chromium journeys:** seven core routes/states,
    including 390px navigation reachability and movement-route integrity.
-3. **Not yet perceptually reviewed:** screenshots, optical hierarchy, actual
-   wrapping/clipping, color discrimination, focus visibility, keyboard-only
-   chart-detail inspection, zoom/reflow, screen reader behavior, and
+3. **Verified in the rendered Timeline preview:** 1440×900 desktop and 390×844
+   mobile layout, a 720×450 CSS-viewport reflow proxy for a 1440×900 display at
+   approximately 200% zoom, pointer interactions, URL persistence, sampled
+   contrast, visible focus on representative native controls, DOM focus order,
+   horizontal-scroll reachability, and warning/error console output.
+4. **Not yet perceptually reviewed:** the remaining routes, actual browser
+   zoom and WCAG text-spacing overrides, forced colors, grayscale/color-vision
+   simulation, reduced-motion behavior, sequential keyboard activation in an
+   assistive-technology browser session, screen-reader output, and
    comprehension with readers.
 
-The Codex in-app browser safety layer denied both this repository’s localhost
-URL and a later read-only attempt on the canonical Vercel deployment. That is
-an automatic browser-policy boundary, not a request for broader file
-permissions. No alternate browser-control route was used. Automated browser
-success is therefore not presented as visual or assistive-technology evidence;
-the branch-preview workflow or user-supplied screenshots must provide the next
-supported rendered-evidence path.
+The successful rendered review used the user-supplied Vercel preview
+`https://sculptor-explorer-honqy7k8z-asherzafars-projects.vercel.app/timeline`.
+The user identified it as the preview for source commit `54a095f`; the page’s
+artifact/snapshot copy matched release candidate 2026-08-02.1, but the Vercel
+UI did not independently expose a commit identifier during the audit. No
+production promotion, retention change, or deployment cleanup was performed,
+and preview retention behavior remains unverified. A Vercel preview toolbar
+was visible in the signed-in audit session and is excluded from product
+findings; hide or crop it from the canonical screenshot baseline.
+
+## Rendered Timeline audit
+
+### Test matrix and measured evidence
+
+| Lens | Desktop evidence (1440×900) | Mobile/reflow evidence |
+|---|---|---|
+| Visual/layout | 224px persistent sidebar; 1,216px main region; chart rendered at 1,184×1,180px. Fraunces/DM Sans loaded and the title, subtitle, disclosure, controls, and chart read as one coherent hierarchy. | At 390×844 the mobile header is 108px high, content is 343px wide, the disclosure is 344.5px high, sort controls begin at y=734.25, and the chart begins at y=790.25. |
+| Responsive overflow | The main region scrolls vertically; the route has no page-level horizontal overflow. | The 700px chart sits in a 343px horizontal scroller. The chart scroller is 1,227px high, so its scrollbar appears only at the bottom. Panning to `scrollLeft=300` reveals later dates but removes the corresponding names. The 567px navigation scroller can reveal all seven links. |
+| Interaction/state | Alphabetical is selected on the bare route. Selecting Chronological writes `?sort=chrono`, updates `aria-pressed`, survives reload/back navigation, and reorders the first row to Hiram Powers. Clicking that row opens `/explore/Q2572996`. | Navigation and chart horizontal scrolling work. Timeline row bounds render at about 12.44px high in the scaled SVG, below an adequate touch target. No scroll instruction is present. |
+| Accessibility/keyboard | The chart has `role="img"` and an accurate accessible name. Representative sidebar-link and sort-button focus outlines are visible; sort controls are native buttons with `aria-pressed`, and Timeline links expose `aria-current="page"`. The SVG has zero tabbable descendants and no structured table/list equivalent. No skip link precedes repeated navigation. | The same zero-tabstop chart is exposed on mobile. The header links and sort controls remain semantic, but the chart cannot provide keyboard or screen-reader record inspection. Sequential Tab/activation behavior was not conclusively verified by the in-app synthetic-key path and still needs a real keyboard/assistive-technology pass. |
+| Zoom/reflow | — | At the 720×450 CSS-viewport proxy, the shell switches to the mobile header and text/disclosure content reflows without page-level horizontal overflow. The chart remains a 700px canvas in a 608px scroller, so the core chart-equivalence defect persists. This is reflow evidence, not a substitute for actual 200% browser zoom. |
+| Color/type | Primary text, subtitle, navigation, sort controls, axis labels, WWI, and “NSS Founded” passed the sampled contrast check. | “Armory Show” renders at 9px in sandstone with 2.13:1 contrast on `#FAFAF9`; this fails WCAG AA for text. Mobile chart labels render at approximately 9–12px and become difficult to scan. |
+| Console | No warnings or errors after load, sorting, detail navigation, reload/back, and viewport changes. | No warnings or errors at 390px. |
+
+### Ranked confirmed defects
+
+These are observed failures, not aesthetic preferences. “Existing” means the
+source/contract baseline already named the risk; “new” means the rendered
+review supplied a previously unrecorded defect or measurement.
+
+| Rank | Severity | Finding and evidence | Affected routes | Prior status |
+|---|---|---|---|---|
+| 1 | **P1** | **Mobile Timeline loses name/date correlation.** A 700px chart is shown through a 343px viewport; the only scrollbar is at the bottom of a 1,227px region, and scrolling right hides the names needed to interpret the bars. No structured equivalent or scroll guidance is adjacent. | `/timeline`; pattern risk for other horizontally scrolling chart routes | Existing risk, newly confirmed and measured |
+| 2 | **P1** | **The 48 clickable Timeline rows are not keyboard-inspectable.** The SVG has an accessible name but zero tabbable marks and no list/table path. Pointer navigation succeeds, so equivalent keyboard and screen-reader access—not data availability—is the missing layer. | `/timeline`; reusable requirement for Evolution, Migration, and Lineage | Existing risk, newly confirmed in rendered DOM |
+| 3 | **P1** | **Mobile row targets are about 12.44px high.** The scaled chart rows are too small for reliable touch selection and are packed more tightly than a 24px minimum target pattern. | `/timeline` | New measurement |
+| 4 | **P2** | **The Timeline’s useful data begins below the first mobile viewport.** The disclosure occupies 344.5px and pushes controls/chart to y=734/y=790; the route explains itself well but does not expose the visualization promptly. | `/timeline`; provenance hierarchy opportunity on all analytical routes | Existing provenance-density risk, newly confirmed and measured |
+| 5 | **P2** | **“Armory Show” fails text contrast.** Sandstone on the warm page background measures 2.13:1 at 9px. | `/timeline`; audit the same sandstone text use wherever it appears | Existing small-annotation/color risk, new confirmed failure |
+| 6 | **P2** | **There is no skip link before repeated navigation.** Landmarks and visible focus exist, but keyboard users lack a direct bypass to main content. | Shared shell; all routes | New shared-shell defect |
+
+### Ranked design opportunities and open decisions
+
+These are not confirmed failures and should be tested rather than treated as
+automatic restyling instructions.
+
+| Rank | Severity | Opportunity / decision | Affected routes | Prior status |
+|---|---|---|---|---|
+| 1 | **P1 opportunity** | Pair the chart with a chronological, URL-state-aware name/lifespan list. On narrow screens the list can become the primary reading path; on desktop it can serve keyboard/screen-reader detail without removing the overview. | `/timeline`; pattern candidate for dense chart equivalents | Already documented; rendered audit strengthens priority |
+| 2 | **P2 opportunity** | Shorten or progressively disclose `DataScopeNote` on narrow screens only after testing that readers still notice scope and limits. Moving it below the first useful action is an alternative to collapsing it. | All analytical routes | Already documented; mobile height is new evidence |
+| 3 | **P2 opportunity** | Preserve the strong dark/light catalogue identity and desktop hierarchy. The rendered result supports keeping Fraunces, DM Sans, Verdigris & Marble, whitespace, and direct source disclosure while changing interaction structure. | All routes | Already documented; now positively supported by Timeline evidence |
+| 4 | **P2 opportunity** | Improve mobile navigation information scent without assuming a hamburger is better. The 390px scroller reaches all routes, but About/Transparency begin offscreen; test edge fades, grouping, or another visible overflow cue. | Shared mobile shell | Automated reachability was documented; visual discoverability is new |
+| 5 | **P2 decision** | Resolve sort-default documentation drift before changing behavior. The bare route and this baseline treat Alphabetical as canonical, while an older Roadmap Phase 2.5 line calls Chronological the default. URL round-tripping itself passes. | `/timeline`; documentation | New cross-document inconsistency, not a rendered defect |
+
+### Recommended implementation order
+
+The route order remains **Explore → Timeline → dense routes**, as specified in
+the Roadmap. The Timeline evidence changes priority within its slice, not the
+governing sequence:
+
+1. In the Explore slice, establish the reusable responsive list/table,
+   visible-focus, skip-link, URL-state, and target-size patterns.
+2. In the Timeline slice, add the structured name/lifespan/detail-link
+   equivalent and semantic keyboard path first; then fix mobile correlation,
+   target size, disclosure placement, scroll guidance, and the sandstone
+   annotation contrast.
+3. Carry only the proven equivalent/focus/provenance patterns into Evolution,
+   Migration, and Lineage; do not mass-restyle the shell or palette.
+4. Complete actual 200% zoom, text-spacing, forced-colors, reduced-motion,
+   screen-reader, and reader-comprehension checks before declaring the
+   Timeline or 5Q.4a gate complete.
 
 ## Route and task matrix
 

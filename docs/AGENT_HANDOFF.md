@@ -7,9 +7,10 @@
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
-Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a is now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`, including the route/task matrix, encoding inventory, ranked findings, and alternatives. Rendered/perceptual evidence remains open because the Codex in-app browser safety layer denied this repository’s localhost URL; automated browser journeys are regression evidence, not a substitute for visual or assistive-technology review. After that evidence is completed or explicitly excepted, route slices begin with Explore. Structured chart equivalents, keyboard chart-detail access, mobile task equivalence, Explore state/DOM scale, and measured field performance remain open. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
+Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a and the first rendered Timeline slice are now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`. The rendered review covers 1440×900, 390×844, a 720×450 reflow proxy, pointer/URL behavior, representative focus, sampled contrast, chart focusability, and console output. It confirms that Timeline’s mobile chart, keyboard-detail path, touch targets, disclosure hierarchy, one annotation color, and shared skip-link behavior remain below the product gate. Remaining routes, actual browser zoom, text-spacing/forced-colors/reduced-motion, sequential keyboard/assistive-technology use, screen-reader output, performance, and reader comprehension remain open. Route slices still begin with Explore so its responsive list/state patterns can be earned before Timeline and dense charts reuse them. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
 
-Checkpoint branch: `codex/phase-5q-stabilization`.
+Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
+Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline`.
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy
@@ -37,6 +38,7 @@ before any Netlify project deletion. Do not deploy current work to Netlify.
 - Default lineage performance is acceptable but has little expansion headroom: roughly 1.68 s current, 2.26 s with institutions, 2.09 s with movements, and 3.72 s in the stress scenario on the audit machine.
 - The Explore page mounts all included rows and keeps search/sort state locally rather than in the URL.
 - Timeline/Explore mobile behavior and dense lineage interpretation need deliberate task-level treatment; clipping is not an acceptable long-term fallback.
+- The rendered Timeline preview confirms the specific failure mode: at 390px a 700px-wide SVG is exposed through a 343px horizontal scroller; scrolling to later dates removes the names needed to interpret them, the scrollbar is only reached at the bottom of a 1,227px region, and row targets render at about 12.44px high. The chart has zero tabbable marks and no list/table equivalent.
 - `docs/DATASET_DATASHEET.md` is the maintained composition/source/license/processing/use/risk record. `docs/CLAIM_REGISTER.md` maps every public analytical surface to its supported claim and defines external domain/community-review triggers.
 - The retained JSON field/file names `crossesBorders` and `cross_cultural_summary.json` are legacy contract names. Their exact meaning is disjoint recorded Wikidata P27 sets; public copy no longer describes this as observed border crossing, migration, refugee history, or cross-cultural influence.
 
@@ -47,7 +49,9 @@ before any Netlify project deletion. Do not deploy current work to Netlify.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
 - All four production chart SVGs now have roles and accessible names. Useful text/structured equivalents, keyboard-accessible chart details, focus behavior, and non-color encodings still require the systematic 5Q.4 pass.
-- The Codex app's in-app browser safety policy denied localhost inspection and a later read-only attempt on the canonical Vercel URL during 5Q.4a. The earlier repository-local Chromium journeys still pass, but they test core routes/provenance rather than human aesthetics or assistive technology; do not treat them as the 5Q.4 visual/accessibility gate or route around the browser-policy boundary.
+- A later Codex in-app browser session successfully inspected the user-supplied Vercel Timeline preview. The page emitted zero console warnings/errors during load, sort, navigation, reload/back, and viewport changes. The preview association with `54a095f` comes from the user-supplied workflow rather than independently exposed Vercel commit metadata; preview retention remains unverified. The earlier repository-local Chromium journeys remain regression evidence rather than the full 5Q.4 visual/accessibility gate.
+- Timeline’s representative native controls expose visible browser focus, `aria-current`, and `aria-pressed`, but no skip link precedes repeated navigation. The SVG itself has an accessible role/name and zero tabbable descendants. Sequential Tab activation was not conclusive through the in-app synthetic-key path; a real keyboard and screen-reader pass remains required.
+- Sampled Timeline text contrast passes except “Armory Show,” which renders at 9px in sandstone with 2.13:1 contrast against the warm page background. Treat that as a confirmed text-contrast defect, not a reason to replace the palette wholesale.
 
 ## Validation state at this handoff
 
@@ -91,14 +95,30 @@ Passed after the 5Q.4a source/contract baseline and its two P0 truth fixes:
 - `npm run typecheck`
 - `npm run build` — 3,625 static routes
 
-The explicit browser journey gate was not rerun for this slice after the
-in-app browser safety denial. Its last green seven-journey result remains the
-5Q.3R regression baseline, not rendered/perceptual evidence for 5Q.4a.
+The explicit repository-local browser journey gate was not rerun for the
+source/contract documentation slice. Its last green seven-journey result
+remains the 5Q.3R regression baseline. The later successful in-app preview
+review is separate rendered/perceptual evidence, not a rerun of that gate.
+
+Recorded on `codex/phase-5q4-rendered-baseline` without production-code or
+deployment changes:
+
+- rendered Timeline evidence at 1440×900 and 390×844;
+- a 720×450 CSS-viewport proxy for approximately 200% desktop reflow;
+- URL-backed sort persistence and pointer navigation to Hiram Powers;
+- DOM focusability/landmark measurements, representative visible focus, and
+  the confirmed absence of chart tab stops and a skip link;
+- sampled text contrast and zero warning/error console output.
+
+This is a documentation/evidence checkpoint, not a claim that Timeline or
+5Q.4a passes. Actual browser zoom, sequential keyboard activation, text
+spacing, forced colors, reduced motion, screen-reader behavior, remaining
+routes, performance, and comprehension remain unverified.
 
 ## Recommended next sequence
 
-1. Validate the current branch-to-Vercel preview workflow without promoting production, then complete 5Q.4a’s rendered evidence: consistent route screenshots, real-content type/color/layout specimen, zoom/reflow and keyboard/assistive-technology checks, perceptual and performance review. The source/contract baseline and alternatives are already recorded.
-2. Implement end-to-end route slices in order: Explore, Timeline, dense Lineage/Migration, then propagate earned patterns to the remaining routes; apply the route review gate each time.
+1. Keep the rendered preview as evidence only—do not promote production—and complete 5Q.4a on the remaining routes plus actual zoom, text spacing, forced colors, reduced motion, keyboard/screen-reader behavior, perceptual performance, and reader comprehension. Independently record Vercel preview source/retention metadata when the deployment surface exposes it.
+2. Implement end-to-end route slices in order: Explore, Timeline, dense Lineage/Migration, then propagate earned patterns to the remaining routes. Use Explore to establish the responsive list/table, URL-state, skip-link, target-size, and focus patterns. In Timeline, prioritize the structured lifespan equivalent and semantic keyboard path before scroll/correlation, disclosure hierarchy, touch-target, and annotation-contrast polish.
 3. Add privacy-respecting analytics and run five structured user sessions across the audience hypotheses.
 4. Hold the Phase 5R strategic horizon workshop and use the evidence to choose among findability/connective tissue, coordinated views/entry points, works/IIIF story depth, and artist-neutral source/model pilots before further graph densification.
 5. In parallel, run at most one bounded exploration—E4 institution/city biography is the recommended first option, with E1 temporal ego journey as the alternative—and record its learning without coupling it to production.
