@@ -115,6 +115,27 @@ This is a documentation/evidence checkpoint, not a claim that Timeline or
 spacing, forced colors, reduced motion, screen-reader behavior, remaining
 routes, performance, and comprehension remain unverified.
 
+### External publishing blockers on PR #1
+
+- GitHub Actions CI did not execute repository code for head `5805d45`. Both
+  the push run [30763980033](https://github.com/asherzafar/sculptor-explorer/actions/runs/30763980033)
+  (`validate` job `91539359719`) and pull-request run
+  [30763981375](https://github.com/asherzafar/sculptor-explorer/actions/runs/30763981375)
+  (`validate` job `91539363283`) ended with zero recorded steps. Each GitHub
+  check annotation says: “The job was not started because your account is
+  locked due to a billing issue.” The log download's `404 BlobNotFound` is a
+  consequence of the job never starting, not a repository test failure. Do not
+  rerun or change the workflow until the GitHub account billing lock is cleared.
+- The external `Workers Builds: sculpture-in-data` check also failed at
+  [Cloudflare build `9c9cebd5-4123-4dbf-9779-014ce3bd61ff`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/9c9cebd5-4123-4dbf-9779-014ce3bd61ff).
+  Treat this as Phase 5Q.4c hosting-inventory work. The integration and service
+  were not changed or deleted; Vercel remains the canonical production host.
+
+Until GitHub Actions can start and pass, PR #1 is externally blocked and is not
+ready to merge or archive as a completed publishing task. The Cloudflare failure
+must remain visible in the separate 5Q.4c hosting inventory rather than being
+silenced by changing the integration in this documentation task.
+
 ## Recommended next sequence
 
 1. Keep the rendered preview as evidence only—do not promote production—and complete 5Q.4a on the remaining routes plus actual zoom, text spacing, forced colors, reduced motion, keyboard/screen-reader behavior, perceptual performance, and reader comprehension. Independently record Vercel preview source/retention metadata when the deployment surface exposes it.

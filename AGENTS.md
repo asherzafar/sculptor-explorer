@@ -92,34 +92,44 @@ For documentation-only changes, at minimum run `git diff --check`, verify local 
 Publish only when the user explicitly asks for a commit, push, or pull
 request. Keep the local Git operations and the GitHub API operation distinct:
 
-1. Confirm the branch and intended scope with `git status -sb`,
-   `git diff --name-only`, `git diff --check`, and an inspection of the diff.
-2. Stage explicit paths. Do not use `git add -A` when unrelated work may be
+1. Confirm that `git branch --show-current` returns the intended named
+   `codex/...` branch. A detached worktree must be switched to a new or existing
+   named `codex/...` branch before staging, committing, or pushing; never publish
+   commits directly from detached `HEAD`.
+2. Confirm the intended scope with `git status -sb`, `git diff --name-only`,
+   `git diff --check`, and an inspection of the diff.
+3. Stage explicit paths. Do not use `git add -A` when unrelated work may be
    present. Recheck with `git diff --cached --name-only` and
    `git diff --cached --check` before committing.
-3. Commit with the user-approved message, then push with upstream tracking:
+4. Commit with the user-approved message, then push with upstream tracking:
 
    ```bash
    git push -u origin "$(git branch --show-current)"
    ```
 
-4. Open a draft pull request unless the user explicitly requests a ready PR.
+5. Open a draft pull request unless the user explicitly requests a ready PR.
    Set the requested base branch explicitly rather than assuming the default
    branch. Prefer the configured GitHub integration for PR creation; use the
    GitHub CLI only when the integration cannot perform the operation.
-5. Verify the clean worktree, commit SHA, upstream branch, PR base/head, draft
-   state, and PR URL before handing off.
+6. After each push, inspect GitHub Actions and every other required check. A
+   publishing task is not complete until they pass. If a required check cannot
+   pass because of an external service or account condition, finish explicitly
+   blocked and document the exact check, run/job or deployment URL, and provider
+   error; do not describe the task as complete or ready to archive.
+7. Verify the clean worktree, commit SHA, remote head, upstream branch, PR
+   base/head, draft state, required-check state, and PR URL before handing off.
 
-Git HTTPS authentication and GitHub API authentication are separate paths. In
-a restricted automation sandbox, `gh auth status` can report an invalid token
-when `api.github.com` is unreachable even though the keyring credential and
-`git push` are valid. If the output also shows a connection or DNS failure, do
-not run `gh auth login`, `gh auth logout`, or change credentials. Retry the
-same read-only authentication check with narrowly scoped network access, or
-ask the user to verify it in their normal terminal. Treat an external 401/403
-or an actual push authentication error as the authoritative failure; stop and
-report the exact error without broadening permissions or mutating
-authentication.
+Git HTTPS authentication and GitHub API authentication are separate paths. A
+restricted automation sandbox may be unable to reach `api.github.com` or read
+the macOS Keychain even when the user's normal Terminal is authenticated. Its
+`gh auth status` can therefore report no usable account or an invalid token
+without proving that the saved credential is bad. If the output also shows a
+connection, DNS, or keychain-access failure, do not run `gh auth login`, `gh
+auth logout`, or change credentials. Retry the same read-only authentication
+check with narrowly scoped network/keychain access, or ask the user to verify
+it in their normal Terminal. Treat a 401/403 from a reachable GitHub API or an
+actual push authentication error as the authoritative failure; stop and report
+the exact error without broadening permissions or mutating authentication.
 
 ## Current sequencing constraint
 
