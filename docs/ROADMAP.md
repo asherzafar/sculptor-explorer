@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q release workflow verified; Node 24 release gate active (August 2026)
+## Current status: 5Q release workflow and Node 24 alignment verified (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -51,7 +51,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Horizon | Priority | Outcome |
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
-| Release gate | **Verify Node 24 alignment** | Local/runtime drift is resolved on the focused branch; GitHub Actions and Vercel must agree on the same published head before archive. |
+| Completed | **Node 24 alignment** | Local/runtime drift is resolved; both GitHub Actions events and Vercel passed on the same published PR head. |
 | Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
@@ -348,7 +348,7 @@ major visual dimension.
 - [x] Pass the complete non-browser, build, performance, and seven-journey browser gates; inspect the semantic data diff and static-output change. The local build remains 3,625 routes / 36,201 files / ~228 MB; data changes are the documented exclusion/temporal exports plus additive release and movement-route contracts.
 - [x] Create a named repository checkpoint for the inherited release candidate before route-level visual iteration (`codex/phase-5q-stabilization`).
 
-#### Phase 5Q release-workflow enablers (active; before the next code slice)
+#### Phase 5Q release-workflow enablers (verified; before the next code slice)
 
 - [x] Prove the branch → draft PR → GitHub Actions → Vercel Preview path on
   PR [#1](https://github.com/asherzafar/sculptor-explorer/pull/1). At final
@@ -366,7 +366,9 @@ major visual dimension.
   updates only its required lockfile dependency, selects Node 24 in CI, and
   updates current local/deployment documentation. With Node 24.14.0, `npm ci`,
   `./scripts/validate.sh`, and all seven Playwright journeys pass. No unrelated
-  package version moved. Same-head remote checks remain required before this
+  package version moved. On draft PR
+  [#3](https://github.com/asherzafar/sculptor-explorer/pull/3), both push and
+  pull-request CI plus Vercel passed on the same published head, so this
   enabler is safe to archive.
 - [x] In the same runtime-alignment review, update `actions/checkout`,
   `actions/setup-node`, and `actions/setup-python` from their old Node-20-based
@@ -380,8 +382,8 @@ major visual dimension.
   application runtime selected by `setup-node`. Vercel documents
   `engines.node: "24.x"` as the repository override for its project setting in
   [Node.js version configuration](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
-  The first published head must still prove the action upgrades on GitHub-hosted
-  runners and confirm the Vercel build before completion.
+  The PR #3 push and pull-request runs prove those action upgrades on
+  GitHub-hosted runners, and the same head completed its Vercel build.
 - [ ] After runtime alignment is green, remove duplicate full-suite execution
   for a PR branch (currently both `push` and `pull_request`) in a separate CI
   efficiency change. Preserve validation for the default/release branch and

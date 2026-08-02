@@ -121,12 +121,13 @@ Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
   engine/type/lockfile contract, and GitHub Actions on
   `codex/node-24-alignment`; local install, validation, and Playwright gates
-  pass; archive only after GitHub Actions and Vercel agree on the same
-  published head
+  pass; both GitHub Actions events and Vercel also pass on the same published
+  PR head
 
 Next bounded work:
-- Close the Node 24 release gate only after GitHub Actions and Vercel agree on
-  the same published head
+- Phase 5Q.4c: inventory Vercel, Netlify, and Cloudflare ownership,
+  configuration, traffic/redirect needs, and rollback paths without changing
+  provider state
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
