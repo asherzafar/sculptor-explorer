@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Repository-local Playwright browsers are generated third-party code.
+    ".playwright-browsers/**",
   ]),
 ]);
 
