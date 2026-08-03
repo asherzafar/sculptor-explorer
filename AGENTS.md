@@ -70,6 +70,14 @@ Keep one coherent outcome per task. The default delivery loop is:
    routes before approved branch/worktree cleanup. Use
    `scripts/verify-deployment.sh` for the public HTTP contract.
 
+Do not equate “merged” with “landed.” A landed task also has a successful
+default-branch validation run, a `READY` Vercel production deployment whose
+source is the exact merge SHA, passing canonical and missing-route smoke probes,
+reconciled PR/branch/worktree/provider state, and an updated handoff. Dependency
+changes repeat both npm audits on merged `main`. The exact commands, stacked-PR
+sequence, stop conditions, and definition of landed live in
+`docs/SOURCE_CONTROL_AND_DELIVERY.md#operational-landing-runbook`.
+
 ## Authority boundary
 
 - Read-only repository/provider inspection and scoped worktree edits/tests are
@@ -180,6 +188,12 @@ request. Keep the local Git operations and the GitHub API operation distinct:
 8. Verify the clean task worktree, commit SHA, remote head, upstream branch, PR
    base/head/stack/draft state, required checks, preview evidence, and PR URL
    before handing off.
+
+When the user separately approves the exact merge, re-read the PR head and
+checks immediately before using a head-protected merge. Afterward, follow the
+production and closeout gates in the operational landing runbook; do not report
+`COMPLETE` while the default-branch run, exact-SHA production proof, required
+audits, or approved cleanup is pending.
 
 Git HTTPS authentication and GitHub API authentication are separate paths. A
 restricted automation sandbox may be unable to reach `api.github.com` or read

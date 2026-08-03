@@ -49,14 +49,14 @@ The following is a dated observation, not permanent configuration truth.
 | Surface | Verified state | Gap from target |
 |---|---|---|
 | Local Git | The permanent checkout's inherited work is preserved as local commit `94abed4` on `codex/local-wip-audit-2026-08-02`; it was not mixed into the release. | Retain that local preservation branch until its older product changes receive a separate relevance review. |
-| Branch graph | PRs #1–#4 were retargeted, revalidated, and merged in order into `main`. Their exact merge commits are recorded below; their five remote and six local release branches were removed after Git proved them merged. | Dependabot PRs #8–#15 remain independent review work, not part of the release stack. |
+| Branch graph | PRs #1–#4 were retargeted, revalidated, and merged in order into `main`. Dependency PRs #17, #13, #15, #14, #18, #19, #12, #10, and #8 then landed one at a time, followed by advisory closeout PR #20. GitHub has zero open PRs, and every merged remote task branch was deleted after Git proved it merged. | Retain the local WIP preservation branch; it is not abandoned remote work. |
 | GitHub `main` | Active ruleset `Protect main delivery` requires pull requests, merge commits, resolved conversations, strict `validate` and `Vercel` checks, and blocks deletion and non-fast-forward updates. It has no bypass actors. | Review required-check names if CI or the Vercel integration is renamed; otherwise no protection gap is known. |
 | GitHub Actions | The repository token is read-only and cannot approve PRs. CI uses GitHub-hosted runners, `npm ci`, `permissions: contents: read`, Node-24-native v7 actions, and full-SHA pins. Repository policy allows only GitHub-owned actions and requires SHA pinning. | Duplicate push plus pull-request full-suite execution is a measured follow-up, not a correctness gap. |
-| Repository security | Secret scanning, push protection, vulnerability alerts, and Dependabot security updates are enabled. GitHub reports 33 open advisory records matching the package families and reachability boundaries in `docs/SECURITY.md`; security PRs #13–#15 are green but behind `main`. Monthly Actions/npm version review groups Actions, React-family, and Tailwind-family compatibility units. | Automated security/version PRs still require ordinary diff, compatibility, fresh-head, and preview review; no auto-merge is enabled. |
+| Repository security | Secret scanning, push protection, vulnerability alerts, and Dependabot security updates are enabled. GitHub reports zero open Dependabot alerts; both full and production-only `npm audit` report zero vulnerabilities. Monthly Actions/npm review groups compatible package families and never auto-merges. | Review the temporary Next transitive overrides when a stable compatible release incorporates the patched versions; no immediate security gap is known. |
 | GitHub environments | `Preview` and `Production` exist from deployment reporting and have no protection rules. | They are observations, not an authorization boundary for the Vercel Git integration. |
-| Vercel | Project `prj_u5FmLz6CKm2hpugtVydrXcFVdb99` remains the only Git-backed deploy authority. Every release-stack head received an exact-SHA preview, and each sequential `main` merge was production-verified with `scripts/verify-deployment.sh`. Final product merge `1b7c301` deployed as `dpl_GL4Y7W8XG7n1cWG3zwgr4wjkuayd` and was `READY`. | Keep GitHub protection as the production gate; do not add a second deploy script or token. |
+| Vercel | Project `prj_u5FmLz6CKm2hpugtVydrXcFVdb99` remains the only Git-backed deploy authority. Every release/dependency head received an exact-SHA preview, and each sequential `main` merge was production-verified. Dependency/advisory closeout baseline `674f65884d622f8fabb509e43d651cf67188717b` deployed as `dpl_TgufELpqshj8xAZQtpjVF6i5DPVg` and was `READY` on the canonical aliases. | Keep GitHub protection as the production gate; do not add a second deploy script or token. |
 | Netlify | `sculpture-in-data.netlify.app` returns exact path- and query-preserving 301 responses to Vercel. | Keep it as a monitored compatibility surface; do not restore it as a build/deploy authority. |
-| Cloudflare | Account `370dc6896c711fc6c8c6801139acd063`, Worker `sculpture-in-data`: Worker URLs disabled, no custom domains, zones/routes, or cron schedules; no build config/triggers/hooks/builds; and zero service-scoped invocation rows from 2026-07-04T03:50:05.363Z through 2026-08-03T03:50:05.363Z. Fresh PR #1–#4 heads have no Workers Builds check. | Retain the Worker, manual versions, and non-secret build-token metadata through 2026-09-02 UTC; deletion/revocation is a later separately approved review. |
+| Cloudflare | Account `370dc6896c711fc6c8c6801139acd063`, Worker `sculpture-in-data`: Worker URLs/previews disabled, no custom domains, account zones/routes, or cron schedules; no build config, active triggers, or deploy hooks; 40 historical failed build records but zero after the 2026-08-03 disconnect; and zero service-scoped invocation rows from 2026-07-04T06:03:22.628Z through 2026-08-03T06:03:22.628Z. All later PR heads have no Workers Builds check. | Retain the Worker, manual versions, and non-secret build-token metadata through 2026-09-02 UTC; deletion/revocation is a later separately approved review. |
 
 ## Research synthesis
 
@@ -189,10 +189,158 @@ documentation was resolved by dropping one side: evergreen policy remains in
 this file, dated provider evidence remains in the hosting inventory, and the
 current continuation boundary remains in the agent handoff.
 
+The approved dependency sequence then landed against freshly verified `main`
+heads, not as a bulk batch:
+
+```text
+PR #17 Tailwind -> PR #13 MCP SDK -> PR #15 Hono -> PR #14 fast-uri
+-> PR #18 qs -> PR #19 ip-address/express-rate-limit
+-> PR #12 React -> PR #10 React DOM -> PR #8 lucide-react
+-> PR #20 remaining transitive advisory closeout
+```
+
+That order resolved the split React compatibility dependency before React DOM,
+kept development-tool security updates small, and made every check/preview
+refer to the graph it would actually merge into. PR #20 left stable Next.js in
+place and supplied narrowly documented patched transitive versions; it was not
+an uncontrolled `npm audit fix --force` graph rewrite.
+
 The hosting inventory is historical evidence plus a provider change log. It
 should not duplicate evergreen delivery policy from this document. Its live
 review addendum should record the disconnected Cloudflare state and retention
 date, while this document owns the reusable source-control/deployment model.
+
+## Operational landing runbook
+
+This is the normal end-to-end procedure for a single PR. The repository
+`ship-pr` skill is a convenience wrapper around this contract, not a different
+workflow.
+
+### 1. Establish identity and scope
+
+1. Start from fetched `origin/main` in a dedicated, clean worktree and use one
+   named `codex/...` branch for one coherent outcome.
+2. Record the intended base, head, parent/child PRs (or `none`), and exact full
+   SHA. A stacked child is exceptional and must be reviewable against its
+   declared parent.
+3. Inspect `git status --short --branch`, the complete diff, recent commits,
+   and applicable instructions. Stop if unrelated work or an unexpected base
+   is present.
+
+### 2. Validate locally
+
+Run the smallest gate that proves the change, plus `git diff --check` and a
+complete diff inspection. Documentation-only changes also require local-link
+and terminology checks. Application, data, build, dependency, workflow, or
+runtime changes run:
+
+```bash
+./scripts/validate.sh
+cd web && npm run test:e2e
+```
+
+Dependency changes additionally use a clean install and both audit views:
+
+```bash
+cd web
+npm ci
+npm audit
+npm audit --omit=dev
+```
+
+Do not use `npm audit fix --force`. Review the proposed dependency graph and
+package-family compatibility explicitly.
+
+### 3. Publish a reviewable draft
+
+Publishing requires explicit user authority. Stage named paths, inspect the
+staged diff, commit once, and push the named branch:
+
+```bash
+git diff --check
+git diff --cached --check
+git push -u origin "$(git branch --show-current)"
+```
+
+Open a draft PR with an explicit base and complete
+`.github/PULL_REQUEST_TEMPLATE.md`. Record the exact head SHA, GitHub Actions
+run, Vercel deployment ID and immutable URL, source SHA, route smoke result,
+external effects, and rollback/retention boundary. A branch alias is not
+immutable deployment evidence.
+
+### 4. Prove the exact PR head
+
+Before requesting merge approval:
+
+```bash
+gh pr view <PR> --json number,state,isDraft,baseRefName,headRefName,headRefOid,mergeable,mergeStateStatus
+gh pr checks <PR> --watch
+```
+
+Confirm that strict `validate` and `Vercel` pass on the reported `headRefOid`,
+the exact Vercel deployment is `READY`, public preview routes pass
+`scripts/verify-deployment.sh`, conversations are resolved, and provider output
+shows no unapproved side effect. Any push or base update invalidates earlier
+head/check/preview evidence.
+
+### 5. Merge only the approved identity
+
+The user must approve the exact PR and action. Immediately re-read its head and
+required checks, then protect against a last-second head change:
+
+```bash
+gh pr merge <PR> --merge --match-head-commit <FULL_HEAD_SHA>
+```
+
+Add `--delete-branch` only when deletion of that exact merged branch is also
+approved. Do not squash or rebase a reviewed stack merely to make history look
+linear. For a stack, merge bottom-up; retarget the next child to `main`, bring
+the new parent merge into it without rewriting published history, and require
+new checks, preview evidence, and review before the next merge.
+
+### 6. Verify production and close out
+
+A merged PR is not yet a landed task. Resolve the merge commit, refresh local
+state without rewriting it, and verify the exact production artifact:
+
+```bash
+git fetch --prune origin
+git switch main
+git merge --ff-only origin/main
+scripts/verify-deployment.sh https://sculptor-explorer.vercel.app
+```
+
+Record the exact merge SHA, successful default-branch Actions run, Vercel
+production deployment ID/`READY` state/source SHA, canonical route results,
+and rollback candidate. Dependency work repeats both audits on merged `main`.
+Reconcile the PR list, remote branches, clean retained worktrees, external
+providers, affected docs, and `docs/AGENT_HANDOFF.md`. Delete only exact merged
+branches/worktrees with explicit cleanup approval.
+
+### Definition of landed
+
+A task may be called **COMPLETE — safe to archive** only when all applicable
+items below are true:
+
+- the intended PR is merged at the approved exact head and no child PR still
+  depends on its old base;
+- required PR checks and the default-branch validation both passed;
+- Vercel production is `READY`, reports the exact merge SHA, and canonical
+  route/missing-route smoke results are correct;
+- dependency audits, rendered QA, data checks, and provider checks required by
+  the change have passed;
+- no unexpected deployment, integration, route, token, redirect, or provider
+  mutation occurred;
+- merged-branch cleanup is complete if approved, every retained worktree is
+  clean, and intentional local-only work is named rather than mistaken for
+  abandoned work;
+- current docs and the handoff agree with GitHub and provider state; and
+- the final report names exact SHAs, checks, deployment IDs, remaining risks,
+  and the next bounded task (if any).
+
+If merge approval is pending, use **REVIEW READY — keep open**. If a required
+check or provider proof cannot complete, use **BLOCKED — keep open** with the
+exact evidence; never silently weaken the gate.
 
 ## Implementation sequence
 
@@ -236,6 +384,11 @@ was integrated.
    push or PR; product relevance remains a separate future review.
 4. Record final SHAs, deployments, checks, rollback candidates, and the next
    bounded task in `docs/AGENT_HANDOFF.md`. **Complete.**
+5. Integrate the dependency queue in compatibility order, close remaining
+   transitive advisories without a force fix, repeat both audits on merged
+   `main`, and remove exact merged branches. **Complete:** zero open PRs, zero
+   open Dependabot alerts, and zero full/production npm audit findings at the
+   dependency-closeout baseline.
 
 ## Deferred improvements
 
@@ -264,3 +417,5 @@ These are useful but should not enlarge the current release stack:
 - [x] Merge order and post-merge verification actions had separate explicit
   approval for the exact PRs.
 - [x] Provider and branch cleanup targets are exact and separately approved.
+- [x] Dependency families landed sequentially with fresh-head evidence; merged
+  `main` audits and GitHub's open alert queue are both clean.

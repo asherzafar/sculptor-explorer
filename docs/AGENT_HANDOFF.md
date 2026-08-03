@@ -22,9 +22,16 @@ the exact merge SHA, and the canonical route smoke returned 200 for five real
 routes and 404 for the missing-route probe. No post-disconnect Cloudflare
 Workers Builds check appeared.
 
-The completed release-stack product head is `main@1b7c301`, GitHub Actions run
-`30782316145` passed in 2m18s, and Vercel production deployment
-`dpl_GL4Y7W8XG7n1cWG3zwgr4wjkuayd` is `READY` with the canonical aliases.
+After that release stack, the dependency queue landed sequentially as PRs #17,
+#13, #15, #14, #18, #19, #12, #10, and #8, followed by focused transitive
+advisory closeout PR #20. Every PR passed exact-head `validate` and Vercel
+preview checks; every merge then passed default-branch validation and an
+exact-SHA Vercel production check before the next PR proceeded. The dependency
+closeout baseline is `main@674f65884d622f8fabb509e43d651cf67188717b`;
+GitHub Actions run `30788497586` passed all seven browser journeys, and Vercel
+production deployment `dpl_TgufELpqshj8xAZQtpjVF6i5DPVg` is `READY` on the
+canonical aliases. GitHub has zero open PRs and zero open Dependabot alerts;
+both full and production-only npm audits report zero vulnerabilities.
 
 The active `Protect main delivery` ruleset requires PRs, merge commits, resolved
 conversations, and strict `validate` plus `Vercel` checks; it blocks deletion
@@ -34,28 +41,24 @@ approve PRs. Vulnerability alerts and Dependabot security updates are enabled.
 The inherited permanent-checkout work is preserved locally, without a push or
 PR, as commit `94abed4` on `codex/local-wip-audit-2026-08-02`.
 
-Eight Dependabot PRs (#8–#15) are open and behind `main`; they are not part of
-the release stack and must not be merged as a batch. PRs #8, #9, #11, and #12
-are green version updates. PR #10 fails because `react-dom@19.2.8` requires
-`react@^19.2.8`, while PR #10 leaves React at 19.2.4 and PR #12 updates it
-separately. PRs #13–#15 are green security updates for development-only MCP/
-Hono/fast-uri tooling. GitHub reports 33 open advisory records; they map to the
-14 package-level production/build/development findings and reachability
-decisions already recorded in `docs/SECURITY.md`. The closeout groups future
-React-family, Tailwind-family, and Actions proposals into coherent review
-units; it does not authorize merging or closing the current bot PRs. The three
-now-obsolete Actions version PRs (#5–#7) closed automatically after PR #3
-supplied the same v7 upgrades.
+Merged remote dependency branches were deleted after exact merge ancestry was
+verified. Future automated proposals remain ordinary review work: group split
+compatibility families, rebase onto current `main`, require fresh checks and an
+exact preview, and never auto-merge merely because an alert or bot opened them.
+PR #20's temporary patched PostCSS/Sharp overrides and their retirement triggers
+are documented in `docs/SECURITY.md`; do not replace them with an uncontrolled
+force fix or a framework downgrade.
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it
 now issues path- and query-preserving 301 responses to Vercel and remains an
 observation/compatibility surface, not a deploy target. The Cloudflare Worker
 Git build was disconnected at 2026-08-03 00:31:05 UTC. Read-only API evidence
-shows no Worker URL, custom domain, account zone/route, build config, trigger,
-deploy hook, or service-scoped invocation row in the 30-day window ending
-2026-08-03 03:50:05.363 UTC. The final audit also found no cron schedule or
-recorded build. Active version `cf3a4cff-d0bb-4da6-b047-efcca385a435` remains at
+shows no Worker URL, custom domain, account zone/route, build config, active
+trigger, deploy hook, cron schedule, or service-scoped invocation row in the
+30-day window ending 2026-08-03 06:03:22.628 UTC. The build history retains 40
+failed records, but none occurred after the 2026-08-03 00:31:05 UTC disconnect.
+Active version `cf3a4cff-d0bb-4da6-b047-efcca385a435` remains at
 100% in deployment `9a427017-e4ec-455a-8ace-c9881295ca41`; prior version
 `2da29370-4423-4b31-b200-83c36793e08d` remains available through prior
 deployment `75bca7e6-e89c-4e56-a656-517f57cb969b`. Build-token UUID
@@ -102,7 +105,10 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 ## Known quality issues
 
 - `npm run lint` now exits with zero errors and zero warnings. The intentional standard `<img>` in `WorksGallery` remains documented inline for hot-linked public-domain museum assets in the static export.
-- Next.js and `eslint-config-next` are aligned at 16.2.12. The full audit still reports 14 package findings (7 high), while `--omit=dev` reports three high findings through Next's build-only PostCSS and optional Sharp paths. The static-export reachability decision and 2026-09-02 review deadline are in `docs/SECURITY.md`.
+- Next.js and `eslint-config-next` are aligned at 16.2.12. Patched transitive
+  dependency closeout leaves both npm audit views and GitHub's open Dependabot
+  alert queue at zero. The temporary PostCSS/Sharp override rationale and
+  retirement triggers are in `docs/SECURITY.md`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
 - All four production chart SVGs now have roles and accessible names. Useful text/structured equivalents, keyboard-accessible chart details, focus behavior, and non-color encodings still require the systematic 5Q.4 pass.
@@ -231,19 +237,19 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Treat Dependabot PRs #8–#15 as a separate dependency-maintenance queue.
-   Prioritize security PRs #13–#15, require rebases and fresh checks, review
-   compatible packages together, and close or replace incoherent automated PRs
-   only with explicit owner approval.
-2. Keep the rendered preview as evidence only and complete 5Q.4a on the
+1. Keep the rendered preview as evidence only and complete 5Q.4a on the
    remaining routes plus actual zoom, text spacing,
    forced colors, reduced motion, keyboard/screen-reader behavior, perceptual
    performance, and reader comprehension.
-3. Implement end-to-end route slices in order: Explore, Timeline, dense
+2. Implement end-to-end route slices in order: Explore, Timeline, dense
    Lineage/Migration, then propagate earned patterns. Use Explore to establish
    the responsive list/table, URL-state, skip-link, target-size, and focus
    patterns. Run a separate read-only visual-QA task on each rendered PR before
    fixes and final validation.
+3. At the 2026-09-02 dependency review (or sooner on a stable Next release),
+   test whether the PostCSS/Sharp overrides can be safely retired; do not let
+   that maintenance interrupt the current route slice unless a new advisory
+   changes risk.
 4. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
