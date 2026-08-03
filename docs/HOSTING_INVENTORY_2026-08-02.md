@@ -1,10 +1,10 @@
 # Hosting inventory — 2026-08-02
 
-**Status:** Phase 5Q.4c inventory reviewed; approved implementation executed; branch publication approved on 2026-08-02
+**Status:** Phase 5Q.4c implemented, verified, and merged through PR #4 on 2026-08-03
 
 **Branch:** `codex/phase-5q4c-hosting-retirement`
 
-**Base:** `codex/node-24-alignment` (stacked after PR #3)
+**Integration:** PR #4 merged to `main` as `1b7c30153b36c8104e69400ae7fb9ae9d70c0fe8`
 
 **Scope:** The inventory first pass was read-only. Earlier approved implementation
 work made one Netlify draft deploy, one Netlify production redirect deploy, and
@@ -454,12 +454,18 @@ or service, then decide whether revocation is appropriate.
 
 ## Current task status
 
-**REVIEW READY — keep open**
+Final read-only closeout on 2026-08-03 reconfirmed the same active/prior
+versions and deployments, disabled/absent routing and build surfaces, token
+metadata, and zero service-scoped rows for the fresh window
+`2026-07-04T03:50:05.363Z` through `2026-08-03T03:50:05.363Z`.
+
+**COMPLETE — retain for dated provider evidence**
 
 Recommended decisions: **Vercel — retain the existing Git integration as the
 only deploy authority; Netlify — retain the implemented path-preserving 301
 indefinitely; Cloudflare — keep the Git build disconnected and retain the
 dormant Worker, both manual versions, and build-token metadata through
-2026-09-02 UTC.** The in-flight Git stack is now linear through this hosting
-branch; no PR was merged, no production deployment was promoted, and no
-provider setting changed during this review.
+2026-09-02 UTC.** The reviewed Git stack later merged in order through PR #4;
+that integration did not reconnect Cloudflare or change the Netlify redirect.
+Any Worker, version, token, route, redirect, or integration mutation still
+requires a new post-retention review and explicit approval.

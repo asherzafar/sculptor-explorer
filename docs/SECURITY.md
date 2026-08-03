@@ -34,6 +34,20 @@ paths are reachable in production.
 - `npm audit --omit=dev`: 3 high package-level findings: Next.js is counted
   through its bundled PostCSS and optional Sharp dependencies.
 
+## 2026-08-03 GitHub security-enablement follow-up
+
+- Vulnerability alerts and Dependabot security updates are enabled; no
+  dependency auto-merge is enabled.
+- GitHub reports 33 open advisory records. This is an advisory count, not a
+  contradiction of the 14 package-level `npm audit` count above: multiple
+  advisories map to the same Hono, fast-uri, PostCSS, and other packages.
+- Security PRs #13–#15 update development-only MCP/Hono/fast-uri paths and have
+  green Actions/Vercel checks on their current heads, but are behind `main` and
+  still require rebase, fresh validation, and explicit merge approval.
+- Version PR #10 is intentionally red: Dependabot split React DOM from the
+  React patch it requires. Future React-family proposals are grouped so the
+  lockfile can be reviewed and installed as one compatibility unit.
+
 ## Time-bounded acceptances
 
 | Dependency path | Finding | Reachability decision | Treatment |
