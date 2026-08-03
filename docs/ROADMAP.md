@@ -364,9 +364,9 @@ major visual dimension.
   worktree, provider-boundary, and agent-authority target in
   `docs/SOURCE_CONTROL_AND_DELIVERY.md`; add a PR evidence template and public
   deployment smoke command. Pin the existing action majors to immutable SHAs
-  and schedule monthly GitHub Actions/npm Dependabot version reviews. Activating
-  repository rules and security settings remains a separately reviewed
-  provider mutation after the stack is green.
+  and schedule monthly GitHub Actions/npm Dependabot version reviews. The
+  approved `Protect main delivery` ruleset, GitHub-owned/full-SHA Actions
+  policy, vulnerability alerts, and Dependabot security updates are active.
 - [x] **Implement Node.js 24 alignment in one focused, separately reviewed
   branch.** `codex/node-24-alignment` adds root/web `.nvmrc` files at 24,
   declares `engines.node: "24.x"`, intentionally moves `@types/node` to 24,
@@ -376,8 +376,8 @@ major visual dimension.
   package version moved. On draft PR
   [#3](https://github.com/asherzafar/sculptor-explorer/pull/3), both push and
   pull-request CI plus Vercel passed on the same published head, so this
-  implementation is locally complete. The reconciled stack head still requires
-  fresh remote checks before integration.
+  implementation is integrated. PR #3 merged as `efbebbd`; its post-merge
+  `main` validation and exact-SHA Vercel production deployment passed.
 - [x] In the same runtime-alignment review, update `actions/checkout`,
   `actions/setup-node`, and `actions/setup-python` from their old Node-20-based
   majors to v7 while preserving their existing inputs, and pin the v7 releases
@@ -391,7 +391,10 @@ major visual dimension.
   `engines.node: "24.x"` as the repository override for its project setting in
   [Node.js version configuration](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
   The PR #3 push and pull-request runs prove those action upgrades on
-  GitHub-hosted runners, and the same head completed its Vercel build.
+  GitHub-hosted runners, and the merged `main` head completed its Vercel build.
+- [x] Integrate the release stack in order. PRs #1–#4 merged as `440e68a`,
+  `209cb19`, `efbebbd`, and `1b7c301`; every exact head and resulting `main`
+  commit passed Actions and Vercel, and no Cloudflare build check returned.
 - [ ] After runtime alignment is green, remove duplicate full-suite execution
   for a PR branch (currently both `push` and `pull_request`) in a separate CI
   efficiency change. Preserve validation for the default/release branch and

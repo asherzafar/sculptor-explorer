@@ -10,40 +10,42 @@ Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidat
 
 Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a and the first rendered Timeline slice are now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`. The rendered review covers 1440×900, 390×844, a 720×450 reflow proxy, pointer/URL behavior, representative focus, sampled contrast, chart focusability, and console output. It confirms that Timeline’s mobile chart, keyboard-detail path, touch targets, disclosure hierarchy, one annotation color, and shared skip-link behavior remain below the product gate. Remaining routes, actual browser zoom, text-spacing/forced-colors/reduced-motion, sequential keyboard/assistive-technology use, screen-reader output, performance, and reader comprehension remain open. Route slices still begin with Explore so its responsive list/state patterns can be earned before Timeline and dense charts reuse them. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
 
-The complete publishing/preview checkpoint was independently verified at
-`8bb61a777007851abc060047894ed7e9c1828629`: draft PR #1 was mergeable, both
-GitHub Actions events passed the root gate and all seven Playwright journeys,
-and Vercel plus Vercel Preview Comments passed on that exact head. PR #1 has
-since advanced to post-disconnect head
-`9200e1c87fd8c5dc18005e1408060d59558c1c55`, which pins the current Actions to
-immutable SHAs and adds monthly GitHub Actions/npm Dependabot review. Its two
-fresh Actions runs and Vercel deployment are successful, and the disconnected
-Cloudflare Worker posted no check.
+The release stack is integrated. PRs
+[#1](https://github.com/asherzafar/sculptor-explorer/pull/1),
+[#2](https://github.com/asherzafar/sculptor-explorer/pull/2),
+[#3](https://github.com/asherzafar/sculptor-explorer/pull/3), and
+[#4](https://github.com/asherzafar/sculptor-explorer/pull/4) were reconciled,
+retargeted, freshly validated, and merged in that order. Their `main` merge
+commits are `440e68a`, `209cb19`, `efbebbd`, and `1b7c301`. After every merge,
+the full GitHub validation passed, Vercel reported a production deployment for
+the exact merge SHA, and the canonical route smoke returned 200 for five real
+routes and 404 for the missing-route probe. No post-disconnect Cloudflare
+Workers Builds check appeared.
 
-The workflow-standards branch has advanced to
-`61dda5d5591d8e73965bd93435604973503e0fe2` with the protected-main target,
-stack rules, PR evidence template, agent authority matrix, and verified
-deployment smoke script. The earlier Node-alignment checkpoint
-`945d2cb2b4b661f8ff4be2dcd510d2c1c096038b` passed local Node 24 install,
-root/browser gates, both GitHub Actions events, and Vercel. Reconciled Node head
-`d25a57702d83769fbb561e5aad7ff47d464964a0` incorporates the refreshed parent
-and pins each v7 action to a full SHA; its two fresh Actions runs and exact-SHA
-Vercel deployment are successful, and it also has no Cloudflare check.
+The completed release-stack product head is `main@1b7c301`, GitHub Actions run
+`30782316145` passed in 2m18s, and Vercel production deployment
+`dpl_GL4Y7W8XG7n1cWG3zwgr4wjkuayd` is `READY` with the canonical aliases.
 
-Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
-Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline` at
-`9200e1c87fd8c5dc18005e1408060d59558c1c55`, draft PR
-[#1](https://github.com/asherzafar/sculptor-explorer/pull/1).
-Workflow-standards continuation branch: `codex/phase-5q4-workflow-standards`
-at `61dda5d5591d8e73965bd93435604973503e0fe2`, based on the refreshed PR #1
-head, draft PR [#2](https://github.com/asherzafar/sculptor-explorer/pull/2).
-Node-runtime continuation branch: `codex/node-24-alignment`, based on the
-workflow-standards branch, draft PR
-[#3](https://github.com/asherzafar/sculptor-explorer/pull/3), at
-`d25a57702d83769fbb561e5aad7ff47d464964a0`. Hosting continuation branch:
-`codex/phase-5q4c-hosting-retirement`, now based on the Node branch; its provider
-evidence and retention boundary are in `docs/HOSTING_INVENTORY_2026-08-02.md`,
-with draft PR [#4](https://github.com/asherzafar/sculptor-explorer/pull/4).
+The active `Protect main delivery` ruleset requires PRs, merge commits, resolved
+conversations, and strict `validate` plus `Vercel` checks; it blocks deletion
+and force-pushes and has no bypass actors. Actions are limited to GitHub-owned
+actions with full-SHA enforcement. Workflow tokens are read-only and cannot
+approve PRs. Vulnerability alerts and Dependabot security updates are enabled.
+The inherited permanent-checkout work is preserved locally, without a push or
+PR, as commit `94abed4` on `codex/local-wip-audit-2026-08-02`.
+
+Eight Dependabot PRs (#8–#15) are open and behind `main`; they are not part of
+the release stack and must not be merged as a batch. PRs #8, #9, #11, and #12
+are green version updates. PR #10 fails because `react-dom@19.2.8` requires
+`react@^19.2.8`, while PR #10 leaves React at 19.2.4 and PR #12 updates it
+separately. PRs #13–#15 are green security updates for development-only MCP/
+Hono/fast-uri tooling. GitHub reports 33 open advisory records; they map to the
+14 package-level production/build/development findings and reachability
+decisions already recorded in `docs/SECURITY.md`. The closeout groups future
+React-family, Tailwind-family, and Actions proposals into coherent review
+units; it does not authorize merging or closing the current bot PRs. The three
+now-obsolete Actions version PRs (#5–#7) closed automatically after PR #3
+supplied the same v7 upgrades.
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it
@@ -52,7 +54,15 @@ observation/compatibility surface, not a deploy target. The Cloudflare Worker
 Git build was disconnected at 2026-08-03 00:31:05 UTC. Read-only API evidence
 shows no Worker URL, custom domain, account zone/route, build config, trigger,
 deploy hook, or service-scoped invocation row in the 30-day window ending
-2026-08-03 01:55 UTC.
+2026-08-03 03:50:05.363 UTC. The final audit also found no cron schedule or
+recorded build. Active version `cf3a4cff-d0bb-4da6-b047-efcca385a435` remains at
+100% in deployment `9a427017-e4ec-455a-8ace-c9881295ca41`; prior version
+`2da29370-4423-4b31-b200-83c36793e08d` remains available through prior
+deployment `75bca7e6-e89c-4e56-a656-517f57cb969b`. Build-token UUID
+`fdb812b2-cd1f-4ba8-aa38-39b70e780721` still maps to Cloudflare token ID
+`ca6d130ad8553a383d9c7aa5f81237fd`; only non-secret metadata was read.
+Final Netlify probes reconfirmed exact 301 locations for `/`, `/timeline`,
+`/about?source=legacy`, and `/missing/nested/path`, including the query string.
 
 Retain the dormant manual deployment through the observation window; do not
 delete or reconnect it merely to alter a GitHub check. Retain the Worker, both
@@ -212,7 +222,7 @@ routes, performance, and comprehension remain unverified.
   [Cloudflare build `8735cabc-6f56-4eb3-9cfc-3377607f375d`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/8735cabc-6f56-4eb3-9cfc-3377607f375d).
   The disconnect later removed only the Worker's two Git build triggers. The
   Worker, active/prior manual versions, disabled routing, and build-token
-  metadata remain retained through 2026-09-02 UTC. Fresh PR heads #1–#3 have
+  metadata remain retained through 2026-09-02 UTC. Fresh PR heads #1–#4 have
   no Cloudflare check; Vercel remains the canonical production host.
 
 The historical failure and post-disconnect API evidence remain in the separate
@@ -221,14 +231,12 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Review the draft PR stack in strict order: PR #1, PR #2, PR #3, then the
-   hosting-retirement PR. Retarget only the next child to `main` after its
-   parent lands, and require fresh Actions/Vercel results at every step. Do not
-   merge, promote, change repository/provider settings, or clean branches until
-   the exact action has explicit owner approval.
-2. After the stack and source-control guardrails are separately approved and
-   integrated, keep the rendered preview as evidence only and
-   complete 5Q.4a on the remaining routes plus actual zoom, text spacing,
+1. Treat Dependabot PRs #8–#15 as a separate dependency-maintenance queue.
+   Prioritize security PRs #13–#15, require rebases and fresh checks, review
+   compatible packages together, and close or replace incoherent automated PRs
+   only with explicit owner approval.
+2. Keep the rendered preview as evidence only and complete 5Q.4a on the
+   remaining routes plus actual zoom, text spacing,
    forced colors, reduced motion, keyboard/screen-reader behavior, perceptual
    performance, and reader comprehension.
 3. Implement end-to-end route slices in order: Explore, Timeline, dense

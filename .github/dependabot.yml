@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: monthly
     open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: npm
     directory: /web
@@ -13,3 +17,14 @@ updates:
       interval: monthly
     open-pull-requests-limit: 5
     versioning-strategy: increase-if-necessary
+    groups:
+      react-family:
+        patterns:
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
+      tailwind-family:
+        patterns:
+          - tailwindcss
+          - "@tailwindcss/postcss"

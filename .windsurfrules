@@ -119,21 +119,28 @@ Recently completed:
 - Phase 5Q.4c hosting retirement: Vercel remains canonical; Netlify provides a
   path/query-preserving 301; the dormant Cloudflare Worker's Git build is
   disconnected and retained through 2026-09-02 UTC
+- Phase 5Q source-control integration: PRs #1–#4 were merged in order and
+  verified on `main`; protected-main, Actions, and Dependabot security
+  guardrails are active
 
 Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
-  engine/type/lockfile contract, and GitHub Actions on
-  `codex/node-24-alignment`; local install, validation, and Playwright gates
-  pass; fresh PR #1–#4 heads have successful Actions/Vercel checks tied to the
-  exact SHAs and no post-disconnect Cloudflare Workers Builds check
-- `docs/SOURCE_CONTROL_AND_DELIVERY.md` defines the protected-main target,
-  explicit stack rules, exact-SHA preview/production packet, and agent authority
-  boundary; repository settings remain unchanged until separately approved
+  engine/type/lockfile contract, and GitHub Actions on `main`; local and remote
+  validation, Playwright, exact-SHA Vercel preview, and production gates pass
+- `main` requires pull requests, merge commits, resolved conversations, strict
+  `validate` and `Vercel` checks, and blocks deletion/force-pushes; Actions are
+  limited to GitHub-owned, full-SHA-pinned actions; workflow tokens remain
+  read-only; Dependabot alerts and security updates are enabled
+- The post-disconnect PR #1–#4 sequence produced no Cloudflare Workers Builds
+  check; Vercel is the only Git-backed deploy authority
 
 Next bounded work:
-- Review and integrate the linear PR #1 → #2 → #3 → hosting stack; activate
-  approved `main`/Actions guardrails, verify Vercel production, then perform
-  separately approved branch/worktree cleanup
+- Resolve the separately scoped Dependabot queue (#8–#15): three green security
+  updates, four green version updates, and one deliberately blocked split React
+  update; do not merge packages merely because automation opened them;
+  React-family, Tailwind-family, and Actions updates are grouped for future runs
+- Complete deliberate merged-branch/worktree cleanup after the closeout record
+  is merged; retain the local WIP preservation branch
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
