@@ -53,6 +53,7 @@ Start with `AGENTS.md` regardless of which coding agent you use.
 | `docs/EXPLORATION_STRATEGY.md` | Project origin, question atlas, lab workflow, graph/temporal semantics, and expansion path |
 | `docs/DECISIONS.md` | Active decisions, review triggers, and founder questions that are deliberately deferred |
 | `docs/ROADMAP.md` | Delivery order, priorities, and exit gates |
+| `docs/SOURCE_CONTROL_AND_DELIVERY.md` | Protected-main target, stacked-PR rules, CI/preview/production contract, provider boundaries, and agent authority |
 | `docs/DATA_RELEASE.md` | Versioned identity, provenance, and changes for the committed public data artifacts |
 | `docs/DATASET_DATASHEET.md` | Composition, licenses, processing, missingness, uses/non-uses, risks, citation, and maintenance |
 | `docs/CLAIM_REGISTER.md` | Route-level evidence/denominator audit and sensitive classification language rules |
@@ -77,6 +78,9 @@ feature follow the equivalent steps in `AGENTS.md` directly. Publishing and
 merging always require explicit user authorization, and every bounded task
 must say whether it is complete and safe to archive, awaiting review, or
 blocked, then provide the next task's exact seed prompt when work remains.
+Every PR handoff ties GitHub Actions and an immutable Vercel deployment to the
+same full commit SHA; Vercel's Git integration remains the sole application
+deployment path.
 
 ## Data pipeline
 

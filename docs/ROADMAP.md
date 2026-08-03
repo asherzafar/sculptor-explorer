@@ -360,6 +360,13 @@ major visual dimension.
   optional instruction-only `ship-pr` and `visual-qa` repository skills. Keep
   unique policy in canonical docs so Claude, Codex, Cursor, Windsurf, Copilot,
   and agents without skill discovery can follow the same process.
+- [x] Define the protected-`main`, exact-SHA preview/production, stacked-PR,
+  worktree, provider-boundary, and agent-authority target in
+  `docs/SOURCE_CONTROL_AND_DELIVERY.md`; add a PR evidence template and public
+  deployment smoke command. Pin the existing action majors to immutable SHAs
+  and schedule monthly GitHub Actions/npm Dependabot version reviews. Activating
+  repository rules and security settings remains a separately reviewed
+  provider mutation after the stack is green.
 - [ ] **Standardize the repository on Node.js 24 in one focused, separately
   reviewed branch.** Vercel project settings already report `24.x`; align the
   root and `web` version files, `web/package.json`/lockfile engine contract,

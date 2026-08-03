@@ -6,7 +6,8 @@ description: Publish, push, ship, or create or update a pull request for a scope
 # Ship a repository change
 
 This is an instruction-only repository workflow. `AGENTS.md` remains the
-canonical policy; if this skill and `AGENTS.md` differ, stop and reconcile the
+canonical policy and `docs/SOURCE_CONTROL_AND_DELIVERY.md` defines the delivery
+contract; if these sources differ from this skill, stop and reconcile the
 contradiction before publishing.
 
 ## Authorization and completion boundary
@@ -26,7 +27,8 @@ contradiction before publishing.
    detached head, default branch, or unexpected branch until the branch
    strategy is explicit.
 3. Confirm the intended pull-request base branch. Do not infer `main` when the
-   work is part of a stacked release-candidate sequence.
+   work is part of a stacked release-candidate sequence. Record parent and child
+   PRs, and confirm that no unreviewed branch is hidden below the first PR.
 4. Inspect `git status --short --branch`, the complete scoped diff, the diff
    against the intended base, and recent commits. Preserve unrelated work.
 5. Run checks proportional to the change. Run `./scripts/validate.sh` for
@@ -49,13 +51,17 @@ contradiction before publishing.
     head. Retrieve the run/job annotations and useful logs for failures; do not
     diagnose a missing log blob as an application failure when no job started.
 12. Inspect the corresponding Vercel Preview Deployment for the exact commit.
-    Record its deployment/preview URL, ready state, source branch and SHA, and
-    useful build logs if it failed. Do not promote it to production.
+    Record its deployment ID, immutable deployment/preview URL, ready state,
+    source branch and SHA, and useful build logs if it failed. Run
+    `scripts/verify-deployment.sh` against a public exact deployment URL. Do not
+    treat a floating branch alias as immutable evidence and do not promote the
+    preview to production.
 13. Separate required repository/preview checks from unrelated external
     integrations. Keep an unrelated failure visible and owned, but do not
     silently change, disable, or delete the integration to make the PR green.
-14. Reconcile local head, remote head, PR head/base/draft state, worktree
-    cleanliness, GitHub checks, and Vercel state before handing off.
+14. Reconcile local head, remote head, PR head/base/stack/draft state, task
+    worktree cleanliness, GitHub checks, Vercel state, and every external side
+    effect before handing off.
 
 ## Final report
 
@@ -63,7 +69,10 @@ Report:
 
 - task status and whether the task is safe to archive;
 - branch, full commit SHA, PR base/head/draft state, and PR URL;
-- Vercel preview/deployment URL and source SHA;
+- parent/child PRs for stacked work, or an explicit statement that the PR is
+  unstacked;
+- Vercel deployment ID, immutable preview/deployment URL, source SHA, and route
+  smoke result;
 - every required check and its result;
 - validation run locally;
 - unresolved risks or external blockers; and
