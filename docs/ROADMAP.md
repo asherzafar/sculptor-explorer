@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q release workflow verified; runtime alignment and visual foundations next (August 2026)
+## Current status: 5Q release workflow and Node 24 alignment verified (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -51,7 +51,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Horizon | Priority | Outcome |
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
-| Immediate enabler | **Node 24 + release-workflow alignment** | Remove local/CI/Vercel runtime drift, update the GitHub Action runtimes deliberately, and make publish/preview/QA handoffs reproducible before the next code slice. |
+| Completed | **Node 24 alignment** | Local/runtime drift is resolved; both GitHub Actions events and Vercel passed on the same published PR head. |
 | Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
@@ -348,7 +348,7 @@ major visual dimension.
 - [x] Pass the complete non-browser, build, performance, and seven-journey browser gates; inspect the semantic data diff and static-output change. The local build remains 3,625 routes / 36,201 files / ~228 MB; data changes are the documented exclusion/temporal exports plus additive release and movement-route contracts.
 - [x] Create a named repository checkpoint for the inherited release candidate before route-level visual iteration (`codex/phase-5q-stabilization`).
 
-#### Phase 5Q release-workflow enablers (active; before the next code slice)
+#### Phase 5Q release-workflow enablers (verified; before the next code slice)
 
 - [x] Prove the branch → draft PR → GitHub Actions → Vercel Preview path on
   PR [#1](https://github.com/asherzafar/sculptor-explorer/pull/1). At final
@@ -367,17 +367,21 @@ major visual dimension.
   and schedule monthly GitHub Actions/npm Dependabot version reviews. Activating
   repository rules and security settings remains a separately reviewed
   provider mutation after the stack is green.
-- [ ] **Standardize the repository on Node.js 24 in one focused, separately
-  reviewed branch.** Vercel project settings already report `24.x`; align the
-  root and `web` version files, `web/package.json`/lockfile engine contract,
-  local documentation, and CI `node-version` without upgrading unrelated
-  dependencies. Inspect whether `@types/node` should move as a directly related
-  compatibility change rather than changing it automatically. Run `npm ci`,
-  `./scripts/validate.sh`, and the explicit Playwright gate; show the complete
-  diff and compatibility evidence before commit or push.
-- [ ] In the same runtime-alignment review, update `actions/checkout`,
+- [x] **Implement Node.js 24 alignment in one focused, separately reviewed
+  branch.** `codex/node-24-alignment` adds root/web `.nvmrc` files at 24,
+  declares `engines.node: "24.x"`, intentionally moves `@types/node` to 24,
+  updates only its required lockfile dependency, selects Node 24 in CI, and
+  updates current local/deployment documentation. With Node 24.14.0, `npm ci`,
+  `./scripts/validate.sh`, and all seven Playwright journeys pass. No unrelated
+  package version moved. On draft PR
+  [#3](https://github.com/asherzafar/sculptor-explorer/pull/3), both push and
+  pull-request CI plus Vercel passed on the same published head, so this
+  implementation is locally complete. The reconciled stack head still requires
+  fresh remote checks before integration.
+- [x] In the same runtime-alignment review, update `actions/checkout`,
   `actions/setup-node`, and `actions/setup-python` from their old Node-20-based
-  majors to their current reviewed majors. As of 2026-08-02, the official
+  majors to v7 while preserving their existing inputs, and pin the v7 releases
+  to full commit SHAs. As of 2026-08-02, the official
   [`checkout` v7](https://github.com/actions/checkout/releases/tag/v7.0.1),
   [`setup-node` v7](https://github.com/actions/setup-node/releases/tag/v7.0.0),
   and
@@ -386,6 +390,8 @@ major visual dimension.
   application runtime selected by `setup-node`. Vercel documents
   `engines.node: "24.x"` as the repository override for its project setting in
   [Node.js version configuration](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
+  The PR #3 push and pull-request runs prove those action upgrades on
+  GitHub-hosted runners, and the same head completed its Vercel build.
 - [ ] After runtime alignment is green, remove duplicate full-suite execution
   for a PR branch (currently both `push` and `pull_request`) in a separate CI
   efficiency change. Preserve validation for the default/release branch and

@@ -20,15 +20,26 @@ immutable SHAs and adds monthly GitHub Actions/npm Dependabot review. Treat the
 fresh head's newly triggered checks as the current merge evidence, not the old
 checkpoint.
 
+The workflow-standards branch has advanced to
+`61dda5d5591d8e73965bd93435604973503e0fe2` with the protected-main target,
+stack rules, PR evidence template, agent authority matrix, and verified
+deployment smoke script. The earlier Node-alignment checkpoint
+`945d2cb2b4b661f8ff4be2dcd510d2c1c096038b` passed local Node 24 install,
+root/browser gates, both GitHub Actions events, and Vercel. The Node branch now
+incorporates the refreshed parent and pins each v7 action to a full SHA, so that
+earlier remote evidence is historical; fresh checks on the reconciled head are
+required before review completion.
+
 Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
 Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline` at
 `9200e1c87fd8c5dc18005e1408060d59558c1c55`, draft PR
 [#1](https://github.com/asherzafar/sculptor-explorer/pull/1).
-Workflow-standards continuation branch:
-`codex/phase-5q4-workflow-standards`, based on the refreshed PR #1 head. Its
-target operating model, evidence template, exact-deployment smoke script,
-lifecycle, and repository-skill changes live in
-`docs/SOURCE_CONTROL_AND_DELIVERY.md` and require review before integration.
+Workflow-standards continuation branch: `codex/phase-5q4-workflow-standards`
+at `61dda5d5591d8e73965bd93435604973503e0fe2`, based on the refreshed PR #1
+head, draft PR [#2](https://github.com/asherzafar/sculptor-explorer/pull/2).
+Node-runtime continuation branch: `codex/node-24-alignment`, based on the
+workflow-standards branch, draft PR
+[#3](https://github.com/asherzafar/sculptor-explorer/pull/3).
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it
@@ -38,6 +49,7 @@ Git build was disconnected at 2026-08-03 00:31:05 UTC. Read-only API evidence
 shows no Worker URL, custom domain, account zone/route, build config, trigger,
 deploy hook, or service-scoped invocation row in the 30-day window ending
 2026-08-03 01:55 UTC.
+
 Retain the dormant manual deployment through the observation window; do not
 delete or reconnect it merely to alter a GitHub check.
 
@@ -58,13 +70,12 @@ delete or reconnect it merely to alter a GitHub check.
 - The snapshot has 1,423 person-person edges: 1,372 (96.4%) have temporal envelopes; 40 have disjoint lifespans and 11 lack the source person’s birth year. No known edge is silently dropped.
 - Institutional links cover 2,393 included sculptors (67.5%); 1,826 (51.5%) have education links. The top five recorded education hubs hold 15.8% of 2,868 education edges.
 - Production build, TypeScript, zero-warning lint, data contracts, seven browser journeys, and bounded performance checks pass locally. Browser coverage includes the shared source/scope/snapshot/limits disclosure on all seven analytical route types and exact movement-link/route integrity. GitHub Actions defines the non-browser root gate and explicit browser gate; the verified build generates 3,625 static pages.
-- The Vercel project currently reports Node `24.x`, and its latest PR #1
-  preview is READY at
-  `https://sculptor-explorer-hgkmgumny-asherzafars-projects.vercel.app` for
-  source `8bb61a7`. The repository still declares Node 20 in CI,
-  `web/.nvmrc`, `web/package.json`, `AGENTS.md`, and `README.md`; this is a
-  real reproducibility drift scheduled as the next focused infrastructure
-  task, not a failed deployment.
+- The Vercel project reports Node `24.x`. The focused continuation declares
+  Node 24 in both `.nvmrc` files, `web/package.json`/lockfile, local
+  documentation, and CI; `engines.node: "24.x"` is the tracked repository
+  override because no `vercel.json` or `.vercel` project metadata is
+  committed. The exact-head PR #3 preview is READY and Vercel Preview Comments
+  passes with no unresolved feedback.
 - The current static export is large: approximately 228 MB and 36,201 files, driven mainly by per-sculptor pages/assets.
 - Default lineage performance is acceptable but has little expansion headroom: roughly 1.68 s current, 2.26 s with institutions, 2.09 s with movements, and 3.72 s in the stress scenario on the audit machine.
 - The Explore page mounts all included rows and keeps search/sort state locally rather than in the URL.
@@ -85,6 +96,20 @@ delete or reconnect it merely to alter a GitHub check.
 - Sampled Timeline text contrast passes except “Armory Show,” which renders at 9px in sandstone with 2.13:1 contrast against the warm page background. Treat that as a confirmed text-contrast defect, not a reason to replace the palette wholesale.
 
 ## Validation state at this handoff
+
+Passed locally on `codex/node-24-alignment` with Node 24.14.0 and npm 11.9.0:
+
+- `npm ci` — 709 locked packages installed with no engine mismatch; the existing `node-domexception` deprecation and documented 14-advisory audit posture remain unchanged
+- `./scripts/validate.sh` — all data/institution/relationship/temporal checks, zero-warning lint, Node-24 type checking, 3,625-route production build, and performance bounds passed
+- `node perf/lineage-bench.mjs --ci` within the root gate — current 1.67 s; institutions 1.98 s
+- `npm run test:e2e` — all seven Chromium journeys passed in 6.0 s; only the known `NO_COLOR`/`FORCE_COLOR` warning was emitted
+
+The lockfile changes only the root engine contract, `@types/node` 20.19.39 →
+24.13.3, and its required `undici-types` 6.21.0 → 7.18.2 dependency. No other
+package version changes. On the same published PR #3 head, both GitHub Actions
+events passed the root and browser gates, Vercel reached READY, and Vercel
+Preview Comments passed. The external Cloudflare Workers check failed on both
+the approved base and this branch; it is not evidence of a Node 24 regression.
 
 Passed after the 2026-08-02 Phase 5Q.3R stabilization implementation and again
 on the final PR #1 head where applicable:
@@ -187,30 +212,20 @@ inventory rather than being silenced by changing the integration in this task.
 
 ## Recommended next sequence
 
-1. Review the complete diff on `codex/phase-5q4-workflow-standards`. If
-   approved, commit and publish it as a focused stacked draft PR with explicit
-   base `codex/phase-5q4-rendered-baseline`; verify GitHub and Vercel before
-   archiving the task.
-2. Create a focused Node 24 alignment branch from the approved workflow
-   checkpoint. Align local version files, package engine/lockfile, CI, current
-   GitHub Action majors, and docs; do not upgrade unrelated dependencies.
-   Run `npm ci`, the root gate, and Playwright, then stop at **REVIEW READY**
-   with the full diff before commit/push.
-3. Run the 5Q.4c hosting inventory as a separate read-only task. It may overlap
-   the Node investigation only if it does not edit shared roadmap/handoff
-   files. Inventory Vercel, Netlify, and Cloudflare ownership, configuration,
-   traffic/redirect needs, and rollback paths; make no deletion, integration,
-   authentication, or production change.
-4. Keep the rendered preview as evidence only—do not promote production—and
+1. Run the 5Q.4c hosting inventory as a separate read-only task. Inventory
+   Vercel, Netlify, and Cloudflare ownership, configuration, traffic/redirect
+   needs, and rollback paths; make no deletion, integration, authentication,
+   or production change.
+2. Keep the rendered preview as evidence only—do not promote production—and
    complete 5Q.4a on the remaining routes plus actual zoom, text spacing,
    forced colors, reduced motion, keyboard/screen-reader behavior, perceptual
    performance, and reader comprehension.
-5. Implement end-to-end route slices in order: Explore, Timeline, dense
+3. Implement end-to-end route slices in order: Explore, Timeline, dense
    Lineage/Migration, then propagate earned patterns. Use Explore to establish
    the responsive list/table, URL-state, skip-link, target-size, and focus
    patterns. Run a separate read-only visual-QA task on each rendered PR before
    fixes and final validation.
-6. Add privacy-respecting analytics and run five structured user sessions,
+4. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 

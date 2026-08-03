@@ -115,11 +115,19 @@ Recently completed:
 - Phase 5b.4: opt-in institution hubs on `/lineage`, URL-backed and lazy-loaded
 - Phase 5b.5: shared temporal envelopes on person/institution edges and relationship evidence on `/transparency`
 - Phase 5Q.1–5Q.3: one project truth, CI/browser gates, dependency triage, static-export/data invariants, dataset datasheet, claim register, route-level provenance, and sensitive-classification language review
+- Phase 5Q release workflow: the agent-neutral inspect/review/publish/preview lifecycle is published at the workflow-standards checkpoint
+
+Current infrastructure state:
+- Node 24 is aligned across the root and `web` `.nvmrc` files, the package
+  engine/type/lockfile contract, and GitHub Actions on
+  `codex/node-24-alignment`; local install, validation, and Playwright gates
+  pass; both GitHub Actions events and Vercel also pass on the same published
+  PR head
 
 Next bounded work:
-- Phase 5Q release enabler: align the repository and GitHub Actions with the
-  already-configured Vercel Node 24 runtime in one reviewed infrastructure
-  branch; do not combine it with unrelated dependency or CI-optimization work
+- Phase 5Q.4c: inventory Vercel, Netlify, and Cloudflare ownership,
+  configuration, traffic/redirect needs, and rollback paths without changing
+  provider state
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
