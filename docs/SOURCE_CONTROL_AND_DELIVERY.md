@@ -49,14 +49,14 @@ The following is a dated observation, not permanent configuration truth.
 | Surface | Verified state | Gap from target |
 |---|---|---|
 | Local Git | The permanent checkout's inherited work is quarantined on `codex/local-wip-audit-2026-08-02`; the review worktree is dedicated to the release stack. | The quarantined worktree is intentionally dirty until its unrelated files are reviewed and either checkpointed or split. |
-| Branch graph | PRs #1, #2, and #3 are open drafts. The hosting branch was a sibling of the Node branch because both began at PR #2. | The stack must be made linear and declared in every PR before integration. |
+| Branch graph | PRs #1, #2, and #3 are open drafts. The hosting branch now contains the reconciled Node head, making the implementation graph linear. | PR #1 must be retargeted to `main`; the hosting draft PR and every PR body must declare the stack before integration. |
 | GitHub `main` | Public repository; no branch protection and no rulesets. All three merge methods are enabled and merged branches are not auto-deleted. | Direct/force/deletion risk is not technically blocked; required checks are advisory. |
-| GitHub Actions | Repository default token is read-only and cannot approve PRs. CI uses `pull_request`, GitHub-hosted runners, `npm ci`, and `permissions: contents: read`. | Actions were referenced by moving major tags; repository SHA-pinning enforcement is off; all marketplace actions are allowed. |
-| Repository security | Secret scanning and push protection are enabled. There are no repository Actions secrets or variables. | Dependabot security updates are disabled; automated dependency policy was absent at the audit start. |
+| GitHub Actions | Repository default token is read-only and cannot approve PRs. CI uses `pull_request`, GitHub-hosted runners, `npm ci`, `permissions: contents: read`, and full-SHA-pinned v7 actions on the reconciled Node/hosting branches. | Repository SHA-pinning enforcement is off and all marketplace actions are still allowed until the reviewed settings mutation. |
+| Repository security | Secret scanning and push protection are enabled. There are no repository Actions secrets or variables; monthly Actions/npm Dependabot configuration is in the release stack. | Dependabot security updates remain disabled until the configuration reaches `main` and the reviewed setting is enabled. |
 | GitHub environments | `Preview` and `Production` exist from deployment reporting and have no protection rules. | They are observations, not an authorization boundary for the Vercel Git integration. |
 | Vercel | Project `prj_u5FmLz6CKm2hpugtVydrXcFVdb99`; production is `main@5b2d621fc2becba1c1b0c0ff8973c344626a33e7`, deployment `dpl_7C9BUQyu8CEoAhZe9J2wSU7cpix5`, `READY`, and public routes return 200. Exact reviewed branch previews are also `READY`. | `main` protection, not another deployment script, must become the production gate. A reusable post-deploy route check is needed. |
 | Netlify | `sculpture-in-data.netlify.app` returns exact path- and query-preserving 301 responses to Vercel. | Keep it as a monitored compatibility surface; do not restore it as a build/deploy authority. |
-| Cloudflare | Account `370dc6896c711fc6c8c6801139acd063`, Worker `sculpture-in-data`: Worker URLs disabled, no custom domains or zones/routes, no build config/triggers/hooks, and zero service-scoped invocation rows for the 30 days ending 2026-08-03 01:55 UTC. | Retain through the observation window. The next fresh PR must demonstrate that the historical Workers Builds check no longer appears. |
+| Cloudflare | Account `370dc6896c711fc6c8c6801139acd063`, Worker `sculpture-in-data`: Worker URLs disabled, no custom domains or zones/routes, no build config/triggers/hooks, and zero service-scoped invocation rows for the 30 days ending 2026-08-03 01:55 UTC. Fresh PR #1–#3 heads have no Workers Builds check. | Retain the Worker, manual versions, and non-secret build-token metadata through 2026-09-02 UTC; deletion/revocation is a later separately approved review. |
 
 ## Research synthesis
 
@@ -209,6 +209,11 @@ date, while this document owns the reusable source-control/deployment model.
 6. Retarget PR #1 to `main`, update all PR bodies with their declared stack,
    and verify fresh Actions/Vercel results and absence of a new Cloudflare
    Workers Builds check.
+
+Progress as of 2026-08-03: steps 1–5 are implemented through the local hosting
+branch, and fresh PR #1–#3 heads have successful Actions/Vercel checks with no
+Cloudflare check. Publishing/opening the hosting PR, retargeting PR #1, and
+updating all four PR bodies remain before Gate A is complete.
 
 ### Gate B — human-approved integration
 

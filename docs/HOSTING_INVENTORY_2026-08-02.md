@@ -4,9 +4,14 @@
 
 **Branch:** `codex/phase-5q4c-hosting-retirement`
 
-**Base:** approved workflow-standards checkpoint `e4596b7a88355b680570d7203c6781f0985730c3`
+**Base:** `codex/node-24-alignment` (stacked after PR #3)
 
-**Scope:** The inventory first pass was read-only. The approved implementation appended below made one Netlify draft deploy and one Netlify production redirect deploy. It made no Vercel, Cloudflare, authentication, integration, domain, deletion, retention-policy, rollback, roadmap, or handoff change.
+**Scope:** The inventory first pass was read-only. Earlier approved implementation
+work made one Netlify draft deploy, one Netlify production redirect deploy, and
+later disconnected only this Worker's Git build triggers. The post-disconnect
+API review below was read-only. No Vercel deployment or promotion, Worker
+service/version/deployment/route/domain deletion, token revocation, GitHub
+setting, or production-domain change was made during that review.
 
 ## Recommended disposition
 
@@ -14,7 +19,7 @@
 |---|---|---|---|
 | Vercel | Canonical production and Git-backed PR previews | **NO CHANGE — VERIFIED AFTER IMPLEMENTATION.** Keep production on `sculptor-explorer.vercel.app`; do not promote either open PR preview and do not clean up deployments in the retirement task. | Production remained `READY` on the same `main` deployment before and after Netlify migration. |
 | Netlify | Legacy hostname now forwarding to canonical production | **REDIRECT AND RETAIN — IMPLEMENTED.** Keep the path- and query-preserving 301 indefinitely; observe through 2026-10-31. | A permanent redirect preserves unknown old links. Deletion would replace a working migration path with dead links. |
-| Cloudflare Workers | Disabled Worker URLs and no custom domain/route, but an active manual version and stale Git build integration/check | **DISCONNECT BUILD INTEGRATION, RETAIN SERVICE — RECOMMENDED, NOT YET EXECUTED.** Disconnect only this Worker's repository build integration after explicit approval; preserve active version `cf3a4cff` and the service for at least 30 days. Do not proxy Vercel through Cloudflare and do not delete the Worker until service-scoped traffic is verified through the newly installed Cloudflare MCP. | Disconnecting the per-Worker Git integration stops irrelevant failed checks without changing the disabled URLs, routes, or retained manual deployment. The supplied 30-day CSV totals 944 account-scoped requests, so it cannot justify deletion or a zero-traffic claim. |
+| Cloudflare Workers | Disabled Worker URLs, no custom domain/route, retained manual versions, and no remaining Git build configuration/triggers/hooks | **BUILD DISCONNECTED; RETAIN SERVICE — VERIFIED.** Preserve the active version `cf3a4cff`, prior version, service, and non-secret build-token metadata through 2026-09-02 UTC. Do not proxy Vercel through Cloudflare. Deletion or token revocation requires a separate post-retention review and explicit approval. | Account audit logs verify the two per-Worker build-trigger deletions. The API then reported no build configuration/triggers/hooks, zero service-scoped invocation rows in the exact 30-day window, disabled Worker URLs, no custom domains, and no account zones/routes. |
 
 These dispositions implement accepted decision D012 without treating an unrelated Cloudflare failure as a repository or Vercel failure.
 
@@ -209,9 +214,9 @@ The CLI/API supplied the important ownership, deployment, domain, hook, and rete
 - The active manual deployment may have served requests before its Worker URLs were disabled. The screenshots do not establish when the URLs were disabled or which service generated the account-scoped requests.
 - Disconnecting the Git integration should not alter the retained manually deployed versions or domain toggles, but this must be verified in Cloudflare immediately after the provider action.
 
-### Remaining Cloudflare API verification
+### Historical Cloudflare API verification boundary — resolved below
 
-The owner-screen checklist is complete enough to separate integration retirement from service deletion. The newly installed Cloudflare plugin registers the official Cloudflare API MCP server, but its tools are unavailable to this task because the plugin was installed after the task started. Codex documentation states that installed plugin skills and tools load in a new task.
+At this point in the historical task, the owner-screen checklist was complete enough to separate integration retirement from service deletion, but the newly installed Cloudflare plugin had not loaded into that already-running task. The requested API facts were subsequently verified through the installed plugin and are recorded in the post-disconnect review below.
 
 In the next task, use the Cloudflare MCP read-only before mutation to verify:
 
@@ -220,7 +225,8 @@ In the next task, use the Cloudflare MCP read-only before mutation to verify:
 3. Current Worker URL, custom-domain, and route state through the API.
 4. Whether the per-Worker Git disconnect preserves the active manual deployment and what happens to the named build token.
 
-No further account screenshot is required unless the MCP contradicts or omits these fields.
+No further account screenshot was required; the API evidence resolved these
+fields without contradicting the retained manual deployment or disabled routing.
 
 ## Retention and rollback summary
 
@@ -229,9 +235,13 @@ No further account screenshot is required unless the MCP contradicts or omits th
 | Vercel production | Current production and immediate predecessor are marked rollback candidates; older deployments remain listed. | Exact plan/policy and preview expiration are owner-only. Specific-target rollback may depend on plan. | Make no Vercel change; record policy before any future cleanup. |
 | Vercel previews | PR #1 and PR #2 immutable URLs and branch aliases are still live/READY. | Exact expiration is unknown. | Keep both while visual/workflow review remains open. |
 | Netlify redirect | Current production `6a6fcf32...` is the verified redirect; old deploy `69e534...` is still reachable at its immutable permalink and the API exposes `restoreSiteDeploy`. | The old deploy now reports the already-past expiration `2026-07-19T00:00:00Z` and may disappear without warning; its source archive is unavailable. | Retain the redirect. Restore `69e534...` only while it remains available and only if a redirect regression requires emergency rollback. |
-| Cloudflare | Active manual version `cf3a4cff` receives 100% of version traffic; prior manual version `2da29370` is retained; the UI supports rollback among the last 100 saved versions. | Both Worker URLs are disabled and there is no custom route/domain, but the 944-request CSV is account-scoped rather than service-scoped. Exact full version IDs and service traffic remain MCP-verification items. | Disconnect only the per-Worker Git build integration after explicit approval; retain the service and versions for at least 30 days. Do not delete until the MCP verifies service-scoped traffic and current routing. |
+| Cloudflare | Active manual version `cf3a4cff-d0bb-4da6-b047-efcca385a435` receives 100% of version traffic; prior manual version `2da29370-4423-4b31-b200-83c36793e08d` is retained; the UI supports rollback among the last 100 saved versions. | Git builds are disconnected, routing is disabled/absent, and the service-scoped 30-day query returned zero rows. The non-secret named build-token metadata still exists. | Retain the service and versions through 2026-09-02 UTC. Do not delete or revoke the build token until a separately approved retention review re-verifies traffic, routing, check absence, and token ownership/dependencies. |
 
-## Proposed implementation sequence after review
+## Proposed implementation sequence after review — historical plan
+
+This plan records the authority used for the completed redirect and Worker Git
+disconnect. Do not execute it again; current truth is in the post-disconnect
+review below.
 
 1. Complete the narrow owner-only checklist and append the observations to this inventory before the corresponding provider mutation. A missing authenticated account screen is a failed gate, not evidence of absence. Stop that provider's mutation if it shows an unrecorded custom domain, meaningful traffic/backlink, required check, or additional owner.
 2. Leave Vercel untouched. Re-verify the canonical alias immediately before and after legacy-host work. Treat a new legitimate `main` production deployment as drift to record and review, not as a reason to roll Vercel back to the inventory's deployment ID.
@@ -281,6 +291,8 @@ Finish **REVIEW READY — keep open** with the local diff, external changes made
 | 2026-08-02 23:16 | GitHub / Cloudflare gate | `Workers Builds: sculpture-in-data` failed on both inspected PR commits. | Read-only repository policy check. | Repository ruleset list is empty and `main` returns “Branch not protected”; the Cloudflare check is not a required GitHub check. No test PR was created. |
 | 2026-08-02 23:34 | Cloudflare owner evidence | Build settings, domains, deployments, analytics export, and sole-owner attestation were supplied. | Read-only inspection of the supplied log, screenshots, and CSV; no provider mutation. | Confirmed stale Git settings and exact deploy-stage failure; disabled Worker URLs; no custom route/domain; active manual version `cf3a4cff`; prior version `2da29370`; and an account-scoped 30-day total of 944 requests that cannot be attributed to this Worker. |
 | 2026-08-02 23:42 | Cloudflare MCP readiness | Cloudflare plugin `0.1.2` is installed and registers the official API MCP, but this already-running task exposes no Cloudflare tools. | Read-only plugin/resource and Codex configuration inspection; no login or configuration change. | A new task is required to load the plugin tools. OAuth may be requested on first Cloudflare tool use. Direct Codex CLI configuration does not contain a separately registered `cloudflare` server; no duplicate server was added. |
+| 2026-08-03 00:31 | Cloudflare Git build disconnect | Per-Worker Git build triggers still existed; the retained active manual deployment was separate from the failed builds. | The previously approved per-Worker Disconnect action deleted build triggers `09e0cba1-900a-40c6-befb-cb219e23678a` at `00:31:05.099Z` and `576f009e-30d2-407f-a4d1-b57c67a88f8b` at `00:31:05.436Z`; account audit logs record both successful DELETE actions. | The Worker, both manual versions, deployment percentages, disabled Worker URLs, and absent domains/routes were preserved. No service, version, deployment, route, domain, token, or GitHub setting was deleted or changed. |
+| 2026-08-03 01:55 | Cloudflare API postflight | The account-scoped CSV could not establish service traffic and shortened version IDs were dashboard-only evidence. | Used the installed Cloudflare plugin and official API MCP read-only; no provider mutation or credential value read. | Full versions/deployments, disabled/absent routing, missing build configuration, zero triggers/hooks/builds, zero service-scoped rows in the 30-day query, and the surviving non-secret build-token metadata are recorded below. |
 
 ### Netlify implementation artifact and rollback
 
@@ -295,13 +307,22 @@ Finish **REVIEW READY — keep open** with the local diff, external changes made
 
   The API method schema and old permalink were verified, but the rollback action was intentionally not invoked after a successful production migration because it would revert the public redirect. Re-run the four legacy public checks immediately after any rollback.
 
-### Cloudflare decision boundary after owner evidence
+### Cloudflare post-disconnect decision boundary
 
-- **Safe after explicit approval:** disconnect the Git repository from this Worker using the per-Worker **Disconnect** control, provided the fresh MCP preflight still shows no active Worker URL, custom domain, or zone route and confirms that the active manual deployment remains retained.
-- **Not authorized or justified:** retrying builds, restoring Wrangler configuration, adding a redirect, proxying Vercel through Cloudflare, enabling Worker URLs, deleting versions, revoking the named API token manually, or deleting the service.
-- **Retention clock:** begins when the Git integration is actually disconnected, not when this inventory was written.
-- **Deletion gate:** after at least 30 days, require service-scoped request/hostname evidence from the Cloudflare MCP and confirmation that the next authorized PR no longer receives `Workers Builds: sculpture-in-data`.
-- **No Cloudflare redirect is needed now:** both `workers.dev` surfaces are disabled and there is no custom hostname or route to preserve.
+- **Completed:** the approved per-Worker Git build disconnect occurred at
+  2026-08-03 00:31:05 UTC. It preserved the active manual deployment and prior
+  version.
+- **Not authorized or justified:** retrying builds, restoring Wrangler
+  configuration, adding a redirect, proxying Vercel through Cloudflare,
+  enabling Worker URLs, deleting versions, deleting the named build token, or
+  deleting the service.
+- **Retention clock:** retain the dormant Worker and versions through
+  **2026-09-02 UTC** before any deletion/revocation decision.
+- **Deletion gate:** after that date, require a new service-scoped traffic
+  query, current routing, next-PR check absence, version rollback confirmation,
+  and build-token dependency/ownership review.
+- **No Cloudflare redirect is needed:** both `workers.dev` surfaces are disabled
+  and there is no custom hostname, account zone, or route to preserve.
 
 ### Validation
 
@@ -312,7 +333,9 @@ Finish **REVIEW READY — keep open** with the local diff, external changes made
 - Review: the complete inventory and the byte-level one-line redirect artifact were inspected after the provider work and again after the owner-supplied Cloudflare evidence.
 - Pre-publication worktree gate: only `docs/HOSTING_INVENTORY_2026-08-02.md` and `hosting/netlify-redirect/_redirects` were untracked; nothing else was staged or modified before founder approval to commit and push.
 
-### Exact follow-up prompt
+### Executed Cloudflare follow-up prompt — historical record
+
+The post-disconnect API review below resolves this prompt. Do not run it again.
 
 ```markdown
 Use the installed Cloudflare plugin to complete the read-only Phase 5Q.4c API verification for account `370dc6896c711fc6c8c6801139acd063` and Worker `sculpture-in-data`, using `docs/HOSTING_INVENTORY_2026-08-02.md` on `codex/phase-5q4c-hosting-retirement` as the evidence baseline.
@@ -324,8 +347,119 @@ Through the Cloudflare API MCP, verify: (1) exact full IDs and timestamps for ac
 Reconcile MCP facts with the supplied owner screenshots and the account-scoped 944-request CSV. Treat any conflict or unavailable service-scoped analytics as unknown. Make no provider mutation. Finish REVIEW READY — keep open with the exact disconnect preflight, rollback/retention implications, and one explicit approval question for disconnecting only this Worker's Git build integration. Do not commit or push.
 ```
 
-## Task status
+## Post-disconnect Cloudflare API review — 2026-08-03
 
-**COMPLETE — safe to archive after the approved branch publication**
+This review used the installed Cloudflare plugin and official API MCP read-only
+for account `370dc6896c711fc6c8c6801139acd063` and Worker
+`sculpture-in-data`. No route, domain, build, version, deployment, token,
+service, integration, or account setting was changed, and no credential value
+was requested or returned.
 
-Recommended decisions: **Vercel — no change; Netlify — retain the implemented path-preserving 301 indefinitely; Cloudflare — after a fresh MCP preflight and explicit approval, disconnect only the per-Worker Git build integration, retain the disabled Worker and manual versions for at least 30 days, and defer deletion until service-scoped traffic and next-PR evidence pass.** Netlify production changed only as recorded above; Vercel and Cloudflare did not change.
+### Worker, versions, and deployments
+
+- Worker ID: `sculpture-in-data`; script tag
+  `e7a4cc968fc74654acaacef600dcd53b`; created
+  `2026-04-26T19:22:01.404704Z`; modified
+  `2026-04-26T19:22:02.293676Z`; `last_deployed_from: dash_template`.
+- Active version: number 2,
+  `cf3a4cff-d0bb-4da6-b047-efcca385a435`, created
+  `2026-04-26T19:22:02.293676Z`, source `dash`, triggered by upload.
+  Deployment `9a427017-e4ec-455a-8ace-c9881295ca41` assigns it 100% and was
+  created at the same timestamp.
+- Prior version: number 1,
+  `2da29370-4423-4b31-b200-83c36793e08d`, created
+  `2026-04-26T19:22:01.404704Z`, source `dash`, triggered by upload.
+  Prior deployment `75bca7e6-e89c-4e56-a656-517f57cb969b` assigned it 100%.
+- The disconnect did not create, replace, or change either deployment. The
+  active and prior manual versions remain the rollback boundary.
+
+### Routing and service-scoped analytics
+
+- Worker subdomain: `enabled: false`; previews: `false`.
+- Custom domains filtered to this service: zero.
+- Account zones: zero; therefore this account has no zone Worker routes to
+  attach to this service.
+- `workersInvocationsAdaptive` was queried with
+  `scriptName: sculpture-in-data` from `2026-07-04T01:55:04Z` through
+  `2026-08-03T01:55:04Z`. It returned zero rows and totals of zero requests,
+  errors, subrequests, and client disconnects. There is no service-scoped last
+  request time or served-hostname row to report.
+- This service-scoped result supersedes the earlier account-scoped 944-request
+  CSV for this Worker's retention decision; the CSV remains valid only as an
+  account-wide observation.
+
+### Disconnected build state
+
+- A GET for the Worker build configuration by script tag returns Cloudflare
+  error `12040`: no build configuration is associated with the script tag for
+  this account.
+- Build triggers: zero. Deploy hooks: zero. Builds returned by the current
+  per-script build endpoint: zero.
+- Account audit logs record two successful build-trigger deletions at
+  `2026-08-03T00:31:05.099Z` and `2026-08-03T00:31:05.436Z`, matching the
+  approved per-Worker Git build disconnect.
+- Fresh post-disconnect heads on PR #1
+  (`9200e1c87fd8c5dc18005e1408060d59558c1c55`), PR #2
+  (`61dda5d5591d8e73965bd93435604973503e0fe2`), and PR #3
+  (`d25a57702d83769fbb561e5aad7ff47d464964a0`) each have two successful
+  `validate` runs plus successful Vercel/Vercel Preview Comments checks, and no
+  `Workers Builds: sculpture-in-data` check. This satisfies the planned
+  next-PR check-absence assertion.
+
+### Non-secret build-token metadata
+
+The builds API lists one metadata record. No token value or credential was
+read:
+
+| Field | Value |
+|---|---|
+| Build token UUID | `fdb812b2-cd1f-4ba8-aa38-39b70e780721` |
+| Owner type | `user` |
+| Name | `sculpture-in-data build token` |
+| Cloudflare token ID | `ca6d130ad8553a383d9c7aa5f81237fd` |
+
+The Git build disconnect did not remove this token metadata. Do not delete or
+revoke it during the Worker observation window. At the separately approved
+retention review, first confirm that the token ID is not used by another build
+or service, then decide whether revocation is appropriate.
+
+### GitHub and Vercel post-disconnect evidence
+
+- PR #1: Actions and Vercel are green at `9200e1c...`; Vercel deployment
+  `dpl_Fi42Mb4s62UpvuNTLeytTuu7WtC4` is `READY` and records the exact SHA.
+- PR #2: Actions and Vercel are green at `61dda5d...`; Vercel deployment
+  `dpl_ASNyQUjU9oEPPAqzemSqpw5eiDLM` is `READY` and records the exact SHA.
+- PR #3: Actions and Vercel are green at `d25a577...`; Vercel deployment
+  `dpl_FyWUdVhy4KFqMYf8Z6z1tnvfANaf` is `READY` and records the exact SHA.
+- Production remains unchanged at `main@5b2d621fc2becba1c1b0c0ff8973c344626a33e7`,
+  deployment `dpl_7C9BUQyu8CEoAhZe9J2wSU7cpix5`, `READY`. The public
+  deployment smoke command returns 200 for `/`, `/timeline`, `/explore`,
+  `/about`, and `/transparency`, and the expected 404 for a missing path.
+- Netlify still returns exact 301 locations for `/`, `/timeline`,
+  `/about?source=legacy`, and `/missing/nested/path`, preserving the query
+  string on `/about`.
+
+### Current retention boundary
+
+- Retain the disabled, route-less, service-scoped-zero-traffic Worker, active
+  deployment, prior version, and build-token metadata through
+  **2026-09-02 UTC**.
+- Do not reconnect Git builds, enable a hostname, proxy Vercel, delete the
+  Worker/versions/token, or change Cloudflare routing without a new explicit
+  approval.
+- After the retention date, re-run service-scoped analytics and routing, verify
+  check absence on a then-current PR, confirm rollback/version needs, and audit
+  the build token's dependencies before requesting one exact retain/delete/
+  revoke decision.
+
+## Current task status
+
+**REVIEW READY — keep open**
+
+Recommended decisions: **Vercel — retain the existing Git integration as the
+only deploy authority; Netlify — retain the implemented path-preserving 301
+indefinitely; Cloudflare — keep the Git build disconnected and retain the
+dormant Worker, both manual versions, and build-token metadata through
+2026-09-02 UTC.** The in-flight Git stack is now linear through this hosting
+branch; no PR was merged, no production deployment was promoted, and no
+provider setting changed during this review.

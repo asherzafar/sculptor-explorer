@@ -135,7 +135,7 @@ semantics, provenance, temporal queries, and a second-domain use case.
 - [x] Add Evolution to nav as 5th route (now that it has real charts)
 - [x] Filters write to URL params via `useSearchParams()` (decade → `?decade=1920`)
 - [x] Decade selector: clicking chart area filters focus sculptors + updates URL
-- [x] Initial Netlify deploy (historical; stale host scheduled for 5Q.4c retirement) — https://sculpture-in-data.netlify.app
+- [x] Initial Netlify deploy (historical; now a path/query-preserving 301 compatibility redirect to Vercel) — https://sculpture-in-data.netlify.app
 - [ ] Share with Fabio, collect feedback
 
 ---
@@ -417,8 +417,9 @@ major visual dimension.
 - [x] Validate the branch-to-Vercel preview workflow from the current checkpoint before rendered review: PR #1’s final preview
   `https://sculptor-explorer-hgkmgumny-asherzafars-projects.vercel.app`
   is READY for source commit `8bb61a777007851abc060047894ed7e9c1828629`;
-  no production promotion or retention change was performed. Preview retention
-  and deliberate cleanup policy remain hosting-inventory questions.
+  no production promotion or retention change was performed. The later hosting
+  inventory retains exact preview/deployment evidence and makes cleanup a
+  deliberate, separately approved action.
 - [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
 - [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
 - [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
@@ -440,19 +441,18 @@ major visual dimension.
 
 - [ ] Run the route-slice review gate on every primary journey, synthesize unresolved issues by severity, and update `docs/DESIGN_SYSTEM.md` only with patterns that passed evidence and reuse checks.
 - [ ] Preserve a before/after visual and performance record so future agents can distinguish intentional design decisions from drift.
-- [ ] Complete a read-only hosting inventory before changing any provider:
-  document canonical Vercel production and preview ownership, the stale
-  `sculpture-in-data.netlify.app` project, and the unexpected Cloudflare Workers
-  `sculpture-in-data` check/build, including repositories, domains, build
-  settings, traffic/backlink evidence, credentials/owners, and rollback paths.
-  Do not disable an integration or delete a project merely to clear a PR check.
-- [ ] Retire the stale `sculpture-in-data.netlify.app` deployment after the
-  inventory: replace stale content with a path-preserving 301 to
-  `sculptor-explorer.vercel.app`, review known repository references and
-  available traffic/backlink evidence, keep the redirect through an explicit
-  observation window, then record whether the safer endpoint is a long-lived
-  redirect or Netlify project deletion. Resolve the Cloudflare service/check
-  through the same evidence-first decision, independently of Netlify.
+- [x] Complete the hosting inventory in
+  `docs/HOSTING_INVENTORY_2026-08-02.md`: record canonical Vercel production and
+  previews, Netlify ownership/rollback/redirect evidence, and the unexpected
+  Cloudflare Worker build/routing/version/traffic/token boundary without
+  exposing credentials.
+- [x] Retire the stale `sculpture-in-data.netlify.app` content with a
+  path/query-preserving 301 to `sculptor-explorer.vercel.app`; retain the
+  redirect indefinitely by default. Disconnect only the dormant Cloudflare
+  Worker's per-service Git build after its evidence gates; preserve its disabled
+  routing and manual versions through 2026-09-02 UTC. Fresh PR #1–#3 heads have
+  Actions/Vercel success and no Cloudflare Workers Builds check. Worker or token
+  deletion remains a separately approved post-retention decision.
 
 #### 5Q.5 — Learn before choosing the next bet
 
