@@ -12,7 +12,7 @@
     "test:e2e:install": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright install chromium"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": "24.x"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
@@ -33,7 +33,7 @@
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/d3": "^7.4.3",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
