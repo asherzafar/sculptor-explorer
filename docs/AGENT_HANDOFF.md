@@ -42,7 +42,8 @@ workflow-standards branch, draft PR
 [#3](https://github.com/asherzafar/sculptor-explorer/pull/3), at
 `d25a57702d83769fbb561e5aad7ff47d464964a0`. Hosting continuation branch:
 `codex/phase-5q4c-hosting-retirement`, now based on the Node branch; its provider
-evidence and retention boundary are in `docs/HOSTING_INVENTORY_2026-08-02.md`.
+evidence and retention boundary are in `docs/HOSTING_INVENTORY_2026-08-02.md`,
+with draft PR [#4](https://github.com/asherzafar/sculptor-explorer/pull/4).
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it

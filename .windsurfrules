@@ -124,7 +124,7 @@ Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
   engine/type/lockfile contract, and GitHub Actions on
   `codex/node-24-alignment`; local install, validation, and Playwright gates
-  pass; fresh PR #1–#3 heads have successful Actions/Vercel checks tied to the
+  pass; fresh PR #1–#4 heads have successful Actions/Vercel checks tied to the
   exact SHAs and no post-disconnect Cloudflare Workers Builds check
 - `docs/SOURCE_CONTROL_AND_DELIVERY.md` defines the protected-main target,
   explicit stack rules, exact-SHA preview/production packet, and agent authority

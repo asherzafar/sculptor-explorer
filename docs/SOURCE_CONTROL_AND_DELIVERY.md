@@ -1,6 +1,6 @@
 # Source Control and Delivery
 
-**Status:** target design and dated implementation plan
+**Status:** target design; review stack prepared
 
 **Evidence reviewed:** 2026-08-03 UTC
 
@@ -49,7 +49,7 @@ The following is a dated observation, not permanent configuration truth.
 | Surface | Verified state | Gap from target |
 |---|---|---|
 | Local Git | The permanent checkout's inherited work is quarantined on `codex/local-wip-audit-2026-08-02`; the review worktree is dedicated to the release stack. | The quarantined worktree is intentionally dirty until its unrelated files are reviewed and either checkpointed or split. |
-| Branch graph | PRs #1, #2, and #3 are open drafts. The hosting branch now contains the reconciled Node head, making the implementation graph linear. | PR #1 must be retargeted to `main`; the hosting draft PR and every PR body must declare the stack before integration. |
+| Branch graph | PRs #1–#4 are open drafts with explicit bases and bodies: `main` → #1 → #2 → #3 → #4. The hosting branch contains the reconciled Node head. | All four still require human review and sequential integration; only the next child should be retargeted after its parent lands. |
 | GitHub `main` | Public repository; no branch protection and no rulesets. All three merge methods are enabled and merged branches are not auto-deleted. | Direct/force/deletion risk is not technically blocked; required checks are advisory. |
 | GitHub Actions | Repository default token is read-only and cannot approve PRs. CI uses `pull_request`, GitHub-hosted runners, `npm ci`, `permissions: contents: read`, and full-SHA-pinned v7 actions on the reconciled Node/hosting branches. | Repository SHA-pinning enforcement is off and all marketplace actions are still allowed until the reviewed settings mutation. |
 | Repository security | Secret scanning and push protection are enabled. There are no repository Actions secrets or variables; monthly Actions/npm Dependabot configuration is in the release stack. | Dependabot security updates remain disabled until the configuration reaches `main` and the reviewed setting is enabled. |
@@ -210,10 +210,11 @@ date, while this document owns the reusable source-control/deployment model.
    and verify fresh Actions/Vercel results and absence of a new Cloudflare
    Workers Builds check.
 
-Progress as of 2026-08-03: steps 1–5 are implemented through the local hosting
-branch, and fresh PR #1–#3 heads have successful Actions/Vercel checks with no
-Cloudflare check. Publishing/opening the hosting PR, retargeting PR #1, and
-updating all four PR bodies remain before Gate A is complete.
+Progress as of 2026-08-03: Gate A is complete. PR #1 targets `main`; PRs #2–#4
+target their immediate parent; all four bodies declare the same stack and
+authority boundary. Exact published heads have successful Actions/Vercel
+checks and no post-disconnect Cloudflare check. The stack remains draft and
+unmerged pending the explicit Gate B approvals below.
 
 ### Gate B — human-approved integration
 

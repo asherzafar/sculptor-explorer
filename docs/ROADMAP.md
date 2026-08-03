@@ -450,7 +450,7 @@ major visual dimension.
   path/query-preserving 301 to `sculptor-explorer.vercel.app`; retain the
   redirect indefinitely by default. Disconnect only the dormant Cloudflare
   Worker's per-service Git build after its evidence gates; preserve its disabled
-  routing and manual versions through 2026-09-02 UTC. Fresh PR #1–#3 heads have
+  routing and manual versions through 2026-09-02 UTC. Fresh PR #1–#4 heads have
   Actions/Vercel success and no Cloudflare Workers Builds check. Worker or token
   deletion remains a separately approved post-retention decision.
 
