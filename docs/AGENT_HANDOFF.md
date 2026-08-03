@@ -1,6 +1,7 @@
 # Agent Handoff
 
-**Verified:** 2026-08-02  
+**Verified:** 2026-08-03
+
 **Purpose:** Current agent-neutral continuation state. The evidence behind the roadmap reset is in `docs/PROJECT_AUDIT_2026-08-02.md`; historical 5b.3–5b.4 implementation detail remains in `docs/CODEX_HANDOFF.md`.
 
 ## Current boundary
@@ -9,35 +10,48 @@ Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidat
 
 Phase 5Q—the product clarity and quality gate—is active before 5b.6 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.3R stabilization pass is locally green: movement labels link only through a generated route index, source freshness is distinct from artifact/contract review, candidate accounting is explicit, Next and its ESLint config are aligned at 16.2.12, and every production chart SVG has an accessible role/name. The source/contract portion of 5Q.4a and the first rendered Timeline slice are now recorded in `docs/VISUAL_BASELINE_2026-08-02.md`. The rendered review covers 1440×900, 390×844, a 720×450 reflow proxy, pointer/URL behavior, representative focus, sampled contrast, chart focusability, and console output. It confirms that Timeline’s mobile chart, keyboard-detail path, touch targets, disclosure hierarchy, one annotation color, and shared skip-link behavior remain below the product gate. Remaining routes, actual browser zoom, text-spacing/forced-colors/reduced-motion, sequential keyboard/assistive-technology use, screen-reader output, performance, and reader comprehension remain open. Route slices still begin with Explore so its responsive list/state patterns can be earned before Timeline and dense charts reuse them. User evidence in 5Q.5 and the Phase 5R strategic workshop follow before a major new public phase.
 
-The complete publishing/preview checkpoint is independently verified at
-`8bb61a777007851abc060047894ed7e9c1828629`: draft PR #1 is mergeable, both
-final GitHub Actions runs passed the root gate and all seven Playwright
-journeys, and Vercel plus Vercel Preview Comments passed on that exact head.
-The rendered-Timeline audit task is complete and safe to archive. The remaining
-Cloudflare Workers failure belongs to the separate 5Q.4c hosting inventory; it
-does not mean repository code failed.
+The complete publishing/preview checkpoint was independently verified at
+`8bb61a777007851abc060047894ed7e9c1828629`: draft PR #1 was mergeable, both
+GitHub Actions events passed the root gate and all seven Playwright journeys,
+and Vercel plus Vercel Preview Comments passed on that exact head. PR #1 has
+since advanced to post-disconnect head
+`9200e1c87fd8c5dc18005e1408060d59558c1c55`, which pins the current Actions to
+immutable SHAs and adds monthly GitHub Actions/npm Dependabot review. Treat the
+fresh head's newly triggered checks as the current merge evidence, not the old
+checkpoint.
 
-The approved workflow-standards checkpoint is published at `e4596b7`. The
-focused continuation branch `codex/node-24-alignment` starts from that exact
-checkpoint and now aligns local development, the package/type contract, CI,
-and the existing Vercel Node setting on major 24. On draft PR
-[#3](https://github.com/asherzafar/sculptor-explorer/pull/3), local Node 24
-install, root, and browser gates pass; both push and pull-request CI pass with
-the v7 GitHub Actions; and Vercel plus Vercel Preview Comments pass on the same
-published head. The runtime-alignment task is complete and safe to archive.
+The workflow-standards branch has advanced to
+`61dda5d5591d8e73965bd93435604973503e0fe2` with the protected-main target,
+stack rules, PR evidence template, agent authority matrix, and verified
+deployment smoke script. The earlier Node-alignment checkpoint
+`945d2cb2b4b661f8ff4be2dcd510d2c1c096038b` passed local Node 24 install,
+root/browser gates, both GitHub Actions events, and Vercel. The Node branch now
+incorporates the refreshed parent and pins each v7 action to a full SHA, so that
+earlier remote evidence is historical; fresh checks on the reconciled head are
+required before review completion.
 
 Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
 Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline` at
-`8bb61a777007851abc060047894ed7e9c1828629`, draft PR
+`9200e1c87fd8c5dc18005e1408060d59558c1c55`, draft PR
 [#1](https://github.com/asherzafar/sculptor-explorer/pull/1).
-Workflow-standards checkpoint: `codex/phase-5q4-workflow-standards` at
-`e4596b7`. Node-runtime continuation branch: `codex/node-24-alignment`, based
-on `e4596b7`, draft PR [#3](https://github.com/asherzafar/sculptor-explorer/pull/3).
+Workflow-standards continuation branch: `codex/phase-5q4-workflow-standards`
+at `61dda5d5591d8e73965bd93435604973503e0fe2`, based on the refreshed PR #1
+head, draft PR [#2](https://github.com/asherzafar/sculptor-explorer/pull/2).
+Node-runtime continuation branch: `codex/node-24-alignment`, based on the
+workflow-standards branch, draft PR
+[#3](https://github.com/asherzafar/sculptor-explorer/pull/3).
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
-identified <https://sculpture-in-data.netlify.app/> as a stale legacy
-deployment; 5Q.4c schedules a path-preserving redirect and observation window
-before any Netlify project deletion. Do not deploy current work to Netlify.
+identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it
+now issues path- and query-preserving 301 responses to Vercel and remains an
+observation/compatibility surface, not a deploy target. The Cloudflare Worker
+Git build was disconnected at 2026-08-03 00:31:05 UTC. Read-only API evidence
+shows no Worker URL, custom domain, account zone/route, build config, trigger,
+deploy hook, or service-scoped invocation row in the 30-day window ending
+2026-08-03 01:55 UTC.
+
+Retain the dormant manual deployment through the observation window; do not
+delete or reconnect it merely to alter a GitHub check.
 
 ## Founder direction added 2026-08-02
 

@@ -174,6 +174,7 @@ and end with a documented learning and continue/simplify/archive decision.
 - docs/EXPLORATION_STRATEGY.md — question atlas, research lab, graph/temporal semantics, expansion path
 - docs/DECISIONS.md — active decisions, review triggers, deferred founder choices
 - docs/RESEARCH_FOUNDATIONS.md — evidence base and practice-to-verification standards
+- docs/SOURCE_CONTROL_AND_DELIVERY.md — protected-main, CI/preview/production, provider, and agent-authority contract
 - docs/DATASET_DATASHEET.md — composition, sources/licenses, processing, missingness, uses/non-uses, and risks
 - docs/CLAIM_REGISTER.md — route-level claim audit and sensitive-classification language/review triggers
 - docs/ROADMAP.md — phased plan, MVP scope, what to build vs. defer

@@ -360,6 +360,13 @@ major visual dimension.
   optional instruction-only `ship-pr` and `visual-qa` repository skills. Keep
   unique policy in canonical docs so Claude, Codex, Cursor, Windsurf, Copilot,
   and agents without skill discovery can follow the same process.
+- [x] Define the protected-`main`, exact-SHA preview/production, stacked-PR,
+  worktree, provider-boundary, and agent-authority target in
+  `docs/SOURCE_CONTROL_AND_DELIVERY.md`; add a PR evidence template and public
+  deployment smoke command. Pin the existing action majors to immutable SHAs
+  and schedule monthly GitHub Actions/npm Dependabot version reviews. Activating
+  repository rules and security settings remains a separately reviewed
+  provider mutation after the stack is green.
 - [x] **Implement Node.js 24 alignment in one focused, separately reviewed
   branch.** `codex/node-24-alignment` adds root/web `.nvmrc` files at 24,
   declares `engines.node: "24.x"`, intentionally moves `@types/node` to 24,
@@ -369,11 +376,12 @@ major visual dimension.
   package version moved. On draft PR
   [#3](https://github.com/asherzafar/sculptor-explorer/pull/3), both push and
   pull-request CI plus Vercel passed on the same published head, so this
-  enabler is safe to archive.
+  implementation is locally complete. The reconciled stack head still requires
+  fresh remote checks before integration.
 - [x] In the same runtime-alignment review, update `actions/checkout`,
   `actions/setup-node`, and `actions/setup-python` from their old Node-20-based
-  majors to v7 while preserving their existing inputs. As of 2026-08-02, the
-  official
+  majors to v7 while preserving their existing inputs, and pin the v7 releases
+  to full commit SHAs. As of 2026-08-02, the official
   [`checkout` v7](https://github.com/actions/checkout/releases/tag/v7.0.1),
   [`setup-node` v7](https://github.com/actions/setup-node/releases/tag/v7.0.0),
   and
