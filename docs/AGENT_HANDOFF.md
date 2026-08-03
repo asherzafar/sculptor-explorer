@@ -16,19 +16,19 @@ GitHub Actions events passed the root gate and all seven Playwright journeys,
 and Vercel plus Vercel Preview Comments passed on that exact head. PR #1 has
 since advanced to post-disconnect head
 `9200e1c87fd8c5dc18005e1408060d59558c1c55`, which pins the current Actions to
-immutable SHAs and adds monthly GitHub Actions/npm Dependabot review. Treat the
-fresh head's newly triggered checks as the current merge evidence, not the old
-checkpoint.
+immutable SHAs and adds monthly GitHub Actions/npm Dependabot review. Its two
+fresh Actions runs and Vercel deployment are successful, and the disconnected
+Cloudflare Worker posted no check.
 
 The workflow-standards branch has advanced to
 `61dda5d5591d8e73965bd93435604973503e0fe2` with the protected-main target,
 stack rules, PR evidence template, agent authority matrix, and verified
 deployment smoke script. The earlier Node-alignment checkpoint
 `945d2cb2b4b661f8ff4be2dcd510d2c1c096038b` passed local Node 24 install,
-root/browser gates, both GitHub Actions events, and Vercel. The Node branch now
-incorporates the refreshed parent and pins each v7 action to a full SHA, so that
-earlier remote evidence is historical; fresh checks on the reconciled head are
-required before review completion.
+root/browser gates, both GitHub Actions events, and Vercel. Reconciled Node head
+`d25a57702d83769fbb561e5aad7ff47d464964a0` incorporates the refreshed parent
+and pins each v7 action to a full SHA; its two fresh Actions runs and exact-SHA
+Vercel deployment are successful, and it also has no Cloudflare check.
 
 Stabilization checkpoint: `codex/phase-5q-stabilization` at `54a095f`.
 Rendered-evidence continuation branch: `codex/phase-5q4-rendered-baseline` at
@@ -39,7 +39,11 @@ at `61dda5d5591d8e73965bd93435604973503e0fe2`, based on the refreshed PR #1
 head, draft PR [#2](https://github.com/asherzafar/sculptor-explorer/pull/2).
 Node-runtime continuation branch: `codex/node-24-alignment`, based on the
 workflow-standards branch, draft PR
-[#3](https://github.com/asherzafar/sculptor-explorer/pull/3).
+[#3](https://github.com/asherzafar/sculptor-explorer/pull/3), at
+`d25a57702d83769fbb561e5aad7ff47d464964a0`. Hosting continuation branch:
+`codex/phase-5q4c-hosting-retirement`, now based on the Node branch; its provider
+evidence and retention boundary are in `docs/HOSTING_INVENTORY_2026-08-02.md`,
+with draft PR [#4](https://github.com/asherzafar/sculptor-explorer/pull/4).
 
 Canonical production is <https://sculptor-explorer.vercel.app/>. The founder
 identified <https://sculpture-in-data.netlify.app/> as a stale legacy host; it
@@ -51,7 +55,8 @@ deploy hook, or service-scoped invocation row in the 30-day window ending
 2026-08-03 01:55 UTC.
 
 Retain the dormant manual deployment through the observation window; do not
-delete or reconnect it merely to alter a GitHub check.
+delete or reconnect it merely to alter a GitHub check. Retain the Worker, both
+manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Founder direction added 2026-08-02
 
@@ -106,10 +111,11 @@ Passed locally on `codex/node-24-alignment` with Node 24.14.0 and npm 11.9.0:
 
 The lockfile changes only the root engine contract, `@types/node` 20.19.39 →
 24.13.3, and its required `undici-types` 6.21.0 → 7.18.2 dependency. No other
-package version changes. On the same published PR #3 head, both GitHub Actions
-events passed the root and browser gates, Vercel reached READY, and Vercel
-Preview Comments passed. The external Cloudflare Workers check failed on both
-the approved base and this branch; it is not evidence of a Node 24 regression.
+package version changes. On the published PR #3 head `d25a577`, both fresh
+GitHub Actions events passed the root and browser gates, Vercel reached READY,
+and Vercel Preview Comments passed. No post-disconnect Cloudflare Workers check
+appeared. Older heads did contain an independent failed Cloudflare check; that
+historical provider failure was not evidence of a Node 24 regression.
 
 Passed after the 2026-08-02 Phase 5Q.3R stabilization implementation and again
 on the final PR #1 head where applicable:
@@ -201,22 +207,27 @@ routes, performance, and comprehension remain unverified.
   both completed successfully at `8bb61a7`, including the complete validation
   gate and all seven Playwright journeys. Vercel and Vercel Preview Comments
   also passed at the same head.
-- The external `Workers Builds: sculpture-in-data` check most recently failed
-  at
+- Before the approved per-Worker Git build disconnect, the external
+  `Workers Builds: sculpture-in-data` check failed at
   [Cloudflare build `8735cabc-6f56-4eb3-9cfc-3377607f375d`](https://dash.cloudflare.com/370dc6896c711fc6c8c6801139acd063/workers/services/view/sculpture-in-data/production/builds/8735cabc-6f56-4eb3-9cfc-3377607f375d).
-  Treat this as Phase 5Q.4c hosting-inventory work. The integration and service
-  were not changed or deleted; Vercel remains the canonical production host.
+  The disconnect later removed only the Worker's two Git build triggers. The
+  Worker, active/prior manual versions, disabled routing, and build-token
+  metadata remain retained through 2026-09-02 UTC. Fresh PR heads #1–#3 have
+  no Cloudflare check; Vercel remains the canonical production host.
 
-The Cloudflare failure must remain visible in the separate 5Q.4c hosting
-inventory rather than being silenced by changing the integration in this task.
+The historical failure and post-disconnect API evidence remain in the separate
+5Q.4c hosting inventory. Do not repeat the disconnect or delete/revoke retained
+Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Run the 5Q.4c hosting inventory as a separate read-only task. Inventory
-   Vercel, Netlify, and Cloudflare ownership, configuration, traffic/redirect
-   needs, and rollback paths; make no deletion, integration, authentication,
-   or production change.
-2. Keep the rendered preview as evidence only—do not promote production—and
+1. Review the draft PR stack in strict order: PR #1, PR #2, PR #3, then the
+   hosting-retirement PR. Retarget only the next child to `main` after its
+   parent lands, and require fresh Actions/Vercel results at every step. Do not
+   merge, promote, change repository/provider settings, or clean branches until
+   the exact action has explicit owner approval.
+2. After the stack and source-control guardrails are separately approved and
+   integrated, keep the rendered preview as evidence only and
    complete 5Q.4a on the remaining routes plus actual zoom, text spacing,
    forced colors, reduced motion, keyboard/screen-reader behavior, perceptual
    performance, and reader comprehension.

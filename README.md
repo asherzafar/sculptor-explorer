@@ -133,10 +133,10 @@ statically exported by Next.js.
 | Output directory | `out` |
 | Node version | `24.x` in Vercel, `web/package.json`, both `.nvmrc` files, and GitHub Actions |
 
-The stale <https://sculpture-in-data.netlify.app/> deployment is a legacy
-host scheduled for deliberate retirement in Phase 5Q.4c. Replace its stale
-content with a path-preserving redirect before deciding whether to delete the
-Netlify project; do not deploy the current application there. Cloudflare’s
-free static-asset manifest limit is below the current per-sculptor export’s
-file count, so Vercel remains the practical target unless the export
-architecture changes.
+The legacy <https://sculpture-in-data.netlify.app/> host now provides a
+path/query-preserving 301 to Vercel and should be retained as a compatibility
+surface, not used for application deploys. The route-less Cloudflare Worker has
+its Git build disconnected and is retained through 2026-09-02 UTC; it is not a
+deployment target. Cloudflare's free static-asset manifest limit is below the
+current per-sculptor export's file count, so Vercel remains the practical target
+unless the export architecture changes.

@@ -116,18 +116,24 @@ Recently completed:
 - Phase 5b.5: shared temporal envelopes on person/institution edges and relationship evidence on `/transparency`
 - Phase 5Q.1–5Q.3: one project truth, CI/browser gates, dependency triage, static-export/data invariants, dataset datasheet, claim register, route-level provenance, and sensitive-classification language review
 - Phase 5Q release workflow: the agent-neutral inspect/review/publish/preview lifecycle is published at the workflow-standards checkpoint
+- Phase 5Q.4c hosting retirement: Vercel remains canonical; Netlify provides a
+  path/query-preserving 301; the dormant Cloudflare Worker's Git build is
+  disconnected and retained through 2026-09-02 UTC
 
 Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
   engine/type/lockfile contract, and GitHub Actions on
   `codex/node-24-alignment`; local install, validation, and Playwright gates
-  pass; both GitHub Actions events and Vercel also pass on the same published
-  PR head
+  pass; fresh PR #1–#4 heads have successful Actions/Vercel checks tied to the
+  exact SHAs and no post-disconnect Cloudflare Workers Builds check
+- `docs/SOURCE_CONTROL_AND_DELIVERY.md` defines the protected-main target,
+  explicit stack rules, exact-SHA preview/production packet, and agent authority
+  boundary; repository settings remain unchanged until separately approved
 
 Next bounded work:
-- Phase 5Q.4c: inventory Vercel, Netlify, and Cloudflare ownership,
-  configuration, traffic/redirect needs, and rollback paths without changing
-  provider state
+- Review and integrate the linear PR #1 → #2 → #3 → hosting stack; activate
+  approved `main`/Actions guardrails, verify Vercel production, then perform
+  separately approved branch/worktree cleanup
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
