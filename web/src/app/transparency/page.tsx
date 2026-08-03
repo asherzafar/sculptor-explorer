@@ -21,7 +21,7 @@ import { PageHeader } from "@/components/PageHeader";
  * Transparency page — Option A.3 standing commitment.
  *
  * Shows honest base rates:
- *  - How many sculptors are cached vs published
+ *  - How source candidates, evidence exclusions, and published records relate
  *  - Why each sculptor qualified (signal coverage)
  *  - Demographic breakdown of both the included AND excluded sets so
  *    the reader can see what biases the rule introduces
@@ -44,11 +44,109 @@ function formatPct(n: number, total: number): string {
   return `${((100 * n) / total).toFixed(1)}%`;
 }
 
+function formatUtcDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+function AuditBar({
+  label,
+  n,
+  total,
+  color = "bg-accent-primary",
+}: {
+  label: string;
+  n: number;
+  total: number;
+  color?: string;
+}) {
+  return (
+    <li className="flex items-center gap-3 text-sm">
+      <span className="w-44 shrink-0 text-text-secondary">{label}</span>
+      <div
+        className="flex-1 h-2 bg-bg-secondary rounded-sm overflow-hidden"
+        aria-hidden="true"
+      >
+        <div
+          className={`h-full ${color}`}
+          style={{
+            width: `${total ? Math.min(100, (100 * n) / total) : 0}%`,
+          }}
+        />
+      </div>
+      <span className="w-32 text-right tabular-nums text-text-tertiary">
+        {n.toLocaleString()} · {formatPct(n, total)}
+      </span>
+    </li>
+  );
+}
+
+function AuditSampleTable({
+  title,
+  rows,
+  columns,
+}: {
+  title: string;
+  rows: Array<Record<string, unknown>>;
+  columns: { key: string; label: string }[];
+}) {
+  if (rows.length === 0) return null;
+  const stringify = (value: unknown): string => {
+    if (value == null) return "—";
+    if (Array.isArray(value)) return value.length ? value.join(", ") : "—";
+    return String(value);
+  };
+  return (
+    <div className="mb-5">
+      <h4 className="text-sm font-semibold text-text-primary mb-2">
+        {title}
+      </h4>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead className="text-text-tertiary">
+            <tr>
+              {columns.map((column) => (
+                <th
+                  key={column.key}
+                  className="text-left font-medium px-2 py-1.5"
+                >
+                  {column.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="text-text-secondary">
+            {rows.map((row, index) => (
+              <tr
+                key={index}
+                className={index % 2 === 0 ? "bg-bg-secondary/40" : ""}
+              >
+                {columns.map((column) => (
+                  <td key={column.key} className="px-2 py-1.5 align-top">
+                    {stringify(row[column.key])}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 /**
- * CrossCulturalCollaboration — Phase 4 migration-story surface.
+ * CitizenshipComparison — audits the legacy `crossesBorders` field.
  *
- * Shows what fraction of mentor-student / influence edges cross
- * national borders, by decade. Designed to read alongside the
+ * Shows what fraction of mentor-student / influence edges connect people
+ * whose recorded citizenship sets are disjoint, by decade. Designed to read alongside the
  * Option A.3 inclusion audit: same numerical-tabular style, same
  * commitment to disclosing the messy edges.
  *
@@ -60,7 +158,7 @@ function formatPct(n: number, total: number): string {
  *     under different historical names; we show them honestly rather
  *     than collapsing them, with a note explaining why.
  */
-function CrossCulturalCollaboration({
+function CitizenshipComparison({
   summary,
 }: {
   summary: CrossCulturalSummary;
@@ -82,14 +180,15 @@ function CrossCulturalCollaboration({
   return (
     <section className="mb-10">
       <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
-        Cross-cultural collaboration
+        Recorded citizenship comparison
       </h2>
       <p className="text-text-secondary leading-relaxed mb-4 max-w-3xl">
-        How many lineage connections cross national borders? An édge
-        crosses borders when its two endpoints share no citizenship —
-        the émigré who studied abroad, the refugee who carried a
-        tradition with them, the student who travelled to a famous
-        atelier. The denominator below excludes edges to external
+        This section compares the recorded Wikidata P27 sets at the two
+        sculptor endpoints of a lineage assertion. The legacy data field is
+        named <code className="text-xs">crossesBorders</code>, but a true value
+        means only that the two non-empty sets share no country. It does not
+        establish travel, refugee history, cultural difference, or the
+        mechanism or accuracy of an influence claim. The denominator excludes edges to external
         mentors (the diamonds on{" "}
         <Link href="/lineage" className="text-accent-primary hover:underline">
           /lineage
@@ -102,7 +201,7 @@ function CrossCulturalCollaboration({
       <section className="mb-6 grid grid-cols-3 gap-4">
         <div className="rounded-md border border-accent-primary/30 bg-accent-muted/20 p-4">
           <p className="text-xs uppercase tracking-wide text-accent-primary">
-            Cross-border rate
+            No shared recorded citizenship
           </p>
           <p className="font-display text-3xl font-semibold text-text-primary mt-1">
             {headlinePct}
@@ -113,30 +212,30 @@ function CrossCulturalCollaboration({
         </div>
         <div className="rounded-md border border-border p-4">
           <p className="text-xs uppercase tracking-wide text-text-tertiary">
-            Cross-border edges
+            Disjoint citizenship sets
           </p>
           <p className="font-display text-3xl font-semibold text-text-primary mt-1">
             {summary.crossBorder.toLocaleString()}
           </p>
           <p className="text-xs text-text-tertiary mt-1">
-            émigré / international training
+            descriptive source-data comparison only
           </p>
         </div>
         <div className="rounded-md border border-border p-4">
           <p className="text-xs uppercase tracking-wide text-text-tertiary">
-            Same-nationality edges
+            At least one shared citizenship
           </p>
           <p className="font-display text-3xl font-semibold text-text-primary mt-1">
             {summary.sameNationality.toLocaleString()}
           </p>
           <p className="text-xs text-text-tertiary mt-1">
-            within a single country
+            not proof of shared identity or residence
           </p>
         </div>
       </section>
 
-      {/* By decade — the migration story is fundamentally a temporal
-          one, so the decade chart is the centrepiece. */}
+      {/* By decade — birth-decade context helps readers see how the recorded
+          endpoint comparison changes over time without implying a journey. */}
       <h3 className="text-sm font-semibold text-text-primary mb-2">
         By teacher / influencer&apos;s birth decade
       </h3>
@@ -160,7 +259,7 @@ function CrossCulturalCollaboration({
                 {b.decade}s
               </span>
               <div className="relative flex-1 h-3 bg-bg-secondary rounded-sm overflow-hidden">
-                {/* Stacked bar: cross-border on top of same-nationality
+                {/* Stacked bar: disjoint sets on top of shared sets
                     base. Width of the base reflects total volume of
                     edges in that decade so the reader can see both
                     rate and sample size at once. */}
@@ -189,9 +288,9 @@ function CrossCulturalCollaboration({
       <p className="text-xs text-text-tertiary mb-5 max-w-3xl">
         Faded rows have fewer than 5 comparable edges and are noisy. The
         narrow bar shows total volume of classifiable connections; the
-        accent-coloured slice shows the cross-border share. The mid-19th
-        century peaks reflect the era of European cross-pollination —
-        Paris and Rome as cosmopolitan training grounds.
+        accent-coloured slice shows the disjoint-citizenship share. Differences
+        between decades are descriptive of this sparse source graph and should
+        not be read as a measured history of cross-cultural exchange.
       </p>
 
       {/* Top country pairs */}
@@ -224,14 +323,12 @@ function CrossCulturalCollaboration({
         </table>
       </div>
       <p className="text-xs text-text-tertiary max-w-3xl">
-        <strong className="text-text-secondary">Caveat — historical states.</strong>{" "}
-        Wikidata records citizenship as the country that existed at the
-        sculptor&apos;s lifetime, so pairs like &ldquo;Germany ↔
-        Kingdom of Prussia&rdquo; or &ldquo;German Reich ↔ Germany&rdquo;
-        describe the same physical place under different historical
-        names. We&apos;re showing them honestly rather than silently
-        collapsing them; tracked as a parking-lot item for a future data
-        pass.
+        <strong className="text-text-secondary">Caveats — representative value and historical states.</strong>{" "}
+        The pair table uses the first stored citizenship on each side as a
+        compact representative after documented normalization; it is not a
+        complete multi-citizenship comparison. Formal and single-successor
+        labels may be normalized, while multi-successor states remain distinct
+        rather than being assigned to a modern country editorially.
       </p>
     </section>
   );
@@ -251,91 +348,6 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
 
   const pct = (n: number, total: number) =>
     total ? `${((100 * n) / total).toFixed(1)}%` : "—";
-
-  // Tiny inline bar — same vocabulary as the existing signal-coverage
-  // section so the page reads as one document.
-  function Bar({
-    label,
-    n,
-    total,
-    color = "bg-accent-primary",
-  }: {
-    label: string;
-    n: number;
-    total: number;
-    color?: string;
-  }) {
-    return (
-      <li className="flex items-center gap-3 text-sm">
-        <span className="w-44 shrink-0 text-text-secondary">{label}</span>
-        <div className="flex-1 h-2 bg-bg-secondary rounded-sm overflow-hidden">
-          <div
-            className={`h-full ${color}`}
-            style={{
-              width: `${total ? Math.min(100, (100 * n) / total) : 0}%`,
-            }}
-          />
-        </div>
-        <span className="w-32 text-right tabular-nums text-text-tertiary">
-          {n.toLocaleString()} · {pct(n, total)}
-        </span>
-      </li>
-    );
-  }
-
-  function SampleTable({
-    title,
-    rows,
-    columns,
-  }: {
-    title: string;
-    rows: Array<Record<string, unknown>>;
-    columns: { key: string; label: string }[];
-  }) {
-    if (rows.length === 0) return null;
-    const stringify = (v: unknown): string => {
-      if (v == null) return "—";
-      if (Array.isArray(v)) return v.length ? v.join(", ") : "—";
-      return String(v);
-    };
-    return (
-      <div className="mb-5">
-        <h4 className="text-sm font-semibold text-text-primary mb-2">
-          {title}
-        </h4>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead className="text-text-tertiary">
-              <tr>
-                {columns.map((c) => (
-                  <th
-                    key={c.key}
-                    className="text-left font-medium px-2 py-1.5"
-                  >
-                    {c.label}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="text-text-secondary">
-              {rows.map((r, i) => (
-                <tr
-                  key={i}
-                  className={i % 2 === 0 ? "bg-bg-secondary/40" : ""}
-                >
-                  {columns.map((c) => (
-                    <td key={c.key} className="px-2 py-1.5 align-top">
-                      {stringify(r[c.key])}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <section className="mb-10">
@@ -394,37 +406,37 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
         Year accuracy (across {a.compared.toLocaleString()} records)
       </h3>
       <ul className="space-y-1.5 mb-5">
-        <Bar
+        <AuditBar
           label="Birth year exact match"
           n={a.birth_year.exact_match}
           total={totalCompared}
           color="bg-accent-primary"
         />
-        <Bar
+        <AuditBar
           label="Birth year off by 1"
           n={a.birth_year.off_by_1}
           total={totalCompared}
           color="bg-accent-primary/60"
         />
-        <Bar
+        <AuditBar
           label="Birth year off by 2+"
           n={a.birth_year.off_by_more}
           total={totalCompared}
           color="bg-text-tertiary/60"
         />
-        <Bar
+        <AuditBar
           label="Death year exact match"
           n={a.death_year.exact_match}
           total={totalCompared}
           color="bg-accent-primary"
         />
-        <Bar
+        <AuditBar
           label="Death year off by 1"
           n={a.death_year.off_by_1}
           total={totalCompared}
           color="bg-accent-primary/60"
         />
-        <Bar
+        <AuditBar
           label="Death year off by 2+"
           n={a.death_year.off_by_more}
           total={totalCompared}
@@ -437,19 +449,19 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
         Place coverage and agreement
       </h3>
       <ul className="space-y-1.5 mb-2">
-        <Bar
+        <AuditBar
           label="Both have birthplace"
           n={a.birth_place.both_present}
           total={totalCompared}
           color="bg-accent-primary"
         />
-        <Bar
+        <AuditBar
           label="Getty fills Wikidata gap"
           n={a.birth_place.getty_fills_wd_gap}
           total={totalCompared}
           color="bg-accent-primary/60"
         />
-        <Bar
+        <AuditBar
           label="Wikidata fills Getty gap"
           n={a.birth_place.wd_fills_getty_gap}
           total={totalCompared}
@@ -481,19 +493,19 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
         Nationality / citizenship overlap
       </h3>
       <ul className="space-y-1.5 mb-2">
-        <Bar
+        <AuditBar
           label="Full agreement"
           n={a.nationality.full_agreement}
           total={a.nationality.comparable}
           color="bg-accent-primary"
         />
-        <Bar
+        <AuditBar
           label="Some overlap"
           n={a.nationality.any_overlap - a.nationality.full_agreement}
           total={a.nationality.comparable}
           color="bg-accent-primary/60"
         />
-        <Bar
+        <AuditBar
           label="No overlap"
           n={a.nationality.no_overlap}
           total={a.nationality.comparable}
@@ -519,7 +531,7 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
           Spot-check disagreements
         </summary>
         <div className="mt-3">
-          <SampleTable
+          <AuditSampleTable
             title="Birth year disagreements (off by 2+)"
             rows={audit.samples.birth_year_off_by_more}
             columns={[
@@ -528,7 +540,7 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
               { key: "getty_birth_year", label: "Getty" },
             ]}
           />
-          <SampleTable
+          <AuditSampleTable
             title="Birthplace disagreements (both sources have data)"
             rows={audit.samples.birth_place_disagree}
             columns={[
@@ -538,7 +550,7 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
               { key: "getty_birth_place", label: "Getty place" },
             ]}
           />
-          <SampleTable
+          <AuditSampleTable
             title="Birthplaces Getty fills (Wikidata had nothing)"
             rows={audit.samples.getty_fills_birthplace_gap}
             columns={[
@@ -546,7 +558,7 @@ function GettyCrossReference({ audit }: { audit: GettyAudit }) {
               { key: "getty_birth_place", label: "Getty place" },
             ]}
           />
-          <SampleTable
+          <AuditSampleTable
             title="Nationality with no overlap"
             rows={audit.samples.nationality_no_overlap}
             columns={[
@@ -586,7 +598,9 @@ function Breakdown({ title, data, accent }: BreakdownProps) {
 
       {gender && Object.keys(gender).length > 0 && (
         <div className="mb-4">
-          <p className="text-xs text-text-tertiary mb-1.5">Gender</p>
+          <p className="text-xs text-text-tertiary mb-1.5">
+            Recorded gender (Wikidata P21)
+          </p>
           <ul className="space-y-0.5 text-sm text-text-secondary">
             {Object.entries(gender)
               .sort(([, a], [, b]) => b - a)
@@ -655,6 +669,199 @@ function Breakdown({ title, data, accent }: BreakdownProps) {
   );
 }
 
+function RelationshipCoverageSection({
+  coverage,
+}: {
+  coverage: NonNullable<TransparencyAudit["relationshipCoverage"]>;
+}) {
+  const { lineage, institutions } = coverage;
+  const unavailableLabels: Record<string, string> = {
+    invalid_endpoint_lifespan: "Invalid endpoint lifespan",
+    missing_from_birth_year: "Source person has no birth year",
+    missing_to_birth_year: "Target person has no birth year",
+    missing_both_birth_years: "Both people have no birth year",
+    empty_lifespan_intersection: "Recorded lifespans do not overlap",
+  };
+  const confidenceRows = [
+    {
+      level: "High",
+      method: "Explicit start/end qualifier on the source statement",
+      lineage: lineage.confidenceCounts.high,
+      institution: institutions.confidenceCounts.high,
+    },
+    {
+      level: "Medium",
+      method: "The two entities’ lifespans overlap",
+      lineage: lineage.confidenceCounts.medium,
+      institution: institutions.confidenceCounts.medium,
+    },
+    {
+      level: "Low",
+      method: "Lifespan overlap narrowed by a disclosed age prior",
+      lineage: lineage.confidenceCounts.low,
+      institution: institutions.confidenceCounts.low,
+    },
+  ];
+
+  return (
+    <section className="mb-10">
+      <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
+        Relationship evidence and institutions
+      </h2>
+      <p className="text-text-secondary leading-relaxed mb-5 max-w-3xl">
+        Relationships are source assertions; their temporal envelopes are
+        estimates of when the connection could have existed. Confidence below
+        describes the <em>date estimate</em>, not whether the asserted
+        relationship itself is true.
+      </p>
+
+      <div className="grid gap-4 sm:grid-cols-3 mb-7">
+        <div className="rounded-md border border-accent-primary/30 bg-accent-muted/20 p-4">
+          <p className="text-xs uppercase tracking-wide text-accent-primary">
+            Person links time-bounded
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {lineage.datedPct.toFixed(1)}%
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            {lineage.datedEdges.toLocaleString()} of{" "}
+            {lineage.totalEdges.toLocaleString()} lineage edges
+          </p>
+        </div>
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Sculptors with institution links
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {institutions.sculptorCoveragePct.toFixed(1)}%
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            {institutions.sculptorsWithInstitutions.toLocaleString()} of{" "}
+            {institutions.includedSculptors.toLocaleString()} published sculptors
+          </p>
+        </div>
+        <div className="rounded-md border border-border p-4">
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+            Impossible institution dates skipped
+          </p>
+          <p className="font-display text-3xl font-semibold text-text-primary mt-1">
+            {institutions.skippedEmptyIntersection.toLocaleString()}
+          </p>
+          <p className="text-xs text-text-tertiary mt-1">
+            of {institutions.totalEdges.toLocaleString()} source rows; never
+            silently rendered
+          </p>
+        </div>
+      </div>
+
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Temporal confidence by method
+      </h3>
+      <div className="overflow-x-auto mb-3">
+        <table className="w-full text-sm">
+          <thead className="text-xs text-text-tertiary">
+            <tr>
+              <th className="text-left font-medium px-2 py-1.5">Confidence</th>
+              <th className="text-left font-medium px-2 py-1.5">Dating method</th>
+              <th className="text-right font-medium px-2 py-1.5">Person links</th>
+              <th className="text-right font-medium px-2 py-1.5">Institution links</th>
+            </tr>
+          </thead>
+          <tbody className="text-text-secondary">
+            {confidenceRows.map((row, index) => (
+              <tr
+                key={row.level}
+                className={index % 2 === 0 ? "bg-bg-secondary/40" : ""}
+              >
+                <th className="text-left font-medium px-2 py-1.5 text-text-primary">
+                  {row.level}
+                </th>
+                <td className="px-2 py-1.5">{row.method}</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {row.lineage.toLocaleString()}
+                </td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {row.institution.toLocaleString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-text-tertiary mb-6 max-w-3xl">
+        The current P1066/P737 direct-property export has no statement-level
+        start/end qualifiers, so it has no high-confidence person-link dates.
+        Student-of dates use a disclosed 16–30 training-age prior; influence
+        dates use lifespan overlap only.
+      </p>
+
+      {lineage.unavailableEdges > 0 && (
+        <div className="rounded-md bg-bg-secondary p-4 mb-7">
+          <h3 className="text-sm font-semibold text-text-primary mb-2">
+            Person links without a usable temporal envelope
+          </h3>
+          <p className="text-sm text-text-secondary mb-2">
+            These {lineage.unavailableEdges.toLocaleString()} known links stay
+            in the graph with null dates and a machine-readable reason.
+          </p>
+          <ul className="space-y-1 text-sm text-text-secondary">
+            {Object.entries(lineage.unavailableReasons).map(([reason, count]) => (
+              <li key={reason} className="flex justify-between gap-4 max-w-xl">
+                <span>{unavailableLabels[reason] ?? reason}</span>
+                <span className="tabular-nums text-text-tertiary">
+                  {count.toLocaleString()}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <h3 className="text-sm font-semibold text-text-primary mb-2">
+        Educational concentration
+      </h3>
+      <p className="text-sm text-text-secondary leading-relaxed mb-3 max-w-3xl">
+        Education records cover {institutions.sculptorsWithEducation.toLocaleString()}{" "}
+        sculptors ({institutions.educationCoveragePct.toFixed(1)}%) across{" "}
+        {institutions.educationEdges.toLocaleString()} links. The five most
+        represented institutions account for{" "}
+        {institutions.topFiveEducationSharePct.toFixed(1)}% of those links.
+        This measures documentation concentration, not institutional quality
+        or historical importance.
+      </p>
+      <div className="overflow-x-auto mb-3">
+        <table className="w-full text-sm max-w-2xl">
+          <thead className="text-xs text-text-tertiary">
+            <tr>
+              <th className="text-left font-medium px-2 py-1.5">Institution</th>
+              <th className="text-right font-medium px-2 py-1.5">Education links</th>
+            </tr>
+          </thead>
+          <tbody className="text-text-secondary">
+            {institutions.topEducationInstitutions.map((institution, index) => (
+              <tr
+                key={institution.qid}
+                className={index % 2 === 0 ? "bg-bg-secondary/40" : ""}
+              >
+                <td className="px-2 py-1.5">{institution.label}</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {institution.educationEdges.toLocaleString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-text-tertiary max-w-3xl">
+        The lineage view renders {institutions.renderedInstitutions.toLocaleString()}{" "}
+        of {institutions.totalInstitutions.toLocaleString()} recorded
+        institutions: only hubs linked to at least three sculptors appear as
+        graph nodes, while the long tail remains in the export.
+      </p>
+    </section>
+  );
+}
+
 /**
  * FieldCoverageSection — Phase 4.
  *
@@ -698,13 +905,13 @@ function FieldCoverageSection({
   return (
     <section className="mb-10">
       <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
-        What's filled in
+        What&apos;s filled in
       </h2>
       <p className="text-text-secondary mb-5">
-        Per-field coverage on the {total.toLocaleString()} published
-        sculptors. Gaps here are the truth about Wikidata's coverage of
-        these artists, not bugs in the export — we render fields as
-        absent rather than fabricating values.
+        Per-field coverage on the {total.toLocaleString()}{" "}published
+        sculptors. Gaps measure this source snapshot, query, and public schema;
+        they do not prove that the underlying fact is unknowable. The UI
+        renders fields as absent rather than fabricating values.
       </p>
       <ul className="space-y-1.5 text-sm text-text-secondary">
         {rows.map(([field, { present, pct }]) => (
@@ -787,7 +994,7 @@ function CountryNormalizationSection({
       )}
       <p className="text-sm text-text-secondary mb-3">
         The {block.total_aliases}-entry alias table breaks down as{" "}
-        <span className="tabular-nums">{catA}</span> formal-name-to-display-name
+        <span className="tabular-nums">{catA}</span>{" "}formal-name-to-display-name
         rewrites (lossless, e.g. &ldquo;Kingdom of the Netherlands&rdquo; →
         &ldquo;Netherlands&rdquo;) and <span className="tabular-nums">{catB}</span>{" "}
         single-successor historical states (defensible, e.g. &ldquo;Kingdom
@@ -859,8 +1066,7 @@ export default function TransparencyPage() {
     );
   }
 
-  const generated = new Date(audit.generatedAt).toLocaleString();
-
+  const generated = formatUtcDate(audit.generatedAt);
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <PageHeader
@@ -876,28 +1082,33 @@ export default function TransparencyPage() {
         }
         subtitle={
           <>
-            Every figure you see elsewhere on this site is drawn from the{" "}
-            <strong>Included</strong> subset below. This page shows which
-            sculptors we publish, why, and how that choice affects
-            representation. Regenerated on every pipeline run.
+            Most artist-level views use the <strong>Included</strong> subset
+            below; eligible-candidate geography, museum-object materials, and
+            cross-source audits state their different denominators beside the
+            view. This page shows which sculptors we publish, why, and how the
+            source and rule shape representation.
           </>
         }
       />
-      <p className="text-xs text-text-tertiary mb-10">
-        Snapshot generated {generated}.
+      <p className="text-xs text-text-tertiary mb-10 leading-relaxed">
+        Artifact {audit.release.artifactRelease} · source snapshot exported{" "}
+        {generated} · methodology {audit.criterion.version} · evidence-backed
+        curation reviewed {formatUtcDate(audit.release.curationReviewedAt)} ·
+        contracts reviewed {formatUtcDate(audit.release.contractsReviewedAt)}.
       </p>
 
       {/* Top-line counts */}
       <section className="mb-10 grid grid-cols-3 gap-4">
         <div className="rounded-md border border-border p-4">
           <p className="text-xs uppercase tracking-wide text-text-tertiary">
-            Cached from Wikidata
+            Eligible candidate frame
           </p>
           <p className="font-display text-3xl font-semibold text-text-primary mt-1">
-            {audit.totalCached.toLocaleString()}
+            {audit.eligibleCandidates.toLocaleString()}
           </p>
           <p className="text-xs text-text-tertiary mt-1">
-            sculptor QIDs born ≥ 1800
+            after {audit.personExclusions?.count ?? 0} evidence-backed exclusion;
+            {" "}{audit.sourceCandidates.toLocaleString()} source candidates
           </p>
         </div>
         <div className="rounded-md border border-accent-primary/30 bg-accent-muted/20 p-4">
@@ -908,7 +1119,7 @@ export default function TransparencyPage() {
             {audit.included.toLocaleString()}
           </p>
           <p className="text-xs text-text-tertiary mt-1">
-            {audit.inclusionPctOfCache}% of cache
+            {audit.inclusionPctOfCache}% of eligible frame
           </p>
         </div>
         <div className="rounded-md border border-border p-4">
@@ -923,6 +1134,42 @@ export default function TransparencyPage() {
           </p>
         </div>
       </section>
+
+      {audit.personExclusions && audit.personExclusions.count > 0 && (
+        <section className="mb-10 rounded-md bg-bg-secondary px-4 py-4">
+          <h2 className="font-display text-xl font-semibold text-text-primary mb-2">
+            Evidence-backed exclusions
+          </h2>
+          <p className="text-sm text-text-secondary leading-relaxed mb-4">
+            These records are excluded when the public year-based schema
+            cannot represent their source dates honestly. They are documented
+            overrides, not hidden data cleaning.
+          </p>
+          <ul className="space-y-4">
+            {audit.personExclusions.records.map((record) => (
+              <li key={record.qid} className="text-sm text-text-secondary">
+                <p className="font-semibold text-text-primary">
+                  <a
+                    href={record.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent-primary hover:underline"
+                  >
+                    {record.name}
+                  </a>{" "}
+                  <span className="font-normal text-text-tertiary">
+                    ({record.qid})
+                  </span>
+                </p>
+                <p className="leading-relaxed mt-1">{record.reason}</p>
+                <p className="text-xs text-text-tertiary mt-1">
+                  Source checked {formatUtcDate(record.sourceCheckedAt)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Inclusion rule */}
       <section className="mb-10">
@@ -992,8 +1239,9 @@ export default function TransparencyPage() {
           Demographic breakdown
         </h2>
         <p className="text-text-secondary mb-5">
-          Comparing the published set against what we held back. Any gap here
-          is a bias the rule introduces; the point is to show it, not hide it.
+          Comparing the published set against what the rule held back. The
+          differences reflect both the already selective Wikidata cache and
+          the inclusion rule; this comparison does not isolate either cause.
         </p>
         <div className="grid md:grid-cols-2 gap-5">
           <Breakdown
@@ -1017,6 +1265,10 @@ export default function TransparencyPage() {
         <FieldCoverageSection coverage={audit.fieldCoverage} />
       )}
 
+      {audit.relationshipCoverage && (
+        <RelationshipCoverageSection coverage={audit.relationshipCoverage} />
+      )}
+
       {/* 3a follow-up — country-name normalization. Renders when the
           countryNormalization block is present (added May 2026). The
           point is to be honest about what we rewrite and what we
@@ -1030,18 +1282,18 @@ export default function TransparencyPage() {
           getty_audit.json is present (the file is generated by
           pipeline/audit_getty.py and is therefore optional during
           early development / first runs). */}
-      {/* Phase 4 — cross-cultural collaboration. Renders only when
+      {/* Citizenship-set comparison. Renders only when
           cross_cultural_summary.json is present (generated by
           export_json.py). */}
-      {crossCultural && <CrossCulturalCollaboration summary={crossCultural} />}
+      {crossCultural && <CitizenshipComparison summary={crossCultural} />}
 
       {getty && <GettyCrossReference audit={getty} />}
 
       <section className="text-sm text-text-tertiary">
         <p>
-          This page is a standing commitment: it regenerates automatically
-          from the pipeline so the figures above always match the published
-          data exactly.
+          This page is a standing commitment: the primary pipeline regenerates
+          it, bounded static backfills preserve source age, and repository
+          contract tests keep its denominators aligned with the published data.
         </p>
       </section>
     </div>

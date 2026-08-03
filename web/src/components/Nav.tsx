@@ -30,6 +30,7 @@ export function Nav() {
           <Link
             key={item.href}
             href={item.href}
+            aria-current={pathname === item.href ? "page" : undefined}
             className={cn(
               "font-body px-3 py-2 text-sm transition-colors rounded-r-md",
               pathname === item.href

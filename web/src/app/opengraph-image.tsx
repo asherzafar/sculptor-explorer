@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { dataSnapshot } from "@/lib/snapshot";
 
 /**
  * Open Graph preview image for the site root.
@@ -100,8 +101,7 @@ export default async function Image() {
                 maxWidth: 880,
               }}
             >
-              Materials, movements, geography, and lineage —
-              3,630 sculptors across 200 years.
+              {`Materials, movements, geography, and lineage — ${dataSnapshot.includedSculptors.toLocaleString("en-US")} published sculptors since 1800.`}
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export default async function Image() {
               color: FAINT,
             }}
           >
-            <div>From Wikidata · Getty ULAN cross-referenced</div>
+            <div>Wikidata · Getty ULAN · Met · Art Institute of Chicago</div>
             <div style={{ fontWeight: 600, color: FG }}>sculptor-explorer</div>
           </div>
         </div>

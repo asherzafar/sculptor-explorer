@@ -62,6 +62,7 @@ export function WorksGallery({ works, sculptorName }: WorksGalleryProps) {
                   `bg-bg-primary` gives transparent PNGs (rare on Met,
                   more common on AIC) a clean background. */}
               <div className="relative aspect-[4/5] overflow-hidden bg-bg-primary">
+                {/* eslint-disable-next-line @next/next/no-img-element -- External public-domain museum thumbnails stay unoptimized in the static export. */}
                 <img
                   src={work.thumbnailUrl}
                   alt={`${work.title} by ${sculptorName}`}

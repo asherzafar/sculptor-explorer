@@ -1,27 +1,100 @@
 # Roadmap
 
-## Current status: Phase 5b.4 shipped; Phase 5b.5 next (June 2026).
+## Current status: 5Q release-candidate stabilization active; visual foundations next (August 2026)
 
-Project recast: from "ship to first feedback" to "better data, more
-interesting visualizations, explorable interactives." Phase 5 plan
-lives in `docs/PHASE_5_PLAN.md`; handoff notes for continuing outside
-Windsurf live in `docs/CODEX_HANDOFF.md`. Institutional densification
-has shipped through 5b.4: `/lineage` can opt into square institution
+**North star:** help people explore and explain how artists,
+institutions, places, movements, works, and practices shape one another
+over time—beginning with sculpture—while making the limits of the
+underlying data visible and auditable. The full outcome model and
+decision scorecard live in `docs/PROJECT_CHARTER.md`; the experimental,
+graph, temporal, and expansion strategy lives in
+`docs/EXPLORATION_STRATEGY.md`; research standards live in
+`docs/RESEARCH_FOUNDATIONS.md`; the measured inheritance audit lives in
+`docs/PROJECT_AUDIT_2026-08-02.md`.
+
+Phase 5's detailed technical plan lives in `docs/PHASE_5_PLAN.md`;
+the current agent-neutral continuation state lives in
+`docs/AGENT_HANDOFF.md`. Institutional densification
+is implemented through 5b.5: `/lineage` can opt into square institution
 hubs via `?nodes=sculptor,institution`, while the default route keeps
-institutions off for first-paint performance.
+institutions off for first-paint performance. Person-person and
+institution edges now share the temporal envelope contract, and
+`/transparency` reports coverage, confidence, skipped intersections,
+and educational concentration.
 
-Recently shipped: Phase 5b.3–5b.4 institutional graph work — P69/P937
+Implemented in the current release candidate: Phase 5b.3–5b.5
+institutional/temporal graph work — P69/P937
 institution data exports to `institutions.json`, sculptor shards carry
 institution chips/edges, and `LineageGraph` renders opt-in institution
 hubs with tuned force settings. The institution bundle lazy-loads only
-after opt-in, preserving the default lineage payload. Phase 4 polish
-remains closed: typography drift fixed on /transparency, slim
+after opt-in, preserving the default lineage payload. Phase 5b.5 dated
+1,372 of 1,423 person-person edges while retaining 51 undatable links
+with explicit reasons; institution links cover 2,393 of 3,543 published
+sculptors. Phase 4's scoped
+polish work shipped—typography drift fixed on /transparency, slim
 `sculptors_index.json` cuts /explore and /lineage payload by ~88%
-(5.8MB → 745KB), mobile posture verified as deliberate read-only
-fallback, country-name normalization (3a follow-up), migration Sankey,
-decade/movement narrative pages.
+(5.8MB → 745KB), country-name normalization (3a follow-up), migration
+Sankey, and decade/movement narrative pages. Phase 5Q intentionally
+reopens cross-cutting quality where the August audit found the earlier
+mobile, accessibility, state, and performance posture insufficient.
 
-The goal is to get something live and shareable as fast as possible, then iterate with real feedback. Every phase produces a deployable state. Nothing should only work "when the next phase is done."
+The project now has enough production surface area to learn from, but
+experimentation remains an explicit goal. The governing strategy uses
+two connected tracks: finish the temporal/provenance substrate and make
+the public explorer understandable and trustworthy, while running
+isolated, time-boxed lab experiments that help discover better
+questions and methods. Every production phase must leave a deployable
+state; no public feature should depend on an unbuilt future phase.
+
+## Priority order
+
+| Horizon | Priority | Outcome |
+|---|---|---|
+| Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
+| Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
+| Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
+| After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
+| Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
+| Long term | **Evidence-gated expansion** | Pilot one second artistic discipline; pursue advanced temporal/multilayer views and renderer/database changes only when real questions justify them. Embeddings remain last. |
+
+This order deliberately pauses feature densification after 5b.5. The
+August audit found stale project truth, failing lint, untriaged
+dependency risk, an impossible lifespan record, no CI/web tests,
+inconsistent SVG accessibility, incomplete URL state, mobile clipping,
+and little user evidence. Phase 5b.5 repaired lint; the 5Q reliability/data
+slice added CI, a root validation gate, static invariants, and the precision
+fix/exclusion; 5Q.3 added the maintained datasheet/claim register and public
+claim context. Accessibility, mobile equivalence, performance, and user
+evidence still precede new production nodes.
+Adding nodes before resolving them
+would increase visual and maintenance complexity faster than reader
+value.
+
+## Parallel exploration track
+
+Phase 5Q pauses new **production** complexity, not creative research.
+Lab experiments may proceed when they follow
+`docs/EXPLORATION_STRATEGY.md`, remain isolated from public routes and
+contracts, and end with a reproducible learning note plus an explicit
+continue/simplify/archive decision.
+
+Initial queue:
+
+1. Temporal ego journey for one well-documented artist, institution,
+   and city; compare small multiples/event bands with animation.
+2. Separate lineage layers for documented interpersonal relations,
+   institutions, movements, place overlap, and derived similarity.
+3. Reproducible community analysis by decade/layer, including
+   stability and source-sensitivity checks before visual design.
+4. Institution/city biography showing roster, movement, migration,
+   events, and peer connections over time.
+5. Two-artist temporal-neighborhood comparison driven by observed
+   questions rather than a generic comparison workbench.
+
+The graph data model should become artist-neutral before the product
+becomes artist-general. A graph database is a later architecture
+decision, not a prerequisite: first establish entity/relation/event
+semantics, provenance, temporal queries, and a second-domain use case.
 
 ---
 
@@ -61,7 +134,7 @@ The goal is to get something live and shareable as fast as possible, then iterat
 - [x] Add Evolution to nav as 5th route (now that it has real charts)
 - [x] Filters write to URL params via `useSearchParams()` (decade → `?decade=1920`)
 - [x] Decade selector: clicking chart area filters focus sculptors + updates URL
-- [x] Deploy to Netlify — https://sculpture-in-data.netlify.app
+- [x] Initial Netlify deploy (historical; stale host scheduled for 5Q.4c retirement) — https://sculpture-in-data.netlify.app
 - [ ] Share with Fabio, collect feedback
 
 ---
@@ -108,7 +181,7 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 
 ## Phase 3: Data enrichment — the migration/geography story
 
-**Why this, why now.** Looking honestly at the data: the current site shows `citizenship = "United States"` for Brâncuși, Archipenko, Nadelman, Lachaise, Noguchi, Bourgeois — a single flat field that erases the actual migration history of 20th-century sculpture. The canon this site tries to document **is** a migration canon, and we're flattening it. We also silently exclude non-Western sculptors because our "notable" filter requires a Western-art-historical movement label. Before more visual polish, fix the data.
+**Why this, why now.** The earlier site reduced multiple Wikidata P27 assertions to one display value and could not show birth/death-country endpoints. That flattened the source record, although neither multiple citizenships nor different endpoint countries can reconstruct migration history. The earlier publication filter also relied heavily on Western-art-historical movement labels. Before more visual polish, the project preserved multi-valued source data, added a bounded endpoint view, and replaced the movement-only gate.
 
 **Themes the data should support after this phase:**
 - Where sculptors actually came from vs. where they're attributed
@@ -121,7 +194,7 @@ Feedback from first live deploy. These are UX/polish fixes, not new features.
 ### 3a. Wikidata enrichment — low risk, high yield ✅ COMPLETE
 - [x] **Inclusion criteria research + decision** — see `docs/INCLUSION_CRITERIA.md`. Seven-expert stress test produced **Option A.3** (5 signals, drop authority as gate, sitelinks ≥3 non-EN).
 - [x] SPARQL queries for **P19 (place of birth)**, **P20 (place of death)**, **sitelinks**, **authority IDs** (ULAN+VIAF+LCNAF+BnF+DNB+NDL+BNE), **P1559 (native name)**.
-- [x] **Apply A.3 inclusion filter** in `process.py` — **3,630 sculptors** published (54.2% of 6,700 cache).
+- [x] **Apply A.3 inclusion filter** in `process.py` — the May 2026 run published **3,630 sculptors** (54.2% of the then-current 6,700 cache). This is historical run evidence, not the current snapshot count.
 - [x] **Schema evolution** — `LegacySculptor` gains `birthPlace`, `birthCountry`, `deathPlace`, `deathCountry`, `nativeName`, `nativeLang`, `authorityTypes[]`, `inclusionSignals[]`, `sitelinkCount`, `nonEnSitelinkCount`, `citizenships[]`. All surfaced on the detail page.
 - [x] **Re-export lineage edges** — rewrote relations SPARQL (split P737/P1066, removed EN-only label filter). Result: **147 → 1,418 edges (9.6×)**.
 - [x] **External mentors as first-class** — 682 non-sculptor teachers (painters, composers, architects who trained sculptors) now render as diamond nodes on the Lineage graph so cross-media academic training isn't dropped.
@@ -148,16 +221,16 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 - Could a weighted signal score (instead of binary OR) outperform? Authority↔sitelinks correlation is 0.67
 - Softer non-EN sitelinks ranking (top quartile of decade? logarithmic count?) rather than hard ≥3 threshold
 - Periodic review of bot-dominated Wikipedias list (currently ceb, war)
-- Gender representation: Phase 3a only moved 13% → 14.4% female. What would it take to do better? Is that even a filter question, or a data-source question?
+- Recorded P21 label distribution: Phase 3a only moved the share labeled female from 13% to 14.4%. This is a source/rule diagnostic, not a population estimate or a complete gender model.
 
 ### 3b. Getty ULAN crosswalk — Wikidata cross-reference
-- [x] **P245 (ULAN ID) crosswalk** — 2,340 of 3,630 sculptors (64.5%) carry a Wikidata-supplied ULAN ID; no fuzzy match required.
+- [x] **P245 (ULAN ID) crosswalk** — in the May 2026 run, 2,340 of 3,630 sculptors (64.5%) carried a Wikidata-supplied ULAN ID; no fuzzy match required.
 - [x] **Per-record JSON-LD ingest** — `pipeline/query_getty.py` fetches `https://vocab.getty.edu/ulan/{id}.json` (the per-record endpoint, *not* the unstable SPARQL endpoint), with disk cache + politeness throttle. Resume-on-rerun is free. Full ingest: ~17 min, zero failures.
 - [x] **Wikidata ↔ Getty audit** — `pipeline/audit_getty.py` produces both `getty_audit.json` (aggregate metrics + spot-check tables) and `getty_compared.parquet` (per-record). Cross-reference badge on detail pages; full audit section on `/transparency`.
 - [x] **Schema** — sculptors gain a `gettyVerified` block: Getty's parallel data (label, birth/death year + place, nationality chips) plus per-field agreement flags computed at export time.
 - [x] **UI surfaces** — detail page shows a one-line cross-ref status (verified / differs) with a deep link to the Getty record; place data falls back to Getty when Wikidata is missing (rare — only 4 cases in practice).
 - [ ] **Activity places (migration view data)** — NOT in the basic JSON-LD record. Would require Getty's SPARQL endpoint (unreliable) or the bulk LOD download (~3GB TTL). Deferred unless we re-prioritise the dedicated migration chart.
-- [ ] **License attribution** — ODC-By 1.0, Getty named on About page (pending small About-page touch).
+- [x] **License attribution** — About names Getty ULAN and ODC-By 1.0, links the license, and explains that source-specific terms still apply.
 
 **Honest readout from the audit (live numbers on `/transparency`):**
 - Birth-year agreement: **94.6% exact**, 1.9% off-by-1, 3.5% off-by-2+ (Getty has more transcription typos than Wikidata: e.g. Allen Jones = 1837 vs 1937).
@@ -176,14 +249,14 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 ### 3d. Data-story UI — surfaces what the new data reveals
 Built in increments alongside 3a-c, not saved for the end.
 - [x] **Geography chart: source toggle** (citizenship / birth country) live on `/evolution`. Country-of-activity deferred to 3b (Getty ULAN).
-- [x] **Migration view** — birth → death country Sankey shipped at `/migration` with decade-slice URL state (`?decade=1880`) and stayed-put toggle (`?stay=1`). Per-flow side panel shows a sample of sculptors per corridor (capped at 12). Activity-place data still deferred behind 3b; the v1 chart uses birth/death countries only.
+- [x] **Migration view** — birth → death country Sankey shipped at `/migration` with decade-slice URL state (`?decade=1880`) and same-country-endpoint toggle (`?stay=1`). Per-flow side panel shows a sample of sculptors per pair (capped at 12). The UI explicitly treats these as endpoints, not a reconstructed journey; activity-place data remains deferred.
 - [x] **"Hidden from view" page** — shipped as `/transparency`. Owns the included-vs-excluded distribution, signal coverage, and demographic gaps. Regenerates automatically on every pipeline run (standing commitment).
 - [x] **Detail page enrichment (phase 1)** — native name with `lang` attribute, birth/death place with country, authority-file chips (ULAN/VIAF/LCNAF/BnF/DNB/NDL/BNE), inclusion-signal chips ("Included because of…").
-- [x] **Detail page enrichment (phase 2)** — multi-citizenship pills surface the `citizenships[]` array (831 sculptors with >1 country) so émigré histories don't read as a single flat nationality. Native-name visibility tightened to non-English entries only (echoes of the romanized name suppressed). SAAM narrative snippet remains pending behind 3c.
+- [x] **Detail page enrichment (phase 2)** — multi-citizenship pills surface the `citizenships[]` array rather than silently selecting one P27 value; the UI does not claim that P27 reconstructs identity or migration history. Native-name visibility tightened to non-English entries only (echoes of the romanized name suppressed). SAAM narrative snippet remains pending behind 3c.
 - [x] **Authority-file chips → outbound links** — chips render as `<a>` to VIAF / ULAN / LCNAF / BnF / DNB / NDL / BNE when the pipeline has a resolved URL; static badges fall through for IDs without a templated URL formatter.
 - [x] **Native names on Explore table** — second line under romanization with `lang` attribute; global search now matches native-script forms too (paste "ブランクーシ" → finds Brâncuși).
 - [x] **Lineage graph filters** — search-to-focus ego network (1/2/3-hop BFS), connection-type radio, mentor toggle, movement multi-select pills (top 12 by edge count), backbone slider, all URL-backed via `?focus=…&hops=…&mentors=…&edge=…&minDeg=…&mov=…`. Cleared two `.windsurfrules` violations on the page (design tokens, URL state).
-- [x] **About page update** — three-tier scope (3,600+ published / 680+ mentors / 48 focus), two Transparency links, data sources list now covers places/lineage/native names/authority IDs.
+- [x] **About page update** — origin, scope, explorer/lab boundary, generated snapshot values, source licenses, dataset datasheet, and claim register are live; the canonical focus CSV currently has 48 rows.
 
 ### 3e. Explicitly deferred to later phases
 - Sculpture images from Met/AIC IIIF
@@ -195,10 +268,10 @@ Built in increments alongside 3a-c, not saved for the end.
 
 ## Phase 4: Visual polish + production
 
-- [x] **Cross-cultural collaboration story** — tri-state `crossesBorders` flag on edges, lineage filter pills + headline stat banner, per-sculptor cross-border count on detail page, transparency section with by-decade breakdown.
-- [x] **Portrait images on detail pages** (Wikidata P18 → Wikimedia Commons). 2,303 of 3,630 included sculptors (63%) have a portrait. Floats right of the header block; Commons file-page link for licence/author attribution. Met/AIC IIIF integration for actual sculptures deferred — see below.
+- [x] **Recorded citizenship-set comparison** — the legacy tri-state `crossesBorders` field records whether two non-empty P27 sets are disjoint. Phase 5Q.3 removed border-crossing/cross-cultural causal language from Lineage, detail, and Transparency while retaining the shareable filter and exact denominator.
+- [x] **Portrait images on detail pages** (Wikidata P18 → Wikimedia Commons). In the May 2026 run, 2,303 of 3,630 included sculptors (63%) had a portrait. Floats right of the header block; Commons file-page link for licence/author attribution. Met/AIC IIIF integration for actual sculptures deferred — see below.
 - [x] **Per-field coverage on transparency** — birth_place, death_place, native_name, image, authority_links, movement, citizenship.
-- [x] **OG preview image** — generated at build time via `app/opengraph-image.tsx` (next/og + Satori). 1200×630, on-brand verdigris accent, headline + 3,630-sculptor subhead. Twitter card set to summary_large_image. metadataBase points at sculptor-explorer.vercel.app.
+- [x] **OG preview image** — generated at build time via `app/opengraph-image.tsx` (next/og + Satori), with the published count derived from current export metadata. Twitter card is `summary_large_image`; metadataBase points at sculptor-explorer.vercel.app.
 - [ ] **Custom domain** (if desired) — credibility infrastructure.
 - [x] **Mobile posture** — kept as a per-page `<MobileNotice />` on /lineage, /evolution, /migration (the three views that genuinely don't render on a 375px viewport). /, /timeline, /explore, /explore/[qid], /decade, /movement, /about, /transparency all open on phones. This is the read-only fallback pattern, not a hard gate.
 - [ ] Sculpture (not portrait) images on detail pages via Met/AIC IIIF, public domain only — separate from the portrait win above; this would surface actual works.
@@ -225,22 +298,171 @@ Académie Julian 57, Vienna 57, Düsseldorf 53, Bauhaus / Black Mountain
 present too).
 
 - [x] **5a — Discovery and sizing.** Probes against live Wikidata sized P69 (34.3% coverage, 1,084 distinct institutions, 58 hubs with ≥10 sculptors), P937 (27.6%, mixed cities/studios), P361 + P39 (<2%, dead). Decision: ingest P69 + P937, skip the others.
-- [~] **5b — Densify the lineage graph with institutions.** P69 + P937 ingest, `institutions.json` export, third node kind in `<LineageGraph />`, ≥3-sculptor render threshold, opt-in URL-backed institution hubs, and perf budget tests are shipped through 5b.4. Remaining 5b.5 work: backfill P1066/P737 person-person edges with the edge dating envelope schema and add transparency surfaces for institution coverage/confidence.
-- [ ] **5b.6 — Movements as nodes.** Promote `movement` from trait to first-class node (hexagon), with `member_of_movement` and `movement_transition` edges. Per-movement pages gain a small inline graph of peer movements. ~150 movement nodes total.
-- [ ] **5c — Time-coded edges and animated lineage.** Pure UI layer on the envelope substrate landed in 5b. Decade scrubber, URL-backed, with "definitely active" (solid) vs "possibly active" (translucent) edge encoding.
-- [ ] **5d — Career-trajectory Sankey.** Generalize `/migration` from 2 nodes (born → died) to 4 (born → educated → worked → died). Country-level top view, city-level drill-down (cities promoted from trait to node). Drops out of 5b + P937.
-- [ ] **5e — Coordinated multi-view.** Brush a decade on Timeline → highlight in Lineage / Migration / Geography. The Bret Victor / Distill pattern.
-- [ ] **5f — Choropleth map** for `/evolution`. Drops out of existing data; pure UI lift.
-- [ ] **5g — IIIF sculpture images.** Met + AIC widened beyond focus list.
-- [ ] **5h — Embedding viz** (UMAP/t-SNE on CLIP). Research, gated on 5g.
+- [x] **5b — Densify and temporally qualify the lineage graph.** P69 + P937 ingest, `institutions.json` export, third node kind in `<LineageGraph />`, ≥3-sculptor render threshold, opt-in URL-backed institution hubs, and perf budget tests shipped through 5b.4. Phase 5b.5 added the same six-field envelope contract to P1066/P737 edges, explicit null reasons, regression checks, and public relationship/institution audits.
+- [ ] **5b.6 — Movements as nodes (GATED).** Promote `movement` from trait to first-class node only if 5Q shows the lineage graph needs this question answered and the default/opt-in performance and comprehension budgets hold. ~150 movement nodes are available, but availability is not sufficient evidence.
+- [ ] **5c — Time-coded lineage (GATED).** Use the temporal-envelope substrate for a URL-backed decade view with explicit definite/possible encoding. Prototype the static/focused version before any animation.
+- [ ] **5d — Career-trajectory Sankey (GATED).** Generalize `/migration` from born → died to born → educated → worked → died only if P69/P937 temporal confidence supports the claims readers make. Country overview and city drill-down remain hypotheses.
+- [ ] **5e — Coordinated multi-view and curated states.** Connect selections across Timeline, Lineage, Migration, and Geography through shared URL state. Curated tours should be saved analytical states, not a separate storytelling engine.
+- [ ] **5f — Geographic view (GATED).** Choose choropleth, proportional symbol map, or no map from the analytical task and denominator; do not assume a choropleth is appropriate because country data exists.
+- [ ] **5g — IIIF sculpture images / works context.** Widen Met + AIC works beyond the focus list with public-domain and attribution checks, then test whether works improve understanding rather than decoration alone.
+- [ ] **5h — Interpretable style-space research (LAST).** Embeddings require adequate works-level coverage, rights, bias analysis, explanation, and a reader task. UMAP/t-SNE is not a roadmap commitment by itself.
 
 Each phase has an explicit exit gate that may rewrite the phases
 after it. See PHASE_5_PLAN.md for the full plan.
 
-### Already-shipped narrative pages (kept here for inventory)
+### Phase 5Q — Product clarity and quality gate (active)
 
-- [x] Decade pages (`/decade/[year]`) — top countries, top movements, top corridors (deep-link into the Sankey filtered to that decade), notable-sculptor roster, prev/next adjacent-decade nav.
-- [x] Movement pages (`/movement/[slug]`) — stat blocks, decade histogram, top countries, peer movements, notable roster. Movement pills on detail and Explore pages link out.
+**Goal:** make the existing explorer reliable, comprehensible,
+accessible, measurable, and easy to continue before adding another
+major visual dimension.
+
+#### 5Q.1 — One current project truth (complete)
+
+- [x] Remove stale hard-coded counts, phases, routes, and source claims from UI metadata and active docs; `web/src/lib/snapshot.ts` now derives volatile public values from committed export metadata.
+- [x] Refresh landing/About copy to explain the project origin, sculpture-first scope, public-explorer/lab distinction, and possible evidence-gated expansion without promising a universal canon.
+- [x] Keep `AGENTS.md` vendor-neutral and all tool-specific instruction files thin and consistent.
+- [x] Add a visible source-snapshot/curation stamp and versioned methodology/data-release note. `/about` and `/transparency` distinguish source age from later review; `docs/DATA_RELEASE.md` identifies the committed artifact release.
+
+#### 5Q.2 — Reliability, security, and reproducibility (complete)
+
+- [x] Make full lint green and preserve passing type/build checks. Phase 5b.5 removed the 18 Transparency errors and the two remaining warnings.
+- [x] Add focused web interaction tests for URL state and core journeys. Seven Playwright checks cover root/Timeline state, Migration state, Lineage focus/institution state, public provenance, movement-route integrity, seven analytical-route claim notes, and mobile navigation; CI installs Chromium inside the repo job and runs the explicit browser gate after the non-browser validation gate.
+- [x] Add CI for type checking, lint, production build, data-contract tests, and the bounded lineage benchmark. `.github/workflows/ci.yml` runs the same root gate used locally.
+- [x] Triage dependency advisories by reachability and upgrade risk. Next.js moved from 16.2.3 to 16.2.12, shadcn is development-only, and `docs/SECURITY.md` records the remaining build/dev-only paths with a 2026-09-02 review deadline.
+- [x] Document the pipeline environment and add a reproducible validation entry point that does not require rediscovery by each agent. `./scripts/validate.sh` is standard-library-only on the Python side and uses the installed web dependencies.
+
+#### 5Q.3 — Data contracts and ethical claims (complete)
+
+- [x] Fix the impossible `Q87366` lifespan and add invariants for birth/death order, identifiers, roster/index/shard parity, edge endpoints, aggregate denominators, exclusion provenance, and relationship schemas. Wikibase time precision now prevents century values from becoming fake years; `overrides/person_exclusions.csv` protects older caches and documents the current exclusion.
+- [x] Publish/maintain a dataset datasheet: `docs/DATASET_DATASHEET.md` covers composition, contracts, sources/licenses, processing, inclusion, missingness, overrides, uses/non-uses, risks, citation, corrections, and maintenance.
+- [x] Put source, scope/denominator, freshness, and important missingness beside every analytical claim. `DataScopeNote` now supplies a snapshot-derived stamp and route-specific context on Timeline, Explore, Evolution, Migration, Lineage, Decade, and Movement; `docs/CLAIM_REGISTER.md` is the durable audit.
+- [x] Review gender, geography, historical-state, and cultural classification language. Current public copy attributes P21/P27/P135 labels, describes birth/death countries as endpoints, and treats the legacy `crossesBorders` field as disjoint recorded citizenship sets rather than travel or cross-cultural proof. The claim register requires relevant domain/community review before any consequential named cultural, identity, historical-state, or living-artist claim ships.
+
+#### 5Q.3R — Release-candidate stabilization (complete)
+
+- [x] Separate source-query freshness, artifact release/review metadata, and per-record evidence-check dates in the generated contract and public copy.
+- [x] Make candidate accounting explicit: 6,711 source candidates, one evidence-backed person exclusion, 6,710 analytically eligible candidates, 3,543 published records, and 3,167 A.3 rule exclusions.
+- [x] Prevent movement labels from linking to nonexistent aggregate pages; export a small canonical movement-route index and enforce exact producer/bundle/route parity in data contracts and a browser journey.
+- [x] Align `eslint-config-next` with the pinned Next.js release and give the four production SVG charts accessible names. Text/structured equivalents and keyboard inspection remain 5Q.4 work.
+- [x] Pass the complete non-browser, build, performance, and seven-journey browser gates; inspect the semantic data diff and static-output change. The local build remains 3,625 routes / 36,201 files / ~228 MB; data changes are the documented exclusion/temporal exports plus additive release and movement-route contracts.
+- [x] Create a named repository checkpoint for the inherited release candidate before route-level visual iteration (`codex/phase-5q-stabilization`).
+
+#### 5Q.4 — Aesthetic clarity, accessibility, mobile, and performance
+
+##### 5Q.4a — Visual foundations and baseline (do first)
+
+- [x] Record the route/task matrix, encoding inventory, source audit, ranked findings, and initial alternative set in `docs/VISUAL_BASELINE_2026-08-02.md`.
+- [ ] Validate the branch-to-Vercel preview workflow from the current checkpoint before rendered review: preview only, no production promotion; record the preview URL, access boundary, source commit, and cleanup/retention behavior.
+- [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
+- [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
+- [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
+
+##### 5Q.4b — End-to-end route slices
+
+- [ ] Start with **Explore**: URL-backed search/sort/filter state, pagination or virtualization, mobile table/list equivalence, movement-route integrity, and fast find/share tasks.
+- [ ] Continue with **Timeline**: make the project-origin lifespan view legible on mobile and at zoom, with a structured equivalent and verified sort/share behavior.
+- [ ] Review the dense **Lineage/Migration** family: overview/focus/details, denominators and uncertainty, keyboard/text equivalents, reduced motion, and measured graph/interaction budgets.
+- [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
+- [ ] Review each default view with the visualization proposal model in `docs/RESEARCH_FOUNDATIONS.md`: reader question → data/task → encoding/interaction → implementation.
+- [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
+- [ ] Replace unexplained density with overview → focus/filter → details on demand. Test lineage labels/legends, temporal confidence, and migration denominators for comprehension.
+- [ ] Make ordinary discovery/detail journeys usable on mobile; provide an explicit simplified list/summary for dense charts rather than clipping.
+- [ ] Virtualize or paginate Explore instead of mounting all included rows; move consequential search/sort/filter state into the URL.
+- [ ] Measure route payloads and Core Web Vitals at p75. Keep normal interactions under 200 ms, default lineage under 1.5 s, opt-in heavy graph modes under 3 s, and monitor static-output growth.
+
+##### 5Q.4c — Visual closeout
+
+- [ ] Run the route-slice review gate on every primary journey, synthesize unresolved issues by severity, and update `docs/DESIGN_SYSTEM.md` only with patterns that passed evidence and reuse checks.
+- [ ] Preserve a before/after visual and performance record so future agents can distinguish intentional design decisions from drift.
+- [ ] Retire the stale `sculpture-in-data.netlify.app` deployment after Vercel production and preview behavior are verified: replace stale content with a path-preserving 301 to `sculptor-explorer.vercel.app`, review known repository references and available traffic/backlink evidence, keep the redirect through an explicit observation window, then record whether the safer endpoint is a long-lived redirect or Netlify project deletion.
+
+#### 5Q.5 — Learn before choosing the next bet
+
+- [ ] Add privacy-respecting, minimal analytics for route use, search success, filter/share actions, empty results, and performance—never sensitive profiles.
+- [ ] Run at least five structured sessions spanning the charter's audience hypotheses; test orientation, findability, interpretation, limitation awareness, and sharing.
+- [ ] Score the next candidates with the charter scorecard and document a go/simplify/stop decision.
+
+**Phase 5Q exit gate:** all required CI checks are green; zero unexplained
+data invariants fail; core flows meet WCAG 2.2 AA requirements and
+have a mobile/equivalent path; URL states round-trip; performance
+budgets are measured and met or explicitly re-scoped; five user
+sessions are synthesized; and the next feature is selected from
+evidence rather than phase-number momentum.
+
+### Phase 5R — Strategic horizon workshop (after 5Q evidence, before the next major public phase)
+
+**Goal:** zoom out deliberately once the inherited product is stable enough to
+judge. Revisit the project’s goals, question atlas, audience hypotheses,
+creative ambition, evidence model, and longer-term roadmap without letting a
+pre-existing phase number choose the answer.
+
+- [ ] Synthesize the 5Q route evidence, user sessions, analytics, dependency/data risks, and the active lab experiment’s learning note.
+- [ ] Refresh the expert/frontier reading across cultural-collection UX, visualization, temporal/multilayer networks, art-historical method, cultural-data governance, and relevant technical architecture. Separate durable foundations, emerging methods, and unvalidated novelty.
+- [ ] Hold a founder interview/workshop around the most consequential unresolved choices: primary audience, best questions, breadth versus depth, role of fun/experimentation, first second-domain or earlier-period probe, and when the public name should be reconsidered.
+- [ ] Expand and rank the question atlas; score candidate initiatives with the charter scorecard, including success/stop conditions, data/UX risks, and the smallest experiment that would reduce uncertainty.
+- [ ] Update the charter, decision log, exploration strategy, design/research standards, architecture triggers, roadmap, and handoff together. Record rejected options and non-goals so another agent does not silently revive them.
+
+Candidate sequence to bring into that workshop:
+
+| Slot | Recommended option | Alternative / gate |
+|---|---|---|
+| During 5Q, WIP limit one | **E4 institution/city biography** as an isolated small-multiple/event-band lab because the institutional substrate already exists | E1 temporal ego journey if a person-centered story is easier to test; neither alters production routes |
+| First post-gate production theme | **Findability and connective tissue:** global search plus institution-page/link discovery | Build only after task evidence and scorecard review; begin with the smallest useful slice |
+| Second post-gate theme | **Coordinated URL states and curated analytical entry points** | Prefer saved/reproducible states over a separate storytelling engine |
+| Story-depth option | **Works/IIIF expansion** | Requires coverage, rights, attribution, and “understanding versus decoration” evidence |
+| Research/model option | **Artist-neutral semantic layer plus one second-domain or earlier-period probe** | Additive model first; no public rebrand until source fitness and cross-domain value pass |
+| Still gated | Movement nodes, animated lineage, career Sankey, map, embeddings, graph database/renderer rewrite | Require a reader question, evidence fitness, comprehension, accessibility, and measured scale trigger |
+
+## Review and validation gates
+
+Review happens both **as work proceeds** and at explicit boundaries. Automated
+checks alone catch regressions; human review alone is too late and too hard to
+reproduce.
+
+### Gate A — Every coherent change
+
+- Run the smallest relevant data/unit/interaction check, type checking and
+  lint where code changed, and `git diff --check`.
+- For generated data, update producer, consumer, types, contract tests,
+  release metadata, and public/documented semantics together; inspect a
+  semantic diff rather than accepting file churn.
+- Re-check source, denominator, freshness, missingness, URL state, and
+  accessible naming for any affected public claim or interaction.
+
+### Gate B — Every route slice
+
+- Review six lenses together: **truth**, **visual hierarchy/encoding**,
+  **interaction/state**, **responsive/mobile**, **accessibility**, and
+  **performance**.
+- Capture desktop and 390px evidence, keyboard/zoom/reflow results, automated
+  accessibility findings, route payload/interaction timings, and a short
+  before/after decision note.
+- Do not propagate a new visual pattern to other routes until this gate passes
+  or the exception and next test are recorded.
+
+### Gate C — Milestone/release candidate
+
+- Run `./scripts/validate.sh`, the explicit Playwright gate, full local
+  lineage median when graph behavior changed, and the remote CI checks on the
+  checkpoint branch.
+- Inspect browser console output, static route count/output size, package
+  audit posture, generated-data semantic diff, documentation links/status,
+  and known-risk ownership.
+- “Implemented,” “locally validated,” “in CI,” “deployed,” and “observed with
+  users” are separate statuses; documentation must not collapse them into
+  “shipped.”
+
+### Gate D — Product decision
+
+- Use founder/domain review and the five-session synthesis to assess whether a
+  reader can orient, interpret, find, share, and name a limitation.
+- Score the next bet, record go/simplify/stop, and update the roadmap/decision
+  log before a major production feature begins.
+
+### Already-implemented narrative pages (kept here for inventory)
+
+- [x] Decade pages (`/decade/[year]`) — top countries, top movements, top endpoint pairs (deep-link into the Sankey filtered to that decade), most-connected-in-this-graph roster, prev/next adjacent-decade nav.
+- [x] Movement pages (`/movement/[slug]`) — stat blocks, decade histogram, top countries, peer movements, and most-connected-in-this-graph roster. Movement pills on detail and Explore pages link out.
 
 ### Folded into Phase 5 plan
 
@@ -264,40 +486,45 @@ coverage each). They are not on the Phase 5 path.
 
 ---
 
-## Improvement opportunities and future ideas (June 2026 review)
+## Improvement opportunities and future ideas (August 2026 audit)
 
-Candidates surfaced during the Codex-handoff QA passes. None are
-scheduled; they are ranked options to weigh against the Phase 5 spine.
+Items in 5Q are scheduled as gate work; feature candidates remain
+options to score after the gate. The ordering below is strategic,
+not an instruction to build all of them.
 
 ### Easy wins (hours, not days)
 
 - [x] **Remove unused `react-force-graph-2d` dependency.** Zero imports
   remain after the D3 migration; it only inflates installs.
-- [ ] **Make full `npm run lint` green.** Pre-existing failures in
-  `web/src/app/transparency/page.tsx` (`react-hooks/static-components`,
-  unescaped apostrophes) are documented in `docs/CODEX_HANDOFF.md` but
-  worth fixing so lint can become a CI gate.
-- [ ] **Surface pipeline export date in the UI.** A "data as of …"
+- [x] **Make full `npm run lint` green.** Phase 5b.5 moved nested
+  Transparency components to module scope and fixed JSX escaping. The
+  command now exits with zero errors and zero warnings.
+- [x] **Surface pipeline export date in the UI.** A "data as of …"
   stamp in the footer or on /transparency builds trust and makes stale
-  deploys visible. The export metadata already exists in the JSON.
+  deploys visible. `/about` and `/transparency` now show the export date,
+  methodology version, and later curation-review date without implying a
+  fresh upstream query.
 - [ ] **Sitemap + per-page metadata.** Decade, movement, and sculptor
   detail pages are SEO-ready narrative surfaces with no sitemap today.
-- [ ] **`npm audit` cleanup.** 8 advisories (6 moderate, 2 high) as of
-  June 2026; triage with `npm audit` and bump where non-breaking.
+- [x] **`npm audit` cleanup.** The August audit observed 14 advisories,
+  7 high. Next.js 16.2.12 patches the direct framework advisories; the
+  remaining three production-tree package findings are build-only PostCSS/
+  Sharp paths under the static-export boundary, and the other eleven are
+  development-only. `docs/SECURITY.md` documents reachability and the
+  time-bounded review.
 
 ### Process and infrastructure
 
-- [ ] **CI via GitHub Actions.** No `.github/workflows` exists. A
-  single workflow running `tsc --noEmit`, lint, `npm run build`, and
-  `python3 pipeline/test_institutions.py` would catch regressions on
-  every push — especially valuable with multiple AI tools in the loop.
+- [x] **CI via GitHub Actions.** `.github/workflows/ci.yml` runs the
+  repository validation gate and explicit Playwright journey gate, including
+  deterministic data contracts and bounded lineage performance regression.
 - [ ] **Scheduled pipeline refresh.** Wikidata moves; our export is a
   snapshot. A monthly re-run with a diff report (new sculptors, changed
   edges) keeps the data honest and gives /transparency a changelog.
 - [ ] **Privacy-friendly analytics** (Plausible/Umami). Before
   investing in 5e+ interactives, learn which views people actually use.
 
-### Feature candidates (days)
+### Preferred post-gate feature candidates (days)
 
 - [ ] **Per-institution pages** (`/institution/[qid]`). The natural
   next step after 5b.4: mirror the movement-page pattern with roster,
@@ -308,11 +535,18 @@ scheduled; they are ranked options to weigh against the Phase 5 spine.
   sculptors, institutions, and movements that jumps to the right page.
   The slim `sculptors_index.json` plus the institution index make this
   cheap; it would tie the growing page inventory together.
+- [ ] **Curated analytical entry points.** Publish a small set of
+  evidence-reviewed, URL-backed states that teach readers how to enter
+  the data without building a separate scrollytelling system.
+- [ ] **Coordinated links and URL state.** Make entity chips, chart
+  selections, and filters connect Timeline, Explore, Evolution,
+  Migration, Lineage, and entity pages; first close Explore search/sort
+  URL debt.
 - [ ] **Sculptor comparison view.** Parked since 3e. Two-up detail
   comparison (lifespans, movements, institutions, shared mentors) is a
   natural use of the per-sculptor shards.
 
-### Bigger bets (weeks; weigh against Phase 5 spine)
+### Medium/long-term bets (weeks; score after 5Q)
 
 - [ ] **Canvas/WebGL lineage renderer.** The stress benchmark scenario
   (12k nodes) remains RED (~3.5s settled). Not needed at current sizes,
@@ -327,26 +561,40 @@ scheduled; they are ranked options to weigh against the Phase 5 spine.
 - [ ] **Research data downloads.** Publish the JSON bundles as
   documented, versioned downloads with a citation note. Cheap to do,
   widens the audience from readers to researchers.
+- [ ] **Comparison journeys.** Test whether a two-up sculptor or
+  institution comparison answers observed questions before designing a
+  generic comparison workbench.
+- [ ] **Time-coded lineage / career trajectories.** Proceed only when
+  temporal confidence, comprehension, and performance gates support the
+  intended claims; a focused static prototype precedes animation.
+- [ ] **Artist-neutral semantic layer.** Add domain-neutral entity,
+  role, event, assertion, temporal-envelope, and relationship-layer
+  contracts alongside the legacy sculpture exports. Do not force a
+  breaking rename through current consumers.
+- [ ] **Second-discipline pilot.** Choose one domain from question value
+  and source fitness, run the same provenance/inclusion audit, and test a
+  genuinely cross-disciplinary question before any public rebrand.
+- [ ] **Earlier-period pilot.** Before moving the 1800 boundary, measure
+  identity resolution, date precision, attribution conventions, source
+  coverage, and survival bias on one historically coherent sample.
 
 ---
 
-## What to build vs. defer — quick reference
+## Build / gate / defer — quick reference
 
-| If you're about to build... | MVP? | Notes |
-|-----------------------------|------|-------|
-| A D3 chart with correct axes and styling | ✅ Yes | Use design tokens from day 1 |
-| Rewrite Recharts → D3 | ✅ Phase 1 | Done: LifespanTimeline in D3, Recharts removed |
-| Filter sentence + URL params | ✅ Phase 2 | When evolution page gets real charts |
-| Searchable data table | ✅ Done | TanStack Table, sortable columns, diacritic-insensitive search |
-| About page | ✅ Done | Full content |
-| Sidebar nav | ✅ Done | Dark variant, 4 routes (Timeline hero) |
-| Materials chart | ❌ Phase 3 | Needs museum API data |
-| Network graph | ❌ Phase 3 | Needs more edges to be useful |
-| PNG export | ❌ Phase 3 | Design the button placement now, implement later |
-| Streamgraph toggle | ❌ Phase 4 | Start with basic stacked area or small multiples |
-| Chart animations | ❌ Phase 4 | Get the static version right first |
-| Sculpture images | ❌ Phase 5 | Met/AIC IIIF integration |
-| ULAN enrichment | ❌ Phase 5 | Separate pipeline step |
+| If you're about to build… | Decision | Why |
+|---|---|---|
+| Phase 5b.5 temporal/provenance work | **Completed** | Shared substrate and transparency contract shipped on 2026-08-02. |
+| Lint/CI/data invariants/accessibility/mobile/URL/performance work | **Build next (5Q)** | Required to trust and evaluate the existing product. |
+| Isolated temporal/network lab prototype | **Explore in parallel** | Play and technique-led learning are in scope when time-boxed, reproducible, and disconnected from production contracts. |
+| Institution pages, global search, coordinated links/states | **Prefer after 5Q** | High connective value using data already shipped. |
+| Curated tours | **Prototype after 5Q** | Use URL-backed states; validate interpretation before a new narrative engine. |
+| Works/IIIF expansion and materials stories | **Medium term** | High story value, but coverage, rights, attribution, and data QA must be measured. |
+| Artist-neutral semantic model / second-domain or earlier-period probe | **Design, then pilot** | Generalize additively and measure source fitness before broadening the brand, disciplines, or time claim. |
+| Movement nodes, animated lineage, career Sankey, map | **Gated** | Reader question, data fitness, comprehension, and performance must pass first. |
+| Graph database | **Query-triggered** | Compare property graph, RDF/cultural-heritage alignment, and analytical storage only after real workflows justify it. |
+| Canvas/WebGL rewrite | **Threshold-triggered** | Only if measured, valuable views cannot meet budgets with the current renderer. |
+| Style embeddings | **Defer / research last** | Needs works coverage, interpretable task, rights, bias analysis, and simpler baselines. |
 
 ## Architecture rules
 
@@ -354,5 +602,5 @@ See `.windsurfrules` for the 8 non-negotiable rules. The key ones that prevent r
 
 - **URL state from day 1.** `useSearchParams()` for all filters.
 - **D3 for charts from day 1.** No Recharts.
-- **Stable JSON schema.** New data adds new files, never changes existing schemas.
+- **Stable, explicit JSON contracts.** Prefer additive fields/files; version and migrate any necessary breaking change across producer, consumers, tests, and docs.
 - **Design tokens from day 1.** All colors/fonts/spacing use CSS variables.

@@ -20,6 +20,7 @@
  *   > 4s    → red; plan Canvas/WebGL fallback before user-visible 5b work
  *
  * Run:  node perf/lineage-bench.mjs
+ * CI:   node perf/lineage-bench.mjs --ci
  */
 import * as d3 from "d3";
 import { performance } from "node:perf_hooks";
@@ -32,7 +33,18 @@ import { performance } from "node:perf_hooks";
  *  via preferential attachment so the layout cost reflects real data,
  *  not a uniform random graph.
  */
-function buildGraph(nodeCount, edgeCount, hubCount = 50) {
+function seededRandom(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let value = state;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function buildGraph(nodeCount, edgeCount, hubCount = 50, seed = 1) {
   const nodes = Array.from({ length: nodeCount }, (_, i) => ({
     id: String(i),
     isHub: i < hubCount,
@@ -40,6 +52,7 @@ function buildGraph(nodeCount, edgeCount, hubCount = 50) {
 
   // Preferential-attachment edges. Each new edge picks endpoints with
   // probability proportional to degree, so hubs accumulate links.
+  const random = seededRandom(seed);
   const degree = new Int32Array(nodeCount);
   const links = [];
   // Seed: connect first few hubs to each other so degree isn't all zero.
@@ -57,7 +70,7 @@ function buildGraph(nodeCount, edgeCount, hubCount = 50) {
   };
   const pickByDegree = () => {
     const total = totalDegreeWeight();
-    let r = Math.random() * total;
+    let r = random() * total;
     for (let i = 0; i < nodeCount; i++) {
       r -= degree[i] + 1;
       if (r <= 0) return i;
@@ -146,6 +159,9 @@ const sizes = [
   { name: "stress (1.5×)", nodes: 12000, edges: 8000, hubs: 120, institutional: true },
 ];
 
+const ciMode = process.argv.includes("--ci");
+const scenarios = ciMode ? sizes.slice(0, 2) : sizes;
+
 function medianRun(graph, opts) {
   simulate(graph, opts); // warm-up
   const runs = [simulate(graph, opts), simulate(graph, opts), simulate(graph, opts)];
@@ -162,9 +178,13 @@ console.log(
 );
 console.log("-".repeat(82));
 
-for (const s of sizes) {
-  const graph = buildGraph(s.nodes, s.edges, s.hubs);
-  const m = medianRun(graph, { institutional: s.institutional });
+const results = [];
+for (const [index, s] of scenarios.entries()) {
+  const graph = buildGraph(s.nodes, s.edges, s.hubs, 20260802 + index);
+  const m = ciMode
+    ? simulate(graph, { institutional: s.institutional })
+    : medianRun(graph, { institutional: s.institutional });
+  results.push({ scenario: s, measurement: m });
   const settledSec = (m.settledMs / 1000).toFixed(2);
   const totalSec = (m.total / 1000).toFixed(2);
   // Verdict is on perceived-settled time, not full-convergence.
@@ -178,23 +198,52 @@ for (const s of sizes) {
 console.log("-".repeat(82));
 console.log("Thresholds (settled time): <1.5s green · 1.5-3s yellow · >3s red");
 
-// Per-force breakdown at the +institutions size — which force dominates?
-console.log("");
-console.log("Force-cost breakdown at +institutions size (7700 nodes / 4800 edges):");
-console.log("-".repeat(82));
-const benchSize = sizes[1];
-const graph = buildGraph(benchSize.nodes, benchSize.edges, benchSize.hubs);
-const variants = [
-  { name: "all forces (5b.4 tuned)", opts: { institutional: true } },
-  { name: "minus collide", opts: { institutional: true, collide: false } },
-  { name: "minus charge", opts: { institutional: true, charge: false } },
-  { name: "minus link", opts: { institutional: true, link: false } },
-];
-for (const v of variants) {
-  const m = medianRun(graph, v.opts);
-  console.log(
-    `  ${v.name.padEnd(24)}  settled ${(m.settledMs / 1000).toFixed(2)}s   full ${(m.total / 1000).toFixed(2)}s`,
+if (ciMode) {
+  // Regression tripwires are deliberately looser than product budgets so
+  // shared CI runners do not fail on ordinary host variance. Product
+  // decisions still use the full local median benchmark above.
+  const limits = [
+    Number(process.env.LINEAGE_BENCH_DEFAULT_LIMIT_MS ?? 5000),
+    Number(process.env.LINEAGE_BENCH_INSTITUTIONS_LIMIT_MS ?? 8000),
+  ];
+  const failures = results.filter(
+    ({ measurement }, index) => measurement.settledMs > limits[index],
   );
+  if (failures.length) {
+    for (const { scenario, measurement } of failures) {
+      const index = scenarios.indexOf(scenario);
+      console.error(
+        `CI regression: ${scenario.name} settled in ${measurement.settledMs.toFixed(0)}ms ` +
+          `(limit ${limits[index]}ms)`,
+      );
+    }
+    process.exitCode = 1;
+  } else {
+    console.log(
+      `CI regression bounds passed (default ≤${limits[0]}ms, institutions ≤${limits[1]}ms).`,
+    );
+  }
+}
+
+// Per-force breakdown at the +institutions size — which force dominates?
+if (!ciMode) {
+  console.log("");
+  console.log("Force-cost breakdown at +institutions size (7700 nodes / 4800 edges):");
+  console.log("-".repeat(82));
+  const benchSize = sizes[1];
+  const graph = buildGraph(benchSize.nodes, benchSize.edges, benchSize.hubs, 20260812);
+  const variants = [
+    { name: "all forces (5b.4 tuned)", opts: { institutional: true } },
+    { name: "minus collide", opts: { institutional: true, collide: false } },
+    { name: "minus charge", opts: { institutional: true, charge: false } },
+    { name: "minus link", opts: { institutional: true, link: false } },
+  ];
+  for (const v of variants) {
+    const m = medianRun(graph, v.opts);
+    console.log(
+      `  ${v.name.padEnd(24)}  settled ${(m.settledMs / 1000).toFixed(2)}s   full ${(m.total / 1000).toFixed(2)}s`,
+    );
+  }
 }
 
 console.log("");

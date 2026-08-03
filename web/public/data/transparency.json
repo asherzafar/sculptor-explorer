@@ -1,12 +1,12 @@
 {
   "generatedAt": "2026-06-05T13:35:22.969660+00:00",
-  "totalCached": 6711,
-  "included": 3544,
+  "totalCached": 6710,
+  "included": 3543,
   "excluded": 3167,
   "inclusionPctOfCache": 52.8,
   "signalCoverage": {
-    "movement": 963,
-    "sitelinks": 3094,
+    "movement": 962,
+    "sitelinks": 3093,
     "edge": 931,
     "multi_citz": 563,
     "focus": 48
@@ -22,17 +22,17 @@
     ]
   },
   "includedBreakdown": {
-    "total": 3544,
+    "total": 3543,
     "gender": {
-      "male": 3026,
       "female": 514,
       "non-binary": 1,
+      "male": 3025,
       "trans man": 1,
       "trans woman": 1,
       "genderfluid": 1
     },
     "topCitizenships": {
-      "Germany": 643,
+      "Germany": 642,
       "France": 548,
       "United States": 372,
       "Netherlands": 248,
@@ -54,7 +54,7 @@
       "Czechoslovakia": 32
     },
     "byBirthDecade": {
-      "1800": 68,
+      "1800": 67,
       "1810": 82,
       "1820": 80,
       "1830": 93,
@@ -128,33 +128,33 @@
     }
   },
   "fieldCoverage": {
-    "total": 3544,
+    "total": 3543,
     "birth_place": {
-      "present": 3488,
+      "present": 3487,
       "pct": 98.4
     },
     "death_place": {
-      "present": 2575,
+      "present": 2574,
       "pct": 72.7
     },
     "native_name": {
       "present": 1334,
-      "pct": 37.6
+      "pct": 37.7
     },
     "image": {
       "present": 2274,
       "pct": 64.2
     },
     "authority_links": {
-      "present": 3544,
-      "pct": 100.0
+      "present": 3339,
+      "pct": 94.2
     },
     "movement_display": {
-      "present": 963,
+      "present": 962,
       "pct": 27.2
     },
     "citizenship_display": {
-      "present": 3527,
+      "present": 3526,
       "pct": 99.5
     }
   },
@@ -176,5 +176,105 @@
       "birth_country": 27,
       "death_country": 2
     }
+  },
+  "relationshipCoverage": {
+    "lineage": {
+      "totalEdges": 1423,
+      "datedEdges": 1372,
+      "unavailableEdges": 51,
+      "datedPct": 96.4,
+      "confidenceCounts": {
+        "high": 0,
+        "medium": 222,
+        "low": 1150
+      },
+      "dateSourceCounts": {
+        "qualifier": 0,
+        "lifespan_intersect": 222,
+        "lifespan_intersect+age_prior": 1150
+      },
+      "unavailableReasons": {
+        "empty_lifespan_intersection": 40,
+        "missing_from_birth_year": 11
+      }
+    },
+    "institutions": {
+      "minSculptors": 3,
+      "totalInstitutions": 1662,
+      "renderedInstitutions": 334,
+      "totalEdges": 5979,
+      "exportedEdges": 5925,
+      "skippedEmptyIntersection": 54,
+      "missingInstitutionMetadata": 0,
+      "includedSculptors": 3543,
+      "sculptorsWithInstitutions": 2393,
+      "sculptorCoveragePct": 67.5,
+      "educationEdges": 2868,
+      "workLocationEdges": 3057,
+      "sculptorsWithEducation": 1826,
+      "educationCoveragePct": 51.5,
+      "confidenceCounts": {
+        "high": 1004,
+        "medium": 63,
+        "low": 4858
+      },
+      "dateSourceCounts": {
+        "qualifier": 1004,
+        "lifespan_intersect": 63,
+        "lifespan_intersect+age_prior": 4858
+      },
+      "topEducationInstitutions": [
+        {
+          "qid": "Q273593",
+          "label": "Beaux-Arts de Paris",
+          "educationEdges": 239,
+          "sculptorCount": 239
+        },
+        {
+          "qid": "Q414052",
+          "label": "Academy of Fine Arts, Munich",
+          "educationEdges": 69,
+          "sculptorCount": 69
+        },
+        {
+          "qid": "Q337480",
+          "label": "Acad\u00e9mie Julian",
+          "educationEdges": 51,
+          "sculptorCount": 51
+        },
+        {
+          "qid": "Q414219",
+          "label": "Academy of Fine Arts Vienna",
+          "educationEdges": 48,
+          "sculptorCount": 47
+        },
+        {
+          "qid": "Q337494",
+          "label": "French Academy in Rome",
+          "educationEdges": 47,
+          "sculptorCount": 47
+        }
+      ],
+      "topFiveEducationSharePct": 15.8
+    }
+  },
+  "personExclusions": {
+    "count": 1,
+    "records": [
+      {
+        "qid": "Q87366",
+        "name": "Johann Albrecht Siegwitz",
+        "reason": "Wikidata records the birth only as 18th century (precision 7); the year-based pipeline flattened that interval to 1800 and produced an impossible 1800-1756 lifespan. Exclude until the public schema can represent uncertain dates without inventing a year.",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q87366",
+        "sourceCheckedAt": "2026-08-02"
+      }
+    ]
+  },
+  "sourceCandidates": 6711,
+  "eligibleCandidates": 6710,
+  "release": {
+    "artifactRelease": "2026-08-02.1",
+    "curationReviewedAt": "2026-08-02",
+    "contractsReviewedAt": "2026-08-02"
   }
 }

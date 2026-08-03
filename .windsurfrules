@@ -1,13 +1,19 @@
-# Sculpture in Data — Windsurf Rules
+# Sculpture in Data — Implementation Rules
+
+> Windsurf loads this file directly. All agents should begin with `AGENTS.md`.
+> This file owns current design tokens and implementation invariants; product
+> outcomes live in `docs/PROJECT_CHARTER.md` and sequencing lives in
+> `docs/ROADMAP.md`.
 
 ## Identity
 App name: Sculpture in Data
 Tagline: How sculpture evolved — materials, movements, geography, and lineages since 1800
+Scope posture: keep this public identity through Phase 5Q. Sculpture is the first deep domain; the conceptual entity/relationship model may become artist-neutral through the gated path in docs/EXPLORATION_STRATEGY.md.
 
 ## Fonts (non-negotiable)
-Display/headlines: Fraunces (Google Fonts, variable, serif)
-Body/UI/axes: DM Sans (Google Fonts, sans-serif)
-Load via next/font/google in layout.tsx. Never use Inter, Roboto, Arial, or system fonts.
+Display/headlines: Fraunces (variable serif, repository-self-hosted Google Fonts release)
+Body/UI/axes: DM Sans (variable sans-serif, repository-self-hosted Google Fonts release)
+Load the licensed WOFF2 subsets from `web/public/fonts/` via `@font-face` in `globals.css`; builds must not fetch fonts from the network. Never substitute Inter, Roboto, Arial, or a system font as the intended face.
 
 ## Color palette: Verdigris & Marble (non-negotiable)
 All values MUST come from CSS variables or Tailwind config. Never hardcode hex in components.
@@ -31,10 +37,10 @@ Borders: subtle #E4E6E2, grid #EDEFE9, axis #CDD0CA
 2. URL state for filters. useSearchParams(), not useState(). Every filter combination must be shareable.
 3. D3 for charts. Not Recharts. Full control over axes, grids, transitions.
 4. Never rely on color alone. Every color distinction needs a second channel (label, texture, shape, line style).
-5. Desktop-first. Viewport <768px shows "visit on desktop" gate. No responsive charts in MVP.
+5. Desktop-primary, not desktop-only. Dense chart routes may provide a clearly explained simplified reading mode below 768px; ordinary content and entity journeys must remain usable. Never ship clipped or unreachable content.
 6. Pre-aggregate in pipeline. Web app loads summary JSON. No raw data processing client-side.
-7. Stable JSON schema. New data sources add new files, never change existing schemas.
-8. Disclose data gaps. Missing/incomplete data shown inline near charts. Never silently drop data.
+7. Stable, explicit JSON contracts. Prefer additive fields or new files; version and test any necessary breaking change across producer and consumers.
+8. Disclose data gaps. Missing/incomplete data shown inline near charts. Every analytical route uses `DataScopeNote` (or an equivalent adjacent disclosure) for source, scope/denominator, snapshot, and material limits. Never silently drop data.
 
 ## Critical Next.js gotchas
 
@@ -76,7 +82,11 @@ Use "D3 for math, React for container" pattern:
 - This is the simplest pattern for someone coming from ggplot: one function configures the whole chart
 
 ## Source of truth hierarchy
-If documents conflict: .windsurfrules wins > CLAUDE.md > docs/*.md
+Follow `AGENTS.md`: user request > nearest scoped `AGENTS.md` > root
+`AGENTS.md` > this file for implementation values > `PROJECT_CHARTER.md`
+for outcomes > `DECISIONS.md` for active choices > `ROADMAP.md` for
+sequencing > deep-dive docs for rationale.
+Fix contradictions in the same change.
 
 ## Sidebar
 Dark variant: bg-sidebar (#1A1D1C) background.
@@ -93,25 +103,38 @@ Direct labels on data > legends whenever possible.
 Tooltips: minimal, no border, subtle shadow, bg-primary background.
 Transitions: 400ms ease-out.
 
-## Current phase: Phase 2.5 (Polish)
-See docs/ROADMAP.md for full phasing.
+## Current phase: Phase 5Q
+See `docs/ROADMAP.md` for full phasing and gates. Phase 5b.5 and 5Q.1–5Q.3
+are implemented in the current release candidate; stabilization is active.
+Complete the Phase 5Q product clarity and quality gate before 5b.6, 5c,
+or 5d becomes a public feature.
 
-Completed:
-- Phase 0 (MVP): Timeline hero, Explore table, Lineage placeholder, About page
-- Phase 1: Pipeline tidy JSON, LifespanTimeline D3, Recharts removed, Explore table upgraded (TanStack, sortable, diacritic-insensitive search)
-- Phase 2 (charts): DecadeStackedArea D3 component, GeographyChart + MovementsChart wired, Evolution in nav, decade state in URL (?decade=1920)
+Recently completed:
+- Phases 0–4: core explorer, enriched Wikidata/Getty data, migration and transparency stories, production polish
+- Phase 5b.3: institutional ingest and graph export
+- Phase 5b.4: opt-in institution hubs on `/lineage`, URL-backed and lazy-loaded
+- Phase 5b.5: shared temporal envelopes on person/institution edges and relationship evidence on `/transparency`
+- Phase 5Q.1–5Q.3: one project truth, CI/browser gates, dependency triage, static-export/data invariants, dataset datasheet, claim register, route-level provenance, and sensitive-classification language review
 
-Now building:
-- Phase 2.5 polish (see ROADMAP.md § Phase 2.5)
+Next bounded work:
+- Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
+- Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
+- Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
 
-Nav routes (5): Timeline · Explore · Evolution · Lineage · About
+Nav routes (7): Timeline · Explore · Evolution · Migration · Lineage · About · Transparency
 Landing (/) redirects client-side to /timeline.
+
+Current committed snapshot (audit 2026-08-02): 3,543 included sculptors;
+source export generated 2026-06-05, with a documented 2026-08-02 static
+exclusion overlay. Derive counts/dates from export metadata in UI code; dated
+audit numbers in docs are not permanent constants.
 
 Canonical focus sculptor list: overrides/focus_sculptors.csv (single source of truth).
 
 Key architecture notes:
 - Decade filter lives in URL params (useSearchParams), NOT in React state or chart-state.ts (deleted)
 - Evolution page splits into Server Component (page.tsx) + Client Component (EvolutionContent.tsx) — required for static export + useSearchParams
+- The legacy `crossesBorders` edge field means only that two non-empty recorded Wikidata P27 sets are disjoint. It does not establish travel, refugee status, cultural difference, or cross-cultural influence; public language follows `docs/CLAIM_REGISTER.md`.
 
 Data display rules (non-negotiable from Phase 2.5):
 - NEVER display raw Wikidata strings. Use `formatDisplayValue()` and `formatGender()` from `lib/utils.ts`.
@@ -127,9 +150,20 @@ Interaction rules (non-negotiable):
 - Search inputs keep borders (functional affordance). Content cards do NOT have borders.
 - Chart hints should be dismissible (not persistent UI clutter).
 
-DO NOT build yet: materials chart (Phase 3), network graph (Phase 3), streamgraph, PNG export, animations, sculpture images.
+Do not start 5b.6 movement nodes, 5c animated lineage, 5d career Sankey,
+or another large visualization before Phase 5Q passes. Materials/works views,
+IIIF sculpture images, and embeddings remain evidence-gated roadmap bets.
+Isolated, time-boxed lab prototypes are allowed when they follow
+`docs/EXPLORATION_STRATEGY.md`, do not alter production routes/contracts,
+and end with a documented learning and continue/simplify/archive decision.
 
 ## Detailed docs (reference when working in specific areas)
 - docs/DESIGN_SYSTEM.md — full typography, color, spacing, chart styling, components, accessibility
+- docs/PROJECT_CHARTER.md — product purpose, audiences, objectives, decision scorecard
+- docs/EXPLORATION_STRATEGY.md — question atlas, research lab, graph/temporal semantics, expansion path
+- docs/DECISIONS.md — active decisions, review triggers, deferred founder choices
+- docs/RESEARCH_FOUNDATIONS.md — evidence base and practice-to-verification standards
+- docs/DATASET_DATASHEET.md — composition, sources/licenses, processing, missingness, uses/non-uses, and risks
+- docs/CLAIM_REGISTER.md — route-level claim audit and sensitive-classification language/review triggers
 - docs/ROADMAP.md — phased plan, MVP scope, what to build vs. defer
 - docs/ARCHITECTURE.md — tech stack, directory structure, SPARQL queries, data sources, JSON schemas

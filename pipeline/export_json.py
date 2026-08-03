@@ -15,6 +15,8 @@ from config import (
     WEB_DATA_DIR,
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
+    PERSON_EXCLUSIONS_PATH,
+    DATA_RELEASE_METADATA_PATH,
     load_focus_sculptors,
 )
 from helpers import normalize_name
@@ -28,6 +30,12 @@ from temporal import (
     WORK_LOCATION_AGE_PRIOR,
     NodeEnvelope,
     compute_envelope,
+)
+from relationship_audit import (
+    build_person_envelopes,
+    summarize_institutions,
+    summarize_temporal_edges,
+    temporalize_lineage_edges,
 )
 
 
@@ -164,7 +172,9 @@ def create_sculptors_index_json(nodes: pd.DataFrame) -> list[dict]:
 
 
 def create_edges_json(
-    relations: pd.DataFrame, nodes: pd.DataFrame
+    relations: pd.DataFrame,
+    nodes: pd.DataFrame,
+    external_mentors: pd.DataFrame | None = None,
 ) -> list[dict]:
     """Create edges.json with relationship edges.
 
@@ -172,8 +182,7 @@ def create_edges_json(
     records whether the `from` endpoint is an external mentor so the web
     client can style it differently.
 
-    Phase 4 — adds `crossesBorders` per edge for the cross-cultural
-    collaboration story:
+    Phase 4 added the legacy `crossesBorders` field. Its exact semantics are:
       - True  if both endpoints have non-empty citizenship sets that are
               disjoint (no shared country).
       - False if both have non-empty citizenship sets that intersect.
@@ -183,13 +192,19 @@ def create_edges_json(
 
     The tri-state matters: a False count is meaningful, but conflating
     None with False would inflate the "same-nationality" denominator.
+
+    Phase 5b.5 adds the shared six-field temporal envelope contract.
+    P1066 applies the documented training-age prior to the student
+    (`toQid`); P737 uses the two lifespans' intersection. Relationships
+    with missing, invalid, or disjoint lifespans remain in the export
+    with null envelope fields and an explicit `temporalReason`.
     """
     if len(relations) == 0:
         return []
 
     # Build a citizenship lookup keyed by QID. We use the full
-    # `citizenships` array (Wikidata P27 — may have multiple values for
-    # émigré sculptors) so dual-citizenship cases are properly handled.
+    # `citizenships` array (Wikidata P27 — may have multiple values) so
+    # records are not silently reduced to a single display citizenship.
     citz_by_qid: dict[str, set[str]] = {}
     for _, row in nodes.iterrows():
         citz = row.get("citizenships")
@@ -210,7 +225,7 @@ def create_edges_json(
             return None
         return len(f & t) == 0
 
-    records = []
+    records: list[dict] = []
     for _, row in relations.iterrows():
         records.append({
             "fromQid": row["from_qid"],
@@ -221,7 +236,30 @@ def create_edges_json(
             "crossesBorders": _crosses(row["from_qid"], row["to_qid"]),
         })
 
-    return records
+    person_records = [
+        {
+            "qid": str(row["qid"]),
+            "birthYear": _int_or_none(row.get("birth_year")),
+            "deathYear": _int_or_none(row.get("death_year")),
+        }
+        for _, row in nodes.iterrows()
+    ]
+    if external_mentors is not None and len(external_mentors):
+        person_records.extend(
+            {
+                "qid": str(row["qid"]),
+                "birthYear": _int_or_none(row.get("birth_year")),
+                "deathYear": _int_or_none(row.get("death_year")),
+            }
+            for _, row in external_mentors.iterrows()
+        )
+
+    envelopes, invalid_qids = build_person_envelopes(person_records)
+    return temporalize_lineage_edges(
+        records,
+        envelopes,
+        invalid_qids=invalid_qids,
+    )
 
 
 def _int_or_none(value) -> int | None:
@@ -304,12 +342,13 @@ def _edge_envelope_dict(env) -> dict:
 
 
 def create_institutions_json(nodes: pd.DataFrame) -> tuple[dict, dict[str, list[str]], dict[str, list[dict]]]:
+    included = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
     if (
         not EDUCATED_AT_CACHE_PATH.exists()
         or not WORK_LOCATION_CACHE_PATH.exists()
         or not INSTITUTION_METADATA_CACHE_PATH.exists()
     ):
-        return {
+        bundle = {
             "meta": {
                 "minSculptors": INSTITUTION_MIN_SCULPTORS,
                 "totalInstitutions": 0,
@@ -320,9 +359,10 @@ def create_institutions_json(nodes: pd.DataFrame) -> tuple[dict, dict[str, list[
             },
             "institutions": {},
             "index": [],
-        }, {}, {}
+        }
+        bundle["meta"].update(summarize_institutions(bundle, len(included)))
+        return bundle, {}, {}
 
-    included = nodes[nodes["is_included"]].copy() if "is_included" in nodes.columns else nodes.copy()
     included_qids = set(included["qid"].astype(str))
     sculptor_lookup = included.set_index("qid").to_dict(orient="index")
     sculptor_envs = _build_sculptor_envelopes(included)
@@ -468,7 +508,7 @@ def create_institutions_json(nodes: pd.DataFrame) -> tuple[dict, dict[str, list[
     rendered = sum(1 for inst in institutions.values() if inst["render"])
     exported_edges = sum(len(inst["edges"]) for inst in institutions.values())
 
-    return {
+    bundle = {
         "meta": {
             "minSculptors": INSTITUTION_MIN_SCULPTORS,
             "totalInstitutions": len(institutions),
@@ -480,7 +520,10 @@ def create_institutions_json(nodes: pd.DataFrame) -> tuple[dict, dict[str, list[
         },
         "institutions": dict(sorted(institutions.items())),
         "index": index,
-    }, {
+    }
+    bundle["meta"].update(summarize_institutions(bundle, len(included_qids)))
+
+    return bundle, {
         qid: sorted(values) for qid, values in by_sculptor_qids.items()
     }, by_sculptor_edges
 
@@ -497,11 +540,11 @@ def attach_institution_fields(
 
 
 def create_cross_cultural_summary(edges: list[dict], nodes: pd.DataFrame) -> dict:
-    """Aggregate cross-cultural lineage statistics for /transparency.
+    """Aggregate the recorded citizenship-set comparison for /transparency.
 
     Splits each comparable edge by the FROM-side sculptor's birth decade
     (the teacher / influencer in `student_of` and `influenced_by` relations)
-    so the timeline reflects when the formative connection happened.
+    as a descriptive cohort grouping. Birth decade is not a relationship date.
 
     Output shape:
       {
@@ -551,9 +594,9 @@ def create_cross_cultural_summary(edges: list[dict], nodes: pd.DataFrame) -> dic
             cross += 1
             bucket["cross"] += 1
             # Record the country-pair for the topPairs aggregation.
-            # Use the first citizenship from each side as the canonical
-            # representative — multi-citizenship sculptors get folded into
-            # their primary national identity. Sorted so (FR, US) and
+            # Use the first stored citizenship from each side as a compact
+            # representative. This is not a claim about primary national
+            # identity and the public caveat names the loss. Sorted so (FR, US) and
             # (US, FR) collapse to the same key.
             f_citz = by_qid_citz.get(e["fromQid"], [])
             t_citz = by_qid_citz.get(e["toQid"], [])
@@ -707,8 +750,8 @@ def create_migration_json(nodes: pd.DataFrame) -> dict:
     """Birth → death country flows for the Migration view (Phase 4/5).
 
     Only sculptors with both ``birth_country`` and ``death_country`` are
-    eligible. Living sculptors are excluded — we don't yet know where they
-    will end up, and showing a "died in <country>" edge for them is wrong.
+    eligible. Living sculptors are excluded because a death-country endpoint
+    is not applicable. Endpoint differences do not reconstruct travel.
     The page surfaces the exclusion count so the absence is explicit.
 
     Shape:
@@ -738,8 +781,8 @@ def create_migration_json(nodes: pd.DataFrame) -> dict:
           }
         }
 
-    Flows are sorted by descending count. Same-country flows are included
-    (they outnumber migrations roughly 2:1 in the data and a reader who
+    Pairs are sorted by descending count. Same-country pairs are included
+    (they are the majority of eligible records and a reader who
     filters by decade deserves to see both).
     """
     # Only sculptors that pass A.3 inclusion are published, so we restrict
@@ -771,7 +814,12 @@ def create_migration_json(nodes: pd.DataFrame) -> dict:
             .reset_index(name="sculptors")
         )
         grouped["count"] = grouped["sculptors"].apply(len)
-        grouped = grouped.sort_values("count", ascending=False)
+        # Explicit tie-breaks keep committed JSON deterministic across pandas
+        # versions and match the cache-free static backfill.
+        grouped = grouped.sort_values(
+            ["count", "birth_country", "death_country"],
+            ascending=[False, True, True],
+        )
         out: list[dict] = []
         for _, row in grouped.iterrows():
             sculptors = row["sculptors"][:MAX_SCULPTORS_PER_FLOW]
@@ -800,13 +848,13 @@ def create_migration_json(nodes: pd.DataFrame) -> dict:
             continue
         flows_by_decade[str(int(decade))] = _build_flows(group)
 
-    # Top cross-border corridors for the headline call-outs. Same-country
-    # flows are excluded here — "Born in USA → Died in USA" has 400+ entries
+    # Top different-country endpoint pairs for the headline call-outs. Same-country
+    # pairs are excluded here — "Born in USA → Died in USA" has 400+ entries
     # and dominates the list without adding narrative value.
     top_flows = [f for f in all_flows if not f["sameCountry"]][:10]
 
     # Make the four buckets a clean partition of `totalIncluded`:
-    #   livingExcluded   = living sculptors (we don't yet know where they'll die)
+    #   livingExcluded   = living sculptors (death country is not applicable)
     #   missingBirthCountry = non-living, no birth country
     #   missingDeathCountry = non-living, has birth country but no death country
     #   eligible         = non-living with both countries
@@ -892,8 +940,8 @@ def create_decades_json(nodes: pd.DataFrame, migration: dict) -> dict:
             {"movement": str(k), "count": int(v)} for k, v in movement_counts.items()
         ]
 
-        # Top notable sculptors — by total_degree (in + out edges in the
-        # lineage graph). Falls back to alphabetical when degree is 0.
+        # Most-connected sculptors in this graph — by total_degree (in + out
+        # edges). Falls back to alphabetical when degree is 0.
         notable_df = group.copy()
         notable_df["_deg"] = notable_df["total_degree"].fillna(0).astype(int)
         notable_df = notable_df.sort_values(
@@ -912,9 +960,9 @@ def create_decades_json(nodes: pd.DataFrame, migration: dict) -> dict:
             for _, r in notable_df.iterrows()
         ]
 
-        # Top migration corridors — pull from the precomputed migration
+        # Top different-country endpoint pairs — pull from the precomputed migration
         # bundle to avoid recomputing the same group-by twice. Drop
-        # same-country flows so the call-out tells the migration story.
+        # same-country pairs so the call-out stays legible.
         decade_flows = flows_by_decade.get(str(decade), [])
         cross_border_flows = [f for f in decade_flows if not f.get("sameCountry")]
         top_corridors = [
@@ -922,8 +970,8 @@ def create_decades_json(nodes: pd.DataFrame, migration: dict) -> dict:
             for f in cross_border_flows[:DECADE_TOP_CORRIDORS]
         ]
 
-        # Cross-border share for the decade headline ("X% left their
-        # birth country"). Denominator is sculptors with both birth +
+        # Different-endpoint share for the decade headline. Denominator is
+        # sculptors with both birth +
         # death country known — same definition as the Migration page.
         eligible_for_migration = sum(int(f["count"]) for f in decade_flows)
         crossed_for_migration = sum(int(f["count"]) for f in cross_border_flows)
@@ -1035,7 +1083,7 @@ def create_movements_json(nodes: pd.DataFrame) -> dict:
             {"country": str(k), "count": int(v)} for k, v in country_counts.items()
         ]
 
-        # Notable sculptors — same definition as decade pages.
+        # Most-connected sculptors — same graph-degree definition as decade pages.
         notable_df = group.copy()
         notable_df["_deg"] = notable_df["total_degree"].fillna(0).astype(int)
         notable_df = notable_df.sort_values(
@@ -1160,7 +1208,12 @@ def create_focus_sculptors_json(nodes: pd.DataFrame) -> list[dict]:
     return [_sculptor_record(row) for _, row in focus_df.iterrows()]
 
 
-def create_transparency_json(nodes: pd.DataFrame) -> dict:
+def create_transparency_json(
+    nodes: pd.DataFrame,
+    *,
+    lineage_meta: dict | None = None,
+    institution_meta: dict | None = None,
+) -> dict:
     """Build transparency / demographic-audit payload for the About page.
 
     Shows the honest base rate: total cached sculptors, A.3 inclusion counts,
@@ -1193,8 +1246,14 @@ def create_transparency_json(nodes: pd.DataFrame) -> dict:
             "byBirthDecade": {int(k): int(v) for k, v in decade.items()},
         }
 
-    return {
+    person_exclusions = _person_exclusions_block()
+    payload = {
         "generatedAt": pd.Timestamp.now(tz="UTC").isoformat(),
+        "release": _release_metadata_block(),
+        "sourceCandidates": total + person_exclusions["count"],
+        "eligibleCandidates": total,
+        # Legacy name retained for existing consumers. It is the post-evidence,
+        # pre-A.3 candidate frame, not the unmodified source-query count.
         "totalCached": total,
         "included": included,
         "excluded": excluded,
@@ -1208,6 +1267,7 @@ def create_transparency_json(nodes: pd.DataFrame) -> dict:
             "sitelinkMinNonEnglish": 3,
             "botWikisExcluded": ["ceb", "war"],
         },
+        "personExclusions": person_exclusions,
         "includedBreakdown": breakdown(nodes[included_mask]),
         "excludedBreakdown": breakdown(nodes[~included_mask]),
         # Per-field coverage on the included set. Lets the transparency
@@ -1225,6 +1285,52 @@ def create_transparency_json(nodes: pd.DataFrame) -> dict:
         # description.
         "countryNormalization": _country_normalization_block(),
     }
+    if lineage_meta is not None and institution_meta is not None:
+        payload["relationshipCoverage"] = {
+            "lineage": lineage_meta,
+            "institutions": institution_meta,
+        }
+    return payload
+
+
+def _release_metadata_block() -> dict:
+    """Load artifact/review identity without conflating it with source age."""
+    if not DATA_RELEASE_METADATA_PATH.exists():
+        raise FileNotFoundError(
+            f"Missing public release metadata: {DATA_RELEASE_METADATA_PATH}"
+        )
+    with DATA_RELEASE_METADATA_PATH.open(encoding="utf-8") as handle:
+        block = json.load(handle)
+    required = {
+        "artifactRelease",
+        "curationReviewedAt",
+        "contractsReviewedAt",
+    }
+    missing = required - set(block)
+    if missing:
+        raise ValueError(
+            "Release metadata is missing required field(s): "
+            + ", ".join(sorted(missing))
+        )
+    return {key: str(block[key]) for key in sorted(required)}
+
+
+def _person_exclusions_block() -> dict:
+    """Publish the count and provenance of evidence-backed record exclusions."""
+    if not PERSON_EXCLUSIONS_PATH.exists():
+        return {"count": 0, "records": []}
+    rows = pd.read_csv(PERSON_EXCLUSIONS_PATH, dtype=str).fillna("")
+    records = [
+        {
+            "qid": str(row.get("qid", "")),
+            "name": str(row.get("name", "")),
+            "reason": str(row.get("reason", "")),
+            "sourceUrl": str(row.get("source_url", "")),
+            "sourceCheckedAt": str(row.get("source_checked_at", "")),
+        }
+        for _, row in rows.iterrows()
+    ]
+    return {"count": len(records), "records": records}
 
 
 def _country_normalization_block() -> dict:
@@ -1256,8 +1362,13 @@ def _field_coverage(subset: pd.DataFrame) -> dict:
         if f not in subset.columns:
             continue
         col = subset[f]
-        if col.dtype == object and len(col) and isinstance(col.iloc[0], list):
-            present = col.apply(lambda v: bool(v) if isinstance(v, list) else False).sum()
+        if f == "authority_links":
+            # Parquet may deserialize list columns as either Python lists or
+            # numpy arrays. Treat empty collections as missing in both cases;
+            # `notna()` alone incorrectly reports every empty array as present.
+            present = col.apply(
+                lambda value: hasattr(value, "__len__") and len(value) > 0
+            ).sum()
         else:
             present = col.notna().sum()
             # treat empty strings and "Unknown" as missing for display fields
@@ -1491,20 +1602,21 @@ def export_all():
     )
 
     # Export edges.json (now includes per-edge crossesBorders flag)
-    edges = create_edges_json(relations, nodes)
+    edges = create_edges_json(relations, nodes, external_mentors)
+    lineage_summary = summarize_temporal_edges(edges)
     edges_path = WEB_DATA_DIR / "edges.json"
     with open(edges_path, "w") as f:
         json.dump(edges, f, indent=2)
     print(f"✓ Exported {len(edges)} edges to {edges_path.name}")
 
-    # Export cross_cultural_summary.json (Phase 4 collaboration story)
+    # Export the legacy-named citizenship-set summary.
     cc_summary = create_cross_cultural_summary(edges, nodes)
     cc_path = WEB_DATA_DIR / "cross_cultural_summary.json"
     with open(cc_path, "w") as f:
         json.dump(cc_summary, f, indent=2)
     print(
-        f"✓ Cross-cultural lineages: {cc_summary['crossBorder']}/"
-        f"{cc_summary['comparable']} comparable edges cross national borders"
+        f"✓ Citizenship-set comparison: {cc_summary['crossBorder']}/"
+        f"{cc_summary['comparable']} comparable edges have disjoint sets"
     )
 
     # Export external_mentors.json
@@ -1544,9 +1656,9 @@ def export_all():
         json.dump(migration, f, indent=2)
     print(
         f"✓ Exported migration flows to {migration_path.name} "
-        f"({migration['meta']['crossedBorders']} crossed borders, "
-        f"{migration['meta']['sameCountry']} stayed put, "
-        f"{len(migration['flows'])} unique corridors)"
+        f"({migration['meta']['crossedBorders']} different-country endpoints, "
+        f"{migration['meta']['sameCountry']} same-country endpoints, "
+        f"{len(migration['flows'])} unique pairs)"
     )
 
     # Export decades.json — per-decade aggregates for /decade/[year] pages.
@@ -1563,6 +1675,9 @@ def export_all():
     movements_bundle_path = WEB_DATA_DIR / "movements.json"
     with open(movements_bundle_path, "w") as f:
         json.dump(movements_bundle, f, indent=2)
+    movement_index_path = WEB_DATA_DIR / "movements_index.json"
+    with open(movement_index_path, "w") as f:
+        json.dump(movements_bundle["index"], f, separators=(",", ":"))
     print(
         f"✓ Exported movement aggregates to {movements_bundle_path.name} "
         f"({len(movements_bundle['movements'])} movements with ≥{MOVEMENT_MIN_SCULPTORS} sculptors)"
@@ -1599,7 +1714,11 @@ def export_all():
     print(f"✓ Exported materials by decade to {materials_path.name} ({len(materials_export)} decades)")
 
     # Export transparency.json (Option A.3 demographic audit, standing commitment)
-    transparency = create_transparency_json(nodes)
+    transparency = create_transparency_json(
+        nodes,
+        lineage_meta=lineage_summary,
+        institution_meta=institutions_bundle["meta"],
+    )
     transparency_path = WEB_DATA_DIR / "transparency.json"
     with open(transparency_path, "w") as f:
         json.dump(transparency, f, indent=2)

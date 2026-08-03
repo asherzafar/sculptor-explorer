@@ -1,10 +1,10 @@
 {
   "1800": {
     "decade": 1800,
-    "totalBorn": 68,
+    "totalBorn": 67,
     "gender": {
       "female": 2,
-      "male": 66,
+      "male": 65,
       "otherOrUnknown": 0
     },
     "topCountries": [
@@ -14,7 +14,7 @@
       },
       {
         "country": "Germany",
-        "count": 15
+        "count": 14
       },
       {
         "country": "Italy",
@@ -47,12 +47,12 @@
         "count": 3
       },
       {
-        "movement": "Baroque",
+        "movement": "Neoclassicism",
         "count": 2
       },
       {
-        "movement": "Neoclassicism",
-        "count": 2
+        "movement": "Baroque",
+        "count": 1
       },
       {
         "movement": "Danish Golden Age",
@@ -79,13 +79,13 @@
         "count": 2
       },
       {
-        "from": "United States",
-        "to": "Italy",
+        "from": "France",
+        "to": "Germany",
         "count": 1
       },
       {
-        "from": "Russia",
-        "to": "Russian Empire",
+        "from": "Poland",
+        "to": "Germany",
         "count": 1
       },
       {
@@ -95,9 +95,9 @@
       }
     ],
     "migration": {
-      "eligible": 67,
-      "crossed": 11,
-      "crossPct": 16
+      "eligible": 66,
+      "crossed": 10,
+      "crossPct": 15
     },
     "notable": [
       {

@@ -22,6 +22,9 @@ from helpers import query_sparql, query_sparql_batched
 QID_DISCOVERY_QUERY = """
 PREFIX wd:  <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p:   <http://www.wikidata.org/prop/>
+PREFIX psv: <http://www.wikidata.org/prop/statement/value/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT DISTINCT
@@ -30,7 +33,13 @@ WHERE {{
   ?sculptor wdt:P31  wd:Q5 .
   ?sculptor wdt:P106 ?occ .
   ?occ      wdt:P279* wd:Q1281618 .
-  ?sculptor wdt:P569 ?birth .
+  ?sculptor p:P569 ?birthStatement .
+  ?birthStatement psv:P569 ?birthValue .
+  ?birthValue wikibase:timeValue ?birth ;
+              wikibase:timePrecision ?birthPrecision .
+  # The public model stores integer years. Century/decade precision values
+  # such as "18. century" must not be flattened into a fake boundary year.
+  FILTER(?birthPrecision >= 9)
   FILTER(?birth >= '{min_birth_year}-01-01T00:00:00Z'^^xsd:dateTime)
 }}
 """
@@ -42,6 +51,8 @@ WHERE {{
 NODE_DETAILS_TEMPLATE = """
 PREFIX wd:       <http://www.wikidata.org/entity/>
 PREFIX wdt:      <http://www.wikidata.org/prop/direct/>
+PREFIX p:        <http://www.wikidata.org/prop/>
+PREFIX psv:      <http://www.wikidata.org/prop/statement/value/>
 PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 
@@ -49,13 +60,25 @@ SELECT
   (REPLACE(STR(?qid), 'http://www.wikidata.org/entity/', '') AS ?qid_clean)
   (SAMPLE(?nameAny) AS ?name)
   (MIN(?b) AS ?birth)
+  (MAX(?birthPrecisionRaw) AS ?birth_precision)
   (MAX(?d) AS ?death)
+  (MAX(?deathPrecisionRaw) AS ?death_precision)
   (SAMPLE(?genderLabel) AS ?gender)
 WHERE {
   {{VALUES_BLOCK}}
   ?qid rdfs:label ?nameAny . FILTER(LANG(?nameAny) IN ('en', 'mul'))
-  ?qid wdt:P569 ?b .
-  OPTIONAL { ?qid wdt:P570 ?d . }
+  ?qid p:P569 ?birthStatement .
+  ?birthStatement psv:P569 ?birthValue .
+  ?birthValue wikibase:timeValue ?b ;
+              wikibase:timePrecision ?birthPrecisionRaw .
+  FILTER(?birthPrecisionRaw >= 9)
+  OPTIONAL {
+    ?qid p:P570 ?deathStatement .
+    ?deathStatement psv:P570 ?deathValue .
+    ?deathValue wikibase:timeValue ?d ;
+                wikibase:timePrecision ?deathPrecisionRaw .
+    FILTER(?deathPrecisionRaw >= 9)
+  }
   OPTIONAL { ?qid wdt:P21 ?genderEntity . ?genderEntity rdfs:label ?genderLabel . FILTER(LANG(?genderLabel) = 'en') }
 }
 GROUP BY ?qid

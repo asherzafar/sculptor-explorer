@@ -25,6 +25,7 @@ from config import (
     MIN_BIRTH_YEAR,
     FOCUS_SCULPTOR_NAMES,
     PROCESSED_DIR,
+    PERSON_EXCLUSIONS_PATH,
 )
 from query_enrichment import (
     SITELINKS_CACHE_PATH,
@@ -89,6 +90,31 @@ def process_nodes() -> pd.DataFrame:
         "death_date": nodes_raw["death"].apply(parse_wikidata_date),
         "gender": nodes_raw["gender"].fillna("Unknown").astype(str),
     })
+
+    # New caches carry Wikibase time precision. Values below 9 represent a
+    # decade, century, or broader interval and cannot be published as exact
+    # integer years. Older caches lack these columns; the evidence-backed
+    # exclusion file below is the compatibility guard until they are refreshed.
+    if "birth_precision" in nodes_raw.columns:
+        birth_precision = pd.to_numeric(nodes_raw["birth_precision"], errors="coerce")
+        nodes = nodes[birth_precision.isna() | (birth_precision >= 9)].copy()
+    if "death_precision" in nodes_raw.columns:
+        death_precision = pd.to_numeric(nodes_raw["death_precision"], errors="coerce")
+        imprecise_death_qids = set(
+            nodes_raw.loc[death_precision.notna() & (death_precision < 9), "qid_clean"].astype(str)
+        )
+        nodes.loc[nodes["qid"].isin(imprecise_death_qids), "death_date"] = None
+
+    if PERSON_EXCLUSIONS_PATH.exists():
+        exclusions = pd.read_csv(PERSON_EXCLUSIONS_PATH, dtype=str).fillna("")
+        excluded_qids = set(exclusions.get("qid", pd.Series(dtype=str)).astype(str))
+        matched = nodes["qid"].isin(excluded_qids)
+        if matched.any():
+            print(
+                f"  - Excluded {int(matched.sum())} evidence-backed person "
+                f"record(s) from {PERSON_EXCLUSIONS_PATH.name}"
+            )
+            nodes = nodes[~matched].copy()
     
     # Remove rows with no birth date
     nodes = nodes[nodes["birth_date"].notna()].copy()
@@ -96,6 +122,16 @@ def process_nodes() -> pd.DataFrame:
     # Add derived columns
     nodes["birth_year"] = nodes["birth_date"].apply(extract_year)
     nodes["death_year"] = nodes["death_date"].apply(extract_year)
+
+    impossible_lifespans = nodes[
+        nodes["death_year"].notna() & (nodes["birth_year"] > nodes["death_year"])
+    ]
+    if len(impossible_lifespans):
+        bad = ", ".join(impossible_lifespans["qid"].astype(str).head(10))
+        raise ValueError(
+            "Impossible lifespan(s) remain after precision and override "
+            f"filtering: {bad}"
+        )
     nodes["death_year_plot"] = nodes["death_year"].fillna(date.today().year).astype(int)
     nodes["death_date_plot"] = nodes["death_date"].fillna(date.today())
     nodes["alive"] = nodes["death_date"].isna()

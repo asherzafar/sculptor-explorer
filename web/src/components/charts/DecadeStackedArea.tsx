@@ -304,7 +304,14 @@ export function DecadeStackedArea({
 
   return (
     <div className="w-full">
-      <svg ref={svgRef} className="w-full overflow-visible" />
+      <svg
+        ref={svgRef}
+        className="w-full overflow-visible"
+        role="img"
+        aria-label={`Stacked area chart of ${categories.join(", ")} by decade${
+          yLabel ? `; vertical axis: ${yLabel}` : ""
+        }.`}
+      />
       {/* Colour legend — direct labels preferred per .windsurfrules */}
       <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
         {categories.map((cat) => (

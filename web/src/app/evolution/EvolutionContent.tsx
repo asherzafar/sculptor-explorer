@@ -18,8 +18,10 @@ import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/LoadingState";
 import { EmptyState } from "@/components/EmptyState";
 import { PageHeader } from "@/components/PageHeader";
+import { DataScopeNote } from "@/components/DataScopeNote";
 import Link from "next/link";
-import { formatDisplayValue, formatGender } from "@/lib/utils";
+import { formatDisplayValue } from "@/lib/utils";
+import { dataSnapshot } from "@/lib/snapshot";
 
 const MIN_BIRTH_YEAR = 1800;
 
@@ -38,9 +40,9 @@ const GEO_SOURCE_LABEL: Record<GeoSource, string> = {
 
 const GEO_SOURCE_SUBTITLE: Record<GeoSource, string> = {
   citz:
-    "Legal / attributed nationality (Wikidata P27). Emigrés appear under their adopted country.",
+    "One normalized display citizenship from Wikidata P27. This is not place of residence, cultural identity, or a migration path.",
   birth:
-    "Where sculptors were born (Wikidata P19 → P17). Shows the migration canon before naturalization.",
+    "Recorded place-of-birth country (Wikidata P19 → P17). This is not citizenship, cultural identity, or later residence.",
 };
 
 /**
@@ -136,6 +138,12 @@ export function EvolutionContent() {
           s.birthDecade < activeDecade + 10
       )
     : focusSculptors;
+  const activeGeography = geoSource === "birth" ? geoByBirth : geoByCitz;
+  const geographyUnknown = activeGeography
+    .filter((row) => row.category === "Unknown")
+    .reduce((sum, row) => sum + row.count, 0);
+  const movementRecords = movementsData.reduce((sum, row) => sum + row.count, 0);
+  const materialRecords = materialsData.reduce((sum, row) => sum + row.count, 0);
 
   if (loading) {
     return (
@@ -150,6 +158,12 @@ export function EvolutionContent() {
       <PageHeader
         title="Evolution of Sculpture"
         subtitle={`How sculpture evolved over time — geography and movements from ${MIN_BIRTH_YEAR} to present.`}
+      />
+      <DataScopeNote
+        className="mb-6"
+        source="Wikidata P27/P19/P17/P135 for geography and movement labels; matched Met and Art Institute of Chicago object metadata for materials."
+        scope={`Geography uses all ${dataSnapshot.eligibleCandidates.toLocaleString()} analytically eligible candidates after evidence-backed exclusions (${geographyUnknown.toLocaleString()} currently unknown in the selected geography field); movement uses ${movementRecords.toLocaleString()} records with P135 labels; materials counts ${materialRecords.toLocaleString()} dated museum objects.`}
+        limits="These panels have different denominators and must not be compared as population shares. Citizenship is not cultural identity; movement labels are sparse; museum objects cover a small focus-list-biased sample and do not measure artists' overall material practice."
       />
       {/* Interaction hint — dismissible, sits just below the header */}
       {showHint && (
@@ -229,7 +243,7 @@ export function EvolutionContent() {
             {GEO_SOURCE_SUBTITLE[geoSource]}
           </p>
           <GeographyChart
-            data={geoSource === "birth" ? geoByBirth : geoByCitz}
+            data={activeGeography}
             activeDecade={activeDecade}
             onDecadeClick={setActiveDecade}
           />
@@ -255,13 +269,9 @@ export function EvolutionContent() {
               Materials
             </h2>
             <p className="text-xs text-text-tertiary mb-3">
-              From museum collections (Met + AIC)
+              Object dates from bounded Met + AIC searches; independent of the artist-birth-decade filter above
             </p>
-            <MaterialsChart
-              data={materialsData}
-              activeDecade={activeDecade}
-              onDecadeClick={setActiveDecade}
-            />
+            <MaterialsChart data={materialsData} />
           </section>
         )}
       </div>

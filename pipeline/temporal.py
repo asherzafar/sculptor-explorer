@@ -17,7 +17,7 @@ model defined in `docs/PHASE_5_PLAN.md`:
     possibly-active (translucent) at any scrubbed year.
 
 Used by the densification ingest in 5b.3 (institutional edges) and
-the existing person-mentor edges' backfill in 5b.4 so /lineage has a
+the existing person-mentor edges' backfill in 5b.5 so /lineage has a
 single dating substrate.
 
 Design choices:

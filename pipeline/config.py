@@ -45,6 +45,17 @@ FOCUS_SCULPTORS_CSV = OVERRIDES_DIR / "focus_sculptors.csv"
 # Missing sculptor QIDs that aren't being discovered by the Wikidata query
 MISSING_QIDS_PATH = OVERRIDES_DIR / "missing_sculptor_qids.csv"
 
+# Evidence-backed exclusions for records whose source values cannot be
+# represented honestly by the current year-based public schema. These are
+# applied before enrichment and aggregation so every downstream export shares
+# the same roster. See overrides/person_exclusions.csv for provenance.
+PERSON_EXCLUSIONS_PATH = OVERRIDES_DIR / "person_exclusions.csv"
+
+# Explicit release-level review metadata. This is separate from source-query
+# freshness and from per-record evidence-check dates. Update it deliberately
+# whenever the committed public artifact release changes.
+DATA_RELEASE_METADATA_PATH = OVERRIDES_DIR / "data_release.json"
+
 
 def load_focus_sculptors() -> list[dict]:
     """Load the canonical focus sculptor list from CSV."""

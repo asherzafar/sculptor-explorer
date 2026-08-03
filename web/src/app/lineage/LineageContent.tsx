@@ -18,6 +18,7 @@ import { LineageGraph } from "@/components/charts/LineageGraph";
 import { formatDisplayValue } from "@/lib/utils";
 import { LoadingState } from "@/components/LoadingState";
 import { PageHeader } from "@/components/PageHeader";
+import { DataScopeNote } from "@/components/DataScopeNote";
 
 /**
  * LineageContent — filter UI + URL-backed state for the lineage graph.
@@ -43,16 +44,17 @@ const EDGE_OPTIONS = [
 ] as const;
 type EdgeValue = (typeof EDGE_OPTIONS)[number]["key"];
 
-// Phase 4 — cross-cultural filter. "All" keeps the existing behaviour;
-// "cross" surfaces only émigré / cross-border lineages; "same" surfaces
-// connections within a shared citizenship. Edges with null
+// Citizenship-set comparison. "Cross" is the retained URL/data key for
+// disjoint recorded citizenship sets; "same" means at least one shared
+// recorded citizenship. Neither state establishes travel or cultural identity.
+// Edges with null
 // `crossesBorders` (typically external-mentor edges where we lack
 // citizenship data) get hidden under "cross" and "same" rather than
 // silently lumped into either bucket.
 const BORDER_OPTIONS = [
   { key: "all", label: "All" },
-  { key: "cross", label: "Crosses borders" },
-  { key: "same", label: "Same nationality" },
+  { key: "cross", label: "Different recorded citizenships" },
+  { key: "same", label: "Shared recorded citizenship" },
 ] as const;
 type BorderValue = (typeof BORDER_OPTIONS)[number]["key"];
 
@@ -254,7 +256,7 @@ export function LineageContent() {
     borderFilter !== "all" ||
     showInstitutions;
 
-  // Apply the cross-cultural filter at this layer rather than pushing it
+  // Apply the citizenship comparison at this layer rather than pushing it
   // into LineageGraph — LineageGraph already has plenty of filter logic
   // and the simple edges-array filter is the cleanest insertion point.
   // Tri-state edges (crossesBorders == null) drop out under cross/same
@@ -269,9 +271,9 @@ export function LineageContent() {
     );
   }, [edges, borderFilter]);
 
-  // Headline stats — small, factual, sits above the filter bar so the
-  // reader sees the cross-cultural rate before adjusting any filters.
-  const crossCulturalStats = useMemo(() => {
+  // Headline stats — small, factual, and explicit about the classifiable
+  // denominator before the reader adjusts filters.
+  const citizenshipComparisonStats = useMemo(() => {
     let cross = 0;
     let same = 0;
     let unknown = 0;
@@ -304,8 +306,9 @@ export function LineageContent() {
         title="Lineage"
         subtitle={
           <>
-            Influence and student–teacher relationships between sculptors,
-            sourced from Wikidata. Click a sculptor to see their details;
+            Recorded influence and student–teacher assertions between
+            sculptors, sourced from Wikidata. An edge reports a source
+            statement; it does not by itself prove causal influence. Click a sculptor to see their details;
             click a mentor to open their Wikidata page. Use the filters
             below to focus on a single sculptor&rsquo;s ego network, isolate
             a movement, or surface the most-connected backbone of the graph.
@@ -313,29 +316,34 @@ export function LineageContent() {
         }
       />
 
-      {/* ------------- Cross-cultural stat banner -------------
-          A single line above the filters because the cross-cultural
-          rate is a story the reader should see before they start
-          slicing the data. The "comparable" denominator reminds the
+      <DataScopeNote
+        className="mb-6"
+        source="Wikidata P737 (influenced by) and P1066 (student of); optional institution hubs use P69 (educated at) and P937 (work location)."
+        scope={`${edges.length.toLocaleString()} person-to-person source assertions, including ${mentors.length.toLocaleString()} external-mentor nodes; ${citizenshipComparisonStats.comparable.toLocaleString()} edges have citizenship sets on both sculptor endpoints.`}
+        limits={`${citizenshipComparisonStats.unknown.toLocaleString()} edges cannot be classified by citizenship. Disjoint citizenship sets do not establish travel, refugee status, cultural difference, or the mechanism or truth of influence; temporal confidence describes only the date estimate.`}
+      />
+
+      {/* ------------- Citizenship-comparison banner -------------
+          The "comparable" denominator reminds the
           reader that not every edge can be classified — external-mentor
           edges (the diamonds) are excluded since we don't fetch
           citizenship for non-sculptor teachers. */}
-      {crossCulturalStats.pct !== null && (
+      {citizenshipComparisonStats.pct !== null && (
         <div className="mb-4 rounded-md border border-border-subtle bg-bg-secondary/60 px-4 py-2.5 text-sm text-text-secondary motion-safe:animate-in motion-safe:fade-in motion-safe:duration-300">
           <strong className="text-text-primary">
-            {crossCulturalStats.cross.toLocaleString()}
+            {citizenshipComparisonStats.cross.toLocaleString()}
           </strong>{" "}
           of{" "}
           <strong className="text-text-primary">
-            {crossCulturalStats.comparable.toLocaleString()}
+            {citizenshipComparisonStats.comparable.toLocaleString()}
           </strong>{" "}
           classifiable connections (
           <strong className="text-accent-primary">
-            {crossCulturalStats.pct.toFixed(0)}%
+            {citizenshipComparisonStats.pct.toFixed(0)}%
           </strong>
-          ) cross national borders — émigré sculptors who studied
-          abroad, refugees who carried traditions across continents, and
-          the cosmopolitan ateliers that taught everyone.{" "}
+          ) link people with no recorded citizenship in common. This does
+          not show that either person crossed a border or that the connection
+          was cross-cultural.{" "}
           <button
             onClick={() =>
               setBorderFilter(borderFilter === "cross" ? "all" : "cross")
@@ -344,7 +352,7 @@ export function LineageContent() {
           >
             {borderFilter === "cross"
               ? "Show all connections"
-              : "Show only cross-border →"}
+              : "Show only different-citizenship →"}
           </button>
         </div>
       )}
@@ -353,11 +361,15 @@ export function LineageContent() {
       <div className="mb-4 grid gap-4 rounded-md bg-bg-secondary p-4 lg:grid-cols-2">
         {/* Search → ego network */}
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-medium text-text-secondary">
+          <label
+            htmlFor="lineage-focus-search"
+            className="text-xs font-medium text-text-secondary"
+          >
             Focus on a sculptor (ego network)
           </label>
           <div className="relative">
             <input
+              id="lineage-focus-search"
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -405,6 +417,7 @@ export function LineageContent() {
               <button
                 key={h}
                 disabled={!focusQid}
+                aria-pressed={hops === h && Boolean(focusQid)}
                 onClick={() => setHops(h)}
                 className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
                   hops === h && focusQid
@@ -436,6 +449,7 @@ export function LineageContent() {
               {EDGE_OPTIONS.map(({ key, label }) => (
                 <button
                   key={key}
+                  aria-pressed={edgeType === key}
                   onClick={() => setEdgeType(key)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                     edgeType === key
@@ -449,23 +463,23 @@ export function LineageContent() {
             </div>
           </div>
 
-          {/* Border filter — surfaces the cross-cultural collaboration
-              cut as a peer of "Connection type" rather than buried in a
-              menu. Disabled tooltip-style help via title attribute. */}
+          {/* Citizenship comparison is a peer of connection type, while
+              tooltips preserve the exact set semantics. */}
           <div>
             <label className="block text-xs font-medium text-text-secondary mb-1.5">
-              National borders
+              Recorded citizenship comparison
             </label>
             <div className="flex flex-wrap gap-1.5">
               {BORDER_OPTIONS.map(({ key, label }) => (
                 <button
                   key={key}
+                  aria-pressed={borderFilter === key}
                   onClick={() => setBorderFilter(key)}
                   title={
                     key === "cross"
-                      ? "Edges where the two sculptors share no citizenship"
+                      ? "Edges where the two sculptors share no recorded citizenship"
                       : key === "same"
-                      ? "Edges where the two sculptors share at least one citizenship"
+                      ? "Edges where the two sculptors share at least one recorded citizenship"
                       : "All classifiable connections + edges with unknown citizenship"
                   }
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
@@ -532,6 +546,7 @@ export function LineageContent() {
               return (
                 <button
                   key={slug}
+                  aria-pressed={active}
                   onClick={() => toggleMovement(slug)}
                   title={`${count} edges`}
                   className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
@@ -583,7 +598,8 @@ export function LineageContent() {
         </p>
         <p className="text-text-tertiary">
           Connections come from Wikidata&apos;s <code>influencedBy</code> and{" "}
-          <code>studentOf</code> properties. The graph reflects gaps in
+          <code>studentOf</code> properties. They are source assertions, not a
+          verified causal history. The graph reflects gaps in
           Wikidata as much as art-historical reality — see{" "}
           <a href="/transparency" className="text-accent-primary hover:underline">
             /transparency

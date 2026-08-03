@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { MobileNav } from "@/components/MobileNav";
-
-const fraunces = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { dataSnapshot } from "@/lib/snapshot";
 
 export const metadata: Metadata = {
   // Resolves relative URLs (og:image, twitter:image) against the production
@@ -25,12 +13,12 @@ export const metadata: Metadata = {
   title: "Sculpture in Data",
   description:
     "How sculpture evolved — materials, movements, geography, and lineages since 1800. " +
-    "3,630 sculptors, cross-referenced between Wikidata and Getty ULAN.",
+    `${dataSnapshot.includedSculptors.toLocaleString("en-US")} published sculptors from structured public data.`,
   openGraph: {
     title: "Sculpture in Data",
     description:
-      "Explore how sculpture evolved across 200 years — 3,630 sculptors, " +
-      "their movements, geographies, and mentor-student lineages.",
+      `Explore ${dataSnapshot.includedSculptors.toLocaleString("en-US")} published sculptors ` +
+      "and their movements, geographies, institutions, and recorded lineages since 1800.",
     type: "website",
     // Note: og:image is wired automatically by Next from app/opengraph-image.tsx;
     // we don't need to declare it here. Same for og:image:width/height/alt.
@@ -39,7 +27,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sculpture in Data",
     description:
-      "How sculpture evolved across 200 years — 3,630 sculptors and their lineages.",
+      `Explore ${dataSnapshot.includedSculptors.toLocaleString("en-US")} published sculptors ` +
+      "and their recorded lineages since 1800.",
     // twitter:image is also auto-wired from app/opengraph-image.tsx (Next reuses it
     // when no explicit twitter-image is provided), but the card type still needs
     // to be set for X to use the large card layout.
@@ -52,10 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="h-full bg-bg-primary text-text-primary font-body">
         {/* Responsive shell:
             - <md: column with top bar (MobileNav) + scrolling content
