@@ -292,7 +292,7 @@ Finish **REVIEW READY — keep open** with the local diff, external changes made
 | 2026-08-02 23:34 | Cloudflare owner evidence | Build settings, domains, deployments, analytics export, and sole-owner attestation were supplied. | Read-only inspection of the supplied log, screenshots, and CSV; no provider mutation. | Confirmed stale Git settings and exact deploy-stage failure; disabled Worker URLs; no custom route/domain; active manual version `cf3a4cff`; prior version `2da29370`; and an account-scoped 30-day total of 944 requests that cannot be attributed to this Worker. |
 | 2026-08-02 23:42 | Cloudflare MCP readiness | Cloudflare plugin `0.1.2` is installed and registers the official API MCP, but this already-running task exposes no Cloudflare tools. | Read-only plugin/resource and Codex configuration inspection; no login or configuration change. | A new task is required to load the plugin tools. OAuth may be requested on first Cloudflare tool use. Direct Codex CLI configuration does not contain a separately registered `cloudflare` server; no duplicate server was added. |
 | 2026-08-03 00:31 | Cloudflare Git build disconnect | Per-Worker Git build triggers still existed; the retained active manual deployment was separate from the failed builds. | The previously approved per-Worker Disconnect action deleted build triggers `09e0cba1-900a-40c6-befb-cb219e23678a` at `00:31:05.099Z` and `576f009e-30d2-407f-a4d1-b57c67a88f8b` at `00:31:05.436Z`; account audit logs record both successful DELETE actions. | The Worker, both manual versions, deployment percentages, disabled Worker URLs, and absent domains/routes were preserved. No service, version, deployment, route, domain, token, or GitHub setting was deleted or changed. |
-| 2026-08-03 01:55 | Cloudflare API postflight | The account-scoped CSV could not establish service traffic and shortened version IDs were dashboard-only evidence. | Used the installed Cloudflare plugin and official API MCP read-only; no provider mutation or credential value read. | Full versions/deployments, disabled/absent routing, missing build configuration, zero triggers/hooks/builds, zero service-scoped rows in the 30-day query, and the surviving non-secret build-token metadata are recorded below. |
+| 2026-08-03 01:55 | Cloudflare API postflight | The account-scoped CSV could not establish service traffic and shortened version IDs were dashboard-only evidence. | Used the installed Cloudflare plugin and official API MCP read-only; no provider mutation or credential value read. | Full versions/deployments, disabled/absent routing, missing build configuration, zero active triggers/hooks or post-disconnect builds, retained historical build records, zero service-scoped rows in the 30-day query, and the surviving non-secret build-token metadata are recorded below. |
 
 ### Netlify implementation artifact and rollback
 
@@ -379,9 +379,9 @@ was requested or returned.
 - Custom domains filtered to this service: zero.
 - Account zones: zero; therefore this account has no zone Worker routes to
   attach to this service.
-- `workersInvocationsAdaptive` was queried with
-  `scriptName: sculpture-in-data` from `2026-07-04T01:55:04Z` through
-  `2026-08-03T01:55:04Z`. It returned zero rows and totals of zero requests,
+- `workersInvocationsAdaptive` was most recently queried with
+  `scriptName: sculpture-in-data` from `2026-07-04T06:03:22.628Z` through
+  `2026-08-03T06:03:22.628Z`. It returned zero rows and totals of zero requests,
   errors, subrequests, and client disconnects. There is no service-scoped last
   request time or served-hostname row to report.
 - This service-scoped result supersedes the earlier account-scoped 944-request
@@ -393,8 +393,11 @@ was requested or returned.
 - A GET for the Worker build configuration by script tag returns Cloudflare
   error `12040`: no build configuration is associated with the script tag for
   this account.
-- Build triggers: zero. Deploy hooks: zero. Builds returned by the current
-  per-script build endpoint: zero.
+- Build triggers: zero. Deploy hooks: zero. The build-history endpoint retains
+  40 historical failed records; the latest is
+  `5ccad89a-8912-45a7-af35-061bb7aebf33` from
+  `2026-08-02T23:49:17.145Z`. No build was created after the trigger disconnect.
+  These retained historical records do not constitute an active build path.
 - Account audit logs record two successful build-trigger deletions at
   `2026-08-03T00:31:05.099Z` and `2026-08-03T00:31:05.436Z`, matching the
   approved per-Worker Git build disconnect.
@@ -455,9 +458,10 @@ or service, then decide whether revocation is appropriate.
 ## Current task status
 
 Final read-only closeout on 2026-08-03 reconfirmed the same active/prior
-versions and deployments, disabled/absent routing and build surfaces, token
-metadata, and zero service-scoped rows for the fresh window
-`2026-07-04T03:50:05.363Z` through `2026-08-03T03:50:05.363Z`.
+versions and deployments, disabled/absent routing and active build surfaces,
+retained historical build records, token metadata, and zero service-scoped
+rows for the fresh window `2026-07-04T06:03:22.628Z` through
+`2026-08-03T06:03:22.628Z`.
 
 **COMPLETE — retain for dated provider evidence**
 

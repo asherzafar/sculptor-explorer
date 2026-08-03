@@ -34,28 +34,34 @@ paths are reachable in production.
 - `npm audit --omit=dev`: 3 high package-level findings: Next.js is counted
   through its bundled PostCSS and optional Sharp dependencies.
 
-## 2026-08-03 GitHub security-enablement follow-up
+## 2026-08-03 dependency and advisory closeout
 
-- Vulnerability alerts and Dependabot security updates are enabled; no
+- Vulnerability alerts and Dependabot security updates remain enabled; no
   dependency auto-merge is enabled.
-- GitHub reports 33 open advisory records. This is an advisory count, not a
-  contradiction of the 14 package-level `npm audit` count above: multiple
-  advisories map to the same Hono, fast-uri, PostCSS, and other packages.
-- Security PRs #13–#15 update development-only MCP/Hono/fast-uri paths and have
-  green Actions/Vercel checks on their current heads, but are behind `main` and
-  still require rebase, fresh validation, and explicit merge approval.
-- Version PR #10 is intentionally red: Dependabot split React DOM from the
-  React patch it requires. Future React-family proposals are grouped so the
-  lockfile can be reviewed and installed as one compatibility unit.
+- Compatible package families landed one at a time in this exact order: PRs
+  #17, #13, #15, #14, #18, #19, #12, #10, and #8. React landed before React DOM
+  so the peer contract was valid on every merged graph.
+- Focused PR #20 updated the remaining vulnerable transitive Babel, Hono,
+  body-parser/type-is, brace-expansion, js-yaml, PostCSS, and Sharp/libvips
+  paths. It did not run `npm audit fix --force` or downgrade stable Next.js.
+- On the merged dependency-closeout baseline `674f65884d622f8fabb509e43d651cf67188717b`,
+  `npm audit` and `npm audit --omit=dev` both report zero vulnerabilities, and
+  GitHub reports zero open Dependabot alerts.
+- The complete local validation gate and all seven Playwright journeys passed;
+  the exact PR head and merged `main` each passed GitHub Actions and exact-SHA
+  Vercel preview/production verification.
 
-## Time-bounded acceptances
+## Current dependency controls and review triggers
 
-| Dependency path | Finding | Reachability decision | Treatment |
-|---|---|---|---|
-| `next → postcss@8.4.31` | Untrusted source-map/CSS input can trigger style injection or file disclosure ([GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q), [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849)) | Build-time only; the build consumes trusted repository CSS and deploys static output. There is no production CSS parser or upload path. | Accept through 2026-09-02; upgrade when Next ships a compatible patched PostCSS. Reopen immediately if CSS becomes user-controlled. |
-| `next → sharp@0.34.5` | Inherited libvips vulnerabilities ([GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj)) | Optional build dependency. The static site disables Next image optimization, hot-links source images, and exposes no runtime image-processing endpoint. | Accept through 2026-09-02; upgrade with Next/Sharp when compatible. Reopen if local or uploaded images enter an optimization pipeline. |
-| `shadcn` CLI tree | Hono, MCP SDK, Express, `qs`, `fast-uri`, and Babel findings | Development-only CLI/build tooling; none of these packages serves public traffic. The committed site imports only shadcn's build-time Tailwind CSS. | Keep development-only; update during the monthly review and do not run the CLI on untrusted projects or input. |
-| ESLint/build tree | `brace-expansion`, `js-yaml`, and Babel findings | Development-only tools operating on trusted repository files. | Update normally when compatible; do not use `npm audit fix --force` because the proposed graph rewrite is not a safe substitute for reachability review. |
+| Dependency path | Current treatment | Review trigger |
+|---|---|---|
+| `next → postcss` | `overrides.postcss` selects patched `8.5.25` while stable Next 16.2.12 still declares the older vulnerable transitive generation. Builds and audits pass. | At the 2026-09-02 review or the next stable Next release, whichever is sooner, test whether Next incorporates an equally new patched PostCSS and remove the override only after clean install, full validation, browser tests, audits, and preview proof. Reopen immediately if CSS input becomes user-controlled. |
+| `next → sharp` | `overrides.next.sharp` selects patched `0.35.3`. The static export still disables image optimization and exposes no runtime processor. | Reassess with the next stable Next graph or if local/uploaded images enter an optimization pipeline. Remove only after equivalent validation; do not trade the override for a vulnerable or incompatible graph. |
+| `shadcn` CLI and lint/build tooling | Patched transitive MCP SDK, Hono, Express, `qs`, `fast-uri`, Babel, brace-expansion, and js-yaml versions are locked; the CLI remains development-only. | Review monthly and whenever Dependabot or GitHub opens a new advisory. Do not run tooling on untrusted repositories/input, and do not auto-merge split package families. |
+
+The override is a temporary compatibility control, not permission to ignore
+future upstream releases. Its retirement is a normal dependency PR with the
+same exact-head and post-merge production gates as any other change.
 
 ## Verification commands
 

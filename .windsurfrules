@@ -122,6 +122,9 @@ Recently completed:
 - Phase 5Q source-control integration: PRs #1–#4 were merged in order and
   verified on `main`; protected-main, Actions, and Dependabot security
   guardrails are active
+- Dependency/security closeout: package PRs #17, #13, #15, #14, #18, #19,
+  #12, #10, and #8 landed sequentially, followed by advisory closeout PR #20;
+  GitHub has zero open dependency alerts and both npm audit views are clean
 
 Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
@@ -135,14 +138,11 @@ Current infrastructure state:
   check; Vercel is the only Git-backed deploy authority
 
 Next bounded work:
-- Resolve the separately scoped Dependabot queue (#8–#15): three green security
-  updates, four green version updates, and one deliberately blocked split React
-  update; do not merge packages merely because automation opened them;
-  React-family, Tailwind-family, and Actions updates are grouped for future runs
-- Complete deliberate merged-branch/worktree cleanup after the closeout record
-  is merged; retain the local WIP preservation branch
 - Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
 - Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
+- At the 2026-09-02 security review, reassess the temporary patched PostCSS and
+  Sharp overrides against the then-current stable Next.js graph; do not force a
+  downgrade or broad dependency rewrite merely to remove an override
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
 
 Nav routes (7): Timeline · Explore · Evolution · Migration · Lineage · About · Transparency

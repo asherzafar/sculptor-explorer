@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q release workflow and Node 24 alignment verified (August 2026)
+## Current status: 5Q delivery and dependency closeout verified (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -51,7 +51,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Horizon | Priority | Outcome |
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
-| Completed | **Node 24 alignment** | Local/runtime drift is resolved; both GitHub Actions events and Vercel passed on the same published PR head. |
+| Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
 | Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
@@ -329,7 +329,11 @@ major visual dimension.
 - [x] Make full lint green and preserve passing type/build checks. Phase 5b.5 removed the 18 Transparency errors and the two remaining warnings.
 - [x] Add focused web interaction tests for URL state and core journeys. Seven Playwright checks cover root/Timeline state, Migration state, Lineage focus/institution state, public provenance, movement-route integrity, seven analytical-route claim notes, and mobile navigation; CI installs Chromium inside the repo job and runs the explicit browser gate after the non-browser validation gate.
 - [x] Add CI for type checking, lint, production build, data-contract tests, and the bounded lineage benchmark. `.github/workflows/ci.yml` runs the same root gate used locally.
-- [x] Triage dependency advisories by reachability and upgrade risk. Next.js moved from 16.2.3 to 16.2.12, shadcn is development-only, and `docs/SECURITY.md` records the remaining build/dev-only paths with a 2026-09-02 review deadline.
+- [x] Triage and close dependency advisories by reachability, compatibility, and
+  upgrade risk. Next.js moved from 16.2.3 to 16.2.12, shadcn is development-only,
+  compatible Dependabot families landed sequentially, and a focused transitive
+  closeout left both npm audit views and GitHub's open alert queue at zero.
+  `docs/SECURITY.md` records the temporary override retirement triggers.
 - [x] Document the pipeline environment and add a reproducible validation entry point that does not require rediscovery by each agent. `./scripts/validate.sh` is standard-library-only on the Python side and uses the installed web dependencies.
 
 #### 5Q.3 — Data contracts and ethical claims (complete)
@@ -367,6 +371,12 @@ major visual dimension.
   and schedule monthly GitHub Actions/npm Dependabot version reviews. The
   approved `Protect main delivery` ruleset, GitHub-owned/full-SHA Actions
   policy, vulnerability alerts, and Dependabot security updates are active.
+- [x] Land the separate dependency queue in exact-head order rather than as a
+  batch: #17, #13, #15, #14, #18, #19, #12, #10, #8, then focused advisory
+  closeout #20. Each merge passed default-branch validation and exact-SHA Vercel
+  production verification before the next; merged remote branches were deleted,
+  GitHub has zero open PRs/Dependabot alerts, and full/production npm audits are
+  clean at the dependency-closeout baseline.
 - [x] **Implement Node.js 24 alignment in one focused, separately reviewed
   branch.** `codex/node-24-alignment` adds root/web `.nvmrc` files at 24,
   declares `engines.node: "24.x"`, intentionally moves `@types/node` to 24,

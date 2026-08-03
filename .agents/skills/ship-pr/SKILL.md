@@ -63,6 +63,41 @@ contradiction before publishing.
     worktree cleanliness, GitHub checks, Vercel state, and every external side
     effect before handing off.
 
+## Approved merge and landing
+
+Use this section only when the user separately approves the exact PR merge.
+Publishing a draft or saying “ship” is not implicit merge or cleanup authority.
+
+1. Re-read the PR number, base, full `headRefOid`, draft state, mergeability,
+   unresolved conversations, and every required check immediately before the
+   merge. A push or base update invalidates earlier evidence.
+2. Merge with an exact-head guard and the repository's merge-commit strategy:
+
+   ```bash
+   gh pr merge <PR> --merge --match-head-commit <FULL_HEAD_SHA>
+   ```
+
+   Add `--delete-branch` only when the user approved deletion of that exact
+   branch. Never force-push, squash, or rebase a reviewed stack to simplify it.
+3. Confirm GitHub reports the PR merged and record the merge commit. For a
+   stack, retarget the next child to `main`, incorporate the parent merge
+   without rewriting published history, and require fresh checks, preview, and
+   review before continuing.
+4. Fetch/prune, fast-forward a clean task checkout to `origin/main`, and wait
+   for the default-branch `validate` run at the exact merge SHA.
+5. Resolve the Vercel production deployment by exact merge SHA. Require
+   `READY`, record its deployment ID and canonical aliases, and run
+   `scripts/verify-deployment.sh https://sculptor-explorer.vercel.app`.
+6. Repeat both npm audits for dependency work and any provider/rendered/data
+   verification required by the change. Confirm there was no unexpected
+   external mutation.
+7. Reconcile open PRs, remote branches, retained local branches/worktrees,
+   provider state, affected docs, and `docs/AGENT_HANDOFF.md`. Perform only
+   exact cleanup the user approved.
+8. Apply the definition of landed in
+   `docs/SOURCE_CONTROL_AND_DELIVERY.md#definition-of-landed`. A successful
+   merge with pending production evidence is not `COMPLETE`.
+
 ## Final report
 
 Report:

@@ -36,6 +36,26 @@
 - External effects:
 - Rollback/retention boundary:
 
+## Merge authorization
+
+<!-- A draft PR does not imply any of these approvals. Fill these only after an explicit owner decision. -->
+
+- Merge approval: `pending` / `approved`
+- Approved full head SHA:
+- Approved strategy: `merge commit`
+- Exact branch deletion approval: `none` / branch name
+
+## Post-merge closeout
+
+<!-- Complete after merge; do not call the task landed while required evidence is pending. -->
+
+- Merge commit:
+- Default-branch Actions run/result:
+- Vercel production deployment ID/state/source SHA:
+- Canonical production route smoke:
+- Dependency audits or other post-merge gates:
+- PR/branch/worktree/provider/handoff reconciliation:
+
 ## Review checklist
 
 - [ ] The PR base and any stack relationships are explicit and current.
@@ -44,3 +64,5 @@
 - [ ] The Vercel deployment refers to the exact remote head and is `READY`.
 - [ ] No merge, production promotion, provider mutation, or cleanup is implied by this draft PR.
 - [ ] Documentation and handoff state agree with the implementation.
+- [ ] If merging, the approved head SHA was re-read immediately before the head-protected merge.
+- [ ] If merged, default-branch CI and exact-SHA production verification passed before closeout.
