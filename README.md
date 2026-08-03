@@ -12,7 +12,11 @@ The committed snapshot audited on 2026-08-02 contains 3,543 included sculptors a
 
 ## Quick start
 
-Node 20.9 or newer is required.
+The repository currently declares Node 20.9 or newer for local/CI use, while
+the connected Vercel project already reports Node `24.x`. The next focused
+infrastructure task standardizes all three environments on Node 24; until that
+review lands, follow the committed local/CI contract rather than changing one
+surface ad hoc.
 
 ```bash
 cd web
@@ -26,6 +30,7 @@ npm run dev
 ```text
 sculptor-explorer/
 ├── AGENTS.md          # Vendor-neutral instructions for coding agents
+├── .agents/skills/    # Optional repo workflows; AGENTS.md remains canonical
 ├── pipeline/          # Python ingestion, normalization, validation, export
 ├── web/               # Next.js App Router app, statically exported
 │   ├── src/app/       # Timeline, Explore, Evolution, Migration, Lineage,
@@ -48,6 +53,7 @@ Start with `AGENTS.md` regardless of which coding agent you use.
 | `docs/EXPLORATION_STRATEGY.md` | Project origin, question atlas, lab workflow, graph/temporal semantics, and expansion path |
 | `docs/DECISIONS.md` | Active decisions, review triggers, and founder questions that are deliberately deferred |
 | `docs/ROADMAP.md` | Delivery order, priorities, and exit gates |
+| `docs/SOURCE_CONTROL_AND_DELIVERY.md` | Protected-main target, stacked-PR rules, CI/preview/production contract, provider boundaries, and agent authority |
 | `docs/DATA_RELEASE.md` | Versioned identity, provenance, and changes for the committed public data artifacts |
 | `docs/DATASET_DATASHEET.md` | Composition, licenses, processing, missingness, uses/non-uses, risks, citation, and maintenance |
 | `docs/CLAIM_REGISTER.md` | Route-level evidence/denominator audit and sensitive classification language rules |
@@ -61,6 +67,20 @@ Start with `AGENTS.md` regardless of which coding agent you use.
 | `docs/PHASE_5_PLAN.md` | Detailed Phase 5 hypotheses, architecture, risks, and gates |
 
 Tool-specific entry points (`CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, and `.windsurfrules`) are deliberately thin adapters or implementation-value stores; they must not become competing roadmaps.
+
+## Agent workflow
+
+`AGENTS.md` defines the same inspect → focused change → validate/review →
+publish/preview → rendered-QA lifecycle for Claude, Codex, Cursor, Windsurf,
+Copilot, and other agents. Skill-aware agents may use the instruction-only
+`ship-pr` and `visual-qa` workflows in `.agents/skills/`; agents without that
+feature follow the equivalent steps in `AGENTS.md` directly. Publishing and
+merging always require explicit user authorization, and every bounded task
+must say whether it is complete and safe to archive, awaiting review, or
+blocked, then provide the next task's exact seed prompt when work remains.
+Every PR handoff ties GitHub Actions and an immutable Vercel deployment to the
+same full commit SHA; Vercel's Git integration remains the sole application
+deployment path.
 
 ## Data pipeline
 
@@ -112,7 +132,7 @@ statically exported by Next.js.
 | Root directory | `web` |
 | Build command | `npm run build` |
 | Output directory | `out` |
-| Node version | 20.9+ (`web/.nvmrc` and `web/package.json`) |
+| Node version | Vercel project: `24.x`; repository/CI currently: `20.9+` (`web/.nvmrc`, `web/package.json`, and CI), with alignment scheduled next |
 
 The stale <https://sculpture-in-data.netlify.app/> deployment is a legacy
 host scheduled for deliberate retirement in Phase 5Q.4c. Replace its stale

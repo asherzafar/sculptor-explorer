@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q release-candidate stabilization active; visual foundations next (August 2026)
+## Current status: 5Q release workflow verified; runtime alignment and visual foundations next (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -51,6 +51,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Horizon | Priority | Outcome |
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
+| Immediate enabler | **Node 24 + release-workflow alignment** | Remove local/CI/Vercel runtime drift, update the GitHub Action runtimes deliberately, and make publish/preview/QA handoffs reproducible before the next code slice. |
 | Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
@@ -347,12 +348,71 @@ major visual dimension.
 - [x] Pass the complete non-browser, build, performance, and seven-journey browser gates; inspect the semantic data diff and static-output change. The local build remains 3,625 routes / 36,201 files / ~228 MB; data changes are the documented exclusion/temporal exports plus additive release and movement-route contracts.
 - [x] Create a named repository checkpoint for the inherited release candidate before route-level visual iteration (`codex/phase-5q-stabilization`).
 
+#### Phase 5Q release-workflow enablers (active; before the next code slice)
+
+- [x] Prove the branch → draft PR → GitHub Actions → Vercel Preview path on
+  PR [#1](https://github.com/asherzafar/sculptor-explorer/pull/1). At final
+  head `8bb61a777007851abc060047894ed7e9c1828629`, both the push and
+  pull-request CI runs passed the full root gate and seven Playwright journeys;
+  Vercel and Vercel Preview Comments passed on the exact same commit.
+- [x] Encode the agent-neutral inspect → coherent change → validate/review →
+  publish/preview → rendered-QA → explicit merge lifecycle in `AGENTS.md`, with
+  optional instruction-only `ship-pr` and `visual-qa` repository skills. Keep
+  unique policy in canonical docs so Claude, Codex, Cursor, Windsurf, Copilot,
+  and agents without skill discovery can follow the same process.
+- [x] Define the protected-`main`, exact-SHA preview/production, stacked-PR,
+  worktree, provider-boundary, and agent-authority target in
+  `docs/SOURCE_CONTROL_AND_DELIVERY.md`; add a PR evidence template and public
+  deployment smoke command. Pin the existing action majors to immutable SHAs
+  and schedule monthly GitHub Actions/npm Dependabot version reviews. Activating
+  repository rules and security settings remains a separately reviewed
+  provider mutation after the stack is green.
+- [ ] **Standardize the repository on Node.js 24 in one focused, separately
+  reviewed branch.** Vercel project settings already report `24.x`; align the
+  root and `web` version files, `web/package.json`/lockfile engine contract,
+  local documentation, and CI `node-version` without upgrading unrelated
+  dependencies. Inspect whether `@types/node` should move as a directly related
+  compatibility change rather than changing it automatically. Run `npm ci`,
+  `./scripts/validate.sh`, and the explicit Playwright gate; show the complete
+  diff and compatibility evidence before commit or push.
+- [ ] In the same runtime-alignment review, update `actions/checkout`,
+  `actions/setup-node`, and `actions/setup-python` from their old Node-20-based
+  majors to their current reviewed majors. As of 2026-08-02, the official
+  [`checkout` v7](https://github.com/actions/checkout/releases/tag/v7.0.1),
+  [`setup-node` v7](https://github.com/actions/setup-node/releases/tag/v7.0.0),
+  and
+  [`setup-python` v7](https://github.com/actions/setup-python/releases/tag/v7.0.0)
+  each declare the Node 24 action runtime. This is distinct from the
+  application runtime selected by `setup-node`. Vercel documents
+  `engines.node: "24.x"` as the repository override for its project setting in
+  [Node.js version configuration](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
+- [ ] After runtime alignment is green, remove duplicate full-suite execution
+  for a PR branch (currently both `push` and `pull_request`) in a separate CI
+  efficiency change. Preserve validation for the default/release branch and
+  for pull requests; measure the result rather than combining it with Node
+  compatibility work.
+- [ ] Treat cache and performance-infrastructure changes as measured follow-up:
+  assess `.next/cache` first, verify whether Playwright-browser caching is safe
+  and worthwhile, and replace shared-runner wall-clock thresholds with a
+  normalized or dedicated benchmark when feasible. Until then, keep the 9 s /
+  11 s runner values as regression tripwires, not product budgets.
+- [ ] Pilot automated Codex PR review only as a non-blocking second reviewer
+  after the manual review workflow is stable. Measure finding quality, noise,
+  permissions, and account usage before making it a required check. Keep the
+  existing time-bounded npm advisory review; do not use an uncontrolled
+  `npm audit fix`. Repeated color-environment warnings are low-priority log
+  hygiene.
+
 #### 5Q.4 — Aesthetic clarity, accessibility, mobile, and performance
 
 ##### 5Q.4a — Visual foundations and baseline (do first)
 
 - [x] Record the route/task matrix, encoding inventory, source audit, ranked findings, and initial alternative set in `docs/VISUAL_BASELINE_2026-08-02.md`.
-- [ ] Validate the branch-to-Vercel preview workflow from the current checkpoint before rendered review: preview only, no production promotion; record the preview URL, access boundary, source commit, and cleanup/retention behavior.
+- [x] Validate the branch-to-Vercel preview workflow from the current checkpoint before rendered review: PR #1’s final preview
+  `https://sculptor-explorer-hgkmgumny-asherzafars-projects.vercel.app`
+  is READY for source commit `8bb61a777007851abc060047894ed7e9c1828629`;
+  no production promotion or retention change was performed. Preview retention
+  and deliberate cleanup policy remain hosting-inventory questions.
 - [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
 - [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
 - [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
@@ -374,7 +434,19 @@ major visual dimension.
 
 - [ ] Run the route-slice review gate on every primary journey, synthesize unresolved issues by severity, and update `docs/DESIGN_SYSTEM.md` only with patterns that passed evidence and reuse checks.
 - [ ] Preserve a before/after visual and performance record so future agents can distinguish intentional design decisions from drift.
-- [ ] Retire the stale `sculpture-in-data.netlify.app` deployment after Vercel production and preview behavior are verified: replace stale content with a path-preserving 301 to `sculptor-explorer.vercel.app`, review known repository references and available traffic/backlink evidence, keep the redirect through an explicit observation window, then record whether the safer endpoint is a long-lived redirect or Netlify project deletion.
+- [ ] Complete a read-only hosting inventory before changing any provider:
+  document canonical Vercel production and preview ownership, the stale
+  `sculpture-in-data.netlify.app` project, and the unexpected Cloudflare Workers
+  `sculpture-in-data` check/build, including repositories, domains, build
+  settings, traffic/backlink evidence, credentials/owners, and rollback paths.
+  Do not disable an integration or delete a project merely to clear a PR check.
+- [ ] Retire the stale `sculpture-in-data.netlify.app` deployment after the
+  inventory: replace stale content with a path-preserving 301 to
+  `sculptor-explorer.vercel.app`, review known repository references and
+  available traffic/backlink evidence, keep the redirect through an explicit
+  observation window, then record whether the safer endpoint is a long-lived
+  redirect or Netlify project deletion. Resolve the Cloudflare service/check
+  through the same evidence-first decision, independently of Netlify.
 
 #### 5Q.5 — Learn before choosing the next bet
 
@@ -418,6 +490,11 @@ Candidate sequence to bring into that workshop:
 Review happens both **as work proceeds** and at explicit boundaries. Automated
 checks alone catch regressions; human review alone is too late and too hard to
 reproduce.
+
+Use the task lifecycle in `AGENTS.md`. The repository `ship-pr` and
+`visual-qa` skills are optional executable checklists for compatible agents;
+the gates below remain authoritative for every agent. A task is complete only
+when it declares its archive state and hands off the exact next bounded prompt.
 
 ### Gate A — Every coherent change
 
