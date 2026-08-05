@@ -97,6 +97,20 @@ test("public provenance exposes source age, methodology, and exclusions", async 
     page.getByRole("heading", { name: "Evidence-backed exclusions" }),
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "Johann Albrecht Siegwitz" })).toBeVisible();
+
+  await page.goto("/explore/Q30755");
+  await expect(
+    page.getByText("Cross-referenced with Getty ULAN", { exact: false }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "view Getty record" })).toHaveAttribute(
+    "href",
+    /subjectid=500016619/,
+  );
+
+  await page.goto("/explore/Q1124592");
+  await expect(page.locator("p").filter({ hasText: "Born in Nérac" })).toHaveText(
+    "Born in Nérac (via Getty)",
+  );
 });
 
 test("movement labels link only when a generated aggregate route exists", async ({
