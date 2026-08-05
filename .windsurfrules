@@ -138,8 +138,17 @@ Current infrastructure state:
   check; Vercel is the only Git-backed deploy authority
 
 Next bounded work:
-- Phase 5Q.4a: complete the rendered/perceptual evidence still open in `docs/VISUAL_BASELINE_2026-08-02.md`
-- Phase 5Q.4b: route slices beginning with Explore, then Timeline and dense graph journeys
+- The machine-observable Phase 5Q.4a rendered/perceptual baseline is closed.
+  This is an evidence closeout, not a pass of the 5Q product-quality gate:
+  actual 200% browser zoom, physical input, VoiceOver/NVDA, Windows High
+  Contrast, initial reduced-motion comfort, and reader/founder comprehension
+  remain owner-run checks under the exact protocols in
+  `docs/VISUAL_BASELINE_2026-08-02.md`.
+- Phase 5Q.4b Explore is the next implementation slice: URL-backed state,
+  semantic pagination or virtualization, a task-equivalent responsive list or
+  table, and shared skip-link, focus, target-size, and contrast patterns.
+  Continue to Timeline and dense graph journeys only after separate rendered
+  review.
 - At the 2026-09-02 security review, reassess the temporary patched PostCSS and
   Sharp overrides against the then-current stable Next.js graph; do not force a
   downgrade or broad dependency rewrite merely to remove an override

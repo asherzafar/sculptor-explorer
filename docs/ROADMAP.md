@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q delivery and dependency closeout verified (August 2026)
+## Current status: 5Q.4a baseline closed; Explore route slice next (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -52,7 +52,7 @@ state; no public feature should depend on an unbuilt future phase.
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
 | Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
-| Now | **5Q.4 visual foundations and route slices** | Finish the rendered/perceptual baseline, then review UX, type, color, layout, visualization, accessibility, mobile equivalence, and performance route by route. |
+| Now | **5Q.4b Explore route slice** | Use the closed 5Q.4a evidence baseline to fix Explore state/scale, mobile equivalence, accessibility, and performance as the first end-to-end route pattern. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -433,9 +433,23 @@ major visual dimension.
   no production promotion or retention change was performed. The later hosting
   inventory retains exact preview/deployment evidence and makes cleanup a
   deliberate, separately approved action.
-- [ ] Complete the rendered portion of the bounded visual-foundations exercise in `docs/RESEARCH_FOUNDATIONS.md`: consistent screenshots, real-content type specimen, color/accessibility checks, zoom/reflow, keyboard/assistive-technology checks, performance evidence, and perceptual review.
-- [ ] Audit hierarchy, layout, typography, palette usage, chart semantics, information scent, mobile/reflow, keyboard flow, screen-reader naming, reduced motion, and perceptual performance against the charter tasks—not aesthetic preference alone.
-- [ ] Record which current tokens/patterns should remain, change, or enter a lab experiment. Preserve the Verdigris & Marble identity until evidence supports a deliberate design-system decision.
+- [x] Close the machine-observable rendered/perceptual baseline on exact
+  `main@8a4fccdeef90b2678a87d957e57d3d438a7fd317`: 67 consistent captures,
+  desktop/390px routes, WCAG text-spacing and overflow, standalone-browser
+  keyboard/focus/target evidence, Axe, forced colors, four color-vision modes,
+  reduced-motion settle, console/image failures, and controlled no-cache Web
+  Vitals are recorded in `docs/VISUAL_BASELINE_2026-08-02.md`. Actual 200%
+  browser zoom, spoken screen-reader output, physical input, and comprehension
+  were not available and have exact owner-run protocols; this checkbox closes
+  the baseline task, not the product-quality gate.
+- [x] Audit hierarchy, layout, typography, palette usage, chart semantics,
+  information scent, mobile/reflow, keyboard flow, accessible naming, reduced
+  motion, and perceptual performance against charter tasks. Confirmed failures
+  are ranked P1/P2 and separated into shared-system and route-specific work.
+- [x] Preserve the Verdigris & Marble identity, Fraunces/DM Sans hierarchy,
+  catalogue whitespace, and direct disclosure. Route slices may change failed
+  token contexts, chart equivalents, targets, state, and responsive structure;
+  no baseline evidence supports a wholesale restyle or a new styling system.
 
 ##### 5Q.4b — End-to-end route slices
 
