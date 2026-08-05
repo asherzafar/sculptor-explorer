@@ -273,8 +273,8 @@
   "sourceCandidates": 6711,
   "eligibleCandidates": 6710,
   "release": {
-    "artifactRelease": "2026-08-02.1",
+    "artifactRelease": "2026-08-02.2",
     "curationReviewedAt": "2026-08-02",
-    "contractsReviewedAt": "2026-08-02"
+    "contractsReviewedAt": "2026-08-05"
   }
 }

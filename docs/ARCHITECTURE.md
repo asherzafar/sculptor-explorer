@@ -16,7 +16,7 @@ Pipeline (Python, run locally)          Web App (Next.js, deployed on Vercel)
 Wikidata SPARQL ──┐                     
 Met API ──────────┤                     
 AIC API ──────────┼── process ──► JSON files ──► route-scoped fetch ──► client
-Getty ULAN ───────┤                     │                  filter/render + D3
+Getty ULAN ───────┤             final records                filter/render + D3
 Institutions ─────┤                     │
 Overrides CSV ────┘                     └── committed to git
                                             in web/public/data/
@@ -27,6 +27,15 @@ private API. Interactivity is client-side, while Server Components may
 run at build time to generate routes. Data is loaded per route; heavy
 institution/graph layers are lazy-loaded after opt-in. Do not restore an
 “eager-load every JSON file” architecture.
+
+The sculptor export has an explicit two-part write order. `export_json.py`
+writes the base monolith and shards, including shard-only museum `works`.
+`audit_getty.py` then regenerates the Getty comparison and delegates to the
+standard-library final-record writer in `sculptor_records.py`. The writer
+requires every shard to equal its monolith record apart from declared
+shard-only fields, preserves those extensions, and attaches one identical
+`gettyVerified` block to both surfaces. `run_all.py` treats failure of this
+stage as a failed pipeline, not an optional loss of detail behavior.
 
 ## Tech stack
 
@@ -97,6 +106,9 @@ sculpture-in-data/
 │   ├── temporal.py                  #   Temporal-envelope inference
 │   ├── process.py                   #   Clean, enrich, join, graph metrics
 │   ├── export_json.py               #   Write web/public/data/*.json
+│   ├── audit_getty.py               #   Getty comparison + finalization input
+│   ├── sculptor_records.py           #   Final monolith/shard contract writer
+│   ├── test_getty_contracts.py       #   Focused final-record regression tests
 │   ├── requirements.txt
 │   └── run_all.py                   #   Master orchestrator
 │
@@ -165,9 +177,10 @@ sculpture-in-data/
 
 The pipeline writes these to `web/public/data/`. The web app loads them client-side.
 
-| File | Contents | 2026-08-02 snapshot |
+| File | Contents | 2026-08-05 artifact snapshot |
 |---|---|---|
-| `sculptors.json` | Full included sculptor metadata and works/institution additions | 3,543 rows; 7.7MB raw / ~777KB gzip |
+| `sculptors.json` | Full included sculptor metadata and institution/Getty additions | 3,543 rows, 2,310 Getty-enriched; 8.8MB raw / ~900KB gzip |
+| `sculptors/{qid}.json` | Exact full record plus declared shard-only `works` | 3,543 shards; 2,310 Getty-enriched; 34 works across 9 shards |
 | `sculptors_index.json` | Slim fields for Explore and default Lineage | 3,543 rows; 770KB raw / ~108KB gzip |
 | `edges.json` | P1066/P737 person-person lineage edges with temporal envelopes/reasons | 1,423 rows; 585KB raw / ~54KB gzip |
 | `external_mentors.json` | Non-sculptor lineage endpoints | 108KB raw |

@@ -131,6 +131,7 @@ production build, and CI-safe performance bounds:
 
 ```bash
 python3 pipeline/test_data_contracts.py
+python3 pipeline/test_getty_contracts.py
 python3 pipeline/test_institutions.py
 python3 pipeline/test_relationship_temporal.py
 python3 pipeline/test_temporal.py

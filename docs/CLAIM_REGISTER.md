@@ -1,8 +1,8 @@
 # Public Claim Register
 
 **Status:** Current-production review  
-**Reviewed:** 2026-08-02  
-**Applies to:** Release `2026-08-02.1`, methodology `A.3`
+**Reviewed:** 2026-08-05
+**Applies to:** Release `2026-08-02.2`, methodology `A.3`
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
@@ -24,9 +24,9 @@ deeper audit.
 | Lineage citizenship comparison | Whether two non-empty recorded citizenship sets intersect | Wikidata P27 arrays on both sculptor endpoints | 557 classifiable of 1,423 edges; 866 unclassifiable | No shared value does not establish travel, refugee status, culture, or cross-cultural exchange |
 | Decade pages | Published cohort counts and leading recorded categories | Wikidata fields and precomputed migration endpoint bundle | Published sculptors born in the selected decade; endpoint denominator displayed | P21 labels are attributed; leading lists omit missing/long-tail values while retaining the full cohort denominator |
 | Movement pages | Records sharing one P135 label, their dates, countries, and graph degree | Wikidata | Movement total shown; dedicated pages require at least three records | P135 is a sparse source classification; “most-connected in this graph” replaces value-laden “notable” |
-| Sculptor detail | Source fields for one QID, Getty comparison where present, and graph degree | Wikidata; optional Getty and Met/AIC | One published record | Source links and absences are visible; gender/citizenship are attributed; disjoint-citizenship connection count is not called border crossing |
+| Sculptor detail | Source fields for one QID, Getty comparison where present, and graph degree | Wikidata; Getty ULAN for 2,310 published QIDs; optional Met/AIC | One published record; the detail shard is contract-tested against the monolith | Source links and absences are visible; Getty place fallback is attributed; Getty cultural/national descriptors remain distinct from citizenship; disjoint-citizenship connection count is not called border crossing |
 | Transparency inclusion/demographics | Composition of source, evidence-excluded, eligible, published, and A.3 rule-excluded frames | Generated A.3 audit plus documented exclusion override | Exact population totals shown | Evidence exclusions are not A.3 signal exclusions; differences reflect both source-frame and rule bias; no causal attribution to the rule alone |
-| Transparency Getty audit | Agreement/disagreement between two source models | Getty ULAN and Wikidata | Field-specific comparable denominators shown | Getty cultural attribution is not legal citizenship; string-based place agreement is disclosed |
+| Transparency Getty audit | Agreement/disagreement between two source models | Getty ULAN and Wikidata | 2,310 published records compared; field-specific comparable denominators shown | Getty cultural attribution is not legal citizenship; string-based place agreement is disclosed; the excluded `Q87366` is not retained in this denominator |
 | Transparency institutions | Relationship coverage, temporal method, and education-link concentration | Wikidata P69/P937 and deterministic envelope rules | Exact edges, sculptors, and institutions shown | Concentration measures documentation, not institutional quality or importance |
 
 ## Classification language decisions

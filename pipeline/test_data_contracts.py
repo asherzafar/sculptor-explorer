@@ -82,10 +82,65 @@ def assert_sculptor_roster() -> tuple[list[dict], set[str]]:
     for qid in sorted(sculptor_qids):
         shard = load(f"sculptors/{qid}.json")
         full = by_qid[qid]
-        for key in ("qid", "name", "birthYear", "deathYear", "birthDecade"):
-            assert shard.get(key) == full.get(key), f"{qid} shard mismatch: {key}"
+        unexpected = set(shard) - set(full) - {"works"}
+        assert not unexpected, f"{qid} has undeclared shard-only fields: {unexpected}"
+        shard_base = {key: value for key, value in shard.items() if key != "works"}
+        assert shard_base == full, f"{qid} shard diverges from monolith"
+        if "works" in shard:
+            assert isinstance(shard["works"], list) and shard["works"], (
+                f"{qid} has an invalid shard-only works block"
+            )
 
     return sculptors, sculptor_qids
+
+
+def assert_getty_enrichment(sculptors: list[dict], sculptor_qids: set[str]) -> None:
+    audit = load("getty_audit.json")
+    by_qid = {record["qid"]: record for record in sculptors}
+    getty_records = {
+        record["qid"]: record["gettyVerified"]
+        for record in sculptors
+        if "gettyVerified" in record
+    }
+    compared = audit.get("aggregate", {}).get("compared")
+    assert isinstance(compared, int) and compared > 0, "Getty audit is empty"
+    assert len(getty_records) == compared, (
+        "Getty audit count differs from published Getty enrichment"
+    )
+
+    for qid, getty in getty_records.items():
+        assert isinstance(getty, dict), f"{qid} has an invalid gettyVerified block"
+        authority = next(
+            (
+                row
+                for row in by_qid[qid].get("authorityLinks", [])
+                if row.get("type") == "ulan"
+            ),
+            None,
+        )
+        assert authority is not None, f"{qid} Getty data has no ULAN authority link"
+        assert getty.get("ulanId") == authority.get("id"), f"{qid} Getty ID mismatch"
+        assert getty.get("url") == authority.get("url"), f"{qid} Getty URL mismatch"
+        assert isinstance(getty.get("nationalities"), list), (
+            f"{qid} has invalid Getty nationalities"
+        )
+        agreement = getty.get("agreement")
+        assert isinstance(agreement, dict) and set(agreement) == {
+            "birthYear",
+            "deathYear",
+            "birthPlace",
+            "deathPlace",
+            "natJaccard",
+        }, f"{qid} has an invalid Getty agreement contract"
+
+    sample_qids = {
+        row.get("qid")
+        for rows in audit.get("samples", {}).values()
+        for row in rows
+    }
+    assert sample_qids <= set(getty_records) <= sculptor_qids, (
+        "Getty audit samples reference records without published Getty data"
+    )
 
 
 def assert_relationships(sculptor_qids: set[str]) -> None:
@@ -288,6 +343,7 @@ def assert_secondary_rosters(sculptor_qids: set[str]) -> None:
 
 def main() -> None:
     sculptors, sculptor_qids = assert_sculptor_roster()
+    assert_getty_enrichment(sculptors, sculptor_qids)
     assert_relationships(sculptor_qids)
     assert_institutions(sculptor_qids)
     assert_migration_and_decades(sculptors, sculptor_qids)
@@ -297,7 +353,8 @@ def main() -> None:
     print(
         "static data contracts OK: "
         f"{len(sculptors)} sculptors, exact index/shard parity, "
-        "valid lifespans, movement routes, release metadata, and aggregate denominators"
+        "Getty enrichment parity, valid lifespans, movement routes, "
+        "release metadata, and aggregate denominators"
     )
 
 

@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: 5Q.4a baseline closed; Explore route slice next (August 2026)
+## Current status: Getty contract repaired after 5Q.4a; Explore next (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -21,6 +21,14 @@ institutions off for first-paint performance. Person-person and
 institution edges now share the temporal envelope contract, and
 `/transparency` reports coverage, confidence, skipped intersections,
 and educational concentration.
+
+The Getty detail contract is also repaired in the current release candidate.
+The final pipeline stage now validates the full-record/shard base, preserves
+the shard-only `works` extension, and writes one identical `gettyVerified`
+block to both surfaces. The current 3,543-record snapshot contains 2,310
+Getty-enriched records in the monolith and the same 2,310 detail shards; the
+audit denominator was regenerated after the `Q87366` exclusion instead of
+retaining the stale 2,311-record figure.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -52,6 +60,7 @@ state; no public feature should depend on an unbuilt future phase.
 |---|---|---|
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
 | Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
+| Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
 | Now | **5Q.4b Explore route slice** | Use the closed 5Q.4a evidence baseline to fix Explore state/scale, mobile equivalence, accessibility, and performance as the first end-to-end route pattern. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
@@ -227,18 +236,18 @@ Questions surfaced by Phase 3a analysis but not resolved in this pass:
 ### 3b. Getty ULAN crosswalk — Wikidata cross-reference
 - [x] **P245 (ULAN ID) crosswalk** — in the May 2026 run, 2,340 of 3,630 sculptors (64.5%) carried a Wikidata-supplied ULAN ID; no fuzzy match required.
 - [x] **Per-record JSON-LD ingest** — `pipeline/query_getty.py` fetches `https://vocab.getty.edu/ulan/{id}.json` (the per-record endpoint, *not* the unstable SPARQL endpoint), with disk cache + politeness throttle. Resume-on-rerun is free. Full ingest: ~17 min, zero failures.
-- [x] **Wikidata ↔ Getty audit** — `pipeline/audit_getty.py` produces both `getty_audit.json` (aggregate metrics + spot-check tables) and `getty_compared.parquet` (per-record). Cross-reference badge on detail pages; full audit section on `/transparency`.
-- [x] **Schema** — sculptors gain a `gettyVerified` block: Getty's parallel data (label, birth/death year + place, nationality chips) plus per-field agreement flags computed at export time.
-- [x] **UI surfaces** — detail page shows a one-line cross-ref status (verified / differs) with a deep link to the Getty record; place data falls back to Getty when Wikidata is missing (rare — only 4 cases in practice).
+- [x] **Wikidata ↔ Getty audit** — `pipeline/audit_getty.py` produces both `getty_audit.json` (aggregate metrics + spot-check tables) and `getty_compared.parquet` (per-record). The current audit covers 2,310 published records after the evidence-backed `Q87366` exclusion.
+- [x] **Schema and final-record contract** — 2,310 sculptors carry a `gettyVerified` block with Getty's parallel data (label, birth/death year + place, nationality chips) plus per-field agreement flags. `pipeline/sculptor_records.py` validates monolith/shard parity, preserves declared shard-only fields such as `works`, and writes the same Getty block to both outputs.
+- [x] **UI surfaces** — the detail page receives Getty data from its per-QID shard, shows a one-line cross-ref status (verified / differs) with a deep link, and falls back to Getty place data when Wikidata is missing (4 birthplace cases in this snapshot).
 - [ ] **Activity places (migration view data)** — NOT in the basic JSON-LD record. Would require Getty's SPARQL endpoint (unreliable) or the bulk LOD download (~3GB TTL). Deferred unless we re-prioritise the dedicated migration chart.
 - [x] **License attribution** — About names Getty ULAN and ODC-By 1.0, links the license, and explains that source-specific terms still apply.
 
 **Honest readout from the audit (live numbers on `/transparency`):**
-- Birth-year agreement: **94.6% exact**, 1.9% off-by-1, 3.5% off-by-2+ (Getty has more transcription typos than Wikidata: e.g. Allen Jones = 1837 vs 1937).
-- Death-year agreement: **81.9% exact**, with a long tail of "Getty hasn't updated death dates for living artists."
-- Birthplace agreement: **69.2%** when both have data — most "disagreements" are transliteration drift (Tehran/Tehrān, Constantine/Qacentina) or city-vs-country granularity differences, not factual disagreements.
-- **Wikidata is the larger source by far.** Getty fills 4 birthplace gaps; Wikidata fills 921 the other way. Getty's value here is verification, not coverage.
-- Mean nationality Jaccard: **0.62** — partly because Getty uses adjective form (`Dutch`) and Wikidata uses legal-state form (`Kingdom of the Netherlands`); partly because the two model different concepts (cultural attribution vs. citizenship).
+- Birth-year agreement: **94.5% exact**, 1.9% off-by-1, 3.6% off-by-2+ among 2,308 comparable records (for example, Getty records Allen Jones as 1837 while Wikidata records 1937).
+- Death-year agreement: **82.0% exact** among 1,826 comparable records, with a long tail of Getty records that have not added a death date for a formerly living artist.
+- Birthplace agreement: **69.0%** across 1,404 records where both sources have a place — many differences are transliteration drift (Tehran/Tehrān, Constantine/Qacentina) or city-vs-country granularity, not established factual conflicts.
+- **Wikidata is the larger source by far.** Getty fills 4 birthplace gaps; Wikidata fills 899 the other way. Getty's value here is verification, not coverage.
+- Mean nationality/citizenship Jaccard is **0.757** across 2,310 records. The fields are not semantic equivalents: Getty uses cultural/national descriptors while Wikidata records P27 citizenship assertions.
 
 ### 3c. SAAM (Smithsonian American Art Museum) — biographical narratives
 - [ ] Download SAAM LOD dataset (CC0, GitHub)

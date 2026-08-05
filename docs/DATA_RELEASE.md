@@ -1,4 +1,4 @@
-# Data Release 2026-08-02.1
+# Data Release 2026-08-02.2
 
 This note identifies the committed public artifacts in
 `web/public/data/`. It separates the age of the upstream source snapshot
@@ -9,11 +9,11 @@ change is never presented as a fresh source query.
 
 | Field | Value |
 |---|---|
-| Public artifact release | `2026-08-02.1` |
+| Public artifact release | `2026-08-02.2` |
 | Inclusion methodology | `A.3` |
 | Source snapshot generated | `2026-06-05T13:35:22.969660+00:00` |
 | Evidence-backed curation reviewed | `2026-08-02` |
-| Producer/consumer contracts reviewed | `2026-08-02` |
+| Producer/consumer contracts reviewed | `2026-08-05` |
 | Source candidate records | 6,711 |
 | Evidence-backed person exclusions | 1 |
 | Analytically eligible candidates | 6,710 |
@@ -46,6 +46,11 @@ provenance for that evidence record, not the review date of the whole artifact.
 - A compact canonical movement-route index prevents sparse P135 labels from
   linking to aggregate pages that are intentionally not generated below the
   three-record threshold.
+- Getty enrichment now uses a deterministic final-record contract: 2,310
+  current published records carry the same `gettyVerified` block in the
+  monolith and their per-QID shard, while shard-only museum `works` remain
+  intact. The Getty audit was regenerated against the post-exclusion roster,
+  reducing its stale 2,311-record denominator by the excluded `Q87366`.
 
 No new Wikidata, Getty, Met, or Art Institute source query is implied by
 these changes.
@@ -72,7 +77,7 @@ composition, license, claim, methodology, and coverage record.
 ## Reproduce and verify
 
 Run `./scripts/validate.sh` from the repository root. The bounded gate checks
-Python data contracts, temporal and institution logic, lint, TypeScript,
+Python data contracts (including focused Getty final-record tests), temporal and institution logic, lint, TypeScript,
 the static production build, and deterministic lineage performance bounds.
 Run `cd web && npm run test:e2e` for the seven explicit browser journeys.
 

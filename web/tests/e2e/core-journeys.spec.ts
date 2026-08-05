@@ -91,7 +91,7 @@ test("public provenance exposes source age, methodology, and exclusions", async 
 
   await page.goto("/transparency");
   await expect(
-    page.getByText(/Artifact 2026-08-02\.1 · source snapshot exported June 5, 2026 · methodology A\.3/),
+    page.getByText(/Artifact 2026-08-02\.2 · source snapshot exported June 5, 2026 · methodology A\.3/),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Evidence-backed exclusions" }),

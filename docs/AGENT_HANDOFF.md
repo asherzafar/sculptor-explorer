@@ -1,12 +1,21 @@
 # Agent Handoff
 
-**Verified:** 2026-08-03
+**Verified:** 2026-08-05
 
 **Purpose:** Current agent-neutral continuation state. The evidence behind the roadmap reset is in `docs/PROJECT_AUDIT_2026-08-02.md`; historical 5b.3–5b.4 implementation detail remains in `docs/CODEX_HANDOFF.md`.
 
 ## Current boundary
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
+
+The bounded Getty contract repair restores the detail behavior that the old
+roadmap overstated. The 3,543-record monolith and all per-QID shards now share a
+validated final-record base; 2,310 records carry structurally identical
+`gettyVerified` values across both surfaces, and the nine shards with 34
+public-domain museum works retain their shard-only `works` field. The Getty
+audit denominator is 2,310 after excluding `Q87366`, not the stale 2,311. The
+canonical root gate now includes both the committed-data parity checks and a
+focused standard-library final-writer regression suite.
 
 Phase 5Q—the product clarity and quality gate—is active before 5b.6
 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.4a
@@ -22,7 +31,7 @@ pass: actual 200% browser zoom, physical input, spoken screen-reader output,
 Windows High Contrast, and reader/founder comprehension were not observable and
 have exact owner protocols in `docs/VISUAL_BASELINE_2026-08-02.md`.
 
-No production code changed. The baseline confirms P1 systemic contextual
+The 5Q.4a baseline itself changed no production code. It confirms P1 systemic contextual
 contrast, missing structured chart equivalents, undersized target patterns,
 Explore’s 4,423-focusable/196,386px catalogue, missing Evolution/Migration/
 Lineage mobile equivalents, a Migration Space-key failure, and Timeline mobile
@@ -46,6 +55,11 @@ the exact merge SHA, and the canonical route smoke returned 200 for five real
 routes and 404 for the missing-route probe. No post-disconnect Cloudflare
 Workers Builds check appeared.
 
+PR #22 then closed the Phase 5Q.4a baseline on merge commit
+`d5091abf74ddcd6427e7a624675e9d80387117f5`. Default-branch Actions run
+`30973384613` passed, and Vercel production deployment
+`dpl_ANk8khnZrCCJjyHhufoNAinwwF89` is `READY` with that exact source SHA.
+
 After that release stack, the dependency queue landed sequentially as PRs #17,
 #13, #15, #14, #18, #19, #12, #10, and #8, followed by focused transitive
 advisory closeout PR #20. Every PR passed exact-head `validate` and Vercel
@@ -63,7 +77,8 @@ and force-pushes and has no bypass actors. Actions are limited to GitHub-owned
 actions with full-SHA enforcement. Workflow tokens are read-only and cannot
 approve PRs. Vulnerability alerts and Dependabot security updates are enabled.
 The inherited permanent-checkout work is preserved locally, without a push or
-PR, as commit `94abed4` on `codex/local-wip-audit-2026-08-02`.
+PR, as commit `94abed474fb3bcc37d424a518ca15b0023216ab2` on
+`codex/local-wip-audit-2026-08-02` until the Getty repair finishes landing.
 
 Merged remote dependency branches were deleted after exact merge ancestry was
 verified. Future automated proposals remain ordinary review work: group split
@@ -111,6 +126,10 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 - The source query returned 6,711 candidate records. A documented 2026-08-02 overlay excludes `Q87366`, whose century-precision birth had been flattened into a false year; 6,710 analytically eligible candidates remain, 3,543 are published under A.3, and 3,167 are rule-excluded. The source generated-at date remains 2026-06-05, while artifact/curation/contract review metadata is explicit and separate. Older 3,630, 3,544, and 48,000 figures in current-status prose are not current truth.
 - The snapshot has 1,423 person-person edges: 1,372 (96.4%) have temporal envelopes; 40 have disjoint lifespans and 11 lack the source person’s birth year. No known edge is silently dropped.
 - Institutional links cover 2,393 included sculptors (67.5%); 1,826 (51.5%) have education links. The top five recorded education hubs hold 15.8% of 2,868 education edges.
+- Getty ULAN comparisons cover 2,310 published sculptors. The monolith and
+  exactly 2,310 matching detail shards carry identical `gettyVerified` blocks;
+  the audit, output count, ULAN identifiers/URLs, agreement schema, and
+  shard-only works preservation are repository invariants.
 - Production build, TypeScript, zero-warning lint, data contracts, seven browser journeys, and bounded performance checks pass locally. Browser coverage includes the shared source/scope/snapshot/limits disclosure on all seven analytical route types and exact movement-link/route integrity. GitHub Actions defines the non-browser root gate and explicit browser gate; the verified build generates 3,625 static pages.
 - The Vercel project reports Node `24.x`. The focused continuation declares
   Node 24 in both `.nvmrc` files, `web/package.json`/lockfile, local
@@ -156,6 +175,30 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Validation state at this handoff
 
+Passed locally on `codex/getty-shard-contract-repair` with Node 24.14.0 and
+npm 11.9.0:
+
+- `python3 pipeline/test_getty_contracts.py` — final-record parity, shard-only
+  works preservation, rejection-before-write, and idempotence passed
+- `python3 pipeline/test_data_contracts.py` — 3,543 exact monolith/shard bases,
+  2,310 identical Getty enrichments, valid agreement/ULAN contracts, and
+  aggregate/sample parity passed
+- `./scripts/validate.sh` — all data, Getty, institution, relationship, and
+  temporal checks; zero-warning lint; type checking; 3,625-route production
+  build; and CI performance bounds passed
+- `cd web && npm run test:e2e` — all seven Chromium journeys passed; only the
+  known `NO_COLOR`/`FORCE_COLOR` warning was emitted
+- Complete base comparison — removing only `gettyVerified` leaves zero
+  monolith or shard differences from protected-main, all 2,310 Getty blocks
+  match across outputs, and all nine work-bearing shards remain intact
+- `git diff --check` passed
+
+The optional raw-cache validator `pipeline/validate_institutions.py` could not
+run in this clean no-refresh worktree because its gitignored
+`data/raw/sculptor_educated_at_1800plus.parquet` input is absent. The
+committed-output institution contract in the canonical gate passed; no network
+refresh was authorized or attempted to manufacture that cache.
+
 Passed locally on `codex/node-24-alignment` with Node 24.14.0 and npm 11.9.0:
 
 - `npm ci` — 709 locked packages installed with no engine mismatch; the existing `node-domexception` deprecation and documented 14-advisory audit posture remain unchanged
@@ -196,11 +239,16 @@ generates 3,625 static pages without external font access.
 Measured, not pass/fail:
 
 - `node perf/lineage-bench.mjs --ci` — current 1.73 s; institutions 2.13 s on the latest 5Q.3R validation run. These are single deterministic regression runs, not p75 field metrics or the full local median.
-- Compressed major JSON: sculptor index ~108 KB, edges ~54 KB, institutions ~376 KB, migration ~71 KB, full sculptors ~777 KB
+- Compressed major JSON: sculptor index ~108 KB, edges ~54 KB, institutions ~376 KB, migration ~71 KB, full sculptors ~900 KB after Getty restoration
 
-The worktree does not contain the gitignored parquet caches. Fresh full
-exports still use `pipeline/export_json.py`; the committed June snapshot
-was upgraded reproducibly with
+The protected-main starting worktree did not contain the gitignored Getty
+parquet caches. For the bounded no-network repair, the exact 2,311 historical
+Getty blocks from committed export `17b49a1` were converted locally into the
+normal ignored `getty_verified.parquet` input; `audit_getty.py` then recomputed
+the comparison against the current roster, excluded `Q87366`, and finalized
+2,310 current records. No Wikidata, Getty, Met, or AIC source was refreshed and
+no cache is committed. Fresh full exports still use `pipeline/export_json.py`;
+the committed June snapshot was otherwise upgraded reproducibly with
 `python3 pipeline/backfill_relationship_exports.py` and
 `python3 pipeline/backfill_person_exclusions.py`. Both preserve the source
 snapshot’s `generatedAt` value; the latter publishes its evidence separately
@@ -301,8 +349,8 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ### Next bounded task seed — Phase 5Q.4b Explore
 
-> Continue Sculpture in Data Phase 5Q.4b after the Phase 5Q.4a baseline PR is
-> merged and protected `main` is verified. Create
+> Continue Sculpture in Data Phase 5Q.4b after the Getty final-record repair is
+> fully landed and protected `main` is verified. Create
 > `codex/phase-5q4b-explore-slice` from current `origin/main`. Implement only the
 > Explore route slice: move consequential query/sort/filter state into the URL;
 > replace the 3,543-row/4,423-focusable catalogue with semantic pagination or
