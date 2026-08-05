@@ -1,10 +1,11 @@
 # Dataset Datasheet
 
 **Dataset:** Sculpture in Data public artifacts  
-**Current artifact release:** `2026-08-02.1`  
+**Current artifact release:** `2026-08-02.2`
 **Source snapshot:** `2026-06-05T13:35:22.969660+00:00`  
 **Methodology:** `A.3`  
-**Curation and contract review:** 2026-08-02  
+**Curation review:** 2026-08-02
+**Contract review:** 2026-08-05
 **Maintainer:** Asher Zafar  
 **Status:** Maintained public-data record; update with every source refresh, methodology change, or material override
 
@@ -36,6 +37,7 @@ facts from `web/public/data/transparency.json` rather than copying this table.
 | Evidence-backed person exclusions | 1 | Record the year-only public schema cannot currently represent honestly |
 | Analytically eligible candidates | 6,710 | Post-evidence frame before A.3 publication filtering; legacy JSON calls this `totalCached` |
 | Published sculptors | 3,543 | Candidates passing at least one A.3 inclusion signal, after explicit exclusions |
+| Getty-enriched published sculptors | 2,310 | Published QIDs with a fetched Getty ULAN comparison, written identically to the monolith and detail shard |
 | A.3 rule-excluded candidates | 3,167 | Eligible candidates that fire no A.3 signal |
 | Curated focus sculptors | 48 | Canonical focus CSV used by Timeline and bounded museum searches |
 | Person-to-person assertions | 1,423 | Wikidata P737/P1066 edges; 1,372 have a temporal estimate and 51 remain explicitly undated |
@@ -93,12 +95,14 @@ where older architecture examples use snake_case.
 | Temporal envelope | min/max start/end, method, confidence, reason | Source qualifiers or disclosed lifespan/age rules | Confidence describes date precision only, never truth of the underlying relationship |
 | Graph metrics | in/out/total degree, institution counts | Deterministic projection of the committed graph | Measures documentation in this graph, not importance or centrality in sculpture history |
 | Museum works/materials | title, date, medium, image/source link; normalized material category | Met and AIC APIs plus explicit matching/taxonomy rules | Bounded focus-list-biased sample; object counts are not artist-level material prevalence |
+| Getty cross-reference | ULAN ID/link, parallel biographical fields, field-level agreement | Getty ULAN compared with Wikidata | Cultural/national descriptors are not legal citizenship; disagreement flags are string/year comparisons, not adjudications |
 | Inclusion evidence | signal list and audit counts | Deterministic A.3 rule | Explains publication; must not be shown as a quality score |
 
 Stable QIDs are the person keys. Edge endpoints must resolve to an included
 sculptor or a documented external human endpoint. Contract tests enforce
-identifier shape, lifespan order, roster/index/shard parity, edge endpoints,
-aggregate denominators, exclusion provenance, and temporal schemas.
+identifier shape, lifespan order, exact monolith/shard parity, Getty audit and
+enrichment parity, shard-only works preservation, edge endpoints, aggregate
+denominators, exclusion provenance, and temporal schemas.
 
 ## Source and license record
 
@@ -136,9 +140,12 @@ heritage.
    sculpture-type matches, classify medium strings with an editorial taxonomy,
    and export detail images only when the source public-domain flag and image
    URL are both present.
-8. Export static JSON. Full source refreshes update `generatedAt`; bounded
-   compatibility backfills preserve that date and record later review
-   separately.
+8. Export base static JSON and shard-only public-domain works, then regenerate
+   the Getty audit and run the deterministic final-record writer. That stage
+   rejects monolith/shard divergence, preserves declared shard-only fields,
+   and writes one identical Getty block to both surfaces.
+9. Full source refreshes update `generatedAt`; bounded compatibility or
+   contract repairs preserve that date and record later review separately.
 
 The pipeline uses cached external inputs and is not fully reproducible from
 the committed repository alone. A fresh source run requires the gitignored
@@ -245,7 +252,7 @@ public analytical view and when outside expertise is required.
 The static JSON artifacts are served from `/data/` in the deployed site and
 committed under `web/public/data/`. Cite this snapshot as:
 
-> Sculpture in Data, public artifact release 2026-08-02.1, methodology A.3,
+> Sculpture in Data, public artifact release 2026-08-02.2, methodology A.3,
 > source snapshot 2026-06-05, maintained by Asher Zafar. Derived from Wikidata,
 > Getty ULAN, The Metropolitan Museum of Art, the Art Institute of Chicago,
 > and Wikimedia Commons; source-specific licenses apply.

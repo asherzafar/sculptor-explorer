@@ -1,42 +1,42 @@
 {
   "version": 1,
   "aggregate": {
-    "compared": 2311,
+    "compared": 2310,
     "birth_year": {
-      "comparable": 2309,
+      "comparable": 2308,
       "exact_match": 2182,
       "off_by_1": 44,
-      "off_by_more": 83,
+      "off_by_more": 82,
       "missing_one_or_both": 2
     },
     "death_year": {
-      "comparable": 1827,
+      "comparable": 1826,
       "exact_match": 1497,
       "off_by_1": 27,
-      "off_by_more": 303,
+      "off_by_more": 302,
       "missing_one_or_both": 484
     },
     "birth_place": {
-      "wd_present": 2304,
+      "wd_present": 2303,
       "getty_present": 1408,
       "both_present": 1404,
       "agreement_rate": 0.6901709401709402,
       "getty_fills_wd_gap": 4,
-      "wd_fills_getty_gap": 900
+      "wd_fills_getty_gap": 899
     },
     "death_place": {
-      "wd_present": 1777,
+      "wd_present": 1776,
       "getty_present": 846,
       "both_present": 844,
       "agreement_rate": 0.6338862559241706,
       "getty_fills_wd_gap": 2,
-      "wd_fills_getty_gap": 933
+      "wd_fills_getty_gap": 932
     },
     "nationality": {
-      "comparable": 2311,
-      "mean_jaccard": 0.7575977210442809,
-      "full_agreement": 1526,
-      "any_overlap": 2008,
+      "comparable": 2310,
+      "mean_jaccard": 0.7574927849927849,
+      "full_agreement": 1525,
+      "any_overlap": 2007,
       "no_overlap": 303,
       "getty_adds_country": 529,
       "wd_adds_country": 477

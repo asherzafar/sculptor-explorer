@@ -431,8 +431,8 @@ export function SculptorDetail({
           ) : gettyFillsBirth && getty?.birthPlace ? (
             <p>
               <span className="text-text-tertiary">Born in</span>{" "}
-              {getty.birthPlace}
-              <span className="ml-1.5 text-xs italic text-text-tertiary">
+              {getty.birthPlace}{" "}
+              <span className="text-xs italic text-text-tertiary">
                 (via Getty)
               </span>
             </p>
@@ -450,8 +450,8 @@ export function SculptorDetail({
           ) : gettyFillsDeath && getty?.deathPlace ? (
             <p>
               <span className="text-text-tertiary">Died in</span>{" "}
-              {getty.deathPlace}
-              <span className="ml-1.5 text-xs italic text-text-tertiary">
+              {getty.deathPlace}{" "}
+              <span className="text-xs italic text-text-tertiary">
                 (via Getty)
               </span>
             </p>

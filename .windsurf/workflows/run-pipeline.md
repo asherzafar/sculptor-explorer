@@ -1,58 +1,88 @@
 ---
-description: Run the Python data pipeline to fetch fresh Wikidata
+description: Run and validate the complete Python data pipeline
 ---
 
-# Run the Sculptor Data Pipeline
+# Run the Sculpture in Data pipeline
 
-This workflow fetches fresh sculptor data from Wikidata via the SPARQL endpoint (`query.wikidata.org`).
+Run commands from the repository root. A full source refresh uses Wikidata,
+Getty, Met, and AIC network services; do not start one without approval and a
+review of the refresh flags in `pipeline/config.py`. Institution refreshes also
+query Wikidata. Existing gitignored parquet caches may be reused without a
+network refresh.
 
-## Prerequisites
+Set only the source families intended for the run:
 
-1. Python 3.10+ installed
-2. Virtual environment (optional but recommended)
+- `REFRESH_FROM_WIKIDATA`
+- `REFRESH_FROM_INSTITUTIONS`
+- `REFRESH_FROM_GETTY`
+- `REFRESH_FROM_MET`
+- `REFRESH_FROM_AIC`
+- `REFRESH_PROCESSING`
 
-## Steps
+## Environment
 
-1. Navigate to the pipeline directory
-   ```bash
-   cd /Users/asherzafar/Documents/PersonalCode/sculptor-explorer/pipeline
-   ```
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install -r pipeline/requirements.txt
+```
 
-2. Install dependencies (first time only)
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Complete pipeline
 
-3. Run the full pipeline
-   // turbo
-   ```bash
-   python run_all.py
-   ```
+```bash
+cd pipeline
+python3 run_all.py
+cd ..
+```
 
-4. Verify JSON files were created in `web/public/data/`
-   ```bash
-   ls -la /Users/asherzafar/Documents/PersonalCode/sculptor-explorer/web/public/data/
-   ```
+`run_all.py` owns this order:
 
-## What the pipeline does
+1. Query/cache the Wikidata candidate and enrichment inputs.
+2. Query/cache bounded Met and AIC museum results; these remain optional.
+3. Generate/cache P69 education, P937 work-location, and institution metadata.
+4. Process the source tables, overrides, inclusion signals, and graph metrics.
+5. Export the base monolith, slim index, aggregates, and per-QID shards; museum
+   `works` are added as an explicit shard-only field here.
+6. Query or reuse the Getty cache, regenerate the cross-source audit, then run
+   the final-record writer. That writer requires monolith/shard base parity,
+   preserves shard-only `works`, and attaches one identical `gettyVerified`
+   block to the monolith and matching shard. A Getty/finalization failure makes
+   the full pipeline fail rather than silently publishing dormant detail UI.
 
-- **Step 1:** Discovers all sculptor QIDs born since 1800 from Wikidata
-- **Step 2:** Pulls node details (name, birth/death dates, gender)
-- **Step 3:** Pulls movement labels
-- **Step 4:** Pulls citizenships
-- **Step 5:** Pulls influence/student relationships
-- **Step 6:** Cleans and enriches data, computes graph metrics
-- **Step 7:** Exports JSON files for the web app
+For an approved institution-only source refresh, run the institution generator
+before repeating export and Getty finalization:
 
-## Refresh flags
+```bash
+cd pipeline
+python3 -m query_institutions
+python3 export_json.py
+python3 audit_getty.py
+cd ..
+```
 
-Edit `pipeline/config.py` to control refresh behavior:
-- `REFRESH_FROM_WIKIDATA = True` — Re-run SPARQL queries (slow)
-- `REFRESH_PROCESSING = True` — Re-run cleaning/enrichment (fast)
+`python3 -m query_institutions` performs a network refresh. If the institution
+caches are already authoritative, skip that command and run only the export and
+Getty finalization steps. `audit_getty.py` requires the cached
+`data/processed/getty_verified.parquet`; `query_getty.py` creates it during a
+full run and will use the network if the cache is absent or
+`REFRESH_FROM_GETTY` is true.
 
-## Expected output
+## Validation and review
 
-The pipeline creates:
-- Cache files in `data/raw/` (parquet format)
-- Processed files in `data/processed/` (parquet format)
-- JSON exports in `web/public/data/` (read by web app)
+```bash
+python3 pipeline/test_getty_contracts.py
+python3 pipeline/test_data_contracts.py
+python3 pipeline/test_institutions.py
+python3 pipeline/validate_institutions.py
+./scripts/validate.sh
+cd web
+npm run test:e2e
+cd ..
+git diff --check
+git status --short
+git diff --stat
+```
+
+Inspect the complete generated-data diff before keeping it. Do not edit files
+under `web/public/data/` by hand, invent source results, or treat a successful
+export as proof that institution and Getty final-record contracts passed.

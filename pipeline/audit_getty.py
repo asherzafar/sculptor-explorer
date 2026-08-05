@@ -12,8 +12,9 @@ Outputs:
 - `web/public/data/getty_audit.json` — aggregate metrics + top-N
   disagreement examples, ready for the /transparency page.
 - `data/processed/getty_compared.parquet` — per-sculptor row with all
-  comparison flags, used by export_json.py to surface "Verified by
-  Getty" / "Sources disagree" affordances on the detail page.
+  comparison flags, used by the final-record writer below to surface
+  "Verified by Getty" / "Sources disagree" affordances on the detail
+  page.
 
 Comparison rules:
 - Birth/death year: exact match, off-by-1 (transcription drift,
@@ -35,6 +36,7 @@ from pathlib import Path
 import pandas as pd
 
 from config import PROCESSED_DIR, WEB_DATA_DIR
+from sculptor_records import SCULPTOR_SHARD_DIR, write_final_sculptor_records
 
 GETTY_VERIFIED_PATH = PROCESSED_DIR / "getty_verified.parquet"
 GETTY_COMPARED_PATH = PROCESSED_DIR / "getty_compared.parquet"
@@ -414,42 +416,49 @@ def run_audit(
     return audit
 
 
-def merge_into_sculptors_json(
-    sculptors_json_path: Path = WEB_DATA_DIR / "sculptors.json",
+def build_getty_verified_blocks(
+    sculptors: list[dict],
     compared_path: Path = GETTY_COMPARED_PATH,
-) -> None:
-    """Augment sculptors.json with a `gettyVerified` block per sculptor.
-
-    Mutation is in-place: we read the existing JSON, attach the Getty
-    fields where we have them, and write back. Keeps export_json.py
-    untouched (no new imports, no schema branching) — Getty becomes a
-    post-hoc enrichment that the UI treats as optional metadata.
-    """
+    verified_path: Path = GETTY_VERIFIED_PATH,
+) -> dict[str, dict]:
+    """Build the QID-keyed Getty block used by every sculptor output."""
     if not compared_path.exists():
-        print(f"⚠ Skipping merge — {compared_path} doesn't exist yet")
-        return
+        raise FileNotFoundError(f"Missing Getty comparison data: {compared_path}")
+    if not verified_path.exists():
+        raise FileNotFoundError(f"Missing Getty verification data: {verified_path}")
+
     cmp_df = pd.read_parquet(compared_path)
+    verified_df = pd.read_parquet(verified_path)
+    if cmp_df["qid"].duplicated().any():
+        raise ValueError("Getty comparison data contains duplicate QIDs")
+    if verified_df["qid"].duplicated().any():
+        raise ValueError("Getty verification data contains duplicate QIDs")
+
     # `compared.parquet` has the comparison flags but not the raw Getty
-    # label, so we join in the verified parquet to pick that up too.
-    verified_df = pd.read_parquet(GETTY_VERIFIED_PATH)
+    # label, so join that field from the verified source cache.
     df = cmp_df.merge(
-        verified_df[["qid", "getty_label"]], on="qid", how="left"
+        verified_df[["qid", "getty_label"]],
+        on="qid",
+        how="left",
+        validate="one_to_one",
     )
     by_qid = {row["qid"]: row for _, row in df.iterrows()}
 
-    sculptors = json.loads(Path(sculptors_json_path).read_text(encoding="utf-8"))
-    enriched = 0
-    for s in sculptors:
-        row = by_qid.get(s["qid"])
+    blocks: dict[str, dict] = {}
+    for sculptor in sculptors:
+        qid = sculptor["qid"]
+        row = by_qid.get(qid)
         if row is None:
             continue
-        # Pull the ULAN ID off the existing authority links so consumers
-        # don't have to re-resolve it. Same for the public URL.
         ulan_link = next(
-            (a for a in (s.get("authorityLinks") or []) if a.get("type") == "ulan"),
+            (
+                authority
+                for authority in (sculptor.get("authorityLinks") or [])
+                if authority.get("type") == "ulan"
+            ),
             None,
         )
-        s["gettyVerified"] = {
+        blocks[qid] = {
             "ulanId": ulan_link["id"] if ulan_link else None,
             "url": ulan_link["url"] if ulan_link else None,
             "label": _safe_str(row.get("getty_label")),
@@ -468,32 +477,61 @@ def merge_into_sculptors_json(
                 "deathYear": _safe_str(row.get("death_year_status")),
                 "birthPlace": (
                     bool(row["birth_place_match"])
-                    if row["wd_birth_place_present"] and row["getty_birth_place_present"]
+                    if row["wd_birth_place_present"]
+                    and row["getty_birth_place_present"]
                     else None
                 ),
                 "deathPlace": (
                     bool(row["death_place_match"])
-                    if row["wd_death_place_present"] and row["getty_death_place_present"]
+                    if row["wd_death_place_present"]
+                    and row["getty_death_place_present"]
                     else None
                 ),
                 "natJaccard": (
                     float(row["nat_jaccard"])
-                    if pd.notna(row.get("nat_jaccard")) else None
+                    if pd.notna(row.get("nat_jaccard"))
+                    else None
                 ),
             },
         }
-        enriched += 1
 
-    # Match the pretty-printed shape that export_json.py writes so the
-    # git diff stays small on subsequent runs.
-    Path(sculptors_json_path).write_text(
-        json.dumps(sculptors, ensure_ascii=False, indent=2), encoding="utf-8"
+    compared_qids = set(by_qid)
+    published_qids = {sculptor["qid"] for sculptor in sculptors}
+    missing_blocks = sorted(compared_qids - set(blocks))
+    if missing_blocks:
+        raise ValueError(
+            "Getty comparison data contains unpublished QIDs: "
+            + ", ".join(missing_blocks[:10])
+        )
+    unexpected_blocks = sorted(set(blocks) - published_qids)
+    if unexpected_blocks:
+        raise ValueError(
+            "Getty blocks contain unpublished QIDs: "
+            + ", ".join(unexpected_blocks[:10])
+        )
+    return blocks
+
+
+def merge_into_sculptor_outputs(
+    sculptors_json_path: Path = WEB_DATA_DIR / "sculptors.json",
+    shard_dir: Path = SCULPTOR_SHARD_DIR,
+    compared_path: Path = GETTY_COMPARED_PATH,
+    verified_path: Path = GETTY_VERIFIED_PATH,
+) -> int:
+    """Load Getty comparison inputs and finalize every sculptor output."""
+    sculptors = json.loads(Path(sculptors_json_path).read_text(encoding="utf-8"))
+    getty_by_qid = build_getty_verified_blocks(
+        sculptors,
+        compared_path=compared_path,
+        verified_path=verified_path,
     )
-    print(f"✓ Enriched {enriched}/{len(sculptors)} sculptors with gettyVerified block")
+    return write_final_sculptor_records(
+        getty_by_qid,
+        sculptors_json_path=sculptors_json_path,
+        shard_dir=shard_dir,
+    )
 
 
 if __name__ == "__main__":
-    # Note: getty_label isn't in the compared parquet today (only the
-    # comparison fields are). Read it from getty_verified.parquet instead.
     run_audit()
-    merge_into_sculptors_json()
+    merge_into_sculptor_outputs()
