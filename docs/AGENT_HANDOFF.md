@@ -160,7 +160,7 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   shard-only works preservation are repository invariants.
 - Production build, TypeScript, zero-warning lint, data contracts, and bounded
   performance checks pass on the protected base. The Explore candidate expands
-  browser coverage from seven to 17 journeys, including deterministic URL
+  browser coverage from seven to 19 journeys, including deterministic URL
   defaults/round trips, invalid states, page combinations, shared skip behavior
   on all route types, responsive equivalence, exact movement/sculptor links,
   target/contrast measurement, bounded focusables, and interaction timing.
@@ -227,11 +227,20 @@ Passed locally on `codex/phase-5q4b-explore-slice` from exact base
 - `./scripts/validate.sh` — all data/Getty/institution/relationship/temporal
   contracts, six Explore URL-state unit tests, zero-warning lint, type checking,
   3,625-route production build, and CI lineage bounds passed
-- `cd web && npm run test:e2e` — all 17 Chromium journeys passed on the clean
-  rerun in 5.6s. The preceding full run passed 16/17 but one worker received a
+- `cd web && npm run test:e2e` — all 19 Chromium journeys passed after the
+  rendered review added direct Axe plus text-spacing/forced-colors/
+  reduced-motion coverage. The earlier 17-test clean rerun passed in 5.6s; its
+  preceding full run passed 16/17 but one worker received a
   transient Next dev-server `Unexpected end of JSON input` before product state
   rendered; that exact journey then passed in isolation and in the full rerun.
   The known `NO_COLOR`/`FORCE_COLOR` warning remains log noise.
+- Exact first-head Preview review at desktop and 390px covered
+  first/middle/last/empty/invalid/filtered states with zero page overflow,
+  clipped product elements, undersized targets, failed resources, or console
+  warnings/errors. The 12-state/viewport Axe sweep reported zero WCAG A/AA
+  violations; forced colors, reduced motion, and WCAG text spacing preserved
+  the find/filter/list task. Final evidence must be repeated on the exact final
+  remote head after this QA-coverage commit.
 - `node web/perf/lineage-bench.mjs` — full local median settled at 1.54s
   default, 1.90s with institutions, 2.02s with movements, and 3.16s stress;
   force-cost breakdown completed. No graph code or behavior changed.

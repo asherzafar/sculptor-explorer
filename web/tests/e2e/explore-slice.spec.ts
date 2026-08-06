@@ -1,6 +1,51 @@
 import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { gzipSync } from "node:zlib";
 import { expect, test } from "@playwright/test";
+
+const require = createRequire(import.meta.url);
+const axePath = require.resolve("axe-core/axe.min.js");
+
+interface AxeViolation {
+  id: string;
+  impact: string | null;
+  nodes: string[];
+}
+
+async function collectAxeViolations(
+  page: import("@playwright/test").Page,
+): Promise<AxeViolation[]> {
+  await page.addScriptTag({ path: axePath });
+  return page.evaluate(async () => {
+    const axe = (
+      window as unknown as {
+        axe: {
+          run: (
+            context: Document,
+            options: { runOnly: { type: "tag"; values: string[] } },
+          ) => Promise<{
+            violations: Array<{
+              id: string;
+              impact: string | null;
+              nodes: Array<{ target: string[] }>;
+            }>;
+          }>;
+        };
+      }
+    ).axe;
+    const results = await axe.run(document, {
+      runOnly: {
+        type: "tag",
+        values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"],
+      },
+    });
+    return results.violations.map((violation) => ({
+      id: violation.id,
+      impact: violation.impact,
+      nodes: violation.nodes.flatMap((node) => node.target),
+    }));
+  });
+}
 
 async function waitForExplore(page: import("@playwright/test").Page) {
   await expect(
@@ -345,6 +390,93 @@ test("pagination bounds DOM, focusable elements, data weight, and search latency
   );
   const duration = await page.evaluate((start) => performance.now() - start, startedAt);
   expect(duration).toBeLessThan(200);
+});
+
+test("representative Explore states have no Axe WCAG A/AA violations", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const states = [
+    "/explore",
+    "/explore?page=36",
+    "/explore?page=71",
+    "/explore?q=no-sculptor-can-match-this-value",
+    "/explore?sort=sideways&filter=unknown&page=0&unexpected=true",
+    "/explore?filter=with-movement&page=20",
+  ];
+
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    for (const state of states) {
+      await page.goto(state);
+      await waitForExplore(page);
+      expect(
+        await collectAxeViolations(page),
+        `${viewport.width}px ${state}`,
+      ).toEqual([]);
+    }
+  }
+});
+
+test("text spacing, forced colors, and reduced motion preserve Explore tasks", async (
+  { page },
+  testInfo,
+) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ forcedColors: "active", reducedMotion: "reduce" });
+  await page.goto("/explore?filter=with-movement&page=20");
+  await waitForExplore(page);
+  if (process.env.VISUAL_QA_CAPTURE === "1") {
+    await page.screenshot({
+      path: testInfo.outputPath("explore-forced-colors-reduced-motion.png"),
+    });
+  }
+  await page.emulateMedia({ forcedColors: "none", reducedMotion: "reduce" });
+  await page.addStyleTag({
+    content: `
+      * { letter-spacing: 0.12em !important; line-height: 1.5 !important; word-spacing: 0.16em !important; }
+      p { margin-block-end: 2em !important; }
+    `,
+  });
+
+  await expect(page.getByLabel("Search names")).toBeVisible();
+  await expect(page.getByLabel("Sort results")).toBeVisible();
+  await expect(page.getByLabel("Movement record")).toHaveValue("with-movement");
+  await expect(page.getByTestId("mobile-result-list")).toBeVisible();
+  await expect(
+    page.getByTestId("mobile-result-list").locator(":scope > li"),
+  ).toHaveCount(12);
+
+  const layout = await page.locator("#main-content").evaluate((main) => ({
+    horizontalOverflow: main.scrollWidth > main.clientWidth + 1,
+    clippedControls: Array.from(
+      main.querySelectorAll<HTMLElement>("input, select, button, a[href]"),
+    )
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      })
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.left < -1 ||
+          rect.right > document.documentElement.clientWidth + 1
+        );
+      })
+      .map(
+        (element) =>
+          element.getAttribute("aria-label") || element.textContent?.trim(),
+      ),
+  }));
+  expect(layout).toEqual({ horizontalOverflow: false, clippedControls: [] });
+  if (process.env.VISUAL_QA_CAPTURE === "1") {
+    await page.screenshot({
+      path: testInfo.outputPath("explore-text-spacing.png"),
+    });
+  }
 });
 
 const EXPECTED_PAGE_SIZE = 50;
