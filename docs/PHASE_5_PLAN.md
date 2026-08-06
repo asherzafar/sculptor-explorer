@@ -2,7 +2,11 @@
 
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
 > implemented in the current release candidate; 5Q stabilization and visual
-> foundations are the active bounded implementation gate. The verified
+> route review are the active bounded implementation gate. The Explore 5Q.4b
+> candidate uses deterministic URL-backed query/sort/movement-record-filter/
+> page state, fixed 50-record semantic pagination, and a responsive equivalent
+> list; it remains unlanded until exact-head CI, Preview, rendered QA, review,
+> merge, and production gates pass. The verified
 > branch/CI/Vercel workflow and same-head-verified Node 24 repository alignment
 > in `docs/ROADMAP.md` are small release enablers before the next route code
 > slice. They do not reopen feature densification. Complete Phase 5Q

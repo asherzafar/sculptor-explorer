@@ -120,11 +120,16 @@ test("movement labels link only when a generated aggregate route exists", async 
   const search = page.getByPlaceholder("Search by name (diacritics optional)…");
 
   await search.fill("Johann Philipp Mihm");
-  await expect(page.getByText("Baroque", { exact: true })).toBeVisible();
+  await expect(
+    page.getByTestId("desktop-result-table").getByText("Baroque", { exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole("link", { name: "Baroque", exact: true })).toHaveCount(0);
 
   await search.fill("Edwin Landseer");
-  await page.getByRole("link", { name: "Romanticism", exact: true }).click();
+  await page
+    .getByTestId("desktop-result-table")
+    .getByRole("link", { name: "Romanticism", exact: true })
+    .click();
   await expect(page).toHaveURL(/\/movement\/romanticism$/);
   await expect(page.getByRole("heading", { name: "Romanticism" })).toBeVisible();
 

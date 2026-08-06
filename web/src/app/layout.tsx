@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { MobileNav } from "@/components/MobileNav";
+import { SkipLink } from "@/components/SkipLink";
 import { dataSnapshot } from "@/lib/snapshot";
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="h-full bg-bg-primary text-text-primary font-body">
+        <SkipLink />
         {/* Responsive shell:
             - <md: column with top bar (MobileNav) + scrolling content
             - md+: row with sidebar (Nav) + scrolling content
@@ -51,7 +53,13 @@ export default function RootLayout({
         <div className="flex h-full flex-col md:flex-row">
           <Nav />
           <MobileNav />
-          <main className="flex-1 overflow-y-auto">{children}</main>
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="flex-1 overflow-y-auto focus:outline-none"
+          >
+            {children}
+          </main>
         </div>
       </body>
     </html>

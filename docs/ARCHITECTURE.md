@@ -145,7 +145,9 @@ sculpture-in-data/
 │       │   │   ├── page.tsx             #   Server Component wrapper with <Suspense>
 │       │   │   └── EvolutionContent.tsx #   Client Component: D3 charts, URL decade param
 │       │   ├── explore/
-│       │   │   ├── page.tsx         #   Search, sort, browse
+│       │   │   ├── page.tsx         #   Suspense wrapper for URL-backed browse
+│       │   │   ├── ExploreContent.tsx #  Paginated desktop table/mobile list
+│       │   │   ├── explore-state.ts #   Parse/serialize/filter/sort/page contract
 │       │   │   └── [qid]/page.tsx   #   Individual sculptor (deep-link)
 │       │   ├── lineage/page.tsx     #   Network graph
 │       │   ├── migration/page.tsx   #   Birth→death Sankey
@@ -488,6 +490,14 @@ export function EvolutionContent() {
 ```
 
 Every page that reads URL params needs this split: a thin Server Component page.tsx that wraps the real content in Suspense.
+
+Explore keeps `q`, `sort`, `filter`, and `page` as the complete consequential
+state contract. Defaults are omitted from the canonical URL, malformed or
+duplicate values are reset visibly, and out-of-range pages clamp only after the
+3,543-record index loads. Fixed 50-record semantic pages bound DOM and focus
+cost while preserving native desktop-table and mobile-list structure; the
+movement index continues to decide whether a recorded label is a deterministic
+aggregate link or plain text.
 
 ### Landing redirect
 
