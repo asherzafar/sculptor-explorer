@@ -2,12 +2,14 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:unit": "node --test tests/unit/explore-state.test.mts",
     "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test",
     "test:e2e:install": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright install chromium"
   },
@@ -16,7 +18,6 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
-    "@tanstack/react-table": "^8.21.3",
     "@types/d3-sankey": "^0.12.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -36,6 +37,7 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axe-core": "^4.11.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "shadcn": "^4.2.0",

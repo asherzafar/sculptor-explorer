@@ -129,6 +129,15 @@ The palette is organized into: backgrounds (3 tiers), text (3 tiers + inverse), 
 - **Direct label charts whenever possible** — avoid forcing the reader to match colors between a legend and the chart. Label lines at their endpoints, label areas inline, label bars at their tips.
 - **Interactive SVGs need semantics and an equivalent path.** Give each chart an accessible name and concise summary, make consequential controls keyboard-operable with visible focus, and provide a structured table/list or other equivalent for details that cannot be navigated meaningfully in SVG.
 - **Respect user preferences.** Animation and force-layout motion must honor `prefers-reduced-motion`; content must remain usable at 200% zoom and under keyboard-only operation.
+- **Bypass and focus.** The shared application shell starts keyboard order with
+  a skip link targeting `#main-content`. Interactive controls use a strong
+  three-pixel visible outline with offset; dark navigation uses the existing
+  Verdigris accent in a higher-contrast focus context.
+- **Targets and contextual links.** New Explore targets are at least 24×24 CSS
+  pixels without invoking the spacing exception; primary controls and page
+  links use 44px block size where practical. Contextual links on the marble
+  surface use the darker accent-hover token for AA normal-text contrast while
+  retaining Verdigris as the identity color.
 
 ## Spacing & Layout
 
@@ -237,6 +246,17 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Sortable columns with subtle arrow indicator
 - Search bar: keep a visible functional border and focus treatment. Placeholder: "Search sculptors..."
 - On row hover: subtle background change + cursor pointer
+- Mount at most 50 records per result page. Use a semantic table at `md` and
+  above, and a semantic ordered list below `md`; the two structures expose the
+  same sculptor route, lifespan, movement route/plain-text fallback, recorded
+  gender, citizenship, and birth decade.
+- Keep query, sort, movement-record presence filter, and page deterministic in
+  the URL as `q`, `sort`, `filter`, and `page`. Omit default values, serialize
+  non-default values in that order, reset changed queries/sorts/filters to page
+  one, and visibly canonicalize invalid or out-of-range shared links.
+- Keep search as the first find action. Place source, scope, snapshot, and
+  limits immediately after the controls so disclosure stays visible without
+  delaying name finding.
 
 ## Components
 
@@ -334,7 +354,7 @@ No `tailwind.config.ts`. All design tokens defined directly in `web/src/app/glob
 | Small multiples (geography) | D3 in React wrapper | Consistent with stacked area approach |
 | Timeline (sculptor lifespans) | D3 in React wrapper | Custom layout needed |
 | Network graph | D3 force simulation in React wrapper | Current implementation; performance is measured by `web/perf/lineage-bench.mjs` |
-| Data table | @tanstack/react-table + custom styling | Sorting/filtering today; pagination or virtualization is required in Phase 5Q |
+| Explore catalogue | Native semantic table/list + React state helpers | Fixed pagination keeps native semantics, URL reproducibility, and bounded DOM/focus scale without an additional table runtime |
 | Tooltips | Custom React component | Unified style across all chart types |
 
 Using D3 for the main charts (not Recharts) gives full control over every visual parameter — axis formatting, grid opacity, annotation placement, transition easing. This matches ggplot-style parameter tuning.

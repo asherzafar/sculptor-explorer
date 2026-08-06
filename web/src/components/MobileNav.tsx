@@ -39,7 +39,7 @@ export function MobileNav() {
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
         <Link
           href="/"
-          className="font-display text-base font-semibold text-sidebar-text"
+          className="font-display text-base font-semibold text-sidebar-text focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-accent-primary"
         >
           Sculpture in Data
         </Link>
@@ -53,7 +53,7 @@ export function MobileNav() {
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+                "shrink-0 min-h-9 rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-primary",
                 active
                   ? "bg-accent-primary text-white"
                   : "text-sidebar-text-muted hover:text-sidebar-text hover:bg-accent-muted-dark"

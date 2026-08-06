@@ -18,6 +18,7 @@ This is the compact record of consequential product, research, and architecture 
 | D010 | The public explorer may show rule- or model-derived relationships only as opt-in layers that are visibly and semantically distinct from source assertions and expose their method/evidence. | Accepted | User research shows the distinction is still misunderstood, or the evidence contract cannot be met. | Founder confirmation, 2026-08-02; `docs/EXPLORATION_STRATEGY.md` |
 | D011 | Attribute gender, citizenship, movement, and cultural labels to their source; do not infer identity or expand disjoint P27 sets/endpoints into travel, migration motive, refugee status, or cross-cultural influence. | Accepted | A stronger source/model is added or relevant domain/community review supports a specific consequential claim. | `docs/DATASET_DATASHEET.md`; `docs/CLAIM_REGISTER.md` |
 | D012 | Treat `sculptor-explorer.vercel.app` as canonical production. Retire the stale Netlify deployment through a path-preserving redirect and review window before deciding whether to delete it. | Accepted | A custom domain becomes canonical or a different host passes deployment-scale review. | Founder direction, 2026-08-02; `docs/ROADMAP.md` |
+| D013 | Use fixed 50-record semantic pagination for Explore, with deterministic URL-backed query, sort, movement-record filter, and page state, instead of accessible virtualization. | Working | Exact-head rendered QA or task testing shows page navigation cannot meet find/browse/share needs, or the 50-record DOM/interaction budget regresses. | Phase 5Q.4b scale, keyboard, mobile, and performance tests; `docs/DESIGN_SYSTEM.md` |
 
 ## Decisions requiring founder input
 
@@ -56,3 +57,21 @@ Documents/code updated: `docs/DECISIONS.md`,
 `docs/EXPLORATION_STRATEGY.md`, and `docs/AGENT_HANDOFF.md`.
 
 Next review trigger: the individual decision rows above.
+
+### 2026-08-05 — D013 selected for the Explore route candidate
+
+Evidence: the 5Q.4a baseline measured 3,543 mounted rows and 4,423 focusable
+elements. The 5Q.4b candidate bounds each result page to 50 native table/list
+records, preserves deterministic entity links, serializes all consequential
+state, and passes focused first/middle/last/empty/filtered, keyboard, mobile,
+target, contrast, and sub-200ms search checks locally.
+
+Consequences: Explore does not adopt an accessibility-sensitive virtualization
+layer or retain the now-unused table runtime. This choice does not prescribe
+pagination for Timeline, Evolution, Migration, or Lineage.
+
+Documents/code updated: `web/src/app/explore/`, focused unit/browser tests,
+`docs/ROADMAP.md`, `docs/PHASE_5_PLAN.md`, `docs/DESIGN_SYSTEM.md`,
+`docs/ARCHITECTURE.md`, `docs/CLAIM_REGISTER.md`, and this log.
+
+Next review trigger: exact-head Preview visual QA and real reader task evidence.
