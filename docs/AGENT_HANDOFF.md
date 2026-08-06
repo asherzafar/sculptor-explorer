@@ -253,11 +253,39 @@ Passed locally on `codex/phase-5q4b-landing-hotfix` from exact base
   `Unexpected end of JSON input`/unfinished-RSC flake; the affected existing
   movement-link journey passed alone, under CI conditions, and in the clean
   ordinary rerun. The known `NO_COLOR`/`FORCE_COLOR` warning remains log noise.
+- Draft PR #25 opened at
+  `https://github.com/asherzafar/sculptor-explorer/pull/25` from first head
+  `81b9aaba2172dd258467d4cd3e045e92692caa13`. Its Git-integrated Vercel
+  Preview `dpl_856x7SmuennGGiBQKA6ag6Nz3Zxs` reached `READY` at
+  `https://sculptor-explorer-oq3q6nosp-asherzafars-projects.vercel.app` from
+  that exact branch/SHA, and the repository canonical/missing-route probe
+  returned the required 200/404 contract.
+- Read-only first-head Preview QA covered first, middle, last, empty, invalid,
+  and filtered states at 1440×900 and 390×844. All 12 states had zero page
+  overflow, clipped product elements, or sub-24px targets; visible focusables
+  peaked at 83 desktop and 76 mobile. Source, scope, snapshot, and limits
+  remained visible; the skip link landed on main content; and the search field
+  exposed a 3px solid focus outline with 3px offset. Sequential “Auguste Rodin”
+  entry, URL/back/forward/reload, the deterministic sculptor link, missing-last
+  movement boundaries in both sort directions, and Johann Philipp Mihm’s
+  mobile `1800–—` value all passed. The exact Preview’s 14 Explore journeys,
+  including Axe, text spacing, forced colors, reduced motion, target/contrast,
+  bounded-focusable, data-weight, and latency checks, passed.
+- The stable Preview inspection produced no console warnings/errors, page
+  errors, or HTTP error responses. Next canceled speculative route/detail
+  prefetches with `net::ERR_ABORTED` as the harness changed state; document and
+  data requests did not fail. A broader remote run passed 18/21 and exposed
+  three untouched Timeline/Migration/Lineage URL-control timing failures. The
+  same three tests reproduced against immutable current production
+  `dpl_3W5dDYtmb5FaQLUrQHU6Kj8SsYyB` (Migration passed on retry there), while
+  all 21 pass locally; they predate this hotfix and remain outside its explicit
+  route scope.
 
 Exact-head GitHub checks, a `READY` Vercel Preview, read-only rendered QA,
 review conversations, and clean source-control reconciliation remain the
-publishing/review gates until the candidate is pushed. Preview evidence from
-PR #24 is historical and cannot close this hotfix.
+publishing/review gates for the final docs-only evidence head. Evidence from
+the first hotfix head and from PR #24 is historical and cannot close that
+final head.
 
 Historical PR #24 implementation evidence follows. It passed locally on
 `codex/phase-5q4b-explore-slice` from exact base
