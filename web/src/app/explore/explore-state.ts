@@ -59,7 +59,7 @@ const collator = new Intl.Collator("en", {
   sensitivity: "base",
 });
 
-function normalizeQuery(value: string): string {
+export function normalizeExploreQuery(value: string): string {
   return value.trim().slice(0, 120);
 }
 
@@ -83,7 +83,7 @@ export function parseExploreSearchParams(
   }
 
   const rawQuery = searchParams.get("q") ?? "";
-  const query = normalizeQuery(rawQuery);
+  const query = normalizeExploreQuery(rawQuery);
   if (rawQuery !== query) hadInvalidParameters = true;
 
   const rawSort = searchParams.get("sort");
@@ -122,7 +122,7 @@ export function parseExploreSearchParams(
 
 export function serializeExploreState(state: ExploreUrlState): string {
   const params = new URLSearchParams();
-  const query = normalizeQuery(state.query);
+  const query = normalizeExploreQuery(state.query);
   if (query) params.set("q", query);
   if (state.sort !== defaultExploreState.sort) params.set("sort", state.sort);
   if (state.filter !== defaultExploreState.filter) {
@@ -205,7 +205,15 @@ export function applyExploreState(
       );
     })
     .toSorted((left, right) => {
-      const primary = compareNullable(left[field], right[field], direction);
+      const leftValue =
+        field === "movement" && !hasRecordedMovement(left)
+          ? null
+          : left[field];
+      const rightValue =
+        field === "movement" && !hasRecordedMovement(right)
+          ? null
+          : right[field];
+      const primary = compareNullable(leftValue, rightValue, direction);
       if (primary !== 0) return primary;
       const byName = collator.compare(left.name, right.name);
       if (byName !== 0) return byName;

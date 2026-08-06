@@ -1,7 +1,7 @@
 # Public Claim Register
 
-**Status:** Current-production review  
-**Reviewed:** 2026-08-05
+**Status:** Current production plus landing-hotfix review
+**Reviewed:** 2026-08-06
 **Applies to:** Release `2026-08-02.2`, methodology `A.3`
 
 This register is the maintainable audit behind the charter requirement that
@@ -15,7 +15,7 @@ deeper audit.
 | Surface | Claim actually supported | Source | Scope/denominator | Missingness and interpretation shown beside it |
 |---|---|---|---|---|
 | Timeline | Lifespans of a curated focus roster | Focus CSV; matched Wikidata metadata | 48 focus sculptors | NSS/American figurative emphasis; not a global survey; color is birth decade, not importance |
-| Explore | URL-shareable name search, source-field sorting, and recorded-movement-presence filtering over the published roster; pagination changes presentation, not scope | Wikidata plus explicit overrides | 3,543 published of 6,710 analytically eligible candidates after one evidence-backed exclusion from 6,711 source candidates; 50 records per page | Search covers display/native names, not every field; “recorded movement” means a non-missing P135 display value, not verified membership; movement coverage is 962/3,543; sparse movement labels remain text rather than dead aggregate links; labels are source assertions |
+| Explore | URL-shareable name search, source-field sorting, and recorded-movement-presence filtering over the published roster; pagination changes presentation, not scope | Wikidata plus explicit overrides | 3,543 published of 6,710 analytically eligible candidates after one evidence-backed exclusion from 6,711 source candidates; 50 records per page | Search covers display/native names, not every field; sequential input keeps word boundaries while shared URLs stay canonical; “recorded movement” means a non-missing P135 display value, not verified membership; 2,581 missing movement values render as — and sort after recorded labels; null death years remain unknown rather than implying living status; sparse movement labels remain text rather than dead aggregate links; labels are source assertions |
 | Evolution—geography | Counts by one display citizenship or recorded birth country and birth decade | Wikidata P27 or P19→P17 | All 6,710 analytically eligible candidates; Unknown remains a category | Citizenship is not identity/residence; country of birth is not later residence; top categories and Other are explicit |
 | Evolution—movement | Distribution of recorded P135 labels by birth decade | Wikidata P135 | 962 records with movement labels | 2,581 published records lack a movement label; no claim of movement membership or influence |
 | Evolution—materials | Counts of categorized, dated museum-object records | Met/AIC object metadata and medium taxonomy | 132 matched records from bounded focus-list searches | Not comparable to artist counts; not representative of overall practice or collections |

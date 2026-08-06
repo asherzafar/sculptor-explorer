@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Explore route candidate in review (August 2026)
+## Current status: Explore landing hotfix in review (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -22,7 +22,7 @@ institution edges now share the temporal envelope contract, and
 `/transparency` reports coverage, confidence, skipped intersections,
 and educational concentration.
 
-The Getty detail contract is also repaired in the current release candidate.
+The Getty detail contract is repaired on protected `main`.
 The final pipeline stage now validates the full-record/shard base, preserves
 the shard-only `works` extension, and writes one identical `gettyVerified`
 block to both surfaces. The current 3,543-record snapshot contains 2,310
@@ -30,14 +30,21 @@ Getty-enriched records in the monolith and the same 2,310 detail shards; the
 audit denominator was regenerated after the `Q87366` exclusion instead of
 retaining the stale 2,311-record figure.
 
-The Phase 5Q.4b Explore candidate now replaces the unbounded 3,543-row
-catalogue with 50-record semantic pages, deterministic URL state for query,
-sort, movement-record filter, and page, plus a task-equivalent mobile list.
-It also introduces the one intentional cross-route behavior in this slice: a
-shared skip link, with stronger focus treatment on shared navigation. The
-candidate remains inside the 5Q gate until exact-head CI, READY Preview,
-rendered desktop/390px QA, review-conversation, and merge/production landing
-evidence agree; Timeline and dense analytical routes have not been changed.
+PR #24 merged the Phase 5Q.4b Explore slice as
+`8633902fa01d02f72e325c53944780b40b219ec8`, replacing the unbounded
+3,543-row catalogue with 50-record semantic pages, deterministic URL state for
+query, sort, movement-record filter, and page, plus a task-equivalent mobile
+list. It also introduced the one intentional cross-route behavior in this
+slice: a shared skip link, with stronger focus treatment on shared navigation.
+The exact-merge default-branch validation, Vercel production deployment, and
+public route probes passed, but a review submitted after the merge found three
+confirmed Explore defects: sequential multi-word typing lost spaces, missing
+movement sentinels sorted as the literal letter-N label, and the mobile list
+inferred “present” from an unknown death year. The bounded landing-hotfix
+candidate corrects only those behaviors and adds their regressions. Keep the
+route inside the 5Q gate until the hotfix has its own exact-head CI, READY
+Preview, rendered desktop/390px QA, review, merge, and production evidence;
+Timeline and dense analytical routes remain unchanged.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -70,7 +77,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
 | Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
 | Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
-| Now | **5Q.4b Explore route review** | Validate the implemented 50-record semantic pagination, deterministic URL contract, mobile equivalence, shared skip link, accessible targets/contrast, and bounded interaction costs on the exact candidate head. |
+| Now | **5Q.4b Explore landing hotfix** | Validate preserved sequential multi-word typing, missing-last movement sorting, and explicit unknown death years without regressing the implemented pagination, URL, mobile, accessibility, or performance contracts. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -471,11 +478,16 @@ major visual dimension.
 
 ##### 5Q.4b — End-to-end route slices
 
-- [ ] Close **Explore**: the current candidate implements URL-backed
+- [ ] Close **Explore**: PR #24 put URL-backed
   query/sort/movement-record-filter/page state, 50-record semantic pagination,
   mobile list equivalence, deterministic movement/sculptor routes, and fast
-  find/share tests. Keep this unchecked until exact-head Preview/visual QA,
-  required checks, review, merge, and production landing all pass.
+  find/share tests into production. A post-merge review then confirmed three
+  defects; the current landing hotfix preserves spaces during sequential
+  multi-word entry while keeping the shared URL canonical, sorts missing
+  movement values after recorded labels in both directions, and renders null
+  death years as unknown on mobile. Keep this unchecked until the hotfix’s
+  exact-head Preview/visual QA, required checks, review, merge, and production
+  landing all pass.
 - [ ] Continue with **Timeline**: make the project-origin lifespan view legible on mobile and at zoom, with a structured equivalent and verified sort/share behavior.
 - [ ] Review the dense **Lineage/Migration** family: overview/focus/details, denominators and uncertainty, keyboard/text equivalents, reduced motion, and measured graph/interaction budgets.
 - [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
@@ -483,7 +495,7 @@ major visual dimension.
 - [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
 - [ ] Replace unexplained density with overview → focus/filter → details on demand. Test lineage labels/legends, temporal confidence, and migration denominators for comprehension.
 - [ ] Make ordinary discovery/detail journeys usable on mobile; provide an explicit simplified list/summary for dense charts rather than clipping.
-- [ ] Land the candidate that paginates Explore instead of mounting all
+- [ ] Land the corrected candidate that paginates Explore instead of mounting all
   included rows and moves consequential query/sort/filter/page state into the
   URL; semantic pagination was selected over virtualization so native table and
   list structure, browser navigation, and bounded focus order remain intact.

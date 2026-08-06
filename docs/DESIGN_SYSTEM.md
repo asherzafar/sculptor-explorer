@@ -254,6 +254,11 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
   the URL as `q`, `sort`, `filter`, and `page`. Omit default values, serialize
   non-default values in that order, reset changed queries/sorts/filters to page
   one, and visibly canonicalize invalid or out-of-range shared links.
+- Keep result state sourced from that canonical URL while permitting an
+  ephemeral input draft to preserve insignificant leading/trailing whitespace
+  during active sequential typing. Canonicalize the draft on blur and before
+  serialization so word boundaries are never lost and shared URLs remain
+  deterministic.
 - Keep search as the first find action. Place source, scope, snapshot, and
   limits immediately after the controls so disclosure stays visible without
   delaying name finding.
@@ -264,7 +269,10 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Used in explore view, sculptor detail page, and evolution focus sculptor list
 - Layout: vertical stack. No border on the card itself. Hover: subtle `--bg-secondary` background.
 - **Name:** Fraunces (display), `--text-lg`, `--text-primary`. Clicking anywhere on the card navigates to `/explore/{qid}`.
-- **Lifespan line:** `1911 – 2010` or `1946 – present` if `alive`. Sans, `--text-sm`, `--text-secondary`.
+- **Lifespan line:** `1911 – 2010` or `1946 – present` only when the consumed
+  source contract explicitly says `alive`. A null death year without that
+  field is unknown and renders as `—`; the Explore index must not infer living
+  status. Sans, `--text-sm`, `--text-secondary`.
 - **Movement pill:** small pill badge with `--accent-muted` background and `--accent-primary` text. Apply the display formatter (see Capitalization Standards below). List/card summaries may omit a missing movement; the detail page explicitly discloses the source gap. Never render the pipeline sentinel “No movement listed.” A sparse real label remains plain text when no aggregate route exists.
 - **Citizenship + gender:** inline, `--text-sm`, `--text-secondary`, separated by · (centered dot)
 - **Connections count:** only show if > 0. Format: `{n} connections`. If 0: omit. Zero connections is a data gap, not a fact worth displaying.
@@ -454,6 +462,9 @@ Wikidata movement labels are inconsistently cased: `abstract art`, `Expressionis
 - **Name column:** `text-accent-primary` + `hover:underline` + `cursor-pointer`. The only cell that links out — make it obvious.
 - **Zebra striping:** alternate row backgrounds `--bg-primary` / `--bg-card`. Subtle — 2-3% luminance difference. No row borders.
 - **"No movement listed"** strings from the pipeline must not appear. Show `—` (em dash) for any empty/null/"No X listed" values. Pipe this through a display utility, not ad-hoc in components.
+- **Missing-value sorting:** normalize the movement sentinel into the shared
+  missing-value comparator. Missing movement values sort after recorded labels
+  for both A–Z and Z–A rather than occupying a misleading letter-N block.
 - **Decade column format:** `1920s` not `1920`. Already correct but confirm consistently.
 
 ### Chart interaction affordances
