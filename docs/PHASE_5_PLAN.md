@@ -5,17 +5,21 @@
 > route review are the active bounded implementation gate. PR #24 merged the
 > Explore 5Q.4b URL-backed query/sort/movement-record-filter/page state, fixed
 > 50-record semantic pagination, responsive equivalent list, and shared skip
-> link as `8633902fa01d02f72e325c53944780b40b219ec8`; exact-merge CI,
-> production, and route probes passed. A post-merge review then confirmed that
-> ordinary multi-word typing lost spaces, missing movement sentinels sorted as
-> literal text, and the mobile list inferred “present” from a null death year.
-> The bounded landing-hotfix candidate changes only those three behaviors and
-> adds focused regressions. Explore remains unlanded as a completed route slice
-> until the hotfix’s exact-head CI, Preview, rendered QA, review, merge, and
-> production gates pass. The verified
-> branch/CI/Vercel workflow and same-head-verified Node 24 repository alignment
-> in `docs/ROADMAP.md` are small release enablers before the next route code
-> slice. They do not reopen feature densification. Complete Phase 5Q
+> link as `8633902fa01d02f72e325c53944780b40b219ec8`. A post-merge review found
+> that ordinary multi-word typing lost spaces, missing movement sentinels sorted
+> as literal text, and the mobile list inferred “present” from a null death
+> year. PR #25 changed only those three behaviors, added focused regressions,
+> and merged reviewed head `d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7`
+> as `c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Exact-head review and Preview
+> QA passed; default-branch Actions run `31193771731` then passed the full gate
+> and 21 browser journeys. Vercel production deployment
+> `dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61` is `READY` from that exact merge SHA, and
+> canonical/missing-route probes passed. The retained PR #24/#25 branches and
+> worktrees are clean. Explore is therefore closed as the first 5Q.4b route
+> slice; Timeline is the next route-specific review and no other analytical
+> route behavior changed. The verified branch/CI/Vercel workflow and
+> same-head-verified Node 24 repository alignment in `docs/ROADMAP.md` remain
+> release enablers rather than feature work. Complete Phase 5Q
 > in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The later phases
 > in this document are researched hypotheses, not commitments; re-score
 > them against `docs/PROJECT_CHARTER.md` using the product, data,

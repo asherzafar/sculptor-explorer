@@ -100,3 +100,29 @@ Documents/code updated: `web/src/app/explore/`, focused unit/browser tests,
 
 Next review trigger: exact-head hotfix CI and Preview QA, then real reader task
 evidence before this pagination pattern is propagated.
+
+### 2026-08-07 — D013 retained after the PR #25 production landing
+
+Evidence: PR #25 passed required `validate` and Vercel checks at reviewed head
+`d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7`, including a `READY` exact-SHA
+Preview and desktop/390px rendered replay. It then merged as
+`c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Default-branch Actions run
+`31193771731` passed the full validation and 21 browser journeys; Git-backed
+Vercel production deployment `dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61` reached
+`READY` from that exact merge, and canonical routes returned 200 while the
+missing-route probe returned 404. Review conversations were resolved, and the
+retained task branches/worktrees were clean.
+
+Consequences: close Explore as the first Phase 5Q.4b route slice. Keep D013
+working rather than accepted until real-reader find/browse/share evidence is
+available; do not propagate fixed pagination mechanically to Timeline or the
+dense analytical routes. Timeline is the next independent route-slice review.
+
+Documents/code updated: production behavior and regressions landed in PR #25;
+`docs/ROADMAP.md`, `docs/PHASE_5_PLAN.md`, `docs/DESIGN_SYSTEM.md`,
+`docs/CLAIM_REGISTER.md`, `docs/AGENT_HANDOFF.md`, and this log record the
+verified closeout.
+
+Next review trigger: real reader task evidence or a measured regression in
+find/share success, native page semantics, bounded focus order, or the
+50-record interaction/performance budget.

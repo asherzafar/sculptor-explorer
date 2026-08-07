@@ -263,6 +263,18 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
   limits immediately after the controls so disclosure stays visible without
   delaying name finding.
 
+**Explore evidence status (verified 2026-08-07).** The fixed-pagination pattern
+above is production-verified for Explore only. PR #25 closed sequential
+multi-word entry, missing-last movement sorting, and null-death mobile-summary
+defects at reviewed head `d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7`, then
+merged as `c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Exact-head rendered QA,
+default-branch Actions run `31193771731`, Git-backed `READY` Vercel production
+deployment `dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61`, and canonical/missing-route
+probes passed. This earns the semantic table/list, URL, focus, target,
+contrast, and mobile patterns for the Explore route; it does not prescribe
+pagination or substitute content for Timeline or the dense analytical routes.
+Real-reader task evidence remains the trigger for broader reuse.
+
 ## Components
 
 ### Sculptor Card

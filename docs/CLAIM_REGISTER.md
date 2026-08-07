@@ -1,14 +1,22 @@
 # Public Claim Register
 
-**Status:** Current production plus landing-hotfix review
-**Reviewed:** 2026-08-06
-**Applies to:** Release `2026-08-02.2`, methodology `A.3`
+**Status:** Current production; Explore landing verified
+**Reviewed:** 2026-08-07
+**Applies to:** Production `main@c22cba075ef36373f635d114ffa2d6f3d9ca17f9`, data release `2026-08-02.2`, methodology `A.3`
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
 missingness. Public analytical routes use the shared `DataScopeNote` component
 for the snapshot stamp and route-specific evidence; Transparency carries the
 deeper audit.
+
+PR #25 verified the Explore row below at reviewed head
+`d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7` and production merge
+`c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Default-branch Actions run
+`31193771731`, exact-SHA `READY` Vercel production deployment
+`dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61`, and canonical/missing-route probes passed.
+The hotfix changed no claim denominator, source field, or analytical behavior
+outside Explore.
 
 ## Route and claim audit
 
