@@ -1,6 +1,6 @@
 # Agent Handoff
 
-**Verified:** 2026-08-05
+**Verified:** 2026-08-06
 
 **Purpose:** Current agent-neutral continuation state. The evidence behind the roadmap reset is in `docs/PROJECT_AUDIT_2026-08-02.md`; historical 5b.3–5b.4 implementation detail remains in `docs/CODEX_HANDOFF.md`.
 
@@ -18,26 +18,31 @@ canonical root gate now includes both the committed-data parity checks and a
 focused standard-library final-writer regression suite.
 
 Protected `main` is now
-`39a52ac45968379a01e6fedb5897aca80cf85ede`: PR #23 landed the Getty repair as
-that exact merge commit after PR #22. Default-branch Actions run `31052625912`
-completed successfully, and Vercel production deployment
-`dpl_GGjRVRufKc44bwiAmVtvXUMtfqMn` is `READY` from the same SHA; canonical
-routes return 200 and the missing-route probe returns 404. Preflight also
-confirmed that `codex/local-wip-audit-2026-08-02` and
-`codex/getty-shard-contract-repair` are absent from local and remote branch
-inventories.
+`8633902fa01d02f72e325c53944780b40b219ec8`: PR #24 merged the Explore slice
+at exact head `f7b220788e83a36f5583cd645a740ff6c9706789` after PR #23. Default-branch
+Actions run `31119230390` completed successfully on attempt 2 after attempt 1
+timed out without receiving a runner. Vercel production deployment
+`dpl_3W5dDYtmb5FaQLUrQHU6Kj8SsYyB` is `READY` from the exact merge SHA at
+`https://sculptor-explorer-poxhnj3o7-asherzafars-projects.vercel.app`;
+canonical and immutable route probes return 200 for the public routes and 404
+for the missing-route probe. The existing Git integration produced the
+deployment; no manual promotion or provider mutation occurred. The merged
+Explore branch and worktree remain retained and clean.
 
-The current bounded candidate is `codex/phase-5q4b-explore-slice`, based
-exactly on that protected-main commit. It changes Explore from an unbounded
-3,543-row catalogue to 50-record semantic pages; makes query, sort,
-movement-record filter, and page deterministic in the URL; supplies an
-equivalent 390px list; preserves sculptor and movement link contracts; and
-adds the sole intentional cross-route behavior, a shared skip link. Shared
-navigation receives only the related target/focus treatment. Timeline,
-Evolution, Migration, and Lineage analytical state, charts, and mobile
-substitutes remain unchanged. This is a review candidate, not a landed route
-slice; exact-head CI, READY Preview, rendered QA, review, merge, and production
-proof remain gates.
+A Codex review submitted three minutes after PR #24 merged identified three
+confirmed production defects: sequential multi-word typing collapsed spaces,
+the 2,581 pipeline movement sentinels sorted as a literal letter-N block, and
+the 390px list inferred “present” from a null death year. The current bounded
+candidate is `codex/phase-5q4b-landing-hotfix`, based exactly on the protected
+merge commit above. It preserves an ephemeral whitespace draft only while the
+search field is being edited while keeping result state and shared URLs
+canonical; sends the movement sentinel through the existing missing-last
+comparator in both directions; and renders an unknown death year as `—` on
+mobile. Focused unit and browser regressions cover those boundaries. It does
+not change pagination, filters, link destinations, shared navigation, or any
+Timeline, Evolution, Migration, or Lineage behavior. Explore remains an open
+5Q.4b route slice until this hotfix passes exact-head CI, READY Preview,
+rendered QA, review, merge, and production proof.
 
 Phase 5Q—the product clarity and quality gate—is active before 5b.6
 movements-as-nodes, 5c time-coded lineage, or 5d career Sankey. The 5Q.4a
@@ -57,12 +62,13 @@ The 5Q.4a baseline itself changed no production code. It confirmed P1 systemic
 contextual contrast, missing structured chart equivalents, undersized target
 patterns, Explore’s 4,423-focusable/196,386px catalogue, missing Evolution/
 Migration/Lineage mobile equivalents, a Migration Space-key failure, and
-Timeline mobile correlation failure. The current candidate addresses only the
-Explore catalogue/contrast/target/mobile/state findings and the shared skip
-link. Evolution negative-width errors, sculptor-detail ARIA/image shift, dense
+Timeline mobile correlation failure. PR #24 addressed only the Explore
+catalogue/contrast/target/mobile/state findings and the shared skip link; the
+current hotfix closes only its three post-merge boundary defects. Evolution
+negative-width errors, sculptor-detail ARIA/image shift, dense
 chart equivalents, Timeline issues, actual zoom/screen-reader evidence, and
 reader comprehension remain separate work. Explore patterns are not earned for
-reuse until the candidate passes review and landing. User evidence in 5Q.5 and
+reuse until the hotfix passes review and landing. User evidence in 5Q.5 and
 the Phase 5R strategic workshop still precede a major new public phase.
 
 The release stack is integrated. PRs
@@ -86,7 +92,16 @@ PR #23 then landed the Getty final-record repair on exact merge commit
 `39a52ac45968379a01e6fedb5897aca80cf85ede`. Default-branch Actions run
 `31052625912` passed, Vercel production deployment
 `dpl_GGjRVRufKc44bwiAmVtvXUMtfqMn` is `READY` from that merge, and the public
-HTTP contract passed. This exact commit is the base for the Explore candidate.
+HTTP contract passed. This exact commit was the base for PR #24.
+
+PR #24 then merged the Explore slice as exact merge commit
+`8633902fa01d02f72e325c53944780b40b219ec8` from reviewed head
+`f7b220788e83a36f5583cd645a740ff6c9706789`. Required PR checks and Preview
+passed, default-branch Actions run `31119230390` succeeded on the exact merge,
+Vercel production deployment `dpl_3W5dDYtmb5FaQLUrQHU6Kj8SsYyB` reached
+`READY` from that SHA, and canonical/immutable route probes passed. The late
+automated review findings above prevent the route slice from being recorded as
+closed until the bounded hotfix lands through the same gates.
 
 After that release stack, the dependency queue landed sequentially as PRs #17,
 #13, #15, #14, #18, #19, #12, #10, and #8, followed by focused transitive
@@ -159,11 +174,13 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   the audit, output count, ULAN identifiers/URLs, agreement schema, and
   shard-only works preservation are repository invariants.
 - Production build, TypeScript, zero-warning lint, data contracts, and bounded
-  performance checks pass on the protected base. The Explore candidate expands
-  browser coverage from seven to 19 journeys, including deterministic URL
+  performance checks pass on the protected base. PR #24 expanded browser
+  coverage beyond the seven core journeys, including deterministic URL
   defaults/round trips, invalid states, page combinations, shared skip behavior
   on all route types, responsive equivalence, exact movement/sculptor links,
-  target/contrast measurement, bounded focusables, and interaction timing.
+  target/contrast measurement, bounded focusables, and interaction timing; the
+  hotfix adds sequential typing and missing-last movement-sort regressions and
+  strengthens the responsive equivalence assertion for unknown death years.
   GitHub Actions still defines the non-browser root gate and explicit browser
   gate; the verified build generates 3,625 static pages.
 - The Vercel project reports Node `24.x`. The focused continuation declares
@@ -174,13 +191,13 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   passes with no unresolved feedback.
 - The current static export is large: approximately 228 MB and 36,201 files, driven mainly by per-sculptor pages/assets.
 - Default lineage performance is acceptable but has little expansion headroom: roughly 1.68 s current, 2.26 s with institutions, 2.09 s with movements, and 3.72 s in the stress scenario on the audit machine.
-- The exact-main visual baseline records that production Explore mounts all
-  3,543 rows, exposes 4,423 focusables, and renders a 781px-wide/196,386px-high
-  table in a 358px mobile scroller while keeping search/sort state outside the
-  URL. The candidate instead mounts 50 desktop rows plus 50 hidden responsive
-  list records, keeps visible focusables below 150, and serializes query, sort,
-  movement-record filter, and page. Treat those as candidate evidence until
-  exact-head Preview QA and landing.
+- The dated exact-main visual baseline records the pre-PR-#24 Explore state:
+  3,543 mounted rows, 4,423 focusables, a 781px-wide/196,386px-high mobile
+  scroller, and local-only search/sort state. Current production now mounts 50
+  desktop rows plus 50 hidden responsive list records, keeps visible focusables
+  below 150, and serializes query, sort, movement-record filter, and page. The
+  hotfix retains those contracts while closing the three late review findings;
+  treat the pattern as unearned for reuse until hotfix Preview QA and landing.
 - Evolution, Migration, and Lineage are desktop-only analytical experiences at
   390px; each is replaced by a notice with links to other routes. All four chart
   families still lack a structured keyboard/screen-reader equivalent.
@@ -207,17 +224,71 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 - The 5Q.4a Axe baseline found repeated contextual contrast failures (2,378
   nodes on old Explore), six prohibited ARIA labels on detail completeness
   dots, a non-focusable mobile Timeline scroller, and four movement target-size
-  failures. The Explore candidate uses the AA darker Verdigris context and
-  ≥24px targets; exact Preview Axe/forced-color/measurement review must confirm
-  the route-specific improvement. Non-Explore findings remain open. No P0 was
-  found in the baseline.
+  failures. PR #24 uses the AA darker Verdigris context and ≥24px targets; its
+  exact Preview Axe/forced-color/measurement review passed. The landing hotfix
+  changes no styling but must repeat exact-head rendered evidence. Non-Explore
+  findings remain open. No P0 was found in the baseline.
 - Actual 200% browser zoom and spoken screen-reader output remain explicitly
   unobserved. The in-app zoom/Tab surface did not expose those operations;
   viewport resizing and source inspection are not substitutes.
 
 ## Validation state at this handoff
 
-Passed locally on `codex/phase-5q4b-explore-slice` from exact base
+Passed locally on `codex/phase-5q4b-landing-hotfix` from exact base
+`8633902fa01d02f72e325c53944780b40b219ec8` with Node 24.14.0 and npm
+11.9.0:
+
+- `npm ci` — 705 locked packages installed (706 audited), with only the known
+  `node-domexception` deprecation and zero vulnerabilities
+- `npm run test:e2e -- tests/e2e/explore-slice.spec.ts` — all 14 focused
+  Explore journeys passed, including sequential multi-word entry and URL
+  navigation, missing-last movement sorting in both directions, explicit mobile
+  unknown years, accessibility, scale, and interaction budgets
+- `./scripts/validate.sh` — all data/Getty/institution/relationship/temporal
+  contracts, seven Explore state unit tests, zero-warning lint, type checking,
+  the 3,625-route production build, and CI lineage bounds passed
+- `cd web && npm run test:e2e` — all 21 Chromium journeys passed with eight
+  workers; the matching one-worker CI configuration also passed all 21. Two
+  earlier parallel attempts reproduced the already recorded Next dev-server
+  `Unexpected end of JSON input`/unfinished-RSC flake; the affected existing
+  movement-link journey passed alone, under CI conditions, and in the clean
+  ordinary rerun. The known `NO_COLOR`/`FORCE_COLOR` warning remains log noise.
+- Draft PR #25 opened at
+  `https://github.com/asherzafar/sculptor-explorer/pull/25` from first head
+  `81b9aaba2172dd258467d4cd3e045e92692caa13`. Its Git-integrated Vercel
+  Preview `dpl_856x7SmuennGGiBQKA6ag6Nz3Zxs` reached `READY` at
+  `https://sculptor-explorer-oq3q6nosp-asherzafars-projects.vercel.app` from
+  that exact branch/SHA, and the repository canonical/missing-route probe
+  returned the required 200/404 contract.
+- Read-only first-head Preview QA covered first, middle, last, empty, invalid,
+  and filtered states at 1440×900 and 390×844. All 12 states had zero page
+  overflow, clipped product elements, or sub-24px targets; visible focusables
+  peaked at 83 desktop and 76 mobile. Source, scope, snapshot, and limits
+  remained visible; the skip link landed on main content; and the search field
+  exposed a 3px solid focus outline with 3px offset. Sequential “Auguste Rodin”
+  entry, URL/back/forward/reload, the deterministic sculptor link, missing-last
+  movement boundaries in both sort directions, and Johann Philipp Mihm’s
+  mobile `1800–—` value all passed. The exact Preview’s 14 Explore journeys,
+  including Axe, text spacing, forced colors, reduced motion, target/contrast,
+  bounded-focusable, data-weight, and latency checks, passed.
+- The stable Preview inspection produced no console warnings/errors, page
+  errors, or HTTP error responses. Next canceled speculative route/detail
+  prefetches with `net::ERR_ABORTED` as the harness changed state; document and
+  data requests did not fail. A broader remote run passed 18/21 and exposed
+  three untouched Timeline/Migration/Lineage URL-control timing failures. The
+  same three tests reproduced against immutable current production
+  `dpl_3W5dDYtmb5FaQLUrQHU6Kj8SsYyB` (Migration passed on retry there), while
+  all 21 pass locally; they predate this hotfix and remain outside its explicit
+  route scope.
+
+Exact-head GitHub checks, a `READY` Vercel Preview, read-only rendered QA,
+review conversations, and clean source-control reconciliation remain the
+publishing/review gates for the final docs-only evidence head. Evidence from
+the first hotfix head and from PR #24 is historical and cannot close that
+final head.
+
+Historical PR #24 implementation evidence follows. It passed locally on
+`codex/phase-5q4b-explore-slice` from exact base
 `39a52ac45968379a01e6fedb5897aca80cf85ede` with Node 24.14.0 and npm
 11.9.0:
 
@@ -246,11 +317,6 @@ Passed locally on `codex/phase-5q4b-explore-slice` from exact base
   force-cost breakdown completed. No graph code or behavior changed.
 - `npm audit` and `npm audit --omit=dev` — zero vulnerabilities
 - `git diff --check` — passed
-
-The exact-head GitHub checks, READY Vercel Preview, read-only rendered QA,
-review conversations, and clean source-control reconciliation are still
-publishing/review gates at this point in the committed handoff. They must be
-resolved from the final remote head rather than inferred from local results.
 
 Passed locally on `codex/getty-shard-contract-repair` with Node 24.14.0 and
 npm 11.9.0:
@@ -408,11 +474,12 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Finish exact-head review of the current Explore candidate: required checks,
-   READY Preview, desktop/390px rendered QA, conversations, and separately
-   authorized merge/production landing. Only after it lands, continue route
-   slices in order with Timeline, dense Lineage/Migration, then propagate earned
-   patterns.
+1. Finish exact-head review of `codex/phase-5q4b-landing-hotfix`: required
+   checks, READY Preview, desktop/390px rendered QA of sequential multi-word
+   entry, movement missing-last sorting, explicit mobile unknown years, and the
+   unaffected Explore gates. Merge and production landing require separate
+   exact-PR-head approval. Only after the hotfix lands may the Explore route be
+   closed or another route slice begin.
 2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, reduced-motion, and comprehension protocols at the relevant route
    gate; do not backfill them as automated evidence.
@@ -424,17 +491,17 @@ Cloudflare resources without a new post-retention review and explicit approval.
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded task seed — review and land Phase 5Q.4b Explore
+### Next bounded task seed — review and land the Phase 5Q.4b hotfix
 
 > Continue Sculpture in Data Phase 5Q.4b on the existing
-> `codex/phase-5q4b-explore-slice` draft PR. Re-read its exact head, required
+> `codex/phase-5q4b-landing-hotfix` draft PR. Re-read its exact head, required
 > checks, review conversations, and READY Preview source SHA; do not use older
-> Preview evidence. Review the Explore first/middle/last/empty/invalid/filtered
-> states at desktop and 390px, including keyboard/skip/focus, targets/spacing,
-> contrast, Axe, forced colors, reduced motion, console/network failures,
-> responsive equivalence, and controlled performance. Fix confirmed defects on
-> the same branch and repeat exact-head checks/Preview QA. Mark ready and merge
-> only with separate approval naming the exact PR head and only after all
+> Preview evidence. Confirm sequential “Auguste Rodin” entry, canonical URL and
+> navigation round trips, missing-last movement sorting in both directions, and
+> the 390px unknown-death rendering, then review the unaffected Explore
+> accessibility/mobile/scale/performance gates. Fix confirmed defects on the
+> same branch and repeat exact-head checks/Preview QA. Mark ready and merge only
+> with separate approval naming the exact PR head and only after all
 > branch-protection gates pass. After merge, verify default-branch Actions,
 > exact-SHA READY production, canonical/missing-route probes, and reconciliation;
 > do not delete branches/worktrees or start Timeline in the same task.

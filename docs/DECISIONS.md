@@ -74,4 +74,29 @@ Documents/code updated: `web/src/app/explore/`, focused unit/browser tests,
 `docs/ROADMAP.md`, `docs/PHASE_5_PLAN.md`, `docs/DESIGN_SYSTEM.md`,
 `docs/ARCHITECTURE.md`, `docs/CLAIM_REGISTER.md`, and this log.
 
-Next review trigger: exact-head Preview visual QA and real reader task evidence.
+Next review trigger: exact-head landing-hotfix Preview visual QA and real reader
+task evidence.
+
+### 2026-08-06 — D013 retained after the PR #24 landing review
+
+Evidence: PR #24 merged the fixed 50-record semantic pagination architecture as
+`8633902fa01d02f72e325c53944780b40b219ec8`; its default-branch validation,
+exact-SHA Vercel production deployment, and route probes passed. A Codex review
+submitted after the merge identified three reproducible boundary defects in
+the route state and responsive summary, not a failure of the pagination
+decision: sequential multi-word typing lost spaces, the pipeline movement
+sentinel sorted as visible text, and a null death year became “present” on
+mobile.
+
+Consequences: retain D013 and the canonical URL as the source of result state.
+Use only an ephemeral input draft for insignificant whitespace during active
+editing; canonicalize it on blur and in shared URLs. Normalize the movement
+sentinel into the existing missing-value comparator, and render an unknown
+death year explicitly unless the source contract carries living status.
+
+Documents/code updated: `web/src/app/explore/`, focused unit/browser tests,
+`docs/ROADMAP.md`, `docs/PHASE_5_PLAN.md`, `docs/DESIGN_SYSTEM.md`,
+`docs/CLAIM_REGISTER.md`, `docs/AGENT_HANDOFF.md`, and this log.
+
+Next review trigger: exact-head hotfix CI and Preview QA, then real reader task
+evidence before this pagination pattern is propagated.

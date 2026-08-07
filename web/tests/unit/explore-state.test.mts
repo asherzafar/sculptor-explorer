@@ -6,6 +6,7 @@ import {
   clampExplorePage,
   createExploreHref,
   defaultExploreState,
+  normalizeExploreQuery,
   parseExploreSearchParams,
   serializeExploreState,
   toggleExploreSort,
@@ -95,6 +96,17 @@ test("valid state round-trips in a stable parameter order", () => {
   );
 });
 
+test("query serialization keeps shared URLs canonical", () => {
+  assert.equal(normalizeExploreQuery("  Auguste Rodin  "), "Auguste Rodin");
+  assert.equal(
+    serializeExploreState({
+      ...defaultExploreState,
+      query: "Auguste Rodin ",
+    }),
+    "q=Auguste+Rodin",
+  );
+});
+
 test("invalid, duplicate, unknown, and unsafe page parameters use defaults", () => {
   const parsed = parseExploreSearchParams(
     new URLSearchParams(
@@ -146,6 +158,20 @@ test("movement filtering and sorting combinations are deterministic", () => {
     filter: "without-movement",
   });
   assert.deepEqual(withoutMovement.map((sculptor) => sculptor.qid), ["Q4"]);
+  assert.deepEqual(
+    applyExploreState(sculptors, {
+      ...defaultExploreState,
+      sort: "movement-asc",
+    }).map((sculptor) => sculptor.qid),
+    ["Q1", "Q3", "Q2", "Q4"],
+  );
+  assert.deepEqual(
+    applyExploreState(sculptors, {
+      ...defaultExploreState,
+      sort: "movement-desc",
+    }).map((sculptor) => sculptor.qid),
+    ["Q2", "Q1", "Q3", "Q4"],
+  );
   assert.deepEqual(
     applyExploreState(sculptors, {
       ...defaultExploreState,

@@ -25,6 +25,7 @@ import {
   createExploreHref,
   exploreFilterOptions,
   exploreSortOptions,
+  normalizeExploreQuery,
   parseExploreSearchParams,
   toggleExploreSort,
   type ExploreSort,
@@ -64,7 +65,7 @@ function hasDistinctNativeName(sculptor: SculptorIndexEntry): boolean {
 
 function lifespan(sculptor: SculptorIndexEntry): string {
   const birth = sculptor.birthYear ?? "—";
-  const death = sculptor.deathYear ?? "present";
+  const death = sculptor.deathYear ?? "—";
   return `${birth}–${death}`;
 }
 
@@ -255,6 +256,7 @@ export function ExploreContent() {
     () => parseExploreSearchParams(new URLSearchParams(searchString)),
     [searchString],
   );
+  const [queryDraft, setQueryDraft] = useState(parsed.state.query);
   const [sculptors, setSculptors] = useState<SculptorIndexEntry[]>([]);
   const [movementPages, setMovementPages] = useState<ReadonlyMap<string, string>>(
     () => new Map(),
@@ -266,6 +268,14 @@ export function ExploreContent() {
       ? "Some shared-link options were invalid and were reset to Explore defaults."
       : null,
   );
+
+  useEffect(() => {
+    setQueryDraft((currentQuery) =>
+      normalizeExploreQuery(currentQuery) === parsed.state.query
+        ? currentQuery
+        : parsed.state.query,
+    );
+  }, [parsed.state.query]);
 
   useEffect(() => {
     let active = true;
@@ -410,9 +420,11 @@ export function ExploreContent() {
                 type="search"
                 name="q"
                 autoComplete="off"
+                maxLength={120}
                 placeholder="Search by name (diacritics optional)…"
-                value={parsed.state.query}
-                onChange={(event) =>
+                value={queryDraft}
+                onChange={(event) => {
+                  setQueryDraft(event.target.value);
                   updateState(
                     {
                       ...parsed.state,
@@ -420,17 +432,24 @@ export function ExploreContent() {
                       page: 1,
                     },
                     "replace",
-                  )
-                }
+                  );
+                }}
+                onBlur={(event) => {
+                  const query = normalizeExploreQuery(event.currentTarget.value);
+                  if (query !== event.currentTarget.value) {
+                    setQueryDraft(query);
+                  }
+                }}
                 className={`min-h-11 w-full rounded-md border border-border-axis bg-bg-primary py-2 pl-9 pr-11 text-sm text-text-primary placeholder:text-text-secondary ${focusClass}`}
               />
               {parsed.state.query ? (
                 <button
                   type="button"
                   aria-label="Clear search"
-                  onClick={() =>
+                  onClick={() => {
+                    setQueryDraft("");
                     updateState({ ...parsed.state, query: "", page: 1 })
-                  }
+                  }}
                   className={`absolute right-0 top-1/2 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center text-accent-hover hover:text-text-primary ${focusClass}`}
                 >
                   <X aria-hidden="true" className="h-4 w-4" />
@@ -536,14 +555,15 @@ export function ExploreContent() {
           action={
             <button
               type="button"
-              onClick={() =>
+              onClick={() => {
+                setQueryDraft("");
                 updateState({
                   query: "",
                   sort: "birth-asc",
                   filter: "all",
                   page: 1,
-                })
-              }
+                });
+              }}
               className={`inline-flex min-h-11 items-center px-3 text-sm font-medium text-accent-hover hover:underline ${focusClass}`}
             >
               Clear Explore filters

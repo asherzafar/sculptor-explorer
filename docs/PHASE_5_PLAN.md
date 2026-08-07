@@ -2,11 +2,17 @@
 
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
 > implemented in the current release candidate; 5Q stabilization and visual
-> route review are the active bounded implementation gate. The Explore 5Q.4b
-> candidate uses deterministic URL-backed query/sort/movement-record-filter/
-> page state, fixed 50-record semantic pagination, and a responsive equivalent
-> list; it remains unlanded until exact-head CI, Preview, rendered QA, review,
-> merge, and production gates pass. The verified
+> route review are the active bounded implementation gate. PR #24 merged the
+> Explore 5Q.4b URL-backed query/sort/movement-record-filter/page state, fixed
+> 50-record semantic pagination, responsive equivalent list, and shared skip
+> link as `8633902fa01d02f72e325c53944780b40b219ec8`; exact-merge CI,
+> production, and route probes passed. A post-merge review then confirmed that
+> ordinary multi-word typing lost spaces, missing movement sentinels sorted as
+> literal text, and the mobile list inferred “present” from a null death year.
+> The bounded landing-hotfix candidate changes only those three behaviors and
+> adds focused regressions. Explore remains unlanded as a completed route slice
+> until the hotfix’s exact-head CI, Preview, rendered QA, review, merge, and
+> production gates pass. The verified
 > branch/CI/Vercel workflow and same-head-verified Node 24 repository alignment
 > in `docs/ROADMAP.md` are small release enablers before the next route code
 > slice. They do not reopen feature densification. Complete Phase 5Q

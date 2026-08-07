@@ -147,6 +147,53 @@ test("query, sorting, filtering, reload, back, and forward preserve results", as
   );
 });
 
+test("sequential multi-word typing preserves spaces and canonical URL state", async ({
+  page,
+}) => {
+  await page.goto("/explore");
+  await waitForExplore(page);
+
+  const search = page.getByLabel("Search names");
+  await search.pressSequentially("Auguste Rodin");
+  await expect(search).toHaveValue("Auguste Rodin");
+  await expect(page).toHaveURL(/\/explore\?q=Auguste\+Rodin$/);
+  await expect(page.getByTestId("results-summary")).toContainText(
+    "Showing 1–1 of 1 matching sculptors",
+  );
+  await expect(
+    page.getByRole("link", { name: "Auguste Rodin", exact: true }).first(),
+  ).toHaveAttribute("href", "/explore/Q30755");
+
+  await page.getByLabel("Sort results").selectOption("name-desc");
+  await page.goBack();
+  await expect(search).toHaveValue("Auguste Rodin");
+  await page.goForward();
+  await expect(search).toHaveValue("Auguste Rodin");
+  await page.reload();
+  await waitForExplore(page);
+  await expect(search).toHaveValue("Auguste Rodin");
+});
+
+test("movement sorts keep missing labels after recorded movements", async ({
+  page,
+}) => {
+  await page.goto("/explore?sort=movement-asc&page=20");
+  await waitForExplore(page);
+  const ascendingMovements = page
+    .getByTestId("desktop-result-table")
+    .locator("tbody tr td:nth-child(4)");
+  await expect(ascendingMovements.nth(11)).not.toHaveText("—");
+  await expect(ascendingMovements.nth(12)).toHaveText("—");
+
+  await page.goto("/explore?sort=movement-desc&page=20");
+  await waitForExplore(page);
+  const descendingMovements = page
+    .getByTestId("desktop-result-table")
+    .locator("tbody tr td:nth-child(4)");
+  await expect(descendingMovements.nth(11)).not.toHaveText("—");
+  await expect(descendingMovements.nth(12)).toHaveText("—");
+});
+
 test("first, middle, last, empty, and filtered pages remain bounded", async ({
   page,
 }) => {
@@ -292,6 +339,16 @@ test("390px list is task-equivalent to the desktop table", async ({ page }) => {
     .first()
     .getAttribute("href");
   expect(desktopFirstHref).toBe(mobileFirstHref);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/explore?q=Johann%20Philipp%20Mihm");
+  await waitForExplore(page);
+  await expect(page.getByTestId("mobile-result-list")).toContainText(
+    "1800–—",
+  );
+  await expect(page.getByTestId("mobile-result-list")).not.toContainText(
+    "present",
+  );
 });
 
 test("Explore targets and contextual links meet measured accessibility bounds", async ({
