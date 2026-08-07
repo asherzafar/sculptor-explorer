@@ -140,7 +140,10 @@ sculpture-in-data/
 │       ├── app/
 │       │   ├── layout.tsx           #   Root layout, fonts, nav, meta tags
 │       │   ├── page.tsx             #   Client-side redirect to /timeline
-│       │   ├── timeline/page.tsx    #   Hero: lifespan timeline of curated sculptors
+│       │   ├── timeline/
+│       │   │   ├── page.tsx         #   Suspense wrapper for the lifespan route
+│       │   │   ├── TimelineContent.tsx # URL-backed visual/list task views
+│       │   │   └── timeline-state.ts #  Parse/serialize/sort contract
 │       │   ├── evolution/
 │       │   │   ├── page.tsx             #   Server Component wrapper with <Suspense>
 │       │   │   └── EvolutionContent.tsx #   Client Component: D3 charts, URL decade param

@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Explore landed; Timeline is the next route slice (August 2026)
+## Current status: Timeline route-slice candidate under review (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -57,6 +57,14 @@ branches/worktrees remain intentionally retained and clean. Explore is now
 closed as the first 5Q.4b route slice; Timeline and the dense analytical routes
 remain unchanged and require their own route-slice evidence.
 
+Documentation PRs #26 and #27 subsequently closed the Explore landing record
+and repaired the Phase 5Q sequencing policy. Protected `main` is
+`b00cac633d9a81e3706fc868292fa6c743a5ee0a`. The Timeline-only candidate on
+`codex/phase-5q4b-timeline-slice` starts from that exact base and has passed the
+canonical local validation gate plus all 30 browser journeys; exact-head
+Actions, Git-backed Preview, rendered Preview QA, and separate merge approval
+remain open review gates.
+
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
 institution data exports to `institutions.json`, sculptor shards carry
@@ -89,7 +97,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
 | Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
 | Completed | **5Q.4b Explore route slice + landing hotfix** | URL-backed semantic pagination, mobile equivalence, accessibility/scale budgets, and the three landing-review boundaries passed exact-head review and exact-merge production verification. |
-| Now | **5Q.4b Timeline route-slice review** | Start only from freshly verified protected `main` after this documentation closeout; address mobile/zoom correlation, structured equivalence, keyboard/target behavior, state, and performance without widening another route. |
+| Now | **5Q.4b Timeline route-slice review** | Review the bounded candidate from protected `main@b00cac6`: mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, and performance are locally verified; exact-head Preview evidence and separate merge approval remain. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -500,7 +508,15 @@ major visual dimension.
   death years as unknown on mobile. Its exact-head Preview/visual QA, required
   checks, review, exact-head merge, default-branch validation, exact-SHA
   production deployment, and canonical/missing-route probes all passed.
-- [ ] Continue with **Timeline**: make the project-origin lifespan view legible on mobile and at zoom, with a structured equivalent and verified sort/share behavior.
+- [ ] Complete **Timeline**: the bounded candidate preserves the project-origin
+  lifespan question and deterministic sculptor links while using a correlated
+  semantic list below `xl` (including browser-zoom reflow), an on-demand
+  structured list beside the wide visual overview, canonical URL-backed sort
+  state, 44px controls, 48px list links, 24px chart rows, explicit unknown-year
+  disclosure, and measured accessibility/performance checks. The canonical
+  local gate and all 30 browser journeys pass; keep this item open until the
+  exact candidate head passes Actions, Git-backed Preview visual QA, review,
+  and a separately authorized merge.
 - [ ] Review the dense **Lineage/Migration** family: overview/focus/details, denominators and uncertainty, keyboard/text equivalents, reduced motion, and measured graph/interaction budgets.
 - [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
 - [ ] Review each default view with the visualization proposal model in `docs/RESEARCH_FOUNDATIONS.md`: reader question → data/task → encoding/interaction → implementation.

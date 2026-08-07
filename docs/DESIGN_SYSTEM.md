@@ -229,6 +229,39 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Consistent Y-axis scale where possible (allows visual comparison)
 - **Insight targets:** (1) France and Germany's early dominance, (2) the US rise in the early 20th century, (3) global diversification post-1950 (Japan, Latin America, etc.)
 
+**Lifespan timeline:**
+- Preserve the project-origin question: compare when the 48 focus sculptors
+  lived, then open a deterministic sculptor record.
+- At `xl` and above, keep the lifespan bars as the visual overview and expose
+  the identical sorted records as an on-demand semantic ordered list. Each
+  visual row has a full-height 24px pointer target; keyboard and screen-reader
+  access use the native sculptor links in the equivalent list.
+- Below `xl`—including a desktop viewport reflowed by browser zoom—make the
+  semantic list the primary view. Keep each name beside its dates in a native
+  link at least 48px high; do not horizontally scroll, scale down, or clip the
+  wide chart.
+- Keep the consequential order in the URL as `sort=chrono` or
+  `sort=lifespan`; omit the alphabetical default. Canonicalize invalid,
+  duplicate, explicit-default, and unknown parameters, and preserve state
+  across reload/back/forward.
+- Sort known lifespan lengths longest-first and place records with unknown
+  death years last. Render an unknown death year as `—`; an open bar may extend
+  to the current year only when adjacent disclosure says this is a display
+  convention, not a living-status assertion.
+- Place source, 48-record scope, snapshot, the five unknown death years, focus
+  roster bias, and color limits before the first data view. Color encodes birth
+  decade only and must not be required to recover the dates.
+
+**Timeline evidence status (candidate verified locally 2026-08-07).** These
+rules describe only `codex/phase-5q4b-timeline-slice`, based on protected
+`main@b00cac6`. The canonical local gate and all 30 Chromium journeys pass,
+including 1440px/390px structure, URL round trips, keyboard/focus/targets, Axe,
+forced colors, reduced motion, text spacing, degraded data, bounded payload,
+focusable count, and sort feedback. Exact-head Git-backed Preview QA and a
+separately approved merge remain required; actual 200% zoom, spoken
+screen-reader output, physical input, Windows High Contrast, and reader
+comprehension remain owner-run evidence boundaries.
+
 **Network graph (lineage):**
 - Dark background (#1C1C1A) — networks read better on dark
 - Nodes: circles, sized by degree, colored by movement or country
@@ -328,7 +361,9 @@ Real-reader task evidence remains the trigger for broader reuse.
 ### Chart interactions
 - **Hover:** highlight the hovered element, dim others to 0.3 opacity
 - **Click:** toggle sticky selection (stays highlighted after mouse leaves); if the selection materially changes the view or explanation, encode it in the URL.
-- **Zoom/pan:** on timeline charts, scroll to zoom X axis, drag to pan. Pinch on mobile.
+- **Browser zoom/reflow:** the Timeline replaces its wide chart with the
+  task-equivalent semantic list below `xl`; do not intercept scroll, drag, or
+  pinch gestures for chart navigation.
 - **Linked views:** selecting a decade on the evolution page filters all three chart tracks simultaneously
 
 ### Loading states

@@ -417,7 +417,7 @@ export interface TimelineSculptor {
   birthDecade: number;
   movement?: string;
   citizenship?: string;
-  source: "fabio" | "wikidata" | "pipeline";
+  source: "fabio" | "original" | "wikidata" | "pipeline";
 }
 
 /** Per-subset demographic breakdown used by the transparency page. */
