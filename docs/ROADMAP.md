@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Explore landing hotfix in review (August 2026)
+## Current status: Explore landed; Timeline is the next route slice (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -36,15 +36,26 @@ PR #24 merged the Phase 5Q.4b Explore slice as
 query, sort, movement-record filter, and page, plus a task-equivalent mobile
 list. It also introduced the one intentional cross-route behavior in this
 slice: a shared skip link, with stronger focus treatment on shared navigation.
-The exact-merge default-branch validation, Vercel production deployment, and
-public route probes passed, but a review submitted after the merge found three
-confirmed Explore defects: sequential multi-word typing lost spaces, missing
-movement sentinels sorted as the literal letter-N label, and the mobile list
-inferred “present” from an unknown death year. The bounded landing-hotfix
-candidate corrects only those behaviors and adds their regressions. Keep the
-route inside the 5Q gate until the hotfix has its own exact-head CI, READY
-Preview, rendered desktop/390px QA, review, merge, and production evidence;
-Timeline and dense analytical routes remain unchanged.
+A review submitted after that merge found three confirmed Explore defects:
+sequential multi-word typing lost spaces, missing movement sentinels sorted as
+the literal letter-N label, and the mobile list inferred “present” from an
+unknown death year.
+
+PR [#25](https://github.com/asherzafar/sculptor-explorer/pull/25) corrected
+only those three boundaries and added focused regressions. It merged reviewed
+head `d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7` as
+`c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Default-branch Actions run
+[`31193771731`](https://github.com/asherzafar/sculptor-explorer/actions/runs/31193771731)
+passed the full validation and 21 browser journeys. Vercel production
+deployment `dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61` is `READY` from that exact merge
+SHA at
+`https://sculptor-explorer-mvf8sc2s8-asherzafars-projects.vercel.app`; the
+canonical public routes return 200 and the missing-route probe returns 404.
+The Git integration produced Preview and production without a manual deploy,
+promotion, route, domain, or provider-setting change. The PR #24 and #25
+branches/worktrees remain intentionally retained and clean. Explore is now
+closed as the first 5Q.4b route slice; Timeline and the dense analytical routes
+remain unchanged and require their own route-slice evidence.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -77,7 +88,8 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **5b.5 temporal backfill + transparency** | Shared edge-confidence substrate landed without changing default graph behavior. |
 | Completed | **Node 24 + dependency/security closeout** | Runtime drift is resolved; the dependency sequence and transitive advisory closeout landed with exact-head CI/preview/production proof, zero open GitHub alerts, and zero npm audit findings. |
 | Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
-| Now | **5Q.4b Explore landing hotfix** | Validate preserved sequential multi-word typing, missing-last movement sorting, and explicit unknown death years without regressing the implemented pagination, URL, mobile, accessibility, or performance contracts. |
+| Completed | **5Q.4b Explore route slice + landing hotfix** | URL-backed semantic pagination, mobile equivalence, accessibility/scale budgets, and the three landing-review boundaries passed exact-head review and exact-merge production verification. |
+| Now | **5Q.4b Timeline route-slice review** | Start only from freshly verified protected `main` after this documentation closeout; address mobile/zoom correlation, structured equivalence, keyboard/target behavior, state, and performance without widening another route. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -400,7 +412,7 @@ major visual dimension.
   batch: #17, #13, #15, #14, #18, #19, #12, #10, #8, then focused advisory
   closeout #20. Each merge passed default-branch validation and exact-SHA Vercel
   production verification before the next; merged remote branches were deleted,
-  GitHub has zero open PRs/Dependabot alerts, and full/production npm audits are
+  GitHub had zero open PRs/Dependabot alerts, and full/production npm audits were
   clean at the dependency-closeout baseline.
 - [x] **Implement Node.js 24 alignment in one focused, separately reviewed
   branch.** `codex/node-24-alignment` adds root/web `.nvmrc` files at 24,
@@ -478,16 +490,16 @@ major visual dimension.
 
 ##### 5Q.4b — End-to-end route slices
 
-- [ ] Close **Explore**: PR #24 put URL-backed
+- [x] Close **Explore**: PR #24 put URL-backed
   query/sort/movement-record-filter/page state, 50-record semantic pagination,
   mobile list equivalence, deterministic movement/sculptor routes, and fast
   find/share tests into production. A post-merge review then confirmed three
-  defects; the current landing hotfix preserves spaces during sequential
+  defects; PR #25 preserves spaces during sequential
   multi-word entry while keeping the shared URL canonical, sorts missing
   movement values after recorded labels in both directions, and renders null
-  death years as unknown on mobile. Keep this unchecked until the hotfix’s
-  exact-head Preview/visual QA, required checks, review, merge, and production
-  landing all pass.
+  death years as unknown on mobile. Its exact-head Preview/visual QA, required
+  checks, review, exact-head merge, default-branch validation, exact-SHA
+  production deployment, and canonical/missing-route probes all passed.
 - [ ] Continue with **Timeline**: make the project-origin lifespan view legible on mobile and at zoom, with a structured equivalent and verified sort/share behavior.
 - [ ] Review the dense **Lineage/Migration** family: overview/focus/details, denominators and uncertainty, keyboard/text equivalents, reduced motion, and measured graph/interaction budgets.
 - [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
@@ -495,10 +507,12 @@ major visual dimension.
 - [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
 - [ ] Replace unexplained density with overview → focus/filter → details on demand. Test lineage labels/legends, temporal confidence, and migration denominators for comprehension.
 - [ ] Make ordinary discovery/detail journeys usable on mobile; provide an explicit simplified list/summary for dense charts rather than clipping.
-- [ ] Land the corrected candidate that paginates Explore instead of mounting all
+- [x] Land the corrected candidate that paginates Explore instead of mounting all
   included rows and moves consequential query/sort/filter/page state into the
   URL; semantic pagination was selected over virtualization so native table and
   list structure, browser navigation, and bounded focus order remain intact.
+  PR #25 closed the three post-landing defects without changing that
+  architecture or any other analytical route.
 - [ ] Measure route payloads and Core Web Vitals at p75. Keep normal interactions under 200 ms, default lineage under 1.5 s, opt-in heavy graph modes under 3 s, and monitor static-output growth.
 
 ##### 5Q.4c — Visual closeout
@@ -687,8 +701,9 @@ not an instruction to build all of them.
   the data without building a separate scrollytelling system.
 - [ ] **Coordinated links and URL state.** Make entity chips, chart
   selections, and filters connect Timeline, Explore, Evolution,
-  Migration, Lineage, and entity pages; first close Explore search/sort
-  URL debt.
+  Migration, Lineage, and entity pages; Explore's search/sort/filter/page URL
+  debt is closed, but its patterns require route-specific evidence before
+  reuse.
 - [ ] **Sculptor comparison view.** Parked since 3e. Two-up detail
   comparison (lifespans, movements, institutions, shared mentors) is a
   natural use of the per-sculptor shards.
