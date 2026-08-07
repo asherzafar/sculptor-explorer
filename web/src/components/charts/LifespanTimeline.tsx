@@ -4,6 +4,11 @@ import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import * as d3 from "d3";
 import type { TimelineSculptor } from "@/lib/types";
+import {
+  sortTimelineSculptors,
+  timelineSortDescription,
+  type TimelineSort,
+} from "@/app/timeline/timeline-state";
 
 /** Point events — single vertical dashed lines. */
 const POINT_EVENTS = [
@@ -23,10 +28,10 @@ const RIGHT_MARGIN = 40; // Balanced with left
 const TOP_MARGIN = 64;
 const BOTTOM_MARGIN = 60;
 const BAR_HEIGHT = 16;
-const BAR_GAP = 6;
+const ROW_HEIGHT = 24;
 const CURRENT_YEAR = new Date().getFullYear();
 
-export type SortMode = "chrono" | "alpha" | "lifespan";
+export type SortMode = TimelineSort;
 
 interface Props {
   data: TimelineSculptor[];
@@ -50,36 +55,13 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const router = useRouter();
 
-  // Sort based on sortMode prop
-  const sorted = useMemo(() => {
-    const arr = [...data];
-    // Last name = final whitespace-separated token. Works for compound
-    // names like "Anna Hyatt Huntington" (-> Huntington), "Daniel Chester
-    // French" (-> French), and "Constantin Brâncuși" (-> Brâncuși).
-    const lastName = (s: TimelineSculptor) => {
-      const parts = s.name.trim().split(/\s+/);
-      return parts[parts.length - 1];
-    };
-    switch (sortMode) {
-      case "alpha":
-        return arr.sort(
-          (a, b) =>
-            lastName(a).localeCompare(lastName(b)) ||
-            a.name.localeCompare(b.name),
-        );
-      case "lifespan": {
-        const lifespan = (s: TimelineSculptor) =>
-          (s.deathYear ?? CURRENT_YEAR) - s.birthYear;
-        return arr.sort((a, b) => lifespan(b) - lifespan(a) || a.name.localeCompare(b.name));
-      }
-      case "chrono":
-      default:
-        return arr.sort((a, b) => a.birthYear - b.birthYear || a.name.localeCompare(b.name));
-    }
-  }, [data, sortMode]);
+  const sorted = useMemo(
+    () => sortTimelineSculptors(data, sortMode),
+    [data, sortMode],
+  );
 
   // Compute time range
   const minYear = useMemo(
@@ -96,7 +78,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
   // SVG dimensions
   const chartWidth = 900;
   const chartHeight =
-    TOP_MARGIN + sorted.length * (BAR_HEIGHT + BAR_GAP) + BOTTOM_MARGIN;
+    TOP_MARGIN + sorted.length * ROW_HEIGHT + BOTTOM_MARGIN;
   const plotWidth = chartWidth - LEFT_MARGIN - RIGHT_MARGIN;
 
   // D3 scale: year → x pixel
@@ -105,16 +87,13 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
     [minYear, maxYear, chartWidth]
   );
 
-  // Color scale: birth year → color using D3 interpolation between design tokens
-  // We use CSS variables for the endpoints, but compute interpolation in D3
-  const colorScale = useMemo(() => {
-    // Extract RGB values from CSS variables (or use fallbacks)
-    // --color-data-1: #3D2E25 (warm/umber), --color-data-2: #3D7A68 (cool/verdigris)
-    const warmColor = d3.rgb("#3D2E25");
-    const coolColor = d3.rgb("#3D7A68");
-    return d3.scaleLinear<string>()
+  // Resolve the ordered ramp from design tokens in CSS rather than embedding
+  // a second copy of the palette in component code.
+  const warmColorWeight = useMemo(() => {
+    return d3
+      .scaleLinear()
       .domain([minYear, Math.min(maxYear, 1970)])
-      .range([warmColor.formatHex(), coolColor.formatHex()])
+      .range([100, 0])
       .clamp(true);
   }, [minYear, maxYear]);
 
@@ -171,6 +150,10 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
     const set = new Set(sorted.map((s) => s.birthDecade));
     return Array.from(set).sort((a, b) => a - b);
   }, [sorted]);
+  const openEndedCount = useMemo(
+    () => sorted.filter((sculptor) => sculptor.deathYear === null).length,
+    [sorted],
+  );
 
   // D3 render effect: draws axes using D3
   useEffect(() => {
@@ -210,7 +193,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
       if (rect) {
         setTooltip({
           sculptor,
-          x: e.clientX - rect.left,
+          x: Math.max(12, Math.min(e.clientX - rect.left, rect.width - 220)),
           y: e.clientY - rect.top - 10,
         });
       }
@@ -230,13 +213,30 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
   }
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-x-auto">
+    <figure ref={containerRef} className="relative w-full">
+      <figcaption className="mb-3">
+        <p className="font-display text-xl text-text-primary">
+          Visual lifespan overview
+        </p>
+        <p className="mt-1 text-sm text-text-secondary">
+          Select any row to open that sculptor’s record. A structured version
+          of the same sorted records follows the chart.
+        </p>
+      </figcaption>
+      <p id="timeline-chart-description" className="sr-only">
+        Horizontal position and bar length encode recorded birth and death
+        years. For {openEndedCount} records without a death year, an open-ended
+        bar extends to {CURRENT_YEAR} only as a display convention. Birth year
+        is also written in each bar, so exact dates do not depend on color.
+      </p>
       <svg
         ref={svgRef}
         viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-        className="w-full min-w-[700px]"
+        className="w-full"
         role="img"
-        aria-label={`Timeline of ${sorted.length} focus sculptor lifespans from ${minYear} to ${maxYear}, sorted by ${sortMode}.`}
+        aria-label={`Timeline of ${sorted.length} focus sculptor lifespans from ${minYear} to ${maxYear}, in ${timelineSortDescription(sortMode)}.`}
+        aria-describedby="timeline-chart-description"
+        data-testid="timeline-chart"
         style={{ height: `${Math.max(chartHeight, 400)}px`, fontFamily: "var(--font-body), system-ui, sans-serif" }}
       >
         {/* X-axis grid lines — D3 handles the axis labels in useEffect */}
@@ -271,10 +271,10 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
                   x={(xScale(evt.start) + xScale(evt.end)) / 2}
                   y={layoutEntry?.y ?? TOP_MARGIN - 18}
                   textAnchor="middle"
-                  fontSize={9}
+                  fontSize={10}
                   fontWeight={600}
-                  fill={evt.color}
-                  opacity={0.7}
+                  fill="var(--color-text-primary)"
+                  opacity={0.85}
                 >
                   {evt.label}
                 </text>
@@ -302,10 +302,10 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
                   x={xScale(evt.year)}
                   y={layoutEntry?.y ?? TOP_MARGIN - 18}
                   textAnchor="middle"
-                  fontSize={9}
+                  fontSize={10}
                   fontWeight={600}
-                  fill={evt.color}
-                  opacity={0.7}
+                  fill="var(--color-text-primary)"
+                  opacity={0.85}
                 >
                   {evt.label}
                 </text>
@@ -315,13 +315,16 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
 
         {/* Sculptor bars */}
         {sorted.map((sculptor, i) => {
-          const y = TOP_MARGIN + i * (BAR_HEIGHT + BAR_GAP);
+          const rowY = TOP_MARGIN + i * ROW_HEIGHT;
+          const y = rowY + (ROW_HEIGHT - BAR_HEIGHT) / 2;
           const barStart = xScale(sculptor.birthYear);
           const barEnd = xScale(sculptor.deathYear ?? CURRENT_YEAR);
           const barWidth = Math.max(barEnd - barStart, 2);
           const isHovered = hoveredId === sculptor.id;
-          const isAlive = sculptor.deathYear === null;
-          const color = colorScale(sculptor.birthYear);
+          const isOpenEnded = sculptor.deathYear === null;
+          const color = `color-mix(in oklch, var(--color-data-1) ${warmColorWeight(
+            sculptor.birthYear,
+          )}%, var(--color-data-2))`;
 
           const handleClick = () => {
             router.push(`/explore/${sculptor.id}`);
@@ -330,11 +333,21 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
           return (
             <g
               key={sculptor.id}
+              data-sculptor-id={sculptor.id}
               onMouseEnter={(e) => handleMouseEnter(sculptor, e)}
               onMouseLeave={handleMouseLeave}
               onClick={handleClick}
               className="cursor-pointer"
             >
+              <rect
+                x={0}
+                y={rowY}
+                width={chartWidth}
+                height={ROW_HEIGHT}
+                fill="transparent"
+                pointerEvents="all"
+                data-timeline-row-target="true"
+              />
               {/* Name label */}
               <text
                 x={LEFT_MARGIN - 8}
@@ -361,8 +374,8 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
                 strokeWidth={isHovered ? 2 : 0}
               />
 
-              {/* Living indicator (open-ended bar) */}
-              {isAlive && (
+              {/* A missing death year is drawn open-ended, not asserted alive. */}
+              {isOpenEnded && (
                 <>
                   <rect
                     x={barEnd - 8}
@@ -424,7 +437,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
           );
         })}
 
-        {/* "Present" marker */}
+        {/* Current-year marker */}
         <g>
           <line
             x1={xScale(CURRENT_YEAR)}
@@ -444,7 +457,7 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
             fontSize={10}
             fontStyle="italic"
           >
-            Present
+            {CURRENT_YEAR}
           </text>
         </g>
       </svg>
@@ -454,35 +467,42 @@ export function LifespanTimeline({ data, showEvents = true, sortMode = "alpha" }
         <div
           className="absolute z-50 pointer-events-none rounded-lg px-3 py-2 shadow-md bg-bg-primary"
           style={{
-            left: `${Math.min(tooltip.x, chartWidth - 200)}px`,
+            left: `${tooltip.x}px`,
             top: `${tooltip.y - 60}px`,
           }}
         >
           <p className="font-semibold text-sm">{tooltip.sculptor.name}</p>
           <p className="text-xs text-text-secondary">
             {tooltip.sculptor.birthYear} –{" "}
-            {tooltip.sculptor.deathYear ?? "present"}
+            {tooltip.sculptor.deathYear ?? "death year not recorded"}
           </p>
           {tooltip.sculptor.deathYear && (
             <p className="text-xs text-text-secondary">
               Lived {tooltip.sculptor.deathYear - tooltip.sculptor.birthYear} years
             </p>
           )}
+          {tooltip.sculptor.deathYear === null ? (
+            <p className="text-xs text-text-secondary">
+              Bar shown through {CURRENT_YEAR} as a display convention
+            </p>
+          ) : null}
         </div>
       )}
 
       {/* Continuous gradient legend using design tokens */}
-      <div className="mt-4 flex items-center justify-start gap-2">
-        <span className="text-xs text-text-tertiary">{decades[0] ?? 1800}s</span>
+      <div className="mt-4 flex flex-wrap items-center justify-start gap-2 text-xs text-text-secondary">
+        <span>Birth decade:</span>
+        <span>{decades[0] ?? 1800}s</span>
         <div
+          aria-hidden="true"
           className="h-3 rounded-sm"
           style={{
             width: 200,
             background: "linear-gradient(to right, var(--color-data-1), var(--color-data-2))",
           }}
         />
-        <span className="text-xs text-text-tertiary">{decades[decades.length - 1] ?? 1970}s</span>
+        <span>{decades[decades.length - 1] ?? 1970}s</span>
       </div>
-    </div>
+    </figure>
   );
 }

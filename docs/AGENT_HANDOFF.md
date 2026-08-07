@@ -6,6 +6,17 @@
 
 ## Current boundary
 
+The Phase 5Q.4b Timeline-only candidate is implemented on
+`codex/phase-5q4b-timeline-slice` from freshly fetched protected
+`main@b00cac633d9a81e3706fc868292fa6c743a5ee0a`. It preserves the 48-sculptor
+lifespan question and deterministic `/explore/{qid}` targets while adding
+canonical URL sort state, correlated mobile/zoom reflow, wide-view structured
+equivalence, native keyboard/focus paths, 24–48px targets, explicit
+unknown-year disclosure, and bounded route checks. `./scripts/validate.sh` and
+all 30 Chromium journeys pass locally. Exact-head Actions, Git-backed `READY`
+Preview source proof, rendered Preview QA, review, and separate merge approval
+remain open; the candidate is not production truth yet.
+
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
 The bounded Getty contract repair restores the detail behavior that the old
@@ -18,7 +29,7 @@ canonical root gate now includes both the committed-data parity checks and a
 focused standard-library final-writer regression suite.
 
 Protected `main` is now
-`c22cba075ef36373f635d114ffa2d6f3d9ca17f9`: PR #25 merged the Phase 5Q.4b
+`b00cac633d9a81e3706fc868292fa6c743a5ee0a`: PR #25 merged the Phase 5Q.4b
 landing hotfix at exact reviewed head
 `d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7` after PR #24. Default-branch
 Actions run
@@ -41,7 +52,9 @@ is also unchanged. This reconciliation uses the dedicated
 `codex/phase-5q4b-landing-closeout-docs` branch/worktree from current `main`;
 its exact reviewed head belongs in the PR evidence packet rather than being
 hard-coded prospectively here, and it remains retained until separate cleanup
-approval.
+approval. PR #26 then closed the landing documentation and PR #27 repaired the
+sequencing policy; those merge commits advance protected `main` without
+changing Timeline, Evolution, Migration, or Lineage behavior.
 
 A Codex review submitted three minutes after PR #24 merged identified three
 confirmed production defects: sequential multi-word typing collapsed spaces,
@@ -79,7 +92,7 @@ Timeline mobile correlation failure. PR #24 addressed only the Explore
 catalogue/contrast/target/mobile/state findings and the shared skip link; the
 PR #25 hotfix closed only its three post-merge boundary defects. Evolution
 negative-width errors, sculptor-detail ARIA/image shift, dense
-chart equivalents, Timeline issues, actual zoom/screen-reader evidence, and
+chart equivalents, actual zoom/screen-reader evidence, and
 reader comprehension remain separate work. Explore patterns are verified for
 that route but still require real-reader evidence before broader reuse. User evidence in 5Q.5 and
 the Phase 5R strategic workshop still precede a major new public phase.
@@ -224,8 +237,10 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 - Evolution, Migration, and Lineage are desktop-only analytical experiences at
   390px; each is replaced by a notice with links to other routes. All four chart
   families still lack a structured keyboard/screen-reader equivalent.
-- Timeline’s 700px mobile chart loses name/date correlation, has about 12.44px
-  pointer rows, and exposes zero mark tab stops. Migration’s focused
+- The unmerged Timeline candidate replaces the 700px mobile chart with a
+  correlated semantic list below `xl`, gives wide chart rows 24px pointer
+  targets, and exposes the same links through a structured list. Exact-head
+  Preview evidence is still pending. Migration’s focused
   same-country checkbox fails Space activation. Evolution emits invalid
   negative-width SVG console errors under the audited mode matrix.
 - `docs/DATASET_DATASHEET.md` is the maintained composition/source/license/processing/use/risk record. `docs/CLAIM_REGISTER.md` maps every public analytical surface to its supported claim and defines external domain/community-review triggers.
@@ -234,10 +249,15 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 ## Known quality issues
 
 - `npm run lint` now exits with zero errors and zero warnings. The intentional standard `<img>` in `WorksGallery` remains documented inline for hot-linked public-domain museum assets in the static export.
-- Next.js and `eslint-config-next` are aligned at 16.2.12. Patched transitive
-  dependency closeout leaves both npm audit views and GitHub's open Dependabot
-  alert queue at zero. The temporary PostCSS/Sharp override rationale and
-  retirement triggers are in `docs/SECURITY.md`.
+- Next.js and `eslint-config-next` are aligned at 16.2.12. A fresh Timeline
+  worktree install on 2026-08-07 reports one new high npm advisory for
+  transitive `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`) in both full and
+  production-only audit views. The affected zero-size custom-generator path is
+  not used by the app; the installed PostCSS path imports `nanoid/non-secure`
+  and calls it with size 6. Keep dependency remediation in a separate bounded
+  security task rather than widening the Timeline slice. The temporary
+  PostCSS/Sharp override rationale and retirement triggers are in
+  `docs/SECURITY.md`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
 - All four production chart SVGs have roles and accessible names but no
@@ -256,6 +276,34 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   viewport resizing and source inspection are not substitutes.
 
 ## Validation state at this handoff
+
+The unmerged Timeline candidate passed locally on
+`codex/phase-5q4b-timeline-slice` from exact base
+`b00cac633d9a81e3706fc868292fa6c743a5ee0a` with Node 24.14.0 and npm
+11.9.0:
+
+- `./scripts/validate.sh` — all data/Getty/institution/relationship/temporal
+  contracts, 11 URL-state unit tests, zero-warning lint, type checking, the
+  3,625-route production build, and CI lineage bounds passed.
+- `cd web && npm run test:e2e -- --workers=1` — all 30 Chromium journeys
+  passed, including the nine Timeline-specific URL, reflow, deterministic-link,
+  keyboard/focus/target, Axe, forced-color/reduced-motion/text-spacing,
+  performance, and degraded-data checks. Existing Explore, Migration, and
+  Lineage journeys remained green.
+- Read-only local rendering at 1440×900, 390×844, and a 720px reflow proxy
+  showed no horizontal overflow or console warnings/errors. The mobile view
+  exposed 48 correlated native links, the wide view retained the lifespan
+  overview plus its structured equivalent, and chronological sorting restored
+  `/timeline?sort=chrono` with Hiram Powers linking to `/explore/Q2572996`.
+- The compressed Timeline JSON is under 20 KB, visible focusables stay below
+  80, sort feedback completes under the 200 ms route budget, list links are at
+  least 48px high, and visual chart row targets are at least 24px high.
+- Actual 200% browser zoom, spoken VoiceOver/NVDA output, physical input,
+  Windows High Contrast, and reader comprehension were not claimed; they remain
+  owner-run boundaries. Exact-head Preview evidence is also still pending.
+- Fresh `npm audit` and `npm audit --omit=dev` each report the separately
+  triaged `nanoid@3.3.16` advisory described above; dependency files were not
+  changed in this route slice.
 
 The implementation now landed by PR #25 passed locally on
 `codex/phase-5q4b-landing-hotfix` from exact base
@@ -506,42 +554,37 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Treat this documentation-only reconciliation as the final Phase 5Q.4b
-   archive boundary. Require its exact-head `validate` and Vercel checks,
-   `READY` Preview source proof, route smoke, resolved conversations, and a
-   separately authorized merge before beginning product code. It changes no
-   rendered behavior and must not trigger another visual-QA cycle.
+1. Publish the single Timeline candidate head as a draft PR against `main`,
+   then require exact-head `validate` and Vercel checks, Git-backed `READY`
+   Preview source proof, route smoke, rendered 1440×900/390×844 QA, resolved
+   conversations, and clean source-control reconciliation. Do not deploy,
+   promote, or merge as part of that review.
 2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
-   Contrast, reduced-motion, and comprehension protocols at the relevant route
-   gate; do not backfill them as automated evidence.
-3. After the documentation closeout lands, make Timeline the next and only
-   product-code route slice. Start from freshly verified protected `main` and
-   address its mobile lifespan/name correlation, zoom/reflow, structured
-   equivalent, keyboard/target behavior, URL sort/share state, disclosure, and
-   performance without changing Evolution, Migration, or Lineage.
-4. At the 2026-09-02 dependency review (or sooner on a stable Next release),
+   Contrast, and comprehension protocols at the Timeline route gate; do not
+   backfill them as automated evidence.
+3. If the exact head remains approved after review, request separate authority
+   for the protected merge and post-merge production/closeout runbook. Do not
+   begin Lineage, Migration, Evolution, or another route slice first.
+4. In a separate security task, triage/remediate the new nanoid advisory; at
+   the 2026-09-02 dependency review (or sooner on a stable Next release),
    test whether the PostCSS/Sharp overrides can be safely retired; do not let
-   that maintenance interrupt the current route slice unless a new advisory
-   changes risk.
+   that maintenance widen the Timeline candidate.
 5. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded product-code seed — Phase 5Q.4b Timeline slice
+### Next bounded seed — exact-head Timeline review and merge decision
 
-> Continue Sculpture in Data Phase 5Q.4b only after the documentation closeout
-> PR is merged and its exact default-branch Actions, `READY` production source
-> SHA, route probes, and retained-state reconciliation pass. From freshly
-> fetched protected `main`, create a dedicated
-> `codex/phase-5q4b-timeline-slice` worktree. Review and implement only the
-> Timeline route slice: preserve its project-origin lifespan question and
-> deterministic sculptor links while repairing mobile name/date correlation,
-> zoom/reflow, structured task equivalence, keyboard/focus/target behavior,
-> URL-backed sort/share round trips, disclosure, accessibility, and performance.
-> Use the repository ship-pr and visual-qa workflows with exact-head Preview
-> evidence. Do not change Evolution, Migration, or Lineage behavior, begin a
-> second route slice, clean retained branches/worktrees, or merge without a
-> separate exact-head approval.
+> Review the draft PR from `codex/phase-5q4b-timeline-slice` against `main` at
+> the exact head recorded in its evidence packet. Confirm required checks,
+> Git-backed `READY` Preview source SHA, route smoke, 1440×900/390×844 visual
+> QA, URL/keyboard/structured-equivalence behavior, review conversations, and
+> the owner-run evidence boundaries. If and only if that exact head is
+> approved, request separate authority to merge it and then follow the
+> default-branch validation, exact-merge-SHA production, route-probe, audit,
+> handoff, and separately approved cleanup runbook. Do not widen another route,
+> deploy/promote manually, mutate provider settings/routes/domains, or merge an
+> unapproved head.
 
 ## Starting instructions for any agent
 

@@ -1,8 +1,8 @@
 # Public Claim Register
 
-**Status:** Current production; Explore landing verified
+**Status:** Current production through protected `main`; Timeline candidate under review
 **Reviewed:** 2026-08-07
-**Applies to:** Production `main@c22cba075ef36373f635d114ffa2d6f3d9ca17f9`, data release `2026-08-02.2`, methodology `A.3`
+**Applies to:** Production `main@b00cac633d9a81e3706fc868292fa6c743a5ee0a`, data release `2026-08-02.2`, methodology `A.3`; the Timeline row also describes the unmerged route candidate
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
@@ -18,11 +18,16 @@ PR #25 verified the Explore row below at reviewed head
 The hotfix changed no claim denominator, source field, or analytical behavior
 outside Explore.
 
+The Timeline row below is implemented on
+`codex/phase-5q4b-timeline-slice` from exact protected-main base `b00cac6` and
+has passed local validation. It does not become a production claim until its
+exact head passes Preview review and receives separate merge approval.
+
 ## Route and claim audit
 
 | Surface | Claim actually supported | Source | Scope/denominator | Missingness and interpretation shown beside it |
 |---|---|---|---|---|
-| Timeline | Lifespans of a curated focus roster | Focus CSV; matched Wikidata metadata | 48 focus sculptors | NSS/American figurative emphasis; not a global survey; color is birth decade, not importance |
+| Timeline | URL-shareable alphabetical, birth-year, or known-lifespan ordering of a curated focus roster; every record links to its deterministic sculptor detail | Focus CSV for dates; matched Wikidata metadata for QIDs | 48 focus sculptors | NSS/American figurative emphasis; not a global survey; five death years are unknown and sort last for lifespan length; open bars extend to the current year only as a display convention, not a living-status assertion; color is birth decade, not importance or influence |
 | Explore | URL-shareable name search, source-field sorting, and recorded-movement-presence filtering over the published roster; pagination changes presentation, not scope | Wikidata plus explicit overrides | 3,543 published of 6,710 analytically eligible candidates after one evidence-backed exclusion from 6,711 source candidates; 50 records per page | Search covers display/native names, not every field; sequential input keeps word boundaries while shared URLs stay canonical; “recorded movement” means a non-missing P135 display value, not verified membership; 2,581 missing movement values render as — and sort after recorded labels; null death years remain unknown rather than implying living status; sparse movement labels remain text rather than dead aggregate links; labels are source assertions |
 | Evolution—geography | Counts by one display citizenship or recorded birth country and birth decade | Wikidata P27 or P19→P17 | All 6,710 analytically eligible candidates; Unknown remains a category | Citizenship is not identity/residence; country of birth is not later residence; top categories and Other are explicit |
 | Evolution—movement | Distribution of recorded P135 labels by birth decade | Wikidata P135 | 962 records with movement labels | 2,581 published records lack a movement label; no claim of movement membership or influence |
