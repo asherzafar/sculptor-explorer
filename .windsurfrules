@@ -144,11 +144,10 @@ Next bounded work:
   Contrast, initial reduced-motion comfort, and reader/founder comprehension
   remain owner-run checks under the exact protocols in
   `docs/VISUAL_BASELINE_2026-08-02.md`.
-- Phase 5Q.4b Explore is the next implementation slice: URL-backed state,
-  semantic pagination or virtualization, a task-equivalent responsive list or
-  table, and shared skip-link, focus, target-size, and contrast patterns.
-  Continue to Timeline and dense graph journeys only after separate rendered
-  review.
+- Phase 5Q.4b Explore is closed as the first route slice after its landing
+  hotfix and exact-head/merge production evidence. Timeline is the next and
+  only route-specific implementation slice; keep Evolution, Migration, and
+  Lineage unchanged until their own separately approved reviews.
 - At the 2026-09-02 security review, reassess the temporary patched PostCSS and
   Sharp overrides against the then-current stable Next.js graph; do not force a
   downgrade or broad dependency rewrite merely to remove an override
