@@ -51,7 +51,7 @@ paths are reachable in production.
   the exact PR head and merged `main` each passed GitHub Actions and exact-SHA
   Vercel preview/production verification.
 
-## 2026-08-08 nanoid remediation candidate
+## 2026-08-08 nanoid remediation closeout
 
 - A clean install from protected
   `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` reproduced one high
@@ -61,14 +61,17 @@ paths are reachable in production.
   nanoid is transitive. Its diagnostic explicitly recommends a resolution or
   override; PostCSS already declares `nanoid@^3.3.16`, which accepts the
   patched `3.3.17` release.
-- The bounded candidate updates only the lockfile resolution to nanoid
+- The bounded change updates only the lockfile resolution to nanoid
   `3.3.17`; no new manifest override is needed. Next.js, PostCSS, Sharp,
   Tailwind, shadcn, and every route or data contract remain unchanged.
-- A fresh `npm ci` installed the same 705-package graph with nanoid `3.3.17`;
-  both audit views report zero vulnerabilities, `./scripts/validate.sh`
-  passes, and all 30 Chromium journeys pass. Exact-head CI/Preview and the
-  separately approved merge/production gates remain required before this is
-  production truth.
+- PR [#30](https://github.com/asherzafar/sculptor-explorer/pull/30) landed
+  reviewed head `fe0a260c2aa82d959bdd21a81c2f2a11fa5f480f` as merge
+  `f972d56fc3e20b8b91919a7b9b7ac72b705923cb`. Exact-head CI/Preview,
+  default-branch run `31268128135`, exact-source `READY` production
+  `dpl_4WDRWsPT29PGAvMaNwjQXeS9cL5g`, and canonical/immutable probes passed.
+- A fresh install from the exact merge retained the 705-package graph with
+  nanoid `3.3.17`; both full and production-only audits report zero
+  vulnerabilities, and GitHub reports zero open Dependabot alerts.
 
 ## Current dependency controls and review triggers
 
@@ -90,7 +93,7 @@ Run from `web/`:
 ```bash
 npm audit
 npm audit --omit=dev
-npm ls next postcss sharp shadcn
+npm ls next postcss sharp shadcn nanoid
 ```
 
 Then run `./scripts/validate.sh` from the repository root and
