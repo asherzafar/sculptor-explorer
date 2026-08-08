@@ -252,15 +252,17 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
   roster bias, and color limits before the first data view. Color encodes birth
   decade only and must not be required to recover the dates.
 
-**Timeline evidence status (candidate verified locally 2026-08-07).** These
-rules describe only `codex/phase-5q4b-timeline-slice`, based on protected
-`main@b00cac6`. The canonical local gate and all 30 Chromium journeys pass,
-including 1440px/390px structure, URL round trips, keyboard/focus/targets, Axe,
-forced colors, reduced motion, text spacing, degraded data, bounded payload,
-focusable count, and sort feedback. Exact-head Git-backed Preview QA and a
-separately approved merge remain required; actual 200% zoom, spoken
-screen-reader output, physical input, Windows High Contrast, and reader
-comprehension remain owner-run evidence boundaries.
+**Timeline evidence status (landed 2026-08-07).** PR #28 reviewed head
+`ba693dd9d21e62758c95027af405b8350f42b245`, based on protected
+`main@b00cac6`, passed the canonical local gate, all 30 Chromium journeys, and
+exact-head Git-backed Preview QA. That evidence covers 1440px/390px structure,
+URL round trips, keyboard/focus/targets, Axe, forced colors, reduced motion,
+text spacing, degraded data, bounded payload, focusable count, and sort
+feedback. It merged as `f3f5130fa043134f55d7832a9cac4f485b73af6d`;
+default-branch Actions run `31228072123`, exact-SHA `READY` production, and
+canonical/immutable route probes passed. Actual 200% zoom, spoken screen-reader
+output, physical input, Windows High Contrast, and reader comprehension remain
+owner-run evidence boundaries.
 
 **Network graph (lineage):**
 - Dark background (#1C1C1A) — networks read better on dark

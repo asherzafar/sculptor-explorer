@@ -6,16 +6,15 @@
 
 ## Current boundary
 
-The Phase 5Q.4b Timeline-only candidate is implemented on
-`codex/phase-5q4b-timeline-slice` from freshly fetched protected
-`main@b00cac633d9a81e3706fc868292fa6c743a5ee0a`. It preserves the 48-sculptor
+The Phase 5Q.4b Timeline-only slice landed through PR #28. Reviewed head
+`ba693dd9d21e62758c95027af405b8350f42b245`, based on freshly fetched protected
+`main@b00cac633d9a81e3706fc868292fa6c743a5ee0a`, preserves the 48-sculptor
 lifespan question and deterministic `/explore/{qid}` targets while adding
 canonical URL sort state, correlated mobile/zoom reflow, wide-view structured
 equivalence, native keyboard/focus paths, 24–48px targets, explicit
-unknown-year disclosure, and bounded route checks. `./scripts/validate.sh` and
-all 30 Chromium journeys pass locally. Exact-head Actions, Git-backed `READY`
-Preview source proof, rendered Preview QA, review, and separate merge approval
-remain open; the candidate is not production truth yet.
+unknown-year disclosure, and bounded route checks. Exact-head Actions and
+Git-backed Preview QA passed before the guarded merge commit; default-branch
+CI, exact-SHA production, and canonical/immutable route probes passed after it.
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
@@ -28,33 +27,39 @@ audit denominator is 2,310 after excluding `Q87366`, not the stale 2,311. The
 canonical root gate now includes both the committed-data parity checks and a
 focused standard-library final-writer regression suite.
 
-Protected `main` is now
-`b00cac633d9a81e3706fc868292fa6c743a5ee0a`: PR #25 merged the Phase 5Q.4b
-landing hotfix at exact reviewed head
-`d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7` after PR #24. Default-branch
-Actions run
-[`31193771731`](https://github.com/asherzafar/sculptor-explorer/actions/runs/31193771731)
-completed successfully, including the full validation gate and all 21 browser
-journeys. Vercel production deployment
-`dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61` is `READY` from the exact merge SHA at
-`https://sculptor-explorer-mvf8sc2s8-asherzafars-projects.vercel.app`;
-canonical routes `/`, `/timeline`, `/explore`, `/about`, and `/transparency`
-return 200, while the missing-route probe returns 404. The existing Git
-integration produced the deployment; no manual deployment, promotion,
-provider-setting, route, or domain mutation occurred. The permanent `main`
-checkout is clean and exact. The local/remote
+The latest behavior-changing commit on protected `main` is
+`f3f5130fa043134f55d7832a9cac4f485b73af6d`, the PR #28 merge commit.
+Its default-branch Actions run
+[`31228072123`](https://github.com/asherzafar/sculptor-explorer/actions/runs/31228072123)
+completed successfully, including the root validation/build/performance gate
+and all 30 browser journeys. Vercel production deployment
+`dpl_9Qho7DQj584HwaPf8EawSayLuSzg` is `READY` from that exact source SHA at
+`https://sculptor-explorer-6uhmeuvbr-asherzafars-projects.vercel.app`;
+canonical and immutable probes both returned 200 for `/`, `/timeline`,
+`/explore`, `/about`, and `/transparency`, plus 404 for the missing route. The
+existing Git integration produced the deployment; no manual deployment,
+promotion, provider-setting, route, or domain mutation occurred. The
+documentation-only closeout that carries this handoff changes no application,
+runtime, route, claim, or dependency behavior, so its merge may advance the
+repository and production source SHAs without superseding the PR #28 behavior
+evidence. Its exact reviewed head, merge, CI, Preview/production deployment,
+and route probes belong in PR #29 and Git/provider delivery records rather than
+being hard-coded prospectively here. The clean detached verification checkout
+is exact at the behavior-changing merge. The permanent `main` checkout remains
+clean at `b00cac633d9a81e3706fc868292fa6c743a5ee0a` and was intentionally not
+advanced during this task. The local/remote
 `codex/phase-5q4b-explore-slice@f7b220788e83a36f5583cd645a740ff6c9706789`
 and
 `codex/phase-5q4b-landing-hotfix@d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7`
-branches and their worktrees remain intentionally retained and clean; the
-pre-existing clean detached worktree at `8633902fa01d02f72e325c53944780b40b219ec8`
-is also unchanged. This reconciliation uses the dedicated
-`codex/phase-5q4b-landing-closeout-docs` branch/worktree from current `main`;
-its exact reviewed head belongs in the PR evidence packet rather than being
-hard-coded prospectively here, and it remains retained until separate cleanup
-approval. PR #26 then closed the landing documentation and PR #27 repaired the
-sequencing policy; those merge commits advance protected `main` without
-changing Timeline, Evolution, Migration, or Lineage behavior.
+branches remain retained; the hotfix worktree and clean detached PR #24
+worktree at `8633902fa01d02f72e325c53944780b40b219ec8` are unchanged. The
+local/remote Timeline branch and dedicated worktree remain clean at
+`ba693dd9d21e62758c95027af405b8350f42b245`. The older PR #26/#27 documentation
+branches and worktrees are also retained and clean. This reconciliation uses
+the new dedicated `codex/phase-5q4b-timeline-landing-closeout` branch/worktree
+from exact merge `f3f5130fa043134f55d7832a9cac4f485b73af6d`; its reviewed head
+belongs in the PR evidence packet rather than being hard-coded prospectively
+here. No retained branch or worktree was cleaned.
 
 A Codex review submitted three minutes after PR #24 merged identified three
 confirmed production defects: sequential multi-word typing collapsed spaces,
@@ -235,14 +240,13 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   review findings. The pattern is verified for Explore but remains unearned for
   broader reuse until real-reader task evidence supports it.
 - Evolution, Migration, and Lineage are desktop-only analytical experiences at
-  390px; each is replaced by a notice with links to other routes. All four chart
-  families still lack a structured keyboard/screen-reader equivalent.
-- The unmerged Timeline candidate replaces the 700px mobile chart with a
+  390px; each is replaced by a notice with links to other routes. Those three
+  chart families still lack a structured keyboard/screen-reader equivalent.
+- The landed Timeline slice replaces the 700px mobile chart with a
   correlated semantic list below `xl`, gives wide chart rows 24px pointer
-  targets, and exposes the same links through a structured list. Exact-head
-  Preview evidence is still pending. Migration’s focused
-  same-country checkbox fails Space activation. Evolution emits invalid
-  negative-width SVG console errors under the audited mode matrix.
+  targets, and exposes the same links through a structured list. Migration’s
+  focused same-country checkbox fails Space activation. Evolution emits
+  invalid negative-width SVG console errors under the audited mode matrix.
 - `docs/DATASET_DATASHEET.md` is the maintained composition/source/license/processing/use/risk record. `docs/CLAIM_REGISTER.md` maps every public analytical surface to its supported claim and defines external domain/community-review triggers.
 - The retained JSON field/file names `crossesBorders` and `cross_cultural_summary.json` are legacy contract names. Their exact meaning is disjoint recorded Wikidata P27 sets; public copy no longer describes this as observed border crossing, migration, refugee history, or cross-cultural influence.
 
@@ -260,10 +264,11 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   `docs/SECURITY.md`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
-- All four production chart SVGs have roles and accessible names but no
-  structured equivalent or tabbable chart-detail path. Forced-colors/grayscale
-  simulation weakens or collapses categorical distinctions; this cannot pass
-  until a non-color reading path exists.
+- The Evolution, Migration, and Lineage chart families have accessible names
+  but no structured equivalent or tabbable chart-detail path. Forced-colors/
+  grayscale simulation weakens or collapses categorical distinctions; those
+  routes cannot pass until a non-color reading path exists. Timeline now has
+  a correlated reflow list and an on-demand wide-view structured equivalent.
 - The 5Q.4a Axe baseline found repeated contextual contrast failures (2,378
   nodes on old Explore), six prohibited ARIA labels on detail completeness
   dots, a non-focusable mobile Timeline scroller, and four movement target-size
@@ -277,7 +282,7 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Validation state at this handoff
 
-The unmerged Timeline candidate passed locally on
+The Timeline implementation landed through PR #28 after passing locally on
 `codex/phase-5q4b-timeline-slice` from exact base
 `b00cac633d9a81e3706fc868292fa6c743a5ee0a` with Node 24.14.0 and npm
 11.9.0:
@@ -300,10 +305,22 @@ The unmerged Timeline candidate passed locally on
   least 48px high, and visual chart row targets are at least 24px high.
 - Actual 200% browser zoom, spoken VoiceOver/NVDA output, physical input,
   Windows High Contrast, and reader comprehension were not claimed; they remain
-  owner-run boundaries. Exact-head Preview evidence is also still pending.
+  owner-run boundaries.
 - Fresh `npm audit` and `npm audit --omit=dev` each report the separately
   triaged `nanoid@3.3.16` advisory described above; dependency files were not
   changed in this route slice.
+- Exact head `ba693dd9d21e62758c95027af405b8350f42b245` passed Actions run
+  `31227074431`, immutable `READY` Preview
+  `dpl_aULsaqDU8jXPmqjgt8HzHFQMwRjw`, nine focused Preview journeys, and
+  rendered 1440×900/390×844 review with no unresolved conversations.
+- The exact-head guarded merge produced
+  `f3f5130fa043134f55d7832a9cac4f485b73af6d`. Default-branch Actions run
+  `31228072123`, exact-source `READY` production
+  `dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and canonical/immutable route probes
+  passed. Both post-merge audit views still report only the triaged nanoid
+  advisory. Dependabot run `31228078335` could not create an automatic update
+  because the current PostCSS dependency range still permits the vulnerable
+  version; resolve that in a separate bounded security task.
 
 The implementation now landed by PR #25 passed locally on
 `codex/phase-5q4b-landing-hotfix` from exact base
@@ -361,11 +378,12 @@ The implementation now landed by PR #25 passed locally on
   conversations were resolved; local/remote task branches and retained
   worktrees are clean.
 
-For this documentation-only closeout, exact-head GitHub checks, a `READY`
-Vercel Preview, route smoke, review conversations, and clean source-control
-reconciliation remain the publishing/review gates. No rendered behavior is
-changed, so PR #25's final-head visual QA remains the relevant interface
-evidence; this docs-only PR must not claim or trigger a new visual review.
+For this documentation-only Timeline landing closeout, exact-head GitHub
+checks, a `READY` Vercel Preview, route smoke, review conversations, and clean
+source-control reconciliation remain the publishing/review gates. No rendered
+behavior is changed, so PR #28's final-head visual QA remains the relevant
+interface evidence; this docs-only PR must not claim or trigger a new visual
+review.
 
 Historical PR #24 implementation evidence follows. It passed locally on
 `codex/phase-5q4b-explore-slice` from exact base
@@ -554,37 +572,35 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Publish the single Timeline candidate head as a draft PR against `main`,
-   then require exact-head `validate` and Vercel checks, Git-backed `READY`
-   Preview source proof, route smoke, rendered 1440×900/390×844 QA, resolved
-   conversations, and clean source-control reconciliation. Do not deploy,
-   promote, or merge as part of that review.
-2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
-   Contrast, and comprehension protocols at the Timeline route gate; do not
-   backfill them as automated evidence.
-3. If the exact head remains approved after review, request separate authority
-   for the protected merge and post-merge production/closeout runbook. Do not
-   begin Lineage, Migration, Evolution, or another route slice first.
-4. In a separate security task, triage/remediate the new nanoid advisory; at
-   the 2026-09-02 dependency review (or sooner on a stable Next release),
-   test whether the PostCSS/Sharp overrides can be safely retired; do not let
-   that maintenance widen the Timeline candidate.
+1. Treat this documentation-only reconciliation as the final Timeline landing
+   boundary. Require its exact-head `validate` and Vercel checks, `READY`
+   Preview source proof, route smoke, resolved conversations, and a separately
+   authorized merge. It changes no rendered behavior and must not trigger a
+   second visual-QA cycle.
+2. In a separate bounded security task, remediate the transitive nanoid
+   advisory that both audits and failed Dependabot run `31228078335` confirm.
+   Keep route behavior unchanged and rerun both audits plus the canonical gate.
+3. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
+   Contrast, and comprehension protocols for Timeline; do not backfill them as
+   automated evidence.
+4. After the security closeout, continue 5Q.4b with the dense
+   Lineage/Migration family; do not widen Evolution into that slice.
 5. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded seed — exact-head Timeline review and merge decision
+### Next bounded seed — nanoid security remediation
 
-> Review the draft PR from `codex/phase-5q4b-timeline-slice` against `main` at
-> the exact head recorded in its evidence packet. Confirm required checks,
-> Git-backed `READY` Preview source SHA, route smoke, 1440×900/390×844 visual
-> QA, URL/keyboard/structured-equivalence behavior, review conversations, and
-> the owner-run evidence boundaries. If and only if that exact head is
-> approved, request separate authority to merge it and then follow the
-> default-branch validation, exact-merge-SHA production, route-probe, audit,
-> handoff, and separately approved cleanup runbook. Do not widen another route,
-> deploy/promote manually, mutate provider settings/routes/domains, or merge an
-> unapproved head.
+> Continue Sculpture in Data with a bounded nanoid security remediation only
+> after the Timeline landing closeout is merged and verified. Start from
+> freshly fetched protected `main`, reproduce `npm audit` and
+> `npm audit --omit=dev`, and use the failed Dependabot run `31228078335` plus
+> `docs/SECURITY.md` to identify the smallest compatible fix for transitive
+> `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`). Keep all route behavior and data
+> contracts unchanged; rerun both audits, `./scripts/validate.sh`, exact-head
+> CI/Preview verification, and the post-merge landing gates. Do not clean
+> retained branches/worktrees, change provider settings/routes/domains,
+> deploy/promote manually, or merge without separate exact-head approval.
 
 ## Starting instructions for any agent
 
