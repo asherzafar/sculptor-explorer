@@ -1,33 +1,34 @@
 # Phase 5 — Densification + explorable interactives
 
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
-> implemented in the current release candidate; 5Q stabilization and visual
-> route review are the active bounded implementation gate. PR #24 merged the
-> Explore 5Q.4b URL-backed query/sort/movement-record-filter/page state, fixed
-> 50-record semantic pagination, responsive equivalent list, and shared skip
-> link as `8633902fa01d02f72e325c53944780b40b219ec8`. A post-merge review found
-> that ordinary multi-word typing lost spaces, missing movement sentinels sorted
-> as literal text, and the mobile list inferred “present” from a null death
-> year. PR #25 changed only those three behaviors, added focused regressions,
-> and merged reviewed head `d7dd1955f1cc4360430c7957d9e0508ed5d8c2a7`
-> as `c22cba075ef36373f635d114ffa2d6f3d9ca17f9`. Exact-head review and Preview
-> QA passed; default-branch Actions run `31193771731` then passed the full gate
-> and 21 browser journeys. Vercel production deployment
-> `dpl_6tfRw7nJJ1QeR9Mxvnf22GWZSB61` is `READY` from that exact merge SHA, and
-> canonical/missing-route probes passed. The retained PR #24/#25 branches and
-> worktrees are clean. Explore is therefore closed as the first 5Q.4b route
-> slice; Timeline is the next route-specific review and no other analytical
-> route behavior changed. The verified branch/CI/Vercel workflow and
-> same-head-verified Node 24 repository alignment in `docs/ROADMAP.md` remain
-> release enablers rather than feature work. Complete Phase 5Q
-> in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The later phases
-> in this document are researched hypotheses, not commitments; re-score
-> them against `docs/PROJECT_CHARTER.md` using the product, data,
+> implemented in the current release candidate. Explore and Timeline are the
+> first two landed 5Q.4b route slices; the latest behavior-changing protected-
+> main commit remains Timeline merge
+> `f3f5130fa043134f55d7832a9cac4f485b73af6d`. The bounded nanoid remediation
+> landed through PR #30 without changing route behavior, and documentation-only
+> PR #31 advanced protected `main` to
+> `f9f31d4286bc171f3547c8ddb139fe926e06f1ad` with passing default-branch CI,
+> exact-SHA production, and route probes.
+>
+> The exact-main Lineage/Migration review dated 2026-08-08 selects
+> **Migration** as the next bounded route slice and leaves Lineage and Evolution
+> unchanged. Migration has one 415-pair, approximately 71 KB-gzip projection
+> and an existing disclosure/detail-link pattern; it can prove responsive and
+> structured task equivalence, canonical selected-pair state, keyboard/focus
+> behavior, and interaction budgets without coupling the work to a force-graph
+> redesign. Lineage remains a later independent slice because its adjacency
+> equivalent, typeahead/node keyboard model, canonical state, reduced motion,
+> forced-colors path, and browser-side stable-layout budget must be designed
+> together. The exact evidence and success/stop gates are in
+> `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`.
+>
+> Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
+> later phases in this document are researched hypotheses, not commitments;
+> re-score them against `docs/PROJECT_CHARTER.md` using the product, data,
 > accessibility, user-evidence, and performance gates in
-> `docs/RESEARCH_FOUNDATIONS.md`. Isolated, time-boxed research
-> prototypes may explore these ideas under
-> `docs/EXPLORATION_STRATEGY.md`; they do not count as starting the
-> production phase or create production dependencies.
+> `docs/RESEARCH_FOUNDATIONS.md`. Isolated, time-boxed research prototypes may
+> explore these ideas under `docs/EXPLORATION_STRATEGY.md`; they do not count as
+> starting the production phase or create production dependencies.
 
 > **Project recast (May 2026):** the goal stops being "ship to Fabio /
 > first-deploy feedback" and becomes "better data, more interesting

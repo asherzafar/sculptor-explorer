@@ -34,6 +34,32 @@ both merged-main audit views, and the zero-open-alert check passed. The change
 only resolves lockfile nanoid `3.3.17`; the package manifest, Next.js,
 PostCSS, Sharp, Tailwind, shadcn, routes, and data contracts remain unchanged.
 
+Documentation-only PR #31 landed reviewed head
+`3d649e0217f5bb54ca9309119886bebbd6f8fc36` as merge commit
+`f9f31d4286bc171f3547c8ddb139fe926e06f1ad`, without deleting its branch.
+Default-branch Actions run `31278205059` passed the root gate and all 30
+browser journeys. Git-backed Vercel production deployment
+`dpl_FjSW7EVEQbqGLKpWTNowd86ScmrY` is `READY` from that exact merge at
+`https://sculptor-explorer-7kj5pe0ym-asherzafars-projects.vercel.app`;
+canonical and immutable probes returned 200 for `/`, `/timeline`, `/explore`,
+`/about`, and `/transparency`, plus 404 for the missing route. No retained
+branch/worktree was cleaned, and no manual deployment, promotion, provider,
+route, domain, application, data, claim, or dependency change occurred.
+
+The dense Lineage/Migration family review is complete locally on dedicated
+branch `codex/phase-5q4b-dense-route-scope-review`, based on freshly fetched
+protected `main@f9f31d4286bc171f3547c8ddb139fe926e06f1ad`. Exact-source rendered,
+source, data, browser-test, and performance evidence selects **Migration** as
+the smallest coherent next 5Q.4b implementation slice and leaves Lineage and
+Evolution unchanged. The review records Migration's endpoint question,
+overview/focus/details model, canonical decade/same-country/selected-pair URL
+contract, mobile/reflow and structured-equivalence requirements,
+keyboard/focus/target behavior, disclosure, accessibility/performance budgets,
+and stop gates in
+`docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`. This review changes
+documentation only; its publication or later landing evidence belongs in the
+corresponding PR and must not be described as application-route evidence.
+
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
 The bounded Getty contract repair restores the detail behavior that the old
@@ -295,6 +321,41 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   viewport resizing and source inspection are not substitutes.
 
 ## Validation state at this handoff
+
+The documentation-only dense-route scope review used Node 24.14.0 and npm
+11.9.0 against exact protected
+`main@f9f31d4286bc171f3547c8ddb139fe926e06f1ad`:
+
+- Exact production `dpl_FjSW7EVEQbqGLKpWTNowd86ScmrY` was inspected at
+  1440×900, 390×844, and a 720px reflow proxy for Migration and Lineage.
+  Both routes retain strong disclosure but replace the analytical task with a
+  desktop-only notice at the two narrow widths; inspected states emitted no
+  console warnings or errors.
+- Migration's decade and `stay` state restored from the URL, pointer activation
+  worked, and its native top-corridor button exposed deterministic sculptor
+  links. Space failed to activate the same-country checkbox; Sankey marks have
+  no tabbable path; the top-ten list is not equivalent to filtered slices; and
+  a pinned pair is local-only state.
+- Lineage's SVG exposed zero tabbable node targets, its typeahead results are
+  click-only list items, and its initial force/transitions do not honor reduced
+  motion. The existing focused-institution clear-state browser journey failed
+  against exact production in the complete run and again in isolation.
+- `npm ci` installed 705 packages (706 audited) with zero vulnerabilities.
+  The first browser attempt was an environment-only macOS sandbox launch
+  failure before assertions; the supported outside-sandbox exact-production
+  rerun passed 29/30, with only the repeatable Lineage failure above. The
+  Migration URL journey passed but does not cover its confirmed Space/mobile/
+  structured-equivalence gaps.
+- `node web/perf/lineage-bench.mjs` measured 1.50 s current, 1.81 s with
+  institutions, 1.87 s with movements, and 3.00 s stress to perceptual settle;
+  these are headless medians and exclude SVG rendering/time-to-interactive.
+- Migration's committed projection is 532,592 bytes raw / 70,841 bytes gzip
+  for 415 endpoint pairs. Default Lineage loads approximately 179 KB gzip
+  across its index/edge/mentor files before the optional 375,543 byte-gzip
+  institution bundle.
+- Actual 200% browser zoom, spoken VoiceOver/NVDA output, physical input,
+  Windows High Contrast, field p75, and reader comprehension remain explicitly
+  unobserved owner-run boundaries.
 
 The bounded nanoid remediation is landed from exact base
 `1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` through PR #30, with Node
@@ -623,29 +684,39 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Review the dense Lineage/Migration family before implementing either route:
-   bound overview/focus/details, denominators and uncertainty, keyboard/text
-   equivalence, reduced motion, and graph/interaction budgets. Select one
-   coherent route slice and keep Evolution unchanged.
-2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
+1. Implement the bounded Migration route slice against
+   `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`: preserve the
+   endpoint question, denominator, uncertainty, and deterministic sculptor
+   links while repairing mobile/reflow and structured equivalence, canonical
+   URL-backed pair selection, keyboard/focus/targets, accessibility, and
+   performance. Keep Lineage and Evolution unchanged.
+2. Scope Lineage as a separate later slice only after Migration passes its
+   exact-head gate; do not carry the Sankey's pair-list idiom mechanically into
+   the heterogeneous graph.
+3. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, and comprehension protocols for Timeline; do not backfill them as
    automated evidence.
-3. Add privacy-respecting analytics and run five structured user sessions,
+4. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded seed — scope the dense Lineage/Migration family
+### Next bounded seed — implement the Migration route slice
 
 > Continue Sculpture in Data Phase 5Q.4b from freshly fetched protected
-> `main@f972d56fc3e20b8b91919a7b9b7ac72b705923cb`. Review only the dense
-> Lineage/Migration family against the dated visual baseline, route questions,
-> data/task abstractions, URL state, disclosure, mobile/zoom, keyboard/text
-> equivalence, reduced motion, accessibility, and measured graph/interaction
-> budgets. Select the smallest coherent next route slice and record its
-> success/stop gate before implementation; keep Evolution and the unselected
-> route unchanged. Do not clean retained branches/worktrees, change provider
-> settings/routes/domains, deploy/promote manually, or merge without separate
-> exact-head approval.
+> `main@f9f31d4286bc171f3547c8ddb139fe926e06f1ad`. Create
+> `codex/phase-5q4b-migration-slice` in a dedicated clean worktree and implement
+> only the Migration route contract in
+> `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`: preserve the recorded
+> birth/death-country endpoint question, denominator, uncertainty, wide Sankey,
+> and deterministic sculptor links while adding mobile/zoom reflow and
+> structured pair equivalence, canonical URL-backed decade/same-country/
+> selected-pair round trips, native keyboard/focus/target behavior, explicit
+> rollup disclosure, accessibility, degraded states, and bounded performance.
+> Use the repository ship-pr and visual-qa workflows with exact-head Preview
+> evidence. Do not change Lineage or Evolution behavior, begin another route
+> slice, clean retained branches/worktrees, deploy or promote manually, change
+> provider settings/routes/domains, or merge without separate exact-head
+> approval.
 
 ## Starting instructions for any agent
 
