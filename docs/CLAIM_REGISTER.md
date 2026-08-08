@@ -1,8 +1,8 @@
 # Public Claim Register
 
-**Status:** Current production through protected `main`; Timeline candidate under review
+**Status:** Current production through protected `main`; Timeline landing verified
 **Reviewed:** 2026-08-07
-**Applies to:** Production `main@b00cac633d9a81e3706fc868292fa6c743a5ee0a`, data release `2026-08-02.2`, methodology `A.3`; the Timeline row also describes the unmerged route candidate
+**Applies to:** Production `main@f3f5130fa043134f55d7832a9cac4f485b73af6d`, data release `2026-08-02.2`, methodology `A.3`
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
@@ -18,10 +18,12 @@ PR #25 verified the Explore row below at reviewed head
 The hotfix changed no claim denominator, source field, or analytical behavior
 outside Explore.
 
-The Timeline row below is implemented on
-`codex/phase-5q4b-timeline-slice` from exact protected-main base `b00cac6` and
-has passed local validation. It does not become a production claim until its
-exact head passes Preview review and receives separate merge approval.
+PR #28 verified the Timeline row below at reviewed head
+`ba693dd9d21e62758c95027af405b8350f42b245` and production merge
+`f3f5130fa043134f55d7832a9cac4f485b73af6d`. Default-branch Actions run
+`31228072123`, exact-SHA `READY` Vercel production deployment
+`dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and canonical/immutable route probes
+passed. The slice changed no Evolution, Migration, or Lineage claim.
 
 ## Route and claim audit
 
