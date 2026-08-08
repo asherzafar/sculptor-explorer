@@ -124,7 +124,10 @@ Recently completed:
   guardrails are active
 - Dependency/security closeout: package PRs #17, #13, #15, #14, #18, #19,
   #12, #10, and #8 landed sequentially, followed by advisory closeout PR #20;
-  GitHub has zero open dependency alerts and both npm audit views are clean
+  that baseline had zero open dependency alerts and clean audit views
+- Phase 5Q.4b Timeline landed through PR #28 with exact-head visual evidence;
+  documentation-only PR #29 then closed its landing record without changing
+  application behavior
 
 Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
@@ -144,13 +147,14 @@ Next bounded work:
   Contrast, initial reduced-motion comfort, and reader/founder comprehension
   remain owner-run checks under the exact protocols in
   `docs/VISUAL_BASELINE_2026-08-02.md`.
-- Phase 5Q.4b Explore is closed as the first route slice after its landing
-  hotfix and exact-head/merge production evidence. Timeline is the next and
-  only route-specific implementation slice; keep Evolution, Migration, and
-  Lineage unchanged until their own separately approved reviews.
+- Phase 5Q.4b Explore and Timeline are closed route slices. Complete the
+  bounded nanoid security remediation before continuing with the dense
+  Lineage/Migration family; keep Evolution unchanged until its own separately
+  approved review.
 - At the 2026-09-02 security review, reassess the temporary patched PostCSS and
-  Sharp overrides against the then-current stable Next.js graph; do not force a
-  downgrade or broad dependency rewrite merely to remove an override
+  Sharp overrides plus the nanoid lock resolution against the then-current
+  stable Next.js graph; do not force a downgrade or broad dependency rewrite
+  merely to remove an override
 - Phase 5R after 5Q evidence: open-ended strategic/literature/roadmap workshop before the next major public phase
 
 Nav routes (7): Timeline · Explore · Evolution · Migration · Lineage · About · Transparency

@@ -1,6 +1,6 @@
 # Agent Handoff
 
-**Verified:** 2026-08-07
+**Verified:** 2026-08-08
 
 **Purpose:** Current agent-neutral continuation state. The evidence behind the roadmap reset is in `docs/PROJECT_AUDIT_2026-08-02.md`; historical 5b.3–5b.4 implementation detail remains in `docs/CODEX_HANDOFF.md`.
 
@@ -15,6 +15,22 @@ equivalence, native keyboard/focus paths, 24–48px targets, explicit
 unknown-year disclosure, and bounded route checks. Exact-head Actions and
 Git-backed Preview QA passed before the guarded merge commit; default-branch
 CI, exact-SHA production, and canonical/immutable route probes passed after it.
+
+Documentation-only PR #29 then landed reviewed head
+`31c8d30a1ee5c3a0af710eb6b6d220826ae86df2` as merge commit
+`1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9`. Default-branch Actions run
+`31264845842`, exact-source `READY` production
+`dpl_Fj3yDDw2eVTKQExD8vn7i1wBZe1W`, and canonical/immutable route probes
+passed. That closeout changed no application, route, data, claim, or
+dependency behavior.
+
+The current bounded security candidate uses the dedicated
+`codex/nanoid-security-remediation` branch/worktree from freshly fetched exact
+protected `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9`. It adds only a
+lockfile-only `nanoid@3.3.17` resolution, leaving the package manifest,
+Next.js, PostCSS, Sharp, Tailwind, shadcn, routes, and data contracts unchanged. Clean
+install, both audit views, the canonical validation gate, and all 30 Chromium
+journeys pass locally; publishing and exact-head provider evidence remain open.
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
@@ -39,13 +55,12 @@ canonical and immutable probes both returned 200 for `/`, `/timeline`,
 `/explore`, `/about`, and `/transparency`, plus 404 for the missing route. The
 existing Git integration produced the deployment; no manual deployment,
 promotion, provider-setting, route, or domain mutation occurred. The
-documentation-only closeout that carries this handoff changes no application,
-runtime, route, claim, or dependency behavior, so its merge may advance the
-repository and production source SHAs without superseding the PR #28 behavior
-evidence. Its exact reviewed head, merge, CI, Preview/production deployment,
-and route probes belong in PR #29 and Git/provider delivery records rather than
-being hard-coded prospectively here. The clean detached verification checkout
-is exact at the behavior-changing merge. The permanent `main` checkout remains
+documentation-only closeout changed no application, runtime, route, claim, or
+dependency behavior, so its merge advanced the repository and production
+source SHAs without superseding the PR #28 behavior evidence. Its exact
+delivery record is in PR #29 and the Git/provider evidence summarized above.
+The clean detached verification checkout is exact at the behavior-changing
+merge. The permanent `main` checkout remains
 clean at `b00cac633d9a81e3706fc868292fa6c743a5ee0a` and was intentionally not
 advanced during this task. The local/remote
 `codex/phase-5q4b-explore-slice@f7b220788e83a36f5583cd645a740ff6c9706789`
@@ -253,14 +268,13 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 ## Known quality issues
 
 - `npm run lint` now exits with zero errors and zero warnings. The intentional standard `<img>` in `WorksGallery` remains documented inline for hot-linked public-domain museum assets in the static export.
-- Next.js and `eslint-config-next` are aligned at 16.2.12. A fresh Timeline
-  worktree install on 2026-08-07 reports one new high npm advisory for
-  transitive `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`) in both full and
-  production-only audit views. The affected zero-size custom-generator path is
-  not used by the app; the installed PostCSS path imports `nanoid/non-secure`
-  and calls it with size 6. Keep dependency remediation in a separate bounded
-  security task rather than widening the Timeline slice. The temporary
-  PostCSS/Sharp override rationale and retirement triggers are in
+- Next.js and `eslint-config-next` remain aligned at 16.2.12. Protected main's
+  lock resolves transitive `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`), although
+  the affected zero-size generator path is not used. The bounded security
+  candidate locks patched `3.3.17` inside PostCSS's existing `^3.3.16` range;
+  clean full and production-only audits report zero vulnerabilities.
+  Exact-head CI/Preview and merge evidence remain open. The temporary
+  PostCSS/Sharp override and nanoid lock rationale/review triggers are in
   `docs/SECURITY.md`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
@@ -281,6 +295,34 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   viewport resizing and source inspection are not substitutes.
 
 ## Validation state at this handoff
+
+The bounded nanoid candidate passes locally on
+`codex/nanoid-security-remediation` from exact base
+`1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` with Node 24.14.0 and npm
+11.9.0:
+
+- Baseline `npm audit` and `npm audit --omit=dev` each reproduced the one high
+  `nanoid@3.3.16` advisory; Dependabot run `31228078335` identified the
+  transitive PostCSS range and recommended an override/resolution.
+- The candidate changes only the lockfile: nanoid version, tarball, integrity,
+  and npm's production classification of the already-shared PostCSS node.
+  No manifest override was necessary. `npm ls` confirms Next 16.2.12, PostCSS
+  8.5.25, Sharp 0.35.3, Tailwind 4.3.3, and shadcn 4.2.0 are unchanged.
+- Fresh `npm ci` installs 705 packages (706 audited); `npm audit` and
+  `npm audit --omit=dev` both report zero vulnerabilities.
+- `./scripts/validate.sh` passes all data/Getty/institution/relationship/
+  temporal contracts, 11 URL-state unit tests, zero-warning lint, type
+  checking, the 3,625-route production build, and CI lineage bounds.
+- After installing the documented repository-local Chromium prerequisite,
+  `npm run test:e2e` passes all 30 browser journeys. The initial pre-install
+  attempt failed all launches only because that binary was absent; no
+  application assertion ran or failed. One later eight-worker run reproduced
+  the previously recorded Next dev-server `Unexpected end of JSON input`
+  flake on `/decade/1880`; all top-level JSON inputs parsed cleanly, and the
+  affected journey plus the complete 30-journey rerun passed immediately.
+- No application, route, rendering, pipeline, generated-data, or provider file
+  changed. Exact-head Actions, Git-backed Preview, review, and a separately
+  approved merge remain publishing gates.
 
 The Timeline implementation landed through PR #28 after passing locally on
 `codex/phase-5q4b-timeline-slice` from exact base
@@ -572,35 +614,30 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Treat this documentation-only reconciliation as the final Timeline landing
-   boundary. Require its exact-head `validate` and Vercel checks, `READY`
-   Preview source proof, route smoke, resolved conversations, and a separately
-   authorized merge. It changes no rendered behavior and must not trigger a
-   second visual-QA cycle.
-2. In a separate bounded security task, remediate the transitive nanoid
-   advisory that both audits and failed Dependabot run `31228078335` confirm.
-   Keep route behavior unchanged and rerun both audits plus the canonical gate.
-3. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
+1. Publish the bounded nanoid candidate only with explicit authority. Require
+   exact-head Actions, Git-backed `READY` Preview source proof, route smoke,
+   resolved conversations, and a separately approved merge; repeat both audits
+   on the exact merged source.
+2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, and comprehension protocols for Timeline; do not backfill them as
    automated evidence.
-4. After the security closeout, continue 5Q.4b with the dense
+3. After the security closeout, continue 5Q.4b with the dense
    Lineage/Migration family; do not widen Evolution into that slice.
-5. Add privacy-respecting analytics and run five structured user sessions,
+4. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded seed — nanoid security remediation
+### Next bounded seed — publish and review the nanoid remediation
 
-> Continue Sculpture in Data with a bounded nanoid security remediation only
-> after the Timeline landing closeout is merged and verified. Start from
-> freshly fetched protected `main`, reproduce `npm audit` and
-> `npm audit --omit=dev`, and use the failed Dependabot run `31228078335` plus
-> `docs/SECURITY.md` to identify the smallest compatible fix for transitive
-> `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`). Keep all route behavior and data
-> contracts unchanged; rerun both audits, `./scripts/validate.sh`, exact-head
-> CI/Preview verification, and the post-merge landing gates. Do not clean
-> retained branches/worktrees, change provider settings/routes/domains,
-> deploy/promote manually, or merge without separate exact-head approval.
+> Review the locally validated `codex/nanoid-security-remediation` candidate
+> against protected `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9`.
+> Confirm that only the `nanoid@3.3.17` lock resolution and security/roadmap/
+> handoff record change; both audits, `./scripts/validate.sh`, and all 30
+> Chromium journeys must pass. With explicit publishing authority, commit,
+> push, open a draft PR against `main`, and require exact-head CI/Preview and
+> route smoke. Do not clean retained branches/worktrees, change provider
+> settings/routes/domains, deploy/promote manually, or merge without separate
+> exact-head approval.
 
 ## Starting instructions for any agent
 
