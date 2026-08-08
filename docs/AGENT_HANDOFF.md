@@ -27,9 +27,9 @@ audit denominator is 2,310 after excluding `Q87366`, not the stale 2,311. The
 canonical root gate now includes both the committed-data parity checks and a
 focused standard-library final-writer regression suite.
 
-Protected `main` is now
+The latest behavior-changing commit on protected `main` is
 `f3f5130fa043134f55d7832a9cac4f485b73af6d`, the PR #28 merge commit.
-Default-branch Actions run
+Its default-branch Actions run
 [`31228072123`](https://github.com/asherzafar/sculptor-explorer/actions/runs/31228072123)
 completed successfully, including the root validation/build/performance gate
 and all 30 browser journeys. Vercel production deployment
@@ -38,8 +38,14 @@ and all 30 browser journeys. Vercel production deployment
 canonical and immutable probes both returned 200 for `/`, `/timeline`,
 `/explore`, `/about`, and `/transparency`, plus 404 for the missing route. The
 existing Git integration produced the deployment; no manual deployment,
-promotion, provider-setting, route, or domain mutation occurred. The clean
-detached verification checkout is exact. The permanent `main` checkout remains
+promotion, provider-setting, route, or domain mutation occurred. The
+documentation-only closeout that carries this handoff changes no application,
+runtime, route, claim, or dependency behavior, so its merge may advance the
+repository and production source SHAs without superseding the PR #28 behavior
+evidence. Its exact reviewed head, merge, CI, Preview/production deployment,
+and route probes belong in PR #29 and Git/provider delivery records rather than
+being hard-coded prospectively here. The clean detached verification checkout
+is exact at the behavior-changing merge. The permanent `main` checkout remains
 clean at `b00cac633d9a81e3706fc868292fa6c743a5ee0a` and was intentionally not
 advanced during this task. The local/remote
 `codex/phase-5q4b-explore-slice@f7b220788e83a36f5583cd645a740ff6c9706789`

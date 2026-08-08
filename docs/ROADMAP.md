@@ -60,11 +60,15 @@ route-slice evidence requirements.
 Documentation PRs #26 and #27 subsequently closed the Explore landing record
 and repaired the Phase 5Q sequencing policy. PR #28 then landed the
 Timeline-only slice from reviewed head
-`ba693dd9d21e62758c95027af405b8350f42b245` as protected
-`main@f3f5130fa043134f55d7832a9cac4f485b73af6d`. Its exact-head Actions and
+`ba693dd9d21e62758c95027af405b8350f42b245` as the latest behavior-changing
+protected-main commit
+`f3f5130fa043134f55d7832a9cac4f485b73af6d`. Its exact-head Actions and
 Git-backed Preview QA passed; default-branch run `31228072123`, exact-SHA
 `READY` production deployment `dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and both
-canonical and immutable route probes also passed.
+canonical and immutable route probes also passed. The documentation-only
+closeout carrying this record may advance repository and production source
+SHAs without changing that verified route behavior; its exact delivery
+evidence belongs in PR #29 and Git/provider records.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937

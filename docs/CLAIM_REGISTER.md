@@ -2,7 +2,7 @@
 
 **Status:** Current production through protected `main`; Timeline landing verified
 **Reviewed:** 2026-08-07
-**Applies to:** Production `main@f3f5130fa043134f55d7832a9cac4f485b73af6d`, data release `2026-08-02.2`, methodology `A.3`
+**Applies to:** Public claim behavior introduced by `main@f3f5130fa043134f55d7832a9cac4f485b73af6d`, data release `2026-08-02.2`, methodology `A.3`; the documentation-only closeout carrying this register changes no registered claim
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
