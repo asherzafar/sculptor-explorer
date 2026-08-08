@@ -24,13 +24,15 @@ Documentation-only PR #29 then landed reviewed head
 passed. That closeout changed no application, route, data, claim, or
 dependency behavior.
 
-The current bounded security candidate uses the dedicated
-`codex/nanoid-security-remediation` branch/worktree from freshly fetched exact
-protected `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9`. It adds only a
-lockfile-only `nanoid@3.3.17` resolution, leaving the package manifest,
-Next.js, PostCSS, Sharp, Tailwind, shadcn, routes, and data contracts unchanged. Clean
-install, both audit views, the canonical validation gate, and all 30 Chromium
-journeys pass locally; publishing and exact-head provider evidence remain open.
+PR [#30](https://github.com/asherzafar/sculptor-explorer/pull/30) landed the
+bounded nanoid remediation from reviewed head
+`fe0a260c2aa82d959bdd21a81c2f2a11fa5f480f` as merge commit
+`f972d56fc3e20b8b91919a7b9b7ac72b705923cb`. Default-branch Actions run
+`31268128135`, exact-source `READY` production
+`dpl_4WDRWsPT29PGAvMaNwjQXeS9cL5g`, canonical and immutable route probes,
+both merged-main audit views, and the zero-open-alert check passed. The change
+only resolves lockfile nanoid `3.3.17`; the package manifest, Next.js,
+PostCSS, Sharp, Tailwind, shadcn, routes, and data contracts remain unchanged.
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
@@ -268,13 +270,11 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 ## Known quality issues
 
 - `npm run lint` now exits with zero errors and zero warnings. The intentional standard `<img>` in `WorksGallery` remains documented inline for hot-linked public-domain museum assets in the static export.
-- Next.js and `eslint-config-next` remain aligned at 16.2.12. Protected main's
-  lock resolves transitive `nanoid@3.3.16` (`GHSA-2v37-7h3g-55p8`), although
-  the affected zero-size generator path is not used. The bounded security
-  candidate locks patched `3.3.17` inside PostCSS's existing `^3.3.16` range;
-  clean full and production-only audits report zero vulnerabilities.
-  Exact-head CI/Preview and merge evidence remain open. The temporary
-  PostCSS/Sharp override and nanoid lock rationale/review triggers are in
+- Next.js and `eslint-config-next` remain aligned at 16.2.12. Protected main
+  now locks patched nanoid `3.3.17` inside PostCSS's existing `^3.3.16`
+  range; clean full and production-only audits report zero vulnerabilities,
+  and GitHub reports zero open Dependabot alerts. The temporary PostCSS/Sharp
+  override and nanoid lock rationale/review triggers are in
   `docs/SECURITY.md`.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
@@ -296,15 +296,14 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Validation state at this handoff
 
-The bounded nanoid candidate passes locally on
-`codex/nanoid-security-remediation` from exact base
-`1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` with Node 24.14.0 and npm
-11.9.0:
+The bounded nanoid remediation is landed from exact base
+`1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` through PR #30, with Node
+24.14.0 and npm 11.9.0:
 
 - Baseline `npm audit` and `npm audit --omit=dev` each reproduced the one high
   `nanoid@3.3.16` advisory; Dependabot run `31228078335` identified the
   transitive PostCSS range and recommended an override/resolution.
-- The candidate changes only the lockfile: nanoid version, tarball, integrity,
+- The remediation changes only the lockfile: nanoid version, tarball, integrity,
   and npm's production classification of the already-shared PostCSS node.
   No manifest override was necessary. `npm ls` confirms Next 16.2.12, PostCSS
   8.5.25, Sharp 0.35.3, Tailwind 4.3.3, and shadcn 4.2.0 are unchanged.
@@ -320,9 +319,19 @@ The bounded nanoid candidate passes locally on
   the previously recorded Next dev-server `Unexpected end of JSON input`
   flake on `/decade/1880`; all top-level JSON inputs parsed cleanly, and the
   affected journey plus the complete 30-journey rerun passed immediately.
-- No application, route, rendering, pipeline, generated-data, or provider file
-  changed. Exact-head Actions, Git-backed Preview, review, and a separately
-  approved merge remain publishing gates.
+- Exact-head Actions, Git-backed Preview, and route smoke passed on
+  `fe0a260c2aa82d959bdd21a81c2f2a11fa5f480f`. The guarded merge commit is
+  `f972d56fc3e20b8b91919a7b9b7ac72b705923cb`; default-branch run
+  `31268128135` passed the root gate and all 30 browser journeys.
+- Production deployment `dpl_4WDRWsPT29PGAvMaNwjQXeS9cL5g` is `READY` from
+  that exact merge SHA. Canonical and immutable probes each returned 200 for
+  `/`, `/timeline`, `/explore`, `/about`, and `/transparency`, plus 404 for the
+  missing route.
+- A fresh exact-merge `npm ci` installed 705 packages (706 audited); both npm
+  audit views report zero vulnerabilities, the intended package graph is
+  unchanged except for nanoid `3.3.17`, and GitHub has zero open Dependabot
+  alerts. No application, route, rendering, pipeline, generated-data, or
+  provider file changed.
 
 The Timeline implementation landed through PR #28 after passing locally on
 `codex/phase-5q4b-timeline-slice` from exact base
@@ -614,28 +623,27 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Publish the bounded nanoid candidate only with explicit authority. Require
-   exact-head Actions, Git-backed `READY` Preview source proof, route smoke,
-   resolved conversations, and a separately approved merge; repeat both audits
-   on the exact merged source.
+1. Review the dense Lineage/Migration family before implementing either route:
+   bound overview/focus/details, denominators and uncertainty, keyboard/text
+   equivalence, reduced motion, and graph/interaction budgets. Select one
+   coherent route slice and keep Evolution unchanged.
 2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, and comprehension protocols for Timeline; do not backfill them as
    automated evidence.
-3. After the security closeout, continue 5Q.4b with the dense
-   Lineage/Migration family; do not widen Evolution into that slice.
-4. Add privacy-respecting analytics and run five structured user sessions,
+3. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded seed — publish and review the nanoid remediation
+### Next bounded seed — scope the dense Lineage/Migration family
 
-> Review the locally validated `codex/nanoid-security-remediation` candidate
-> against protected `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9`.
-> Confirm that only the `nanoid@3.3.17` lock resolution and security/roadmap/
-> handoff record change; both audits, `./scripts/validate.sh`, and all 30
-> Chromium journeys must pass. With explicit publishing authority, commit,
-> push, open a draft PR against `main`, and require exact-head CI/Preview and
-> route smoke. Do not clean retained branches/worktrees, change provider
+> Continue Sculpture in Data Phase 5Q.4b from freshly fetched protected
+> `main@f972d56fc3e20b8b91919a7b9b7ac72b705923cb`. Review only the dense
+> Lineage/Migration family against the dated visual baseline, route questions,
+> data/task abstractions, URL state, disclosure, mobile/zoom, keyboard/text
+> equivalence, reduced motion, accessibility, and measured graph/interaction
+> budgets. Select the smallest coherent next route slice and record its
+> success/stop gate before implementation; keep Evolution and the unselected
+> route unchanged. Do not clean retained branches/worktrees, change provider
 > settings/routes/domains, deploy/promote manually, or merge without separate
 > exact-head approval.
 

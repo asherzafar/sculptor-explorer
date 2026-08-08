@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: nanoid remediation locally verified; review/publishing next (August 2026)
+## Current status: nanoid remediation landed; dense route review next (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -72,11 +72,17 @@ evidence belongs in PR #29 and Git/provider records.
 
 PR #29 then landed that documentation-only closeout as
 `1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` without changing application,
-route, data, claim, or dependency behavior. The current bounded security
-candidate starts from that exact protected-main source, changes only the
-nanoid lock resolution from `3.3.16` to patched `3.3.17`, and passes a
-clean install, both audit views, the canonical validation gate, and all 30
-browser journeys. Exact-head CI/Preview and separate merge approval remain.
+route, data, claim, or dependency behavior. PR
+[#30](https://github.com/asherzafar/sculptor-explorer/pull/30) then landed the
+bounded nanoid remediation from reviewed head
+`fe0a260c2aa82d959bdd21a81c2f2a11fa5f480f` as
+`f972d56fc3e20b8b91919a7b9b7ac72b705923cb`. It changes only the lock
+resolution from vulnerable `3.3.16` to patched `3.3.17` plus this delivery
+record. Default-branch run
+[`31268128135`](https://github.com/asherzafar/sculptor-explorer/actions/runs/31268128135),
+exact-source production `dpl_4WDRWsPT29PGAvMaNwjQXeS9cL5g`, canonical and
+immutable route probes, both merged-main audit views, and the zero-open-alert
+check passed.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -111,7 +117,8 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
 | Completed | **5Q.4b Explore route slice + landing hotfix** | URL-backed semantic pagination, mobile equivalence, accessibility/scale budgets, and the three landing-review boundaries passed exact-head review and exact-merge production verification. |
 | Completed | **5Q.4b Timeline route slice** | Mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, accessibility, and performance passed exact-head Preview review plus exact-merge production verification. |
-| Now | **Bounded nanoid security remediation** | The smallest compatible candidate updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; clean install, both audits, canonical validation, and 30 browser journeys pass without route/data changes. Exact-head delivery review remains. |
+| Completed | **Bounded nanoid security remediation** | PR #30 updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; exact-head and exact-merge delivery gates pass with zero npm findings and zero open Dependabot alerts. |
+| Now | **Dense Lineage/Migration review** | Bound overview/focus/details, denominators and uncertainty, keyboard/text equivalence, reduced motion, and measured graph/interaction budgets before selecting one coherent implementation slice. Keep Evolution unchanged. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |

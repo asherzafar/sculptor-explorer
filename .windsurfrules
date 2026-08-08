@@ -128,6 +128,9 @@ Recently completed:
 - Phase 5Q.4b Timeline landed through PR #28 with exact-head visual evidence;
   documentation-only PR #29 then closed its landing record without changing
   application behavior
+- Bounded nanoid remediation landed through PR #30: the lock now resolves
+  patched `3.3.17`, both audit views are clean, and GitHub has zero open
+  Dependabot alerts
 
 Current infrastructure state:
 - Node 24 is aligned across the root and `web` `.nvmrc` files, the package
@@ -147,10 +150,10 @@ Next bounded work:
   Contrast, initial reduced-motion comfort, and reader/founder comprehension
   remain owner-run checks under the exact protocols in
   `docs/VISUAL_BASELINE_2026-08-02.md`.
-- Phase 5Q.4b Explore and Timeline are closed route slices. Complete the
-  bounded nanoid security remediation before continuing with the dense
-  Lineage/Migration family; keep Evolution unchanged until its own separately
-  approved review.
+- Phase 5Q.4b Explore and Timeline are closed route slices, and the bounded
+  nanoid security remediation is landed. Continue with a scoped review of the
+  dense Lineage/Migration family; keep Evolution unchanged until its own
+  separately approved review.
 - At the 2026-09-02 security review, reassess the temporary patched PostCSS and
   Sharp overrides plus the nanoid lock resolution against the then-current
   stable Next.js graph; do not force a downgrade or broad dependency rewrite
