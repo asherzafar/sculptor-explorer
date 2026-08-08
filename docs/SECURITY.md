@@ -1,6 +1,6 @@
 # Security and Dependency Triage
 
-**Reviewed:** 2026-08-02  
+**Reviewed:** 2026-08-08
 **Next mandatory review:** 2026-09-02, or sooner if the deployment stops being
 a static export, source inputs become user-controlled, or Next.js publishes a
 compatible transitive patch.
@@ -51,16 +51,36 @@ paths are reachable in production.
   the exact PR head and merged `main` each passed GitHub Actions and exact-SHA
   Vercel preview/production verification.
 
+## 2026-08-08 nanoid remediation candidate
+
+- A clean install from protected
+  `main@1cf72de55ceeed18e2d20bb30b5bd7fb8d36fca9` reproduced one high
+  advisory in both `npm audit` views: transitive `nanoid@3.3.16`
+  (`GHSA-2v37-7h3g-55p8`) under `postcss@8.5.25`.
+- Dependabot run `31228078335` could not create the security update because
+  nanoid is transitive. Its diagnostic explicitly recommends a resolution or
+  override; PostCSS already declares `nanoid@^3.3.16`, which accepts the
+  patched `3.3.17` release.
+- The bounded candidate updates only the lockfile resolution to nanoid
+  `3.3.17`; no new manifest override is needed. Next.js, PostCSS, Sharp,
+  Tailwind, shadcn, and every route or data contract remain unchanged.
+- A fresh `npm ci` installed the same 705-package graph with nanoid `3.3.17`;
+  both audit views report zero vulnerabilities, `./scripts/validate.sh`
+  passes, and all 30 Chromium journeys pass. Exact-head CI/Preview and the
+  separately approved merge/production gates remain required before this is
+  production truth.
+
 ## Current dependency controls and review triggers
 
 | Dependency path | Current treatment | Review trigger |
 |---|---|---|
 | `next → postcss` | `overrides.postcss` selects patched `8.5.25` while stable Next 16.2.12 still declares the older vulnerable transitive generation. Builds and audits pass. | At the 2026-09-02 review or the next stable Next release, whichever is sooner, test whether Next incorporates an equally new patched PostCSS and remove the override only after clean install, full validation, browser tests, audits, and preview proof. Reopen immediately if CSS input becomes user-controlled. |
+| `postcss → nanoid` | The lockfile selects patched `3.3.17`, the smallest release outside `GHSA-2v37-7h3g-55p8` and inside PostCSS's existing `^3.3.16` range; no additional override is present. | Keep the lock at an equally safe compatible version during dependency refreshes. Reopen immediately if another nanoid advisory affects the selected line. |
 | `next → sharp` | `overrides.next.sharp` selects patched `0.35.3`. The static export still disables image optimization and exposes no runtime processor. | Reassess with the next stable Next graph or if local/uploaded images enter an optimization pipeline. Remove only after equivalent validation; do not trade the override for a vulnerable or incompatible graph. |
 | `shadcn` CLI and lint/build tooling | Patched transitive MCP SDK, Hono, Express, `qs`, `fast-uri`, Babel, brace-expansion, and js-yaml versions are locked; the CLI remains development-only. | Review monthly and whenever Dependabot or GitHub opens a new advisory. Do not run tooling on untrusted repositories/input, and do not auto-merge split package families. |
 
-The override is a temporary compatibility control, not permission to ignore
-future upstream releases. Its retirement is a normal dependency PR with the
+The PostCSS and Sharp overrides are temporary compatibility controls, not
+permission to ignore future upstream releases. Their retirement is a normal dependency PR with the
 same exact-head and post-merge production gates as any other change.
 
 ## Verification commands
