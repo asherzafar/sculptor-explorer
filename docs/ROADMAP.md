@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: nanoid remediation landed; dense route review next (August 2026)
+## Current status: dense route review selects Migration next (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -84,6 +84,23 @@ exact-source production `dpl_4WDRWsPT29PGAvMaNwjQXeS9cL5g`, canonical and
 immutable route probes, both merged-main audit views, and the zero-open-alert
 check passed.
 
+Documentation-only PR #31 then landed reviewed head
+`3d649e0217f5bb54ca9309119886bebbd6f8fc36` as merge commit
+`f9f31d4286bc171f3547c8ddb139fe926e06f1ad`, without branch deletion or any
+application, route, data, claim, dependency, deployment-path, or provider
+change. Default-branch run `31278205059`, exact-source `READY` production
+deployment `dpl_FjSW7EVEQbqGLKpWTNowd86ScmrY`, and canonical/immutable route
+probes passed.
+
+The 2026-08-08 exact-main dense-route review in
+`docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md` selects **Migration** as
+the next bounded 5Q.4b slice and leaves Lineage and Evolution unchanged. The
+Migration slice can preserve its endpoint question, denominator, uncertainty,
+and deterministic sculptor links while repairing one bounded state/list/chart
+contract. Lineage requires a separate adjacency/focus interaction model,
+keyboard-operable graph and typeahead targets, canonical state, reduced-motion
+behavior, forced-colors equivalence, and browser-side performance gate.
+
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
 institution data exports to `institutions.json`, sculptor shards carry
@@ -118,7 +135,8 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **5Q.4b Explore route slice + landing hotfix** | URL-backed semantic pagination, mobile equivalence, accessibility/scale budgets, and the three landing-review boundaries passed exact-head review and exact-merge production verification. |
 | Completed | **5Q.4b Timeline route slice** | Mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, accessibility, and performance passed exact-head Preview review plus exact-merge production verification. |
 | Completed | **Bounded nanoid security remediation** | PR #30 updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; exact-head and exact-merge delivery gates pass with zero npm findings and zero open Dependabot alerts. |
-| Now | **Dense Lineage/Migration review** | Bound overview/focus/details, denominators and uncertainty, keyboard/text equivalence, reduced motion, and measured graph/interaction budgets before selecting one coherent implementation slice. Keep Evolution unchanged. |
+| Completed | **Dense Lineage/Migration scope review** | Exact-main source/render/test/performance evidence selects Migration as the smallest coherent slice and records success/stop gates; no route behavior changed. |
+| Now | **5Q.4b Migration route slice** | Preserve the endpoint question, denominator, disclosure, and deterministic sculptor links while adding mobile/reflow and structured task equivalence, canonical URL-backed selection, keyboard/focus/target behavior, accessibility, and bounded performance. Keep Lineage and Evolution unchanged. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -539,7 +557,21 @@ major visual dimension.
   all 30 browser journeys, exact-head Actions, and Git-backed Preview visual
   QA; merge `f3f5130fa043134f55d7832a9cac4f485b73af6d` passed default-branch CI,
   exact-SHA production, and canonical/immutable route probes.
-- [ ] Review the dense **Lineage/Migration** family: overview/focus/details, denominators and uncertainty, keyboard/text equivalents, reduced motion, and measured graph/interaction budgets.
+- [x] Review the dense **Lineage/Migration** family: the exact-main
+  source/render/test/performance pass selected Migration as the smallest
+  coherent next slice and recorded its overview/focus/details contract,
+  denominator/uncertainty requirements, keyboard/text equivalent, reduced
+  motion, URL, accessibility, performance, and stop gates in
+  `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`. No route behavior
+  changed; Lineage and Evolution remain unchanged.
+- [ ] Implement the bounded **Migration** slice against that review: preserve
+  the recorded birth/death-country endpoint question and deterministic
+  sculptor links; provide the same filtered pair task at desktop, 390px, and
+  zoom/reflow widths; make decade, same-country, and selected-pair state
+  canonical and reproducible; repair Space/focus/targets; retain explicit
+  denominator, exclusions, uncertainty, and rollup disclosure; and pass the
+  recorded accessibility/performance gates. Keep Lineage and Evolution
+  unchanged.
 - [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
 - [ ] Review each default view with the visualization proposal model in `docs/RESEARCH_FOUNDATIONS.md`: reader question → data/task → encoding/interaction → implementation.
 - [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
