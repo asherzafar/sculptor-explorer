@@ -1,10 +1,10 @@
 # Phase 5 — Densification + explorable interactives
 
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
-> implemented in the current release candidate. Explore and Timeline are the
-> first two landed 5Q.4b route slices; the latest behavior-changing protected-
-> main commit remains Timeline merge
-> `f3f5130fa043134f55d7832a9cac4f485b73af6d`. The bounded nanoid remediation
+> implemented in the current release candidate. Explore, Timeline, and
+> Migration are the first three landed 5Q.4b route slices; the latest
+> behavior-changing protected-main commit is Migration merge
+> `21ab2f038aa62b23188cd8f373e36d5353a46128`. The bounded nanoid remediation
 > landed through PR #30 without changing route behavior, and documentation-only
 > PR #31 advanced protected `main` without changing route behavior.
 > Documentation-only PR #32 then landed the dense-route scope review as
@@ -23,11 +23,12 @@
 > together. The exact evidence and success/stop gates are in
 > `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`.
 >
-> The dedicated local `codex/phase-5q4b-migration-slice` candidate is based on
-> that exact merge and passes the canonical root gate plus all 40 Chromium
-> journeys. It keeps Lineage and Evolution unchanged. The candidate is
-> published only as a draft; exact-head Actions and Git-backed Preview QA,
-> approved merge, and landing proof remain separate gates.
+> PR #33 landed the dedicated `codex/phase-5q4b-migration-slice` head
+> `2a9352111fd814882cec87d8cd19f3b5870809d7` through guarded merge commit
+> `21ab2f038aa62b23188cd8f373e36d5353a46128`. Exact-head Actions, Git-backed
+> Preview QA, default-branch CI, exact-SHA `READY` production, route probes,
+> both npm audit views, and the landing-window runtime error check passed. It
+> keeps Lineage and Evolution unchanged.
 >
 > Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
 > later phases in this document are researched hypotheses, not commitments;

@@ -286,16 +286,19 @@ owner-run evidence boundaries.
   endpoints do not establish travel timing, duration, motive, home, or
   permanence; matching endpoints do not prove that someone stayed put.
 
-**Migration candidate evidence status (local 2026-08-08).** The dedicated
-`codex/phase-5q4b-migration-slice` candidate on protected
-`main@6b86d605a73d026cd23bf8d37b61fcf476ae1277` passes the canonical root gate,
-all 40 Chromium journeys, and local rendered QA at 1440px, 390px, and a 720px
-reflow proxy, including URL, keyboard/focus/targets, Axe, forced colors,
-reduced motion, text spacing, degraded data, console/request, payload, and
-feedback checks. This is not production-earned evidence until the exact-head
-Actions, Git-backed Preview review, approved merge, and exact-merge landing
-gates pass. Actual 200% zoom, physical input, spoken screen readers, Windows
-High Contrast, field p75, and reader comprehension remain owner-run evidence.
+**Migration evidence status (landed 2026-08-08).** PR #33 reviewed head
+`2a9352111fd814882cec87d8cd19f3b5870809d7`, based on protected
+`main@6b86d605a73d026cd23bf8d37b61fcf476ae1277`, passed the canonical root gate,
+all 40 Chromium journeys, and exact-head Git-backed Preview QA at 1440px,
+390px, and a 720px reflow proxy, including URL, keyboard/focus/targets, Axe,
+forced colors, reduced motion, text spacing, degraded data, console/request,
+payload, and feedback checks. It merged as
+`21ab2f038aa62b23188cd8f373e36d5353a46128`; default-branch Actions run
+`31289869997`, exact-SHA `READY` production deployment
+`dpl_CQAsXL2YtumCprFQqNDEtCpYhG7S`, canonical/immutable and direct Migration
+route probes, both npm audit views, and the landing-window runtime error check
+passed. Actual 200% zoom, physical input, spoken screen readers, Windows High
+Contrast, field p75, and reader comprehension remain owner-run evidence.
 
 **Network graph (lineage):**
 - Dark background (#1C1C1A) — networks read better on dark

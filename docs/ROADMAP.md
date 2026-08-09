@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Migration draft awaits exact-head review (August 2026)
+## Current status: Migration landed; remaining 5Q.4b evidence continues (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -109,16 +109,19 @@ contract. Lineage requires a separate adjacency/focus interaction model,
 keyboard-operable graph and typeahead targets, canonical state, reduced-motion
 behavior, forced-colors equivalence, and browser-side performance gate.
 
-The dedicated local `codex/phase-5q4b-migration-slice` candidate is based on
-that exact protected-main merge. It preserves the endpoint question,
-denominator, uncertainty, wide Sankey, and deterministic sculptor links while
-adding a canonical decade/same-country/raw-pair URL contract, a complete
-ranked structured task on mobile/reflow and wide layouts, native controls and
-targets, explicit rollup disclosure, degraded states, and route budgets. The
-canonical root gate and all 40 Chromium journeys pass locally. The candidate is
-published only as a draft; exact-head Actions/Preview review, merge, and
-production evidence remain pending. Lineage and Evolution behavior are
-unchanged.
+PR [#33](https://github.com/asherzafar/sculptor-explorer/pull/33) landed the
+bounded Migration slice from reviewed head
+`2a9352111fd814882cec87d8cd19f3b5870809d7` as merge commit
+`21ab2f038aa62b23188cd8f373e36d5353a46128`. It preserves the endpoint
+question, denominator, uncertainty, wide Sankey, and deterministic sculptor
+links while adding a canonical decade/same-country/raw-pair URL contract, a
+complete ranked structured task on mobile/reflow and wide layouts, native
+controls and targets, explicit rollup disclosure, degraded states, and route
+budgets. Exact-head Actions and Git-backed Preview QA passed before merge;
+default-branch run `31289869997`, exact-source `READY` production deployment
+`dpl_CQAsXL2YtumCprFQqNDEtCpYhG7S`, canonical/immutable probes, direct
+Migration state probes, both npm audit views, and the landing-window runtime
+error check passed afterward. Lineage and Evolution behavior remain unchanged.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -155,7 +158,8 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **5Q.4b Timeline route slice** | Mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, accessibility, and performance passed exact-head Preview review plus exact-merge production verification. |
 | Completed | **Bounded nanoid security remediation** | PR #30 updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; exact-head and exact-merge delivery gates pass with zero npm findings and zero open Dependabot alerts. |
 | Completed | **Dense Lineage/Migration scope review** | Exact-main source/render/test/performance evidence selects Migration as the smallest coherent slice and records success/stop gates; no route behavior changed. |
-| Now | **5Q.4b Migration route slice** | The bounded draft candidate is implemented and locally validated; require exact-head Actions and Git-backed Preview QA before any readiness or merge decision. Keep Lineage and Evolution unchanged. |
+| Completed | **5Q.4b Migration route slice** | Endpoint truth, structured responsive equivalence, canonical URL state, keyboard/targets, disclosure, accessibility, and performance passed exact-head review and exact-merge production verification. |
+| Now | **Remaining 5Q.4b route evidence** | Review the still-open route-specific failures and earned patterns, then select one bounded next slice before changing Evolution, Lineage, or another route. Do not mass-propagate a visual pattern. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -583,14 +587,17 @@ major visual dimension.
   motion, URL, accessibility, performance, and stop gates in
   `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`. No route behavior
   changed; Lineage and Evolution remain unchanged.
-- [ ] Implement the bounded **Migration** slice against that review: preserve
-  the recorded birth/death-country endpoint question and deterministic
-  sculptor links; provide the same filtered pair task at desktop, 390px, and
-  zoom/reflow widths; make decade, same-country, and selected-pair state
-  canonical and reproducible; repair Space/focus/targets; retain explicit
-  denominator, exclusions, uncertainty, and rollup disclosure; and pass the
-  recorded accessibility/performance gates. Keep Lineage and Evolution
-  unchanged.
+- [x] Implement the bounded **Migration** slice against that review: PR #33
+  preserves the recorded birth/death-country endpoint question, deterministic
+  sculptor links, 2,567-record denominator, 976 exclusions, uncertainty, wide
+  Sankey identity, and raw-pair semantics while providing the same filtered
+  pair task at desktop, 390px, and zoom/reflow widths. It makes decade,
+  same-country, and selected-pair state canonical and reproducible; repairs
+  Space/focus/targets; retains explicit rollup disclosure; and passes the
+  recorded accessibility/performance gates. Reviewed head
+  `2a9352111fd814882cec87d8cd19f3b5870809d7` and exact merge
+  `21ab2f038aa62b23188cd8f373e36d5353a46128` passed the full delivery contract.
+  Lineage and Evolution remain unchanged.
 - [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
 - [ ] Review each default view with the visualization proposal model in `docs/RESEARCH_FOUNDATIONS.md`: reader question → data/task → encoding/interaction → implementation.
 - [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
