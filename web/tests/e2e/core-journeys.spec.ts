@@ -26,32 +26,24 @@ test("root navigation and Timeline sort state round-trip through the URL", async
 test("Migration filters load from, mutate, and survive the URL", async ({ page }) => {
   await page.goto("/migration?decade=1880&stay=1");
   await expect(page.getByRole("heading", { name: "Migration" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "1880s" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  const decade = page.getByLabel("Birth decade");
+  await expect(decade).toHaveValue("1880");
 
   const sameCountry = page.getByRole("checkbox", {
     name: "Include same-country endpoints",
   });
   await expect(sameCountry).toBeChecked();
 
-  await page.getByRole("button", { name: "1890s" }).click();
+  await decade.selectOption("1890");
   await expect(page).toHaveURL(/decade=1890/);
-  await expect(page.getByRole("button", { name: "1890s" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(decade).toHaveValue("1890");
   await page
     .getByRole("checkbox", { name: "Include same-country endpoints" })
     .click();
   await expect(page).not.toHaveURL(/stay=1/);
 
   await page.reload();
-  await expect(page.getByRole("button", { name: "1890s" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(page.getByLabel("Birth decade")).toHaveValue("1890");
   await expect(
     page.getByRole("checkbox", { name: "Include same-country endpoints" }),
   ).not.toBeChecked();

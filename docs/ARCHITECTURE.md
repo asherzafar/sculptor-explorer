@@ -153,7 +153,10 @@ sculpture-in-data/
 │       │   │   ├── explore-state.ts #   Parse/serialize/filter/sort/page contract
 │       │   │   └── [qid]/page.tsx   #   Individual sculptor (deep-link)
 │       │   ├── lineage/page.tsx     #   Network graph
-│       │   ├── migration/page.tsx   #   Birth→death Sankey
+│       │   ├── migration/
+│       │   │   ├── page.tsx         #   Suspense wrapper for endpoint route
+│       │   │   ├── MigrationContent.tsx # Structured task + wide Sankey overview
+│       │   │   └── migration-state.ts # Canonical decade/stay/pair URL contract
 │       │   ├── transparency/page.tsx#   Inclusion/coverage audit
 │       │   └── about/page.tsx       #   Methodology, sources, credits
 │       ├── components/
