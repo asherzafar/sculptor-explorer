@@ -6,9 +6,10 @@
 > main commit remains Timeline merge
 > `f3f5130fa043134f55d7832a9cac4f485b73af6d`. The bounded nanoid remediation
 > landed through PR #30 without changing route behavior, and documentation-only
-> PR #31 advanced protected `main` to
-> `f9f31d4286bc171f3547c8ddb139fe926e06f1ad` with passing default-branch CI,
-> exact-SHA production, and route probes.
+> PR #31 advanced protected `main` without changing route behavior.
+> Documentation-only PR #32 then landed the dense-route scope review as
+> `6b86d605a73d026cd23bf8d37b61fcf476ae1277`, with passing default-branch CI,
+> exact-SHA production, route probes, and its branch retained.
 >
 > The exact-main Lineage/Migration review dated 2026-08-08 selects
 > **Migration** as the next bounded route slice and leaves Lineage and Evolution
@@ -21,6 +22,12 @@
 > forced-colors path, and browser-side stable-layout budget must be designed
 > together. The exact evidence and success/stop gates are in
 > `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`.
+>
+> The dedicated local `codex/phase-5q4b-migration-slice` candidate is based on
+> that exact merge and passes the canonical root gate plus all 40 Chromium
+> journeys. It keeps Lineage and Evolution unchanged. The candidate is
+> published only as a draft; exact-head Actions and Git-backed Preview QA,
+> approved merge, and landing proof remain separate gates.
 >
 > Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
 > later phases in this document are researched hypotheses, not commitments;

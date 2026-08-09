@@ -46,19 +46,57 @@ canonical and immutable probes returned 200 for `/`, `/timeline`, `/explore`,
 branch/worktree was cleaned, and no manual deployment, promotion, provider,
 route, domain, application, data, claim, or dependency change occurred.
 
-The dense Lineage/Migration family review is complete locally on dedicated
-branch `codex/phase-5q4b-dense-route-scope-review`, based on freshly fetched
-protected `main@f9f31d4286bc171f3547c8ddb139fe926e06f1ad`. Exact-source rendered,
-source, data, browser-test, and performance evidence selects **Migration** as
-the smallest coherent next 5Q.4b implementation slice and leaves Lineage and
-Evolution unchanged. The review records Migration's endpoint question,
-overview/focus/details model, canonical decade/same-country/selected-pair URL
-contract, mobile/reflow and structured-equivalence requirements,
+Documentation-only PR #32 then landed the dense Lineage/Migration family review
+from reviewed head `7891d328336158496bd5d882e4804b4ce89b0bb2` as merge commit
+`6b86d605a73d026cd23bf8d37b61fcf476ae1277`, without deleting its branch.
+Default-branch Actions run `31281395835` passed the root gate and all 30
+browser journeys. Git-backed Vercel production deployment
+`dpl_5GNeDBLbVPf1oZop3ix1J8WfmN66` is `READY` from that exact merge at
+`https://sculptor-explorer-os3yhpilc-asherzafars-projects.vercel.app`;
+canonical and immutable probes returned 200 for `/`, `/timeline`, `/explore`,
+`/about`, and `/transparency`, plus 404 for the missing route. The Git
+integration created production without a manual deployment, promotion,
+provider, route, or domain change. The remote review branch remains retained at
+its reviewed head. No npm audit repeat was required because the merge changed
+documentation only.
+
+The review selects **Migration** as the smallest coherent next 5Q.4b
+implementation slice and leaves Lineage and Evolution unchanged. Its endpoint
+question, overview/focus/details model, canonical decade/same-country/raw-pair
+URL contract, responsive structured-equivalence requirements,
 keyboard/focus/target behavior, disclosure, accessibility/performance budgets,
-and stop gates in
-`docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`. This review changes
-documentation only; its publication or later landing evidence belongs in the
-corresponding PR and must not be described as application-route evidence.
+and stop gates are recorded in
+`docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`.
+
+The resulting local candidate now lives in dedicated worktree
+`/private/tmp/sculptor-explorer-phase-5q4b-migration-slice` on
+`codex/phase-5q4b-migration-slice`, based on freshly fetched protected
+`main@6b86d605a73d026cd23bf8d37b61fcf476ae1277`. It changes only the Migration
+route, route-local state/chart support, focused unit/browser tests, the existing
+Migration smoke journey, and directly affected durable documentation. It
+preserves the 2,567-record endpoint denominator, all 976 exclusions, endpoint
+uncertainty, wide Sankey identity, and deterministic `/explore/{qid}` links.
+Below `xl`, it mounts the complete structured selection/detail task instead of
+the D3 overview; the collapsed list exposes 20 pairs and native disclosure
+reaches the bounded remainder. Canonical URL state serializes `decade`, `stay`,
+`from`, and `to`, resets malformed/duplicate/stale values visibly, and never
+serializes the chart-only `Other` rollups.
+
+Local evidence passes: `./scripts/validate.sh`; 16 unit tests; all 40 Chromium
+journeys; focused Migration lint/type checks; and rendered 1440×900, 390×844,
+720px-reflow, forced-colors, reduced-motion, text-spacing, Axe, keyboard,
+target, degraded-data, console/page/request, gzip, visible-focusable, and
+feedback-budget checks. Parallel complete-suite attempts intermittently
+produced local Next dev-server truncated-JSON reads on unchanged `/decade/1880`
+and Explore paths; the affected journey passed immediately in isolation, a
+parallel full run passed 40/40 before the final copy/history repair, and the
+authoritative final serial run passed 40/40. Exact-head Actions must still pass
+before readiness. Actual 200% zoom, physical input, VoiceOver/NVDA, Windows High
+Contrast, field p75, and reader comprehension remain owner-run and are not
+claimed. The candidate is published only as a draft for exact-head review;
+Actions/Preview evidence, merge, production, and cleanup remain separate
+authority and evidence gates. The PR body and GitHub/Vercel records own the
+exact draft number, head SHA, check runs, and immutable Preview identity.
 
 Phase 5b.5 and Phase 5Q.1–5Q.3 are implemented in the current release candidate. P1066/P737 person-person edges share the six-field temporal envelope contract used by P69/P937 institutional edges; undatable person links remain exported with null fields and explicit reasons. `/transparency` reports institution coverage, date confidence, skipped empty intersections, educational concentration, explicit release-review dates, and separate source/eligible/publication counts.
 
@@ -684,39 +722,27 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Implement the bounded Migration route slice against
-   `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`: preserve the
-   endpoint question, denominator, uncertainty, and deterministic sculptor
-   links while repairing mobile/reflow and structured equivalence, canonical
-   URL-backed pair selection, keyboard/focus/targets, accessibility, and
-   performance. Keep Lineage and Evolution unchanged.
-2. Scope Lineage as a separate later slice only after Migration passes its
-   exact-head gate; do not carry the Sankey's pair-list idiom mechanically into
-   the heterogeneous graph.
-3. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
+1. Review the published Migration draft at its exact reported head. Require
+   exact-head Actions and Git-backed Preview visual QA before any
+   readiness or merge decision. Scope Lineage as a separate later slice only
+   after Migration passes that exact-head gate; do not carry the Sankey's
+   pair-list idiom mechanically into the heterogeneous graph.
+2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, and comprehension protocols for Timeline; do not backfill them as
    automated evidence.
-4. Add privacy-respecting analytics and run five structured user sessions,
+3. Add privacy-respecting analytics and run five structured user sessions,
    then hold the Phase 5R strategic horizon workshop before the next major
    public phase. At most one isolated lab experiment may run in parallel.
 
-### Next bounded seed — implement the Migration route slice
+### Next bounded seed — review the exact Migration draft head
 
-> Continue Sculpture in Data Phase 5Q.4b from freshly fetched protected
-> `main@f9f31d4286bc171f3547c8ddb139fe926e06f1ad`. Create
-> `codex/phase-5q4b-migration-slice` in a dedicated clean worktree and implement
-> only the Migration route contract in
-> `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md`: preserve the recorded
-> birth/death-country endpoint question, denominator, uncertainty, wide Sankey,
-> and deterministic sculptor links while adding mobile/zoom reflow and
-> structured pair equivalence, canonical URL-backed decade/same-country/
-> selected-pair round trips, native keyboard/focus/target behavior, explicit
-> rollup disclosure, accessibility, degraded states, and bounded performance.
-> Use the repository ship-pr and visual-qa workflows with exact-head Preview
-> evidence. Do not change Lineage or Evolution behavior, begin another route
-> slice, clean retained branches/worktrees, deploy or promote manually, change
-> provider settings/routes/domains, or merge without separate exact-head
-> approval.
+> Review the draft Migration route PR at its exact reported head. Confirm the
+> scoped diff, required Actions, exact-SHA `READY` Git-backed Preview, immutable
+> route probes, rendered 1440px/390px/720px visual QA, unresolved conversations,
+> and retained branch/worktree/provider state. If approved, explicitly authorize
+> marking that exact head ready and merging it via merge commit without branch
+> deletion. Do not begin Lineage or Evolution work, clean retained state,
+> deploy/promote manually, or change provider settings/routes/domains.
 
 ## Starting instructions for any agent
 

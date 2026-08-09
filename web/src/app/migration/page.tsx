@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { MigrationContent } from "./MigrationContent";
-import { MobileNotice } from "@/components/MobileNotice";
 
 export const metadata = {
   title: "Migration",
@@ -22,16 +21,8 @@ export const metadata = {
  */
 export default function MigrationPage() {
   return (
-    <>
-      <MobileNotice
-        viewName="The migration view"
-        reason="The Sankey chart needs a wide canvas to render dozens of country labels and corridor widths legibly."
-      />
-      <div className="hidden md:block">
-        <Suspense fallback={null}>
-          <MigrationContent />
-        </Suspense>
-      </div>
-    </>
+    <Suspense fallback={null}>
+      <MigrationContent />
+    </Suspense>
   );
 }

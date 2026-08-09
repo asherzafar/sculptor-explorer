@@ -30,9 +30,9 @@ import { EmptyState } from "@/components/EmptyState";
  *   "Other" rollup node on each side. We considered a hard count
  *   threshold (e.g. drop links with count < 2) but rollup is more
  *   honest: the long tail isn't deleted, just summarized.
- * - Same-country endpoint pairs are rendered faintly. They are not labeled
- *   "stayed put" because matching endpoints do not establish residence.
- *   Toggleable via `includeSameCountry` prop; the page exposes a switch.
+ * - The parent passes the exact filtered array used by the structured pair
+ *   view. Same-country endpoint pairs are never labeled "stayed put" because
+ *   matching endpoints do not establish residence.
  *
  * Why not d3-chord: chord diagrams imply symmetric bilateral values, while
  * birth-country → death-country endpoints are directional. The left-to-right
@@ -43,8 +43,6 @@ interface Props {
   flows: MigrationFlow[];
   /** Maximum unique source countries; rest collapsed into "Other (born)". */
   maxCountriesPerSide?: number;
-  /** Show same-country flows as faint loops on each side. Default: false. */
-  includeSameCountry?: boolean;
   /** Hover callback — receives the underlying flow or null on mouseout. */
   onFlowHover?: (flow: MigrationFlow | null) => void;
   /** Click callback — fires once per click on a corridor. */
@@ -82,7 +80,6 @@ const NODE_PADDING = 10;
 export function MigrationSankey({
   flows,
   maxCountriesPerSide = 18,
-  includeSameCountry = false,
   onFlowHover,
   onFlowClick,
   highlightedFlow,
@@ -99,14 +96,7 @@ export function MigrationSankey({
     const sourceCountries = new Map<string, number>();
     const targetCountries = new Map<string, number>();
 
-    // Filter out same-country flows up front if requested. Counting
-    // them in the totals when not displayed would bias the "top N"
-    // selection toward high-volume same-endpoint countries (US, France).
-    const visibleFlows = flows.filter(
-      (f) => includeSameCountry || !f.sameCountry
-    );
-
-    for (const f of visibleFlows) {
+    for (const f of flows) {
       sourceCountries.set(f.from, (sourceCountries.get(f.from) ?? 0) + f.count);
       targetCountries.set(f.to, (targetCountries.get(f.to) ?? 0) + f.count);
     }
@@ -138,7 +128,7 @@ export function MigrationSankey({
       return id;
     }
 
-    for (const f of visibleFlows) {
+    for (const f of flows) {
       const fromLabel = topSources.has(f.from) ? f.from : "Other (born)";
       const toLabel = topTargets.has(f.to) ? f.to : "Other (died)";
       const sourceId = ensureNode("from", fromLabel);
@@ -171,7 +161,7 @@ export function MigrationSankey({
       nodes: [...nodeMap.values()],
       links: [...linkAccumulator.values()],
     };
-  }, [flows, maxCountriesPerSide, includeSameCountry]);
+  }, [flows, maxCountriesPerSide]);
 
   // ── 2. D3 render ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -338,12 +328,12 @@ export function MigrationSankey({
     );
   }
 
-  const ariaLabel = `Sankey diagram of recorded sculptor birth-country to death-country pairs: ${flows.length} pair${
+  const ariaLabel = `Visual overview of recorded sculptor birth-country to death-country pairs: ${flows.length} pair${
     flows.length === 1 ? "" : "s"
-  }. Hover a pair to inspect its records.`;
+  } in the current filters. A ranked structured list provides the same raw pair selection task.`;
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto" data-testid="migration-sankey">
       <svg
         ref={svgRef}
         className="w-full"

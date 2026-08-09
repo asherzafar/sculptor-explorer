@@ -264,6 +264,39 @@ canonical/immutable route probes passed. Actual 200% zoom, spoken screen-reader
 output, physical input, Windows High Contrast, and reader comprehension remain
 owner-run evidence boundaries.
 
+**Endpoint Sankey (migration):**
+
+- Preserve the bounded question: which recorded birth/death-country endpoints
+  differ, and for whom? Keep the 2,567 eligible-record denominator, all 976
+  exclusions, endpoint uncertainty, snapshot, and source beside the task.
+- At `xl` and above, retain the Sankey as an overview of the exact filtered
+  pair array. Below `xl`, do not mount the D3 chart; make the semantic ranked
+  pair list the primary view so mobile and browser reflow preserve the same
+  selection and detail task without hidden chart work.
+- Show 20 ranked pairs by default and use a native disclosure for the bounded
+  remainder. Every one of the committed 415 raw pairs remains reachable. Pair
+  rows and deterministic `/explore/{qid}` sample links are native targets at
+  least 44px high in the reflow view.
+- Use a native decade select and checkbox. Canonical shared state is `decade`,
+  `stay`, `from`, then `to`; omit defaults, reject duplicate/malformed/stale
+  values visibly, and preserve reload/back/forward. Serialize raw country pairs
+  only—`Other (born)` and `Other (died)` are visual rollups, never countries or
+  shareable selections.
+- Position encodes layout rather than geography or a journey. Different
+  endpoints do not establish travel timing, duration, motive, home, or
+  permanence; matching endpoints do not prove that someone stayed put.
+
+**Migration candidate evidence status (local 2026-08-08).** The dedicated
+`codex/phase-5q4b-migration-slice` candidate on protected
+`main@6b86d605a73d026cd23bf8d37b61fcf476ae1277` passes the canonical root gate,
+all 40 Chromium journeys, and local rendered QA at 1440px, 390px, and a 720px
+reflow proxy, including URL, keyboard/focus/targets, Axe, forced colors,
+reduced motion, text spacing, degraded data, console/request, payload, and
+feedback checks. This is not production-earned evidence until the exact-head
+Actions, Git-backed Preview review, approved merge, and exact-merge landing
+gates pass. Actual 200% zoom, physical input, spoken screen readers, Windows
+High Contrast, field p75, and reader comprehension remain owner-run evidence.
+
 **Network graph (lineage):**
 - Dark background (#1C1C1A) — networks read better on dark
 - Nodes: circles, sized by degree, colored by movement or country

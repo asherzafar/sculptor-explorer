@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: dense route review selects Migration next (August 2026)
+## Current status: Migration draft awaits exact-head review (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -92,6 +92,14 @@ change. Default-branch run `31278205059`, exact-source `READY` production
 deployment `dpl_FjSW7EVEQbqGLKpWTNowd86ScmrY`, and canonical/immutable route
 probes passed.
 
+Documentation-only PR #32 then landed the dense-route scope review from
+reviewed head `7891d328336158496bd5d882e4804b4ce89b0bb2` as merge commit
+`6b86d605a73d026cd23bf8d37b61fcf476ae1277`, without branch deletion or any
+application, route, data, claim, dependency, deployment-path, or provider
+change. Default-branch Actions run `31281395835`, exact-source `READY`
+production deployment `dpl_5GNeDBLbVPf1oZop3ix1J8WfmN66`, and
+canonical/immutable route probes passed.
+
 The 2026-08-08 exact-main dense-route review in
 `docs/PHASE_5Q_DENSE_ROUTE_SCOPE_REVIEW_2026-08-08.md` selects **Migration** as
 the next bounded 5Q.4b slice and leaves Lineage and Evolution unchanged. The
@@ -100,6 +108,17 @@ and deterministic sculptor links while repairing one bounded state/list/chart
 contract. Lineage requires a separate adjacency/focus interaction model,
 keyboard-operable graph and typeahead targets, canonical state, reduced-motion
 behavior, forced-colors equivalence, and browser-side performance gate.
+
+The dedicated local `codex/phase-5q4b-migration-slice` candidate is based on
+that exact protected-main merge. It preserves the endpoint question,
+denominator, uncertainty, wide Sankey, and deterministic sculptor links while
+adding a canonical decade/same-country/raw-pair URL contract, a complete
+ranked structured task on mobile/reflow and wide layouts, native controls and
+targets, explicit rollup disclosure, degraded states, and route budgets. The
+canonical root gate and all 40 Chromium journeys pass locally. The candidate is
+published only as a draft; exact-head Actions/Preview review, merge, and
+production evidence remain pending. Lineage and Evolution behavior are
+unchanged.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -136,7 +155,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **5Q.4b Timeline route slice** | Mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, accessibility, and performance passed exact-head Preview review plus exact-merge production verification. |
 | Completed | **Bounded nanoid security remediation** | PR #30 updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; exact-head and exact-merge delivery gates pass with zero npm findings and zero open Dependabot alerts. |
 | Completed | **Dense Lineage/Migration scope review** | Exact-main source/render/test/performance evidence selects Migration as the smallest coherent slice and records success/stop gates; no route behavior changed. |
-| Now | **5Q.4b Migration route slice** | Preserve the endpoint question, denominator, disclosure, and deterministic sculptor links while adding mobile/reflow and structured task equivalence, canonical URL-backed selection, keyboard/focus/target behavior, accessibility, and bounded performance. Keep Lineage and Evolution unchanged. |
+| Now | **5Q.4b Migration route slice** | The bounded draft candidate is implemented and locally validated; require exact-head Actions and Git-backed Preview QA before any readiness or merge decision. Keep Lineage and Evolution unchanged. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
