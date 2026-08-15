@@ -303,6 +303,32 @@ test("wide charts and the exact structured view share selected-decade totals", a
   await expect(page).toHaveURL(/geo=birth&decade=1910$/);
 });
 
+test("Unknown and Other keep distinct geography chart encodings", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const route of ["/evolution", "/evolution?geo=birth"]) {
+    await page.goto(route);
+    await waitForEvolution(page);
+    const encodings = await page
+      .getByTestId("evolution-wide-view")
+      .locator("svg[data-evolution-chart='true']")
+      .first()
+      .locator("[data-evolution-category]")
+      .evaluateAll((paths) =>
+        paths.map((path) => ({
+          category: path.getAttribute("data-evolution-category"),
+          fill: getComputedStyle(path).fill,
+        })),
+      );
+
+    expect(encodings).toHaveLength(8);
+    expect(encodings.map(({ category }) => category)).toContain("Other");
+    expect(encodings.map(({ category }) => category)).toContain("Unknown");
+    expect(new Set(encodings.map(({ fill }) => fill)).size).toBe(encodings.length);
+  }
+});
+
 test("390px and 720px use the complete structured task without requesting or mounting D3", async (
   { page },
   testInfo,

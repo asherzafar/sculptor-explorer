@@ -11,6 +11,16 @@ import type { EvolutionSeriesProjection } from "@/app/evolution/evolution-state"
  */
 const MARGIN = { top: 20, right: 16, bottom: 36, left: 40 };
 const HEIGHT = 220;
+const LEADING_CATEGORY_COLORS = [
+  "var(--color-data-2)", // verdigris
+  "var(--color-data-4)", // sandstone
+  "var(--color-data-3)", // sage
+  "var(--color-data-8)", // navy
+  "var(--color-data-5)", // warm grey
+  "var(--color-data-6)", // pale green
+];
+const OTHER_COLOR = "var(--color-data-1)"; // umber
+const UNKNOWN_COLOR = "var(--color-data-7)"; // marble
 
 /** One row per decade, categories as keys (wide format for D3 stack) */
 type WideRow = { decade: number; [category: string]: number };
@@ -57,20 +67,28 @@ export function DecadeStackedArea({
     [categories, projection.decades],
   );
 
-  // ── 1. Default color map: cycle through --color-data-* tokens ──────────
+  // ── 1. Default color map: reserve explicit Other/Unknown encodings ─────
   const resolvedColorMap = useMemo(() => {
     const map: Record<string, string> = {};
-    const tokens = [
-      "var(--color-data-2)", // verdigris
-      "var(--color-data-4)", // sandstone
-      "var(--color-data-3)", // sage
-      "var(--color-data-8)", // navy
-      "var(--color-data-5)", // warm grey
-      "var(--color-data-6)", // pale green
-      "var(--color-data-1)", // umber (darkest — good for Other)
-    ];
-    categories.forEach((cat, i) => {
-      map[cat] = colorMap?.[cat] ?? tokens[i % tokens.length];
+    let leadingIndex = 0;
+    categories.forEach((cat) => {
+      if (colorMap?.[cat]) {
+        map[cat] = colorMap[cat];
+        return;
+      }
+      if (cat === "Other") {
+        map[cat] = OTHER_COLOR;
+        return;
+      }
+      if (cat === "Unknown") {
+        map[cat] = UNKNOWN_COLOR;
+        return;
+      }
+      map[cat] =
+        LEADING_CATEGORY_COLORS[
+          leadingIndex % LEADING_CATEGORY_COLORS.length
+        ];
+      leadingIndex += 1;
     });
     return map;
   }, [categories, colorMap]);
