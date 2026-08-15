@@ -6,14 +6,17 @@
 
 ## Current boundary
 
-The bounded Phase 5Q.4b **Evolution** candidate is implemented locally on
-`codex/phase-5q4b-evolution-slice` in dedicated worktree
+The bounded Phase 5Q.4b **Evolution** candidate is published as draft PR #35
+from `codex/phase-5q4b-evolution-slice` in dedicated worktree
 `/private/tmp/sculptor-explorer-phase-5q4b-evolution-slice`, based on freshly
 fetched protected `origin/main@614951db2288a416fccb4511ac937c7951602053`.
 The referenced 2026-08-14 remaining-route scope review was absent from that
 protected base and was read from its retained review worktree without importing
-the separate uncommitted document. No commit, push, PR, provider action,
-Preview, deployment, merge, or cleanup is part of this task.
+the separate uncommitted document. The reviewed implementation commit is
+`b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`. Commit, push, draft-PR creation,
+exact-implementation-head Actions, and Git-backed Preview QA are complete. No
+ready transition, merge, production deployment/promotion, provider setting,
+Lineage/other-route/dependency change, or cleanup is part of this task.
 
 The candidate preserves the recorded geography/movement-by-sculptor-birth-
 decade question, wide stacked-area identity, separate materials object-time
@@ -27,7 +30,8 @@ lazy and does not mount below that boundary. Lineage, every other route, the
 pipeline, generated data, schemas, dependencies, provider state, and shared
 navigation are unchanged.
 
-Local evidence is green: `./scripts/validate.sh` passed all data/Getty/
+Local and exact-implementation-head evidence is green:
+`./scripts/validate.sh` passed all data/Getty/
 institution/relationship/temporal contracts, 21 unit tests, zero-warning lint,
 type checking, the 3,625-page static build, and lineage regression bounds;
 `npm run test:e2e -- --workers=1` passed all 52 Chromium journeys. Twelve
@@ -36,8 +40,17 @@ matrix, URL canonicalization/history, chart/structured projection parity,
 1280px 24px-band boundary, 44px reflow targets, keyboard/focus, Axe, forced
 colors, four color-vision modes, reduced motion, text spacing, empty/degraded
 data, five-input 25KB-gzip budget, sub-200ms feedback, CLS, deterministic
-links, and console/page/request/SVG errors. Direct rendered inspection found no
-confirmed defect. Actual 200% Chrome/Safari zoom, physical input, spoken
+links, and console/page/request/SVG errors. GitHub Actions runs `31908201342`
+and `31908245183` passed at exact implementation head. Git-backed Vercel
+deployment `dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY` at immutable URL
+`https://sculptor-explorer-f82yhotjt-asherzafars-projects.vercel.app` with the
+same branch/SHA; canonical and missing-route smoke probes passed. Preview
+rendered inspection found no confirmed or probable product defect. Eleven of
+the twelve focused Preview journeys passed unchanged; the remaining aggregate
+request assertion saw only Vercel/Next navigation-prefetch `ERR_ABORTED`
+events for other routes and `/.well-known/vercel/jwe` during rapid repeated
+navigation, with no Evolution data/script/document failure, console error, or
+page error. Actual 200% Chrome/Safari zoom, physical input, spoken
 VoiceOver/NVDA, Windows High Contrast, field p75, and reader comprehension
 remain owner-run and are not claimed. A fresh install also reports the
 pre-existing high transitive `nanoid@3.3.17` advisory recorded by the scope
@@ -397,8 +410,8 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Validation state at this handoff
 
-The current unpublished Evolution candidate uses Node 24.14.0 and npm 11.9.0
-against exact protected base
+The Evolution implementation commit uses Node 24.14.0 and npm 11.9.0 against
+exact protected base
 `614951db2288a416fccb4511ac937c7951602053`:
 
 - `./scripts/validate.sh` passes every standard-library data contract, Getty
@@ -418,9 +431,21 @@ against exact protected base
   200ms, measured CLS remains at most 0.1, visible focusables remain below 100,
   reflow targets are at least 44px high, and no inspected state emits a product
   console, page, request, or invalid-SVG error.
-- Publishing and provider evidence is intentionally absent. No local commit,
-  remote branch update, PR, GitHub Actions run, Git-backed Preview, deployment,
-  production probe, merge, or cleanup has been authorized or attempted.
+- Local head, remote branch, and draft PR #35 matched exact implementation SHA
+  `b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`. Both push/PR `validate` runs
+  (`31908201342`, `31908245183`) passed; Vercel and Preview Comments passed.
+- Git-backed Preview deployment `dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY`
+  at immutable URL
+  `https://sculptor-explorer-f82yhotjt-asherzafars-projects.vercel.app`, sourced
+  from the exact implementation branch/SHA. The repository deployment script
+  returned 200 for canonical probes and 404 for the intentional missing route.
+- Focused Preview QA passed the route gate with no confirmed/probable product
+  defect. Eleven of twelve journeys passed verbatim; the sole aggregate
+  request assertion recorded only aborted navigation prefetches for other
+  routes/hosting metadata under the immutable deployment, while all Evolution
+  resources plus page/console state remained clean. This handoff reconciliation
+  is a docs-only follow-up and requires fresh exact-head Actions and Preview
+  association after push.
 - Actual 200% Chrome/Safari zoom, physical keyboard/touch, spoken
   VoiceOver/NVDA, Windows High Contrast, field p75, and reader comprehension
   remain owner-run boundaries. The 720px viewport is only a reflow proxy.
@@ -787,11 +812,10 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Review the complete local Evolution diff against exact base
-   `614951db2288a416fccb4511ac937c7951602053`. If the user separately authorizes
-   publishing, commit only the declared Evolution/code/test/documentation
-   scope, push the named branch, open a draft PR to `main`, and require exact-
-   head Actions plus Git-backed Preview QA before any readiness decision.
+1. Review draft PR #35 after the docs-only evidence follow-up reaches a green
+   exact head. Preserve the explicit `main` base, unstacked draft state, and
+   route-local diff. Mark-ready, merge, landing, production, or cleanup work
+   requires separate authorization for the exact reviewed head.
 2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
    Contrast, and comprehension protocols for the candidate/landed route slices;
    do not backfill them as automated evidence.
@@ -800,21 +824,16 @@ Cloudflare resources without a new post-retention review and explicit approval.
    adjacency, focus, typeahead, keyboard, reduced-motion, forced-colors,
    canonical-state, and performance model together.
 
-### Next bounded seed — publish and exact-head review the Evolution candidate
+### Next bounded seed — review the exact-head Evolution draft
 
-> Review the bounded Phase 5Q.4b Evolution candidate in
-> `/private/tmp/sculptor-explorer-phase-5q4b-evolution-slice` on
-> `codex/phase-5q4b-evolution-slice` against exact base
-> `origin/main@614951db2288a416fccb4511ac937c7951602053`. Preserve its route-local
-> scope. If the diff and green local evidence are acceptable, commit with
-> message `feat: repair Evolution route slice`, push the named branch, and open
-> a draft PR explicitly targeting `main`. Wait for exact-head required Actions
-> and the Git-backed Vercel Preview, then run read-only Evolution visual QA at
-> 1440×900, 390×844, and 720×450 plus the recorded forced-color/color-vision/
-> text-spacing/state matrix. Do not change Lineage or another route,
-> dependencies, pipeline/generated data, provider settings/routes/domains,
-> production, merge state, or retained worktrees/branches without separate
-> authorization.
+> Review draft PR #35 from `codex/phase-5q4b-evolution-slice` to `main` at its
+> exact current head. Confirm the unstacked draft state, complete route-local
+> diff, required Actions, exact-SHA `READY` Git-backed Preview, immutable-route
+> smoke, and recorded Evolution QA evidence. If acceptable, decide separately
+> whether to authorize a ready transition or exact-head merge. Do not mark
+> ready, merge, deploy/promote production, change providers, dependencies,
+> Lineage or another route, or clean retained branches/worktrees without
+> separate authorization for the exact action and target.
 
 ## Starting instructions for any agent
 

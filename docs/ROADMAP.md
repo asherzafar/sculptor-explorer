@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Evolution local candidate ready for authorized exact-head review (August 2026)
+## Current status: Evolution draft PR under exact-head review (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -132,9 +132,12 @@ Decade/sculptor links while adding canonical `geo`/`decade` state, one pure
 chart/semantic projection, a complete structured task below the measured
 1280px chart boundary, native controls, explicit `Other`/`Unknown` treatment,
 degraded states, and route budgets. The canonical local gate and all 52 serial
-Chromium journeys pass. No commit, push, PR, exact-head Actions, Git-backed
-Preview, provider action, deployment, or merge has occurred; the candidate is
-not landed, and Lineage plus every other route remain unchanged.
+Chromium journeys pass. Draft PR #35 targets `main` from exact implementation
+head `b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`; both Actions runs pass and the
+exact-SHA Git-backed Preview is `READY` with immutable-route smoke and focused
+rendered QA complete. No ready transition, merge, production action, provider
+change, manual deployment, production promotion, or landing evidence is
+claimed; Lineage and every other route remain unchanged.
 
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
@@ -172,7 +175,7 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **Bounded nanoid security remediation (dated PR #30 evidence)** | PR #30 updated only the lock resolution to `nanoid@3.3.17`; its then-current exact-head and exact-merge gates had zero npm findings and zero open Dependabot alerts. A newer 2026-08-14 advisory against 3.3.17 is recorded in the handoff and remains a separate dependency task. |
 | Completed | **Dense Lineage/Migration scope review** | Exact-main source/render/test/performance evidence selects Migration as the smallest coherent slice and records success/stop gates; no route behavior changed. |
 | Completed | **5Q.4b Migration route slice** | Endpoint truth, structured responsive equivalence, canonical URL state, keyboard/targets, disclosure, accessibility, and performance passed exact-head review and exact-merge production verification. |
-| Now | **5Q.4b Evolution route candidate review** | The route-local candidate passes local implementation and rendered gates; separate authority is required for commit/push/PR, exact-head Actions and Git-backed Preview review, and any later merge/landing work. |
+| Now | **5Q.4b Evolution draft review** | Draft PR #35 passes local and exact implementation-head Actions/Preview gates; its docs-only evidence follow-up needs fresh exact-head reconciliation before any separately authorized ready, merge, or landing decision. |
 | Next | **Remaining 5Q.4b route evidence** | Keep Lineage and the smaller entity/content-route findings separate; select another bounded slice only after the Evolution review boundary is resolved. Do not mass-propagate a visual pattern. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |

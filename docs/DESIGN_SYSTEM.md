@@ -252,18 +252,22 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Render an unknown focus-sculptor death year as `—`; never infer living status
   from a missing year.
 
-**Evolution evidence status (local candidate 2026-08-14).** The unpublished
-`codex/phase-5q4b-evolution-slice` candidate is based on freshly fetched
-protected `main@614951db2288a416fccb4511ac937c7951602053`. Its canonical root
-gate and all 52 serial Chromium journeys pass, including 12 Evolution-specific
+**Evolution evidence status (draft PR #35, 2026-08-15).** The route-local
+`codex/phase-5q4b-evolution-slice` draft is based on freshly fetched protected
+`main@614951db2288a416fccb4511ac937c7951602053`. Its canonical root gate and all
+52 serial local Chromium journeys pass, including 12 Evolution-specific
 URL/state/projection/reflow, 24/44px-target, Axe, forced-color, four color-
 vision-mode, reduced-motion, text-spacing, degraded-data, payload, feedback,
 CLS, and console/request checks. Local rendered review covers 1440×900,
-390×844, and the 720×450 reflow proxy. Publishing, exact-head Actions,
-Git-backed Preview, production, and merge evidence do not exist and are not
-claimed. Actual 200% browser zoom, physical input, spoken screen readers,
+390×844, and the 720×450 reflow proxy. Both exact implementation-head Actions
+runs pass, and Git-backed Preview deployment
+`dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY` from the same branch/SHA. Preview
+inspection found no confirmed/probable product defect; its one non-passing
+aggregate assertion contained only aborted other-route/hosting prefetches, not
+Evolution, console, or page failures. Production and merge are not claimed.
+Actual 200% browser zoom, physical input, spoken screen readers,
 Windows High Contrast, field p75, and reader comprehension remain owner-run
-boundaries; this local candidate is not yet an earned cross-route pattern.
+boundaries; this draft is not yet an earned cross-route pattern.
 
 **Lifespan timeline:**
 - Preserve the project-origin question: compare when the 48 focus sculptors

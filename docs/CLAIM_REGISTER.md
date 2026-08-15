@@ -25,12 +25,13 @@ PR #28 verified the Timeline row below at reviewed head
 `dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and canonical/immutable route probes
 passed. The slice changed no Evolution, Migration, or Lineage claim.
 
-The unpublished local `codex/phase-5q4b-evolution-slice` candidate makes the
+Draft PR #35 on `codex/phase-5q4b-evolution-slice` makes the
 three existing Evolution contracts easier to inspect: it keeps geography,
 movement, and materials denominators separate; retains `Unknown` beside the
 `Other` rollup; and exposes exact selected-decade rankings plus a structured
 reflow comparison. It changes no input, pipeline, denominator, or registered
-claim. Publishing, Preview, production, and merge evidence are not claimed.
+claim. Exact implementation-head Actions and Git-backed Preview QA pass;
+production and merge evidence are not claimed.
 
 ## Route and claim audit
 

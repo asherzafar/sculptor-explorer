@@ -38,9 +38,12 @@
 > measured 1280px chart boundary, separate material object time, native
 > controls, exact selected-decade rankings, deterministic links, and bounded
 > accessibility/performance tests. The canonical local gate and all 52 serial
-> Chromium journeys pass. No commit, push, PR, provider action, Preview,
-> deployment, or merge is part of that local evidence; those require separate
-> authority before the slice can be called landed.
+> Chromium journeys pass. Draft PR #35 is open to `main`; both exact
+> implementation-head Actions runs pass and the exact-SHA Git-backed Preview is
+> `READY` with route smoke and focused rendered QA complete. No ready
+> transition, merge, production action, provider change, or landing evidence is
+> claimed; those require separate authority before the slice can be called
+> landed.
 >
 > Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
 > later phases in this document are researched hypotheses, not commitments;
