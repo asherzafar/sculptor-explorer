@@ -229,6 +229,42 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Consistent Y-axis scale where possible (allows visual comparison)
 - **Insight targets:** (1) France and Germany's early dominance, (2) the US rise in the early 20th century, (3) global diversification post-1950 (Japan, Latin America, etc.)
 
+**Evolution temporal categories:**
+
+- Preserve the route question: compare recorded geography and movement labels
+  by sculptor birth decade, then reach exact category counts, the matching
+  Decade page, and curated focus-sculptor records for a selected decade.
+- Drive charts, semantic decade rows, selected rankings, `Other`, and
+  `Unknown` from one pure route-local projection. `Other` is a recorded-
+  category display rollup; `Unknown` remains missing source data.
+- At `xl` and above, retain the three stacked-area overviews only while every
+  rendered decade band is at least 24px wide and provide an on-demand exact
+  semantic overview. Below `xl`, do not mount D3; make the complete semantic
+  artist-decade comparison and separate object-decade materials list primary.
+- Use native geography-source buttons and a native birth-decade select at all
+  widths. Canonical shared state owns only `geo` then `decade`; omit defaults
+  and visibly reset duplicate, malformed, unknown, explicit-default, or stale
+  values without moving focus.
+- Keep the 6,710 geography candidates, 962 recorded P135 labels, 2,581 missing
+  published P135 values, 132 bounded museum objects, and curated 48-person
+  focus roster visibly distinct. The materials object-date axis never inherits
+  the artist birth-decade selection.
+- Render an unknown focus-sculptor death year as `—`; never infer living status
+  from a missing year.
+
+**Evolution evidence status (local candidate 2026-08-14).** The unpublished
+`codex/phase-5q4b-evolution-slice` candidate is based on freshly fetched
+protected `main@614951db2288a416fccb4511ac937c7951602053`. Its canonical root
+gate and all 52 serial Chromium journeys pass, including 12 Evolution-specific
+URL/state/projection/reflow, 24/44px-target, Axe, forced-color, four color-
+vision-mode, reduced-motion, text-spacing, degraded-data, payload, feedback,
+CLS, and console/request checks. Local rendered review covers 1440×900,
+390×844, and the 720×450 reflow proxy. Publishing, exact-head Actions,
+Git-backed Preview, production, and merge evidence do not exist and are not
+claimed. Actual 200% browser zoom, physical input, spoken screen readers,
+Windows High Contrast, field p75, and reader comprehension remain owner-run
+boundaries; this local candidate is not yet an earned cross-route pattern.
+
 **Lifespan timeline:**
 - Preserve the project-origin question: compare when the 48 focus sculptors
   lived, then open a deterministic sculptor record.

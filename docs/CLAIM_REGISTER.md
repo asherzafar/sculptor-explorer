@@ -1,8 +1,8 @@
 # Public Claim Register
 
-**Status:** Current production through protected `main`; Timeline landing verified
-**Reviewed:** 2026-08-07
-**Applies to:** Public claim behavior introduced by `main@f3f5130fa043134f55d7832a9cac4f485b73af6d`, data release `2026-08-02.2`, methodology `A.3`; the documentation-only closeout carrying this register changes no registered claim
+**Status:** Current production through protected `main`; local Evolution presentation candidate recorded separately
+**Reviewed:** 2026-08-14
+**Applies to:** Public claim behavior through `main@614951db2288a416fccb4511ac937c7951602053`, data release `2026-08-02.2`, methodology `A.3`; the local Evolution candidate changes presentation and interaction, not the registered source, denominator, or claim contracts below
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
@@ -24,6 +24,13 @@ PR #28 verified the Timeline row below at reviewed head
 `31228072123`, exact-SHA `READY` Vercel production deployment
 `dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and canonical/immutable route probes
 passed. The slice changed no Evolution, Migration, or Lineage claim.
+
+The unpublished local `codex/phase-5q4b-evolution-slice` candidate makes the
+three existing Evolution contracts easier to inspect: it keeps geography,
+movement, and materials denominators separate; retains `Unknown` beside the
+`Other` rollup; and exposes exact selected-decade rankings plus a structured
+reflow comparison. It changes no input, pipeline, denominator, or registered
+claim. Publishing, Preview, production, and merge evidence are not claimed.
 
 ## Route and claim audit
 

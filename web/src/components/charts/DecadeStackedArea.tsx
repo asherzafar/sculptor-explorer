@@ -2,8 +2,8 @@
 
 import { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
-import type { DecadeAggregation } from "@/lib/types";
 import { EmptyState } from "@/components/EmptyState";
+import type { EvolutionSeriesProjection } from "@/app/evolution/evolution-state";
 
 /**
  * Layout constants — follow .windsurfrules chart rules:
@@ -16,9 +16,7 @@ const HEIGHT = 220;
 type WideRow = { decade: number; [category: string]: number };
 
 interface Props {
-  data: DecadeAggregation[];
-  /** Top N categories to show; remainder collapsed into "Other" */
-  topN?: number;
+  projection: EvolutionSeriesProjection;
   activeDecade?: number | null;
   onDecadeClick?: (decade: number) => void;
   /** Ordered category names → CSS custom property colors */
@@ -28,14 +26,13 @@ interface Props {
 }
 
 /**
- * DecadeStackedArea — reusable D3 stacked area chart for tidy decade data.
+ * DecadeStackedArea — Evolution's D3 renderer for a route-projected series.
  *
  * Pattern: D3 for math + rendering inside useEffect, React owns the SVG ref.
  * Follows the established LifespanTimeline D3-React pattern.
  */
 export function DecadeStackedArea({
-  data,
-  topN = 6,
+  projection,
   activeDecade,
   onDecadeClick,
   colorMap,
@@ -43,58 +40,24 @@ export function DecadeStackedArea({
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // ── 1. Pivot tidy → wide, determine top categories ─────────────────────
-  const { wide, categories } = useMemo(() => {
-    if (data.length === 0) return { wide: [], categories: [] };
+  // Projection decisions live in the route-local pure helper. The chart only
+  // pivots that already-reconciled projection into D3's wide stack shape.
+  const categories = projection.categories;
+  const wide = useMemo(
+    () =>
+      projection.decades.map((row) => {
+        const wideRow: WideRow = { decade: row.decade };
+        for (const category of categories) {
+          wideRow[category] =
+            row.categories.find((entry) => entry.category === category)?.count ??
+            0;
+        }
+        return wideRow;
+      }),
+    [categories, projection.decades],
+  );
 
-    // Collect all category totals (excluding "Other" and "Unknown")
-    const totals = new Map<string, number>();
-    for (const row of data) {
-      if (row.category === "Other" || row.category === "Unknown") continue;
-      totals.set(row.category, (totals.get(row.category) ?? 0) + row.count);
-    }
-
-    // Top N by total count (excluding Other/Unknown)
-    const sorted = [...totals.entries()]
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, topN)
-      .map(([cat]) => cat);
-
-    // Always put "Other" last if it exists in data
-    const hasOther = data.some(
-      (d) => d.category === "Other" || d.category === "Unknown"
-    );
-    const finalCategories = hasOther ? [...sorted, "Other"] : sorted;
-
-    // Pivot: group by decade
-    const byDecade = new Map<number, WideRow>();
-    for (const row of data) {
-      if (!byDecade.has(row.decade)) {
-        byDecade.set(row.decade, { decade: row.decade });
-      }
-      const wide = byDecade.get(row.decade)!;
-      // Collapse Unknown → Other
-      const cat =
-        row.category === "Unknown"
-          ? "Other"
-          : sorted.includes(row.category)
-          ? row.category
-          : "Other";
-      wide[cat] = (wide[cat] ?? 0) + row.count;
-    }
-
-    // Fill missing categories with 0
-    const wideRows = [...byDecade.values()].sort((a, b) => a.decade - b.decade);
-    for (const row of wideRows) {
-      for (const cat of finalCategories) {
-        if (row[cat] === undefined) row[cat] = 0;
-      }
-    }
-
-    return { wide: wideRows, categories: finalCategories };
-  }, [data, topN]);
-
-  // ── 2. Default color map: cycle through --color-data-* tokens ──────────
+  // ── 1. Default color map: cycle through --color-data-* tokens ──────────
   const resolvedColorMap = useMemo(() => {
     const map: Record<string, string> = {};
     const tokens = [
@@ -112,182 +75,200 @@ export function DecadeStackedArea({
     return map;
   }, [categories, colorMap]);
 
-  // ── 3. D3 render effect ────────────────────────────────────────────────
+  // ── 2. D3 render effect ────────────────────────────────────────────────
   useEffect(() => {
     if (!svgRef.current || wide.length === 0 || categories.length === 0) return;
 
-    const container = svgRef.current.parentElement;
-    const width = container?.clientWidth ?? 500;
-    const innerW = width - MARGIN.left - MARGIN.right;
-    const innerH = HEIGHT - MARGIN.top - MARGIN.bottom;
+    const svgNode = svgRef.current;
+    const container = svgNode.parentElement;
+    if (!container) return;
 
-    const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove();
-    svg.attr("width", width).attr("height", HEIGHT);
+    const render = () => {
+      const width = container.clientWidth;
+      const innerW = width - MARGIN.left - MARGIN.right;
+      const innerH = HEIGHT - MARGIN.top - MARGIN.bottom;
+      const svg = d3.select(svgNode);
+      svg.selectAll("*").remove();
+      svg.attr("width", Math.max(width, 0)).attr("height", HEIGHT);
+      if (innerW <= 0 || innerH <= 0) return;
 
-    const g = svg
-      .append("g")
-      .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
+      const g = svg
+        .append("g")
+        .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
+      const decades = wide.map((row) => row.decade);
+      const xScale = d3
+        .scaleLinear()
+        .domain([decades[0], decades[decades.length - 1]])
+        .range([0, innerW]);
+      const bands = decades.map((decade, index) => {
+        const center = xScale(decade);
+        const left =
+          index === 0
+            ? 0
+            : (xScale(decades[index - 1]) + center) / 2;
+        const right =
+          index === decades.length - 1
+            ? innerW
+            : (center + xScale(decades[index + 1])) / 2;
+        return { decade, x: left, width: Math.max(0, right - left) };
+      });
 
-    // Scales
-    const decades = wide.map((d) => d.decade);
-    const xScale = d3
-      .scaleLinear()
-      .domain([decades[0], decades[decades.length - 1]])
-      .range([0, innerW]);
+      const series = d3
+        .stack<WideRow>()
+        .keys(categories)
+        .order(d3.stackOrderNone)
+        .offset(d3.stackOffsetNone)(wide);
+      const maxY = Math.max(
+        1,
+        d3.max(series, (seriesRow) =>
+          d3.max(seriesRow, (point) => point[1]),
+        ) ?? 0,
+      );
+      const yScale = d3
+        .scaleLinear()
+        .domain([0, maxY])
+        .range([innerH, 0])
+        .nice();
 
-    const stack = d3
-      .stack<WideRow>()
-      .keys(categories)
-      .order(d3.stackOrderNone)
-      .offset(d3.stackOffsetNone);
-
-    const series = stack(wide);
-
-    const maxY = d3.max(series, (s) => d3.max(s, (d) => d[1])) ?? 0;
-    const yScale = d3.scaleLinear().domain([0, maxY]).range([innerH, 0]).nice();
-
-    // Horizontal gridlines — as per .windsurfrules
-    const yTicks = yScale.ticks(4);
-    g.append("g")
-      .attr("class", "grid")
-      .selectAll("line")
-      .data(yTicks)
-      .join("line")
-      .attr("x1", 0)
-      .attr("x2", innerW)
-      .attr("y1", (d) => yScale(d))
-      .attr("y2", (d) => yScale(d))
-      .attr("stroke", "var(--color-border-grid)")
-      .attr("stroke-width", 1)
-      .attr("opacity", 0.8);
-
-    // Area generator
-    const area = d3
-      .area<d3.SeriesPoint<WideRow>>()
-      .x((d) => xScale(d.data.decade))
-      .y0((d) => yScale(d[0]))
-      .y1((d) => yScale(d[1]))
-      .curve(d3.curveMonotoneX);
-
-    // Stacked areas
-    g.append("g")
-      .attr("class", "areas")
-      .selectAll("path")
-      .data(series)
-      .join("path")
-      .attr("fill", (s) => resolvedColorMap[s.key] ?? "var(--color-data-5)")
-      .attr("opacity", activeDecade != null ? 0.35 : 0.75)
-      .attr("d", area);
-
-    // Active decade highlight band
-    if (activeDecade != null) {
-      const bandWidth = innerW / Math.max(decades.length - 1, 1);
-      g.append("rect")
-        .attr("x", xScale(activeDecade) - bandWidth / 2)
-        .attr("y", 0)
-        .attr("width", bandWidth)
-        .attr("height", innerH)
-        .attr("fill", "var(--color-accent-primary)")
-        .attr("opacity", 0.15)
-        .attr("pointer-events", "none");
-    }
-
-    // Hover highlight bands — visible on hover for affordance
-    if (onDecadeClick) {
-      const bandW = innerW / Math.max(decades.length - 1, 1);
-
-      // Hover bands (subtle, appear on hover)
-      const hoverBands = g.append("g").attr("class", "hover-bands");
-      hoverBands
-        .selectAll("rect")
-        .data(decades)
-        .join("rect")
-        .attr("x", (d) => xScale(d) - bandW / 2)
-        .attr("y", 0)
-        .attr("width", bandW)
-        .attr("height", innerH)
-        .attr("fill", "var(--color-accent-primary)")
-        .attr("opacity", 0)
-        .attr("pointer-events", "none")
-        .attr("class", "hover-band");
-
-      // Click target overlay — invisible rects per decade for click handling + hover
       g.append("g")
-        .attr("class", "click-targets")
-        .selectAll("rect")
-        .data(decades)
-        .join("rect")
-        .attr("x", (d) => xScale(d) - bandW / 2)
-        .attr("y", 0)
-        .attr("width", bandW)
-        .attr("height", innerH)
-        .attr("fill", "transparent")
-        .attr("cursor", "pointer")
-        .on("mouseenter", function (_, d) {
-          // Show hover band
-          hoverBands
-            .selectAll<SVGRectElement, number>(".hover-band")
-            .attr("opacity", (bandDecade) => (bandDecade === d ? 0.08 : 0));
-        })
-        .on("mouseleave", function () {
-          // Hide all hover bands
-          hoverBands.selectAll(".hover-band").attr("opacity", 0);
-        })
-        .on("click", (_, d) => onDecadeClick(d));
-    }
+        .attr("class", "grid")
+        .selectAll("line")
+        .data(yScale.ticks(4))
+        .join("line")
+        .attr("x1", 0)
+        .attr("x2", innerW)
+        .attr("y1", (tick) => yScale(tick))
+        .attr("y2", (tick) => yScale(tick))
+        .attr("stroke", "var(--color-border-grid)")
+        .attr("stroke-width", 1)
+        .attr("opacity", 0.8);
 
-    // X axis — bottom, decade ticks
-    const xAxis = d3
-      .axisBottom(xScale)
-      .tickValues(decades.filter((_, i) => i % 2 === 0)) // every other decade
-      .tickFormat((d) => `${d}s`)
-      .tickSize(0)
-      .tickPadding(8);
+      const area = d3
+        .area<d3.SeriesPoint<WideRow>>()
+        .x((point) => xScale(point.data.decade))
+        .y0((point) => yScale(point[0]))
+        .y1((point) => yScale(point[1]))
+        .curve(d3.curveMonotoneX);
+      g.append("g")
+        .attr("class", "areas")
+        .selectAll("path")
+        .data(series)
+        .join("path")
+        .attr("data-evolution-category", (seriesRow) => seriesRow.key)
+        .attr(
+          "fill",
+          (seriesRow) =>
+            resolvedColorMap[seriesRow.key] ?? "var(--color-data-5)",
+        )
+        .attr("stroke", "var(--color-bg-primary)")
+        .attr("stroke-width", 1)
+        .attr("opacity", activeDecade != null ? 0.45 : 0.8)
+        .attr("d", area);
 
-    const xAxisG = g
-      .append("g")
-      .attr("class", "x-axis")
-      .attr("transform", `translate(0,${innerH})`)
-      .call(xAxis);
+      const activeBand = bands.find((band) => band.decade === activeDecade);
+      if (activeBand) {
+        g.append("rect")
+          .attr("x", activeBand.x)
+          .attr("y", 0)
+          .attr("width", activeBand.width)
+          .attr("height", innerH)
+          .attr("fill", "var(--color-accent-primary)")
+          .attr("fill-opacity", 0.12)
+          .attr("stroke", "var(--color-accent-primary)")
+          .attr("stroke-width", 2)
+          .attr("pointer-events", "none");
+      }
 
-    xAxisG.select(".domain").remove();
-    xAxisG
-      .selectAll("text")
-      .attr("fill", "var(--color-text-tertiary)")
-      .attr("font-size", "11px")
-      .attr("font-family", "var(--font-body), system-ui, sans-serif");
+      if (onDecadeClick) {
+        const hoverBands = g.append("g").attr("class", "hover-bands");
+        hoverBands
+          .selectAll("rect")
+          .data(bands)
+          .join("rect")
+          .attr("x", (band) => band.x)
+          .attr("y", 0)
+          .attr("width", (band) => band.width)
+          .attr("height", innerH)
+          .attr("fill", "var(--color-accent-primary)")
+          .attr("opacity", 0)
+          .attr("pointer-events", "none")
+          .attr("class", "hover-band");
 
-    // Y axis — left, minimal
-    const yAxis = d3
-      .axisLeft(yScale)
-      .ticks(4)
-      .tickSize(0)
-      .tickPadding(6);
+        g.append("g")
+          .attr("class", "click-targets")
+          .selectAll("rect")
+          .data(bands)
+          .join("rect")
+          .attr("data-evolution-decade-target", "true")
+          .attr("data-decade", (band) => band.decade)
+          .attr("x", (band) => band.x)
+          .attr("y", 0)
+          .attr("width", (band) => band.width)
+          .attr("height", innerH)
+          .attr("fill", "transparent")
+          .attr("cursor", "pointer")
+          .on("mouseenter", (_, band) => {
+            hoverBands
+              .selectAll<SVGRectElement, (typeof bands)[number]>(".hover-band")
+              .attr("opacity", (candidate) =>
+                candidate.decade === band.decade ? 0.1 : 0,
+              );
+          })
+          .on("mouseleave", () => {
+            hoverBands.selectAll(".hover-band").attr("opacity", 0);
+          })
+          .on("click", (_, band) => onDecadeClick(band.decade));
+      }
 
-    const yAxisG = g.append("g").attr("class", "y-axis").call(yAxis);
-    yAxisG.select(".domain").attr("stroke", "var(--color-border-axis)");
-    yAxisG
-      .selectAll("text")
-      .attr("fill", "var(--color-text-tertiary)")
-      .attr("font-size", "10px")
-      .attr("font-family", "var(--font-body), system-ui, sans-serif");
+      const xAxis = d3
+        .axisBottom(xScale)
+        .tickValues(decades.filter((_, index) => index % 2 === 0))
+        .tickFormat((tick) => `${tick}s`)
+        .tickSize(0)
+        .tickPadding(8);
+      const xAxisGroup = g
+        .append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0,${innerH})`)
+        .call(xAxis);
+      xAxisGroup.select(".domain").remove();
+      xAxisGroup
+        .selectAll("text")
+        .attr("fill", "var(--color-text-tertiary)")
+        .attr("font-size", "11px")
+        .attr("font-family", "var(--font-body), system-ui, sans-serif");
 
-    // Optional y-axis label
-    if (yLabel) {
-      g.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("x", -innerH / 2)
-        .attr("y", -MARGIN.left + 10)
-        .attr("text-anchor", "middle")
+      const yAxisGroup = g
+        .append("g")
+        .attr("class", "y-axis")
+        .call(d3.axisLeft(yScale).ticks(4).tickSize(0).tickPadding(6));
+      yAxisGroup.select(".domain").attr("stroke", "var(--color-border-axis)");
+      yAxisGroup
+        .selectAll("text")
         .attr("fill", "var(--color-text-tertiary)")
         .attr("font-size", "10px")
-        .attr("font-family", "var(--font-body), system-ui, sans-serif")
-        .text(yLabel);
-    }
+        .attr("font-family", "var(--font-body), system-ui, sans-serif");
+
+      if (yLabel) {
+        g.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("x", -innerH / 2)
+          .attr("y", -MARGIN.left + 10)
+          .attr("text-anchor", "middle")
+          .attr("fill", "var(--color-text-tertiary)")
+          .attr("font-size", "10px")
+          .attr("font-family", "var(--font-body), system-ui, sans-serif")
+          .text(yLabel);
+      }
+    };
+
+    render();
+    const observer = new ResizeObserver(render);
+    observer.observe(container);
+    return () => observer.disconnect();
   }, [wide, categories, resolvedColorMap, activeDecade, onDecadeClick, yLabel]);
 
-  if (data.length === 0) {
+  if (projection.decades.length === 0) {
     // No-data state for the stacked area. We deliberately do *not* explain
     // *why* the data is empty here — that's the caller's job (a chart
     // can be empty because of upstream pipeline issues, an active filter,
@@ -307,6 +288,7 @@ export function DecadeStackedArea({
       <svg
         ref={svgRef}
         className="w-full overflow-visible"
+        data-evolution-chart="true"
         role="img"
         aria-label={`Stacked area chart of ${categories.join(", ")} by decade${
           yLabel ? `; vertical axis: ${yLabel}` : ""

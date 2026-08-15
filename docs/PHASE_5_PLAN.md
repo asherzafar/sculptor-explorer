@@ -30,6 +30,18 @@
 > both npm audit views, and the landing-window runtime error check passed. It
 > keeps Lineage and Evolution unchanged.
 >
+> The bounded Evolution candidate is now implemented locally on
+> `codex/phase-5q4b-evolution-slice` from freshly fetched protected
+> `main@614951db2288a416fccb4511ac937c7951602053`. It keeps Lineage and every
+> other route unchanged while adding the route-local `geo`/`decade` contract,
+> one chart/semantic projection, a complete structured reflow task below the
+> measured 1280px chart boundary, separate material object time, native
+> controls, exact selected-decade rankings, deterministic links, and bounded
+> accessibility/performance tests. The canonical local gate and all 52 serial
+> Chromium journeys pass. No commit, push, PR, provider action, Preview,
+> deployment, or merge is part of that local evidence; those require separate
+> authority before the slice can be called landed.
+>
 > Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
 > later phases in this document are researched hypotheses, not commitments;
 > re-score them against `docs/PROJECT_CHARTER.md` using the product, data,

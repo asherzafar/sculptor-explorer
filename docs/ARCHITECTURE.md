@@ -146,7 +146,8 @@ sculpture-in-data/
 │       │   │   └── timeline-state.ts #  Parse/serialize/sort contract
 │       │   ├── evolution/
 │       │   │   ├── page.tsx             #   Server Component wrapper with <Suspense>
-│       │   │   └── EvolutionContent.tsx #   Client Component: D3 charts, URL decade param
+│       │   │   ├── EvolutionContent.tsx #   Canonical URL + responsive structured task
+│       │   │   └── evolution-state.ts   #   Pure parse/reconcile/projection contract
 │       │   ├── explore/
 │       │   │   ├── page.tsx         #   Suspense wrapper for URL-backed browse
 │       │   │   ├── ExploreContent.tsx #  Paginated desktop table/mobile list
@@ -162,7 +163,8 @@ sculpture-in-data/
 │       ├── components/
 │       │   ├── ui/                  #   shadcn/ui primitives
 │       │   ├── charts/              #   D3 chart components
-│       │   │   ├── DecadeStackedArea.tsx  #   Shared stacked area (Geography + Movements)
+│       │   │   ├── EvolutionCharts.tsx   #   Wide-only Evolution chart boundary
+│       │   │   ├── DecadeStackedArea.tsx  #   Evolution-only projected stacked area
 │       │   │   ├── GeographyChart.tsx     #   Country of birth by decade
 │       │   │   ├── MovementsChart.tsx     #   Art movements by decade
 │       │   │   ├── MaterialsChart.tsx     #   Museum-works materials
@@ -496,6 +498,14 @@ export function EvolutionContent() {
 ```
 
 Every page that reads URL params needs this split: a thin Server Component page.tsx that wraps the real content in Suspense.
+
+Evolution additionally keeps `geo` and `decade` parsing, canonical
+serialization, data reconciliation, and chart/list category projection in
+`evolution-state.ts`. `EvolutionContent` mounts the lazy chart module only at
+the measured `xl` boundary (1280 CSS pixels); below it, the semantic artist-
+birth-decade and museum-object-decade views are the primary render branch, so a
+CSS-hidden zero-width D3 tree is never created. Materials retain an independent
+object-date axis and never consume the artist birth-decade URL state.
 
 Explore keeps `q`, `sort`, `filter`, and `page` as the complete consequential
 state contract. Defaults are omitted from the canonical URL, malformed or
