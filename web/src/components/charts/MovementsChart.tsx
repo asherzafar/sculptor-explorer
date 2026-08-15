@@ -1,10 +1,10 @@
 "use client";
 
-import type { DecadeAggregation } from "@/lib/types";
+import type { EvolutionSeriesProjection } from "@/app/evolution/evolution-state";
 import { DecadeStackedArea } from "./DecadeStackedArea";
 
 interface MovementsChartProps {
-  data: DecadeAggregation[];
+  projection: EvolutionSeriesProjection;
   activeDecade?: number | null;
   onDecadeClick?: (decade: number) => void;
 }
@@ -14,14 +14,13 @@ interface MovementsChartProps {
  * Delegates rendering to DecadeStackedArea (D3-powered).
  */
 export function MovementsChart({
-  data,
+  projection,
   activeDecade,
   onDecadeClick,
 }: MovementsChartProps) {
   return (
     <DecadeStackedArea
-      data={data}
-      topN={6}
+      projection={projection}
       activeDecade={activeDecade}
       onDecadeClick={onDecadeClick}
       yLabel="sculptors"

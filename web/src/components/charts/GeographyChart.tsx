@@ -1,27 +1,26 @@
 "use client";
 
-import type { DecadeAggregation } from "@/lib/types";
+import type { EvolutionSeriesProjection } from "@/app/evolution/evolution-state";
 import { DecadeStackedArea } from "./DecadeStackedArea";
 
 interface GeographyChartProps {
-  data: DecadeAggregation[];
+  projection: EvolutionSeriesProjection;
   activeDecade?: number | null;
   onDecadeClick?: (decade: number) => void;
 }
 
 /**
- * GeographyChart — stacked area of top countries of birth by decade.
+ * GeographyChart — recorded geography by sculptor birth decade.
  * Delegates rendering to DecadeStackedArea (D3-powered).
  */
 export function GeographyChart({
-  data,
+  projection,
   activeDecade,
   onDecadeClick,
 }: GeographyChartProps) {
   return (
     <DecadeStackedArea
-      data={data}
-      topN={6}
+      projection={projection}
       activeDecade={activeDecade}
       onDecadeClick={onDecadeClick}
       yLabel="sculptors"

@@ -1,18 +1,17 @@
 "use client";
 
-import type { DecadeAggregation } from "@/lib/types";
+import type { EvolutionSeriesProjection } from "@/app/evolution/evolution-state";
 import { DecadeStackedArea } from "./DecadeStackedArea";
 
 interface MaterialsChartProps {
-  data: DecadeAggregation[];
+  projection: EvolutionSeriesProjection;
 }
 
 /** MaterialsChart — museum-object material observations by object decade. */
-export function MaterialsChart({ data }: MaterialsChartProps) {
+export function MaterialsChart({ projection }: MaterialsChartProps) {
   return (
     <DecadeStackedArea
-      data={data}
-      topN={6}
+      projection={projection}
       yLabel="museum objects"
     />
   );

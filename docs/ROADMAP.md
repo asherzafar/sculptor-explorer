@@ -1,6 +1,6 @@
 # Roadmap
 
-## Current status: Migration landed; remaining 5Q.4b evidence continues (August 2026)
+## Current status: Evolution draft PR under exact-head review (August 2026)
 
 **North star:** help people explore and explain how artists,
 institutions, places, movements, works, and practices shape one another
@@ -123,6 +123,22 @@ default-branch run `31289869997`, exact-source `READY` production deployment
 Migration state probes, both npm audit views, and the landing-window runtime
 error check passed afterward. Lineage and Evolution behavior remain unchanged.
 
+The bounded Evolution candidate is implemented locally on
+`codex/phase-5q4b-evolution-slice` from freshly fetched protected
+`main@614951db2288a416fccb4511ac937c7951602053`. It preserves the recorded-
+geography/movement-by-birth-decade question, all three denominators, wide
+stacked-area identity, separate materials object time, and deterministic
+Decade/sculptor links while adding canonical `geo`/`decade` state, one pure
+chart/semantic projection, a complete structured task below the measured
+1280px chart boundary, native controls, explicit `Other`/`Unknown` treatment,
+degraded states, and route budgets. The canonical local gate and all 52 serial
+Chromium journeys pass. Draft PR #35 targets `main` from exact implementation
+head `b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`; both Actions runs pass and the
+exact-SHA Git-backed Preview is `READY` with immutable-route smoke and focused
+rendered QA complete. No ready transition, merge, production action, provider
+change, manual deployment, production promotion, or landing evidence is
+claimed; Lineage and every other route remain unchanged.
+
 Implemented in the current release candidate: Phase 5b.3–5b.5
 institutional/temporal graph work — P69/P937
 institution data exports to `institutions.json`, sculptor shards carry
@@ -156,10 +172,11 @@ state; no public feature should depend on an unbuilt future phase.
 | Completed | **Getty monolith/shard contract repair** | A deterministic final-record stage restores 2,310 detail badges/fallback records, preserves works, and makes audit/output parity a CI invariant. |
 | Completed | **5Q.4b Explore route slice + landing hotfix** | URL-backed semantic pagination, mobile equivalence, accessibility/scale budgets, and the three landing-review boundaries passed exact-head review and exact-merge production verification. |
 | Completed | **5Q.4b Timeline route slice** | Mobile/zoom correlation, structured equivalence, keyboard/target behavior, URL state, disclosure, accessibility, and performance passed exact-head Preview review plus exact-merge production verification. |
-| Completed | **Bounded nanoid security remediation** | PR #30 updates only the lock resolution to patched `nanoid@3.3.17` inside PostCSS's existing range; exact-head and exact-merge delivery gates pass with zero npm findings and zero open Dependabot alerts. |
+| Completed | **Bounded nanoid security remediation (dated PR #30 evidence)** | PR #30 updated only the lock resolution to `nanoid@3.3.17`; its then-current exact-head and exact-merge gates had zero npm findings and zero open Dependabot alerts. A newer 2026-08-14 advisory against 3.3.17 is recorded in the handoff and remains a separate dependency task. |
 | Completed | **Dense Lineage/Migration scope review** | Exact-main source/render/test/performance evidence selects Migration as the smallest coherent slice and records success/stop gates; no route behavior changed. |
 | Completed | **5Q.4b Migration route slice** | Endpoint truth, structured responsive equivalence, canonical URL state, keyboard/targets, disclosure, accessibility, and performance passed exact-head review and exact-merge production verification. |
-| Now | **Remaining 5Q.4b route evidence** | Review the still-open route-specific failures and earned patterns, then select one bounded next slice before changing Evolution, Lineage, or another route. Do not mass-propagate a visual pattern. |
+| Now | **5Q.4b Evolution draft review** | Draft PR #35 passes local and exact implementation-head Actions/Preview gates; its docs-only evidence follow-up needs fresh exact-head reconciliation before any separately authorized ready, merge, or landing decision. |
+| Next | **Remaining 5Q.4b route evidence** | Keep Lineage and the smaller entity/content-route findings separate; select another bounded slice only after the Evolution review boundary is resolved. Do not mass-propagate a visual pattern. |
 | Parallel | **Exploration lab** | Prototype temporal ego journeys, relationship layers, communities, and institution/city biographies without creating production debt. |
 | After 5Q | **Findability and connective tissue** | Prefer institution pages, global search, coordinated links/URL state, and curated entry points when evidence supports them. |
 | Medium term | **Works, story depth, and neutral semantics** | Widen IIIF/works data, narratives, comparison, versioned downloads, and an additive artist-neutral graph model. |
@@ -598,7 +615,18 @@ major visual dimension.
   `2a9352111fd814882cec87d8cd19f3b5870809d7` and exact merge
   `21ab2f038aa62b23188cd8f373e36d5353a46128` passed the full delivery contract.
   Lineage and Evolution remain unchanged.
-- [ ] Propagate earned patterns through Evolution, Decade, Movement, sculptor detail, About, and Transparency; do not mass-restyle before the first route slice passes review.
+- [ ] Complete the bounded **Evolution** slice: the local candidate preserves
+  the 6,710 geography candidates, 962 movement-label records, 2,581 missing
+  published P135 values, 132 bounded museum objects, and curated 48-person
+  focus roster while adding canonical `geo`/`decade` state, a shared pure
+  projection, exact selected rankings, a complete structured reflow task,
+  native controls, honest unknown years, degraded states, and measured route
+  budgets. The canonical local gate and all 52 serial Chromium journeys pass;
+  mark this complete only after separately authorized exact-head Actions,
+  Git-backed Preview QA, review, merge, and landing evidence pass.
+- [ ] After the Evolution review boundary resolves, continue bounded route
+  evidence for Decade, Movement, sculptor detail, About, Transparency, and
+  Lineage; do not mass-restyle or propagate an idiom mechanically.
 - [ ] Review each default view with the visualization proposal model in `docs/RESEARCH_FOUNDATIONS.md`: reader question → data/task → encoding/interaction → implementation.
 - [ ] Give every interactive SVG an accessible name, text summary/equivalent, keyboard-operable consequential controls, visible focus, reduced-motion behavior, and non-color state encoding.
 - [ ] Replace unexplained density with overview → focus/filter → details on demand. Test lineage labels/legends, temporal confidence, and migration denominators for comprehension.
