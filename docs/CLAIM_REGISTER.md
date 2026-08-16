@@ -1,8 +1,8 @@
 # Public Claim Register
 
-**Status:** Current production through protected `main`; local Evolution presentation candidate recorded separately
-**Reviewed:** 2026-08-14
-**Applies to:** Public claim behavior through `main@614951db2288a416fccb4511ac937c7951602053`, data release `2026-08-02.2`, methodology `A.3`; the local Evolution candidate changes presentation and interaction, not the registered source, denominator, or claim contracts below
+**Status:** Current production through protected `main`; Evolution landing evidence reconciled
+**Reviewed:** 2026-08-15
+**Applies to:** Public claim behavior through `main@6f8d450e2a413e1cff5f3d15faf1cd2039eac683`, data release `2026-08-02.2`, methodology `A.3`
 
 This register is the maintainable audit behind the charter requirement that
 every analytical claim expose its source, denominator, freshness, and material
@@ -25,13 +25,16 @@ PR #28 verified the Timeline row below at reviewed head
 `dpl_9Qho7DQj584HwaPf8EawSayLuSzg`, and canonical/immutable route probes
 passed. The slice changed no Evolution, Migration, or Lineage claim.
 
-Draft PR #35 on `codex/phase-5q4b-evolution-slice` makes the
-three existing Evolution contracts easier to inspect: it keeps geography,
-movement, and materials denominators separate; retains `Unknown` beside the
-`Other` rollup; and exposes exact selected-decade rankings plus a structured
-reflow comparison. It changes no input, pipeline, denominator, or registered
-claim. Exact implementation-head Actions and Git-backed Preview QA pass;
-production and merge evidence are not claimed.
+PR #35 verified the three Evolution rows below at reviewed head
+`c1542f0ffa4e53bb1cf801f1c3090e49692e157c` and production merge
+`6f8d450e2a413e1cff5f3d15faf1cd2039eac683`. The addressed P2 assigns
+`Unknown` an explicit visual encoding distinct from every leading category and
+the `Other` rollup, with a focused regression covering both geography modes.
+Default-branch Actions run `31915132651`, exact-source `READY` Vercel
+production deployment `dpl_E9AXGV1c3DJ7ubGMe7FyZLFBmKzr`, canonical and
+immutable route probes, direct Evolution state probes, and exact-production
+rendered QA passed. The slice changed no input, pipeline, denominator, or
+registered claim contract.
 
 ## Route and claim audit
 
