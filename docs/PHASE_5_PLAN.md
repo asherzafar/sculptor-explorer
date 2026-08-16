@@ -1,10 +1,10 @@
 # Phase 5 — Densification + explorable interactives
 
 > **Sequencing update (August 2026):** 5b.5 and Phase 5Q.1–5Q.3 are
-> implemented in the current release candidate. Explore, Timeline, and
-> Migration are the first three landed 5Q.4b route slices; the latest
-> behavior-changing protected-main commit is Migration merge
-> `21ab2f038aa62b23188cd8f373e36d5353a46128`. The bounded nanoid remediation
+> implemented in the current release candidate. Explore, Timeline, Migration,
+> and Evolution are the first four landed 5Q.4b route slices; the latest
+> behavior-changing protected-main commit is Evolution merge
+> `6f8d450e2a413e1cff5f3d15faf1cd2039eac683`. The bounded nanoid remediation
 > landed through PR #30 without changing route behavior, and documentation-only
 > PR #31 advanced protected `main` without changing route behavior.
 > Documentation-only PR #32 then landed the dense-route scope review as
@@ -30,20 +30,17 @@
 > both npm audit views, and the landing-window runtime error check passed. It
 > keeps Lineage and Evolution unchanged.
 >
-> The bounded Evolution candidate is now implemented locally on
-> `codex/phase-5q4b-evolution-slice` from freshly fetched protected
-> `main@614951db2288a416fccb4511ac937c7951602053`. It keeps Lineage and every
-> other route unchanged while adding the route-local `geo`/`decade` contract,
-> one chart/semantic projection, a complete structured reflow task below the
-> measured 1280px chart boundary, separate material object time, native
-> controls, exact selected-decade rankings, deterministic links, and bounded
-> accessibility/performance tests. The canonical local gate and all 52 serial
-> Chromium journeys pass. Draft PR #35 is open to `main`; both exact
-> implementation-head Actions runs pass and the exact-SHA Git-backed Preview is
-> `READY` with route smoke and focused rendered QA complete. No ready
-> transition, merge, production action, provider change, or landing evidence is
-> claimed; those require separate authority before the slice can be called
-> landed.
+> PR #35 landed the bounded Evolution slice from reviewed head
+> `c1542f0ffa4e53bb1cf801f1c3090e49692e157c` as merge commit
+> `6f8d450e2a413e1cff5f3d15faf1cd2039eac683`. The final head gives `Unknown`
+> an explicit visual encoding distinct from every leading category and
+> `Other`, with a focused regression for both geography modes. Exact-head
+> Actions and Git-backed Preview QA passed before merge. Default-branch Actions
+> run `31915132651`, exact-source `READY` production deployment
+> `dpl_E9AXGV1c3DJ7ubGMe7FyZLFBmKzr`, canonical/immutable probes, direct
+> Evolution state probes, exact-production rendered QA, and the landing-window
+> runtime check passed afterward. Lineage, every other route, dependencies,
+> provider configuration, and retained implementation state remain unchanged.
 >
 > Complete Phase 5Q in `docs/ROADMAP.md` before starting 5b.6, 5c, or 5d. The
 > later phases in this document are researched hypotheses, not commitments;

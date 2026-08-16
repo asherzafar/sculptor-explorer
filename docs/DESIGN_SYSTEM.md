@@ -252,22 +252,25 @@ Validate outside-in. A fast, polished implementation cannot rescue the wrong que
 - Render an unknown focus-sculptor death year as `—`; never infer living status
   from a missing year.
 
-**Evolution evidence status (draft PR #35, 2026-08-15).** The route-local
-`codex/phase-5q4b-evolution-slice` draft is based on freshly fetched protected
-`main@614951db2288a416fccb4511ac937c7951602053`. Its canonical root gate and all
-52 serial local Chromium journeys pass, including 12 Evolution-specific
-URL/state/projection/reflow, 24/44px-target, Axe, forced-color, four color-
-vision-mode, reduced-motion, text-spacing, degraded-data, payload, feedback,
-CLS, and console/request checks. Local rendered review covers 1440×900,
-390×844, and the 720×450 reflow proxy. Both exact implementation-head Actions
-runs pass, and Git-backed Preview deployment
-`dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY` from the same branch/SHA. Preview
-inspection found no confirmed/probable product defect; its one non-passing
-aggregate assertion contained only aborted other-route/hosting prefetches, not
-Evolution, console, or page failures. Production and merge are not claimed.
-Actual 200% browser zoom, physical input, spoken screen readers,
-Windows High Contrast, field p75, and reader comprehension remain owner-run
-boundaries; this draft is not yet an earned cross-route pattern.
+**Evolution evidence status (landed PR #35, 2026-08-15).** Reviewed head
+`c1542f0ffa4e53bb1cf801f1c3090e49692e157c` passes the canonical root gate, 13
+focused Evolution journeys, and all 53 serial local Chromium journeys. The
+confirmed P2 is addressed by reserving separate explicit encodings for the six
+leading categories, `Other`, and `Unknown`; a focused regression asserts eight
+unique computed fills for both citizenship and birth-country views. Push and
+pull-request Actions runs `31913554149` and `31913557014` passed at that exact
+head. Git-backed Preview deployment `dpl_3wDHXeTGRvBFTdegWDQEf4eff9wj` was
+`READY`, passed immutable-route smoke, and passed all three decisive rendered
+checks; one broader rapid-navigation aggregate retained only speculative
+prefetch aborts, while paced checks had no console, page, or product failure.
+Guarded merge `6f8d450e2a413e1cff5f3d15faf1cd2039eac683`, default-branch Actions run
+`31915132651`, exact-source `READY` production deployment
+`dpl_E9AXGV1c3DJ7ubGMe7FyZLFBmKzr`, canonical/immutable probes, direct
+Evolution state probes, all three exact-production rendered checks, and the
+landing-window runtime check passed. Actual 200% browser zoom, physical input,
+spoken screen readers, Windows High Contrast, field p75, and reader
+comprehension remain owner-run boundaries; this route-local result is not an
+earned cross-route pattern and changes no Lineage behavior.
 
 **Lifespan timeline:**
 - Preserve the project-origin question: compare when the 48 focus sculptors

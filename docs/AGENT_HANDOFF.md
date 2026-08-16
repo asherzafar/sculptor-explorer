@@ -1,60 +1,58 @@
 # Agent Handoff
 
-**Verified:** 2026-08-14
+**Verified:** 2026-08-15
 
 **Purpose:** Current agent-neutral continuation state. The evidence behind the roadmap reset is in `docs/PROJECT_AUDIT_2026-08-02.md`; historical 5b.3–5b.4 implementation detail remains in `docs/CODEX_HANDOFF.md`.
 
 ## Current boundary
 
-The bounded Phase 5Q.4b **Evolution** candidate is published as draft PR #35
-from `codex/phase-5q4b-evolution-slice` in dedicated worktree
-`/private/tmp/sculptor-explorer-phase-5q4b-evolution-slice`, based on freshly
-fetched protected `origin/main@614951db2288a416fccb4511ac937c7951602053`.
-The referenced 2026-08-14 remaining-route scope review was absent from that
-protected base and was read from its retained review worktree without importing
-the separate uncommitted document. The reviewed implementation commit is
-`b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`. Commit, push, draft-PR creation,
-exact-implementation-head Actions, and Git-backed Preview QA are complete. No
-ready transition, merge, production deployment/promotion, provider setting,
-Lineage/other-route/dependency change, or cleanup is part of this task.
-
-The candidate preserves the recorded geography/movement-by-sculptor-birth-
-decade question, wide stacked-area identity, separate materials object-time
-question, the 6,710/962/2,581/132 evidence contracts, and deterministic Decade
-and `/explore/{qid}` links. It adds a pure route-local `geo`/`decade` URL and
-projection contract; complete selected-decade rankings; explicit `Other` and
-`Unknown`; native controls; honest unknown death years; complete structured
-artist- and object-decade tasks below the measured 1280px chart boundary; and
-isolated optional-material versus complete required-data failure states. D3 is
-lazy and does not mount below that boundary. Lineage, every other route, the
-pipeline, generated data, schemas, dependencies, provider state, and shared
+Phase 5Q.4b **Evolution** landed through PR
+[#35](https://github.com/asherzafar/sculptor-explorer/pull/35). The exact
+reviewed head is `c1542f0ffa4e53bb1cf801f1c3090e49692e157c`; the guarded merge
+commit on protected `main` is `6f8d450e2a413e1cff5f3d15faf1cd2039eac683`.
+The slice preserves the recorded geography/movement-by-sculptor-birth-decade
+question, wide stacked-area identity, separate materials object-time question,
+the 6,710/962/2,581/132 evidence contracts, and deterministic Decade and
+`/explore/{qid}` links. It adds a pure route-local `geo`/`decade` URL and
+projection contract, exact selected-decade rankings, native controls,
+structured artist/object tasks below the measured 1280px chart boundary,
+degraded states, and route budgets. Lineage, every other route, the pipeline,
+generated data, schemas, dependencies, provider configuration, and shared
 navigation are unchanged.
 
-Local and exact-implementation-head evidence is green:
-`./scripts/validate.sh` passed all data/Getty/
-institution/relationship/temporal contracts, 21 unit tests, zero-warning lint,
-type checking, the 3,625-page static build, and lineage regression bounds;
-`npm run test:e2e -- --workers=1` passed all 52 Chromium journeys. Twelve
-Evolution journeys cover the required 1440×900, 390×844, and 720×450 state
-matrix, URL canonicalization/history, chart/structured projection parity,
-1280px 24px-band boundary, 44px reflow targets, keyboard/focus, Axe, forced
-colors, four color-vision modes, reduced motion, text spacing, empty/degraded
-data, five-input 25KB-gzip budget, sub-200ms feedback, CLS, deterministic
-links, and console/page/request/SVG errors. GitHub Actions runs `31908201342`
-and `31908245183` passed at exact implementation head. Git-backed Vercel
-deployment `dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY` at immutable URL
-`https://sculptor-explorer-f82yhotjt-asherzafars-projects.vercel.app` with the
-same branch/SHA; canonical and missing-route smoke probes passed. Preview
-rendered inspection found no confirmed or probable product defect. Eleven of
-the twelve focused Preview journeys passed unchanged; the remaining aggregate
-request assertion saw only Vercel/Next navigation-prefetch `ERR_ABORTED`
-events for other routes and `/.well-known/vercel/jwe` during rapid repeated
-navigation, with no Evolution data/script/document failure, console error, or
-page error. Actual 200% Chrome/Safari zoom, physical input, spoken
-VoiceOver/NVDA, Windows High Contrast, field p75, and reader comprehension
-remain owner-run and are not claimed. A fresh install also reports the
-pre-existing high transitive `nanoid@3.3.17` advisory recorded by the scope
-review; dependency remediation is explicitly outside this route task.
+The confirmed P2 on the earlier reviewed head found that `Unknown` reused a
+leading-category color. Final head `c1542f0ffa4e53bb1cf801f1c3090e49692e157c`
+reserves explicit distinct encodings for the six leaders, `Other`, and
+`Unknown`; the focused regression asserts eight unique computed fills in both
+citizenship and birth-country views. The final local root gate, 13 focused
+Evolution journeys, and all 53 serial Chromium journeys passed. Exact-head
+push and pull-request Actions runs `31913554149` and `31913557014` passed.
+Git-backed Preview deployment `dpl_3wDHXeTGRvBFTdegWDQEf4eff9wj` was `READY`
+at immutable URL
+`https://sculptor-explorer-40rivl42c-asherzafars-projects.vercel.app`; route
+smoke and all three decisive rendered checks passed. The broader rapid-
+navigation aggregate retained only speculative other-route prefetch aborts;
+paced inspection had zero console, page, or product failures.
+
+After merge, default-branch Actions run `31915132651` passed at exact merge SHA
+`6f8d450e2a413e1cff5f3d15faf1cd2039eac683`. Git-backed Vercel production
+deployment `dpl_E9AXGV1c3DJ7ubGMe7FyZLFBmKzr` is `READY`, targets production,
+and records `main` at that exact source SHA. Canonical and immutable probes
+returned 200 for `/`, `/timeline`, `/explore`, `/about`, and `/transparency`
+and 404 for the intentional missing route. Direct `/evolution` and
+`/evolution?geo=birth&decade=1920` probes returned 200; all three exact-
+production rendered checks passed; no Evolution runtime error appeared in the
+landing window. No manual deployment, promotion, provider mutation, or cleanup
+occurred.
+
+The implementation branch remains local and remote at the reviewed head, and
+dedicated worktree `/private/tmp/sculptor-explorer-phase-5q4b-evolution-slice`
+is retained clean. This landing-closeout branch/worktree starts from the exact
+merge and changes durable documentation only; all other retained branches and
+worktrees remain untouched. Actual 200% Chrome/Safari zoom, physical input,
+spoken VoiceOver/NVDA, Windows High Contrast, field p75, and reader
+comprehension remain owner-run and are not claimed. The separate high
+transitive `nanoid@3.3.17` advisory remains outside this documentation task.
 
 The Phase 5Q.4b Timeline-only slice landed through PR #28. Reviewed head
 `ba693dd9d21e62758c95027af405b8350f42b245`, based on freshly fetched protected
@@ -361,17 +359,17 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
   production hotfix retains those contracts while closing the three late
   review findings. The pattern is verified for Explore but remains unearned for
   broader reuse until real-reader task evidence supports it.
-- Migration is landed with a complete structured task below its wide-chart
-  boundary. This local Evolution candidate now does the same for its artist-
-  and object-decade tasks without mounting hidden D3. Lineage remains the
-  desktop-notice analytical route in protected production and still needs its
-  separately scoped semantic adjacency/focus equivalent.
-- The landed Timeline and Migration slices retain wide visual overviews and
-  provide native structured reflow paths. The local Evolution candidate closes
-  its audited negative-width/hidden-chart path with a measured 1280px render
-  boundary and exposes the same projected counts through a semantic path; all
-  52 local serial browser journeys pass. This is local evidence, not a
-  protected-main or production claim.
+- Migration and Evolution are landed with complete structured tasks below
+  their wide-chart boundaries. Evolution mounts no hidden D3 below its measured
+  1280px boundary and exposes the same projected counts through a semantic
+  path; its final reviewed head passed all 53 serial browser journeys and its
+  exact production replay passed. Lineage remains the desktop-notice
+  analytical route in protected production and still needs its separately
+  scoped semantic adjacency/focus equivalent.
+- The landed Timeline, Migration, and Evolution slices retain wide visual
+  overviews and provide native structured reflow paths. Evolution also reserves
+  distinct visual encodings for leading categories, `Other`, and `Unknown`;
+  this is verified for that route and is not an earned cross-route pattern.
 - `docs/DATASET_DATASHEET.md` is the maintained composition/source/license/processing/use/risk record. `docs/CLAIM_REGISTER.md` maps every public analytical surface to its supported claim and defines external domain/community-review triggers.
 - The retained JSON field/file names `crossesBorders` and `cross_cultural_summary.json` are legacy contract names. Their exact meaning is disjoint recorded Wikidata P27 sets; public copy no longer describes this as observed border crossing, migration, refugee history, or cross-cultural influence.
 
@@ -386,17 +384,18 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 - The registry advisory state changed after that landing evidence: a fresh
   2026-08-14 install now reports one high transitive `nanoid@3.3.17` finding
   (`GHSA-2v37-7h3g-55p8`, fixed in 3.3.18). The older zero-finding statements
-  above remain dated delivery history, not the current registry result. This
-  Evolution task does not alter dependency files or attempt remediation.
+  above remain dated delivery history, not the current registry result. PR #35
+  and this landing closeout do not alter dependency files or attempt
+  remediation.
 - The known impossible lifespan is resolved at its source boundary: Wikidata records `Q87366` only as “18th century” (precision 7), so the year-based public export now excludes it with evidence in `overrides/person_exclusions.csv` and `transparency.json`. Repository invariants reject any future birth-after-death record.
 - Repository CI and seven focused Playwright core-journey/URL-state/provenance checks now exist. The repo-local Chromium binary is gitignored; install it with `cd web && npm run test:e2e:install` before the first local run.
-- Timeline and Migration have landed non-color structured equivalents. The
-  local Evolution candidate adds an on-demand exact wide semantic overview and
-  a primary structured reflow path driven by the same projection; focused
-  forced-color and four color-vision-mode checks pass locally. Lineage remains
-  the unresolved chart family and needs its own semantic adjacency/focus task,
-  keyboard model, reduced-motion path, forced-color treatment, and performance
-  contract.
+- Timeline, Migration, and Evolution have landed non-color structured
+  equivalents. Evolution adds an on-demand exact wide semantic overview and a
+  primary structured reflow path driven by the same projection; focused
+  forced-color and four color-vision-mode checks passed at its reviewed head.
+  Lineage remains the unresolved chart family and needs its own semantic
+  adjacency/focus task, keyboard model, reduced-motion path, forced-color
+  treatment, and performance contract.
 - The 5Q.4a Axe baseline found repeated contextual contrast failures (2,378
   nodes on old Explore), six prohibited ARIA labels on detail completeness
   dots, a non-focusable mobile Timeline scroller, and four movement target-size
@@ -410,42 +409,37 @@ manual versions, and non-secret build-token metadata through 2026-09-02 UTC.
 
 ## Validation state at this handoff
 
-The Evolution implementation commit uses Node 24.14.0 and npm 11.9.0 against
-exact protected base
-`614951db2288a416fccb4511ac937c7951602053`:
+The final Evolution implementation uses Node 24.14.0 and npm 11.9.0 against
+exact protected base `614951db2288a416fccb4511ac937c7951602053`:
 
-- `./scripts/validate.sh` passes every standard-library data contract, Getty
+- `./scripts/validate.sh` passed every standard-library data contract, Getty
   final-record parity check, institution/relationship/temporal check, all 21
   URL/projection unit tests, zero-warning lint, type checking, the 3,625-route
   static export, and CI lineage performance bounds.
-- `cd web && npm run test:e2e -- --workers=1` passes all 52 Chromium journeys,
-  including all 12 route-local Evolution journeys and every pre-existing core,
-  Explore, Timeline, and Migration journey.
+- `cd web && npm run test:e2e -- --workers=1` passed all 53 Chromium journeys;
+  the 13 focused Evolution journeys include the two-mode eight-unique-fill P2
+  regression and every prior URL/projection/reflow/accessibility/performance
+  path.
 - Focused rendered evidence at 1440×900, 390×844, and 720×450 covers default,
   birth-source, valid decade, combined, explicit-default, duplicate,
   malformed/unknown, empty-focus, missing-materials, and failed-required-data
-  states. The visual chart boundary was raised from the proposed 1200px after
-  exact measurement found 22.2px bands; 1280px passes the required ≥24px
-  bound, while narrower widths mount no chart SVG.
-- The five inputs total 19,962 bytes gzip, ordinary feedback remains below
-  200ms, measured CLS remains at most 0.1, visible focusables remain below 100,
-  reflow targets are at least 44px high, and no inspected state emits a product
-  console, page, request, or invalid-SVG error.
-- Local head, remote branch, and draft PR #35 matched exact implementation SHA
-  `b5a19ab2602fe6ab9e1fd8e98086570ded3e2ea2`. Both push/PR `validate` runs
-  (`31908201342`, `31908245183`) passed; Vercel and Preview Comments passed.
-- Git-backed Preview deployment `dpl_6v5Mk7bcdHVpPoQgNAJrhkz69ZRo` is `READY`
+  states. The 1280px visual boundary passes the required ≥24px band bound;
+  narrower widths mount no chart SVG.
+- Reviewed head `c1542f0ffa4e53bb1cf801f1c3090e49692e157c`, the remote implementation
+  branch, and PR #35 matched. Push/PR `validate` runs `31913554149` and
+  `31913557014`, Vercel, and Preview Comments passed.
+- Git-backed Preview deployment `dpl_3wDHXeTGRvBFTdegWDQEf4eff9wj` was `READY`
   at immutable URL
-  `https://sculptor-explorer-f82yhotjt-asherzafars-projects.vercel.app`, sourced
-  from the exact implementation branch/SHA. The repository deployment script
-  returned 200 for canonical probes and 404 for the intentional missing route.
-- Focused Preview QA passed the route gate with no confirmed/probable product
-  defect. Eleven of twelve journeys passed verbatim; the sole aggregate
-  request assertion recorded only aborted navigation prefetches for other
-  routes/hosting metadata under the immutable deployment, while all Evolution
-  resources plus page/console state remained clean. This handoff reconciliation
-  is a docs-only follow-up and requires fresh exact-head Actions and Preview
-  association after push.
+  `https://sculptor-explorer-40rivl42c-asherzafars-projects.vercel.app`, sourced
+  from the exact reviewed branch/SHA. Canonical/missing-route smoke and all
+  three decisive Preview checks passed; paced inspection had no console, page,
+  or product failure.
+- Guarded merge `6f8d450e2a413e1cff5f3d15faf1cd2039eac683` completed without branch
+  deletion. Default-branch Actions run `31915132651` passed at that SHA.
+  Production deployment `dpl_E9AXGV1c3DJ7ubGMe7FyZLFBmKzr` is `READY` from
+  `main` at the exact merge. Canonical and immutable route probes, direct
+  `/evolution` and combined-state probes, all three exact-production rendered
+  checks, and the landing-window runtime error check passed.
 - Actual 200% Chrome/Safari zoom, physical keyboard/touch, spoken
   VoiceOver/NVDA, Windows High Contrast, field p75, and reader comprehension
   remain owner-run boundaries. The 720px viewport is only a reflow proxy.
@@ -812,28 +806,31 @@ Cloudflare resources without a new post-retention review and explicit approval.
 
 ## Recommended next sequence
 
-1. Review draft PR #35 after the docs-only evidence follow-up reaches a green
-   exact head. Preserve the explicit `main` base, unstacked draft state, and
-   route-local diff. Mark-ready, merge, landing, production, or cleanup work
-   requires separate authorization for the exact reviewed head.
+1. Review the documentation-only draft PR from
+   `codex/phase-5q4b-evolution-landing-closeout` after its exact head has green
+   Actions and an exact-SHA `READY` Git-backed Preview. Preserve the explicit
+   `main` base, unstacked draft state, and documentation-only diff. A ready
+   transition, merge, production verification, or cleanup requires separate
+   authorization for the exact reviewed head.
 2. Run the owner-only actual-zoom, physical-input, VoiceOver/NVDA, Windows High
-   Contrast, and comprehension protocols for the candidate/landed route slices;
-   do not backfill them as automated evidence.
-3. Keep Lineage and the smaller entity/content-route findings separate until
-   the Evolution review boundary resolves. A future Lineage task must scope its
-   adjacency, focus, typeahead, keyboard, reduced-motion, forced-colors,
-   canonical-state, and performance model together.
+   Contrast, and comprehension protocols for the landed route slices; do not
+   backfill them as automated evidence.
+3. Select the next bounded remaining-route evidence task from fresh protected
+   main. Keep Lineage independent; its adjacency, focus, typeahead, keyboard,
+   reduced-motion, forced-colors, canonical-state, and performance model must
+   be scoped together.
 
-### Next bounded seed — review the exact-head Evolution draft
+### Next bounded seed — review the Evolution landing closeout draft
 
-> Review draft PR #35 from `codex/phase-5q4b-evolution-slice` to `main` at its
-> exact current head. Confirm the unstacked draft state, complete route-local
-> diff, required Actions, exact-SHA `READY` Git-backed Preview, immutable-route
-> smoke, and recorded Evolution QA evidence. If acceptable, decide separately
-> whether to authorize a ready transition or exact-head merge. Do not mark
-> ready, merge, deploy/promote production, change providers, dependencies,
-> Lineage or another route, or clean retained branches/worktrees without
-> separate authorization for the exact action and target.
+> Review the draft PR from
+> `codex/phase-5q4b-evolution-landing-closeout` to `main` at its exact current
+> head. Confirm the unstacked draft state, documentation-only diff, required
+> Actions, exact-SHA `READY` Git-backed Preview, immutable-route smoke, and the
+> reconciled PR #35 landing evidence. If acceptable, authorize marking that
+> exact head ready for review only. Do not merge, deploy/promote production,
+> change providers, dependencies, Lineage or another route, or clean retained
+> branches/worktrees without separate authorization for the exact action and
+> target.
 
 ## Starting instructions for any agent
 
